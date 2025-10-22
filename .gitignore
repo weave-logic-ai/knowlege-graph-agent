@@ -30,3 +30,4 @@ hive-mind-prompt-*.txt
 .claude-flow/
 .swarm/
 .hive-mind/
+.venv/
