@@ -1,0 +1,108 @@
+# Update Propagation Agent Rule
+# Propagates changes across related nodes to maintain consistency
+
+name: "update_propagation"
+version: "1.0"
+enabled: true
+priority: 50
+
+description: |
+  When a node is updated, automatically identifies related nodes that may need
+  updates and either applies changes automatically or flags for manual review.
+  Ensures knowledge graph remains consistent.
+
+triggers:
+  - event_type: "vault.file.modified"
+  - event_type: "vault.metadata.significant_change"
+
+conditions:
+  - change_is_significant: true
+  - has_related_nodes: true
+  - propagation_enabled: true
+
+actions:
+  - action: "detect_change_type"
+    categories:
+      - status_change  # e.g., "planned" → "completed"
+      - content_addition  # New sections or information
+      - content_removal  # Deprecated information
+      - metadata_change  # Frontmatter updates
+      - link_change  # New or removed relationships
+
+  - action: "find_affected_nodes"
+    methods:
+      - direct_links  # Nodes with wikilinks to this node
+      - backlinks  # Nodes this node links to
+      - shared_tags  # Nodes with related tags
+      - semantic_similarity  # Content-based relationships
+
+  - action: "determine_propagation_strategy"
+    rules:
+      - if_status_changed_to_completed:
+          action: "update_dependent_statuses"
+
+      - if_deprecated:
+          action: "flag_dependent_nodes"
+          warning: "This node references deprecated content"
+
+      - if_new_information:
+          action: "suggest_related_updates"
+
+      - if_renamed:
+          action: "update_all_wikilinks"
+
+  - action: "apply_propagation"
+    modes:
+      - auto  # Automatic updates (safe changes)
+      - suggest  # Propose changes for review
+      - flag  # Mark nodes needing attention
+
+  - action: "publish_event"
+    event_type: "vault.metadata.propagation_completed"
+    data:
+      source_file: "{{file_path}}"
+      affected_nodes: "{{count}}"
+      changes_applied: "{{auto_changes}}"
+      changes_flagged: "{{flagged_changes}}"
+
+parameters:
+  auto_propagate_safe_changes: true
+  require_confirmation_for_content: true
+  max_propagation_depth: 3
+
+safe_auto_changes:
+  - update_wikilinks_on_rename
+  - update_status_in_dependent_tasks
+  - add_deprecation_warnings
+  - update_backlink_sections
+
+require_confirmation:
+  - content_modifications
+  - tag_removals
+  - link_removals
+
+propagation_rules:
+  feature_completed:
+    - update_phase_document_progress
+    - mark_dependent_tasks_ready
+    - update_roadmap_status
+
+  architecture_deprecated:
+    - flag_features_using_architecture
+    - suggest_migration_path
+    - add_deprecation_notice
+
+  decision_reversed:
+    - flag_all_implementations
+    - suggest_alternative_approaches
+    - update_decision_log
+
+examples:
+  - input: "Feature F-008 status changed to 'completed'"
+    output: "Updates Phase 5 checklist, marks dependent features as 'ready'"
+
+  - input: "Architecture document renamed from 'websocket-approach' to 'rest-api-approach'"
+    output: "Updates all wikilinks automatically across vault"
+
+  - input: "Decision doc changed: 'Use PostgreSQL' → 'Use SQLite'"
+    output: "Flags all architecture docs mentioning PostgreSQL for manual review"

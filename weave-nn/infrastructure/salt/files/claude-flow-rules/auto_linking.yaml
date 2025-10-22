@@ -1,0 +1,81 @@
+# Auto-Linking Agent Rule
+# Automatically creates bidirectional links between related Obsidian nodes
+
+name: "auto_linking"
+version: "1.0"
+enabled: true
+priority: 30
+
+description: |
+  Analyzes node content and automatically creates wikilinks to related concepts,
+  features, and architecture documents. Uses semantic similarity and explicit
+  references to determine relationships.
+
+triggers:
+  - event_type: "vault.file.created"
+  - event_type: "vault.file.modified"
+  - event_type: "vault.metadata.link_scan_requested"
+
+conditions:
+  - file_type: "markdown"
+  - has_frontmatter: true
+  - not_in_templates: true
+
+actions:
+  - action: "extract_references"
+    methods:
+      - explicit_mentions  # "as described in git-integration feature"
+      - semantic_similarity  # Content-based matching
+      - tag_based  # Shared tags indicate relationships
+
+  - action: "find_related_nodes"
+    similarity_threshold: 0.75
+    max_links: 10
+    exclude:
+      - self
+      - already_linked
+
+  - action: "insert_wikilinks"
+    locations:
+      - inline_context  # Within paragraphs where relevant
+      - related_section  # Dedicated "Related" section
+    format: "[[{{file_path}}|{{display_name}}]]"
+
+  - action: "update_backlinks"
+    bidirectional: true
+    add_context: true
+
+  - action: "publish_event"
+    event_type: "vault.metadata.links_updated"
+    data:
+      file_path: "{{file_path}}"
+      links_added: "{{count}}"
+
+parameters:
+  similarity_algorithm: "sentence_transformers"
+  model: "all-MiniLM-L6-v2"
+  min_similarity: 0.7
+  max_links_per_node: 15
+  prefer_explicit_over_semantic: true
+
+link_priority:
+  - direct_dependency: 1.0  # "requires", "depends on"
+  - related_feature: 0.9
+  - shared_category: 0.8
+  - semantic_similarity: 0.7
+  - shared_tags: 0.6
+
+exemptions:
+  - path: "templates/*"
+  - path: "memory/*"
+  - type: "temporary"
+
+examples:
+  - input: "Feature document mentions 'RabbitMQ message queue'"
+    output: "Inserts [[features/rabbitmq-message-queue|RabbitMQ]] wikilink"
+
+  - input: "Architecture doc discusses 'MCP tools for task management'"
+    output: "Links to [[features/obsidian-tasks-integration]] and [[architecture/mcp-server-design]]"
+
+  - input: "Decision doc references 'Obsidian-first approach'"
+    output: "Links to [[architecture/obsidian-native-integration-analysis]]"

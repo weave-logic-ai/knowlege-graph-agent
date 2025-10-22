@@ -1,0 +1,128 @@
+# Auto-Tagging Agent Rule
+# Automatically applies consistent tags to Obsidian nodes based on content analysis
+
+name: "auto_tagging"
+version: "1.0"
+enabled: true
+priority: 40
+
+description: |
+  Analyzes node content and frontmatter to automatically apply appropriate tags
+  following the project's tagging conventions. Ensures consistent taxonomy across
+  the knowledge graph.
+
+triggers:
+  - event_type: "vault.file.created"
+  - event_type: "vault.file.modified"
+  - event_type: "vault.metadata.tag_scan_requested"
+
+conditions:
+  - file_type: "markdown"
+  - has_frontmatter: true
+  - tags_need_update: true
+
+actions:
+  - action: "analyze_content"
+    extract:
+      - node_type
+      - technology_stack
+      - project_scope
+      - priority_level
+      - status
+
+  - action: "determine_tags"
+    categories:
+      type_tags:
+        - "type/feature"
+        - "type/architecture"
+        - "type/concept"
+        - "type/decision"
+        - "type/task"
+        - "type/memory"
+        - "type/template"
+
+      scope_tags:
+        - "scope/mvp"
+        - "scope/phase-1"
+        - "scope/phase-2"
+        - "scope/future"
+
+      tech_tags:
+        - "tech/python"
+        - "tech/obsidian"
+        - "tech/rabbitmq"
+        - "tech/n8n"
+        - "tech/docker"
+        - "tech/git"
+        - "tech/mcp"
+
+      priority_tags:
+        - "priority/critical"
+        - "priority/high"
+        - "priority/medium"
+        - "priority/low"
+
+      status_tags:
+        - "status/active"
+        - "status/planned"
+        - "status/completed"
+        - "status/deprecated"
+
+      category_tags:
+        - "category/integration"
+        - "category/automation"
+        - "category/infrastructure"
+        - "category/documentation"
+
+  - action: "update_frontmatter"
+    field: "tags"
+    merge_strategy: "preserve_manual_tags"
+
+  - action: "publish_event"
+    event_type: "vault.metadata.tags_updated"
+    data:
+      file_path: "{{file_path}}"
+      tags_added: "{{tags_added}}"
+      tags_removed: "{{tags_removed}}"
+
+parameters:
+  confidence_threshold: 0.8
+  preserve_manual_tags: true
+  max_tags_per_node: 15
+  auto_suggest: true  # Suggest tags without auto-applying
+
+tag_inference_rules:
+  - if_path_starts_with: "features/"
+    add_tags: ["type/feature"]
+
+  - if_path_starts_with: "architecture/"
+    add_tags: ["type/architecture"]
+
+  - if_frontmatter_contains:
+      field: "release"
+      value: "mvp"
+    add_tags: ["scope/mvp"]
+
+  - if_content_mentions: ["RabbitMQ", "message queue", "AMQP"]
+    add_tags: ["tech/rabbitmq", "category/infrastructure"]
+
+  - if_content_mentions: ["MCP", "Model Context Protocol"]
+    add_tags: ["tech/mcp", "category/integration"]
+
+  - if_content_mentions: ["N8N", "workflow automation"]
+    add_tags: ["tech/n8n", "category/automation"]
+
+exemptions:
+  - path: "templates/*"
+  - type: "temporary"
+  - has_tag: "no-auto-tag"
+
+examples:
+  - input: "Feature document in features/ about RabbitMQ integration"
+    output: "Adds tags: #type/feature #tech/rabbitmq #category/integration #scope/mvp"
+
+  - input: "Architecture document discussing MCP server design"
+    output: "Adds tags: #type/architecture #tech/mcp #tech/python #priority/high"
+
+  - input: "Decision document about using Obsidian-first approach"
+    output: "Adds tags: #type/decision #tech/obsidian #status/completed #scope/mvp"

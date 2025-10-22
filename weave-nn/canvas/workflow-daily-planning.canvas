@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Daily Planning Workflow\n\n**Purpose**: Standardized daily work routine integrating todos, knowledge graph, and git\n\n**Updated**: 2025-10-20","x":-400,"y":-600,"width":800,"height":180,"color":"5"},
+		{"id":"morning-review","type":"text","text":"## 1. Morning Review (9:00 AM)\n\n📋 **Review**:\n- [ ] Read yesterday's log: `[[_planning/daily-logs/YYYY-MM-DD]]`\n- [ ] Check current phase: `[[_planning/phases/phase-X]]`\n- [ ] Review blockers: `[[meta/DECISIONS-INDEX]]`\n- [ ] Check Obsidian graph for new connections","x":-800,"y":-360,"width":350,"height":300,"color":"4"},
+		{"id":"plan-today","type":"text","text":"## 2. Plan Today (9:15 AM)\n\n🎯 **Create todos**:\n- [ ] Pick 3-5 high-priority tasks from phase\n- [ ] Identify blockers\n- [ ] Note required decisions\n- [ ] Set completion criteria\n\n💡 **Create today's log**:\n`_planning/daily-logs/YYYY-MM-DD.md`","x":-400,"y":-360,"width":350,"height":300,"color":"4"},
+		{"id":"work-session","type":"text","text":"## 3. Work Session (9:30-12:00)\n\n⚙️ **Execute**:\n- [ ] Work on todos in priority order\n- [ ] Create/update nodes as you go\n- [ ] Use canvas for complex visualizations\n- [ ] Link everything with wikilinks\n- [ ] Update phase todos in real-time","x":0,"y":-360,"width":350,"height":300,"color":"2"},
+		{"id":"midday-commit","type":"text","text":"## 4. Midday Checkpoint (12:00 PM)\n\n📸 **Save progress**:\n```bash\ngit add -A\ngit commit -m \"wip: [what you did]\"\n```\n\n✅ **Update**:\n- [ ] Mark completed todos in phase doc\n- [ ] Update daily log with progress\n- [ ] Note any blockers discovered","x":400,"y":-360,"width":350,"height":300,"color":"3"},
+		{"id":"afternoon-work","type":"text","text":"## 5. Afternoon Session (1:00-4:00 PM)\n\n⚙️ **Continue work**:\n- [ ] Resume from morning session\n- [ ] Create decision nodes if needed\n- [ ] Document questions in canvas\n- [ ] Update knowledge graph connections","x":-800,"y":0,"width":350,"height":260,"color":"2"},
+		{"id":"review-connections","type":"text","text":"## 6. Review Connections (4:00 PM)\n\n🔗 **Validate graph**:\n- [ ] Open Obsidian graph view\n- [ ] Check for isolated nodes\n- [ ] Add missing wikilinks\n- [ ] Update canvas if structure changed\n- [ ] Verify bidirectional links","x":-400,"y":0,"width":350,"height":260,"color":"4"},
+		{"id":"update-planning","type":"text","text":"## 7. Update Planning Docs (4:15 PM)\n\n📋 **Document work**:\n- [ ] Complete today's daily log\n- [ ] Update phase completion %\n- [ ] Move completed todos to ✅\n- [ ] Add tomorrow's todos\n- [ ] Update blockers list","x":0,"y":0,"width":350,"height":260,"color":"4"},
+		{"id":"final-commit","type":"text","text":"## 8. Final Commit (4:30 PM)\n\n🎯 **Save everything**:\n```bash\ngit add -A\ngit commit -m \"feat: [summary]\n\n- Created: [[nodes]]\n- Updated: [[nodes]]\n- Completed: [todos]\n\nCo-Authored-By: Claude\"\n```","x":400,"y":0,"width":350,"height":260,"color":"3"},
+		{"id":"reflection","type":"text","text":"## 9. Reflection (4:45 PM)\n\n💭 **Learn**:\n- [ ] What worked well today?\n- [ ] What was challenging?\n- [ ] What decisions need to be made?\n- [ ] What's the priority for tomorrow?\n\n📝 Add to daily log","x":-800,"y":320,"width":350,"height":260,"color":"6"},
+		{"id":"prepare-tomorrow","type":"text","text":"## 10. Prepare Tomorrow (5:00 PM)\n\n🌅 **Set up next session**:\n- [ ] Create tomorrow's log template\n- [ ] Move todos to next phase if needed\n- [ ] Update canvas boards\n- [ ] Clear mental space","x":-400,"y":320,"width":350,"height":260,"color":"6"},
+		{"id":"decision-point","type":"text","text":"## ⚡ Decision Required?\n\n**YES** → Create decision node\n→ Link to canvas\n→ Add to questions\n\n**NO** → Continue work","x":0,"y":320,"width":350,"height":260,"color":"1"},
+		{"id":"blocker-found","type":"text","text":"## 🚨 Blocker Found?\n\n**YES** → Document in phase\n→ Link to blocking decision\n→ Find workaround or pause\n\n**NO** → Continue work","x":400,"y":320,"width":350,"height":260,"color":"1"},
+		{"id":"integration-notes","type":"text","text":"## 🔗 Integration Points\n\n**Planning** ↔ **Knowledge Graph**\n- Todos link to nodes\n- Nodes link to phases\n- Canvases visualize both\n\n**Git** ↔ **Planning**\n- Commits reference logs\n- Logs reference commits\n- History is traceable","x":-200,"y":640,"width":400,"height":280,"color":"5"}
+	],
+	"edges":[
+		{"id":"morning-to-plan","fromNode":"morning-review","fromSide":"right","toNode":"plan-today","toSide":"left"},
+		{"id":"plan-to-work","fromNode":"plan-today","fromSide":"right","toNode":"work-session","toSide":"left"},
+		{"id":"work-to-checkpoint","fromNode":"work-session","fromSide":"right","toNode":"midday-commit","toSide":"left"},
+		{"id":"checkpoint-to-afternoon","fromNode":"midday-commit","fromSide":"bottom","toNode":"afternoon-work","toSide":"top"},
+		{"id":"afternoon-to-review","fromNode":"afternoon-work","fromSide":"right","toNode":"review-connections","toSide":"left"},
+		{"id":"review-to-planning","fromNode":"review-connections","fromSide":"right","toNode":"update-planning","toSide":"left"},
+		{"id":"planning-to-commit","fromNode":"update-planning","fromSide":"right","toNode":"final-commit","toSide":"left"},
+		{"id":"commit-to-reflection","fromNode":"final-commit","fromSide":"bottom","toNode":"reflection","toSide":"top"},
+		{"id":"reflection-to-tomorrow","fromNode":"reflection","fromSide":"right","toNode":"prepare-tomorrow","toSide":"left"},
+		{"id":"work-to-decision","fromNode":"work-session","fromSide":"bottom","toNode":"decision-point","toSide":"top","label":"if needed"},
+		{"id":"work-to-blocker","fromNode":"work-session","fromSide":"bottom","toNode":"blocker-found","toSide":"top","label":"if found"}
+	]
+}

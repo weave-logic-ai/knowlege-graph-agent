@@ -1,0 +1,84 @@
+# Node Creation Agent Rule
+# Automatically creates new Obsidian nodes based on conversation context
+
+name: "node_creation"
+version: "1.0"
+enabled: true
+priority: 20
+
+description: |
+  Monitors conversation for indicators that a new concept, feature, or document
+  should be created in the Obsidian vault. Automatically generates structured
+  markdown files with appropriate frontmatter and content.
+
+triggers:
+  - event_type: "conversation.node_suggestion"
+  - event_type: "vault.metadata.missing_concept"
+  - command: "create_node"
+
+conditions:
+  - node_does_not_exist: true
+  - has_sufficient_information: true
+  - user_approved: true  # Optional confirmation
+
+actions:
+  - action: "determine_node_type"
+    categories:
+      - feature
+      - architecture
+      - concept
+      - decision
+      - task
+      - template
+      - project
+
+  - action: "generate_frontmatter"
+    based_on: "node_type"
+    include:
+      - type
+      - status
+      - priority
+      - created_date
+      - tags
+
+  - action: "generate_content"
+    sections:
+      - summary
+      - details
+      - related_links
+      - examples
+
+  - action: "create_note"
+    target: "{{category}}/{{slug}}.md"
+
+  - action: "auto_link"
+    find_related: true
+    bi_directional: true
+
+  - action: "publish_event"
+    event_type: "vault.file.created"
+    data:
+      file_path: "{{file_path}}"
+      node_type: "{{node_type}}"
+
+parameters:
+  require_confirmation: false
+  auto_generate_id: true
+  id_format: "{{type}}-{{sequence}}"  # e.g., F-008, A-006
+  default_status: "draft"
+
+naming_conventions:
+  feature: "features/{{feature_name}}.md"
+  architecture: "architecture/{{architecture_name}}.md"
+  concept: "concepts/{{concept_name}}.md"
+  decision: "decisions/{{decision_name}}.md"
+
+examples:
+  - input: "We should document the WebSocket integration approach"
+    output: "Creates architecture/websocket-integration.md with analysis structure"
+
+  - input: "Let's add a feature for real-time collaboration"
+    output: "Creates features/real-time-collaboration.md with feature template"
+
+  - input: "I've decided to use PostgreSQL for the main database"
+    output: "Creates decisions/use-postgresql.md and links to relevant architecture docs"

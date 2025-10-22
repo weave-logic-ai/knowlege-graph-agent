@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Phase 2: Node Expansion Task Board\n\n**Status**: In Progress ⏳\n**Target**: 20-30 nodes\n**Current**: 0 / 30","x":-800,"y":-400,"width":1600,"height":140,"color":"5"},
+		{"id":"backlog-label","type":"text","text":"## 📋 Backlog","x":-800,"y":-220,"width":360,"height":60,"color":"4"},
+		{"id":"todo-label","type":"text","text":"## 📝 Todo","x":-400,"y":-220,"width":360,"height":60,"color":"4"},
+		{"id":"progress-label","type":"text","text":"## ⏳ In Progress","x":0,"y":-220,"width":360,"height":60,"color":"3"},
+		{"id":"done-label","type":"text","text":"## ✅ Done","x":400,"y":-220,"width":360,"height":60,"color":"2"},
+		{"id":"arch1","type":"text","text":"### Frontend Layer\n\n🔴 Priority: Critical\n\nNode: `architecture/frontend-layer.md`\n\nDescribe UI components, graph viz, editor","x":-780,"y":-140,"width":320,"height":180,"color":"4"},
+		{"id":"arch2","type":"text","text":"### API Layer\n\n🔴 Priority: Critical\n\nNode: `architecture/api-layer.md`\n\nREST/GraphQL endpoints, MCP server","x":-780,"y":60,"width":320,"height":180,"color":"4"},
+		{"id":"arch3","type":"text","text":"### Data/Knowledge Layer\n\n🔴 Priority: Critical\n\nNode: `architecture/data-knowledge-layer.md`\n\nPostgres, Graphiti, vector DB","x":-780,"y":260,"width":320,"height":180,"color":"4"},
+		{"id":"arch4","type":"text","text":"### AI Integration Layer\n\n🔴 Priority: Critical\n\nNode: `architecture/ai-integration-layer.md`\n\nMCP, AI services, auto-linking","x":-780,"y":460,"width":320,"height":180,"color":"4"},
+		{"id":"feature1","type":"text","text":"### Graph Visualization\n\n🟡 Priority: High\n\nNode: `features/knowledge-graph-visualization.md`\n\nInteractive node-based graph UI","x":-780,"y":660,"width":320,"height":180,"color":"4"},
+		{"id":"feature2","type":"text","text":"### Markdown Editor\n\n🟡 Priority: High\n\nNode: `features/markdown-editor-component.md`\n\nWYSIWYG with wikilink support","x":-780,"y":860,"width":320,"height":180,"color":"4"},
+		{"id":"decision1","type":"text","text":"### TS-1: Frontend Framework\n\n🔴 Priority: Critical Blocker\n\nNode: `decisions/technical/frontend-framework.md`\n\nReact vs Svelte decision","x":-380,"y":-140,"width":320,"height":180,"color":"1"},
+		{"id":"decision2","type":"text","text":"### TS-2: Graph Visualization\n\n🔴 Priority: Critical\n\nNode: `decisions/technical/graph-visualization.md`\n\nReact Flow vs Svelte Flow","x":-380,"y":60,"width":320,"height":180,"color":"1"},
+		{"id":"decision3","type":"text","text":"### FP-1: MVP Features\n\n🔴 Priority: Critical\n\nNode: `decisions/features/mvp-features.md`\n\n25 core features defined","x":-380,"y":260,"width":320,"height":180,"color":"1"},
+		{"id":"business1","type":"text","text":"### Value Proposition\n\n🔵 Priority: Medium\n\nNode: `business/value-proposition.md`\n\nCore selling points","x":-380,"y":460,"width":320,"height":180,"color":"4"},
+		{"id":"business2","type":"text","text":"### Target Users\n\n🔵 Priority: Medium\n\nNode: `business/target-users.md`\n\nAI-native teams, researchers","x":-380,"y":660,"width":320,"height":180,"color":"4"},
+		{"id":"placeholder-progress","type":"text","text":"### No tasks in progress\n\nStart work by moving a card here","x":20,"y":-140,"width":320,"height":180,"color":"3"},
+		{"id":"git-planning","type":"text","text":"### ✅ Git & Planning Setup\n\n**Completed**: 2025-10-20\n\nCreated:\n- Git repository\n- Planning structure\n- Phase docs\n- Daily logs","x":420,"y":-140,"width":320,"height":200,"color":"2"},
+		{"id":"cleanup-graph","type":"text","text":"### ✅ Clean Graph View\n\n**Completed**: 2025-10-20\n\nMoved:\n- Meta docs to `/meta`\n- Legacy to `/archive`\n- Questions to `/meta`","x":420,"y":80,"width":320,"height":200,"color":"2"},
+		{"id":"canvas-setup","type":"text","text":"### ✅ Canvas Infrastructure\n\n**Completed**: 2025-10-20\n\nCreated:\n- Canvas hub\n- Decision tree\n- Workflow\n- Task board","x":420,"y":300,"width":320,"height":200,"color":"2"},
+		{"id":"notes","type":"text","text":"## 📝 Notes\n\n**Next Actions**:\n1. Move TS-1 to \"In Progress\"\n2. Create decision node\n3. Research or decide\n4. Move to \"Done\"\n\n**Color Code**:\n🔴 Critical\n🟡 High\n🔵 Medium\n⚪ Low","x":-800,"y":1080,"width":760,"height":280,"color":"6"},
+		{"id":"stats","type":"text","text":"## 📊 Statistics\n\n**Total Tasks**: 30\n**Completed**: 3 (10%)\n**In Progress**: 0\n**Todo**: 12\n**Backlog**: 15\n\n**Estimated Time**: 1-2 days","x":0,"y":1080,"width":760,"height":280,"color":"6"}
+	],
+	"edges":[]
+}

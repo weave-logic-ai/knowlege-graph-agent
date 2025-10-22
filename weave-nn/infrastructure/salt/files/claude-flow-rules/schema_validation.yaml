@@ -1,0 +1,162 @@
+# Schema Validation Agent Rule
+# Validates Obsidian node structure and enforces consistency standards
+
+name: "schema_validation"
+version: "1.0"
+enabled: true
+priority: 60
+
+description: |
+  Validates that all Obsidian nodes conform to expected schema based on their type.
+  Ensures frontmatter completeness, required sections, and proper formatting.
+  Flags violations and suggests corrections.
+
+triggers:
+  - event_type: "vault.file.created"
+  - event_type: "vault.file.modified"
+  - event_type: "vault.validation.requested"
+
+conditions:
+  - file_type: "markdown"
+  - not_in_templates: true
+  - validation_enabled: true
+
+actions:
+  - action: "detect_node_type"
+    from:
+      - frontmatter.type
+      - file_path
+      - content_analysis
+
+  - action: "load_schema"
+    schemas:
+      feature:
+        required_frontmatter:
+          - type
+          - feature_id
+          - feature_name
+          - category
+          - status
+          - priority
+          - release
+          - complexity
+        required_sections:
+          - "## Overview"
+          - "## Use Cases"
+          - "## Technical Design"
+          - "## Dependencies"
+        optional_sections:
+          - "## Examples"
+          - "## Testing"
+
+      architecture:
+        required_frontmatter:
+          - type
+          - architecture_id
+          - status
+          - priority
+          - created_date
+        required_sections:
+          - "## Problem Statement"
+          - "## Solution"
+          - "## Trade-offs"
+
+      decision:
+        required_frontmatter:
+          - type
+          - decision_id
+          - status
+          - date
+          - decision_maker
+        required_sections:
+          - "## Context"
+          - "## Decision"
+          - "## Consequences"
+
+      concept:
+        required_frontmatter:
+          - type
+          - status
+          - created_date
+        required_sections:
+          - "## Definition"
+          - "## Examples"
+
+      task:
+        required_frontmatter:
+          - type
+          - status
+          - priority
+          - due_date
+        optional_sections:
+          - "## Acceptance Criteria"
+          - "## Dependencies"
+
+  - action: "validate_schema"
+    checks:
+      - frontmatter_complete
+      - sections_present
+      - wikilinks_valid
+      - tags_conform
+      - ids_unique
+
+  - action: "generate_validation_report"
+    severity_levels:
+      - error  # Must fix (missing required fields)
+      - warning  # Should fix (missing optional recommended fields)
+      - info  # Nice to have (suggestions)
+
+  - action: "auto_fix_simple_issues"
+    fixes:
+      - add_missing_frontmatter_with_defaults
+      - fix_malformed_yaml
+      - add_section_stubs
+      - standardize_date_formats
+
+  - action: "publish_event"
+    event_type: "vault.validation.completed"
+    data:
+      file_path: "{{file_path}}"
+      errors: "{{error_count}}"
+      warnings: "{{warning_count}}"
+      auto_fixed: "{{fixes_applied}}"
+
+parameters:
+  auto_fix_enabled: true
+  strict_mode: false  # In strict mode, validation errors block saves
+  generate_reports: true
+  report_path: ".obsidian/validation-reports/"
+
+validation_levels:
+  strict:
+    - all_required_fields_present
+    - all_required_sections_present
+    - valid_frontmatter_yaml
+    - unique_ids
+
+  moderate:
+    - required_frontmatter_present
+    - at_least_one_section
+
+  lenient:
+    - valid_yaml
+    - file_is_markdown
+
+exemptions:
+  - path: "templates/*"
+  - path: "memory/*"
+  - type: "temporary"
+  - has_tag: "skip-validation"
+
+examples:
+  - input: "Feature document missing 'priority' in frontmatter"
+    output: "ERROR: Missing required field 'priority'. Auto-fix: adds 'priority: medium'"
+
+  - input: "Architecture document missing '## Trade-offs' section"
+    output: "WARNING: Missing recommended section '## Trade-offs'. Adds section stub."
+
+  - input: "Concept document has invalid date format '10/21/2025'"
+    output: "INFO: Date format should be YYYY-MM-DD. Auto-fix: converts to '2025-10-21'"
+
+  - input: "Decision document with duplicate decision_id 'D-005'"
+    output: "ERROR: Duplicate ID 'D-005'. Suggests 'D-006' as next available ID."

@@ -1,0 +1,20 @@
+# Obsidian
+.obsidian/
+.trash/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+~*
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if we add tooling later)
+node_modules/
+package-lock.json

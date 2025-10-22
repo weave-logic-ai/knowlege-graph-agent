@@ -1,0 +1,63 @@
+# Memory Sync Agent Rule
+# Synchronizes Claude's conversation memory with Obsidian vault
+
+name: "memory_sync"
+version: "1.0"
+enabled: true
+priority: 10
+
+description: |
+  Monitors Claude conversation context and automatically creates/updates
+  memory nodes in Obsidian vault to persist important information across sessions.
+
+triggers:
+  - event_type: "conversation.context_limit"
+  - event_type: "conversation.ended"
+  - event_type: "memory.extract_requested"
+
+conditions:
+  - has_extractable_knowledge: true
+  - conversation_length_minutes: ">= 10"
+
+actions:
+  - action: "extract_memory"
+    target: "conversation.messages"
+    extract:
+      - key_decisions
+      - technical_insights
+      - user_preferences
+      - project_context
+
+  - action: "create_or_update_note"
+    target: "memory/{{date}}-{{session_id}}.md"
+    template: "memory-node"
+    frontmatter:
+      type: "memory"
+      session_id: "{{session_id}}"
+      created_date: "{{date}}"
+      tags:
+        - "type/memory"
+        - "auto-generated"
+
+  - action: "link_to_relevant_nodes"
+    strategy: "semantic_similarity"
+    max_links: 5
+
+  - action: "publish_event"
+    event_type: "vault.metadata.memory_created"
+    data:
+      file_path: "{{file_path}}"
+      session_id: "{{session_id}}"
+
+parameters:
+  extract_threshold: 0.7  # Minimum relevance score
+  max_memory_size_kb: 50
+  auto_tag: true
+  auto_link: true
+
+examples:
+  - input: "User discussed implementing RabbitMQ with specific queue configuration"
+    output: "Creates memory node with technical decision, links to rabbitmq-message-queue.md"
+
+  - input: "User shared preference for Python over JavaScript for backend"
+    output: "Updates user preferences node with language preference"

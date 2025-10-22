@@ -1,0 +1,29 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# Tech Stack Decision Tree\n\n**Status**: Multiple decisions pending\n**Critical Path**: TS-1 → TS-2 → FP-1","x":-400,"y":-500,"width":800,"height":160,"color":"5"},
+		{"id":"ts1","type":"file","file":"decisions/technical/frontend-framework.md","x":-600,"y":-280,"width":400,"height":300,"color":"1"},
+		{"id":"ts1-label","type":"text","text":"## TS-1: Frontend Framework\n\n🚨 **CRITICAL BLOCKER**\nBlocks: TS-2, TS-5, FP-1, FP-2","x":-600,"y":-320,"width":400,"height":120,"color":"1"},
+		{"id":"option-react","type":"text","text":"### Option A: Next.js/React\n\n✅ **Pros**:\n- Largest ecosystem\n- Easier hiring\n- React Flow mature\n- Battle-tested\n\n❌ **Cons**:\n- 4-6 months to MVP\n- More boilerplate\n- Larger bundles","x":-900,"y":80,"width":350,"height":280,"color":"4"},
+		{"id":"option-svelte","type":"text","text":"### Option B: SvelteKit\n\n✅ **Pros**:\n- 2-3 months to MVP\n- Less boilerplate\n- Better performance\n- Modern DX\n\n❌ **Cons**:\n- Smaller ecosystem\n- Harder hiring\n- Svelte Flow newer","x":-500,"y":80,"width":350,"height":280,"color":"4"},
+		{"id":"ts2-react","type":"text","text":"## TS-2a: React Flow\n\n✅ Auto-selected if React chosen\n\n- 500k+ weekly downloads\n- Excellent docs\n- Proven at scale","x":-900,"y":420,"width":350,"height":200,"color":"2"},
+		{"id":"ts2-svelte","type":"text","text":"## TS-2b: Svelte Flow\n\n⚠️ Needs validation if Svelte chosen\n\n- Newer (v0.1.x)\n- Smaller community\n- Prototype required","x":-500,"y":420,"width":350,"height":200,"color":"3"},
+		{"id":"fp1","type":"file","file":"_planning/phases/phase-2-node-expansion.md","x":-700,"y":680,"width":550,"height":200},
+		{"id":"fp1-label","type":"text","text":"## FP-1: MVP Features\n\n🚨 Blocked by TS-1 and TS-2\n\nTimeline depends on framework choice:\n- React: 16-20 weeks\n- Svelte: 10-12 weeks","x":-700,"y":640,"width":550,"height":160,"color":"1"},
+		{"id":"backend","type":"text","text":"## TS-3: Backend Architecture\n\nParallel to frontend decision\n\nOptions:\n- Full-stack (SvelteKit/Next.js)\n- Separate API (Node.js/FastAPI)\n- Supabase BaaS","x":100,"y":-280,"width":400,"height":300,"color":"2"},
+		{"id":"database","type":"text","text":"## TS-4: Database & Storage\n\n⚠️ Partially decided\n\n✅ PostgreSQL chosen\n❓ Vector DB: pgvector vs Pinecone\n❓ File storage strategy\n❓ Graphiti integration","x":100,"y":80,"width":400,"height":280,"color":"3"},
+		{"id":"editor","type":"text","text":"## TS-5: Markdown Editor\n\n🚨 Blocked by TS-1\n\nOptions depend on framework:\n- Tiptap (works with both)\n- Monaco Editor\n- CodeMirror","x":100,"y":420,"width":400,"height":200,"color":"1"},
+		{"id":"questions","type":"text","text":"## Open Questions\n\n[[meta/open-questions/Q-TECH-001|Q-TECH-001]]: Performance testing\n[[meta/open-questions/Q-TECH-002|Q-TECH-002]]: Graphiti integration\n[[meta/open-questions/Q-TECH-003|Q-TECH-003]]: Editor choice\n[[meta/open-questions/Q-TECH-004|Q-TECH-004]]: Vector DB\n[[meta/open-questions/Q-TECH-005|Q-TECH-005]]: Real-time collab","x":600,"y":-280,"width":400,"height":400,"color":"6"},
+		{"id":"action","type":"text","text":"## 🎯 Next Action\n\n**Decide TS-1 within 1 week**\n\nOptions:\n1. Prototype both (1-2 weeks)\n2. Choose based on team preference\n3. Choose based on timeline priority\n\nRecommendation: Prototype both","x":600,"y":180,"width":400,"height":280,"color":"5"}
+	],
+	"edges":[
+		{"id":"ts1-to-react","fromNode":"ts1","fromSide":"bottom","toNode":"option-react","toSide":"top","label":"if React"},
+		{"id":"ts1-to-svelte","fromNode":"ts1","fromSide":"bottom","toNode":"option-svelte","toSide":"top","label":"if Svelte"},
+		{"id":"react-to-reactflow","fromNode":"option-react","fromSide":"bottom","toNode":"ts2-react","toSide":"top","label":"auto-select"},
+		{"id":"svelte-to-svelteflow","fromNode":"option-svelte","fromSide":"bottom","toNode":"ts2-svelte","toSide":"top","label":"validate"},
+		{"id":"ts2react-to-fp1","fromNode":"ts2-react","fromSide":"bottom","toNode":"fp1","toSide":"top","label":"unblocks"},
+		{"id":"ts2svelte-to-fp1","fromNode":"ts2-svelte","fromSide":"bottom","toNode":"fp1","toSide":"top","label":"unblocks"},
+		{"id":"ts1-to-editor","fromNode":"ts1","fromSide":"right","toNode":"editor","toSide":"left","label":"affects"},
+		{"id":"backend-to-db","fromNode":"backend","fromSide":"bottom","toNode":"database","toSide":"top","label":"determines"},
+		{"id":"db-to-questions","fromNode":"database","fromSide":"right","toNode":"questions","toSide":"left","label":"research needed"}
+	]
+}
