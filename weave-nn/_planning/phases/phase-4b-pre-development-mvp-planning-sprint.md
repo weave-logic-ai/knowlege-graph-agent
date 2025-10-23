@@ -31,21 +31,40 @@ visual:
 
 ---
 
-## 🎯 Objectives
+## 🎯 Objectives (REVISED 2025-10-23)
 
-### Primary Goals
-1. **Complete Comprehensive Review** - Review all documentation, architecture, and decisions
-2. **Finalize Project Structure** - Ensure clean organization and clear navigation
-3. **Setup Development Environment** - Prepare tools, dependencies, and infrastructure
-4. **Validate Decision Closure** - Ensure all critical decisions are made
-5. **Create Development Roadmap** - Clear path from Phase 0 → MVP → Production
+### Primary Goal: Ready-to-Add-Features Weaver Base
+
+By the end of Phase 4, we need:
+1. **Functional Weaver Base** - Unified Node.js/TypeScript service with durable workflows
+2. **Proof Workflows** - Working task-completion and phase-completion workflows
+3. **Complete MCP Integration Documentation** - All 7 mcp/ files updated with workflow examples
+4. **Ready for Feature Development** - Phase 5+ can add features to stable foundation
+
+### Goal Shift Context
+
+**Original Plan**: Complete planning → Setup environment → Build MVP services
+**Revised Reality**: During Phase 4B, we discovered:
+- MCP directory needed complete workflow integration (7 files, 2000+ lines)
+- Claude-Flow integration is MVP-critical (not Phase 7)
+- Durable workflows replace RabbitMQ event architecture
+- Weaver unified service replaces 4-service architecture
+
+**New Phase 4 Scope**:
+1. Complete MCP documentation with durable workflows ✅ (Done)
+2. Build Weaver base with core workflows 🔄 (In Progress)
+3. Implement proof workflows (task/phase completion) 🔄 (Next)
+4. Validate Weaver is ready for feature additions ⏳ (Validation)
 
 ### Success Criteria
-- [ ] All documentation reviewed and organized
-- [ ] Development environment fully configured
-- [ ] Architecture decisions validated
-- [ ] Project structure optimized
-- [ ] Clear handoff to Phase 5 (MVP Week 1)
+- [ ] Weaver service running with workflow.dev integration
+- [ ] Task-completion workflow functional (triggered by hook)
+- [ ] Phase-completion workflow functional (triggered by hook)
+- [ ] All MCP documentation reflects Weaver workflows ✅ (Done)
+- [ ] Claude-Flow can interact with knowledge graph via MCP ⏳
+- [ ] Shadow cache operational for fast queries
+- [ ] File watcher triggers workflows correctly
+- [ ] Clear path for Phase 5 feature additions
 
 ---
 
@@ -268,9 +287,47 @@ visual:
   - Ensure consistent tagging
   - Add missing metadata fields
 
-### 3. Development Environment Setup
+### 3. Weaver Base Implementation (CRITICAL - Ready for Features)
 
-#### 3.1 Python Environment (CRITICAL - Blocks Phase 5)
+**Goal**: Build minimal functional Weaver service that can trigger and execute durable workflows.
+
+- [ ] **Create Weaver project structure**
+  ```bash
+  mkdir -p weaver/{src,tests,config,workflows}
+  cd weaver
+  npm init -y
+  npm install workflow-dev hono @hono/node-server chokidar @modelcontextprotocol/sdk
+  ```
+
+- [ ] **Implement core Weaver service**
+  - [ ] File watcher integration (chokidar)
+  - [ ] Workflow trigger system (workflow.dev SDK)
+  - [ ] Shadow cache (SQLite) for metadata queries
+  - [ ] MCP server (ObsidianAPIClient wrapper)
+  - [ ] Basic error handling and logging
+
+- [ ] **Implement proof workflows**
+  - [ ] Task-completion workflow (triggered by Claude Code hook)
+  - [ ] Phase-completion workflow (triggered by Claude Code hook)
+  - [ ] Test both workflows end-to-end
+
+- [ ] **Validate Weaver readiness**
+  - [ ] Can detect vault file changes
+  - [ ] Can trigger workflows automatically
+  - [ ] Workflows can resume after crash
+  - [ ] Shadow cache updates correctly
+  - [ ] MCP tools callable from Claude-Flow
+
+  **Success Criteria**:
+  - Weaver service starts without errors
+  - File watcher detects .md file changes
+  - Task-completion workflow runs when triggered
+  - Phase-completion workflow runs when triggered
+  - Shadow cache reflects current vault state
+
+### 4. Development Environment Setup (CRITICAL - Blocks Implementation)
+
+#### 4.1 Python Environment (Optional - For future MCP server)
 - [ ] **Install Python 3.11+**
   - Verify version: `python --version`
   - Install if needed: `sudo apt install python3.11 python3.11-venv`
@@ -299,11 +356,9 @@ visual:
   python -c "import fastapi, pika, watchdog; print('All imports successful')"
   ```
 
-#### 3.2 ~~Docker & RabbitMQ~~ Weaver Workflow Setup (CRITICAL - Blocks Phase 6)
+#### 4.2 Node.js Environment (CRITICAL - Blocks Weaver)
 
-> **⚠️ RABBITMQ DEFERRED TO POST-MVP**: Weaver (workflow.dev) provides built-in durable workflows and webhooks. RabbitMQ adds unnecessary complexity for MVP. Docker may still be useful for other services in future.
-
-- [ ] **Install Node.js** (if not already installed)
+- [ ] **Install Node.js 20+**
   ```bash
   # Ubuntu - Install Node.js 20+ for Weaver
   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -311,21 +366,29 @@ visual:
   node --version  # Should be v20+
   ```
 
-- [ ] **Setup Weaver Project**
+- [ ] **Install Weaver dependencies**
   ```bash
-  mkdir -p weave-nn-weaver
-  cd weave-nn-weaver
-  npm init -y
-  npm install workflow-dev hono @hono/node-server
-  # Create basic webhook server (see weaver-migration-guide.md)
+  cd weaver
+  npm install workflow-dev hono @hono/node-server chokidar @modelcontextprotocol/sdk sqlite3
+  npm install --save-dev typescript @types/node tsx
   ```
 
-- [ ] **Verify Weaver**
-  - Start webhook server on port 3000
-  - Test endpoint: curl http://localhost:3000/webhook/health
-  - Should return: {"status": "ok"}
+- [ ] **Create .env file**
+  ```bash
+  cat > .env <<EOF
+  VAULT_PATH=/home/aepod/dev/weave-nn/weave-nn
+  OBSIDIAN_API_URL=https://localhost:27124
+  OBSIDIAN_API_KEY=your-api-key-here
+  ANTHROPIC_API_KEY=your-anthropic-key-here
+  NODE_ENV=development
+  EOF
+  ```
 
-**Note**: N8N has been replaced with Weaver (workflow.dev) for workflow automation. Weaver runs as local Node.js service for MVP.
+- [ ] **Install Obsidian plugins**
+  - Local REST API plugin (for MCP integration)
+  - Tasks plugin
+  - Advanced URI plugin
+  - Graph Analysis plugin
 
 #### 3.3 Project Structure Setup (CRITICAL - Blocks Phase 5)
 - [ ] **Create weave-nn-mcp project structure**
@@ -564,10 +627,13 @@ visual:
 ### Planning References
 - [[phase-1-knowledge-graph-transformation|Phase 1: Knowledge Graph Transformation]] ✅
 - [[phase-3-node-expansion|Phase 3: Node Expansion]] ✅
-- [[phase-4a-decision-closure|Phase 4A: Decision Closure]] ✅
-- [[phase-5-claude-flow-integration|Phase 5: Claude-Flow Integration]] ⏳ (Next - Critical)
-- [[phase-6-mvp-week-1|Phase 6: MVP Week 1]]
-- [[phase-7-mvp-week-2|Phase 7: MVP Week 2]]
+- [[phase-4a-decision-closure|Phase 4A: Decision Closure]] ✅ (Archived)
+- [[phase-5-mcp-server-implementation|Phase 5: MCP Server Implementation]] ⏳ (Next - Critical)
+- [[phase-6-file-watcher-weaver-integration|Phase 6: File Watcher & Weaver]]
+- [[phase-7-agent-rules-memory-sync|Phase 7: Agent Rules & Memory Sync]]
+- [[phase-8-git-automation-workflow-proxy|Phase 8: Git Automation]]
+- [[phase-9-testing-documentation|Phase 9: Testing & Documentation]]
+- [[phase-10-mvp-readiness-launch|Phase 10: MVP Readiness & Launch]]
 
 ### Architecture References
 - [[../../architecture/obsidian-native-integration-analysis|Obsidian Integration Analysis]]
@@ -679,12 +745,13 @@ echo "✅ Formatters configured"
 
 ## ➡️ Next Phase
 
-**Phase 5**: [[phase-5-claude-flow-integration|Claude-Flow MCP Integration]]
-- 🔴 **CRITICAL** - Enables AI-managed knowledge graph
-- ⚠️ **BLOCKED** - Cannot start until Phase 0 is 100% complete
-- Requires MCP memory schema research and agent rules implementation
-- Duration: 1 week
-- Unlocks: Phase 6 (MVP Backend Development)
+**Phase 5**: [[phase-5-mcp-server-implementation|MCP Server Implementation (Node.js/TypeScript)]]
+- 🔴 **CRITICAL** - Enables Claude integration via MCP protocol
+- ⚠️ **BLOCKED** - Cannot start until Phase 4B is 100% complete
+- Requires: Node.js 20+, @modelcontextprotocol/sdk, Obsidian Local REST API
+- Duration: 3-4 days
+- Deliverables: ObsidianClient, ShadowCache (SQLite), 6 MCP tools, Claude-Flow memory sync
+- Unlocks: Phase 6 (File Watcher & Weaver Integration)
 
 **Phase 4B → Phase 5 Handoff Requirements**:
 1. All 35 critical prerequisites complete
