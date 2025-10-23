@@ -16,12 +16,46 @@ tags:
 
 ## 📁 Structure
 
+```
+_planning/
+├── phases/           # Major development phases with deliverables
+├── milestones/       # Significant achievements and checkpoints
+├── bugs/             # Issue tracking and resolutions
+├── daily-logs/       # Auto-generated daily summaries (from ../_log/tasks/)
+├── reviews/          # Planning review snapshots and status reports
+├── templates/        # Templates for various planning documents
+├── README.md         # This file - planning hub overview
+└── tasks.md          # Central task management using obsidian-tasks
+```
+
+**Related Directories** (outside `_planning/`):
+```
+../_log/tasks/        # Individual task completion logs
+../.bin/              # Automation scripts (hidden from vault)
+../templates/         # Task log template
+../research/          # Research papers and findings
+```
+
 ### `/phases/`
 Major development phases with deliverables and status.
 
 - [[phases/phase-1-knowledge-graph-transformation|Phase 1: Knowledge Graph Transformation]] ✅
 - [[phases/phase-2-node-expansion|Phase 2: Node Expansion]] ⏳
 - [[phases/phase-3-decision-making|Phase 3: Decision Making]] ⏰
+
+**Organization Convention**: When a phase involves complicated work with multiple documents (specifications, architecture, test strategies, etc.), create a subdirectory for that phase:
+```
+phases/
+├── phase-1-simple.md                    # Simple phase: single document
+├── phase 5/                              # Complex phase: subdirectory
+│   ├── architecture/                     # Architecture documents
+│   ├── TASK-COMPLETION-QUICK-REF.md     # Quick references
+│   ├── TEST-STRATEGY-EXECUTIVE-SUMMARY.md
+│   └── TEST-STRATEGY-REPORT.md
+└── phase-6-another-simple.md            # Simple phase: single document
+```
+
+This keeps the phases directory organized and prevents clutter when detailed documentation is needed.
 
 ### `/milestones/`
 Significant project milestones and achievements.
@@ -40,6 +74,52 @@ Issues, problems, and their resolutions.
 Daily work logs with completed todos and progress.
 
 - [[daily-logs/2025-10-20|2025-10-20]] - Initial transformation
+- Generated automatically by `.bin/daily-log-generator.sh`
+- Aggregates all task logs from `../_log/tasks/` for the day
+- Includes metrics: success rate, time spent, task completion stats
+
+### `/reviews/`
+Planning review snapshots and status reports.
+
+- Track integration progress
+- Phase completion status
+- Pending actions and decisions
+
+---
+
+## 🔄 Task Completion Workflow
+
+### Task Log Flow
+When you complete a task, the automated workflow creates a detailed log:
+
+1. **Complete Task** → Task work finished
+2. **Auto-Generate Log** → `postTask` hook triggers `.bin/create-task-log.sh`
+3. **Save to `../_log/tasks/`** → Format: `[phase].[day].[task].[subtask].[hash].md`
+   - Example: `6.8.n8n_install.1.f3g546.md`
+4. **Daily Aggregation** → Run `.bin/daily-log-generator.sh [date]`
+5. **Creates Daily Log** → `daily-logs/YYYY-MM-DD.md` with metrics
+
+### Phase Completion Flow
+When a phase is completed or stopped:
+
+1. **Phase Work Complete/Stopped/Blocked**
+2. **Session End Hook** → `sessionEnd` hook triggers `.bin/documenter-agent.sh`
+3. **Read All Task Logs** → Reads all `../_log/tasks/[phase].*.md` files
+4. **Update Phase Document** → Adds task completion table to `phases/phase-[num]-*.md`
+5. **Includes**: Metrics, links to individual task logs, status summary
+
+### Task Log Template
+Each task log uses `../templates/task-log-template.md` with:
+- Frontmatter: phase, day, task ID, status, duration, etc.
+- Memory extraction sections for agent coordination
+- KPI metrics (success/failure rate, blockers, dependencies)
+- Links to related decisions and features
+
+### Automation Scripts
+Located in `../.bin/`:
+- **`create-task-log.sh`** - Auto-generates task logs from Claude Code hooks
+- **`daily-log-generator.sh`** - Aggregates daily task logs
+- **`documenter-agent.sh`** - Updates phase documents with completion tables
 
 ---
 

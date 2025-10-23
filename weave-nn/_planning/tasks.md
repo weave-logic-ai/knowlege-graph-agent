@@ -323,6 +323,24 @@ visual:
 
 ---
 
+## 🔮 Future Enhancements
+
+### Task Tracking Integration
+- [ ] Integrate automated task tracking into feature nodes 🔮 #future #task-tracking #automation
+  - Connect task completion logs from `_log/tasks/` to feature implementation status
+  - Auto-update feature status when related tasks are completed
+  - Create bidirectional links between features and task logs
+  - Enable automatic progress tracking in feature nodes
+
+**Relationship to Task Logs**:
+Task logs in `_log/tasks/` contain rich metadata (phase, day, task ID, duration, dependencies) that can be automatically linked to feature nodes. This creates a traceable history from planning → implementation → completion for every feature, enabling:
+- Real-time feature progress tracking
+- Automatic status updates based on task completion
+- Historical audit trail for all feature work
+- Cross-referencing between planning docs and implementation logs
+
+---
+
 ## 🔍 Task Queries (Examples)
 
 ### Show all high-priority tasks due this week
