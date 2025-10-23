@@ -1,15 +1,19 @@
 ---
-phase_id: "PHASE-0"
-phase_name: "Pre-Development Work"
+phase_id: "PHASE-4B"
+phase_name: "Pre-Development MVP Planning Sprint"
 status: "in-progress"
 priority: "critical"
 start_date: "2025-10-23"
 end_date: "TBD"
 duration: "~3-5 days"
+dependencies:
+  requires: ["PHASE-4A"]
+  enables: ["PHASE-5"]
 tags:
   - phase
   - pre-development
   - planning
+  - mvp
   - in-progress
 visual:
   icon: "clipboard-check"
@@ -19,7 +23,7 @@ visual:
     - priority-critical
 ---
 
-# Phase 0: Pre-Development Work
+# Phase 4B: Pre-Development MVP Planning Sprint
 
 **Status**: 🔄 **IN PROGRESS**
 **Priority**: 🔴 **CRITICAL**
@@ -150,12 +154,12 @@ visual:
   - **Subdirectory Fixed**: "phase 5" → "phase-5" (removed space)
 
   **Phase Progression Validated** (Resequenced 2025-10-23):
-  - Phase 0: Pre-Development (IN PROGRESS - 33% complete)
   - Phase 1: Knowledge Graph (COMPLETE ✅)
   - Phase 2A: Documentation Capture (COMPLETE ✅)
   - Phase 3: Node Expansion (COMPLETE ✅)
-  - Phase 4A: Decision Closure & Obsidian-First Pivot (COMPLETE ✅)
-  - Phase 5: Claude-Flow MCP Integration (CRITICAL ⏳ - blocked by Phase 0)
+  - Phase 4A: Decision Closure & Obsidian-First Pivot (COMPLETE ✅ - Archived)
+  - Phase 4B: Pre-Development MVP Planning Sprint (IN PROGRESS - 33% complete)
+  - Phase 5: Claude-Flow MCP Integration (CRITICAL ⏳ - blocked by Phase 4B)
   - Phase 6: MVP Week 1 - Backend Infrastructure (PENDING ⏳ - blocked by Phase 5)
   - Phase 7: MVP Week 2 - Automation & Deployment (PENDING ⏳ - blocked by Phase 6)
   - Phase 8: Hive Mind Integration (FUTURE 📅 - post-MVP)
@@ -539,7 +543,7 @@ visual:
 - **Decision Closure**: 0% → **Target: 100%** (9 validation tasks)
 - **Roadmap Creation**: 0% → **Target: 100%** (8 planning tasks)
 
-**Overall Phase 0 Progress**: 33% → **Target: 100%**
+**Overall Phase 4B Progress**: 33% → **Target: 100%**
 **Critical Blocker Count**: 35 tasks must complete before Phase 5 can start
 **Estimated Remaining Time**: 36-50 hours (4-6 days)
 
@@ -576,7 +580,7 @@ visual:
 
 ---
 
-## ✅ Phase 0 Completion Checklist
+## ✅ Phase 4B Completion Checklist
 
 **MUST COMPLETE ALL ITEMS BEFORE STARTING PHASE 5**
 
@@ -627,17 +631,17 @@ visual:
 - [ ] **Risk assessment complete**
 - [ ] **Resource planning complete**
 
-### Phase 0 Exit Criteria (ALL must be TRUE)
+### Phase 4B Exit Criteria (ALL must be TRUE)
 - [ ] **All 35 critical prerequisites complete**
 - [ ] **All 16 documentation tasks complete**
-- [ ] **Phase 0 completion report written**
+- [ ] **Phase 4B completion report written**
 - [ ] **Team sign-off obtained**
 - [ ] **No open blockers for Phase 5**
 - [ ] **Development environment 100% functional**
 - [ ] **All tests passing (if any exist)**
 - [ ] **Git workflow tested and working**
 
-### Validation Commands (Run before declaring Phase 0 complete)
+### Validation Commands (Run before declaring Phase 4B complete)
 ```bash
 # 1. Python environment
 source .venv/bin/activate
@@ -682,11 +686,11 @@ echo "✅ Formatters configured"
 - Duration: 1 week
 - Unlocks: Phase 6 (MVP Backend Development)
 
-**Phase 0 → Phase 5 Handoff Requirements**:
+**Phase 4B → Phase 5 Handoff Requirements**:
 1. All 35 critical prerequisites complete
 2. Development environment fully functional
 3. All validation commands passing
-4. Phase 0 completion report approved
+4. Phase 4B completion report approved
 5. No open blockers or risks
 
 ---

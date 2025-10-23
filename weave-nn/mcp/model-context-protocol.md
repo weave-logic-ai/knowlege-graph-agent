@@ -194,11 +194,195 @@ module.exports = {
 };
 ```
 
-### RuleEngine Event Handling via MCP
+### Weaver Workflow Integration via MCP (MVP)
 
-The RuleEngine integrates with MCP to enable event-driven automation triggered by AI agent actions.
+**Updated for MVP**: Weaver uses durable workflows instead of event-driven RuleEngine.
 
-**Event Flow**:
+**Workflow Flow**:
+```
+AI Agent creates/updates note via MCP
+    ↓
+Weaver MCP Server (ObsidianAPIClient executes operation)
+    ↓
+File written to vault
+    ↓
+File watcher (chokidar) detects change
+    ↓
+Triggers durable workflow (vault-file-created/updated)
+    ↓
+Workflow executes steps: parse, validate, cache update, link maintenance
+```
+
+**Key Difference**: Workflows are **stateful** and **resumable** - if Weaver crashes at Step 3, it resumes from Step 4 on restart.
+
+**Implementation**:
+
+```typescript
+// Weaver MCP Server with workflow integration
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { ObsidianAPIClient } from './clients/obsidian.js';
+import { triggerWorkflow } from '@workflowdev/sdk';
+
+export class WeaverMCPServer {
+  private server: Server;
+  private obsidianClient: ObsidianAPIClient;
+
+  constructor(config) {
+    this.server = new Server(
+      { name: 'weaver', version: '1.0.0' },
+      { capabilities: { tools: {} } }
+    );
+
+    this.obsidianClient = new ObsidianAPIClient({
+      apiUrl: config.obsidianApiUrl,
+      apiKey: config.obsidianApiKey
+    });
+
+    this.registerTools();
+  }
+
+  private registerTools() {
+    // MCP Tool: create_note
+    this.server.setRequestHandler('tools/call', async (request) => {
+      if (request.params.name === 'create_note') {
+        const { path, content, frontmatter } = request.params.arguments;
+
+        // Write file via ObsidianAPIClient
+        await this.obsidianClient.createNote(path, {
+          frontmatter,
+          content
+        });
+
+        // File watcher will detect the new file and trigger vault-file-created workflow
+        // No need to manually trigger - chokidar handles it automatically
+
+        return {
+          content: [{
+            type: 'text',
+            text: `Created note: ${path}. Workflow triggered automatically.`
+          }]
+        };
+      }
+
+      if (request.params.name === 'update_note') {
+        const { path, content, frontmatter } = request.params.arguments;
+
+        // Update file via ObsidianAPIClient
+        await this.obsidianClient.updateNote(path, {
+          frontmatter,
+          content
+        });
+
+        // File watcher will detect the change and trigger vault-file-updated workflow
+
+        return {
+          content: [{
+            type: 'text',
+            text: `Updated note: ${path}. Workflow triggered automatically.`
+          }]
+        };
+      }
+
+      if (request.params.name === 'search_knowledge_graph') {
+        const { query } = request.params.arguments;
+
+        // Query shadow cache (fast) or ObsidianAPIClient (comprehensive)
+        const results = await this.searchKnowledgeGraph(query);
+
+        return {
+          content: [{
+            type: 'text',
+            text: JSON.stringify(results, null, 2)
+          }]
+        };
+      }
+    });
+  }
+
+  private async searchKnowledgeGraph(query: string) {
+    // Try shadow cache first (2-3ms)
+    const cachedResults = await shadowCache.search(query);
+
+    if (cachedResults.length > 0) {
+      return cachedResults;
+    }
+
+    // Fall back to ObsidianAPIClient full-text search (50-100ms)
+    const searchResults = await this.obsidianClient.searchNotes(query);
+    return searchResults;
+  }
+}
+
+// Durable workflow triggered automatically by file watcher
+export const vaultFileCreatedWorkflow = workflow(
+  'vault-file-created',
+  async (ctx, input: { filePath: string; absolutePath: string; timestamp: number }) => {
+    // Step 1: Read file
+    const content = await ctx.step('read-file', async () => {
+      return await readFile(input.absolutePath, 'utf-8');
+    });
+
+    // Step 2: Parse frontmatter
+    const { frontmatter, body } = await ctx.step('parse-frontmatter', async () => {
+      return parseFrontmatter(content);
+    });
+
+    // Step 3: Validate schema
+    await ctx.step('validate-schema', async () => {
+      const validator = getValidatorForType(frontmatter.type);
+      const validation = validator.validate(frontmatter);
+
+      if (!validation.valid) {
+        // Auto-fix missing fields
+        const fixes = generateAutoFixes(validation.errors);
+        if (Object.keys(fixes).length > 0) {
+          await obsidianClient.updateFrontmatter(input.filePath, fixes);
+        }
+      }
+    });
+
+    // Step 4: Update shadow cache
+    await ctx.step('update-shadow-cache', async () => {
+      await shadowCache.upsertNode({
+        filePath: input.filePath,
+        nodeType: frontmatter.type || 'note',
+        frontmatter,
+        tags: frontmatter.tags || [],
+        links: extractWikilinks(body),
+        updatedAt: new Date(input.timestamp),
+      });
+    });
+
+    // Step 5: Ensure bidirectional links
+    const wikilinks = extractWikilinks(body);
+    await ctx.step('ensure-bidirectional-links', async () => {
+      for (const link of wikilinks) {
+        await ctx.child('ensure-bidirectional-link', {
+          sourceFile: input.filePath,
+          targetLink: link
+        });
+      }
+    });
+
+    return { success: true, linksProcessed: wikilinks.length };
+  }
+);
+```
+
+**Benefits**:
+- ✅ **Automatic triggering**: File watcher detects changes, no manual workflow triggers needed
+- ✅ **Crash recovery**: Workflow resumes from last completed step
+- ✅ **No events to lose**: Workflow state persisted to SQLite
+- ✅ **Observability**: Full execution history available via workflow.dev dashboard
+- ✅ **Simple testing**: Test workflows with in-memory engine (no RabbitMQ needed)
+
+---
+
+### Legacy: RuleEngine Event Handling via MCP
+
+**Note**: This approach was replaced by durable workflows for MVP. Kept for reference.
+
+**Old Event Flow**:
 ```
 AI Agent creates/updates note via MCP
     ↓

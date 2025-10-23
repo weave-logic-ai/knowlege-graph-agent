@@ -105,35 +105,155 @@ memory_entry:
 
 ---
 
-## 🔄 Bidirectional Sync Flow
+## 🔄 Weaver Workflow Integration (MVP)
 
-### Claude-Flow → Weave-NN (AI Creates Memory)
+### Key Principle: Markdown Files ARE the Memory
+
+**Critical Insight**: There is NO separate Claude-Flow memory database. The Obsidian markdown files ARE the memory that Claude-Flow uses.
+
+```
+┌─────────────────────────────────────────┐
+│   Obsidian Vault = Claude-Flow Memory  │
+│                                         │
+│   concepts/knowledge-graph.md           │
+│   decisions/technical/frontend.md       │
+│   features/F-001-graph-viz.md           │
+│                                         │
+│   This IS the single source of truth   │
+└─────────────────────────────────────────┘
+```
+
+### Claude-Flow → Weave-NN (AI Creates Node via MCP)
+
+**Workflow**: `vault-file-created`
+
 ```mermaid
-graph LR
-    A[AI creates memory in Claude-Flow] --> B[MCP event triggered]
-    B --> C[Weave-NN agent receives event]
-    C --> D[Apply schema mapping]
-    D --> E[Determine node type/folder]
-    E --> F[Apply template]
-    F --> G[Generate YAML frontmatter]
-    G --> H[Convert content to markdown]
-    H --> I[Create wikilinks from relationships]
-    I --> J[Write file to disk]
-    J --> K[Git commit optional]
+graph TB
+    A[Claude-Flow agent calls create_note MCP tool] --> B[Weaver MCP Server]
+    B --> C[ObsidianAPIClient writes .md file]
+    C --> D[File watcher detects new file]
+    D --> E[Triggers vault-file-created workflow]
+    E --> F[Step 1: Parse frontmatter]
+    F --> G[Step 2: Validate schema]
+    G --> H[Step 3: Update shadow cache]
+    H --> I[Step 4: Extract wikilinks]
+    I --> J[Step 5: Ensure bidirectional links]
+    J --> K[Step 6: Generate embeddings]
     K --> L[Obsidian graph updates]
 ```
 
-### Weave-NN → Claude-Flow (User Edits Node)
+**Durable Workflow Code**:
+```typescript
+export const vaultFileCreatedWorkflow = workflow(
+  'vault-file-created',
+  async (ctx, input: { filePath: string; absolutePath: string; timestamp: number }) => {
+    // Step 1: Read file (resumable)
+    const content = await ctx.step('read-file', async () => {
+      return await readFile(input.absolutePath, 'utf-8');
+    });
+
+    // Step 2: Parse frontmatter
+    const { frontmatter, body } = await ctx.step('parse-frontmatter', async () => {
+      return parseFrontmatter(content);
+    });
+
+    // Step 3: Update shadow cache (Claude-Flow memory index)
+    await ctx.step('update-shadow-cache', async () => {
+      await shadowCache.upsertNode({
+        filePath: input.filePath,
+        nodeType: frontmatter.type || 'note',
+        frontmatter,
+        tags: structure.tags,
+        links: structure.links,
+        updatedAt: new Date(input.timestamp),
+      });
+    });
+
+    // Step 4: Extract wikilinks (Claude-Flow relationships)
+    const wikilinks = await ctx.step('extract-links', async () => {
+      return Array.from(body.matchAll(/\[\[([^\]]+)\]\]/g), m => m[1]);
+    });
+
+    // Step 5: Ensure bidirectional links
+    await ctx.step('ensure-bidirectional-links', async () => {
+      for (const link of wikilinks) {
+        await ctx.child('ensure-bidirectional-link', {
+          sourceFile: input.filePath,
+          targetLink: link
+        });
+      }
+    });
+
+    return { success: true };
+  }
+);
+```
+
+### Weave-NN → Claude-Flow (User Edits Node in Obsidian)
+
+**Workflow**: `vault-file-updated`
+
 ```mermaid
-graph LR
+graph TB
     A[User edits node in Obsidian] --> B[File watcher detects change]
-    B --> C[Weave-NN agent reads file]
-    C --> D[Parse YAML frontmatter]
-    D --> E[Parse wikilinks]
-    E --> F[Apply reverse mapping]
-    F --> G[Update Claude-Flow memory]
-    G --> H[Maintain relationships]
-    H --> I[Update embeddings if needed]
+    B --> C[Triggers vault-file-updated workflow]
+    C --> D[Step 1: Get previous state from cache]
+    D --> E[Step 2: Read updated file]
+    E --> F[Step 3: Parse new content]
+    F --> G[Step 4: Detect changes]
+    G --> H[Step 5: Update shadow cache]
+    H --> I[Step 6: Process new links]
+    I --> J[Step 7: Handle status changes]
+    J --> K[Step 8: Update embeddings]
+    K --> L[Claude-Flow sees updated memory]
+```
+
+**Durable Workflow Code**:
+```typescript
+export const vaultFileUpdatedWorkflow = workflow(
+  'vault-file-updated',
+  async (ctx, input: { filePath: string; absolutePath: string; timestamp: number }) => {
+    // Step 1: Get previous state
+    const previousState = await ctx.step('get-previous-state', async () => {
+      return await shadowCache.getNode(input.filePath);
+    });
+
+    // Step 2: Read updated file
+    const content = await ctx.step('read-file', async () => {
+      return await readFile(input.absolutePath, 'utf-8');
+    });
+
+    // Step 3: Parse content
+    const { frontmatter, body } = await ctx.step('parse-frontmatter', async () => {
+      return parseFrontmatter(content);
+    });
+
+    // Step 4: Detect changes
+    const changes = await ctx.step('detect-changes', async () => {
+      return {
+        statusChanged: previousState?.frontmatter.status !== frontmatter.status,
+        oldStatus: previousState?.frontmatter.status,
+        newStatus: frontmatter.status,
+        tagsAdded: frontmatter.tags?.filter(t => !previousState?.tags.includes(t)) || [],
+        tagsRemoved: previousState?.tags.filter(t => !frontmatter.tags?.includes(t)) || [],
+      };
+    });
+
+    // Step 5: Update shadow cache (Claude-Flow memory index)
+    await ctx.step('update-shadow-cache', async () => {
+      await shadowCache.upsertNode({
+        filePath: input.filePath,
+        nodeType: frontmatter.type || 'note',
+        frontmatter,
+        tags: structure.tags,
+        links: structure.wikilinks,
+        updatedAt: new Date(input.timestamp),
+      });
+    });
+
+    return { success: true, changes };
+  }
+);
 ```
 
 ---
