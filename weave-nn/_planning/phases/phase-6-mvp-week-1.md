@@ -1,6 +1,6 @@
 ---
 # Node Metadata
-phase_id: "PHASE-5"
+phase_id: "PHASE-6"
 phase_name: "MVP Development - Week 1 (Backend Infrastructure)"
 type: planning
 status: "pending"
@@ -18,8 +18,8 @@ scope:
 
 # Dependencies
 dependencies:
-  requires: ["PHASE-4"]
-  enables: ["PHASE-6"]
+  requires: ["PHASE-5"]
+  enables: ["PHASE-7"]
   blocks: []
 
 # Tags

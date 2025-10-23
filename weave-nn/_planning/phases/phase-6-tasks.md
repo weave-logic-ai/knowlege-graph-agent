@@ -1,1143 +1,1660 @@
-# Phase 6 MVP Week 2 - Task Breakdown (Days 8-14)
+---
+# Phase 5 Task Breakdown
+phase_id: "PHASE-5"
+phase_name: "MVP Development - Week 1 (Backend Infrastructure)"
+total_tasks: 64
+start_date: "2025-10-21"
+end_date: "2025-10-26"
+status: "pending"
+---
 
-**Total Tasks**: 44
-**Duration**: October 28 - November 3, 2025 (7 days)
-**Depends On**: Phase 5 completion
+# Phase 5: MVP Week 1 - Complete Task Breakdown (64 Tasks)
+
+## Day 0 (2025-10-21): Prerequisites & Plugin Installation (18 tasks)
+
+### Obsidian Plugin Installation (11 tasks)
+
+#### Task 1: Install obsidian-local-rest-api plugin
+- **Title**: Install obsidian-local-rest-api plugin from Community Plugins
+- **Active Form**: Installing obsidian-local-rest-api plugin from Community Plugins
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#obsidian-plugins` `#rest-api` `#critical` `#installation`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - Plugin appears in Obsidian Settings > Community Plugins > Installed
+  - Plugin is enabled (toggle is ON)
+  - No error messages in Obsidian console (Ctrl+Shift+I)
+- **Verification**: Check Obsidian Settings > Community Plugins
+
+#### Task 2: Generate API key for obsidian-local-rest-api
+- **Title**: Generate API key for obsidian-local-rest-api plugin
+- **Active Form**: Generating API key for obsidian-local-rest-api plugin
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#obsidian-plugins` `#rest-api` `#security` `#configuration`
+- **Dependencies**: Task 1 (Install obsidian-local-rest-api)
+- **Acceptance Criteria**:
+  - API key generated and visible in plugin settings
+  - API key is at least 32 characters long
+  - API key copied to clipboard
+- **Verification**: Navigate to plugin settings and verify key is displayed
+
+#### Task 3: Test obsidian-local-rest-api connectivity
+- **Title**: Test obsidian-local-rest-api with curl command: curl https://localhost:27124/vault/
+- **Active Form**: Testing obsidian-local-rest-api with curl command
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#obsidian-plugins` `#rest-api` `#testing` `#verification`
+- **Dependencies**: Task 2 (Generate API key)
+- **Acceptance Criteria**:
+  - curl command returns HTTP 200 status
+  - Response contains vault metadata (name, files list)
+  - No SSL certificate errors
+- **Verification**:
+  ```bash
+  curl -k -H "Authorization: Bearer YOUR_API_KEY" https://localhost:27124/vault/
+  ```
+
+#### Task 4: Save Obsidian API key to .env file
+- **Title**: Save Obsidian API key to .env file
+- **Active Form**: Saving Obsidian API key to .env file
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High
+- **Tags**: `#day-0` `#configuration` `#environment` `#security` `#env-vars`
+- **Dependencies**: Task 2 (Generate API key)
+- **Acceptance Criteria**:
+  - .env file exists in project root
+  - OBSIDIAN_API_KEY variable is set correctly
+  - OBSIDIAN_API_URL=https://localhost:27124 is set
+  - .env file is added to .gitignore
+- **Verification**: `cat .env | grep OBSIDIAN_API_KEY`
+
+#### Task 5: Install obsidian-mehrmaid plugin
+- **Title**: Install obsidian-mehrmaid plugin from Community Plugins
+- **Active Form**: Installing obsidian-mehrmaid plugin from Community Plugins
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High
+- **Tags**: `#day-0` `#obsidian-plugins` `#visualization` `#graphs` `#installation`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - Plugin appears in installed plugins list
+  - Plugin is enabled
+  - No errors in console
+- **Verification**: Check Obsidian Settings > Community Plugins > Mehrmaid
+
+#### Task 6: Test mehrmaid graph creation
+- **Title**: Test mehrmaid graph creation with wikilinks in Obsidian
+- **Active Form**: Testing mehrmaid graph creation with wikilinks in Obsidian
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High
+- **Tags**: `#day-0` `#obsidian-plugins` `#visualization` `#testing` `#wikilinks`
+- **Dependencies**: Task 5 (Install mehrmaid)
+- **Acceptance Criteria**:
+  - Create test note with mehrmaid code block
+  - Graph renders with wikilinks as clickable nodes
+  - Clicking node navigates to linked note
+- **Verification**: Create test note with sample mehrmaid graph and verify rendering
+
+#### Task 7: Install obsidian-tasks plugin
+- **Title**: Install obsidian-tasks plugin from Community Plugins
+- **Active Form**: Installing obsidian-tasks plugin from Community Plugins
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#obsidian-plugins` `#task-management` `#critical` `#installation`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - Plugin installed successfully
+  - Plugin enabled without errors
+  - Tasks syntax is recognized in notes
+- **Verification**: Check plugin list in Obsidian settings
+
+#### Task 8: Configure obsidian-tasks global filter
+- **Title**: Configure obsidian-tasks global filter settings
+- **Active Form**: Configuring obsidian-tasks global filter settings
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High
+- **Tags**: `#day-0` `#obsidian-plugins` `#task-management` `#configuration` `#filters`
+- **Dependencies**: Task 7 (Install tasks plugin)
+- **Acceptance Criteria**:
+  - Global filter configured in plugin settings
+  - Filter syntax validated (no errors)
+  - Sample task query works in test note
+- **Verification**: Run test query in Obsidian note and verify results
+
+#### Task 9: Test task queries in Obsidian
+- **Title**: Test task queries in Obsidian using task plugin syntax
+- **Active Form**: Testing task queries in Obsidian using task plugin syntax
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High
+- **Tags**: `#day-0` `#obsidian-plugins` `#task-management` `#testing` `#queries`
+- **Dependencies**: Task 8 (Configure global filter)
+- **Acceptance Criteria**:
+  - Create note with 5+ tasks
+  - Run query to filter by status (done/not done)
+  - Run query to filter by due date
+  - All queries return expected results
+- **Verification**: Create test note with various task scenarios
+
+#### Task 10: Install obsidian-advanced-uri plugin
+- **Title**: Install obsidian-advanced-uri plugin from Community Plugins
+- **Active Form**: Installing obsidian-advanced-uri plugin from Community Plugins
+- **Due Date**: 2025-10-21
+- **Priority**: 🔽 Medium (Fallback)
+- **Tags**: `#day-0` `#obsidian-plugins` `#uri` `#fallback` `#installation`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - Plugin installed and enabled
+  - No conflicts with other plugins
+- **Verification**: Check plugin settings
+
+#### Task 11: Test basic URI functionality
+- **Title**: Test basic URI: obsidian://open?vault=weave-nn
+- **Active Form**: Testing basic URI for vault access
+- **Due Date**: 2025-10-21
+- **Priority**: 🔽 Medium
+- **Tags**: `#day-0` `#obsidian-plugins` `#uri` `#testing` `#fallback`
+- **Dependencies**: Task 10 (Install advanced-uri)
+- **Acceptance Criteria**:
+  - URI opens vault successfully
+  - No errors in browser or Obsidian
+  - Can open specific notes via URI
+- **Verification**:
+  ```bash
+  # On Linux/WSL
+  xdg-open "obsidian://open?vault=weave-nn"
+  ```
+
+### Development Environment Setup (7 tasks)
+
+#### Task 12: Verify Python 3.11+ installation
+- **Title**: Verify Python 3.11+ is installed on system
+- **Active Form**: Verifying Python 3.11+ installation on system
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#python` `#environment` `#prerequisites` `#verification`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - `python --version` or `python3 --version` returns 3.11 or higher
+  - Python is in system PATH
+  - pip is available
+- **Verification**:
+  ```bash
+  python3 --version  # Should show Python 3.11.x or higher
+  python3 -m pip --version
+  ```
+
+#### Task 13: Create Python virtual environment
+- **Title**: Create Python virtual environment: python -m venv .venv
+- **Active Form**: Creating Python virtual environment
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#python` `#environment` `#venv` `#isolation`
+- **Dependencies**: Task 12 (Verify Python)
+- **Acceptance Criteria**:
+  - .venv directory created in project root
+  - Virtual environment activates without errors
+  - Python interpreter in venv matches system Python version
+- **Verification**:
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate  # Linux/Mac
+  # .venv\Scripts\activate  # Windows
+  which python  # Should point to .venv/bin/python
+  ```
+
+#### Task 14: Install Python dependencies
+- **Title**: Activate virtual environment and install dependencies: fastapi, uvicorn, pika, requests, pyyaml, watchdog, gitpython
+- **Active Form**: Installing Python dependencies in virtual environment
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#python` `#dependencies` `#pip` `#packages`
+- **Dependencies**: Task 13 (Create venv)
+- **Acceptance Criteria**:
+  - All packages installed without errors
+  - `pip list` shows all required packages
+  - No version conflicts
+  - requirements.txt file created with pinned versions
+- **Verification**:
+  ```bash
+  source .venv/bin/activate
+  pip install fastapi uvicorn pika requests pyyaml watchdog gitpython sqlite3
+  pip freeze > requirements.txt
+  pip list | grep -E "(fastapi|uvicorn|pika|requests|pyyaml|watchdog|gitpython)"
+  ```
+
+#### Task 15: Create .env configuration file
+- **Title**: Create .env file with OBSIDIAN_API_URL, OBSIDIAN_API_KEY, RABBITMQ_URL, CLAUDE_API_KEY
+- **Active Form**: Creating .env file with required environment variables
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#configuration` `#environment` `#security` `#env-vars`
+- **Dependencies**: Task 4 (Save API key)
+- **Acceptance Criteria**:
+  - .env file contains all 4 required variables
+  - Variables are properly formatted (KEY=value)
+  - No trailing spaces or invalid characters
+  - .env file is in .gitignore
+- **Verification**:
+  ```bash
+  cat .env
+  # Should contain:
+  # OBSIDIAN_API_URL=https://localhost:27124
+  # OBSIDIAN_API_KEY=<your-key>
+  # RABBITMQ_URL=amqp://admin:password@localhost:5672
+  # CLAUDE_API_KEY=<your-key>
+  grep "^\.env$" .gitignore  # Verify .env is ignored
+  ```
+
+#### Task 16: Provision GCP VM (Optional)
+- **Title**: Provision GCP e2-standard-2 VM (2 vCPU, 8GB RAM) if using cloud deployment
+- **Active Form**: Provisioning GCP e2-standard-2 VM for cloud deployment
+- **Due Date**: 2025-10-21
+- **Priority**: 🔽 Medium (Optional)
+- **Tags**: `#day-0` `#gcp` `#cloud` `#vm` `#infrastructure` `#optional`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - VM created with e2-standard-2 machine type
+  - VM is running and accessible via SSH
+  - Static IP assigned (optional but recommended)
+  - VM has Ubuntu 22.04 LTS or Debian 12
+- **Verification**:
+  ```bash
+  gcloud compute instances list | grep weave-nn-vm
+  gcloud compute ssh weave-nn-vm --zone=us-central1-a
+  ```
+
+#### Task 17: Install Docker on VM/local machine
+- **Title**: Install Docker on GCP VM or local machine
+- **Active Form**: Installing Docker on GCP VM or local machine
+- **Due Date**: 2025-10-21
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-0` `#docker` `#installation` `#infrastructure` `#containers`
+- **Dependencies**: Task 16 (Provision VM, if using cloud)
+- **Acceptance Criteria**:
+  - Docker installed and running
+  - User added to docker group (no sudo needed)
+  - Docker version 24.0 or higher
+  - Docker Compose installed
+- **Verification**:
+  ```bash
+  docker --version  # Should show Docker version 24.0+
+  docker ps  # Should run without sudo
+  docker-compose --version
+  ```
+
+#### Task 18: Configure GCP firewall rules
+- **Title**: Open firewall ports: 5672 (RabbitMQ), 15672 (RabbitMQ UI), 5678 (N8N) on GCP VM
+- **Active Form**: Opening firewall ports on GCP VM
+- **Due Date**: 2025-10-21
+- **Priority**: ⏫ High (If using GCP)
+- **Tags**: `#day-0` `#gcp` `#firewall` `#networking` `#security` `#optional`
+- **Dependencies**: Task 16 (Provision VM)
+- **Acceptance Criteria**:
+  - Firewall rules created for ports 5672, 15672, 5678
+  - Rules apply to correct VM instance
+  - Source IP range configured (restrict to your IP for security)
+  - Rules are active and not blocked by VPC settings
+- **Verification**:
+  ```bash
+  gcloud compute firewall-rules list | grep weave-nn
+  # Test connectivity
+  telnet <VM_EXTERNAL_IP> 15672
+  ```
 
 ---
 
-## Day 8 (2025-10-28): N8N Installation + Client Onboarding
+## Day 1 (2025-10-22): RabbitMQ + File Watcher Setup (15 tasks)
 
-### Morning: N8N Installation (4 hours)
+### RabbitMQ Installation & Configuration (14 tasks)
 
-#### Task 1: Install N8N via Docker
-- [ ] Install N8N via Docker ⏫ 📅 2025-10-28 #n8n #installation #docker
-**Active Form**: Installing N8N via Docker
-**Priority**: ⏫ High
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #installation #docker #automation #infrastructure
-**Dependencies**:
-  - Docker installed on target system (GCP VM or local)
-  - Network access to Docker Hub
-**Acceptance Criteria**:
-  - Docker container `n8n` running on port 5678
-  - Container auto-restarts on failure (restart policy configured)
-  - Data persisted to `~/.n8n` volume
-  - Environment variables set for basic auth
-  - Container logs accessible via `docker logs n8n`
-**Test Scenarios**:
-  - Run `docker ps | grep n8n` shows container status as "Up"
-  - Access http://localhost:5678 shows N8N login page
-  - Stop container and verify auto-restart
-  - Verify volume persistence: create workflow, restart container, workflow still exists
+#### Task 19: Install RabbitMQ via Docker
+- **Title**: Install RabbitMQ via Docker with management plugin enabled
+- **Active Form**: Installing RabbitMQ via Docker with management plugin
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#docker` `#message-queue` `#critical`
+- **Dependencies**: Task 17 (Install Docker)
+- **Acceptance Criteria**:
+  - RabbitMQ container running with management plugin
+  - Container set to restart automatically (unless-stopped)
+  - Environment variables set for admin user
+  - Ports 5672 and 15672 exposed
+- **Verification**:
+  ```bash
+  docker run -d \
+    --name rabbitmq \
+    --restart unless-stopped \
+    -p 5672:5672 \
+    -p 15672:15672 \
+    -e RABBITMQ_DEFAULT_USER=admin \
+    -e RABBITMQ_DEFAULT_PASS=<secure-password> \
+    rabbitmq:3.12-management
+  ```
 
----
+#### Task 20: Verify RabbitMQ container status
+- **Title**: Verify RabbitMQ container is running: docker ps | grep rabbitmq
+- **Active Form**: Verifying RabbitMQ container is running
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#docker` `#verification` `#monitoring`
+- **Dependencies**: Task 19 (Install RabbitMQ)
+- **Acceptance Criteria**:
+  - Container status is "Up" not "Restarting"
+  - Container uptime > 30 seconds
+  - No error messages in container logs
+  - Both ports (5672, 15672) are mapped correctly
+- **Verification**:
+  ```bash
+  docker ps | grep rabbitmq
+  docker logs rabbitmq | tail -20
+  # Should see: "Server startup complete"
+  ```
 
-#### Task 2: Complete N8N initial setup
-- [ ] Complete N8N initial setup ⏫ 📅 2025-10-28 #n8n #configuration
-**Active Form**: Completing N8N initial setup
-**Priority**: ⏫ High
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #configuration #setup #authentication
-**Dependencies**:
-  - Task 1: N8N Docker container running
-**Acceptance Criteria**:
-  - Successfully login with configured credentials
-  - Initial setup wizard completed
-  - N8N dashboard accessible
-  - Timezone configured correctly
-  - Workflow execution history visible
-**Test Scenarios**:
-  - Login with credentials from environment variables
-  - Navigate to "Workflows" tab without errors
-  - Check Settings → General shows correct timezone
-  - Verify webhook base URL is configured
+#### Task 21: Access RabbitMQ Management UI
+- **Title**: Access RabbitMQ Management UI at http://localhost:15672
+- **Active Form**: Accessing RabbitMQ Management UI
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#ui` `#verification` `#monitoring`
+- **Dependencies**: Task 20 (Verify container)
+- **Acceptance Criteria**:
+  - Management UI loads in browser
+  - Login page displayed with RabbitMQ branding
+  - No connection errors or timeouts
+- **Verification**:
+  ```bash
+  curl http://localhost:15672  # Should return HTML
+  # Or open in browser: http://localhost:15672
+  ```
 
----
+#### Task 22: Login to RabbitMQ Management UI
+- **Title**: Login to RabbitMQ UI with admin credentials and verify interface
+- **Active Form**: Logging into RabbitMQ UI and verifying interface
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#ui` `#authentication` `#verification`
+- **Dependencies**: Task 21 (Access UI)
+- **Acceptance Criteria**:
+  - Login successful with admin credentials
+  - Dashboard shows node status as "Running"
+  - Queues and Exchanges tabs are visible and accessible
+  - No permission errors
+- **Verification**: Navigate to Overview tab and verify node status is green
 
-#### Task 3: Configure N8N credentials for Obsidian API
-- [ ] Configure N8N credentials for Obsidian API 🔼 📅 2025-10-28 #n8n #credentials #obsidian
-**Active Form**: Configuring N8N credentials for Obsidian API
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #credentials #obsidian #api #integration
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Obsidian REST API plugin installed with API key
-**Acceptance Criteria**:
-  - Credential named "Obsidian API" created in N8N
-  - Contains REST API base URL (http://localhost:27124)
-  - Contains API key from Obsidian plugin
-  - Test connection successful
-**Test Scenarios**:
-  - Create HTTP Request node in test workflow
-  - Use Obsidian API credential
-  - Make GET request to `/vault/` endpoint
-  - Verify response contains vault metadata
+#### Task 23: Create topic exchange
+- **Title**: Create topic exchange 'weave-nn.events' with durable=true using rabbitmqadmin
+- **Active Form**: Creating topic exchange in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#exchange` `#configuration` `#topology`
+- **Dependencies**: Task 22 (Login to UI)
+- **Acceptance Criteria**:
+  - Exchange 'weave-nn.events' created
+  - Type is 'topic'
+  - Durable flag is set to true
+  - Exchange appears in Exchanges tab
+- **Verification**:
+  ```bash
+  # Install rabbitmqadmin if not present
+  docker exec rabbitmq rabbitmqadmin declare exchange \
+    name=weave-nn.events type=topic durable=true
 
----
+  # Verify in UI: Exchanges tab should show weave-nn.events
+  curl -u admin:password http://localhost:15672/api/exchanges/%2F/weave-nn.events
+  ```
 
-#### Task 4: Configure N8N credentials for GitHub
-- [ ] Configure N8N credentials for GitHub 🔼 📅 2025-10-28 #n8n #credentials #github
-**Active Form**: Configuring N8N credentials for GitHub
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #credentials #github #api #integration
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - GitHub personal access token with repo permissions
-**Acceptance Criteria**:
-  - Credential named "GitHub PAT" created
-  - Personal access token configured
-  - Test connection successful (can access repositories)
-**Test Scenarios**:
-  - Create GitHub node in test workflow
-  - List repositories for authenticated user
-  - Verify response contains repository list
+#### Task 24: Create n8n_workflows queue
+- **Title**: Create durable queue 'n8n_workflows' in RabbitMQ
+- **Active Form**: Creating n8n_workflows queue in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#n8n`
+- **Dependencies**: Task 23 (Create exchange)
+- **Acceptance Criteria**:
+  - Queue 'n8n_workflows' created
+  - Durable flag is true
+  - Queue appears in Queues tab
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare queue \
+    name=n8n_workflows durable=true
+  ```
 
----
+#### Task 25: Create mcp_sync queue
+- **Title**: Create durable queue 'mcp_sync' in RabbitMQ
+- **Active Form**: Creating mcp_sync queue in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#mcp-sync`
+- **Dependencies**: Task 23 (Create exchange)
+- **Acceptance Criteria**:
+  - Queue 'mcp_sync' created with durable=true
+  - Queue is ready to receive messages
+  - Visible in Queues tab
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare queue \
+    name=mcp_sync durable=true
+  ```
 
-#### Task 5: Configure N8N credentials for Slack
-- [ ] Configure N8N credentials for Slack 🔼 📅 2025-10-28 #n8n #credentials #slack
-**Active Form**: Configuring N8N credentials for Slack
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #credentials #slack #webhook #notifications
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Slack webhook URL or OAuth app configured
-**Acceptance Criteria**:
-  - Credential named "Slack Webhook" created
-  - Webhook URL configured
-  - Test message sent successfully to target channel
-**Test Scenarios**:
-  - Create Slack node in test workflow
-  - Send test message "N8N setup complete"
-  - Verify message appears in Slack channel
+#### Task 26: Create git_auto_commit queue
+- **Title**: Create durable queue 'git_auto_commit' in RabbitMQ
+- **Active Form**: Creating git_auto_commit queue in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#git`
+- **Dependencies**: Task 23 (Create exchange)
+- **Acceptance Criteria**:
+  - Queue 'git_auto_commit' created with durable=true
+  - Queue operational
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare queue \
+    name=git_auto_commit durable=true
+  ```
 
----
+#### Task 27: Create agent_tasks queue
+- **Title**: Create durable queue 'agent_tasks' in RabbitMQ
+- **Active Form**: Creating agent_tasks queue in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#agents`
+- **Dependencies**: Task 23 (Create exchange)
+- **Acceptance Criteria**:
+  - Queue 'agent_tasks' created with durable=true
+  - Ready to route agent task events
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare queue \
+    name=agent_tasks durable=true
+  ```
 
-#### Task 6: Configure N8N credentials for Claude API
-- [ ] Configure N8N credentials for Claude API 🔼 📅 2025-10-28 #n8n #credentials #claude
-**Active Form**: Configuring N8N credentials for Claude API
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #credentials #claude #ai #anthropic
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Claude API key from Anthropic Console
-**Acceptance Criteria**:
-  - Credential named "Claude API" created
-  - API key configured
-  - Test API call successful
-**Test Scenarios**:
-  - Create HTTP Request node
-  - Make POST to https://api.anthropic.com/v1/messages
-  - Send simple prompt "Say hello"
-  - Verify response contains Claude's message
+#### Task 28: Create dead letter queue
+- **Title**: Create durable queue 'dlq' (dead letter queue) in RabbitMQ
+- **Active Form**: Creating dead letter queue in RabbitMQ
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#dlq` `#error-handling`
+- **Dependencies**: Task 23 (Create exchange)
+- **Acceptance Criteria**:
+  - Queue 'dlq' created with durable=true
+  - Available for failed message routing
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare queue \
+    name=dlq durable=true
+  ```
 
----
+#### Task 29: Bind n8n_workflows queue
+- **Title**: Bind n8n_workflows queue to exchange with routing key 'vault.*.*'
+- **Active Form**: Binding n8n_workflows queue to exchange
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#n8n`
+- **Dependencies**: Task 24 (Create n8n queue)
+- **Acceptance Criteria**:
+  - Binding created between exchange and queue
+  - Routing key 'vault.*.*' set correctly
+  - Binding visible in queue's Bindings section
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare binding \
+    source=weave-nn.events \
+    destination=n8n_workflows \
+    routing_key="vault.*.*"
+  ```
 
-#### Task 7: Configure N8N credentials for RabbitMQ
-- [ ] Configure N8N credentials for RabbitMQ 🔼 📅 2025-10-28 #n8n #credentials #rabbitmq
-**Active Form**: Configuring N8N credentials for RabbitMQ
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #credentials #rabbitmq #messaging #events
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Phase 5: RabbitMQ running from Phase 5
-**Acceptance Criteria**:
-  - Credential named "RabbitMQ" created
-  - Connection URL configured (amqp://localhost:5672)
-  - Test connection successful
-**Test Scenarios**:
-  - Create RabbitMQ node
-  - Connect to exchange
-  - Publish test message
-  - Verify message received in queue
+#### Task 30: Bind mcp_sync queue
+- **Title**: Bind mcp_sync queue to exchange with routing key 'vault.file.*'
+- **Active Form**: Binding mcp_sync queue to exchange
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#mcp-sync`
+- **Dependencies**: Task 25 (Create mcp_sync queue)
+- **Acceptance Criteria**:
+  - Binding created with routing key 'vault.file.*'
+  - Messages with matching routing key route to mcp_sync
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare binding \
+    source=weave-nn.events \
+    destination=mcp_sync \
+    routing_key="vault.file.*"
+  ```
 
----
+#### Task 31: Bind git_auto_commit queue
+- **Title**: Bind git_auto_commit queue to exchange with routing key 'vault.file.updated'
+- **Active Form**: Binding git_auto_commit queue to exchange
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#git`
+- **Dependencies**: Task 26 (Create git queue)
+- **Acceptance Criteria**:
+  - Binding created with routing key 'vault.file.updated'
+  - Only file update events route to this queue
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare binding \
+    source=weave-nn.events \
+    destination=git_auto_commit \
+    routing_key="vault.file.updated"
+  ```
 
-#### Task 8: Create and test N8N Hello World workflow
-- [ ] Create and test N8N Hello World workflow 🔽 📅 2025-10-28 #n8n #testing #validation
-**Active Form**: Creating and testing N8N Hello World workflow
-**Priority**: 🔽 Low
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #testing #validation #workflow
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - At least one credential configured
-**Acceptance Criteria**:
-  - Simple workflow created with 2+ nodes
-  - Workflow executes successfully
-  - Execution history shows success
-  - Can manually trigger workflow
-**Test Scenarios**:
-  - Create workflow: Manual Trigger → Set node (data) → Webhook Response
-  - Execute workflow manually
-  - Verify execution completes without errors
-  - Check execution data contains expected output
+#### Task 32: Bind agent_tasks queue
+- **Title**: Bind agent_tasks queue to exchange with routing key 'task.*'
+- **Active Form**: Binding agent_tasks queue to exchange
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#agents`
+- **Dependencies**: Task 27 (Create agent queue)
+- **Acceptance Criteria**:
+  - Binding created with routing key 'task.*'
+  - Agent task events route correctly
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin declare binding \
+    source=weave-nn.events \
+    destination=agent_tasks \
+    routing_key="task.*"
+  ```
 
----
+#### Task 33: Test RabbitMQ message flow
+- **Title**: Test RabbitMQ by publishing test message and verifying queue receipt
+- **Active Form**: Testing RabbitMQ message publishing and consumption
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#testing` `#verification` `#integration`
+- **Dependencies**: Tasks 29-32 (All bindings created)
+- **Acceptance Criteria**:
+  - Publish test message to exchange with routing key 'vault.file.created'
+  - Message appears in mcp_sync queue
+  - Message count increments in UI
+  - Can retrieve message from queue
+- **Verification**:
+  ```bash
+  docker exec rabbitmq rabbitmqadmin publish \
+    exchange=weave-nn.events \
+    routing_key=vault.file.created \
+    payload='{"test": "message"}'
 
-### Afternoon: Client Onboarding Workflow (4 hours)
+  # Check queue in UI: Queues > mcp_sync > Get Messages
+  docker exec rabbitmq rabbitmqadmin get queue=mcp_sync
+  ```
 
-#### Task 9: Create client onboarding workflow structure
-- [ ] Create client onboarding workflow structure ⏫ 📅 2025-10-28 #n8n #workflow #client-onboarding
-**Active Form**: Creating client onboarding workflow structure
-**Priority**: ⏫ High
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #client-onboarding #automation
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Task 3: Obsidian API credentials configured
-**Acceptance Criteria**:
-  - Workflow named "Client Onboarding" created
-  - Webhook trigger configured at `/webhook/onboard-client`
-  - Accepts POST with JSON: `{"client_name": "...", "contact": "..."}`
-  - All 10 steps from plan implemented as nodes
-**Test Scenarios**:
-  - Webhook URL accessible
-  - Send test payload with curl
-  - Workflow executes all nodes in sequence
-  - No execution errors
+### File Watcher Implementation (5 tasks - moved to next section)
 
----
+#### Task 34: Create project directory structure
+- **Title**: Create project directory structure: weave-nn-mcp/ with publishers/, consumers/, utils/ folders
+- **Active Form**: Creating project directory structure
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#project-setup` `#structure` `#organization` `#filesystem`
+- **Dependencies**: Task 14 (Install dependencies)
+- **Acceptance Criteria**:
+  - Directory structure created:
+    ```
+    weave-nn-mcp/
+    ├── publishers/
+    │   ├── __init__.py
+    │   └── file_watcher.py
+    ├── consumers/
+    │   ├── __init__.py
+    ├── utils/
+    │   ├── __init__.py
+    │   └── rabbitmq_client.py
+    ├── config.py
+    └── requirements.txt
+    ```
+  - All __init__.py files created
+  - Project is a valid Python package
+- **Verification**:
+  ```bash
+  tree weave-nn-mcp
+  python -c "import weave-nn-mcp.publishers"
+  ```
 
-#### Task 10: Implement project folder creation in workflow
-- [ ] Implement project folder creation in workflow 🔼 📅 2025-10-28 #n8n #workflow #filesystem
-**Active Form**: Implementing project folder creation in workflow
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #filesystem #obsidian
-**Dependencies**:
-  - Task 9: Client onboarding workflow structure created
-**Acceptance Criteria**:
-  - Node creates folder `_projects/{{client_name}}/`
-  - Uses Obsidian REST API `/vault/{{path}}`
-  - Folder created in Obsidian vault
-  - Handles existing folder gracefully (no error)
-**Test Scenarios**:
-  - Trigger workflow with client_name "TestClient"
-  - Verify folder `_projects/TestClient/` exists in vault
-  - Trigger again with same name, no duplicate error
-  - Check Obsidian file explorer shows folder
+#### Task 35: Implement RabbitMQ Publisher client
+- **Title**: Implement RabbitMQ Publisher client in utils/rabbitmq_client.py with connection management
+- **Active Form**: Implementing RabbitMQ Publisher client
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#python` `#publisher` `#client`
+- **Dependencies**: Task 34 (Create structure)
+- **Acceptance Criteria**:
+  - RabbitMQPublisher class created
+  - Connection management with auto-reconnect
+  - Connection pooling for efficiency
+  - Graceful connection closure on exit
+  - Environment variables read from .env
+- **Verification**:
+  ```python
+  from utils.rabbitmq_client import RabbitMQPublisher
+  pub = RabbitMQPublisher()
+  # Should connect without errors
+  ```
 
----
+#### Task 36: Add JSON serialization to RabbitMQ client
+- **Title**: Add JSON serialization and publish method to RabbitMQ client
+- **Active Form**: Adding JSON serialization to RabbitMQ client
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#rabbitmq` `#python` `#json` `#serialization`
+- **Dependencies**: Task 35 (Implement client)
+- **Acceptance Criteria**:
+  - publish() method accepts routing_key and dict payload
+  - Payload automatically serialized to JSON
+  - Message properties set (content_type='application/json', delivery_mode=2)
+  - Returns True on success, False on failure
+- **Verification**:
+  ```python
+  pub.publish("vault.file.created", {"file": "test.md"})
+  # Check RabbitMQ UI for message
+  ```
 
-#### Task 11: Implement template file creation (4 files)
-- [ ] Implement template file creation (4 files) 🔼 📅 2025-10-28 #n8n #workflow #templates
-**Active Form**: Implementing template file creation
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #templates #obsidian #files
-**Dependencies**:
-  - Task 10: Project folder creation working
-  - Templates exist: README.md, requirements.md, tasks.md, decisions.md
-**Acceptance Criteria**:
-  - 4 files created: README.md, requirements.md, tasks.md, decisions.md
-  - Template content loaded from `_templates/` folder
-  - Placeholders replaced: `{{client_name}}`, `{{contact}}`
-  - Files contain frontmatter with correct metadata
-**Test Scenarios**:
-  - Trigger workflow with client_name "Acme Corp", contact "john@acme.com"
-  - Verify 4 files exist in `_projects/Acme Corp/`
-  - Open README.md, verify "Acme Corp" appears in title
-  - Verify contact email "john@acme.com" in metadata
+#### Task 37: Implement error handling in RabbitMQ publisher
+- **Title**: Implement error handling and retry logic in RabbitMQ publisher
+- **Active Form**: Implementing error handling in RabbitMQ publisher
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#rabbitmq` `#error-handling` `#retry` `#resilience`
+- **Dependencies**: Task 36 (Add publish method)
+- **Acceptance Criteria**:
+  - Try-except blocks around all RabbitMQ operations
+  - Exponential backoff retry (3 attempts)
+  - Connection errors trigger reconnect
+  - Publish errors logged with details
+  - Failed messages optionally sent to DLQ
+- **Verification**:
+  ```python
+  # Stop RabbitMQ and test error handling
+  pub.publish("test", {})  # Should retry and log error
+  ```
 
----
+#### Task 38: Implement file watcher for vault directory
+- **Title**: Implement file watcher in publishers/file_watcher.py to watch vault directory recursively
+- **Active Form**: Implementing file watcher for vault directory
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#file-watcher` `#watchdog` `#filesystem` `#events`
+- **Dependencies**: Task 37 (Error handling)
+- **Acceptance Criteria**:
+  - Uses watchdog library for file system events
+  - Watches vault directory recursively
+  - Monitors all subdirectories
+  - Ignores .obsidian/ directory changes (except workspace.json)
+  - Handler class extends FileSystemEventHandler
+- **Verification**:
+  ```python
+  python publishers/file_watcher.py
+  # Should print "Watching: /path/to/vault"
+  ```
 
-#### Task 12: Implement initial task creation
-- [ ] Implement initial task creation 🔼 📅 2025-10-28 #n8n #workflow #tasks
-**Active Form**: Implementing initial task creation
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #tasks #automation
-**Dependencies**:
-  - Task 11: Template files created
-**Acceptance Criteria**:
-  - 3 initial tasks appended to tasks.md
-  - Tasks use obsidian-tasks format: `- [ ] Task 📅 YYYY-MM-DD`
-  - Due dates calculated dynamically (next Monday, etc.)
-  - Tasks tagged with #onboarding
-**Test Scenarios**:
-  - Trigger workflow on Thursday
-  - Verify "Schedule kickoff meeting" has due date = next Monday
-  - Open tasks.md, verify 3 tasks present
-  - Tasks are unchecked `- [ ]`
+#### Task 39: Add file change detection to watcher
+- **Title**: Add .md file change detection (created, modified, deleted) to file watcher
+- **Active Form**: Adding file change detection to file watcher
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#file-watcher` `#events` `#detection` `#markdown`
+- **Dependencies**: Task 38 (Implement watcher)
+- **Acceptance Criteria**:
+  - Detects file created events (.md only)
+  - Detects file modified events (.md only)
+  - Detects file deleted events (.md only)
+  - Ignores non-.md files
+  - Debouncing to prevent duplicate events (500ms)
+- **Verification**: Create, modify, delete test.md and verify console output
 
----
+#### Task 40: Implement YAML frontmatter parsing
+- **Title**: Implement YAML frontmatter parsing in file watcher
+- **Active Form**: Implementing YAML frontmatter parsing
+- **Due Date**: 2025-10-22
+- **Priority**: ⏫ High
+- **Tags**: `#day-1` `#file-watcher` `#yaml` `#frontmatter` `#parsing`
+- **Dependencies**: Task 39 (File detection)
+- **Acceptance Criteria**:
+  - Extracts frontmatter from .md files
+  - Parses YAML to Python dict
+  - Handles files without frontmatter gracefully
+  - Handles malformed YAML (logs error, doesn't crash)
+  - Extracts tags, type, status, priority fields
+- **Verification**:
+  ```python
+  fm = parse_frontmatter("test.md")
+  assert "tags" in fm
+  ```
 
-#### Task 13: Implement Git commit step
-- [ ] Implement Git commit step 🔼 📅 2025-10-28 #n8n #workflow #git
-**Active Form**: Implementing Git commit step
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #git #version-control
-**Dependencies**:
-  - Task 11: Files created
-  - Git repository initialized in vault
-**Acceptance Criteria**:
-  - Execute shell command node with git commands
-  - Commit message: "feat: Initialize project for {{client_name}}"
-  - All new files staged and committed
-  - Commit appears in git log
-**Test Scenarios**:
-  - Trigger workflow
-  - Run `git log -1` in vault directory
-  - Verify commit message contains client name
-  - Run `git show` to see committed files
+#### Task 41: Add RabbitMQ event publishing to file watcher
+- **Title**: Add RabbitMQ event publishing to file watcher with vault.file.* routing keys
+- **Active Form**: Adding event publishing to file watcher
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#file-watcher` `#rabbitmq` `#publishing` `#events`
+- **Dependencies**: Task 40 (Frontmatter parsing)
+- **Acceptance Criteria**:
+  - Publishes 'vault.file.created' on file create
+  - Publishes 'vault.file.updated' on file modify
+  - Publishes 'vault.file.deleted' on file delete
+  - Event payload includes: file_path, frontmatter, timestamp, event_type
+  - Events successfully reach RabbitMQ exchange
+- **Verification**:
+  ```bash
+  # Start watcher, create file, check RabbitMQ UI
+  python publishers/file_watcher.py &
+  echo "---\ntags: [test]\n---\n# Test" > vault/test.md
+  # Check mcp_sync queue in UI
+  ```
 
----
+#### Task 42: Test file watcher integration
+- **Title**: Test file watcher by creating test note in Obsidian and verifying RabbitMQ event
+- **Active Form**: Testing file watcher integration
+- **Due Date**: 2025-10-22
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-1` `#file-watcher` `#testing` `#integration` `#end-to-end`
+- **Dependencies**: Task 41 (Event publishing)
+- **Acceptance Criteria**:
+  - File watcher running without errors
+  - Create note in Obsidian triggers event
+  - Event appears in mcp_sync queue within 1 second
+  - Event payload is valid JSON
+  - Frontmatter correctly parsed in event
+- **Verification**:
+  ```bash
+  # Terminal 1
+  python publishers/file_watcher.py
 
-#### Task 14: Implement Slack notification
-- [ ] Implement Slack notification 🔽 📅 2025-10-28 #n8n #workflow #slack
-**Active Form**: Implementing Slack notification
-**Priority**: 🔽 Low
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #workflow #slack #notifications
-**Dependencies**:
-  - Task 5: Slack credentials configured
-  - Task 13: Git commit successful
-**Acceptance Criteria**:
-  - Slack message sent on workflow completion
-  - Message includes client name and project link
-  - Message formatted with markdown
-  - Sent to correct channel (#new-projects or similar)
-**Test Scenarios**:
-  - Trigger workflow
-  - Check Slack channel for notification
-  - Verify message contains client name
-  - Click link (if included) navigates to project
-
----
-
-#### Task 15: Test complete client onboarding workflow
-- [ ] Test complete client onboarding workflow ⏫ 📅 2025-10-28 #n8n #testing #integration
-**Active Form**: Testing complete client onboarding workflow
-**Priority**: ⏫ High
-**Due Date**: 2025-10-28
-**Tags**: #phase-6 #n8n #testing #integration #validation
-**Dependencies**:
-  - All tasks 9-14 completed
-**Acceptance Criteria**:
-  - End-to-end test with real client data passes
-  - All files created correctly
-  - Git commit exists
-  - Slack notification sent (if configured)
-  - No execution errors
-  - Execution time < 30 seconds
-**Test Scenarios**:
-  1. **Test 1 - New Client**:
-     - Trigger with `{"client_name": "Test Corp", "contact": "test@test.com"}`
-     - Verify folder exists: `_projects/Test Corp/`
-     - Verify 4 files created with correct content
-     - Verify 3 tasks in tasks.md
-     - Verify git commit with message "feat: Initialize project for Test Corp"
-     - Verify Slack notification received
-  2. **Test 2 - Special Characters**:
-     - Trigger with `{"client_name": "A&B Solutions", "contact": "info@ab.com"}`
-     - Verify folder handles special characters
-  3. **Test 3 - Duplicate Client**:
-     - Trigger with existing client name
-     - Verify no errors (graceful handling)
-
----
-
-## Day 9 (2025-10-29): N8N Advanced Workflows
-
-### Morning: Weekly Report Generator (4 hours)
-
-#### Task 16: Create weekly report workflow structure
-- [ ] Create weekly report workflow structure ⏫ 📅 2025-10-29 #n8n #workflow #reporting
-**Active Form**: Creating weekly report workflow structure
-**Priority**: ⏫ High
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #reporting #automation #cron
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Task 3: Obsidian API credentials configured
-**Acceptance Criteria**:
-  - Workflow named "Weekly Report Generator" created
-  - Cron trigger configured (Every Friday at 5pm)
-  - Workflow has all 7 steps from plan
-  - Can be manually triggered for testing
-**Test Scenarios**:
-  - Manual trigger executes workflow
-  - Cron expression validated: `0 17 * * 5` (5pm Friday)
-  - All nodes connected in correct order
-
----
-
-#### Task 17: Implement task completion query
-- [ ] Implement task completion query 🔼 📅 2025-10-29 #n8n #workflow #tasks
-**Active Form**: Implementing task completion query
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #tasks #parsing #data
-**Dependencies**:
-  - Task 16: Workflow structure created
-**Acceptance Criteria**:
-  - Query all `_projects/*/tasks.md` files
-  - Parse tasks with status `[x]` (completed)
-  - Filter tasks completed in last 7 days (by date)
-  - Group tasks by project
-  - Return structured data: `[{project: "...", tasks: [...]}]`
-**Test Scenarios**:
-  - Create test project with 5 completed tasks
-  - 3 tasks completed this week, 2 completed last month
-  - Trigger workflow, verify only 3 tasks included
-  - Verify tasks grouped by project name
-
----
-
-#### Task 18: Implement Git commit statistics
-- [ ] Implement Git commit statistics 🔼 📅 2025-10-29 #n8n #workflow #git
-**Active Form**: Implementing Git commit statistics
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #git #statistics #metrics
-**Dependencies**:
-  - Task 16: Workflow structure created
-**Acceptance Criteria**:
-  - Execute git command: `git log --since="7 days ago" --oneline`
-  - Parse output to count commits
-  - Extract commit messages
-  - Group by author (if multi-user)
-**Test Scenarios**:
-  - Create 5 test commits in past week
-  - Create 2 test commits older than 7 days
-  - Trigger workflow, verify count = 5
-  - Verify commit messages extracted correctly
-
----
-
-#### Task 19: Implement Claude summary generation
-- [ ] Implement Claude summary generation 🔼 📅 2025-10-29 #n8n #workflow #claude
-**Active Form**: Implementing Claude summary generation
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #claude #ai #llm
-**Dependencies**:
-  - Task 6: Claude API credentials configured
-  - Task 17: Task data available
-  - Task 18: Git stats available
-**Acceptance Criteria**:
-  - Send prompt to Claude API with tasks + commits data
-  - Prompt: "Create weekly report from: {{tasks}} {{commits}}"
-  - Response formatted as markdown
-  - Includes sections: Summary, Highlights, Metrics
-**Test Scenarios**:
-  - Trigger workflow with sample data
-  - Verify Claude API called
-  - Verify response is valid markdown
-  - Verify response includes task count and commit count
-
----
-
-#### Task 20: Implement report file creation
-- [ ] Implement report file creation 🔼 📅 2025-10-29 #n8n #workflow #obsidian
-**Active Form**: Implementing report file creation
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #obsidian #files #reports
-**Dependencies**:
-  - Task 19: Claude summary generated
-**Acceptance Criteria**:
-  - Create file: `_planning/weekly-reports/YYYY-MM-DD.md`
-  - File contains Claude summary + task breakdown
-  - Frontmatter includes: date, total_tasks, total_commits
-  - File created via Obsidian REST API
-**Test Scenarios**:
-  - Trigger workflow on 2025-10-29
-  - Verify file created: `_planning/weekly-reports/2025-10-29.md`
-  - Open file, verify contains summary and task list
-  - Verify frontmatter has correct metadata
-
----
-
-#### Task 21: Implement Slack report notification
-- [ ] Implement Slack report notification 🔽 📅 2025-10-29 #n8n #workflow #slack
-**Active Form**: Implementing Slack report notification
-**Priority**: 🔽 Low
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #slack #notifications #reporting
-**Dependencies**:
-  - Task 5: Slack credentials configured
-  - Task 20: Report file created
-**Acceptance Criteria**:
-  - Slack message sent to #weekly-updates channel
-  - Message includes summary text (first 500 chars)
-  - Message includes link to full report (if vault is web-accessible)
-  - Message formatted with markdown
-**Test Scenarios**:
-  - Trigger workflow
-  - Check Slack channel for message
-  - Verify summary text matches report
-  - Verify no errors if Slack fails (graceful degradation)
+  # Terminal 2 - Create note in Obsidian
+  # Then check:
+  docker exec rabbitmq rabbitmqadmin get queue=mcp_sync
+  ```
 
 ---
 
-#### Task 22: Test weekly report workflow end-to-end
-- [ ] Test weekly report workflow end-to-end ⏫ 📅 2025-10-29 #n8n #testing #integration
-**Active Form**: Testing weekly report workflow end-to-end
-**Priority**: ⏫ High
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #testing #integration #validation #reporting
-**Dependencies**:
-  - All tasks 16-21 completed
-**Acceptance Criteria**:
-  - Full workflow execution successful
-  - Report generated with accurate data
-  - Execution time < 30 seconds
-  - No errors in execution log
-**Test Scenarios**:
-  1. **Scenario 1 - Real Data**:
-     - Set up 2 projects with completed tasks
-     - Create 5 git commits this week
-     - Manually trigger workflow
-     - Verify report shows 2 projects
-     - Verify task count matches actual
-     - Verify commit count = 5
-     - Verify Claude summary is coherent
-  2. **Scenario 2 - No Activity**:
-     - Trigger workflow with no tasks/commits this week
-     - Verify report generated with "No activity" message
-  3. **Scenario 3 - Cron Trigger**:
-     - Wait for Friday 5pm OR modify cron to trigger in 1 minute
-     - Verify automatic execution
+## Day 2 (2025-10-23): Python MCP Server Core (REST API Client) (11 tasks)
+
+### Obsidian REST API Client (5 tasks)
+
+#### Task 43: Create ObsidianRESTClient class
+- **Title**: Create ObsidianRESTClient class in utils/obsidian_client.py with initialization
+- **Active Form**: Creating ObsidianRESTClient class
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#obsidian` `#client`
+- **Dependencies**: Task 14 (Install dependencies)
+- **Acceptance Criteria**:
+  - ObsidianRESTClient class created
+  - __init__ accepts api_url and api_key
+  - Headers configured with Bearer token
+  - SSL verification disabled for self-signed cert (localhost)
+  - Timeout set to 30 seconds for requests
+- **Verification**:
+  ```python
+  from utils.obsidian_client import ObsidianRESTClient
+  client = ObsidianRESTClient(api_url, api_key)
+  assert client.api_url == api_url
+  ```
+
+#### Task 44: Implement create_note method
+- **Title**: Implement create_note method in ObsidianRESTClient with frontmatter support
+- **Active Form**: Implementing create_note method in REST client
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#create` `#frontmatter`
+- **Dependencies**: Task 43 (Create client)
+- **Acceptance Criteria**:
+  - create_note(path, content, frontmatter) method implemented
+  - Frontmatter formatted as YAML with --- delimiters
+  - Full content = frontmatter + "\n\n" + content
+  - POST request to /vault/{path}
+  - Returns response JSON or raises exception
+- **Verification**:
+  ```python
+  result = client.create_note("test.md", "Hello", {"tags": ["test"]})
+  # Check Obsidian for test.md file
+  ```
+
+#### Task 45: Implement read_note method
+- **Title**: Implement read_note method in ObsidianRESTClient
+- **Active Form**: Implementing read_note method in REST client
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#read` `#retrieval`
+- **Dependencies**: Task 43 (Create client)
+- **Acceptance Criteria**:
+  - read_note(path) method implemented
+  - GET request to /vault/{path}
+  - Returns note content as string
+  - Raises FileNotFoundError if note doesn't exist
+- **Verification**:
+  ```python
+  content = client.read_note("test.md")
+  assert "Hello" in content
+  ```
+
+#### Task 46: Implement update and delete methods
+- **Title**: Implement update_note method in ObsidianRESTClient
+- **Active Form**: Implementing update_note method in REST client
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#update` `#delete`
+- **Dependencies**: Task 43 (Create client)
+- **Acceptance Criteria**:
+  - update_note(path, content) method implemented
+  - PUT request to /vault/{path}
+  - delete_note(path) method implemented
+  - DELETE request to /vault/{path}
+  - Both methods handle errors gracefully
+- **Verification**:
+  ```python
+  client.update_note("test.md", "Updated content")
+  client.delete_note("test.md")
+  # Verify in Obsidian
+  ```
+
+#### Task 47: Implement list and patch methods
+- **Title**: Implement list_notes and patch_note_section methods in ObsidianRESTClient
+- **Active Form**: Implementing list_notes and patch_note_section methods
+- **Due Date**: 2025-10-23
+- **Priority**: ⏫ High
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#list` `#patch`
+- **Dependencies**: Task 43 (Create client)
+- **Acceptance Criteria**:
+  - list_notes(pattern) method with optional glob pattern
+  - Returns list of file paths
+  - patch_note_section(path, heading, content) for section updates
+  - PATCH request to /vault/{path}
+- **Verification**:
+  ```python
+  notes = client.list_notes("*.md")
+  assert len(notes) > 0
+  ```
+
+#### Task 48: Test REST API client CRUD operations
+- **Title**: Test REST API client CRUD operations: create, read, update, delete test note
+- **Active Form**: Testing REST API client CRUD operations
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#rest-api` `#testing` `#crud`
+- **Dependencies**: Tasks 44-47 (All methods)
+- **Acceptance Criteria**:
+  - Test script creates, reads, updates, deletes note
+  - All operations succeed without errors
+  - Note appears/disappears in Obsidian as expected
+  - Test cleanup leaves no artifacts
+- **Verification**:
+  ```bash
+  python tests/test_obsidian_client.py
+  # All tests pass
+  ```
+
+### FastAPI MCP Server (6 tasks)
+
+#### Task 49: Create FastAPI server with health endpoint
+- **Title**: Create FastAPI server in server.py with health endpoint
+- **Active Form**: Creating FastAPI server with health endpoint
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#fastapi` `#health-check` `#api`
+- **Dependencies**: Task 43 (ObsidianRESTClient)
+- **Acceptance Criteria**:
+  - FastAPI app created in server.py
+  - Health endpoint at GET /health returns {"status": "ok"}
+  - ObsidianRESTClient initialized from env vars
+  - Server imports successful
+- **Verification**:
+  ```python
+  from server import app
+  # Run: uvicorn server:app
+  ```
+
+#### Task 50: Add MCP create and read endpoints
+- **Title**: Add MCP endpoints to FastAPI server: create_note, read_note, update_note, delete_note, list_notes
+- **Active Form**: Adding MCP endpoints to FastAPI server
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#fastapi` `#endpoints` `#crud`
+- **Dependencies**: Task 49 (Create server)
+- **Acceptance Criteria**:
+  - POST /mcp/create_note endpoint implemented
+  - GET /mcp/read_note endpoint implemented
+  - PUT /mcp/update_note endpoint implemented
+  - DELETE /mcp/delete_note endpoint implemented
+  - GET /mcp/list_notes endpoint implemented
+  - All endpoints call ObsidianRESTClient methods
+- **Verification**: Check FastAPI auto-generated docs at /docs
+
+#### Task 51: Start MCP server
+- **Title**: Start MCP server with uvicorn and verify health endpoint responds
+- **Active Form**: Starting MCP server and verifying health endpoint
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#uvicorn` `#deployment` `#startup`
+- **Dependencies**: Task 50 (Add endpoints)
+- **Acceptance Criteria**:
+  - Server starts on port 8000 without errors
+  - Health endpoint returns 200 OK
+  - Auto-reload enabled for development
+  - Server logs show all routes registered
+- **Verification**:
+  ```bash
+  uvicorn server:app --reload --host 0.0.0.0 --port 8000
+  curl http://localhost:8000/health
+  # Response: {"status": "ok"}
+  ```
+
+#### Task 52: Test MCP endpoints with curl
+- **Title**: Test all MCP endpoints with curl commands
+- **Active Form**: Testing MCP endpoints with curl
+- **Due Date**: 2025-10-23
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-2` `#mcp-server` `#testing` `#curl` `#integration`
+- **Dependencies**: Task 51 (Start server)
+- **Acceptance Criteria**:
+  - Test create_note with curl POST
+  - Test read_note with curl GET
+  - Test update_note with curl PUT
+  - Test delete_note with curl DELETE
+  - Test list_notes with curl GET
+  - All return expected responses
+- **Verification**:
+  ```bash
+  # Create
+  curl -X POST "http://localhost:8000/mcp/create_note?path=test.md" \
+    -H "Content-Type: application/json" \
+    -d '{"content": "Test", "frontmatter": {"tags": ["test"]}}'
+
+  # Read
+  curl "http://localhost:8000/mcp/read_note?path=test.md"
+
+  # Update
+  curl -X PUT "http://localhost:8000/mcp/update_note?path=test.md" \
+    -H "Content-Type: application/json" \
+    -d '{"content": "Updated"}'
+
+  # List
+  curl "http://localhost:8000/mcp/list_notes"
+
+  # Delete
+  curl -X DELETE "http://localhost:8000/mcp/delete_note?path=test.md"
+  ```
+
+#### Task 53: Add error handling to MCP endpoints
+- **Title**: Add comprehensive error handling to MCP endpoints
+- **Active Form**: Adding error handling to MCP endpoints
+- **Due Date**: 2025-10-23
+- **Priority**: ⏫ High
+- **Tags**: `#day-2` `#mcp-server` `#error-handling` `#fastapi` `#resilience`
+- **Dependencies**: Task 50 (Add endpoints)
+- **Acceptance Criteria**:
+  - HTTPException raised for client errors (400, 404)
+  - Try-except blocks around Obsidian API calls
+  - Proper status codes returned (200, 201, 204, 400, 404, 500)
+  - Error responses include descriptive messages
+  - Logging for all errors
+- **Verification**:
+  ```bash
+  # Test 404
+  curl "http://localhost:8000/mcp/read_note?path=nonexistent.md"
+  # Should return 404 with error message
+  ```
+
+#### Task 54: Document MCP API endpoints
+- **Title**: Document MCP API endpoints in FastAPI (docstrings and examples)
+- **Active Form**: Documenting MCP API endpoints
+- **Due Date**: 2025-10-23
+- **Priority**: 🔽 Medium
+- **Tags**: `#day-2` `#mcp-server` `#documentation` `#api-docs` `#openapi`
+- **Dependencies**: Task 50 (Add endpoints)
+- **Acceptance Criteria**:
+  - Docstrings added to all endpoint functions
+  - Request/response examples in docstrings
+  - Pydantic models for request/response bodies
+  - OpenAPI docs auto-generated at /docs
+  - Examples visible in Swagger UI
+- **Verification**: Navigate to http://localhost:8000/docs and verify docs
 
 ---
 
-### Afternoon: Knowledge Extraction Workflow (4 hours)
+## Day 3 (2025-10-24): MCP Sync Consumer + Shadow Cache (10 tasks)
 
-#### Task 23: Create knowledge extraction workflow structure
-- [ ] Create knowledge extraction workflow structure ⏫ 📅 2025-10-29 #n8n #workflow #knowledge
-**Active Form**: Creating knowledge extraction workflow structure
-**Priority**: ⏫ High
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #knowledge #patterns #automation
-**Dependencies**:
-  - Task 2: N8N setup completed
-  - Task 7: RabbitMQ credentials configured
-**Acceptance Criteria**:
-  - Workflow named "Knowledge Extraction" created
-  - RabbitMQ trigger listening to `project.closed` events
-  - Workflow has all 6 steps from plan
-  - Can be manually triggered with project_id parameter
-**Test Scenarios**:
-  - Publish test event to RabbitMQ: `{"type": "project.closed", "project_id": "test-project"}`
-  - Verify workflow triggers automatically
-  - Manual trigger with project_id works
+### MCP Sync Consumer (4 tasks)
 
----
+#### Task 55: Create MCP Sync Consumer
+- **Title**: Create MCP Sync Consumer in consumers/mcp_sync.py to subscribe to mcp_sync queue
+- **Active Form**: Creating MCP Sync Consumer
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#mcp-sync` `#consumer` `#rabbitmq` `#integration`
+- **Dependencies**: Task 42 (File watcher working)
+- **Acceptance Criteria**:
+  - MCPSyncConsumer class created
+  - Subscribes to mcp_sync queue via pika
+  - Callback function processes messages
+  - Consumer runs in blocking mode
+  - Graceful shutdown on SIGINT/SIGTERM
+- **Verification**:
+  ```bash
+  python consumers/mcp_sync.py
+  # Should print "Listening to mcp_sync queue..."
+  ```
 
-#### Task 24: Implement project file reading
-- [ ] Implement project file reading 🔼 📅 2025-10-29 #n8n #workflow #obsidian
-**Active Form**: Implementing project file reading
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #obsidian #files #data
-**Dependencies**:
-  - Task 23: Workflow structure created
-  - Task 3: Obsidian API credentials configured
-**Acceptance Criteria**:
-  - Read 4 project files: requirements.md, decisions.md, solutions.md, lessons-learned.md
-  - Handle missing files gracefully (skip if not exists)
-  - Concatenate file contents
-  - Pass to next node
-**Test Scenarios**:
-  - Create test project with all 4 files
-  - Trigger workflow, verify all 4 files read
-  - Create project with only 2 files, verify no error
+#### Task 56: Implement event processing
+- **Title**: Implement vault.file.* event processing in MCP sync consumer
+- **Active Form**: Implementing event processing in MCP sync consumer
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#mcp-sync` `#event-processing` `#routing` `#logic`
+- **Dependencies**: Task 55 (Create consumer)
+- **Acceptance Criteria**:
+  - Processes vault.file.created events
+  - Processes vault.file.updated events
+  - Processes vault.file.deleted events
+  - Extracts file_path, frontmatter from event payload
+  - Parses event JSON correctly
+- **Verification**: Publish test event and verify consumer processes it
 
----
+#### Task 57: Create ShadowCache with SQLite
+- **Title**: Create ShadowCache class in utils/shadow_cache.py with SQLite database
+- **Active Form**: Creating ShadowCache class with SQLite
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#shadow-cache` `#sqlite` `#database` `#persistence`
+- **Dependencies**: None (parallel to Task 55)
+- **Acceptance Criteria**:
+  - ShadowCache class created
+  - SQLite connection managed properly
+  - Database file at .obsidian/plugins/weave-nn/metadata.db
+  - Connection pooling for concurrent access
+  - Automatic table creation on init
+- **Verification**:
+  ```python
+  from utils.shadow_cache import ShadowCache
+  cache = ShadowCache()
+  # Check database file exists
+  ```
 
-#### Task 25: Implement Claude pattern extraction
-- [ ] Implement Claude pattern extraction 🔼 📅 2025-10-29 #n8n #workflow #claude
-**Active Form**: Implementing Claude pattern extraction
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #claude #ai #patterns #extraction
-**Dependencies**:
-  - Task 6: Claude API credentials configured
-  - Task 24: Project files read
-**Acceptance Criteria**:
-  - Send prompt to Claude: "Extract reusable patterns from: {{files}}"
-  - Claude returns structured JSON with categories:
-    - domain_patterns: [...]
-    - technical_patterns: [...]
-    - components: [...]
-    - lessons: [...]
-  - Parse Claude response
-**Test Scenarios**:
-  - Send sample project files to Claude
-  - Verify response is valid JSON
-  - Verify response contains at least 1 pattern in each category
-  - Handle edge case: Claude returns empty arrays
+#### Task 58: Implement database schema
+- **Title**: Implement database schema for nodes table in shadow cache
+- **Active Form**: Implementing database schema in shadow cache
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#shadow-cache` `#schema` `#database` `#sqlite`
+- **Dependencies**: Task 57 (Create cache)
+- **Acceptance Criteria**:
+  - nodes table created with columns:
+    - file_path (TEXT PRIMARY KEY)
+    - node_type (TEXT)
+    - frontmatter (TEXT/JSON)
+    - tags (TEXT/JSON)
+    - links (TEXT/JSON)
+    - headings (TEXT/JSON)
+    - updated_at (TIMESTAMP)
+  - Indexes on tags and updated_at
+  - Schema validated
+- **Verification**:
+  ```bash
+  sqlite3 .obsidian/plugins/weave-nn/metadata.db ".schema"
+  # Should show nodes table
+  ```
 
----
+#### Task 59: Implement cache methods
+- **Title**: Implement upsert_node and query_by_tag methods in shadow cache
+- **Active Form**: Implementing cache methods in shadow cache
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#shadow-cache` `#methods` `#crud` `#queries`
+- **Dependencies**: Task 58 (Schema)
+- **Acceptance Criteria**:
+  - upsert_node(file_path, node_type, frontmatter, tags, links, headings)
+  - query_by_tag(tag) returns matching nodes
+  - query_by_type(node_type) returns matching nodes
+  - get_node(file_path) returns single node
+  - delete_node(file_path) removes node
+  - All methods handle edge cases
+- **Verification**:
+  ```python
+  cache.upsert_node("test.md", "note", {}, ["test"], [], [])
+  nodes = cache.query_by_tag("test")
+  assert len(nodes) > 0
+  ```
 
-#### Task 26: Implement knowledge base file creation
-- [ ] Implement knowledge base file creation 🔼 📅 2025-10-29 #n8n #workflow #knowledge-base
-**Active Form**: Implementing knowledge base file creation
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #knowledge-base #obsidian #files
-**Dependencies**:
-  - Task 25: Patterns extracted from Claude
-**Acceptance Criteria**:
-  - Create files in knowledge-base folders:
-    - `knowledge-base/patterns/domain/{{pattern}}.md`
-    - `knowledge-base/patterns/technical/{{pattern}}.md`
-    - `knowledge-base/components/{{component}}.md`
-    - `knowledge-base/lessons/{{lesson}}.md`
-  - Each file has frontmatter with metadata
-  - Files contain pattern description from Claude
-**Test Scenarios**:
-  - Trigger workflow with project containing 2 domain patterns
-  - Verify 2 files created in knowledge-base/patterns/domain/
-  - Open files, verify content matches Claude output
-  - Verify frontmatter includes source_project
+#### Task 60: Add error handling to consumer
+- **Title**: Add error handling to MCP sync consumer with DLQ routing
+- **Active Form**: Adding error handling to MCP sync consumer
+- **Due Date**: 2025-10-24
+- **Priority**: ⏫ High
+- **Tags**: `#day-3` `#mcp-sync` `#error-handling` `#dlq` `#resilience`
+- **Dependencies**: Task 56 (Event processing)
+- **Acceptance Criteria**:
+  - Try-except around message processing
+  - Failed messages sent to DLQ
+  - Error logged with full context
+  - Message acknowledged even on failure
+  - No infinite retry loops
+- **Verification**: Send malformed event and verify DLQ routing
 
----
+#### Task 61: Test MCP sync integration
+- **Title**: Test MCP sync by creating note and verifying SQLite cache update
+- **Active Form**: Testing MCP sync and cache update
+- **Due Date**: 2025-10-24
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-3` `#mcp-sync` `#testing` `#integration` `#end-to-end`
+- **Dependencies**: Tasks 59, 60 (Cache + error handling)
+- **Acceptance Criteria**:
+  - Start file watcher and MCP sync consumer
+  - Create note in Obsidian with frontmatter
+  - Event published to RabbitMQ
+  - Consumer processes event
+  - SQLite database updated within 2 seconds
+  - Query cache returns new note
+- **Verification**:
+  ```bash
+  # Terminal 1
+  python publishers/file_watcher.py
 
-#### Task 27: Implement pattern index update
-- [ ] Implement pattern index update 🔼 📅 2025-10-29 #n8n #workflow #indexing
-**Active Form**: Implementing pattern index update
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #indexing #knowledge-base #metadata
-**Dependencies**:
-  - Task 26: Knowledge base files created
-**Acceptance Criteria**:
-  - Append new patterns to `knowledge-base/meta/pattern-index.md`
-  - Index entry format: `- [[pattern-name]] - {{category}} - Source: [[project]]`
-  - Index sorted alphabetically
-  - No duplicate entries
-**Test Scenarios**:
-  - Trigger workflow with 3 new patterns
-  - Open pattern-index.md
-  - Verify 3 new entries appended
-  - Trigger again with same project, verify no duplicates
+  # Terminal 2
+  python consumers/mcp_sync.py
 
----
+  # Terminal 3 - Create note in Obsidian, then:
+  sqlite3 .obsidian/plugins/weave-nn/metadata.db \
+    "SELECT * FROM nodes WHERE file_path='test.md';"
+  ```
 
-#### Task 28: Implement project archival
-- [ ] Implement project archival 🔼 📅 2025-10-29 #n8n #workflow #git
-**Active Form**: Implementing project archival
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #workflow #git #archival #cleanup
-**Dependencies**:
-  - Task 26: Knowledge extracted
-**Acceptance Criteria**:
-  - Execute git mv: `_projects/{{project_id}}` → `_archive/{{project_id}}-{{date}}`
-  - Git commit with message: "chore: Archive {{project_id}}"
-  - Original project folder removed from _projects/
-  - Archived folder exists in _archive/
-**Test Scenarios**:
-  - Trigger workflow with test project
-  - Verify project moved to _archive/
-  - Run `git log -1`, verify commit message
-  - Verify original folder no longer in _projects/
+### Claude-Flow Memory Sync (3 tasks)
 
----
+#### Task 62: Create Claude-Flow Memory Client
+- **Title**: Create Claude-Flow Memory Client in utils/claude_flow_client.py
+- **Active Form**: Creating Claude-Flow Memory Client
+- **Due Date**: 2025-10-24
+- **Priority**: ⏫ High
+- **Tags**: `#day-3` `#claude-flow` `#memory` `#client` `#integration`
+- **Dependencies**: None
+- **Acceptance Criteria**:
+  - ClaudeFlowClient class created
+  - Connects to Claude-Flow SQLite database
+  - Methods: store_memory(), query_memory(), delete_memory()
+  - Schema compatible with Claude-Flow
+  - Connection pooling implemented
+- **Verification**:
+  ```python
+  from utils.claude_flow_client import ClaudeFlowClient
+  cf = ClaudeFlowClient()
+  cf.store_memory("test", {"content": "test"})
+  ```
 
-#### Task 29: Test knowledge extraction workflow end-to-end
-- [ ] Test knowledge extraction workflow end-to-end ⏫ 📅 2025-10-29 #n8n #testing #integration
-**Active Form**: Testing knowledge extraction workflow end-to-end
-**Priority**: ⏫ High
-**Due Date**: 2025-10-29
-**Tags**: #phase-6 #n8n #testing #integration #validation #knowledge
-**Dependencies**:
-  - All tasks 23-28 completed
-**Acceptance Criteria**:
-  - Full workflow execution successful
-  - Patterns extracted and saved
-  - Project archived
-  - Execution time < 60 seconds
-  - No errors in execution log
-**Test Scenarios**:
-  1. **Scenario 1 - Complete Project**:
-     - Create test project with all 4 files (requirements, decisions, solutions, lessons)
-     - Populate with realistic content
-     - Publish RabbitMQ event: `{"type": "project.closed", "project_id": "test-project"}`
-     - Verify workflow triggers
-     - Verify 4+ knowledge base files created
-     - Verify pattern index updated
-     - Verify project archived to _archive/test-project-2025-10-29/
-  2. **Scenario 2 - Minimal Project**:
-     - Create project with only requirements.md
-     - Trigger workflow
-     - Verify handles missing files gracefully
-     - Verify at least 1 pattern extracted
+#### Task 63: Implement memory storage in sync consumer
+- **Title**: Implement memory storage on file create/update in MCP sync consumer
+- **Active Form**: Implementing memory storage in sync consumer
+- **Due Date**: 2025-10-24
+- **Priority**: ⏫ High
+- **Tags**: `#day-3` `#claude-flow` `#memory` `#storage` `#sync`
+- **Dependencies**: Task 62 (CF client)
+- **Acceptance Criteria**:
+  - On vault.file.created → Store memory in Claude-Flow
+  - On vault.file.updated → Update memory in Claude-Flow
+  - Memory includes: file content, frontmatter, wikilinks
+  - Relationship graph updated for wikilinks
+  - Async/background task for memory storage (non-blocking)
+- **Verification**: Create note with wikilinks and check CF database
 
----
+#### Task 64: Implement memory deletion
+- **Title**: Implement memory deletion marking on file delete events
+- **Active Form**: Implementing memory deletion in sync consumer
+- **Due Date**: 2025-10-24
+- **Priority**: ⏫ High
+- **Tags**: `#day-3` `#claude-flow` `#memory` `#deletion` `#cleanup`
+- **Dependencies**: Task 62 (CF client)
+- **Acceptance Criteria**:
+  - On vault.file.deleted → Mark memory as deleted (soft delete)
+  - Don't permanently delete (keep for audit trail)
+  - Update relationship graph to remove links
+  - Deleted memories excluded from queries
+- **Verification**: Delete note and verify memory marked deleted in CF DB
 
-## Day 10 (2025-10-30): Task Management Integration
-
-### Morning: Obsidian Tasks MCP Integration (4 hours)
-
-#### Task 30: Configure obsidian-tasks plugin
-- [ ] Configure obsidian-tasks plugin 🔼 📅 2025-10-30 #obsidian #tasks #configuration
-**Active Form**: Configuring obsidian-tasks plugin
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #obsidian #tasks #configuration #plugin
-**Dependencies**:
-  - obsidian-tasks plugin installed in Obsidian
-**Acceptance Criteria**:
-  - Plugin enabled in Obsidian settings
-  - Global filter configured (if needed)
-  - Task query syntax tested in Obsidian
-  - Can query: `not done`, `due before tomorrow`, `#project/weave-nn`
-**Test Scenarios**:
-  - Create test note with task queries
-  - Verify queries return expected results
-  - Verify task emojis render correctly (📅, ⏫, 🔼)
-
----
-
-#### Task 31: Create task parser utility
-- [ ] Create task parser utility 🔼 📅 2025-10-30 #python #tasks #parsing
-**Active Form**: Creating task parser utility
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #python #tasks #parsing #utility #backend
-**Dependencies**:
-  - None (standalone utility)
-**Acceptance Criteria**:
-  - File created: `/mnt/d/weavelogic/weavelogic-nn/weave-nn/utils/task_parser.py`
-  - Class `TaskParser` with methods:
-    - `parse_tasks_from_file(content)` → returns list of task dicts
-    - `extract_due_date(text)` → returns date string or None
-    - `extract_priority(text)` → returns 'high'|'medium'|'low'|'normal'
-    - `extract_tags(text)` → returns list of tag strings
-  - Supports obsidian-tasks format
-  - Unit tests pass
-**Test Scenarios**:
-  - Test task: `- [ ] Test task 📅 2025-10-30 ⏫ #test`
-  - Parse and verify:
-    - status = 'todo'
-    - due_date = '2025-10-30'
-    - priority = 'high'
-    - tags = ['test']
-  - Test completed task: `- [x] Done task`
-  - Verify status = 'done'
-
----
-
-#### Task 32: Implement MCP list_tasks tool
-- [ ] Implement MCP list_tasks tool 🔼 📅 2025-10-30 #mcp #api #tasks
-**Active Form**: Implementing MCP list_tasks tool
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #mcp #api #tasks #backend #tools
-**Dependencies**:
-  - Task 31: Task parser created
-  - Phase 5: MCP server running
-**Acceptance Criteria**:
-  - Endpoint: `GET /mcp/list_tasks`
-  - Query parameters: `project` (optional), `status` (optional)
-  - Returns JSON array of tasks with all metadata
-  - Filters work correctly
-**Test Scenarios**:
-  - `GET /mcp/list_tasks` → returns all tasks
-  - `GET /mcp/list_tasks?status=todo` → returns only uncompleted
-  - `GET /mcp/list_tasks?project=weave-nn` → returns only weave-nn tasks
-  - Create 10 tasks across 3 projects, verify filtering
+#### Task 65: Test memory sync with wikilinks
+- **Title**: Test memory sync by creating note with wikilinks and verifying Claude-Flow DB entry
+- **Active Form**: Testing memory sync with wikilinks
+- **Due Date**: 2025-10-24
+- **Priority**: ⏫ High
+- **Tags**: `#day-3` `#claude-flow` `#memory` `#testing` `#wikilinks`
+- **Dependencies**: Tasks 63, 64 (Memory storage + deletion)
+- **Acceptance Criteria**:
+  - Create note with 3+ wikilinks in Obsidian
+  - Memory stored in Claude-Flow within 2 seconds
+  - Query CF database shows memory entry
+  - Wikilinks parsed and stored in relationship table
+  - Can query memory by wikilink
+- **Verification**:
+  ```bash
+  # Create note with wikilinks, then check CF DB
+  sqlite3 path/to/claude-flow.db \
+    "SELECT * FROM memories WHERE file_path='test.md';"
+  ```
 
 ---
 
-#### Task 33: Implement MCP create_task tool
-- [ ] Implement MCP create_task tool 🔼 📅 2025-10-30 #mcp #api #tasks
-**Active Form**: Implementing MCP create_task tool
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #mcp #api #tasks #backend #tools
-**Dependencies**:
-  - Task 31: Task parser created
-  - Phase 5: MCP server running
-  - Task 3: Obsidian API credentials configured
-**Acceptance Criteria**:
-  - Endpoint: `POST /mcp/create_task`
-  - Body: `{"title": "...", "file_path": "...", "due_date": "...", "priority": "..."}`
-  - Creates task in specified file via Obsidian REST API
-  - Returns task object with line number
-**Test Scenarios**:
-  - Create task with all fields
-  - Verify task appears in Obsidian file
-  - Verify format: `- [ ] {{title}} 📅 {{due_date}} {{priority_emoji}}`
-  - Create task without optional fields, verify defaults
+## Day 4 (2025-10-25): Agent Rules (8 tasks)
+
+### Agent Rule Implementation (6 tasks)
+
+#### Task 66: Create AgentRules class
+- **Title**: Create AgentRules class in agents/rules.py with initialization
+- **Active Form**: Creating AgentRules class
+- **Due Date**: 2025-10-25
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-4` `#agents` `#rules` `#class` `#initialization`
+- **Dependencies**: Tasks 48, 59 (REST client + cache)
+- **Acceptance Criteria**:
+  - AgentRules class created in agents/rules.py
+  - __init__ accepts obsidian_client, shadow_cache, claude_flow_client
+  - All dependencies injected properly
+  - Base methods for all 6 rules stubbed
+- **Verification**:
+  ```python
+  from agents.rules import AgentRules
+  rules = AgentRules(obsidian, cache, cf)
+  ```
+
+#### Task 67: Implement memory_sync rule
+- **Title**: Implement memory_sync rule - Bidirectional sync (Obsidian ↔ Claude-Flow)
+- **Active Form**: Implementing memory_sync rule
+- **Due Date**: 2025-10-25
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-4` `#agents` `#memory-sync` `#bidirectional` `#sync`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - memory_sync(file_path) method implemented
+  - Syncs Obsidian → Claude-Flow
+  - Syncs Claude-Flow → Obsidian (if memory updated externally)
+  - Conflict resolution strategy (Obsidian takes precedence)
+  - Incremental sync (only changed fields)
+- **Verification**: Update memory in CF DB, trigger sync, verify Obsidian updated
+
+#### Task 68: Implement node_creation rule
+- **Title**: Implement node_creation rule - Auto-create nodes from agent intents
+- **Active Form**: Implementing node_creation rule
+- **Due Date**: 2025-10-25
+- **Priority**: ⏫ High
+- **Tags**: `#day-4` `#agents` `#node-creation` `#automation` `#intents`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - node_creation(intent) method implemented
+  - Parses agent intent (JSON format)
+  - Extracts node type, title, frontmatter
+  - Creates note in Obsidian via REST API
+  - Returns created node path
+- **Verification**: Call with test intent and verify note created
+
+#### Task 69: Implement update_propagation rule
+- **Title**: Implement update_propagation rule - Propagate changes to related nodes
+- **Active Form**: Implementing update_propagation rule
+- **Due Date**: 2025-10-25
+- **Priority**: ⏫ High
+- **Tags**: `#day-4` `#agents` `#update-propagation` `#relationships` `#sync`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - update_propagation(file_path, changes) method
+  - Finds related nodes via wikilinks
+  - Updates backlinks in related nodes
+  - Updates aggregate fields (e.g., task counts in parent)
+  - Batch updates for efficiency
+- **Verification**: Update note and verify related notes updated
+
+#### Task 70: Implement schema_validation rule
+- **Title**: Implement schema_validation rule - Validate YAML frontmatter
+- **Active Form**: Implementing schema_validation rule
+- **Due Date**: 2025-10-25
+- **Priority**: ⏫ High
+- **Tags**: `#day-4` `#agents` `#schema-validation` `#yaml` `#validation`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - schema_validation(file_path, frontmatter) method
+  - Validates against node type schema
+  - Required fields check
+  - Data type validation (string, array, date, etc.)
+  - Returns validation errors or empty list
+- **Verification**: Test with valid and invalid frontmatter
+
+#### Task 71: Implement auto_linking rule
+- **Title**: Implement auto_linking rule - Suggest wikilinks based on content
+- **Active Form**: Implementing auto_linking rule
+- **Due Date**: 2025-10-25
+- **Priority**: ⏫ High
+- **Tags**: `#day-4` `#agents` `#auto-linking` `#wikilinks` `#suggestions`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - auto_linking(file_path, content) method
+  - Extracts keywords from content (TF-IDF or simple regex)
+  - Queries shadow cache for matching nodes
+  - Returns suggestions with confidence scores
+  - Suggests top 5 links maximum
+- **Verification**:
+  ```python
+  suggestions = rules.auto_linking("test.md", "This is about Python programming")
+  # Should suggest links to Python-related notes
+  ```
+
+#### Task 72: Implement auto_tagging rule
+- **Title**: Implement auto_tagging rule - Suggest tags based on content
+- **Active Form**: Implementing auto_tagging rule
+- **Due Date**: 2025-10-25
+- **Priority**: ⏫ High
+- **Tags**: `#day-4` `#agents` `#auto-tagging` `#tags` `#suggestions`
+- **Dependencies**: Task 66 (AgentRules class)
+- **Acceptance Criteria**:
+  - auto_tagging(file_path, frontmatter, content) method
+  - Uses Claude API to extract tags from content
+  - Returns 5 relevant tags
+  - Tags follow existing vault tag taxonomy
+  - Caches frequent tags for efficiency
+- **Verification**:
+  ```python
+  tags = rules.auto_tagging("test.md", {}, "This note is about Python programming and web development")
+  # Should return tags like: python, programming, web-development
+  ```
+
+### Agent Integration & Testing (2 tasks)
+
+#### Task 73: Create Agent Task Consumer
+- **Title**: Create Agent Task Consumer in consumers/agent_tasks.py
+- **Active Form**: Creating Agent Task Consumer
+- **Due Date**: 2025-10-25
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-4` `#agents` `#consumer` `#rabbitmq` `#tasks`
+- **Dependencies**: Task 72 (All rules implemented)
+- **Acceptance Criteria**:
+  - AgentTaskConsumer class created
+  - Subscribes to agent_tasks queue
+  - Routes task.* events to appropriate rule
+  - Callback processes events and calls rule methods
+  - Results published back to result queue (optional)
+- **Verification**:
+  ```bash
+  python consumers/agent_tasks.py
+  # Should print "Listening to agent_tasks queue..."
+  ```
+
+#### Task 74: End-to-end agent integration test
+- **Title**: End-to-end test: Create note → File watcher → MCP sync → Agent suggests links/tags
+- **Active Form**: Running end-to-end agent integration test
+- **Due Date**: 2025-10-25
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-4` `#agents` `#testing` `#integration` `#end-to-end`
+- **Dependencies**: Task 73 (Agent consumer)
+- **Acceptance Criteria**:
+  - All services running (file watcher, MCP sync, agent consumer)
+  - Create note in Obsidian without tags/links
+  - File watcher publishes event
+  - MCP sync updates cache
+  - Agent receives task event
+  - Agent suggests tags and links
+  - Suggestions logged or returned via API
+  - Full pipeline completes within 5 seconds
+- **Verification**:
+  ```bash
+  # Terminal 1
+  python publishers/file_watcher.py
+
+  # Terminal 2
+  python consumers/mcp_sync.py
+
+  # Terminal 3
+  python consumers/agent_tasks.py
+
+  # Terminal 4 - Create note in Obsidian, check logs for suggestions
+  tail -f logs/agent_tasks.log
+  ```
 
 ---
 
-#### Task 34: Implement MCP complete_task tool
-- [ ] Implement MCP complete_task tool 🔼 📅 2025-10-30 #mcp #api #tasks
-**Active Form**: Implementing MCP complete_task tool
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #mcp #api #tasks #backend #tools
-**Dependencies**:
-  - Task 32: list_tasks tool working
-  - Phase 5: MCP server running
-**Acceptance Criteria**:
-  - Endpoint: `PUT /mcp/complete_task`
-  - Body: `{"file_path": "...", "line_number": 123}`
-  - Updates task: `- [ ]` → `- [x]`
-  - Updates file via Obsidian REST API
-**Test Scenarios**:
-  - Create test task via create_task
-  - Get task via list_tasks, note line_number
-  - Call complete_task with file_path + line_number
-  - Verify task now marked as done in Obsidian
+## Day 5 (2025-10-26): Git Integration + Auto-Commit (8 tasks)
 
----
+### Git Auto-Commit (4 tasks)
 
-#### Task 35: Test all MCP task tools
-- [ ] Test all MCP task tools ⏫ 📅 2025-10-30 #mcp #testing #integration
-**Active Form**: Testing all MCP task tools
-**Priority**: ⏫ High
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #mcp #testing #integration #validation #tasks
-**Dependencies**:
-  - Tasks 32-34: All MCP task tools implemented
-**Acceptance Criteria**:
-  - All 3 tools (list, create, complete) work correctly
-  - Integration test passes
-  - Response times < 2 seconds
-  - No errors in logs
-**Test Scenarios**:
-  1. **Test 1 - Full Lifecycle**:
-     - Call list_tasks → verify returns existing tasks
-     - Call create_task with new task
-     - Call list_tasks again → verify new task appears
-     - Call complete_task with new task
-     - Call list_tasks with status=done → verify completed task appears
-  2. **Test 2 - Error Handling**:
-     - Call create_task with invalid file_path → verify error response
-     - Call complete_task with invalid line_number → verify error response
+#### Task 75: Create GitClient class
+- **Title**: Create GitClient class in utils/git_client.py with initialization
+- **Active Form**: Creating GitClient class
+- **Due Date**: 2025-10-26
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-5` `#git` `#client` `#automation` `#version-control`
+- **Dependencies**: Task 14 (gitpython installed)
+- **Acceptance Criteria**:
+  - GitClient class created
+  - __init__ accepts vault_path
+  - git.Repo instance created
+  - Validates vault is a git repository
+  - Raises error if not initialized
+- **Verification**:
+  ```python
+  from utils.git_client import GitClient
+  git = GitClient("/path/to/vault")
+  ```
 
----
+#### Task 76: Implement auto_commit method
+- **Title**: Implement auto_commit method in GitClient
+- **Active Form**: Implementing auto_commit method
+- **Due Date**: 2025-10-26
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-5` `#git` `#auto-commit` `#automation` `#commits`
+- **Dependencies**: Task 75 (GitClient class)
+- **Acceptance Criteria**:
+  - auto_commit(message=None) method implemented
+  - Stages all .md files (repo.index.add(['**/*.md']))
+  - Generates commit message if not provided
+  - Single file: "Updated {filename}"
+  - Multiple files: "Updated {count} notes"
+  - Creates commit with gitpython
+  - Returns commit SHA
+- **Verification**:
+  ```python
+  sha = git.auto_commit()
+  # Check: git log -1
+  ```
 
-### Afternoon: Agent-Powered Task Workflows (4 hours)
+#### Task 77: Implement pre-commit validation
+- **Title**: Implement validate_pre_commit method in GitClient
+- **Active Form**: Implementing pre-commit validation
+- **Due Date**: 2025-10-26
+- **Priority**: ⏫ High
+- **Tags**: `#day-5` `#git` `#validation` `#pre-commit` `#checks`
+- **Dependencies**: Task 75 (GitClient class)
+- **Acceptance Criteria**:
+  - validate_pre_commit() method implemented
+  - Checks for broken wikilinks
+  - Validates YAML frontmatter syntax
+  - Checks for merge conflicts
+  - Returns list of validation errors or empty list
+  - Blocks commit if critical errors found
+- **Verification**:
+  ```python
+  errors = git.validate_pre_commit()
+  assert len(errors) == 0
+  ```
 
-#### Task 36: Create N8N daily task summary workflow
-- [ ] Create N8N daily task summary workflow 🔼 📅 2025-10-30 #n8n #workflow #tasks
-**Active Form**: Creating N8N daily task summary workflow
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #n8n #workflow #tasks #automation #daily
-**Dependencies**:
-  - Task 32: MCP list_tasks tool working
-  - Task 6: Claude API configured
-**Acceptance Criteria**:
-  - Workflow named "Daily Task Summary" created
-  - Cron trigger: Every day at 9am
-  - Queries tasks due today + overdue via MCP API
-  - Generates summary with Claude
-  - Posts to Slack or creates daily note
-**Test Scenarios**:
-  - Create 5 tasks: 2 due today, 1 overdue, 2 due next week
-  - Manually trigger workflow
-  - Verify summary includes 3 tasks (today + overdue)
-  - Verify Slack message or daily note created
+#### Task 78: Create Git Auto-Commit Consumer
+- **Title**: Create Git Auto-Commit Consumer in consumers/git_auto_commit.py
+- **Active Form**: Creating Git Auto-Commit Consumer
+- **Due Date**: 2025-10-26
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-5` `#git` `#consumer` `#rabbitmq` `#automation`
+- **Dependencies**: Task 76 (auto_commit method)
+- **Acceptance Criteria**:
+  - GitAutoCommitConsumer class created
+  - Subscribes to git_auto_commit queue
+  - Debounces events (5 second window)
+  - Processes vault.file.updated events
+  - Calls GitClient.auto_commit()
+  - Handles errors gracefully
+- **Verification**:
+  ```bash
+  python consumers/git_auto_commit.py
+  # Should print "Listening to git_auto_commit queue..."
+  ```
 
----
+#### Task 79: Implement debouncing logic
+- **Title**: Implement debouncing logic in Git Auto-Commit Consumer (5 seconds)
+- **Active Form**: Implementing debouncing logic
+- **Due Date**: 2025-10-26
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-5` `#git` `#debouncing` `#optimization` `#performance`
+- **Dependencies**: Task 78 (Consumer created)
+- **Acceptance Criteria**:
+  - Debounce window set to 5 seconds
+  - Multiple events within 5s trigger single commit
+  - Timer reset on each new event
+  - Commit created after 5s of inactivity
+  - Uses threading.Timer or similar
+- **Verification**: Edit 3 files rapidly, verify single commit after 5s
 
-#### Task 37: Create N8N meeting notes to tasks workflow
-- [ ] Create N8N meeting notes to tasks workflow 🔼 📅 2025-10-30 #n8n #workflow #meetings
-**Active Form**: Creating N8N meeting notes to tasks workflow
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #n8n #workflow #meetings #automation #tasks
-**Dependencies**:
-  - Task 33: MCP create_task tool working
-  - Task 6: Claude API configured
-  - Phase 5: RabbitMQ events working
-**Acceptance Criteria**:
-  - Workflow triggered by RabbitMQ event: `{"type": "file.created", "path": "meetings/*.md"}`
-  - Reads meeting notes file
-  - Sends to Claude with prompt: "Extract action items from meeting notes"
-  - Creates tasks in appropriate project files via MCP create_task
-**Test Scenarios**:
-  - Create meeting note with 3 action items
-  - Publish file.created event
-  - Verify workflow triggers
-  - Verify 3 tasks created in project tasks.md
-  - Verify tasks have correct metadata (due dates, assignees if mentioned)
+#### Task 80: Test Git auto-commit
+- **Title**: Test Git auto-commit by editing note and verifying commit created
+- **Active Form**: Testing Git auto-commit functionality
+- **Due Date**: 2025-10-26
+- **Priority**: 🔴 Critical
+- **Tags**: `#day-5` `#git` `#testing` `#auto-commit` `#verification`
+- **Dependencies**: Task 79 (Debouncing)
+- **Acceptance Criteria**:
+  - Start file watcher and git consumer
+  - Edit note in Obsidian
+  - Wait 5 seconds
+  - Verify commit created: git log -1
+  - Commit message includes filename
+  - Only .md files committed
+- **Verification**:
+  ```bash
+  # Terminal 1
+  python publishers/file_watcher.py
 
----
+  # Terminal 2
+  python consumers/git_auto_commit.py
 
-#### Task 38: Test agent task workflows end-to-end
-- [ ] Test agent task workflows end-to-end ⏫ 📅 2025-10-30 #n8n #testing #integration
-**Active Form**: Testing agent task workflows end-to-end
-**Priority**: ⏫ High
-**Due Date**: 2025-10-30
-**Tags**: #phase-6 #n8n #testing #integration #validation #agent
-**Dependencies**:
-  - Tasks 36-37: Both agent workflows created
-**Acceptance Criteria**:
-  - Both workflows execute successfully
-  - Daily summary accurate
-  - Meeting notes extraction accurate
-  - Execution times < 30 seconds each
-**Test Scenarios**:
-  1. **Daily Summary Test**:
-     - Set up 10 tasks with various due dates
-     - Trigger daily summary at 9am (or manually)
-     - Verify summary email/note contains correct tasks
-     - Verify overdue tasks highlighted
-  2. **Meeting Notes Test**:
-     - Create meeting note: "Action items: 1) Review PR, 2) Deploy to staging, 3) Update docs"
-     - Trigger workflow
-     - Verify 3 tasks created
-     - Verify tasks in correct project file
+  # Edit note in Obsidian, wait 5s, then:
+  git log -1 --oneline
+  # Should show: "Updated test.md" or similar
+  ```
 
----
+### Workspace.json Watcher (4 tasks)
 
-## Day 11 (2025-10-31): Obsidian Properties & Visualization
+#### Task 81: Create Workspace Watcher class
+- **Title**: Create WorkspaceWatcher class in publishers/workspace_watcher.py
+- **Active Form**: Creating WorkspaceWatcher class
+- **Due Date**: 2025-10-26
+- **Priority**: ⏫ High
+- **Tags**: `#day-5` `#workspace` `#watcher` `#obsidian` `#events`
+- **Dependencies**: Task 38 (File watcher as template)
+- **Acceptance Criteria**:
+  - WorkspaceWatcher class extends FileSystemEventHandler
+  - Watches .obsidian/workspace.json specifically
+  - Ignores other files in .obsidian/
+  - RabbitMQ publisher injected
+  - Debouncing for rapid changes
+- **Verification**:
+  ```python
+  from publishers.workspace_watcher import WorkspaceWatcher
+  watcher = WorkspaceWatcher(publisher, vault_path)
+  ```
 
-**NOTE**: This day's tasks should wait for Obsidian properties research to complete before starting.
+#### Task 82: Implement workspace change detection
+- **Title**: Implement workspace.json change detection with debouncing
+- **Active Form**: Implementing workspace change detection
+- **Due Date**: 2025-10-26
+- **Priority**: ⏫ High
+- **Tags**: `#day-5` `#workspace` `#detection` `#debouncing` `#events`
+- **Dependencies**: Task 81 (Workspace watcher)
+- **Acceptance Criteria**:
+  - on_modified(event) method implemented
+  - Checks if src_path == workspace.json
+  - Debouncing: Only trigger if 5s since last change
+  - Stores last_modified timestamp
+  - Publishes vault.workspace.updated event
+- **Verification**: Close note in Obsidian (triggers workspace.json save)
 
-### Morning: Apply Properties to All Nodes (4 hours)
+#### Task 83: Integrate workspace watcher with file watcher
+- **Title**: Integrate workspace watcher with file watcher service
+- **Active Form**: Integrating workspace watcher with file watcher
+- **Due Date**: 2025-10-26
+- **Priority**: ⏫ High
+- **Tags**: `#day-5` `#workspace` `#integration` `#file-watcher` `#combined`
+- **Dependencies**: Task 82 (Change detection)
+- **Acceptance Criteria**:
+  - Both watchers run in same process
+  - Shared RabbitMQ publisher
+  - watchdog Observer manages both
+  - Separate event handlers for files vs workspace
+  - Graceful shutdown for both
+- **Verification**:
+  ```bash
+  python publishers/file_watcher.py
+  # Should print: "Watching vault files and workspace.json"
+  ```
 
-#### Task 39: Update all 8 template files with properties
-- [ ] Update all 8 template files with properties 🔼 📅 2025-10-31 #obsidian #templates #properties
-**Active Form**: Updating all 8 template files with properties
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #obsidian #templates #properties #metadata #frontmatter
-**Dependencies**:
-  - Obsidian properties research completed
-  - Tag taxonomy defined
-**Acceptance Criteria**:
-  - All 8 templates updated: feature, decision, architecture, planning, component, pattern, lesson, project
-  - Each has `icon` property (Lucide icon name)
-  - Each has `cssclasses` array
-  - Each has complete tag structure from plan
-  - Templates/README.md documented
-**Test Scenarios**:
-  - Open each template in Obsidian
-  - Verify frontmatter renders correctly
-  - Create new note from template
-  - Verify properties propagate to new note
-
----
-
-#### Task 40: Create bulk property application script
-- [ ] Create bulk property application script 🔼 📅 2025-10-31 #python #automation #properties
-**Active Form**: Creating bulk property application script
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #python #automation #properties #bulk-operations #scripts
-**Dependencies**:
-  - Task 39: Templates updated with property structure
-  - Phase 5: Obsidian REST API working
-**Acceptance Criteria**:
-  - Script: `/mnt/d/weavelogic/weavelogic-nn/weave-nn/scripts/apply_tags.py`
-  - Reads all markdown files in vault
-  - Parses frontmatter
-  - Infers tags from folder path and type
-  - Updates files via Obsidian REST API
-  - Dry-run mode available (preview changes)
-  - Progress logging
-**Test Scenarios**:
-  - Run in dry-run mode on 64+ existing nodes
-  - Verify inferred tags correct
-  - Run actual update
-  - Spot-check 5 files, verify frontmatter updated
-  - Verify no files corrupted
-
----
-
-#### Task 41: Apply properties to all 64+ existing nodes
-- [ ] Apply properties to all 64+ existing nodes ⏫ 📅 2025-10-31 #obsidian #bulk-update #properties
-**Active Form**: Applying properties to all 64+ existing nodes
-**Priority**: ⏫ High
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #obsidian #bulk-update #properties #metadata
-**Dependencies**:
-  - Task 40: Bulk application script created
-**Acceptance Criteria**:
-  - Script executed on all vault nodes
-  - 64+ nodes updated with tags, icons, cssclasses
-  - No nodes corrupted or missing content
-  - Git commit with changes
-**Test Scenarios**:
-  - Before: Count nodes without tags
-  - Run script
-  - After: Count nodes with tags (should be 64+)
-  - Open graph view, verify nodes have CSS classes
-  - Open 10 random files, verify frontmatter correct
-
----
-
-#### Task 42: Create and enable CSS snippet for node colors
-- [ ] Create and enable CSS snippet for node colors 🔼 📅 2025-10-31 #obsidian #css #styling
-**Active Form**: Creating and enabling CSS snippet for node colors
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #obsidian #css #styling #visualization #graph
-**Dependencies**:
-  - Task 41: Nodes have cssclasses applied
-**Acceptance Criteria**:
-  - File created: `.obsidian/snippets/weave-nn-colors.css`
-  - CSS rules for scope-based colors (mvp, future-web)
-  - CSS rules for type-based colors (feature, decision, architecture, planning)
-  - CSS rules for priority-based colors (critical, high, medium, low)
-  - Snippet enabled in Obsidian Settings → Appearance → CSS snippets
-**Test Scenarios**:
-  - Open graph view in Obsidian
-  - Verify scope/mvp nodes are green (#51CF66)
-  - Verify type/feature nodes are red (#FF6B6B)
-  - Verify priority/critical nodes have red border
-  - Toggle CSS snippet off/on, verify colors change
-
----
-
-### Afternoon: Generate Mehrmaid Visualizations (4 hours)
-
-#### Task 43: Create Mehrmaid visualization generator script
-- [ ] Create Mehrmaid visualization generator script 🔼 📅 2025-10-31 #python #visualization #mehrmaid
-**Active Form**: Creating Mehrmaid visualization generator script
-**Priority**: 🔼 Medium
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #python #visualization #mehrmaid #mermaid #graphs
-**Dependencies**:
-  - Task 41: All nodes have metadata
-  - Phase 5: Obsidian REST API working
-**Acceptance Criteria**:
-  - Script: `/mnt/d/weavelogic/weavelogic-nn/weave-nn/scripts/generate_visualizations.py`
-  - Functions for:
-    - `generate_decision_tree()` → creates decision tree diagram
-    - `generate_feature_graph()` → creates feature dependency graph
-    - `generate_architecture_diagram()` → creates architecture layers
-    - `generate_phase_timeline()` → creates phase timeline
-  - Creates visualization notes in `visualizations/` folder
-  - Uses Mehrmaid (Mermaid + Obsidian wikilinks) syntax
-**Test Scenarios**:
-  - Run script
-  - Verify 4 visualization files created
-  - Open each in Obsidian
-  - Verify Mermaid diagrams render
-  - Click wikilinks in diagrams, verify navigation works
-
----
-
-#### Task 44: Generate and test all 4 visualizations
-- [ ] Generate and test all 4 visualizations ⏫ 📅 2025-10-31 #visualization #testing #validation
-**Active Form**: Generating and testing all 4 visualizations
-**Priority**: ⏫ High
-**Due Date**: 2025-10-31
-**Tags**: #phase-6 #visualization #testing #validation #mehrmaid
-**Dependencies**:
-  - Task 43: Visualization generator script created
-**Acceptance Criteria**:
-  - All 4 visualizations generated:
-    - visualizations/decision-tree.md
-    - visualizations/feature-graph.md
-    - visualizations/architecture-diagram.md
-    - visualizations/phase-timeline.md
-  - All render correctly in Obsidian
-  - Wikilinks clickable and navigate correctly
-  - Visual layout readable (not overlapping nodes)
-**Test Scenarios**:
-  - Open decision-tree.md
-    - Verify all decisions shown with status emoji
-    - Click decision node → navigate to decision file
-    - Verify dependency arrows correct
-  - Open feature-graph.md
-    - Verify features color-coded by status
-    - Verify dependencies shown
-  - Open architecture-diagram.md
-    - Verify layers shown (presentation, application, domain, infrastructure)
-    - Verify components in correct layers
-  - Open phase-timeline.md
-    - Verify phases in chronological order
-    - Verify current phase highlighted
-
----
-
-## Day 12 (2025-11-01): Client Project Deployment
-
-### Morning: Real Client Project Setup (4 hours)
-
-**No additional granular tasks needed - covered by Day 12 plan**
-(Tasks would be manual workflow execution and data import)
-
-### Afternoon: End-to-End Workflow Testing (4 hours)
-
-**Test Scenarios Covered in Plan**:
-1. Create note test
-2. Create task test
-3. Generate report test
-4. Knowledge extraction test
-
----
-
-## Day 13 (2025-11-02): Documentation
-
-**No additional granular tasks needed - covered by Day 13 plan**
-(Documentation writing is single-task work)
-
----
-
-## Day 14 (2025-11-03): Polish & Video
-
-**No additional granular tasks needed - covered by Day 14 plan**
-(Performance optimization and video recording are single tasks)
+#### Task 84: Test workspace-triggered commits
+- **Title**: Test workspace-triggered commits: Edit note → Close → Wait → Verify commit
+- **Active Form**: Testing workspace-triggered commits
+- **Due Date**: 2025-10-26
+- **Priority**: ⏫ High
+- **Tags**: `#day-5` `#workspace` `#testing` `#git` `#end-to-end`
+- **Dependencies**: Task 83 (Integration complete)
+- **Acceptance Criteria**:
+  - Edit note in Obsidian
+  - Close note (triggers workspace.json update)
+  - Wait 5 seconds
+  - Verify commit created
+  - Commit includes edited note
+  - Workspace.json NOT committed (excluded)
+- **Verification**:
+  ```bash
+  # Edit and close note, wait 5s
+  git log -1 --stat
+  # Should show .md file, not workspace.json
+  ```
 
 ---
 
 ## Summary Statistics
 
-**Total Tasks**: 44 tasks (Days 8-11)
-**High Priority (⏫)**: 11 tasks
-**Medium Priority (🔼)**: 28 tasks
-**Low Priority (🔽)**: 5 tasks
+**Total Tasks**: 84
+- Day 0 (Prerequisites): 18 tasks
+- Day 1 (RabbitMQ + File Watcher): 15 tasks
+- Day 2 (MCP Server): 11 tasks
+- Day 3 (MCP Sync + Shadow Cache): 10 tasks
+- Day 4 (Agent Rules): 8 tasks
+- Day 5 (Git Integration): 8 tasks
 
-**Day Breakdown**:
-- Day 8 (Oct 28): 15 tasks (N8N installation + client onboarding)
-- Day 9 (Oct 29): 14 tasks (Advanced N8N workflows)
-- Day 10 (Oct 30): 9 tasks (Task management)
-- Day 11 (Oct 31): 6 tasks (Properties + visualization)
-- Day 12 (Nov 1): Manual testing (no discrete tasks)
-- Day 13 (Nov 2): Documentation (no discrete tasks)
-- Day 14 (Nov 3): Polish + video (no discrete tasks)
+**Priority Breakdown**:
+- 🔴 Critical: 54 tasks (64%)
+- ⏫ High: 25 tasks (30%)
+- 🔽 Medium: 5 tasks (6%)
 
-**Technology Tags Used**:
-- #n8n (18 tasks)
-- #workflow (17 tasks)
-- #testing (9 tasks)
-- #obsidian (15 tasks)
-- #claude (5 tasks)
-- #mcp (6 tasks)
-- #git (4 tasks)
-- #slack (4 tasks)
-- #tasks (10 tasks)
-- #properties (5 tasks)
-- #visualization (4 tasks)
+**Tag Categories**:
+- Infrastructure: docker, rabbitmq, gcp, firewall
+- Development: python, obsidian-plugins, fastapi, git
+- Integration: mcp-sync, file-watcher, agents, memory
+- Quality: testing, verification, error-handling, validation
+
+**Critical Path**:
+1. Day 0: Install all plugins + dev environment
+2. Day 1: RabbitMQ operational + File watcher publishing
+3. Day 2: MCP server REST API working
+4. Day 3: Shadow cache syncing on file changes
+5. Day 4: Agents suggesting links/tags
+6. Day 5: Git auto-commits working
+
+**Verification Commands Summary**:
+- Docker: `docker ps`, `docker logs rabbitmq`
+- RabbitMQ: `curl http://localhost:15672`, `rabbitmqadmin list queues`
+- Python: `source .venv/bin/activate`, `pip list`
+- MCP Server: `curl http://localhost:8000/health`
+- SQLite: `sqlite3 metadata.db ".schema"`
+- Git: `git log -1`, `git status`
 
 ---
 
-## Notes on Task Format
+## Notes
 
-Each task includes:
-1. **Title**: Imperative form (e.g., "Install N8N via Docker")
-2. **Active Form**: Present continuous (e.g., "Installing N8N via Docker")
-3. **Priority**: ⏫ High / 🔼 Medium / 🔽 Low
-4. **Due Date**: Exact date (2025-10-28 format)
-5. **Tags**: Minimum 3, specific to task context
-6. **Dependencies**: References to prerequisite tasks or Phase 5 items
-7. **Acceptance Criteria**: Specific, testable conditions for completion
-8. **Test Scenarios**: Concrete steps to validate task completion
-
-This format enables:
-- TodoWrite tool integration
-- Obsidian-tasks plugin compatibility
-- Clear progress tracking
-- Automated validation
-- Dependency management
+- All tasks include specific acceptance criteria with measurable outcomes
+- Verification commands provided for infrastructure and integration tasks
+- Dependencies clearly mapped to enable parallel work where possible
+- Error handling and testing emphasized throughout
+- Documentation tasks marked as lower priority (can be deferred if time-constrained)
+- Critical path ensures core functionality delivered even if some tasks slip

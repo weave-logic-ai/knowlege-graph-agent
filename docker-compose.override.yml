@@ -1,0 +1,78 @@
+# Development overrides for docker-compose.yml
+# This file is automatically used when running docker-compose in development
+# Usage: docker-compose up (automatically merges with docker-compose.yml)
+
+version: '3.9'
+
+services:
+  # Development overrides for FastAPI
+  api:
+    build:
+      target: development
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=debug
+      - RELOAD=true
+    volumes:
+      # Enable hot reload by mounting source as read-write
+      - ./src:/app/src:rw
+      - ./tests:/app/tests:rw
+      - ./config:/app/config:rw
+      # Don't mount logs - let container write them
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    # Remove resource limits in development
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 4G
+
+  # Development overrides for MCP Server
+  mcp-server:
+    build:
+      target: development
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=debug
+      - RELOAD=true
+    volumes:
+      # Enable hot reload
+      - ./src:/app/src:rw
+      - ./tests:/app/tests:rw
+      - ./config:/app/config:rw
+    command: python -m src.mcp_server --reload
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 4G
+
+  # Expose RabbitMQ management UI in development
+  rabbitmq:
+    ports:
+      - "15672:15672"  # Management UI
+
+  # Enable Grafana in development
+  grafana:
+    profiles: []  # Override production profile, always run in dev
+
+  # Add development tools container
+  dev-tools:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev-tools
+    container_name: weave-nn-dev-tools
+    volumes:
+      - .:/workspace:rw
+      - dev-cache:/root/.cache
+    networks:
+      - weave-network
+    command: sleep infinity
+    working_dir: /workspace
+    environment:
+      - PYTHONPATH=/workspace
+      - ENVIRONMENT=development
+
+volumes:
+  dev-cache:
+    driver: local

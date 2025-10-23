@@ -1,28 +1,34 @@
 ---
 type: phase_plan
-phase: phase-5
+phase: phase-8
 phase_name: Hive Mind Memory Integration
 status: planned
-priority: critical
+priority: high
 created_date: 2025-10-22
-updated_date: 2025-10-22
+updated_date: 2025-10-23
 tags:
   - phase-plan
   - memory-integration
   - hive-mind
   - collective-intelligence
+  - post-mvp
 related_concepts:
   - "[[C-008-agent-coordination]]"
   - "[[C-010-collective-memory]]"
 related_decisions:
   - "[[day-2-rest-api-client]]"
   - "[[day-4-agent-rules]]"
+dependencies:
+  requires:
+    - "[[phase-6-mvp-week-1]]"
+    - "[[phase-7-mvp-week-2]]"
 cssclasses:
   - phase-plan
   - planned
+  - post-mvp
 ---
 
-# Phase 5: Hive Mind Memory Integration
+# Phase 8: Hive Mind Memory Integration (Post-MVP)
 
 **Status**: Planned
 **Duration**: 2-3 weeks

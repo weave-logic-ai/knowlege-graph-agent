@@ -1,6 +1,6 @@
 ---
 # Node Metadata
-phase_id: "PHASE-6"
+phase_id: "PHASE-7"
 phase_name: "MVP Completion - Week 2 (Automation & Deployment)"
 type: planning
 status: "pending"
@@ -18,7 +18,7 @@ scope:
 
 # Dependencies
 dependencies:
-  requires: ["PHASE-5"]
+  requires: ["PHASE-6"]
   enables: []
   blocks: []
 

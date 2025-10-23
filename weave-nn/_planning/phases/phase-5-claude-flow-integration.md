@@ -1,12 +1,12 @@
 ---
-phase_id: "PHASE-4"
+phase_id: "PHASE-5"
 phase_name: "Claude-Flow MCP Integration & 1:1 Parity"
 status: "pending"
 priority: "critical"
 start_date: null
 end_date: null
 duration: "1 week (estimated)"
-depends_on: "PHASE-2"
+depends_on: "PHASE-4A"
 assigned_to: "TBD"
 tags:
   - phase

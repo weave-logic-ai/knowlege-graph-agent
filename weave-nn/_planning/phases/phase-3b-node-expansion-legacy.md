@@ -1,7 +1,7 @@
 ---
 # Node Metadata
-phase_id: "PHASE-2B"
-phase_name: "Node Expansion & Decision Documentation"
+phase_id: "PHASE-3B"
+phase_name: "Node Expansion & Decision Documentation (Legacy)"
 type: planning
 status: "completed"
 priority: "high"
@@ -9,6 +9,8 @@ created_date: "2025-10-20"
 start_date: "2025-10-20"
 end_date: "2025-10-20"
 duration: "1 day"
+updated_date: "2025-10-23"
+note: "Renamed from PHASE-2B to PHASE-3B for clarity. Originally executed as Phase 3 work."
 
 # Scope
 scope:
@@ -26,8 +28,9 @@ tags:
   - type/planning
   - status/completed
   - priority/high
-  - phase-2b
+  - phase-3b
   - expansion
+  - legacy
 
 # Visual
 visual:

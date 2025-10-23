@@ -1,6 +1,6 @@
 ---
 # Node Metadata
-phase_id: "PHASE-4"
+phase_id: "PHASE-4A"
 phase_name: "Decision Closure & Obsidian-First Pivot"
 type: planning
 status: "completed"

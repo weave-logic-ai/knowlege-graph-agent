@@ -1,0 +1,117 @@
+# Multi-stage Dockerfile for MCP Server
+# Optimized for agent coordination and message processing
+
+# ============================================================================
+# Base stage - Common dependencies
+# ============================================================================
+FROM python:3.12-slim as base
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    gcc \
+    g++ \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set Python environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Copy requirements
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install mcp>=1.18.0 pika>=1.3.2
+
+# ============================================================================
+# Development stage - Hot reload enabled
+# ============================================================================
+FROM base as development
+
+# Install development dependencies
+RUN pip install \
+    watchdog \
+    pytest \
+    pytest-asyncio \
+    pytest-cov \
+    black \
+    flake8 \
+    mypy \
+    ipython
+
+# Create non-root user
+RUN useradd -m -u 1000 weave && \
+    mkdir -p /app/data /app/logs && \
+    chown -R weave:weave /app
+
+USER weave
+
+# Copy source code (will be mounted in docker-compose.override.yml)
+COPY --chown=weave:weave . .
+
+# Expose port
+EXPOSE 8001
+
+# Development command with auto-reload
+CMD ["python", "-m", "src.mcp_server", "--reload"]
+
+# ============================================================================
+# Builder stage - Compile dependencies
+# ============================================================================
+FROM base as builder
+
+# Copy application code
+COPY . .
+
+# Create optimized .pyc files
+RUN python -m compileall src/
+
+# ============================================================================
+# Production stage - Minimal and secure
+# ============================================================================
+FROM python:3.12-slim as production
+
+WORKDIR /app
+
+# Install only runtime dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy Python dependencies from base
+COPY --from=base /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=base /usr/local/bin /usr/local/bin
+
+# Create non-root user and directories
+RUN useradd -m -u 1000 weave && \
+    mkdir -p /app/data /app/logs && \
+    chown -R weave:weave /app
+
+USER weave
+
+# Copy application code
+COPY --chown=weave:weave --from=builder /app/src /app/src
+COPY --chown=weave:weave docker/entrypoint-mcp.sh /app/entrypoint.sh
+
+# Set Python path
+ENV PYTHONPATH=/app
+
+# Expose port
+EXPOSE 8001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8001/health || exit 1
+
+# Use entrypoint script
+ENTRYPOINT ["/app/entrypoint.sh"]
+
+# Default command
+CMD ["python", "-m", "src.mcp_server"]
