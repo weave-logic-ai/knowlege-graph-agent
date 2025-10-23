@@ -327,36 +327,7 @@ By the end of Phase 4, we need:
 
 ### 4. Development Environment Setup (CRITICAL - Blocks Implementation)
 
-#### 4.1 Python Environment (Optional - For future MCP server)
-- [ ] **Install Python 3.11+**
-  - Verify version: `python --version`
-  - Install if needed: `sudo apt install python3.11 python3.11-venv`
-
-- [ ] **Create virtual environment**
-  ```bash
-  cd /home/aepod/dev/weave-nn/weave-nn
-  python3 -m venv .venv
-  source .venv/bin/activate
-  ```
-
-- [ ] **Install core dependencies**
-  ```bash
-  pip install --upgrade pip
-  pip install fastapi uvicorn pika requests pyyaml watchdog gitpython python-dotenv fastmcp
-  pip install black isort pylint mypy pytest
-  ```
-
-- [ ] **Create requirements.txt**
-  ```bash
-  pip freeze > requirements.txt
-  ```
-
-- [ ] **Test imports**
-  ```python
-  python -c "import fastapi, pika, watchdog; print('All imports successful')"
-  ```
-
-#### 4.2 Node.js Environment (CRITICAL - Blocks Weaver)
+#### 4.1 Node.js Environment (CRITICAL - Blocks Weaver)
 
 - [ ] **Install Node.js 20+**
   ```bash
@@ -390,235 +361,119 @@ By the end of Phase 4, we need:
   - Advanced URI plugin
   - Graph Analysis plugin
 
-#### 3.3 Project Structure Setup (CRITICAL - Blocks Phase 5)
-- [ ] **Create weave-nn-mcp project structure**
-  ```bash
-  cd /home/aepod/dev/weave-nn/weave-nn
-  mkdir -p weave-nn-mcp/{publishers,consumers,utils,agents,cache,git,server,clients}
-  touch weave-nn-mcp/{publishers,consumers,utils,agents,cache,git,server,clients}/__init__.py
-  touch weave-nn-mcp/config.py
-  touch weave-nn-mcp/server.py
-  ```
 
-#### 3.4 Environment Configuration (CRITICAL - Blocks Phase 5)
-- [ ] **Create .env file**
-  ```bash
-  cat > weave-nn-mcp/.env <<EOF
-  # Obsidian REST API
-  OBSIDIAN_API_URL=https://localhost:27124
-  OBSIDIAN_API_KEY=your-api-key-here
+### 5. Weaver Validation & Testing
 
-  # Claude API
-  ANTHROPIC_API_KEY=your-claude-api-key
+**Goal**: Prove Weaver base is ready for feature additions by implementing and testing proof workflows.
 
-  # Weaver Workflow Automation (local webhook server)
-  WEAVER_WEBHOOK_URL=http://localhost:3000/webhook
-  WEAVER_API_KEY=your-weaver-api-key-here
+- [ ] **Task-Completion Workflow Implementation**
+  - [ ] Create workflow definition in weaver/workflows/task-completion.ts
+  - [ ] Implement Claude Code hook integration
+  - [ ] Add workflow trigger logic
+  - [ ] Test workflow execution end-to-end
+  - [ ] Verify workflow can resume after crash
+  - [ ] Document workflow usage
 
-  # RabbitMQ (DEFERRED TO POST-MVP)
-  # RABBITMQ_URL=amqp://admin:weave-nn-2025@localhost:5672
-  # RABBITMQ_EXCHANGE=weave-nn.events
-  WEAVER_WORKSPACE_ID=your-workspace-id
+- [ ] **Phase-Completion Workflow Implementation**
+  - [ ] Create workflow definition in weaver/workflows/phase-completion.ts
+  - [ ] Implement Claude Code hook integration
+  - [ ] Add phase metadata collection
+  - [ ] Test workflow execution end-to-end
+  - [ ] Verify workflow generates summary reports
+  - [ ] Document workflow usage
 
-  # Paths
-  VAULT_PATH=/home/aepod/dev/weave-nn/weave-nn
-  SHADOW_CACHE_DB=.obsidian/plugins/weave-nn/metadata.db
+- [ ] **Weaver Base Validation**
+  - [ ] Start Weaver service successfully
+  - [ ] Verify file watcher detects vault changes
+  - [ ] Trigger task-completion workflow via hook
+  - [ ] Trigger phase-completion workflow via hook
+  - [ ] Verify shadow cache updates correctly
+  - [ ] Test MCP tools callable from Claude-Flow
+  - [ ] Verify workflows survive process restart
 
-  # Git
-  GIT_AUTO_COMMIT=true
-  GIT_COMMIT_DEBOUNCE_SECONDS=5
-  EOF
-  ```
+**Success Criteria**:
+- ✅ Both proof workflows execute successfully
+- ✅ File watcher triggers workflows automatically
+- ✅ Shadow cache reflects current vault state
+- ✅ MCP integration functional
+- ✅ Documentation complete for both workflows
 
-- [ ] **Update .env with actual API keys**
-  - Get Obsidian REST API key (from plugin settings)
-  - Get Anthropic API key (from console.anthropic.com)
-  - Get Weaver API key (from workflow.dev dashboard)
-  - Get Weaver Workspace ID (from workflow.dev dashboard)
-  - Update VAULT_PATH if different
+### 6. Phase 5 Readiness
 
-#### 3.5 Obsidian Plugin Installation (CRITICAL - Blocks Phase 6)
-- [ ] **Install obsidian-local-rest-api**
-  - Open Obsidian → Settings → Community Plugins
-  - Browse → Search "Local REST API"
-  - Install → Enable
-  - Settings → Generate API key
-  - Copy API key to .env file
-  - Test: `curl https://localhost:27124/vault/ -H "Authorization: Bearer YOUR_KEY"`
+**Goal**: Ensure clear path for Claude-Flow integration and feature development.
 
-- [ ] **Install obsidian-tasks**
-  - Browse → Search "Tasks"
-  - Install → Enable
-  - Configure global filter (optional)
-  - Test: Create note with `- [ ] Test task`
+- [ ] **Claude-Flow Integration Prerequisites**
+  - [ ] MCP server running and accessible ✅ (Documentation complete)
+  - [ ] Weaver workflows operational (In progress)
+  - [ ] Shadow cache functional (In progress)
+  - [ ] ObsidianAPIClient working (Depends on Local REST API plugin)
 
-- [ ] **Install obsidian-advanced-uri**
-  - Browse → Search "Advanced URI"
-  - Install → Enable
-  - Test: `obsidian://open?vault=weave-nn`
+- [ ] **Feature Development Prerequisites**
+  - [ ] Weaver base stable and tested
+  - [ ] Core workflows (6) documented ✅
+  - [ ] MCP tools (30+) documented ✅
+  - [ ] Development environment ready (Section 4)
+  - [ ] Git workflow established
 
-- [ ] **Install Graph Analysis plugin** (for topology metrics)
-  - Browse → Search "Graph Analysis"
-  - Install → Enable
-  - Run baseline analysis
-
-#### 3.6 Git Configuration
-- [ ] **Configure git hooks**
-  - Create pre-commit hook template
-  - Add YAML validation
-  - Add wikilink validation
-
-- [ ] **Setup commit templates**
-  ```bash
-  git config commit.template .gitmessage
-  ```
-
-- [ ] **Validate .gitignore**
-  - Check .venv/ excluded
-  - Check .env excluded
-  - Check __pycache__/ excluded
-  - Check .obsidian/workspace.json excluded
-
-- [ ] **Test git workflow**
-  - Create test commit
-  - Verify hooks execute
-  - Verify commit message format
-
-#### 3.7 Development Tools
-- [ ] **Setup code formatters**
-  - Configure black: `pyproject.toml`
-  - Configure isort: `pyproject.toml`
-  - Test: `black weave-nn-mcp/ && isort weave-nn-mcp/`
-
-- [ ] **Configure linters**
-  - Setup pylint: `.pylintrc`
-  - Setup mypy: `mypy.ini`
-  - Test: `pylint weave-nn-mcp/ && mypy weave-nn-mcp/`
-
-- [ ] **Setup testing framework**
-  - Create tests/ directory
-  - Create pytest.ini
-  - Create sample test
-  - Test: `pytest tests/`
-
-- [ ] **Create development scripts**
-  - `scripts/start-services.sh` (Weaver webhook server, MCP server, file watcher)
-  - `scripts/stop-services.sh`
-  - `scripts/run-tests.sh`
-  - `scripts/deploy-local.sh`
-
-### 4. Architecture Validation
-
-- [ ] **Review MCP architecture**
-  - Validate MCP server design
-  - Review agent rules implementation plan
-  - Check Claude-Flow integration approach
-  
-- [ ] **Review data flow**
-  - Validate webhook-driven architecture (Claude Code hooks → Weaver)
-  - Review Weaver workflow design (see weaver-proxy-architecture.md)
-  - Check shadow cache design
-  
-- [ ] **Review integration patterns**
-  - Validate Obsidian REST API approach
-  - Review Git integration design
-  - Check N8N workflow patterns
-  
-- [ ] **Security review**
-  - Review authentication approach
-  - Validate secret management
-  - Check data privacy considerations
-
-### 5. Decision Closure Validation
-
-- [ ] **Review critical blockers from Phase 1**
-  - TS-1: Frontend Framework (should be DECIDED)
-  - TS-2: Graph Visualization (should be DECIDED)
-  - FP-1: MVP Feature Set (should be DECIDED)
-  
-- [ ] **Validate technology stack**
-  - Ensure all core technologies chosen
-  - Document technology dependencies
-  - Identify any missing decisions
-  
-- [ ] **Review feature scope**
-  - Validate MVP feature set
-  - Ensure features are achievable
-  - Document deferred features
-
-### 6. Roadmap & Timeline
-
-- [ ] **Create detailed MVP timeline**
-  - Break down Phase 5 (Week 1) into tasks
-  - Break down Phase 6 (Week 2) into tasks
-  - Estimate effort for each task
-  
-- [ ] **Identify dependencies**
-  - Map task dependencies
-  - Identify critical path
-  - Plan parallel work streams
-  
-- [ ] **Risk assessment**
-  - Identify technical risks
-  - Document mitigation strategies
-  - Create contingency plans
-  
-- [ ] **Resource planning**
-  - Identify required tools
-  - Document infrastructure needs
-  - Plan for testing environments
+- [ ] **Documentation Handoff**
+  - [x] MCP directory updated ✅
+  - [ ] Weaver implementation guide created
+  - [ ] Phase 5 tasks updated with Weaver integration
+  - [ ] Known issues and blockers documented
 
 ---
 
-## 🚧 Current Focus
+## 🚧 Current Focus (REVISED 2025-10-23)
 
-### Immediate Priority: Finish Review
+### Immediate Priority: Build Weaver Base
 
-**What to Review**:
-1. All architecture documents in `/architecture`
-2. All phase planning documents in `/_planning/phases`
-3. All decision documents in `/decisions`
-4. All feature documents in `/features`
-5. All MCP documentation in `/mcp`
+**Phase 4B Goal**: Ready-to-add-features Weaver base with proof workflows
 
-**Review Checklist**:
-- [ ] Content accuracy and completeness
-- [ ] Wikilink validity (no broken links)
-- [ ] YAML frontmatter completeness
-- [ ] Consistent formatting and structure
-- [ ] Clear next actions identified
+**Current Status**:
+1. ✅ **MCP Documentation** - COMPLETE (2000+ lines, all 7 files updated)
+2. 🔄 **Weaver Base Implementation** - IN PROGRESS (Next task)
+3. ⏳ **Proof Workflows** - PENDING (Blocked by Weaver base)
+4. ⏳ **Development Environment** - PENDING (Section 4 tasks)
+5. ⏳ **Validation** - PENDING (Blocked by implementation)
 
-**Review Output**:
-- Document any issues found
-- Create list of updates needed
-- Prioritize critical fixes
-- Schedule implementation work
+**Next Actions**:
+1. Create Weaver project structure (weaver/ directory)
+2. Implement core Weaver service (file watcher, workflow triggers)
+3. Build proof workflows (task-completion, phase-completion)
+4. Setup development environment (Node.js, dependencies)
+5. Validate Weaver readiness (end-to-end testing)
+
+**Blocked Items**:
+- Phase 5 (Claude-Flow Integration) - Waiting for Weaver base
+- Feature development - Waiting for Weaver workflows
 
 ---
 
-## 📊 Progress Tracking
+## 📊 Progress Tracking (REVISED 2025-10-23)
 
 ### Completion Status
-- **Documentation Review**: 100% ✅ (Complete - research integration, architecture, planning docs)
-- **Project Structure**: 0% → **Target: 100%** (7 validation tasks)
-- **Environment Setup**: 0% → **Target: 100%** (35 setup tasks - CRITICAL)
-- **Architecture Validation**: 100% ✅ (Complete)
-- **Decision Closure**: 0% → **Target: 100%** (9 validation tasks)
-- **Roadmap Creation**: 0% → **Target: 100%** (8 planning tasks)
+- **MCP Documentation**: 100% ✅ (7 files, 2000+ lines, all workflows documented)
+- **Weaver Base Implementation**: 0% → **Target: 100%** (5 core components)
+- **Proof Workflows**: 0% → **Target: 100%** (2 workflows - task & phase completion)
+- **Development Environment**: 0% → **Target: 100%** (Node.js, dependencies)
+- **Validation & Testing**: 0% → **Target: 100%** (7 validation checks)
 
-**Overall Phase 4B Progress**: 33% → **Target: 100%**
-**Critical Blocker Count**: 35 tasks must complete before Phase 5 can start
-**Estimated Remaining Time**: 36-50 hours (4-6 days)
+**Overall Phase 4B Progress**: 25% → **Target: 100%**
 
-### Time Estimate
-- Documentation Review: 8-12 hours
-- Project Structure: 4-6 hours
-- Environment Setup: 4-6 hours
-- Architecture Validation: 6-8 hours
-- Decision Closure: 2-4 hours
-- Roadmap Creation: 4-6 hours
+### Revised Progress Calculation
+- ✅ MCP Documentation: 100% (1/4 major components)
+- 🔄 Weaver Implementation: 0% (0/4 major components)
+- ⏳ Development Environment: 0% (0/4 major components)
+- ⏳ Validation: 0% (0/4 major components)
 
-**Total Estimated Time**: 28-42 hours (~3-5 days)
+**Estimated Remaining Time**: 16-24 hours (2-3 days)
+
+### Component Breakdown
+- ✅ MCP Documentation: COMPLETE (8 hours completed)
+- 🔄 Weaver base: 6-8 hours (file watcher, workflows, shadow cache, MCP server)
+- ⏳ Proof workflows: 4-6 hours (task-completion, phase-completion)
+- ⏳ Environment setup: 2-4 hours (Node.js, dependencies)
+- ⏳ Validation & testing: 4-6 hours (end-to-end testing)
 
 ---
 
@@ -627,18 +482,16 @@ By the end of Phase 4, we need:
 ### Planning References
 - [[phase-1-knowledge-graph-transformation|Phase 1: Knowledge Graph Transformation]] ✅
 - [[phase-3-node-expansion|Phase 3: Node Expansion]] ✅
-- [[phase-4a-decision-closure|Phase 4A: Decision Closure]] ✅ (Archived)
-- [[phase-5-mcp-server-implementation|Phase 5: MCP Server Implementation]] ⏳ (Next - Critical)
-- [[phase-6-file-watcher-weaver-integration|Phase 6: File Watcher & Weaver]]
-- [[phase-7-agent-rules-memory-sync|Phase 7: Agent Rules & Memory Sync]]
-- [[phase-8-git-automation-workflow-proxy|Phase 8: Git Automation]]
-- [[phase-9-testing-documentation|Phase 9: Testing & Documentation]]
-- [[phase-10-mvp-readiness-launch|Phase 10: MVP Readiness & Launch]]
+- [[phase-4a-decision-closure|Phase 4A: Decision Closure]] ✅
+- [[phase-5-claude-flow-integration|Phase 5: Claude-Flow Integration]] ⏳ (Next - Critical)
+- [[phase-6-mvp-week-1|Phase 6: MVP Week 1]]
+- [[phase-7-mvp-week-2|Phase 7: MVP Week 2]]
 
 ### Architecture References
 - [[../../architecture/obsidian-native-integration-analysis|Obsidian Integration Analysis]]
 - [[../../architecture/obsidian-first-architecture|Obsidian-First Architecture]]
-- [[../../mcp/agent-rules|MCP Agent Rules]]
+- [[../../mcp/agent-rules-workflows|MCP Agent Rules - Durable Workflows]]
+- [[../../mcp/weaver-mcp-tools|Weaver MCP Tools API Reference]]
 
 ### Decision References
 - [[../../decisions/executive/project-scope|ED-1: Project Scope]] ✅
@@ -646,122 +499,114 @@ By the end of Phase 4, we need:
 
 ---
 
-## ✅ Phase 4B Completion Checklist
+## ✅ Phase 4B Completion Checklist (REVISED 2025-10-23)
 
-**MUST COMPLETE ALL ITEMS BEFORE STARTING PHASE 5**
+**MUST COMPLETE BEFORE STARTING PHASE 5**
 
-### Critical Prerequisites (36 tasks - BLOCKING)
-- [ ] **Python 3.11+ installed and verified**
-- [ ] **Virtual environment created (.venv/)**
-- [ ] **All dependencies installed (fastapi, pika, watchdog, etc.)**
-- [ ] **requirements.txt generated**
-- [ ] **Node.js 20+ installed (for Weaver)**
-- [ ] **Weaver webhook server setup and running**
-- [ ] **Weaver health endpoint verified (http://localhost:3000/webhook/health)**
-- [ ] **weave-nn-mcp/ project structure created**
-- [ ] **.env file created with all variables (including WEAVER_WEBHOOK_URL)**
-- [ ] **Obsidian REST API key obtained and added to .env**
-- [ ] **Anthropic API key added to .env**
-- [ ] **Weaver API key obtained and added to .env**
-- [ ] **Weaver Workspace ID obtained and added to .env**
-- [ ] **obsidian-local-rest-api plugin installed**
-- [ ] **obsidian-tasks plugin installed**
-- [ ] **obsidian-advanced-uri plugin installed**
-- [ ] **Graph Analysis plugin installed**
-- [ ] **REST API tested (curl command works)**
-- [ ] **Git hooks configured**
-- [ ] **.gitignore validated**
-- [ ] **Black formatter configured**
-- [ ] **isort configured**
-- [ ] **pylint configured**
-- [ ] **mypy configured**
-- [ ] **pytest configured**
-- [ ] **tests/ directory created**
-- [ ] **Development scripts created (start/stop/test/deploy)**
+### 1. MCP Documentation ✅ COMPLETE
+- [x] **All 7 MCP files updated with Weaver workflows**
+- [x] **agent-rules-workflows.md created (700+ lines)**
+- [x] **weaver-mcp-tools.md created (600+ lines)**
+- [x] **Architecture diagrams updated**
+- [x] **Claude-Flow integration documented**
+- [x] **Field mappings complete (memory ↔ markdown)**
 
-### Documentation & Planning (16 tasks)
-- [x] **All documentation reviewed** ✅
-- [x] **Research integration complete** ✅
-- [x] **Microservices architecture documented** ✅
-- [x] **Architecture review complete** ✅
-- [x] **Planning documentation reviewed** ✅
-- [ ] **Project structure validated**
-- [ ] **File naming standardized**
-- [ ] **Navigation optimized**
-- [ ] **Metadata cleaned up**
-- [ ] **Technical documentation reviewed**
-- [ ] **Decision documentation reviewed**
-- [ ] **Critical decisions validated**
-- [ ] **MVP timeline created**
-- [ ] **Dependencies identified**
-- [ ] **Risk assessment complete**
-- [ ] **Resource planning complete**
+### 2. Weaver Base Implementation (CRITICAL - BLOCKING PHASE 5)
+- [ ] **Weaver project structure created**
+  - weaver/src/ - Source code
+  - weaver/workflows/ - Workflow definitions
+  - weaver/tests/ - Test files
+  - weaver/config/ - Configuration
+
+- [ ] **Core components implemented**
+  - [ ] File watcher (chokidar integration)
+  - [ ] Workflow trigger system (workflow.dev SDK)
+  - [ ] Shadow cache (SQLite)
+  - [ ] MCP server (ObsidianAPIClient wrapper)
+  - [ ] Error handling & logging
+
+- [ ] **Proof workflows implemented**
+  - [ ] Task-completion workflow (triggered by Claude Code hook)
+  - [ ] Phase-completion workflow (triggered by Claude Code hook)
+
+### 3. Development Environment (CRITICAL - BLOCKING IMPLEMENTATION)
+- [ ] **Node.js 20+ installed**
+- [ ] **Weaver dependencies installed** (workflow-dev, hono, chokidar, @modelcontextprotocol/sdk, sqlite3)
+- [ ] **.env file created** (API keys, vault path, config)
+- [ ] **Obsidian plugins installed** (Local REST API, Tasks, Advanced URI, Graph Analysis)
+
+### 4. Validation & Testing (BLOCKING PHASE 4B COMPLETION)
+- [ ] **Weaver service starts successfully**
+- [ ] **File watcher detects vault changes**
+- [ ] **Task-completion workflow executes**
+- [ ] **Phase-completion workflow executes**
+- [ ] **Shadow cache updates correctly**
+- [ ] **MCP tools callable from Claude-Flow**
+- [ ] **Workflows survive process restart**
 
 ### Phase 4B Exit Criteria (ALL must be TRUE)
-- [ ] **All 35 critical prerequisites complete**
-- [ ] **All 16 documentation tasks complete**
-- [ ] **Phase 4B completion report written**
-- [ ] **Team sign-off obtained**
+- [x] **MCP documentation complete** ✅
+- [ ] **Weaver base functional**
+- [ ] **Proof workflows working**
+- [ ] **Development environment ready**
+- [ ] **End-to-end validation passing**
 - [ ] **No open blockers for Phase 5**
-- [ ] **Development environment 100% functional**
-- [ ] **All tests passing (if any exist)**
-- [ ] **Git workflow tested and working**
+- [ ] **Phase 4B completion report written**
 
 ### Validation Commands (Run before declaring Phase 4B complete)
 ```bash
-# 1. Python environment
-source .venv/bin/activate
-python -c "import fastapi, pika, watchdog; print('✅ All imports work')"
+# 1. Weaver service
+cd weaver
+npm run dev &
+sleep 2
+curl http://localhost:3000/health
+echo "✅ Weaver service running"
 
-# 2. Weaver
-curl http://localhost:3000/webhook/health
-echo "✅ Weaver webhook server accessible"
+# 2. File watcher test
+echo "test change" >> ../concepts/test-node.md
+# Check logs for workflow trigger
+echo "✅ File watcher detected change"
 
-# 3. Obsidian REST API
-curl https://localhost:27124/vault/ -H "Authorization: Bearer $(grep OBSIDIAN_API_KEY weave-nn-mcp/.env | cut -d= -f2)"
-echo "✅ Obsidian REST API working"
+# 3. Shadow cache query
+curl http://localhost:3000/api/cache/stats
+echo "✅ Shadow cache operational"
 
-# 4. Project structure
-ls -la weave-nn-mcp/{publishers,consumers,utils,agents,cache,git,server,clients}/__init__.py
-echo "✅ Project structure created"
-
-# 5. Git
-git status
-echo "✅ Git working"
-
-# 6. Formatting tools
-black --check weave-nn-mcp/ && isort --check weave-nn-mcp/
-echo "✅ Formatters configured"
+# 4. MCP tools test
+# (Requires Claude-Flow integration - Phase 5)
+echo "⏳ MCP tools will be tested in Phase 5"
 ```
-
-### Success Metrics
-- **Setup Time**: Should complete in 36-50 hours (4-6 days)
-- **Blocker Resolution**: 100% of critical blockers resolved
-- **Test Pass Rate**: 100% (if tests exist)
-- **Documentation Completeness**: 100%
-- **Team Confidence**: High (8/10 or better)
 
 ---
 
 ## ➡️ Next Phase
 
-**Phase 5**: [[phase-5-mcp-server-implementation|MCP Server Implementation (Node.js/TypeScript)]]
-- 🔴 **CRITICAL** - Enables Claude integration via MCP protocol
+**Phase 5**: [[phase-5-claude-flow-integration|Claude-Flow MCP Integration]]
+- 🔴 **CRITICAL** - Enables AI-managed knowledge graph
 - ⚠️ **BLOCKED** - Cannot start until Phase 4B is 100% complete
-- Requires: Node.js 20+, @modelcontextprotocol/sdk, Obsidian Local REST API
-- Duration: 3-4 days
-- Deliverables: ObsidianClient, ShadowCache (SQLite), 6 MCP tools, Claude-Flow memory sync
-- Unlocks: Phase 6 (File Watcher & Weaver Integration)
+- Requires MCP memory schema research and agent rules implementation
+- Duration: 1 week
+- Unlocks: Phase 6 (MVP Backend Development)
 
-**Phase 4B → Phase 5 Handoff Requirements**:
-1. All 35 critical prerequisites complete
-2. Development environment fully functional
-3. All validation commands passing
-4. Phase 4B completion report approved
-5. No open blockers or risks
+**Phase 4B → Phase 5 Handoff Requirements** (REVISED 2025-10-23):
+1. ✅ MCP documentation complete (all 7 files updated)
+2. ✅ Weaver base functional (file watcher, workflows, shadow cache, MCP server)
+3. ✅ Proof workflows working (task-completion, phase-completion)
+4. ✅ Development environment ready (Node.js, dependencies, .env)
+5. ✅ End-to-end validation passing
+6. ✅ Phase 4B completion report written
+7. ✅ No open blockers for Phase 5
+
+**Ready for Phase 5 When**:
+- Weaver service can detect vault file changes
+- Workflows can be triggered automatically
+- Shadow cache maintains vault metadata
+- MCP tools are documented and ready for Claude-Flow
+- Proof workflows demonstrate Weaver stability
 
 ---
 
 **Phase Started**: 2025-10-23
-**Current Status**: IN PROGRESS
-**Next Milestone**: Complete documentation review
+**Goal Shift**: 2025-10-23 (from planning to Weaver base implementation)
+**Current Status**: 🔄 IN PROGRESS (25% complete)
+**Next Milestone**: Build Weaver base with proof workflows
+**Blocking**: Phase 5 (Claude-Flow Integration)
