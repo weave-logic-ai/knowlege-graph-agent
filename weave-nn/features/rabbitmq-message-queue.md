@@ -3,12 +3,13 @@
 feature_id: "F-015"
 feature_name: "RabbitMQ Message Queue"
 category: "infrastructure"
-status: "planned"
-priority: "critical"
-release: "mvp"
+status: "deferred"
+priority: "low"
+release: "post-mvp"
 complexity: "moderate"
 created_date: "2025-10-21"
-updated_date: "2025-10-21"
+updated_date: "2025-10-23"
+deferred_reason: "Weaver (workflow.dev) provides built-in durable workflows, webhooks, and async execution - RabbitMQ unnecessary for MVP"
 
 # Scope
 scope:
@@ -20,8 +21,8 @@ scope:
 # Dependencies
 dependencies:
   requires: []
-  enables: ["n8n-workflow-automation", "cross-project-knowledge-retention"]
-  related_features: ["n8n-workflow-automation", "git-integration"]
+  enables: ["weaver-workflow-automation", "cross-project-knowledge-retention"]
+  related_features: ["weaver-workflow-automation", "git-integration"]
 
 # Relationships
 relationships:
@@ -54,17 +55,39 @@ tags:
 
 # RabbitMQ Message Queue
 
-**Purpose**: Implement RabbitMQ message queue as the async event bus for Weave-NN, enabling decoupled, event-driven communication between components (file watcher, MCP server, N8N workflows, agents).
+> **⚠️ DEFERRED TO POST-MVP**: Weaver (workflow.dev) provides built-in durable workflows, webhooks, and async execution. RabbitMQ adds unnecessary complexity for MVP. See [[weaver-workflow-automation]] for current event handling.
 
-**Decision**: [[../archive/DECISIONS#IR-3-Other-Integrations|IR-3: Other Integrations]] - Message queue for async foundation
+**Purpose**: ~~Implement RabbitMQ message queue as the async event bus~~ (DEFERRED - Weaver handles this)
 
-**Architecture**: RabbitMQ (AMQP) + Python pika library for pub/sub messaging
+**Decision**: [[../archive/DECISIONS#IR-3-Other-Integrations|IR-3: Other Integrations]] - ~~Message queue for async foundation~~ **Superseded by Weaver adoption**
+
+**Architecture**: ~~RabbitMQ (AMQP) + Python pika library~~ → **Weaver webhooks + durable workflows (simpler)**
+
+## Why Deferred
+
+**Weaver Already Provides**:
+- ✅ Durable workflows (state persistence)
+- ✅ Webhook triggers (HTTP events)
+- ✅ Async execution ("use workflow")
+- ✅ Automatic retries (exponential backoff)
+- ✅ Error handling (workflow states)
+
+**When to Revisit**:
+- Multi-service architecture (3+ independent services)
+- High-throughput streaming (>1000 events/sec)
+- Complex routing (multiple consumers per event)
+
+**MVP Approach**: File Watcher → Weaver (HTTP webhooks) → Services
+
+---
+
+## Original Documentation (For Reference)
 
 ---
 
 ## 🎯 User Story
 
-As a **Weave-NN system architect**, I want to **decouple components via async messaging** so that **file changes, agent actions, and workflow triggers can happen independently without blocking operations**.
+As a **Weave-NN system architect**, I want to **decouple components via async messaging with Weaver orchestration** so that **file changes, agent actions, and workflow triggers can happen independently without blocking operations**.
 
 ---
 
@@ -138,7 +161,7 @@ As a **Weave-NN system architect**, I want to **decouple components via async me
 
 ### Message Flow Diagram
 
-The RabbitMQ message queue is the central bus for all asynchronous communication in Weave-NN. All services, including APIs, N8N workflows, and AI agents, publish events to a topic exchange. Consumers subscribe to specific topics to perform their tasks, ensuring a fully decoupled architecture. This allows for high throughput, scalability, and the ability to insert services like AI-powered security and validation layers that inspect messages before they are processed.
+The RabbitMQ message queue is the central bus for all asynchronous communication in Weave-NN. All services, including APIs, Weaver workflows, and AI agents, publish events to a topic exchange. Weaver (workflow.dev) acts as a proxy layer, orchestrating task routing and workflow execution between RabbitMQ and downstream services. Consumers subscribe to specific topics to perform their tasks, ensuring a fully decoupled architecture. This allows for high throughput, scalability, and the ability to insert services like AI-powered security and validation layers that inspect messages before they are processed.
 
 The definitive diagram and explanation of this architecture are maintained in the [[../architecture/api-layer#Message Queue Integration|API & Backend Layer]] documentation to ensure a single source of truth.
 
@@ -150,7 +173,7 @@ The definitive diagram and explanation of this architecture are maintained in th
 - Durable queues (messages survive restart)
 
 **Queues**:
-1. **n8n_workflows** - Binds to: `vault.*.*`, `task.*`, `project.*`
+1. **weaver_workflows** - Binds to: `vault.*.*`, `task.*`, `project.*`
 2. **mcp_sync** - Binds to: `vault.file.*`
 3. **git_auto_commit** - Binds to: `vault.file.updated`
 4. **agent_tasks** - Binds to: `task.created`, `task.updated`
@@ -182,14 +205,14 @@ docker run -d \
 rabbitmqadmin declare exchange name=weave-nn.events type=topic durable=true
 
 # Create queues
-rabbitmqadmin declare queue name=n8n_workflows durable=true
+rabbitmqadmin declare queue name=weaver_workflows durable=true
 rabbitmqadmin declare queue name=mcp_sync durable=true
 rabbitmqadmin declare queue name=git_auto_commit durable=true
 rabbitmqadmin declare queue name=agent_tasks durable=true
 rabbitmqadmin declare queue name=dlq durable=true
 
 # Bind queues to exchange
-rabbitmqadmin declare binding source=weave-nn.events destination=n8n_workflows routing_key="vault.*.*"
+rabbitmqadmin declare binding source=weave-nn.events destination=weaver_workflows routing_key="vault.*.*"
 rabbitmqadmin declare binding source=weave-nn.events destination=mcp_sync routing_key="vault.file.*"
 rabbitmqadmin declare binding source=weave-nn.events destination=git_auto_commit routing_key="vault.file.updated"
 rabbitmqadmin declare binding source=weave-nn.events destination=agent_tasks routing_key="task.*"
@@ -388,63 +411,81 @@ if __name__ == "__main__":
     consumer.start()
 ```
 
-### Day 4: N8N Integration
+### Day 4: Weaver Integration
 
-**N8N RabbitMQ Node Configuration**:
-```json
-{
-  "name": "RabbitMQ Trigger",
-  "type": "n8n-nodes-base.rabbitmq",
-  "parameters": {
-    "queue": "n8n_workflows",
-    "options": {
-      "acknowledge": "true",
-      "jsonParseBody": "true"
-    }
+**Weaver RabbitMQ Consumer Configuration**:
+```typescript
+// weaver-config.ts
+import { WeaverClient } from '@workflow-dev/weaver';
+
+const weaver = new WeaverClient({
+  rabbitmq: {
+    url: process.env.RABBITMQ_URL,
+    exchange: 'weave-nn.events',
+    queue: 'weaver_workflows'
   }
-}
+});
+
+// Subscribe to vault events
+weaver.subscribe('vault.*.*', async (message) => {
+  console.log('Received event:', message.event_type);
+  // Route to appropriate workflow
+  await weaver.route(message);
+});
 ```
 
 **Example Workflow**: File Created → Extract Keywords → Create Tags
-```json
-{
-  "nodes": [
+```typescript
+// workflows/extract-keywords.ts
+import { defineWorkflow } from '@workflow-dev/weaver';
+
+export default defineWorkflow({
+  name: 'extract-keywords',
+  trigger: {
+    type: 'rabbitmq',
+    queue: 'weaver_workflows',
+    filter: (msg) => msg.event_type === 'vault.file.created' && msg.data.file_type === 'concept'
+  },
+  steps: [
     {
-      "name": "RabbitMQ: Vault File Created",
-      "type": "n8n-nodes-base.rabbitmq",
-      "parameters": {
-        "queue": "n8n_workflows",
-        "options": {"acknowledge": "true"}
+      name: 'extract-keywords',
+      action: async (context) => {
+        const { data } = context.trigger.message;
+
+        // Call Claude API to extract keywords
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'x-api-key': process.env.ANTHROPIC_API_KEY,
+            'anthropic-version': '2023-06-01',
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'claude-3-5-sonnet-20241022',
+            max_tokens: 1024,
+            messages: [{
+              role: 'user',
+              content: `Extract 5 keywords from: ${data.frontmatter.content}`
+            }]
+          })
+        });
+
+        const result = await response.json();
+        return { keywords: result.content[0].text };
       }
     },
     {
-      "name": "Filter: Only Concept Nodes",
-      "type": "n8n-nodes-base.if",
-      "parameters": {
-        "conditions": {
-          "string": [
-            {"value1": "={{$json.data.file_type}}", "value2": "concept"}
-          ]
-        }
-      }
-    },
-    {
-      "name": "Claude: Extract Keywords",
-      "type": "n8n-nodes-base.httpRequest",
-      "parameters": {
-        "url": "https://api.anthropic.com/v1/messages",
-        "method": "POST",
-        "body": {
-          "model": "claude-3-5-sonnet-20241022",
-          "messages": [{
-            "role": "user",
-            "content": "Extract 5 keywords from: {{$json.data.frontmatter.content}}"
-          }]
-        }
+      name: 'publish-tags',
+      action: async (context) => {
+        // Publish extracted tags back to RabbitMQ
+        await weaver.publish('vault.tags.created', {
+          file_path: context.trigger.message.data.file_path,
+          tags: context.steps['extract-keywords'].keywords
+        });
       }
     }
   ]
-}
+});
 ```
 
 ---
@@ -560,7 +601,7 @@ channel.basic_publish(
 - ✅ Exchange and queues created
 - ✅ File watcher publishes vault events
 - ✅ MCP sync consumer processes events
-- ✅ N8N subscribes to events successfully
+- ✅ Weaver subscribes to events successfully
 - ✅ Git auto-commit triggered by file updates
 
 ### Nice to Have (v1.1)
@@ -579,7 +620,7 @@ channel.basic_publish(
 ## 🔗 Related Features
 
 ### Enables
-- [[n8n-workflow-automation|N8N Workflow Automation]] - Event-driven workflows
+- [[weaver-workflow-automation|Weaver Workflow Automation]] - Event-driven workflows via workflow.dev
 - [[cross-project-knowledge-retention|Cross-Project Knowledge]] - Project event triggers
 - [[git-integration|Git Integration]] - Auto-commit on file changes
 
@@ -599,11 +640,12 @@ channel.basic_publish(
 - [RabbitMQ Documentation](https://www.rabbitmq.com/documentation.html)
 - [RabbitMQ Docker Image](https://hub.docker.com/_/rabbitmq)
 - [Pika (Python Client)](https://pika.readthedocs.io/)
-- [N8N RabbitMQ Node](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.rabbitmq/)
+- [Weaver Documentation](https://workflow.dev/docs)
+- [Weaver RabbitMQ Integration](https://workflow.dev/docs/integrations/rabbitmq)
 
 ---
 
 **Status**: Planned for MVP (Week 1, Day 1-4)
 **Complexity**: Moderate (8 hours setup + integration)
 **Priority**: Critical (foundation for async architecture)
-**Next Steps**: Install RabbitMQ, implement file watcher publisher, test N8N consumer
+**Next Steps**: Install RabbitMQ, implement file watcher publisher, configure Weaver consumer, test workflow routing

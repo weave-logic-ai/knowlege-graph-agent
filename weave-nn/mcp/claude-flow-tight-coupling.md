@@ -33,9 +33,9 @@ related:
 
 ---
 
-## 🏗️ Architecture (Corrected)
+## 🏗️ Architecture (MVP with Weaver)
 
-### Single Source of Truth
+### Single Source of Truth with Weaver Integration
 
 ```
 ┌─────────────────────────────────────────┐
@@ -56,21 +56,26 @@ related:
 │   This IS the knowledge graph.          │
 │   This IS what Claude-Flow uses.        │
 └─────────────────────────────────────────┘
-           ↕ (MCP Tools)
+           ↕ (File System Monitoring)
 ┌─────────────────────────────────────────┐
-│   Cyanheads Obsidian MCP Server         │
+│   Weaver Service (Node.js/TypeScript)  │
 │                                         │
-│   Tools:                                │
-│   - search_vault(query)                 │
-│   - read_note(path)                     │
-│   - create_note(path, content)          │
-│   - update_note(path, content)          │
-│   - list_notes(folder)                  │
-│   - get_links(path)                     │
-│   - append_to_note(path, content)       │
+│   Components:                           │
+│   ├─ File Watcher (chokidar)           │
+│   ├─ Durable Workflows (workflow.dev)  │
+│   ├─ Shadow Cache (SQLite)             │
+│   ├─ MCP Server (@modelcontextprotocol) │
+│   └─ ObsidianAPIClient                 │
 │                                         │
-│   Direct file system access.            │
-│   No intermediate database.             │
+│   Workflows:                            │
+│   - vault-file-created                  │
+│   - vault-file-updated                  │
+│   - vault-file-deleted                  │
+│   - analyze-linking-opportunities       │
+│   - validate-node-schema                │
+│   - extract-and-store-memories          │
+│                                         │
+│   Unified service, stateful workflows   │
 └─────────────────────────────────────────┘
            ↕ (MCP Protocol)
 ┌─────────────────────────────────────────┐
@@ -88,8 +93,18 @@ related:
 │                                         │
 │   Byzantine Consensus Algorithm         │
 │   for coordinated decision-making       │
+│                                         │
+│   Uses Weaver MCP tools to read/write  │
+│   markdown files as memory entries      │
 └─────────────────────────────────────────┘
 ```
+
+**Key Addition**: **Weaver** acts as the intelligent middleware that:
+- Monitors vault file changes with chokidar
+- Triggers stateful, resumable workflows via workflow.dev
+- Maintains shadow cache for fast queries
+- Exposes MCP tools for Claude-Flow agents
+- Handles all Claude API calls for AI-enhanced operations
 
 ---
 
@@ -97,53 +112,73 @@ related:
 
 ### Scenario: AI Creates a Concept
 
-**WRONG Approach (What we documented before)**:
+**WRONG Approach (Separate memory system)**:
 1. AI creates memory in Claude-Flow SQLite database
 2. Sync process triggers
 3. Memory is "converted" to markdown
 4. File is written to Obsidian vault
 5. Two sources of truth that must stay in sync ❌
 
-**RIGHT Approach (Tight Coupling)**:
-1. AI agent calls MCP tool: `create_note("concepts/temporal-queries.md", content)`
-2. Cyanheads MCP server writes file directly to disk
-3. Obsidian detects file change, updates graph view
-4. Done. Single source of truth ✅
+**RIGHT Approach (Tight Coupling with Weaver)**:
+1. AI agent calls Weaver MCP tool: `create_note("concepts/temporal-queries.md", content)`
+2. Weaver MCP server writes file directly to vault via ObsidianAPIClient
+3. File watcher (chokidar) detects new file
+4. Weaver triggers `vault-file-created` workflow
+5. Workflow executes:
+   - **Step 1**: Parse frontmatter and content
+   - **Step 2**: Validate schema (required fields for concept type)
+   - **Step 3**: Update shadow cache (fast metadata index)
+   - **Step 4**: Extract wikilinks for relationship tracking
+   - **Step 5**: Generate embedding (optional, for semantic search)
+6. Obsidian detects file change, updates graph view
+7. Done. Single source of truth ✅
 
-**Key Difference**: **No intermediate memory store. Markdown files ARE the memory.**
+**Key Difference**: **No intermediate memory store. Markdown files ARE the memory. Weaver adds intelligent automation via durable workflows.**
 
 ---
 
 ### Scenario: AI Reads Related Concepts
 
-**WRONG Approach**:
+**WRONG Approach (Separate memory system)**:
 1. Query Claude-Flow memory database
 2. Get memory entries
 3. Sync checks if files match
 4. Return data ❌
 
-**RIGHT Approach**:
-1. AI calls MCP tool: `search_vault("knowledge graph")`
-2. MCP server uses grep/ripgrep on markdown files
-3. Returns matching files with excerpts
-4. AI reads files via `read_note(path)`
-5. AI has direct access to graph ✅
+**RIGHT Approach (Tight Coupling with Weaver)**:
+1. AI calls Weaver MCP tool: `search_knowledge_graph("knowledge graph")`
+2. Weaver queries shadow cache (fast) OR ObsidianAPIClient search (comprehensive)
+3. Returns matching files with excerpts and metadata
+4. AI reads specific files via `read_note(path)`
+5. Weaver returns parsed content (frontmatter + body)
+6. AI has direct access to graph with intelligent caching ✅
+
+**Key Addition**: Shadow cache provides fast metadata queries without scanning all files
 
 ---
 
 ### Scenario: Update Node Status
 
-**WRONG Approach**:
+**WRONG Approach (Separate memory system)**:
 1. Update memory in Claude-Flow database
 2. Trigger sync
 3. Update markdown file
 4. Hope sync doesn't conflict ❌
 
-**RIGHT Approach**:
-1. AI calls MCP tool: `update_note("decisions/technical/frontend-framework.md", new_content)`
-2. Uses Edit tool to change `status: open` → `status: decided`
-3. File updated on disk
-4. Obsidian graph reflects change immediately ✅
+**RIGHT Approach (Tight Coupling with Weaver)**:
+1. AI calls Weaver MCP tool: `update_note("decisions/technical/frontend-framework.md", updates)`
+2. Weaver updates file via ObsidianAPIClient (changes `status: open` → `status: decided`)
+3. File watcher detects change
+4. Weaver triggers `vault-file-updated` workflow
+5. Workflow executes:
+   - **Step 1**: Parse updated content
+   - **Step 2**: Detect status change (open → decided)
+   - **Step 3**: Update shadow cache with new metadata
+   - **Step 4**: Check for impacted relationships (does this unblock other decisions?)
+   - **Step 5**: Optionally trigger notifications or related updates
+6. Obsidian graph reflects change immediately ✅
+
+**Key Addition**: Durable workflows enable stateful processing with crash recovery
 
 ---
 
@@ -210,84 +245,165 @@ Claude-Flow has semantic search with embeddings, but markdown files don't have e
 
 ---
 
-## 🎯 Agent Rules (Corrected)
+## 🎯 Agent Rules (Weaver Durable Workflows)
 
-### Rule 1: Direct File Operations
+### Rule 1: Direct File Operations via Durable Workflows
 
-**OLD**: Sync memory ↔ nodes
-**NEW**: Agents write directly to markdown files
+**OLD**: Event-driven RuleEngine with RabbitMQ
+**NEW**: Durable workflows with stateful execution
 
-```yaml
-rule_id: "direct_file_operations"
-purpose: "AI agents operate directly on markdown files via MCP"
+```typescript
+// Weaver workflow for file creation
+export const vaultFileCreatedWorkflow = workflow(
+  'vault-file-created',
+  async (ctx, input: { filePath: string; absolutePath: string; timestamp: number }) => {
+    // Step 1: Read file content (can resume from here if crashed)
+    const content = await ctx.step('read-file', async () => {
+      return await readFile(input.absolutePath, 'utf-8');
+    });
 
-actions:
-  - on_concept_identified:
-      - call: mcp.create_note({
-          path: "concepts/{key}.md",
-          content: build_from_template("concept-node-template", data)
-        })
-      - log: "Created concept node at {path}"
+    // Step 2: Parse frontmatter
+    const { frontmatter, body } = await ctx.step('parse-frontmatter', async () => {
+      return parseFrontmatter(content);
+    });
 
-  - on_decision_made:
-      - call: mcp.update_note({
-          path: "decisions/technical/{key}.md",
-          content: updated_frontmatter_and_body
-        })
-      - log: "Updated decision {path} status: {new_status}"
+    // Step 3: Update shadow cache (atomic operation)
+    await ctx.step('update-shadow-cache', async () => {
+      await shadowCache.upsertNode({
+        filePath: input.filePath,
+        nodeType: frontmatter.type || 'note',
+        frontmatter,
+        tags: structure.tags,
+        links: structure.links,
+        updatedAt: new Date(input.timestamp),
+      });
+    });
 
-  - on_relationship_discovered:
-      - call: mcp.append_to_note({
-          path: source_node,
-          content: "- [[{target_node}]]",
-          section: "## Related"
-        })
-      - log: "Added link from {source} to {target}"
+    // Step 4: Extract wikilinks
+    const wikilinks = await ctx.step('extract-links', async () => {
+      const regex = /\[\[([^\]]+)\]\]/g;
+      return Array.from(body.matchAll(regex), m => m[1]);
+    });
+
+    // Step 5: Validate bidirectional links (calls another workflow)
+    await ctx.step('ensure-bidirectional-links', async () => {
+      for (const link of wikilinks) {
+        await triggerWorkflow('ensure-bidirectional-link', {
+          sourceFile: input.filePath,
+          targetLink: link
+        });
+      }
+    });
+
+    return { success: true, wikilinks: wikilinks.length };
+  }
+);
 ```
 
-**No intermediate database. Direct file manipulation.**
+**Key Advantage**: **Workflow persists state at each step. If Weaver crashes at Step 3, it resumes from Step 4 on restart.**
 
 ---
 
-### Rule 2: Template Application
+### Rule 2: Schema Validation via Workflow Steps
 
-**Purpose**: When AI creates a node, apply the appropriate template
+**Purpose**: Validate node structure during creation/update workflows
 
-```yaml
-rule_id: "template_application"
-purpose: "Ensure all nodes follow consistent structure"
+```typescript
+// Integrated into vault-file-created workflow
+await ctx.step('validate-schema', async () => {
+  const nodeType = frontmatter.type || 'note';
+  const validator = getValidatorForType(nodeType);
 
-actions:
-  - determine_node_type: infer from context (concept, decision, feature, etc.)
-  - load_template: read from templates/{type}-node-template.md
-  - fill_template:
-      - Replace placeholders with actual data
-      - Generate ID (C-XXX, TS-XXX, F-XXX)
-      - Set created_date: today
-      - Suggest tags based on content
-  - write_file: via MCP create_note()
+  const requiredFields = {
+    concept: ['concept_id', 'concept_name', 'type', 'created_date'],
+    decision: ['decision_id', 'title', 'status', 'created_date'],
+    feature: ['feature_id', 'feature_name', 'status', 'release']
+  };
+
+  const required = requiredFields[nodeType];
+  if (required) {
+    const missing = required.filter(field => !frontmatter[field]);
+
+    if (missing.length > 0) {
+      logger.warn(`Missing fields in ${input.filePath}: ${missing.join(', ')}`);
+
+      // Auto-fix: Add default values
+      const updates = {};
+      missing.forEach(field => {
+        if (field === 'created_date') {
+          updates[field] = new Date().toISOString().split('T')[0];
+        } else if (field.endsWith('_id')) {
+          updates[field] = `AUTO-${Date.now()}`;
+        }
+      });
+
+      if (Object.keys(updates).length > 0) {
+        await obsidianClient.updateFrontmatter(input.filePath, updates);
+        return { fixed: true, updates };
+      }
+    }
+  }
+
+  return { valid: true };
+});
 ```
 
 ---
 
-### Rule 3: Bidirectional Link Maintenance
+### Rule 3: Bidirectional Link Maintenance via Dedicated Workflow
 
-**Purpose**: When a wikilink is added, ensure reverse link exists
+**Purpose**: Ensure bidirectional links when wikilinks are added
 
-```yaml
-rule_id: "bidirectional_links"
-purpose: "Maintain graph connectivity"
+```typescript
+export const ensureBidirectionalLinkWorkflow = workflow(
+  'ensure-bidirectional-link',
+  async (ctx, input: { sourceFile: string; targetLink: string }) => {
+    // Step 1: Check if target exists
+    const targetExists = await ctx.step('check-target', async () => {
+      try {
+        await obsidianClient.readNote(`${input.targetLink}.md`);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    });
 
-trigger:
-  - on_wikilink_added: "[[target]]" added to source.md
+    // Step 2: Create placeholder if target doesn't exist
+    if (!targetExists) {
+      await ctx.step('create-placeholder', async () => {
+        await obsidianClient.createNote(`${input.targetLink}.md`, {
+          frontmatter: {
+            type: 'placeholder',
+            created_date: new Date().toISOString().split('T')[0],
+            tags: ['placeholder', 'auto-created']
+          },
+          content: `# ${input.targetLink}\n\n_This is a placeholder node. Add content here._`
+        });
+      });
+    }
 
-actions:
-  - check_target_exists: mcp.read_note("target.md")
-  - if_not_exists:
-      - create_placeholder: via template
-  - check_reverse_link: grep("\\[\\[{source}\\]\\]", target.md)
-  - if_not_exists:
-      - add_to_related: mcp.append_to_note(target.md, "- [[{source}]]")
+    // Step 3: Check if reverse link exists
+    const hasReverseLink = await ctx.step('check-reverse-link', async () => {
+      const targetContent = await obsidianClient.readNote(`${input.targetLink}.md`);
+      const sourceBasename = path.basename(input.sourceFile, '.md');
+      return targetContent.includes(`[[${sourceBasename}]]`);
+    });
+
+    // Step 4: Add reverse link if missing
+    if (!hasReverseLink) {
+      await ctx.step('add-reverse-link', async () => {
+        const sourceBasename = path.basename(input.sourceFile, '.md');
+        await obsidianClient.appendToNote(
+          `${input.targetLink}.md`,
+          `\n## Related\n- [[${sourceBasename}]]`,
+          'related-section'
+        );
+      });
+    }
+
+    return { success: true, created: !targetExists, linked: !hasReverseLink };
+  }
+);
 ```
 
 ---

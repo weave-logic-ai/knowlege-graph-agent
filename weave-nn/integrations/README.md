@@ -13,7 +13,7 @@ An **integration** is a **concrete, specific connection** between two or more sy
 ### Real-World Analogy
 
 Think of integration as a **bridge between two cities**:
-- **Cities** = Systems/Services (Obsidian, MCP Server, RabbitMQ)
+- **Cities** = Systems/Services (Obsidian, Weaver MCP, external services)
 - **Bridge** = Integration (connection layer, data flow)
 - **Traffic rules** = Protocols and data formats
 - **Toll booths** = Authentication and authorization
@@ -24,8 +24,8 @@ Think of integration as a **bridge between two cities**:
 ### What Makes Something an Integration?
 
 ✅ **Specific connection between named systems**
-- "Obsidian connects to MCP Server via WebSocket"
-- "File watcher publishes to RabbitMQ exchange 'file-events'"
+- "Obsidian connects to Weaver MCP via Local REST API"
+- "File watcher (chokidar in Weaver) triggers durable workflows"
 - "Git auto-commit hooks into pre-commit workflow"
 
 ✅ **Concrete technical implementation**
@@ -50,16 +50,16 @@ Think of integration as a **bridge between two cities**:
 - Belongs: `/patterns/messaging/pub-sub.md`
 
 ❌ **General technology documentation** → Goes in `/technical/`
-- Example: "RabbitMQ message broker" (technology itself)
-- Belongs: `/technical/services/rabbitmq.md`
+- Example: "Weaver service architecture" (technology itself)
+- Belongs: `/technical/weaver.md`
 
 ❌ **System architecture designs** → Goes in `/architecture/`
 - Example: "Microservices architecture" (system design)
 - Belongs: `/architecture/microservices/overview.md`
 
 ❌ **Implementation code** → Goes in `/src/`
-- Example: "RabbitMQ client library" (code module)
-- Belongs: `/src/integrations/rabbitmq-client.ts`
+- Example: "Weaver workflow client" (code module)
+- Belongs: `/src/integrations/workflow-client.ts`
 
 ## Scope Boundaries
 
@@ -68,7 +68,7 @@ Think of integration as a **bridge between two cities**:
 | Aspect | Integration | Pattern |
 |--------|-------------|---------|
 | **Nature** | Concrete connection | Abstract design |
-| **Example** | "Obsidian ↔ MCP via WebSocket" | "Observer pattern" |
+| **Example** | "Obsidian ↔ Weaver MCP" | "Observer pattern" |
 | **Location** | `/integrations/obsidian/` | `/patterns/behavioral/` |
 | **Content** | API endpoints, auth, config | Concept, UML, use cases |
 | **Reusability** | Project-specific | Cross-project applicable |
@@ -79,7 +79,7 @@ Think of integration as a **bridge between two cities**:
 |--------|-------------|--------------|
 | **Scope** | Connection layer | System design |
 | **Focus** | How systems connect | How systems are structured |
-| **Example** | "MCP → Claude API bridge" | "Event-driven architecture" |
+| **Example** | "Weaver MCP → Claude API" | "Event-driven architecture" |
 | **Location** | `/integrations/ai/` | `/architecture/event-driven/` |
 | **Granularity** | Point-to-point | System-wide |
 
@@ -99,28 +99,28 @@ Think of integration as a **bridge between two cities**:
 /integrations/
 ├── README.md                    # This file - comprehensive guide
 ├── obsidian/                    # Obsidian vault integrations
-│   ├── obsidian-mcp-bridge.md  # Obsidian ↔ MCP Server
+│   ├── obsidian-weaver-mcp.md  # Obsidian ↔ Weaver MCP
 │   ├── obsidian-git-sync.md    # Obsidian ↔ Git auto-commit
 │   └── plugin-integrations.md  # Custom plugin connections
 ├── mcp/                         # Model Context Protocol integrations
-│   ├── mcp-claude.md           # MCP ↔ Claude API
-│   ├── mcp-filesystem.md       # MCP ↔ File system watchers
-│   └── mcp-server-registry.md  # MCP server discovery
-├── messaging/                   # Message broker integrations
-│   ├── file-watcher-rabbitmq.md # File watcher → RabbitMQ
-│   ├── rabbitmq-handlers.md    # RabbitMQ → Application handlers
-│   └── webhook-queue.md        # Webhooks → Message queue
+│   ├── weaver-mcp-claude.md    # Weaver MCP ↔ Claude API
+│   ├── weaver-mcp-filesystem.md # Weaver MCP ↔ File watcher (chokidar)
+│   └── mcp-tool-registry.md    # MCP tool registration
+├── messaging/                   # Workflow-based messaging integrations
+│   ├── file-watcher-workflows.md # File watcher → Weaver workflows
+│   ├── workflow-handlers.md    # Workflows → Application handlers
+│   └── webhook-workflows.md    # Webhooks → Workflow triggers
 ├── ai/                          # AI service integrations
-│   ├── mcp-claude.md           # MCP ↔ Claude AI
+│   ├── weaver-mcp-claude.md    # Weaver MCP ↔ Claude AI
 │   ├── embedding-service.md    # Text → Vector embeddings
 │   └── llm-routing.md          # Request → Model selection
 ├── version-control/             # Version control integrations
-│   ├── git-auto-commit.md      # File changes → Git commits
-│   ├── git-hooks.md            # Git events → Custom actions
-│   └── pre-commit-workflows.md # Pre-commit → CI/CD
+│   ├── git-auto-commit.md      # File changes → Git commits (via Weaver)
+│   ├── git-hooks.md            # Git events → Weaver workflows
+│   └── pre-commit-workflows.md # Pre-commit → Weaver workflows
 └── workflow-automation/         # Automation integrations
-    ├── file-system-triggers.md # File events → Workflows
-    ├── cron-schedulers.md      # Time-based → Task execution
+    ├── file-system-triggers.md # File events → Durable workflows
+    ├── cron-schedulers.md      # Time-based → Workflow execution
     └── event-driven-flows.md   # Events → Multi-step workflows
 ```
 
@@ -131,8 +131,8 @@ Think of integration as a **bridge between two cities**:
 **Purpose**: Connections between Obsidian vault and external systems
 
 **Examples**:
-- Obsidian ↔ MCP Server (vault access, file operations)
-- Obsidian ↔ Git (automatic commit and push)
+- Obsidian ↔ Weaver MCP (vault access via Local REST API)
+- Obsidian ↔ Git (automatic commit via Weaver workflows)
 - Obsidian ↔ Plugin ecosystem (Dataview, Templater)
 
 **Key Integration Points**:
@@ -143,42 +143,42 @@ Think of integration as a **bridge between two cities**:
 
 ### 2. `/mcp/` - Model Context Protocol Integrations
 
-**Purpose**: MCP server connections to other services and systems
+**Purpose**: Weaver MCP server connections to other services and systems
 
 **Examples**:
-- MCP ↔ Claude API (AI model access)
-- MCP ↔ File system watchers (real-time file monitoring)
-- MCP ↔ Server registry (service discovery)
+- Weaver MCP ↔ Claude API (AI model access)
+- Weaver MCP ↔ File watcher (chokidar integration)
+- Weaver MCP ↔ Tool registry (knowledge graph tools)
 
 **Key Integration Points**:
-- MCP protocol specifications
-- Server-to-server communication
-- Context management and state
+- MCP protocol specifications (`@modelcontextprotocol/sdk`)
 - Tool registration and discovery
+- Context management and state
+- Durable workflow integration
 
-### 3. `/messaging/` - Message Broker Integrations
+### 3. `/messaging/` - Workflow-Based Messaging Integrations
 
-**Purpose**: Event-driven messaging system connections
+**Purpose**: Event-driven workflow system connections (Note: RabbitMQ deferred to post-MVP)
 
 **Examples**:
-- File watcher → RabbitMQ (file change events)
-- RabbitMQ → Application handlers (event consumption)
-- Webhooks → Message queue (external events)
+- File watcher (chokidar) → Weaver workflows (file change events)
+- Weaver workflows → Application handlers (event processing)
+- Webhooks → Weaver workflows (external event triggers)
 
 **Key Integration Points**:
-- Message formats and serialization
-- Exchange and queue bindings
-- Routing keys and patterns
-- Dead letter queues and error handling
+- Durable workflow step definitions
+- Event transformation and validation
+- Workflow context and state persistence
+- Retry logic and error handling
 
 ### 4. `/ai/` - AI Service Integrations
 
 **Purpose**: Connections to AI models and services
 
 **Examples**:
-- MCP ↔ Claude AI (language model access)
-- Text → Vector embeddings (semantic search)
-- Request → Model routing (load balancing)
+- Weaver MCP ↔ Claude AI (language model access)
+- Text → Vector embeddings (semantic search - future)
+- Request → Model routing (load balancing - future)
 
 **Key Integration Points**:
 - API authentication and rate limiting
@@ -191,14 +191,14 @@ Think of integration as a **bridge between two cities**:
 **Purpose**: Git and version control system connections
 
 **Examples**:
-- File changes → Git auto-commit
-- Git hooks → Custom actions
-- Pre-commit → CI/CD pipelines
+- File changes → Git auto-commit (via Weaver workflows)
+- Git hooks → Weaver workflows (custom actions)
+- Pre-commit → Weaver workflows (validation and formatting)
 
 **Key Integration Points**:
-- Git hooks (pre-commit, post-commit, pre-push)
-- Commit message generation
-- Staging and diff management
+- Git hooks triggering durable workflows
+- Commit message generation via AI
+- Staging and diff management (simple-git library)
 - Branch and merge workflows
 
 ### 6. `/workflow-automation/` - Automation Integrations
@@ -206,15 +206,15 @@ Think of integration as a **bridge between two cities**:
 **Purpose**: Event-driven workflow and task automation
 
 **Examples**:
-- File system events → Workflows
-- Time-based triggers → Task execution
-- Multi-step event chains → Complex flows
+- File system events → Durable workflows (chokidar integration)
+- Time-based triggers → Scheduled workflows (cron-like)
+- Multi-step event chains → Stateful workflow execution
 
 **Key Integration Points**:
-- Event detection and filtering
-- Trigger conditions and logic
-- Action orchestration
-- State management and recovery
+- Event detection and filtering (chokidar watchers)
+- Workflow trigger conditions and logic
+- Step-level action orchestration
+- State persistence and automatic recovery
 
 ## When to CREATE an Integration Document
 
@@ -223,24 +223,24 @@ Think of integration as a **bridge between two cities**:
 Create an integration document when:
 
 ✅ **You connect two specific systems**
-- "I need to connect Obsidian to MCP Server"
-- "I need to publish file events to RabbitMQ"
+- "I need to connect Obsidian to Weaver MCP"
+- "I need to trigger Weaver workflows from file events"
 
 ✅ **You implement a concrete data flow**
-- "File changes trigger Git commits"
-- "MCP requests route to Claude API"
+- "File changes trigger Git commits via Weaver workflows"
+- "Weaver MCP routes requests to Claude API"
 
 ✅ **You configure authentication and protocols**
 - "Setting up OAuth for external API"
 - "Configuring WebSocket connection"
 
 ✅ **You handle integration-specific errors**
-- "Retry logic for failed API calls"
-- "Fallback when message queue is unavailable"
+- "Retry logic for failed API calls in workflows"
+- "Fallback when external service is unavailable"
 
 ✅ **You transform data between systems**
-- "Convert Obsidian markdown to API JSON"
-- "Map file events to RabbitMQ messages"
+- "Convert Obsidian markdown to MCP tool input"
+- "Map file events to workflow context"
 
 ### Don't CREATE an Integration Document When:
 
@@ -497,12 +497,12 @@ describe('System A to System B', () => {
 - Easier to manage at scale
 - Single point of failure
 
-**Example**: MCP Server as central hub
+**Example**: Weaver as central hub
 
 ```
 [Obsidian] ----\
-[File System] ---→ [MCP Server] ---→ [Claude API]
-[Git Hooks] ----/
+[File Watcher] --→ [Weaver MCP] ---→ [Claude API]
+[Git Hooks] ----/    + Workflows
 ```
 
 **When to Use**:
@@ -518,12 +518,12 @@ describe('System A to System B', () => {
 - High scalability
 - Complex debugging
 
-**Example**: File watcher → RabbitMQ → Handlers
+**Example**: File watcher → Weaver workflows → Handlers
 
 ```
-[File Watcher] → [RabbitMQ] → [Handler 1]
-                            → [Handler 2]
-                            → [Handler 3]
+[File Watcher] → [Weaver Workflows] → [Handler 1]
+  (chokidar)                        → [Handler 2]
+                                    → [Handler 3]
 ```
 
 **When to Use**:
@@ -556,58 +556,58 @@ describe('System A to System B', () => {
 
 ### ✅ GOOD Integration Examples
 
-#### Example 1: Obsidian ↔ MCP Server
+#### Example 1: Obsidian ↔ Weaver MCP
 
-**Location**: `/integrations/obsidian/obsidian-mcp-bridge.md`
+**Location**: `/integrations/obsidian/obsidian-weaver-mcp.md`
 
 **Why it's good**:
-- Specific systems identified (Obsidian, MCP Server)
-- Concrete connection mechanism (WebSocket)
-- Detailed data flow (vault operations → MCP commands)
+- Specific systems identified (Obsidian, Weaver MCP)
+- Concrete connection mechanism (Local REST API + MCP)
+- Detailed data flow (vault operations → MCP tools → workflows)
 - Configuration and authentication specified
 
 ```markdown
 ---
-title: Obsidian ↔ MCP Server Integration
+title: Obsidian ↔ Weaver MCP Integration
 integration_type: hub-and-spoke
 systems:
   - name: Obsidian Vault
     role: both
-  - name: MCP Server
+  - name: Weaver MCP
     role: hub
 direction: bidirectional
-protocol: WebSocket
+protocol: HTTP (Local REST API)
 authentication: api-key
 ---
 ```
 
-#### Example 2: File Watcher → RabbitMQ
+#### Example 2: File Watcher → Weaver Workflows
 
-**Location**: `/integrations/messaging/file-watcher-rabbitmq.md`
+**Location**: `/integrations/messaging/file-watcher-workflows.md`
 
 **Why it's good**:
 - Clear producer/consumer relationship
-- Message format specified
-- Error handling documented
-- Routing key patterns defined
+- Event format specified
+- Error handling documented (durable workflow retries)
+- Workflow trigger patterns defined
 
 ```markdown
 ---
-title: File Watcher → RabbitMQ Integration
+title: File Watcher → Weaver Workflows Integration
 integration_type: event-driven
 systems:
-  - name: File System Watcher
+  - name: File System Watcher (chokidar)
     role: producer
-  - name: RabbitMQ
-    role: broker
+  - name: Weaver Workflows
+    role: orchestrator
 direction: unidirectional
-protocol: AMQP
+protocol: In-process (function calls)
 ---
 ```
 
-#### Example 3: MCP ↔ Claude API
+#### Example 3: Weaver MCP ↔ Claude API
 
-**Location**: `/integrations/ai/mcp-claude.md`
+**Location**: `/integrations/ai/weaver-mcp-claude.md`
 
 **Why it's good**:
 - API endpoints and authentication
@@ -628,16 +628,16 @@ protocol: AMQP
 
 **Correct Location**: `/patterns/messaging/message-queue.md`
 
-#### Example 2: "RabbitMQ Message Broker"
+#### Example 2: "Weaver Workflow Engine"
 
-**Wrong Location**: `/integrations/messaging/rabbitmq.md`
+**Wrong Location**: `/integrations/workflow-automation/weaver-workflows.md`
 
 **Why it's bad**:
 - Documenting technology itself, not integration
 - No connection to another system
 - General features and capabilities
 
-**Correct Location**: `/technical/services/rabbitmq.md`
+**Correct Location**: `/technical/workflow-dev.md`
 
 #### Example 3: "Microservices Communication"
 
@@ -807,10 +807,10 @@ Is this a connection between two specific systems?
 
 | Directory | Focus | Example |
 |-----------|-------|---------|
-| `/integrations/` | **Concrete connections** | Obsidian ↔ MCP |
+| `/integrations/` | **Concrete connections** | Obsidian ↔ Weaver MCP |
 | `/patterns/` | **Abstract designs** | Observer pattern |
-| `/architecture/` | **System structure** | Microservices |
-| `/technical/` | **Technologies** | RabbitMQ docs |
+| `/architecture/` | **System structure** | Single-service |
+| `/technical/` | **Technologies** | Weaver docs |
 | `/src/` | **Implementation** | Integration code |
 
 ## Summary

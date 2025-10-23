@@ -19,8 +19,8 @@ related:
 
 **Purpose**: Visualize what Claude-Flow is storing in memory and how it maps to Weave-NN nodes.
 
-**Status**: 🔴 **CRITICAL** - Need to understand memory structure for 1:1 parity
-**Phase**: [[../_planning/phases/phase-4-claude-flow-integration|Phase 4]]
+**Status**: ✅ **ACTIVE** - Memory structure understood, workflow integration defined
+**Phase**: MVP (Claude-Flow Integration)
 
 ---
 
@@ -30,6 +30,7 @@ related:
 > - What data is being stored
 > - How it's structured
 > - How we achieve 1:1 parity with Weave-NN nodes
+> - **How Weaver workflows maintain this parity**
 
 ---
 

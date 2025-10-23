@@ -114,9 +114,9 @@ visual:
   - ✅ Phase 0 architecture review completed successfully
 
   **MVP Scope Defined**:
-  - **MVP Services (4)**: MCP Server, File Watcher, Event Consumer (consolidated), RabbitMQ
-  - **Post-MVP (6)**: Kong Gateway, N8N, Git Service, Agent Tasks, PostgreSQL, Observability
-  - **Consolidation Strategy**: Event Consumer uses handler pattern (3 handlers → 3 future services)
+  - **MVP Services (3)**: MCP Server, File Watcher, Weaver Proxy (consolidated event handling)
+  - **Post-MVP (7)**: Kong Gateway, RabbitMQ (if needed), Git Service, Agent Tasks, PostgreSQL, Observability
+  - **Consolidation Strategy**: Weaver Proxy handles webhooks from Claude Code hooks, replaces both n8n and RabbitMQ for MVP
 
   **Architecture Documents Created**:
   - `_planning/architecture/mvp-local-first-architecture.md` - MVP specification
@@ -135,7 +135,7 @@ visual:
   - ✅ No architectural inconsistencies found
   - ✅ All MVP deliverables production-ready
   
-- [x] **Review planning documentation**
+- [ ] **Review planning documentation**
   - ✅ Reviewed all 20 phase documents (13 main + 7 subdocs)
   - ✅ Validated milestone definitions across all phases
   - ✅ Checked dependency chains (no circular dependencies found)
@@ -153,13 +153,22 @@ visual:
   - Phase 0: Pre-Development (IN PROGRESS - 33% complete)
   - Phase 1: Knowledge Graph (COMPLETE ✅)
   - Phase 2A: Documentation Capture (COMPLETE ✅)
-  - Phase 3B: Node Expansion Legacy (COMPLETE ✅)
   - Phase 3: Node Expansion (COMPLETE ✅)
-  - Phase 4A: Decision Closure (COMPLETE ✅)
+  - Phase 4A: Decision Closure & Obsidian-First Pivot (COMPLETE ✅)
   - Phase 5: Claude-Flow MCP Integration (CRITICAL ⏳ - blocked by Phase 0)
   - Phase 6: MVP Week 1 - Backend Infrastructure (PENDING ⏳ - blocked by Phase 5)
   - Phase 7: MVP Week 2 - Automation & Deployment (PENDING ⏳ - blocked by Phase 6)
   - Phase 8: Hive Mind Integration (FUTURE 📅 - post-MVP)
+
+  **Completed Phases Archived** (2025-10-23):
+  - Phase 3B: Node Expansion Legacy → Moved to `_archive/legacy-phases/`
+    - Original scope (SaaS, custom UI, graph viz component) obsoleted by Obsidian-First pivot
+    - Feature set superseded by research synthesis (InfraNodus, sparse memory, topology analysis)
+    - Architecture superseded by primitive architypes (patterns/, protocols/, standards/, etc.)
+  - Phase 4A: Decision Closure & Obsidian-First Pivot → Moved to `_archive/legacy-phases/`
+    - Work completed 2025-10-21 (16 decisions closed, Obsidian-First architecture established)
+    - Deliverables remain active and current (Obsidian-First architecture document still in use)
+    - Archived for organizational clarity (separating completed phases from active work)
 
   **Overall Health Score**: 8.0/10 ⭐⭐⭐⭐☆
   - Milestone Definitions: 9/10
@@ -167,7 +176,62 @@ visual:
   - Completeness: 7/10
   - Consistency: 8/10
   - Organization: 6/10 (improved to 9/10 after fixes)
-  
+
+- [ ] **Action 1.2: Standardize Heading Hierarchy** (Research Synthesis Integration)
+  - **Goal**: Implement perplexity-based chunking via heading boundaries
+  - **Effort**: 1-2 hours
+  - **Priority**: High (improves RAG retrieval by 54%, multi-hop QA by 1.32 points)
+  - **Dependencies**: None
+
+  **Rationale**: Research shows 200-256 token chunks at logical boundaries improve multi-hop QA by 1.32 points and reduce retrieval time by 54%. Current vault has inconsistent heading levels that prevent optimal chunking.
+
+  **Implementation Steps**:
+  1. Create heading style guide in `/workflows/heading-style-guide.md`
+     - H2: ~200-300 tokens (main sections)
+     - H3: ~100-150 tokens (subsections)
+     - H4: ~50-75 tokens (detail sections)
+  2. Update 4 core templates:
+     - `templates/decision-record.md`
+     - `templates/research-note.md`
+     - `templates/task-log.md`
+     - `templates/daily-log.md`
+  3. Add contextual overlaps between sections (2-3 sentences summarizing prior context)
+  4. Validate with perplexity calculation (target: 15-25 perplexity range)
+
+  **Success Criteria**:
+  - [ ] Heading style guide created and documented
+  - [ ] All 4 templates updated with standardized heading structure
+  - [ ] Sample document created demonstrating contextual overlaps
+  - [ ] Perplexity measurement baseline established
+
+- [ ] **Action 1.3: Cognitive Variability Tracking** (Research Synthesis Integration)
+  - **Goal**: Track thinking patterns to identify when insights emerge (InfraNodus-style)
+  - **Effort**: 1 hour
+  - **Priority**: Medium (enables meta-cognitive analysis)
+  - **Dependencies**: Templater plugin (already installed)
+
+  **Rationale**: InfraNodus research shows cognitive variability tracking helps identify breakthrough moments. When thinking switches between convergent/divergent modes, high-value insights often emerge. Tracking this in daily notes enables retrospective analysis.
+
+  **Implementation Steps**:
+  1. Add `thinking-pattern` field to YAML frontmatter schema
+     - Allowed values: convergent, divergent, lateral, systems, critical, adaptive
+     - Document in `standards/markup/yaml-frontmatter.md`
+  2. Update daily note template (`templates/daily-log.md`):
+     - Add dropdown/select for cognitive mode
+     - Add thinking-pattern field to frontmatter
+     - Include brief description of each mode
+  3. Create Dataview query to analyze pattern distribution
+     - Query: Show frequency of each thinking pattern over time
+     - Save in `/queries/cognitive-variability-analysis.md`
+  4. Document workflow in guides
+
+  **Success Criteria**:
+  - [ ] `thinking-pattern` field added to frontmatter schema
+  - [ ] Daily note template includes cognitive mode tracking
+  - [ ] Dataview query created and tested
+  - [ ] First week of cognitive patterns recorded
+  - [ ] Query shows distribution of patterns (verify variety exists)
+
 - [ ] **Review technical documentation**
   - Review all technical/ nodes
   - Validate technology choices
@@ -231,31 +295,33 @@ visual:
   python -c "import fastapi, pika, watchdog; print('All imports successful')"
   ```
 
-#### 3.2 Docker & RabbitMQ Setup (CRITICAL - Blocks Phase 6)
-- [ ] **Install Docker**
+#### 3.2 ~~Docker & RabbitMQ~~ Weaver Workflow Setup (CRITICAL - Blocks Phase 6)
+
+> **⚠️ RABBITMQ DEFERRED TO POST-MVP**: Weaver (workflow.dev) provides built-in durable workflows and webhooks. RabbitMQ adds unnecessary complexity for MVP. Docker may still be useful for other services in future.
+
+- [ ] **Install Node.js** (if not already installed)
   ```bash
-  # If not already installed
-  curl -fsSL https://get.docker.com -o get-docker.sh
-  sudo sh get-docker.sh
-  sudo usermod -aG docker $USER
+  # Ubuntu - Install Node.js 20+ for Weaver
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  node --version  # Should be v20+
   ```
 
-- [ ] **Deploy RabbitMQ**
+- [ ] **Setup Weaver Project**
   ```bash
-  docker run -d \
-    --name rabbitmq \
-    --restart unless-stopped \
-    -p 5672:5672 \
-    -p 15672:15672 \
-    -e RABBITMQ_DEFAULT_USER=admin \
-    -e RABBITMQ_DEFAULT_PASS=weave-nn-2025 \
-    rabbitmq:3-management
+  mkdir -p weave-nn-weaver
+  cd weave-nn-weaver
+  npm init -y
+  npm install workflow-dev hono @hono/node-server
+  # Create basic webhook server (see weaver-migration-guide.md)
   ```
 
-- [ ] **Verify RabbitMQ**
-  - Access: http://localhost:15672
-  - Login: admin / weave-nn-2025
-  - Check: Queues, Exchanges tabs visible
+- [ ] **Verify Weaver**
+  - Start webhook server on port 3000
+  - Test endpoint: curl http://localhost:3000/webhook/health
+  - Should return: {"status": "ok"}
+
+**Note**: N8N has been replaced with Weaver (workflow.dev) for workflow automation. Weaver runs as local Node.js service for MVP.
 
 #### 3.3 Project Structure Setup (CRITICAL - Blocks Phase 5)
 - [ ] **Create weave-nn-mcp project structure**
@@ -275,12 +341,17 @@ visual:
   OBSIDIAN_API_URL=https://localhost:27124
   OBSIDIAN_API_KEY=your-api-key-here
 
-  # RabbitMQ
-  RABBITMQ_URL=amqp://admin:weave-nn-2025@localhost:5672
-  RABBITMQ_EXCHANGE=weave-nn.events
-
   # Claude API
   ANTHROPIC_API_KEY=your-claude-api-key
+
+  # Weaver Workflow Automation (local webhook server)
+  WEAVER_WEBHOOK_URL=http://localhost:3000/webhook
+  WEAVER_API_KEY=your-weaver-api-key-here
+
+  # RabbitMQ (DEFERRED TO POST-MVP)
+  # RABBITMQ_URL=amqp://admin:weave-nn-2025@localhost:5672
+  # RABBITMQ_EXCHANGE=weave-nn.events
+  WEAVER_WORKSPACE_ID=your-workspace-id
 
   # Paths
   VAULT_PATH=/home/aepod/dev/weave-nn/weave-nn
@@ -295,6 +366,8 @@ visual:
 - [ ] **Update .env with actual API keys**
   - Get Obsidian REST API key (from plugin settings)
   - Get Anthropic API key (from console.anthropic.com)
+  - Get Weaver API key (from workflow.dev dashboard)
+  - Get Weaver Workspace ID (from workflow.dev dashboard)
   - Update VAULT_PATH if different
 
 #### 3.5 Obsidian Plugin Installation (CRITICAL - Blocks Phase 6)
@@ -362,7 +435,7 @@ visual:
   - Test: `pytest tests/`
 
 - [ ] **Create development scripts**
-  - `scripts/start-services.sh` (RabbitMQ, MCP server, consumers)
+  - `scripts/start-services.sh` (Weaver webhook server, MCP server, file watcher)
   - `scripts/stop-services.sh`
   - `scripts/run-tests.sh`
   - `scripts/deploy-local.sh`
@@ -375,8 +448,8 @@ visual:
   - Check Claude-Flow integration approach
   
 - [ ] **Review data flow**
-  - Validate event bus architecture
-  - Review RabbitMQ queue design
+  - Validate webhook-driven architecture (Claude Code hooks → Weaver)
+  - Review Weaver workflow design (see weaver-proxy-architecture.md)
   - Check shadow cache design
   
 - [ ] **Review integration patterns**
@@ -507,18 +580,20 @@ visual:
 
 **MUST COMPLETE ALL ITEMS BEFORE STARTING PHASE 5**
 
-### Critical Prerequisites (35 tasks - BLOCKING)
+### Critical Prerequisites (36 tasks - BLOCKING)
 - [ ] **Python 3.11+ installed and verified**
 - [ ] **Virtual environment created (.venv/)**
 - [ ] **All dependencies installed (fastapi, pika, watchdog, etc.)**
 - [ ] **requirements.txt generated**
-- [ ] **Docker installed**
-- [ ] **RabbitMQ deployed and accessible**
-- [ ] **RabbitMQ Management UI verified (http://localhost:15672)**
+- [ ] **Node.js 20+ installed (for Weaver)**
+- [ ] **Weaver webhook server setup and running**
+- [ ] **Weaver health endpoint verified (http://localhost:3000/webhook/health)**
 - [ ] **weave-nn-mcp/ project structure created**
-- [ ] **.env file created with all variables**
+- [ ] **.env file created with all variables (including WEAVER_WEBHOOK_URL)**
 - [ ] **Obsidian REST API key obtained and added to .env**
 - [ ] **Anthropic API key added to .env**
+- [ ] **Weaver API key obtained and added to .env**
+- [ ] **Weaver Workspace ID obtained and added to .env**
 - [ ] **obsidian-local-rest-api plugin installed**
 - [ ] **obsidian-tasks plugin installed**
 - [ ] **obsidian-advanced-uri plugin installed**
@@ -568,9 +643,9 @@ visual:
 source .venv/bin/activate
 python -c "import fastapi, pika, watchdog; print('✅ All imports work')"
 
-# 2. RabbitMQ
-curl -u admin:weave-nn-2025 http://localhost:15672/api/overview
-echo "✅ RabbitMQ accessible"
+# 2. Weaver
+curl http://localhost:3000/webhook/health
+echo "✅ Weaver webhook server accessible"
 
 # 3. Obsidian REST API
 curl https://localhost:27124/vault/ -H "Authorization: Bearer $(grep OBSIDIAN_API_KEY weave-nn-mcp/.env | cut -d= -f2)"

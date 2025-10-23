@@ -1,14 +1,24 @@
-# Weaver: Unified Workflow Proxy for Weave-NN
+# Weaver: Neural Network Junction & Workflow Proxy for Weave-NN
 
 **Status**: Proposed Architecture
 **Date**: 2025-10-23
-**Version**: 1.0
+**Version**: 1.1 (Added neural junction concept)
 
 ---
 
 ## Executive Summary
 
-**Weaver** is a proposed TypeScript/Node.js-based workflow proxy that replaces the current bash hook scripts with a unified, observable, and extensible workflow automation system using useworkflow.dev.
+**Weaver** is a TypeScript/Node.js-based workflow proxy that serves as the **neural network junction point** for Weave-NN's local-first knowledge graph system. It connects multiple AI "neural networks" (Claude, local models, specialized agents) through a shared knowledge substrate, enabling compound learning where each agent benefits from collective intelligence.
+
+### Core Concept: Neural Network Junction
+
+Weaver acts as the **connection layer** where:
+1. **Multiple AI Systems** (Claude Code, Claude Flow agents, future local models) interface with the knowledge graph
+2. **Shared Knowledge Substrate** (Obsidian vault) serves as external memory for all AI systems
+3. **Workflow Orchestration** (workflow.dev) coordinates async operations without centralized training
+4. **Local Loop** ensures privacy, speed, and ownership while enabling collaborative intelligence
+
+This architecture follows research on **Key-Value Memory Networks**<sup>[1]</sup>, **Federated Learning**<sup>[2]</sup>, and **Sparse Memory Finetuning**<sup>[3]</sup>, where distributed AI systems benefit from shared external memory without requiring model retraining or centralized coordination.
 
 ### Problem Statement
 
@@ -88,6 +98,7 @@ Replace with **Weaver** - a single Node.js service that:
     │  │  • File System Operations          │    │
     │  │  • Git Operations                  │    │
     │  │  • Claude Code CLI                 │    │
+    │  │  • [RabbitMQ - deferred post-MVP]  │    │
     │  └────────────┬───────────────────────┘    │
     │               │                             │
     │               ▼                             │
@@ -570,6 +581,21 @@ export async function handleTaskCompletion(event: TodoCompleteEvent) {
 
 ---
 
+---
+
+## References
+
+1. Miller, A., Fisch, A., Dodge, J., Karimi, A. H., Bordes, A., & Weston, J. (2016). **Key-Value Memory Networks for Directly Reading Documents**. *EMNLP*. Demonstrates separated addressing (keys) from content (values) enabling multiple neural systems to query shared knowledge.
+
+2. **Memory Networks and Knowledge Graph Design: A Research Synthesis for LLM-Augmented Systems**. See [[../research/memory-networks-research|Full Analysis]]. Comprehensive synthesis showing distributed intelligence systems benefit from shared knowledge substrate without centralized training.
+
+3. **Continual Learning via Sparse Memory Finetuning** (2024). *arXiv:2510.15103v1*. See [[../research/papers/sparse-memory-finetuning-analysis|Analysis]]. Selective memory updates (10k-50k slots) prevent interference when adding new knowledge.
+
+4. Weston, J., Chopra, S., & Bordes, A. (2015). **Memory Networks**. *ICLR*. Foundational work on multi-hop retrieval through chained memory locations with semantic similarity search.
+
+---
+
 **Author**: Hive Mind
+**Version**: 1.1 (Added neural junction architecture, 2025-10-23)
 **Review Status**: Awaiting feedback
 **Implementation**: Pending approval

@@ -87,14 +87,14 @@ visual:
 7. **Event-Driven Infrastructure** ⏳ (Week 1, Day 1)
    - Install RabbitMQ message queue (Docker)
    - Set up file watcher → event publisher
-   - Create consumer services (mcp_sync, git_auto_commit, agent_tasks, n8n_workflows)
+   - Create consumer services (mcp_sync, git_auto_commit, agent_tasks, weaver_workflows)
    - Event-driven async architecture for multi-client workflows
 
-8. **N8N Workflow Automation** ⏳ (Week 2, Days 8-9)
-   - Install N8N workflow engine (Docker)
+8. **Weaver Workflow Automation** ⏳ (Week 2, Days 8-9)
+   - Configure Weaver workflow engine (workflow.dev cloud service)
    - Build 5 core workflows (client onboarding, weekly reports, knowledge extraction, cross-project sync, meeting notes automation)
-   - Connect to RabbitMQ for event-driven triggers
-   - Enable non-technical workflow creation
+   - Connect to RabbitMQ for event-driven triggers via Weaver webhooks
+   - Enable visual workflow creation with workflow.dev
 
 9. **Cross-Project Knowledge Retention** ⏳ (Week 2)
    - Automated knowledge extraction on project completion
@@ -184,7 +184,7 @@ Obsidian file change → File Watcher (Python) → RabbitMQ → Consumers
 - **Queues**:
   1. `mcp_sync` - Binds to `vault.file.*` (shadow cache updates)
   2. `git_auto_commit` - Binds to `vault.file.updated` (debounced commits)
-  3. `n8n_workflows` - Binds to `vault.*`, `task.*`, `project.*` (workflow triggers)
+  3. `weaver_workflows` - Binds to `vault.*`, `task.*`, `project.*` (workflow triggers)
   4. `agent_tasks` - Binds to `vault.*`, `task.*` (agent processing)
   5. `dlq` - Dead letter queue (failed message investigation)
 
@@ -210,23 +210,24 @@ docker run -d \
 **Benefits for Production**:
 - Handle 10+ simultaneous client projects without blocking
 - Cross-project workflows (knowledge extraction from Project A applies to Project B)
-- Resilient to failures (messages queued even if N8N down)
+- Resilient to failures (messages queued even if Weaver down)
 - Audit trail of all vault events
 
 ---
 
-## 🤖 N8N Workflow Automation
+## 🤖 Weaver Workflow Automation
 
-**Purpose**: Enable visual workflow creation for non-technical team members and complex multi-step automations
+**Purpose**: Enable visual workflow creation for complex multi-step automations using workflow.dev
 
-**Why N8N for Multi-Client Production**:
-- ✅ **Visual workflows** - Non-developers can create automations
-- ✅ **150+ integrations** - Slack, GitHub, Google Sheets, Airtable, etc.
-- ✅ **RabbitMQ native** - Consumes events from queue
+**Why Weaver for Multi-Client Production**:
+- ✅ **Visual workflows** - Drag-and-drop workflow builder
+- ✅ **Cloud-based** - No infrastructure to maintain (vs self-hosted N8N)
+- ✅ **Webhook triggers** - Consume RabbitMQ events via webhooks
 - ✅ **Scheduled workflows** - Cron jobs (weekly reports, daily summaries)
-- ✅ **Error handling** - Retry logic, notifications on failure
+- ✅ **Error handling** - Built-in retry logic and monitoring
 - ✅ **Workflow templates** - Reusable across clients
-- ✅ **Scales** - Handle 100+ workflows across clients
+- ✅ **Integrations** - Connect to external APIs (Slack, GitHub, etc.)
+- ✅ **Cost-effective** - Pay-per-execution pricing model
 
 **5 Core MVP Workflows** (Week 2, Days 8-9):
 
@@ -240,35 +241,41 @@ docker run -d \
    - Steps: Generate summary with Claude, create report note, send to Slack
    - Output: Weekly progress report for each active client
 
-3. **Knowledge Extraction on Project Close** (RabbitMQ: `project.closed`)
+3. **Knowledge Extraction on Project Close** (Webhook: `project.closed` event from RabbitMQ)
    - Input: Project files, decisions, solutions
-   - Steps: Analyze with Claude, extract patterns, create knowledge-base entries, update pattern index, generate Mehrmaid viz
+   - Steps: Analyze with Claude, extract patterns, create knowledge-base entries, update pattern index, generate visualization
    - Output: Reusable patterns for future projects
 
-4. **Cross-Project Pattern Sync** (RabbitMQ: `project.created`)
+4. **Cross-Project Pattern Sync** (Webhook: `project.created` event from RabbitMQ)
    - Input: New project requirements
    - Steps: Query knowledge base, find relevant patterns, create suggested-patterns.md
    - Output: Automatically suggest patterns from previous projects
 
-5. **Meeting Notes Automation** (RabbitMQ: `vault.file.created` in `meetings/`)
+5. **Meeting Notes Automation** (Webhook: `vault.file.created` event in `meetings/` folder)
    - Input: Meeting notes markdown
    - Steps: Extract action items with Claude, create tasks, update meeting note with task links, send Slack notifications
    - Output: Auto-generated tasks from meeting notes
 
-**Docker Installation** (Week 2, Day 8):
+**Weaver Setup** (Week 2, Day 8):
 ```bash
-docker run -d \
-  --name n8n \
-  -p 5678:5678 \
-  -v ~/.n8n:/home/node/.n8n \
-  n8nio/n8n
+# 1. Sign up at workflow.dev
+# 2. Create workspace and get API key
+# 3. Install workflow.dev CLI (optional for local testing)
+npm install -g @workflowdev/cli
+
+# 4. Configure webhook endpoint to receive RabbitMQ events
+# Add to .env file:
+WEAVER_API_URL=https://api.workflow.dev
+WEAVER_API_KEY=<your-key>
+WEAVER_WORKSPACE_ID=<your-workspace-id>
 ```
 
 **Benefits for Production**:
 - Automate repetitive workflows across 10+ clients
-- Enable project managers to create workflows without coding
+- Visual workflow builder (no coding required for workflow changes)
 - Standardize client onboarding, reporting, knowledge extraction
 - Reduce manual work from 2 hours/week → 10 minutes/week per client
+- No infrastructure to maintain (cloud-based)
 
 ---
 
@@ -283,7 +290,7 @@ docker run -d \
 - ✅ **Faster proposals** - Query similar projects to estimate new ones
 - ✅ **Knowledge asset** - Build proprietary pattern library worth $100K+
 
-**Knowledge Extraction Workflow** (N8N, triggered on `project.closed`):
+**Knowledge Extraction Workflow** (Weaver, triggered on `project.closed` webhook):
 
 1. Read project files (requirements, decisions, solutions, lessons-learned)
 2. Analyze with Claude: Extract patterns, components, lessons
@@ -324,7 +331,7 @@ knowledge-base/
 └── meta/ (pattern index, knowledge graph)
 ```
 
-**Pattern Reuse Workflow** (N8N, triggered on `project.created`):
+**Pattern Reuse Workflow** (Weaver, triggered on `project.created` webhook):
 
 1. Analyze new project requirements
 2. Query knowledge base with Claude (semantic search)
@@ -549,21 +556,23 @@ knowledge-base/
 
 ---
 
-#### **Day 8: N8N Installation + Client Onboarding Workflow** (Mon)
+#### **Day 8: Weaver Setup + Client Onboarding Workflow** (Mon)
 
-**Morning: N8N Installation**
-- [ ] Install N8N via Docker with persistent storage
-- [ ] Complete N8N initial setup and authentication
-- [ ] Configure credentials for 5 services:
+**Morning: Weaver Configuration**
+- [ ] Sign up for workflow.dev account
+- [ ] Create workspace and obtain API key
+- [ ] Install workflow.dev CLI (optional): `npm install -g @workflowdev/cli`
+- [ ] Configure credentials in Weaver dashboard:
   - Obsidian API (REST API key)
   - GitHub (Personal Access Token)
   - Slack (Webhook URL)
   - Claude API (Anthropic API key)
-  - RabbitMQ (connection URL)
-- [ ] Create and test N8N Hello World workflow
+  - RabbitMQ webhook endpoint
+- [ ] Add Weaver credentials to .env file
+- [ ] Create and test "Hello World" workflow
 
 **Afternoon: Client Onboarding Workflow**
-- [ ] Create "Client Onboarding" workflow with webhook trigger
+- [ ] Create "Client Onboarding" workflow with webhook trigger in Weaver
 - [ ] Implement 7 workflow steps:
   1. Set variables (project_id, date, next_monday)
   2. Create project folder via Obsidian API
@@ -573,34 +582,36 @@ knowledge-base/
   6. Send Slack notification
   7. Return success response
 - [ ] Test end-to-end with real client data
+- [ ] Configure RabbitMQ webhook to trigger workflow
 
-**Success Criteria**: N8N operational, client onboarding workflow creates complete project structure
+**Success Criteria**: Weaver operational, client onboarding workflow creates complete project structure
 
-**Reference**: [[../features/n8n-workflow-automation|N8N Feature]]
+**Reference**: [[../features/weaver-workflow-automation|Weaver Feature]]
 
 ---
 
-#### **Day 9: N8N Advanced Workflows** (Tue)
+#### **Day 9: Weaver Advanced Workflows** (Tue)
 
 **Morning: Weekly Report Generator**
-- [ ] Create "Weekly Report Generator" workflow with cron trigger (Friday 5pm)
+- [ ] Create "Weekly Report Generator" workflow in Weaver with cron trigger (Friday 5pm)
 - [ ] Implement 5 workflow steps:
-  1. Query completed tasks (last 7 days) from tasks.md files
+  1. Query completed tasks (last 7 days) from tasks.md files via Obsidian API
   2. Get git commit statistics
   3. Send to Claude API for summary generation
-  4. Create report file in `_planning/weekly-reports/`
+  4. Create report file in `_planning/weekly-reports/` via Obsidian API
   5. Send Slack notification with summary
 - [ ] Test with sample data
 
 **Afternoon: Knowledge Extraction Workflow**
-- [ ] Create "Knowledge Extraction" workflow with RabbitMQ trigger (project.closed event)
+- [ ] Create "Knowledge Extraction" workflow in Weaver with webhook trigger (project.closed event)
+- [ ] Configure RabbitMQ webhook to forward project.closed events to Weaver
 - [ ] Implement 6 workflow steps:
-  1. Read 4 project files (requirements, decisions, solutions, lessons)
+  1. Read 4 project files (requirements, decisions, solutions, lessons) via Obsidian API
   2. Send to Claude for pattern extraction
-  3. Create knowledge base files in `knowledge-base/patterns/`
+  3. Create knowledge base files in `knowledge-base/patterns/` via Obsidian API
   4. Update pattern index
   5. Archive project to `_archive/`
-  6. Git commit
+  6. Trigger git commit via internal API
 - [ ] Test with sample project
 
 **Success Criteria**: Both workflows operational, reports generated correctly, patterns extracted
@@ -619,8 +630,8 @@ knowledge-base/
 - [ ] Test all MCP task tools
 
 **Afternoon: Agent-Powered Task Workflows**
-- [ ] Create N8N "Daily Task Summary" workflow (cron: 9am daily)
-- [ ] Create N8N "Meeting Notes to Tasks" workflow (RabbitMQ trigger)
+- [ ] Create Weaver "Daily Task Summary" workflow (cron: 9am daily)
+- [ ] Create Weaver "Meeting Notes to Tasks" workflow (webhook trigger from RabbitMQ)
 - [ ] Test both workflows end-to-end
 
 **Success Criteria**: MCP task tools working, agent workflows creating and managing tasks
@@ -724,6 +735,7 @@ knowledge-base/
 - ⏳ Git automation (0%)
 - ⏳ Task management (0%)
 - ⏳ Obsidian properties (50% - standards defined, not applied)
+- ⏳ Weaver workflow automation (0%)
 
 ---
 
@@ -771,9 +783,9 @@ knowledge-base/
 **Development**: $0 (solo + AI, 80 hours)
 
 **Infrastructure** (Option A: GCP VM for Production):
-- GCP Compute Engine (e2-standard-2): $50/month
+- GCP Compute Engine (e2-standard-2): $40/month
   - 2 vCPU, 8 GB RAM
-  - Runs: RabbitMQ + N8N + Python MCP server
+  - Runs: RabbitMQ + Python MCP server (no N8N needed)
   - 24/7 availability for multi-client workflows
 - Obsidian: Free ✅
 - Python/Git: Free ✅
@@ -781,27 +793,31 @@ knowledge-base/
 **APIs**:
 - Claude API: ~$50/month (usage-based, scales with clients)
 - OpenAI Embeddings: ~$10/month (semantic search)
+- Weaver (workflow.dev): ~$15/month (pay-per-execution, ~1000 workflow runs/month)
 
-**Total Monthly (Production)**: **$110/month**
+**Total Monthly (Production)**: **$115/month**
 
 ---
 
 **Infrastructure** (Option B: Local Machine for Development/Testing):
 - RabbitMQ (Docker): $0 (runs locally)
-- N8N (Docker): $0 (runs locally)
 - Python MCP server: $0 (runs locally)
 
-**APIs**: $60/month (Claude + embeddings)
+**APIs**:
+- Claude API: ~$50/month
+- OpenAI Embeddings: ~$10/month
+- Weaver (workflow.dev): ~$15/month
 
-**Total Monthly (Local)**: **$60/month**
+**Total Monthly (Local)**: **$75/month**
 
-**Recommendation**: Start with GCP VM ($110/month) for production reliability and 24/7 multi-client availability, can migrate to local for cost savings later if needed.
+**Recommendation**: Start with GCP VM ($115/month) for production reliability and 24/7 multi-client availability. Weaver's cloud-based approach eliminates N8N Docker overhead and provides better scalability.
 
 ---
 
 ### Post-MVP Costs (v1.1+)
-- Same as MVP: $60-$110/month (local vs cloud)
-- No additional scaling costs until 100+ clients (then vertical scaling: $150-$200/month for larger VM)
+- Same as MVP: $75-$115/month (local vs cloud)
+- Weaver scales automatically with usage (pay-per-execution)
+- No additional infrastructure costs until 100+ clients (then vertical scaling: $150-$200/month for larger VM)
 
 ### Future Web Version Costs (v2.0)
 - Development: $0 (solo) or $300K-$600K (team)
@@ -852,6 +868,7 @@ knowledge-base/
 - [[../features/obsidian-tasks-integration|Obsidian Tasks]] - Task management
 - [[../features/basic-ai-integration-mcp|MCP Integration]] - Agent access
 - [[../features/git-integration|Git Integration]] - Version control
+- [[../features/weaver-workflow-automation|Weaver Automation]] - Workflow automation
 
 ### Workflows
 - [[../workflows/obsidian-properties-groups|Properties & Groups]] - Tag system

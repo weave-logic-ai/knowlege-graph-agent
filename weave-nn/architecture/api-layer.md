@@ -83,15 +83,15 @@ Background job queues process intensive operations asynchronously, preventing AP
 
 To ensure a decoupled, scalable, and secure architecture, all API and service communication is mediated through a central message queue. Instead of direct API-to-API calls, services publish events to the queue, and other services subscribe to these events to perform their tasks. This pattern prevents service dependencies, improves fault tolerance, and provides a single point for implementing cross-cutting concerns like security and auditing.
 
-Tasks are stored and orchestrated within N8N, which then syndicates task-related events (e.g., `task.created`, `task.completed`) to RabbitMQ. This allows various microservices to react to task state changes without being tightly coupled to N8N. For instance, a vault-writing service can listen for `task.completed` events to archive project files, while a notification service can alert users.
+Tasks are orchestrated by Weaver (workflow.dev), which acts as a proxy layer between RabbitMQ and downstream services. Weaver syndicates task-related events (e.g., `task.created`, `task.completed`) to RabbitMQ, allowing various microservices to react to task state changes without tight coupling. For instance, a vault-writing service can listen for `task.completed` events to archive project files, while a notification service can alert users.
 
-This queue-centric model is visualized below:
+This queue-centric model with Weaver orchestration is visualized below:
 
 ```mermaid
 graph TD
     subgraph "Producers (Publish to Queue Only)"
         A[APIs<br/>(Obsidian REST, GitHub, External)]
-        B[N8N Workflows<br/>(Task Storage & Orchestration)]
+        B[Weaver Proxy<br/>(workflow.dev)<br/>Task Orchestration & Routing]
         C[File Watcher]
         D[AI Agents<br/>(via MCP)]
         E[User Triggers<br/>(Webhooks, Events)]
@@ -102,7 +102,7 @@ graph TD
     end
 
     subgraph "Consumers (Subscribe from Queue Only)"
-        F[Task Processor<br/>(N8N Syndication)]
+        F[Task Processor<br/>(Weaver Integration)]
         G[Vault Writer<br/>(No Direct API Writes)]
         H[AI Security Layer<br/>(Validation, Audit, Transparency<br/>e.g., Claude Anomaly Detection)]
         I[Notification Service<br/>(Slack, Email)]
@@ -127,7 +127,8 @@ graph TD
     H -->|Validated Messages| I
     H -->|Validated Messages| J
 
-    F -->|Task Updates| RQ  %% Loop back for syndication
+    F -->|Task Updates| B  %% Route through Weaver
+    B -->|Syndicated Events| RQ  %% Loop back for syndication
     G --> K
     J --> L
     I --> L

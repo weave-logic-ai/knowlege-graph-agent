@@ -524,83 +524,123 @@ const related = mcp.call('semantic_search_memory', {
 
 ---
 
-## 🎯 Sync Strategies
+## 🎯 Sync Strategies (Weaver Workflows)
 
-### Strategy 1: Real-Time Bidirectional Sync
+### Strategy 1: Real-Time Workflow-Based Sync (MVP Approach)
 
-**When**: Every node change immediately syncs to Claude-Flow
+**When**: File watcher triggers workflows immediately on file changes
+
+**Architecture**:
+```
+[File Change] → [chokidar] → [triggerWorkflow()] → [Durable Workflow] → [Shadow Cache + Obsidian]
+```
 
 **Pros**:
 - ✅ Always up-to-date
-- ✅ Immediate AI access to changes
-- ✅ No sync delays
-
-**Cons**:
-- ❌ High MCP call frequency
-- ❌ Potential performance impact
-- ❌ Requires file watcher
+- ✅ Stateful execution (crash recovery)
+- ✅ Shadow cache for fast queries
+- ✅ Automatic validation and linking
+- ✅ No separate "sync" - workflows handle everything
 
 **Implementation**:
-```javascript
-// File watcher on Weave-NN
-watchFiles('**/*.md', (event, filePath) => {
-  if (event === 'change' || event === 'create') {
-    nodeToMemory(filePath);
+```typescript
+// Weaver file watcher
+import { watch } from 'chokidar';
+import { triggerWorkflow } from '@workflowdev/sdk';
+
+const watcher = watch(config.vaultPath, {
+  ignored: /(^|[\/\\])\../, // Hidden files
+  persistent: true,
+  ignoreInitial: true,
+  awaitWriteFinish: {
+    stabilityThreshold: 300,
+    pollInterval: 100,
+  },
+});
+
+watcher.on('add', async (filePath) => {
+  if (filePath.endsWith('.md')) {
+    await triggerWorkflow('vault-file-created', {
+      filePath: path.relative(config.vaultPath, filePath),
+      absolutePath: filePath,
+      timestamp: Date.now(),
+    });
+  }
+});
+
+watcher.on('change', async (filePath) => {
+  if (filePath.endsWith('.md')) {
+    await triggerWorkflow('vault-file-updated', {
+      filePath: path.relative(config.vaultPath, filePath),
+      absolutePath: filePath,
+      timestamp: Date.now(),
+    });
   }
 });
 ```
 
+**Key Difference**: No "sync to Claude-Flow" - **markdown files ARE the memory**. Workflows maintain shadow cache and ensure graph integrity.
+
 ---
 
-### Strategy 2: Batch Sync (Recommended)
+### Strategy 2: Git-Triggered Workflow Batch (Alternative)
 
-**When**: Sync on git commit or manual trigger
+**When**: Git commit triggers batch workflow processing
 
-**Pros**:
-- ✅ Lower overhead
-- ✅ Batched MCP calls
-- ✅ Aligned with git workflow
-- ✅ User control
-
-**Cons**:
-- ❌ Slight delay in sync
-- ❌ Requires explicit commit
+**Use Case**: For environments where real-time file watching is not desired
 
 **Implementation**:
 ```bash
-# Git post-commit hook
 #!/bin/bash
 # .git/hooks/post-commit
 
 # Get changed markdown files
 CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '\.md$')
 
-# Sync each to Claude-Flow
-for file in $CHANGED_FILES; do
-  node scripts/sync-to-claude-flow.js "$file"
-done
+# Trigger batch workflow
+curl -X POST http://localhost:3000/api/workflows/batch-process \
+  -H "Content-Type: application/json" \
+  -d "{\"files\": [$(echo "$CHANGED_FILES" | jq -R -s -c 'split("\n")[:-1]')]}"
 ```
 
 ---
 
-### Strategy 3: On-Demand Sync
+### Strategy 3: On-Demand Shadow Cache Rebuild
 
-**When**: Only sync when AI explicitly requests
+**When**: Manual rebuild of shadow cache from vault files
 
-**Pros**:
-- ✅ Minimal overhead
-- ✅ Only sync what's needed
-- ✅ No file watchers
-
-**Cons**:
-- ❌ Memories may be stale
-- ❌ Requires manual sync command
-- ❌ AI may miss recent changes
+**Use Case**: Initial setup or cache corruption recovery
 
 **Implementation**:
-```bash
-# CLI command
-weave-nn sync --namespace concepts --pattern knowledge*
+```typescript
+// Weaver CLI command
+export const rebuildShadowCacheWorkflow = workflow(
+  'rebuild-shadow-cache',
+  async (ctx, input: { vaultPath: string }) => {
+    // Step 1: List all markdown files
+    const files = await ctx.step('list-files', async () => {
+      return await glob('**/*.md', { cwd: input.vaultPath });
+    });
+
+    // Step 2: Clear existing cache
+    await ctx.step('clear-cache', async () => {
+      await shadowCache.clear();
+    });
+
+    // Step 3: Process each file (batched)
+    await ctx.step('process-files', async () => {
+      for (const file of files) {
+        await triggerWorkflow('vault-file-created', {
+          filePath: file,
+          absolutePath: path.join(input.vaultPath, file),
+          timestamp: Date.now(),
+        });
+      }
+    });
+
+    return { filesProcessed: files.length };
+  }
+);
 ```
 
 ---

@@ -224,14 +224,14 @@ status: "pending"
   ```
 
 #### Task 15: Create .env configuration file
-- **Title**: Create .env file with OBSIDIAN_API_URL, OBSIDIAN_API_KEY, RABBITMQ_URL, CLAUDE_API_KEY
+- **Title**: Create .env file with OBSIDIAN_API_URL, OBSIDIAN_API_KEY, RABBITMQ_URL, CLAUDE_API_KEY, WEAVER_API_KEY
 - **Active Form**: Creating .env file with required environment variables
 - **Due Date**: 2025-10-21
 - **Priority**: 🔴 Critical
 - **Tags**: `#day-0` `#configuration` `#environment` `#security` `#env-vars`
 - **Dependencies**: Task 4 (Save API key)
 - **Acceptance Criteria**:
-  - .env file contains all 4 required variables
+  - .env file contains all required variables (Obsidian, RabbitMQ, Claude, Weaver)
   - Variables are properly formatted (KEY=value)
   - No trailing spaces or invalid characters
   - .env file is in .gitignore
@@ -243,6 +243,9 @@ status: "pending"
   # OBSIDIAN_API_KEY=<your-key>
   # RABBITMQ_URL=amqp://admin:password@localhost:5672
   # CLAUDE_API_KEY=<your-key>
+  # WEAVER_API_URL=https://api.workflow.dev
+  # WEAVER_API_KEY=<your-key>
+  # WEAVER_WORKSPACE_ID=<your-workspace-id>
   grep "^\.env$" .gitignore  # Verify .env is ignored
   ```
 
@@ -284,14 +287,14 @@ status: "pending"
   ```
 
 #### Task 18: Configure GCP firewall rules
-- **Title**: Open firewall ports: 5672 (RabbitMQ), 15672 (RabbitMQ UI), 5678 (N8N) on GCP VM
+- **Title**: Open firewall ports: 5672 (RabbitMQ), 15672 (RabbitMQ UI) on GCP VM
 - **Active Form**: Opening firewall ports on GCP VM
 - **Due Date**: 2025-10-21
 - **Priority**: ⏫ High (If using GCP)
 - **Tags**: `#day-0` `#gcp` `#firewall` `#networking` `#security` `#optional`
 - **Dependencies**: Task 16 (Provision VM)
 - **Acceptance Criteria**:
-  - Firewall rules created for ports 5672, 15672, 5678
+  - Firewall rules created for ports 5672, 15672
   - Rules apply to correct VM instance
   - Source IP range configured (restrict to your IP for security)
   - Rules are active and not blocked by VPC settings
@@ -404,21 +407,21 @@ status: "pending"
   curl -u admin:password http://localhost:15672/api/exchanges/%2F/weave-nn.events
   ```
 
-#### Task 24: Create n8n_workflows queue
-- **Title**: Create durable queue 'n8n_workflows' in RabbitMQ
-- **Active Form**: Creating n8n_workflows queue in RabbitMQ
+#### Task 24: Create weaver_workflows queue
+- **Title**: Create durable queue 'weaver_workflows' in RabbitMQ
+- **Active Form**: Creating weaver_workflows queue in RabbitMQ
 - **Due Date**: 2025-10-22
 - **Priority**: ⏫ High
-- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#n8n`
+- **Tags**: `#day-1` `#rabbitmq` `#queue` `#configuration` `#weaver`
 - **Dependencies**: Task 23 (Create exchange)
 - **Acceptance Criteria**:
-  - Queue 'n8n_workflows' created
+  - Queue 'weaver_workflows' created
   - Durable flag is true
   - Queue appears in Queues tab
 - **Verification**:
   ```bash
   docker exec rabbitmq rabbitmqadmin declare queue \
-    name=n8n_workflows durable=true
+    name=weaver_workflows durable=true
   ```
 
 #### Task 25: Create mcp_sync queue
@@ -486,13 +489,13 @@ status: "pending"
     name=dlq durable=true
   ```
 
-#### Task 29: Bind n8n_workflows queue
-- **Title**: Bind n8n_workflows queue to exchange with routing key 'vault.*.*'
-- **Active Form**: Binding n8n_workflows queue to exchange
+#### Task 29: Bind weaver_workflows queue
+- **Title**: Bind weaver_workflows queue to exchange with routing key 'vault.*.*'
+- **Active Form**: Binding weaver_workflows queue to exchange
 - **Due Date**: 2025-10-22
 - **Priority**: ⏫ High
-- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#n8n`
-- **Dependencies**: Task 24 (Create n8n queue)
+- **Tags**: `#day-1` `#rabbitmq` `#binding` `#routing` `#weaver`
+- **Dependencies**: Task 24 (Create weaver queue)
 - **Acceptance Criteria**:
   - Binding created between exchange and queue
   - Routing key 'vault.*.*' set correctly
@@ -501,7 +504,7 @@ status: "pending"
   ```bash
   docker exec rabbitmq rabbitmqadmin declare binding \
     source=weave-nn.events \
-    destination=n8n_workflows \
+    destination=weaver_workflows \
     routing_key="vault.*.*"
   ```
 
