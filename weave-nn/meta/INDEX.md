@@ -25,13 +25,16 @@
 - ⚠️  [[decisions/executive/target-users|ED-3: Target Users]] - Partially answered, needs prioritization
 - ❌ [[decisions/executive/budget-resources|ED-4: Budget & Resources]] - **BLOCKS** timeline
 
-### Technical Decisions (0/6 decided) - 🚨 CRITICAL PATH
+### Technical Decisions (3/9 decided)
 - ❌ [[decisions/technical/frontend-framework|TS-1: Frontend Framework]] - **BLOCKS** TS-2, TS-5
 - ❌ [[decisions/technical/graph-visualization|TS-2: Graph Visualization]] - **BLOCKS** MVP
 - ❌ [[decisions/technical/backend-architecture|TS-3: Backend Architecture]] - **BLOCKS** setup
 - ⚠️  [[decisions/technical/database-storage|TS-4: Database & Storage]] - Partially decided
 - ❌ [[decisions/technical/markdown-editor|TS-5: Markdown Editor]] - **BLOCKS** MVP
 - ❌ [[decisions/technical/auth|TS-6: Authentication]] - Can defer to post-MVP
+- ✅ [[decisions/technical/day-2-rest-api-client|D-017: REST API Client]] - **IMPLEMENTED**: Singleton pattern
+- ✅ [[decisions/technical/day-4-agent-rules|D-018: Agent Rules]] - **IMPLEMENTED**: Event-driven
+- ✅ [[decisions/technical/day-11-properties-visualization|D-019: Properties & Visualization]] - **IMPLEMENTED**: Hybrid strategy
 
 ### Feature Decisions (0/3 decided)
 - ❌ [[decisions/features/mvp-features|FP-1: MVP Feature Set]] - **CRITICAL**
@@ -195,6 +198,13 @@ graph TD
 ### New Decision Hub
 - [[decisions/INDEX|Decision Hub]] - Central tracking for all decisions
 
+### Research Documents
+- [[architecture-analysis]] - Comprehensive analysis of Day 2, 4, 11 architectures (93KB)
+- [[day-2-4-11-research-findings]] - Research findings with Python code examples (1,655 lines)
+
+### Implementation Documentation
+- [[IMPLEMENTATION_SUMMARY]] - Complete implementation summary for Day 2, 4, 11 (1,777 lines of code)
+
 ---
 
 ## 🎯 Project Goals
@@ -221,6 +231,11 @@ graph TD
 
 | Date | Change | Updated By |
 |------|--------|------------|
+| 2025-10-22 | Implemented Day 2, 4, 11 MVP features (1,777 lines) | Claude (Coder Agent) |
+| 2025-10-22 | Created 3 technical decision nodes (D-017, D-018, D-019) | Claude |
+| 2025-10-22 | Integrated architecture analysis and research docs | Claude |
+| 2025-10-22 | Created daily log for 2025-10-22 | Claude |
+| 2025-10-22 | Created MVP Week 1 checklist | Claude |
 | 2025-10-20 | Knowledge graph restructuring initiated | Claude (Hive Mind) |
 | 2025-10-20 | Decided on SaaS approach (ED-1) | Mathew |
 | 2025-10-20 | Created INDEX and decision hub | Claude |
