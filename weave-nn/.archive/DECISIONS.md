@@ -34,7 +34,7 @@
 ```
 [ ] A. Internal tool only - solve my/my team's markdown management problem
 [ ] B. Internal tool first, potential SaaS later
-[x] C. Build as SaaS product from day one
+[ ] C. Build as SaaS product from day one
 [ ] D. Open source project with optional paid hosting
 [ ] E. Other: _________________________________________________
 ```
@@ -42,7 +42,7 @@
 **Decision**:
 ```
 _________________________________________________________________
-Create as a SaaS. Utilize Google Vertex, Cloud Run and other elements there work very well with SaaS and can start very inexpensive. 
+
 _________________________________________________________________
 ```
 
@@ -51,7 +51,7 @@ _________________________________________________________________
 **Notes**:
 ```
 _________________________________________________________________
-If we build it right it won't take too much time to polish it up for sale as a SaaS. This will be a key service internally, and we will use it for all client and internal projects. This may end up being a free SaaS for our clients, but we can sell access to it later, either way it has to be built as a multi-tenant system.
+
 _________________________________________________________________
 ```
 
@@ -98,13 +98,13 @@ _________________________________________________________________
 
 ### ED-3: Target Users (Primary)
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: Who is the primary user of this platform?
 
 ```
-[x] A. Solo developer (me)
-[x] B. Small development team (2-10 people)
+[ ] A. Solo developer (me)
+[ ] B. Small development team (2-10 people)
 [ ] C. Multiple teams within organization (10-100 people)
 [ ] D. External customers (SaaS)
 [ ] E. Open source community
@@ -113,11 +113,15 @@ _________________________________________________________________
 
 **Primary User Profile**:
 ```
-Role: Development, Project Manager, Architect, Client
+Role: __________________________________________________________
 
-Technical Level: [x] High [x] Medium [x] Low
+Technical Level: [ ] High [ ] Medium [ ] Low
 
-Use Cases: Internally set up to work with clients projects. Because it is based on markdown and locally in obsidian. Intial planning, and development and even acceptance testing etc will use this method. It also makes export very easy because there is such a strong taxonomy. 
+Use Cases: _____________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________
 ```
 
 **Notes**:
@@ -131,14 +135,14 @@ _________________________________________________________________
 
 ### ED-4: Budget & Resources
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What resources are available for this project?
 
 **Development Budget**:
 ```
 [ ] $0 - Solo side project, sweat equity only
-[x] $1,000 - $5,000 - Can pay for some tools/services
+[ ] $1,000 - $5,000 - Can pay for some tools/services
 [ ] $5,000 - $25,000 - Can hire freelancer(s) for key components
 [ ] $25,000 - $100,000 - Can hire small team or agency
 [ ] $100,000+ - Funded project
@@ -148,26 +152,26 @@ Amount: $________
 
 **Time Commitment**:
 ```
-Hours per week available: 40
+Hours per week available: _______
 
-Duration willing to commit: 2 weeks
+Duration willing to commit: _______
 
-Target launch date (if any): Yesterday
+Target launch date (if any): _______
 ```
 
 **Team**:
 ```
 [ ] Solo (just me)
-[x] Solo + AI (60x speed lately, using claude-flow and other tools)
+[ ] Solo + occasional help
 [ ] Small team: _____ people
 [ ] Will hire: _______________________________________________
 
 Skills available:
-  [x] Frontend (React/Svelte)
-  [x] Backend (Node.js/Python)
-  [x] Database/DevOps
-  [x] Design/UX
-  [x] AI/ML
+  [ ] Frontend (React/Svelte)
+  [ ] Backend (Node.js/Python)
+  [ ] Database/DevOps
+  [ ] Design/UX
+  [ ] AI/ML
 
 Skills need to hire/learn: ______________________________________
 
@@ -187,13 +191,13 @@ _________________________________________________________________
 
 ### TS-1: Frontend Framework
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: Which frontend framework will you use?
 
 ```
 [ ] A. SvelteKit (faster development, less boilerplate)
-[x] B. Next.js/React (Shadcn)
+[ ] B. Next.js/React (larger ecosystem, easier hiring)
 [ ] C. Nuxt/Vue (middle ground)
 [ ] D. Astro + Islands (performance-first)
 [ ] E. Other: _________________________________________________
@@ -202,19 +206,19 @@ _________________________________________________________________
 
 **Decision**:
 ```
-Framework: Next.js/React (Shadcn)
+Framework: _____________________________________________________
 
-Version: Most current.
+Version: _______________________________________________________
 ```
 
 **Key Factors in Decision**:
 ```
 [ ] Development speed
-[x] Ecosystem size
-[x ] Personal preference/experience
+[ ] Ecosystem size
+[ ] Personal preference/experience
 [ ] Hiring considerations
 [ ] Performance requirements
-[x] Other: Best for AI development.
+[ ] Other: _____________________________________________________
 ```
 
 **Notes**:
@@ -228,7 +232,7 @@ _________________________________________________________________
 
 ### TS-2: Graph Visualization Library
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: Which library will power the knowledge graph?
 
@@ -239,14 +243,14 @@ _________________________________________________________________
 [ ] D. Cytoscape.js (scientific/complex graphs)
 [ ] E. vis.js (simpler, older)
 [ ] F. Custom WebGL solution
-[x] G. Other: Obsidian 
+[ ] G. Other: _________________________________________________
 ```
 
 **Decision**:
 ```
-Library: Obsidian
+Library: _______________________________________________________
 
-Reason: It's all just built in, it makes it a joy to work with. 
+Reason: ________________________________________________________
 
 _________________________________________________________________
 ```
@@ -268,7 +272,7 @@ _________________________________________________________________
 
 **Notes**:
 ```
-Use of mermaid should handle most other things, but we may want to add more to Obsidian, which we can easily with plugins. 
+_________________________________________________________________
 
 _________________________________________________________________
 ```
@@ -277,14 +281,14 @@ _________________________________________________________________
 
 ### TS-3: Backend Architecture
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What backend architecture will you use?
 
 ```
 [ ] A. Full-stack framework (SvelteKit/Next.js API routes only)
 [ ] B. Separate Node.js API (Express/Fastify)
-[x] C. Python API (FastAPI/Django)
+[ ] C. Python API (FastAPI/Django)
 [ ] D. Serverless (Vercel Functions, AWS Lambda)
 [ ] E. BaaS (Supabase, Firebase, Appwrite)
 [ ] F. Hybrid: ________________________________________________
@@ -292,7 +296,7 @@ _________________________________________________________________
 
 **Decision**:
 ```
-Architecture: Only an API and some cmd line scripts are probably needed, alongside a set of rules and agents that would be used in claude-flow.
+Architecture: __________________________________________________
 
 Framework(s): __________________________________________________
 
@@ -301,7 +305,9 @@ _________________________________________________________________
 
 **Rationale**:
 ```
-Keeping this very simple, the Python API could also handle the MCP interface, and later when we go multiplayer with this we can extend it to handle that as well.
+_________________________________________________________________
+
+_________________________________________________________________
 ```
 
 **Notes**:
@@ -315,19 +321,19 @@ _________________________________________________________________
 
 ### TS-4: Database & Storage
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: How will you store data?
 
 **Primary Database**:
 ```
 [ ] A. PostgreSQL (self-hosted)
-[x] B. Supabase (managed Postgres + extras)
+[ ] B. Supabase (managed Postgres + extras)
 [ ] C. MongoDB (document store)
-[x] D. SQLite (based on claude-flow memory)
-[x] E. Other: Markdown
+[ ] D. SQLite (local-first)
+[ ] E. Other: _________________________________________________
 
-Choice: Supabase not intiially but for when we go multiplayer. Or perhaps a messaging queue and sync could work as well, which can end up very nice and realtime and keep a lot of the history cleanly.
+Choice: ________________________________________________________
 ```
 
 **Knowledge Graph Storage**:
@@ -335,8 +341,8 @@ Choice: Supabase not intiially but for when we go multiplayer. Or perhaps a mess
 [ ] A. Graphiti (temporal graph in Postgres)
 [ ] B. Neo4j (dedicated graph database)
 [ ] C. PostgreSQL with recursive queries
-[x] D. In-memory + persist to files
-[x] E. Other: Claude-flow memory and markdown also keeps this in place.
+[ ] D. In-memory + persist to files
+[ ] E. Other: _________________________________________________
 
 Choice: ________________________________________________________
 ```
@@ -344,7 +350,7 @@ Choice: ________________________________________________________
 **File Storage** (for markdown files):
 ```
 [ ] A. Database BLOBs/text fields
-[x] B. File system + Git
+[ ] B. File system + Git
 [ ] C. S3/R2/Cloud storage
 [ ] D. Supabase Storage
 [ ] E. Hybrid: ________________________________________________
@@ -352,7 +358,7 @@ Choice: ________________________________________________________
 Choice: ________________________________________________________
 
 Version Control:
-[x] Git-backed (libgit2/simple-git)
+[ ] Git-backed (libgit2/simple-git)
 [ ] Database versioning
 [ ] None (just timestamps)
 [ ] Other: _____________________________________________________
@@ -366,7 +372,7 @@ Version Control:
 [ ] D. Qdrant
 [ ] E. Milvus
 [ ] F. Not needed yet
-[x] G. Other: SQLight
+[ ] G. Other: _________________________________________________
 
 Choice: ________________________________________________________
 ```
@@ -382,7 +388,7 @@ _________________________________________________________________
 
 ### TS-5: Markdown Editor
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What editor will users use to edit markdown?
 
@@ -393,7 +399,7 @@ _________________________________________________________________
 [ ] D. Simple textarea (plain markdown)
 [ ] E. External (use Obsidian/VS Code, read files)
 [ ] F. Multiple options (let users choose)
-[x] G. Other: Obsidian, User can basically sit in obsidian and work on projects.
+[ ] G. Other: _________________________________________________
 ```
 
 **Decision**:
@@ -424,22 +430,24 @@ Editing Mode:
 
 **Notes**:
 ```
-All of the questions show me that having obsidian handling this covers all potentials. You will find most of the features we need are there, and we can even add a plugin to obsidian to close the gaps.
+_________________________________________________________________
+
+_________________________________________________________________
 ```
 
 ---
 
 ### TS-6: Authentication & Authorization
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: How will users authenticate?
 
 ```
 [ ] A. No auth (internal tool, local only)
 [ ] B. Simple password (no OAuth)
-[x] C. OAuth only (Google, GitHub, etc.)
-[x] D. Email + password + OAuth
+[ ] C. OAuth only (Google, GitHub, etc.)
+[ ] D. Email + password + OAuth
 [ ] E. Magic links (passwordless)
 [ ] F. SSO/SAML (enterprise)
 [ ] G. Use auth provider: [ ] Supabase [ ] Clerk [ ] Auth0 [ ] NextAuth
@@ -448,7 +456,7 @@ All of the questions show me that having obsidian handling this covers all poten
 
 **Decision**:
 ```
-Auth Method(s): Google Auth - We use Google Cloud. Clients may need email+password. I prefer to make that with 2fa using google auth again.
+Auth Method(s): ________________________________________________
 
 Provider (if any): _____________________________________________
 ```
@@ -457,7 +465,7 @@ Provider (if any): _____________________________________________
 ```
 [ ] Single user (no permissions)
 [ ] Multi-user, no sharing (isolated workspaces)
-[x] Workspace-based (invite team members)
+[ ] Workspace-based (invite team members)
 [ ] Document-level permissions (read/write/admin)
 [ ] Other: _____________________________________________________
 
@@ -477,71 +485,78 @@ _________________________________________________________________
 
 ### FP-1: MVP Feature Set
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What features MUST be in the MVP?
 
 **Mark with priority**: `[1]` = Must have (MVP), `[2]` = Should have (v1.1), `[3]` = Nice to have (v2.0), `[X]` = Not needed
 
 ```
-[x] Create markdown documents
+[_] Create markdown documents
 [_] Edit markdown documents
 [_] Delete documents
-[x] Basic graph visualization (nodes + edges)
-[x] Wikilink parsing [[Document Name]]
-[x] Click node → open editor
-[x] Search documents (text search)
-[x] Tag documents
-[x] Filter by tags
-[x] Daily notes
-[x] Templates
-[x] Real-time collaboration (multiple users editing)
-[x] Version history
-[x] Semantic search (AI-powered)
-[x] Auto-linking suggestions
-[x] MCP server for AI agents
-[x] Temporal queries (point-in-time views)
-[x] Export (PDF, markdown archive)
-[x] Import (from existing projects and plans.)
+[_] Basic graph visualization (nodes + edges)
+[_] Wikilink parsing [[Document Name]]
+[_] Click node → open editor
+[_] Search documents (text search)
+[_] Tag documents
+[_] Filter by tags
+[_] Daily notes
+[_] Templates
+[_] Real-time collaboration (multiple users editing)
+[_] Version history
+[_] Semantic search (AI-powered)
+[_] Auto-linking suggestions
+[_] MCP server for AI agents
+[_] Temporal queries (point-in-time views)
+[_] Export (PDF, markdown archive)
+[_] Import (from Obsidian, Notion, etc.)
 [_] Mobile responsive
 [_] Dark mode
 [_] Keyboard shortcuts
 [_] Command palette
 [_] Public sharing
 [_] Comments/annotations
-[x] Task management (checkboxes, due dates)
-[x] Calendar view
+[_] Task management (checkboxes, due dates)
+[_] Calendar view
 [_] Backlinks panel
-[x] Outline/table of contents
-[x] Custom themes
-[x] Plugins/extensions
+[_] Outline/table of contents
+[_] Custom themes
+[_] Plugins/extensions
 ```
 
 **Additional MVP Features**:
 ```
-___TBD as we progress.
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________
 ```
 
 **Notes**:
 ```
-Most of these are provided by obsidian, we will need to integrate and identify the best way to take advantage of those.```
+_________________________________________________________________
+
+_________________________________________________________________
+```
 
 ---
 
 ### FP-2: AI Integration Priority
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: How critical is AI integration in the MVP?
 
 ```
-[x] A. Critical - MCP server must be in MVP
+[ ] A. Critical - MCP server must be in MVP
 [ ] B. Important - Include basic AI features (auto-linking, search)
 [ ] C. Nice to have - Can add after MVP
 [ ] D. Not important - Focus on manual workflows first
 ```
 
-**Decision**: AI First, this is to work with claude-flow and other ai agent development. It is the most important part.
+**Decision**:
 ```
 Priority: ______________________________________________________
 
@@ -553,12 +568,12 @@ _________________________________________________________________
 **AI Features Ranking** (1 = highest priority):
 
 ```
-[x] MCP server (let Claude/AI agents create/edit docs)
+[_] MCP server (let Claude/AI agents create/edit docs)
 [_] Auto-linking (suggest related documents)
 [_] Semantic search (search by meaning, not just keywords)
 [_] Auto-tagging (AI suggests tags)
 [_] Summary generation
-[x] Duplicate detection
+[_] Duplicate detection
 [_] Change analysis (detect related docs when editing)
 [_] Chat with your knowledge base
 [_] Auto-generate daily summaries
@@ -576,27 +591,27 @@ _________________________________________________________________
 
 ### FP-3: Collaboration Features
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What collaboration features are needed?
 
 ```
 [ ] A. None - solo use only
 [ ] B. Read-only sharing (share links to view)
-[x] C. Multi-user editing (no real-time)
+[ ] C. Multi-user editing (no real-time)
 [ ] D. Real-time collaboration (Google Docs style)
 [ ] E. Comments and annotations
 [ ] F. Full collaboration suite (C + D + E)
 ```
 
-**Decision**: Local based on markdown files, will require commit and push for other users to see this.
+**Decision**:
 ```
 Level: _________________________________________________________
 
 Target Users: __________________________________________________
 ```
 
-**Collaboration Features**: Future feature we can set up an api that does CRDT using supabase. This would show all of the below, and it would also show current work being done by AI, through the task lists or log files etc.
+**Collaboration Features**:
 ```
 [_] User presence (see who's online)
 [_] Cursors (see where others are typing)
@@ -734,18 +749,20 @@ _________________________________________________________________
 ```
 [ ] A. Not applicable - internal tool only
 [ ] B. Freemium SaaS (free tier + paid plans)
-[x] C. Paid-only SaaS
+[ ] C. Paid-only SaaS
 [ ] D. Open source + paid hosting
 [ ] E. Open source + support contracts
-[x] F. One-time license
+[ ] F. One-time license
 [ ] G. Other: _________________________________________________
 ```
 
 **Decision**:
 ```
-Model: Internal tool with free license for clients, and a future feature of creating a wrapping SaaS app that can help sell it more broadly. The SaaS model will have to be analyzed later for price and customer aquisition etc.
+Model: _________________________________________________________
 
-Reasoning: Only needed for internal customers and our development work. It also will become part of our core offering.
+Reasoning: _____________________________________________________
+
+_________________________________________________________________
 ```
 
 **Pricing Strategy** (if SaaS):
@@ -791,7 +808,7 @@ _________________________________________________________________
 
 ### BM-2: Open Source Strategy
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: Will this be open source?
 
@@ -799,14 +816,14 @@ _________________________________________________________________
 [ ] A. Fully open source (MIT/Apache)
 [ ] B. Open core (core = open, premium features = closed)
 [ ] C. Source-available (BSL, visible but not truly open)
-[x] D. Closed source (proprietary)
+[ ] D. Closed source (proprietary)
 [ ] E. Undecided
 [ ] F. Other: _________________________________________________
 ```
 
 **Decision**:
 ```
-License: Closed for now. This is going to wrap too much secret sauce.
+License: _______________________________________________________
 
 Open Source Components: ________________________________________
 
@@ -819,17 +836,17 @@ _________________________________________________________________
 
 **Open Source Goals** (if applicable):
 ```
-[x] Build community
+[ ] Build community
 [ ] Get contributions
 [ ] Transparency
-[x] Marketing/distribution
+[ ] Marketing/distribution
 [ ] Enable self-hosting
 [ ] Other: _____________________________________________________
 ```
 
 **Notes**:
 ```
-If we do open-source this, and are able to separate the secret sauce except for the defaults etc, then it could be used to promote our services and show technical leadership in the field.
+_________________________________________________________________
 
 _________________________________________________________________
 ```
@@ -874,12 +891,12 @@ _________________________________________________________________
 
 ### IR-2: Git Integration
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: How important is Git integration?
 
 ```
-[x] A. Critical - must store markdown files in Git repos
+[ ] A. Critical - must store markdown files in Git repos
 [ ] B. Important - support Git but not required
 [ ] C. Nice to have - can add later
 [ ] D. Not important - use database versioning instead
@@ -887,12 +904,12 @@ _________________________________________________________________
 
 **Decision**:
 ```
-Priority: Git integration can just be through normal agile development process intially. We do want features to make tasks, bugs and questions into issues on git. It would 
+Priority: ______________________________________________________
 
 Implementation:
 [ ] Direct Git operations (libgit2, simple-git)
 [ ] Git sync in background
-[x] Manual export to Git
+[ ] Manual export to Git
 [ ] GitHub API integration
 [ ] GitLab/Bitbucket support
 [ ] Other: _____________________________________________________
@@ -911,28 +928,30 @@ Implementation:
 
 **Notes**:
 ```
-This should be integrated at the agent level, or workflow. So that it is not weighting down the data.  Tasks, bugs, wiki, and other elements should tie together with our development workflow.
+_________________________________________________________________
+
+_________________________________________________________________
 ```
 
 ---
 
 ### IR-3: Other Tool Integrations
 
-**Status**: `[ ] Open` | `[x] Decided`
+**Status**: `[ ] Open` | `[ ] Decided`
 
 **Question**: What other tools need integration?
 
 **Mark priority**: `[1]` = MVP, `[2]` = v1.1, `[3]` = v2.0, `[X]` = Not needed
 
 ```
-[2] Claude Desktop (MCP)
-[2] VS Code (extension)
+[_] Claude Desktop (MCP)
+[_] VS Code (extension)
 [_] Notion (import/export)
 [_] Linear (issue tracking)
 [_] Jira (issue tracking)
 [_] Slack (notifications)
-[1] Discord (notifications)
-[1] GitHub Issues
+[_] Discord (notifications)
+[_] GitHub Issues
 [_] GitLab
 [_] Zapier/Make (automation)
 [_] Google Drive
@@ -941,9 +960,9 @@ This should be integrated at the agent level, or workflow. So that it is not wei
 [_] Email (send/receive notes)
 [_] Browser extension
 [_] Mobile apps (iOS/Android)
-[1] API for custom integrations
+[_] API for custom integrations
 [_] Webhooks
-[x] Other: Agent interface, can be used with custom app. User would use Speech to Text and the app would be able to interface with this process. So for instance these questions would have turned into an interview. 
+[_] Other: _____________________________________________________
 [_] Other: _____________________________________________________
 ```
 
@@ -1238,12 +1257,12 @@ _________________________________________________________________
 
 ## Revision History
 
-| Date       | Changes           | Updated By |
-| ---------- | ----------------- | ---------- |
-| 2025-10-20 | Initial creation  | Claude     |
-| 2025-10-20 | Answered a couple | Mathew     |
-|            |                   |            |
-|            |                   |            |
+| Date | Changes | Updated By |
+|------|---------|------------|
+| 2025-10-20 | Initial creation | Claude |
+|  |  |  |
+|  |  |  |
+|  |  |  |
 
 ---
 
