@@ -31,3 +31,11 @@ hive-mind-prompt-*.txt
 .swarm/
 .hive-mind/
 .venv/
+
+
+# Local development directories
+.claude-plugin/
+.claude/
+.claude2/
+.research/
+.ruv-swarm/
