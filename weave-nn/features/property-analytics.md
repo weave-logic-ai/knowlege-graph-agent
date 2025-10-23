@@ -43,7 +43,7 @@ As a user, I want to visualize and analyze node properties so that I can underst
 - Requires: [[rest-api-integration]] (F-031) - API provides property data access
 - Works with: [[agent-automation]] (F-032) - Analytics inform agent decision-making
 - Works with: [[obsidian-properties-standard]] - Ensures consistent property types
-- Works with: [[property-visualizer]] - Technical implementation component
+- Works with: [[../architecture/components/property-visualizer|property-visualizer]] - Technical implementation component
 
 ## Implementation Notes
 

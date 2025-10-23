@@ -43,7 +43,7 @@ As a developer, I want programmatic access to Obsidian vault so that AI agents c
 - Requires: [[git-integration]] (F-008) - Git integration provides version control for API-driven changes
 - Enables: [[agent-automation]] (F-032) - Powers automated agent workflows
 - Enables: [[auto-linking]] (F-105) - Enables automated link discovery and creation
-- Works with: [[property-visualizer]] - API supports property analytics data retrieval
+- Works with: [[../architecture/components/property-visualizer|property-visualizer]] - API supports property analytics data retrieval
 
 ## Implementation Notes
 

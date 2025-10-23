@@ -44,7 +44,7 @@ As a user, I want AI agents to automatically maintain the knowledge graph so tha
 - Requires: [[rest-api-integration]] (F-031) - API access enables programmatic vault modifications
 - Requires: [[git-integration]] (F-008) - Git integration provides audit trail for agent changes
 - Enables: [[auto-linking]] (F-105) - Powers the automatic link discovery system
-- Works with: [[property-visualizer]] - Analytics inform agent decision-making
+- Works with: [[../architecture/components/property-visualizer|property-visualizer]] - Analytics inform agent decision-making
 - Works with: [[obsidian-api-client]] - Technical foundation for agent operations
 
 ## Implementation Notes
