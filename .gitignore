@@ -39,3 +39,4 @@ hive-mind-prompt-*.txt
 .claude2/
 .research/
 .ruv-swarm/
+.env
