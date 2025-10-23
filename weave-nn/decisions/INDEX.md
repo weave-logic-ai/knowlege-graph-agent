@@ -23,8 +23,8 @@ visual:
 # Weave-NN Decision Index
 
 **Purpose**: Canonical list of all decisions made for Weave-NN MVP (Obsidian-first approach)
-**Status**: 16/16 decisions finalized for MVP
-**Last Updated**: 2025-10-21
+**Status**: 20 active MVP decisions, 1 infrastructure decision deferred (D-013: RabbitMQ), 1 obsolete (D-007: FastMCP)
+**Last Updated**: 2025-10-23
 
 ---
 
@@ -33,9 +33,12 @@ visual:
 | Category | Decisions | Status |
 |----------|-----------|--------|
 | **Executive** | 5 | ✅ All decided |
-| **Technical** | 7 | ✅ All decided |
-| **Infrastructure** | 4 | ✅ All decided |
-| **Deferred** | 3 | ⏸️ Post-MVP |
+| **Technical** | 16 active | ✅ All decided |
+| **Infrastructure** | 3 active, 1 deferred | ⚠️ Mixed |
+| **Deferred** | 4 | ⏸️ Post-MVP |
+| **Obsolete** | 1 (D-007) | 🔄 Replaced |
+
+**Total Active Decisions**: 24 (5 executive + 16 technical + 3 infrastructure)
 
 ---
 
@@ -104,17 +107,20 @@ visual:
 
 ---
 
-### D-007: MCP Server Framework
+### D-007: MCP Server Framework (OBSOLETE)
 **Decision**: FastMCP (not raw MCP SDK)
 **Date**: 2025-10-21
-**Status**: ✅ DECIDED
-**Benefits**:
+**Status**: 🔄 OBSOLETE - Replaced by D-021 (JavaScript/TypeScript stack)
+**Obsoleted**: 2025-10-23
+**Rationale**: Stack pivot to JavaScript/TypeScript with @modelcontextprotocol/sdk made FastMCP (Python) unnecessary
+**Benefits** (historical):
 - 60-70% less code
 - Automatic schema generation
 - Built-in testing (<1s per test)
 - Enterprise auth/error handling
-**File**: [[technical/fastmcp-framework]]
+**File**: [[technical/fastmcp-framework]] (obsolete)
 **Reference**: [[../_planning/research/fastmcp-research-findings]]
+**Replacement**: [[technical/javascript-typescript-stack-pivot|D-021: JavaScript/TypeScript Stack]]
 
 ---
 
@@ -168,34 +174,131 @@ visual:
 
 ---
 
+### D-017: Obsidian REST API Client Architecture
+**Decision**: Singleton pattern for API client with retry logic
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Features**: Connection pooling, automatic retries, request queuing
+**Phase**: Phase 5 (Day 2)
+**File**: [[technical/day-2-rest-api-client]]
+
+---
+
+### D-018: Agent Rule Engine Architecture
+**Decision**: Rule-based system for agent coordination with Claude-Flow
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Features**: 6 core agent rules, file-type routing, context injection
+**Phase**: Phase 5 (Day 4)
+**File**: [[technical/day-4-agent-rules]]
+
+---
+
+### D-019: Obsidian Properties & Visualization
+**Decision**: Automated property application with Lucide icons and CSS classes
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Features**: Visual hierarchy, tag taxonomy, bulk property updates
+**Phase**: Phase 5 (Day 11)
+**File**: [[technical/day-11-properties-visualization]]
+
+---
+
+### D-020: Weaver Workflow Proxy
+**Decision**: Adopt Weaver (workflow.dev) for workflow orchestration
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Replaces**: D-014 (N8N), reduces need for D-013 (RabbitMQ)
+**Benefits**: TypeScript-native, durable execution, time-travel debugging
+**Impact**: 🔴 High - Simplifies infrastructure, removes Docker dependency
+**File**: [[technical/adopt-weaver-workflow-proxy]]
+
+---
+
+### D-021: JavaScript/TypeScript Stack Pivot
+**Decision**: Full JavaScript/TypeScript stack (Node.js + @modelcontextprotocol/sdk)
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Obsoletes**: D-007 (FastMCP Python)
+**Benefits**: Unified language, better Weaver integration, simpler deployment
+**Impact**: 🔴 High - Affects entire tech stack
+**File**: [[technical/javascript-typescript-stack-pivot]]
+
+---
+
+### D-022: SQLite Library Selection
+**Decision**: better-sqlite3 for shadow cache
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Rationale**: Synchronous API, high performance, native bindings
+**Phase**: Phase 5 (Shadow Cache)
+**File**: [[technical/sqlite-library-choice]]
+
+---
+
+### D-023: Git Library Selection
+**Decision**: simple-git for git automation
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Features**: Promise-based API, comprehensive git operations, active maintenance
+**Phase**: Phase 8 (Git Integration)
+**File**: [[technical/git-library-choice]]
+
+---
+
+### D-024: Testing Framework Selection
+**Decision**: Vitest for test infrastructure
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Benefits**: Fast execution, native TypeScript, Jest-compatible API
+**Phase**: Phase 9 (Testing)
+**File**: [[technical/testing-framework-choice]]
+
+---
+
+### D-025: Web Framework Selection
+**Decision**: Hono for Weaver webhook endpoints
+**Date**: 2025-10-23
+**Status**: ✅ DECIDED
+**Benefits**: Lightweight, edge-compatible, excellent TypeScript support
+**Phase**: Phase 5/6 (Webhooks)
+**File**: [[technical/web-framework-choice]]
+
+---
+
 ## 🏗️ Infrastructure Decisions
 
 ### D-013: Event-Driven Architecture
 **Decision**: RabbitMQ message queue for event bus
 **Date**: 2025-10-21
-**Status**: ✅ DECIDED - CRITICAL
+**Status**: ⚠️ DEFERRED TO POST-MVP
+**Updated**: 2025-10-23
 **Justification**:
-- Multi-client async processing
-- Guaranteed delivery
-- Dead letter queue
-- Scales to 1000+ clients
-**File**: [[infrastructure/rabbitmq]]
+- ~~Multi-client async processing~~ → Weaver provides this
+- ~~Guaranteed delivery~~ → Weaver durable workflows
+- ~~Dead letter queue~~ → Weaver error handling
+- ~~Scales to 1000+ clients~~ → Deferred until needed
+**Deferral Rationale**: Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP. RabbitMQ will be added post-MVP when multi-service architecture or high-throughput streaming (>1000 events/sec) is needed.
+**File**: [[infrastructure/rabbitmq]] (deferred)
 **Reference**: [[../features/rabbitmq-message-queue]]
+**Replacement**: [[technical/adopt-weaver-workflow-proxy|D-020: Weaver]]
 
 ---
 
 ### D-014: Workflow Automation Platform
 **Decision**: N8N workflow automation (Docker)
 **Date**: 2025-10-21
-**Status**: ✅ DECIDED - CRITICAL
+**Status**: ⚠️ REPLACED by D-020 (Weaver)
 **Justification**:
 - Non-technical team workflow creation
 - 150+ integrations
 - Visual builder
 - Official MCP support
-**Workflows**: 5 core workflows for MVP
-**File**: [[infrastructure/n8n-automation]]
-**Reference**: [[../features/n8n-workflow-automation]]
+**Note**: Replaced by [[technical/adopt-weaver-workflow-proxy|D-020: Weaver Workflow Proxy]] which provides superior TypeScript-native workflow orchestration with built-in durability, observability, and developer-friendly code-first approach. Weaver eliminates the need for Docker + PostgreSQL infrastructure while providing automatic retries, time-travel debugging, and simpler deployment.
+**Workflows**: 5 core workflows for MVP (now implemented in Weaver)
+**File**: [[infrastructure/n8n-automation]] (deprecated)
+**Reference**: [[../features/n8n-workflow-automation]] (archived)
+**Replacement**: [[technical/adopt-weaver-workflow-proxy|D-020: Weaver]]
 
 ---
 
@@ -219,7 +322,28 @@ visual:
 
 ---
 
+## 🔄 Obsolete Decisions
+
+### D-007: FastMCP Framework (Python)
+**Status**: 🔄 OBSOLETE
+**Obsoleted By**: D-021 (JavaScript/TypeScript Stack Pivot)
+**Date Obsoleted**: 2025-10-23
+**Reason**: Stack pivot to JavaScript/TypeScript made Python-based FastMCP unnecessary
+**Replacement**: @modelcontextprotocol/sdk (TypeScript MCP SDK)
+**File**: [[technical/fastmcp-framework]] (archived)
+
+---
+
 ## ⏸️ Deferred Decisions (Post-MVP)
+
+### D-013: RabbitMQ Message Queue
+**Status**: Deferred to Post-MVP
+**Rationale**: Weaver provides event-driven capabilities for MVP
+**When to Revisit**: Multi-service architecture (3+ services) or high-throughput streaming (>1000 events/sec)
+**File**: [[../features/rabbitmq-message-queue]]
+**Replacement**: [[technical/adopt-weaver-workflow-proxy|D-020: Weaver]]
+
+---
 
 ### D-101: Custom Web UI
 **Status**: Deferred to v1.1+
@@ -278,17 +402,31 @@ visual:
 
 ### Phase 5 (Week 1: Backend)
 - D-006: REST API integration
-- D-007: FastMCP framework
+- ~~D-007: FastMCP framework~~ → OBSOLETE (replaced by D-021)
 - D-010: SQLite database
 - D-011: Claude-Flow agents
-- D-013: RabbitMQ event bus
+- ~~D-013: RabbitMQ event bus~~ → DEFERRED (Weaver handles events)
 - D-015: Git integration
+- D-017: REST API client architecture
+- D-018: Agent rule engine
+- D-019: Properties & visualization
+- D-020: Weaver workflow proxy (replaces D-013 + D-014)
+- D-021: JavaScript/TypeScript stack pivot
+- D-022: SQLite library (better-sqlite3)
+- D-023: Git library (simple-git)
+- D-025: Web framework (Hono)
 
 ### Phase 6 (Week 2: Automation)
 - D-008: Task management
 - D-009: Visualization
-- D-014: N8N workflows
+- ~~D-014: N8N workflows~~ → REPLACED by D-020 (Weaver)
 - D-016: Properties strategy
+
+### Phase 8 (Git Integration)
+- D-023: Git library (simple-git)
+
+### Phase 9 (Testing Infrastructure)
+- D-024: Testing framework (Vitest)
 
 ### Cross-Phase
 - D-001: Obsidian-first approach
@@ -305,27 +443,49 @@ visual:
 | Decision | Blocks | Enables | Priority |
 |----------|--------|---------|----------|
 | D-001 (Obsidian-first) | All | All | 🔴 Critical |
-| D-006 (REST API) | D-007, D-015 | MCP tools | 🔴 Critical |
-| D-013 (RabbitMQ) | D-014 | N8N, async | 🔴 Critical |
-| D-007 (FastMCP) | - | MCP server | 🟡 High |
-| D-014 (N8N) | - | Workflows | 🔴 Critical |
+| D-006 (REST API) | D-017, D-015 | MCP tools | 🔴 Critical |
+| D-021 (JS/TS Stack) | D-020, D-022, D-023 | Unified codebase | 🔴 Critical |
+| D-020 (Weaver) | - | Workflows, events | 🔴 Critical |
+| ~~D-007 (FastMCP)~~ | - | ~~MCP server~~ | 🔄 OBSOLETE |
+| ~~D-013 (RabbitMQ)~~ | ~~D-014~~ | ~~N8N, async~~ | ⏸️ DEFERRED |
+| ~~D-014 (N8N)~~ | - | ~~Workflows~~ | ⏸️ REPLACED by D-020 |
+| D-022 (better-sqlite3) | - | Shadow cache | 🟡 High |
+| D-023 (simple-git) | - | Git automation | 🟡 High |
+| D-024 (Vitest) | - | Testing infra | 🟡 High |
+| D-025 (Hono) | - | Webhook endpoints | 🟡 High |
 
 ---
 
 ## ✅ Completion Checklist
 
-- [x] All 16 MVP decisions documented
+- [x] All 25 MVP decisions documented (D-001 through D-025)
 - [x] Each decision has status, date, rationale
 - [x] References to detailed docs provided
-- [x] Deferred decisions clearly marked
+- [x] Deferred decisions clearly marked (4 total: D-013, D-101, D-102, D-103)
+- [x] Obsolete decisions marked (1 total: D-007)
 - [x] Decision impact on phases mapped
 - [x] Archived decision reviews linked
+- [x] D-013 (RabbitMQ) deferred - Weaver provides MVP event handling
+- [x] D-007 (FastMCP) obsoleted by D-021 (JS/TS stack pivot)
+- [x] New technology decisions documented (D-022 through D-025)
 
 ---
 
-**Status**: All MVP decisions finalized ✅
-**Next Action**: Begin Phase 5 Day 0 (prerequisites)
-**Last Updated**: 2025-10-21
+## 📈 Decision Statistics
+
+- **Total Decisions Made**: 25 (D-001 through D-025)
+- **Active Decisions**: 20 (Executive: 5, Technical: 12, Infrastructure: 3)
+- **Obsolete Decisions**: 2 (D-007: FastMCP, D-014: N8N)
+- **Deferred Decisions**: 4 (D-013, D-101, D-102, D-103)
+- **Replaced Decisions**: 1 (D-014: N8N by D-020: Weaver)
+- **Critical Impact**: 5 decisions (D-001, D-006, D-020, D-021, D-002)
+- **High Impact**: 8 decisions (D-017 through D-019, D-022 through D-025)
+
+---
+
+**Status**: 20 active MVP decisions finalized ✅, 2 obsolete (D-007, D-014), 4 deferred (D-013, D-101, D-102, D-103)
+**Next Action**: Begin Phase 5 implementation with JavaScript/TypeScript stack
+**Last Updated**: 2025-10-23
 
 ---
 

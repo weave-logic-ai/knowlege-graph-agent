@@ -173,6 +173,36 @@ tags:
 
 ---
 
+### 9. Daily Log Template
+**File**: [[daily-log-template]]
+**Use for**: Daily notes, cognitive pattern tracking, activity journaling
+
+**Key sections**:
+- Cognitive state (thinking pattern, phase)
+- Daily summary (accomplishments, learnings, decisions)
+- Notes activity (created, modified, connections)
+- Task management
+- Focus areas
+- Insights & ideas
+- Cross-references
+- Personal metrics (energy, focus, mood)
+- Challenges & blockers
+- Knowledge graph activity
+- Tomorrow's preview
+- References & resources
+
+**Key features**:
+- **Cognitive variability tracking**: Track convergent, divergent, balanced, exploration, or consolidation thinking patterns
+- **Cognitive phase tracking**: Monitor feeding, parking, exploration, or assembly phases
+- **Templater plugin support**: Optional quick-pick dropdowns for thinking patterns
+- **Detailed guidance**: Inline comments explain each cognitive mode with examples
+- **Meta-learning focus**: Designed to help you understand how you work best
+
+**Target length**: Variable (complete what's relevant)
+**Wikilinks**: 10-20+
+
+---
+
 ## 🎯 How to Use Templates
 
 ### Step-by-Step Process
@@ -202,6 +232,8 @@ tags:
 | Workflow | W-XXX | 300-600 | Moderate | Processes |
 | Question | Q-XXX | 300-500 | Moderate | Open questions |
 | Planning | PHASE-X | 400-800 | Complex | Project phases |
+| Daily Log | YYYY-MM-DD | Variable | Simple | Daily notes & cognitive tracking |
+| Task Log | [task-id] | Variable | Moderate | Task completion records |
 
 ---
 
@@ -241,10 +273,14 @@ Before using a template, ensure it has:
 ## 🎨 Template Evolution
 
 ### Version History
+- **2025-10-23**: Added Daily Log Template with cognitive variability tracking (Phase 6)
+- **2025-10-22**: Added Task Log Template for detailed task completion records
 - **2025-10-20**: Initial 8 templates created (Phase 2)
 
 ### Future Enhancements
 - [ ] Add more examples to each template
+- [ ] Create weekly review template (aggregates daily logs)
+- [ ] Create monthly review template (cognitive pattern trends)
 - [ ] Create canvas template
 - [ ] Create API documentation template
 - [ ] Create architecture diagram template

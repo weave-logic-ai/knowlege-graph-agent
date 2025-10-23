@@ -7,7 +7,7 @@ priority: "critical"
 category: "architecture"
 
 created_date: "2025-10-22"
-last_updated: "2025-10-22"
+last_updated: "2025-10-23"
 decided_date: "2025-10-22"
 implemented_date: "2025-10-22"
 
@@ -276,6 +276,59 @@ Research included analysis of event-driven architecture patterns, RabbitMQ bench
 - We accept **RabbitMQ operational overhead** (Docker deployment, monitoring) in exchange for **< 100ms latency** and **guaranteed event delivery**
 - We accept **async debugging complexity** because **event-driven scalability** is critical for future growth (webhooks, distributed processing)
 - We accept **5ms network overhead per message** because it's negligible compared to **500ms+ polling delay**
+
+---
+
+## MVP Implementation Note
+
+**Date Updated**: 2025-10-23
+
+The event-driven architecture decision remains valid, but the **MVP implementation uses Weaver webhooks** instead of RabbitMQ for event coordination.
+
+### Why This Change?
+
+1. **RabbitMQ Deferred to Post-MVP** (per [[adopt-weaver-workflow-proxy|D-020]]):
+   - Weaver provides built-in async event handling through durable workflows
+   - Webhook triggers replace pub/sub messaging for MVP
+   - Automatic retries eliminate need for dead-letter queues
+   - Simpler architecture (no Docker container to manage)
+
+2. **Weaver Provides Sufficient Event-Driven Capabilities**:
+   - **Near-instant response**: Webhook delivery <10ms
+   - **Guaranteed delivery**: Durable workflows with automatic retries
+   - **Loose coupling**: Components communicate via HTTP webhooks
+   - **Horizontal scalability**: Can add worker processes if needed
+   - **Event persistence**: Full audit trail of all events
+
+3. **Migration Path Defined**:
+   - When scaling needs arise (>1000 events/sec, multi-service architecture)
+   - Weaver can publish to RabbitMQ instead of direct handler invocation
+   - Existing workflows remain unchanged (abstraction layer)
+   - Add RabbitMQ without disrupting current implementation
+
+### MVP Architecture Pattern
+
+```
+File Watcher ────┐
+Webhooks ────────┼──> Weaver (HTTP) ──> Workflow Handlers ──> Services
+CLI/Manual ──────┘                      (Durable)              (MCP, API, Git)
+```
+
+**vs Future RabbitMQ Pattern**:
+
+```
+File Watcher ────┐
+Webhooks ────────┼──> RabbitMQ ──> Weaver Workers ──> Services
+CLI/Manual ──────┘    (Queue)     (Durable)           (MCP, API, Git)
+```
+
+### References
+
+- **[[adopt-weaver-workflow-proxy|D-020]]**: Weaver adoption decision and webhook architecture
+- **[[javascript-typescript-stack-pivot|D-021]]**: TypeScript stack selection
+- **[[../features/rabbitmq-message-queue]]**: RabbitMQ deferred to post-MVP with migration plan
+
+**Key Takeaway**: The event-driven architecture principles (loose coupling, async processing, reliability) are preserved through Weaver's durable workflows. RabbitMQ adds value at scale but isn't required for MVP functionality.
 
 ---
 

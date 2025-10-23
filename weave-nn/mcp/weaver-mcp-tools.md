@@ -67,10 +67,15 @@ Weaver exposes a comprehensive set of MCP (Model Context Protocol) tools that en
 - `remove_tags` - Remove tags from node
 
 ### 5. AI-Enhanced Operations
-- `extract_memories` - Extract structured memories using Claude API
+- `extract_memories` - Extract structured memories using AI (via Vercel AI Gateway)
 - `suggest_tags` - AI-powered tag suggestions
 - `find_semantic_neighbors` - Find semantically similar nodes
 - `generate_summary` - Generate node summary
+
+**AI Model Configuration**:
+- **Default**: All AI operations use Vercel AI Gateway (unified model access, rate limiting, caching)
+- **Exception**: Local claude-flow agent development tasks use Anthropic API directly
+- **Models Available**: Claude 3.5 Sonnet, Claude 3 Opus, GPT-4, GPT-4 Turbo (via Vercel AI Gateway)
 
 ### 6. Graph Analytics
 - `get_graph_stats` - Overall graph statistics

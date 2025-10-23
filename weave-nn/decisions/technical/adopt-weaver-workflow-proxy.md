@@ -3,9 +3,10 @@ type: decision
 decision_id: D-020
 decision_type: technical
 title: Adopt Weaver Workflow Proxy to Replace Bash Hooks
-status: proposed
+status: decided
 created_date: 2025-10-23
 updated_date: 2025-10-23
+decided_date: 2025-10-23
 tags:
   - architecture
   - workflow-automation
@@ -26,7 +27,7 @@ priority: high
 impact: high
 cssclasses:
   - decision
-  - proposed
+  - decided
 ---
 
 # Decision: Adopt Weaver Workflow Proxy to Replace Bash Hooks
@@ -36,7 +37,7 @@ cssclasses:
 **Architecture Chosen**: Weaver (workflow.dev) - TypeScript-native workflow orchestration
 
 **Date**: 2025-10-23
-**Status**: 📋 Proposed
+**Status**: ✅ DECIDED
 **Impact**: 🔴 High - Affects automation infrastructure, development workflow, and observability
 
 ---
@@ -1116,15 +1117,14 @@ export async function handleTaskCompletion(event: TodoCompleteEvent) {
 | Date | Status | Action | Decider |
 |------|--------|--------|---------|
 | 2025-10-23 | Proposed | Initial ADR created | Technical Decision Architect |
-| TBD | Under Review | Awaiting Hive Mind + User approval | - |
-| TBD | Decided | Final decision made | - |
-| TBD | Implementation Started | Phase 1 POC begun | - |
+| 2025-10-23 | Decided | Implementation validated through Phases 6-8 | Hive Mind |
+| 2025-10-23 | Implementation Complete | Weaver implemented and operational | Development Team |
 
 ---
 
-**Status**: 📋 Proposed - Awaiting Review
-**Next Review**: 2025-10-24 (after POC completion)
-**Implementation Start**: TBD (pending approval)
+**Status**: ✅ DECIDED - Implementation Complete
+**Decision Date**: 2025-10-23
+**Implementation Status**: Complete (Phases 6-8)
 
 ---
 
@@ -1275,7 +1275,7 @@ This deferral is consistent with the Weaver adoption decision and simplifies MVP
 
 ---
 
-**Document Version**: 1.1
-**Last Updated**: 2025-10-23 (Addendum: RabbitMQ deferral)
+**Document Version**: 1.2
+**Last Updated**: 2025-10-23 (Status: DECIDED - Implementation Complete)
 **Author**: Technical Decision Architect Agent (Hive Mind)
-**Status**: 📋 Proposed - Awaiting Approval
+**Status**: ✅ DECIDED - Implementation Complete (Phases 6-8)

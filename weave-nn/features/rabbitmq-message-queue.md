@@ -3,13 +3,14 @@
 feature_id: "F-015"
 feature_name: "RabbitMQ Message Queue"
 category: "infrastructure"
-status: "deferred"
+status: "deferred-to-post-mvp"
 priority: "low"
 release: "post-mvp"
 complexity: "moderate"
 created_date: "2025-10-21"
 updated_date: "2025-10-23"
-deferred_reason: "Weaver (workflow.dev) provides built-in durable workflows, webhooks, and async execution - RabbitMQ unnecessary for MVP"
+deferred_reason: "Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP. RabbitMQ will be added post-MVP when multi-service architecture or high-throughput streaming (>1000 events/sec) is needed."
+decision_reference: "D-013"
 
 # Scope
 scope:
@@ -55,11 +56,27 @@ tags:
 
 # RabbitMQ Message Queue
 
-> **⚠️ DEFERRED TO POST-MVP**: Weaver (workflow.dev) provides built-in durable workflows, webhooks, and async execution. RabbitMQ adds unnecessary complexity for MVP. See [[weaver-workflow-automation]] for current event handling.
+> # 🚨 DEFERRED TO POST-MVP
+>
+> **Decision D-013 Status**: DEFERRED
+>
+> **Rationale**: Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP. RabbitMQ will be added post-MVP when multi-service architecture or high-throughput streaming (>1000 events/sec) is needed.
+>
+> **Current MVP Approach**: File Watcher → Weaver (HTTP webhooks) → Services
+>
+> **When to Revisit**:
+> - Multi-service architecture (3+ independent services)
+> - High-throughput streaming (>1000 events/sec)
+> - Complex routing (multiple consumers per event)
+> - Advanced message patterns (dead-letter queues, priority queues)
+>
+> See [[adopt-weaver-workflow-proxy|D-020: Weaver]] for current event handling approach.
+
+---
 
 **Purpose**: ~~Implement RabbitMQ message queue as the async event bus~~ (DEFERRED - Weaver handles this)
 
-**Decision**: [[../archive/DECISIONS#IR-3-Other-Integrations|IR-3: Other Integrations]] - ~~Message queue for async foundation~~ **Superseded by Weaver adoption**
+**Decision**: D-013 (Event-Driven Architecture) - ~~Message queue for async foundation~~ **Superseded by Weaver adoption (D-020)**
 
 **Architecture**: ~~RabbitMQ (AMQP) + Python pika library~~ → **Weaver webhooks + durable workflows (simpler)**
 

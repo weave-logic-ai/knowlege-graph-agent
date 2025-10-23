@@ -69,9 +69,12 @@ Weaver uses **durable workflows** to automate knowledge graph maintenance. This 
 │   Integration Layer                     │
 │   - Shadow Cache (SQLite)               │
 │   - ObsidianAPIClient (Local REST API)  │
-│   - Claude API (AI operations)          │
+│   - AI Gateway (Vercel AI Gateway)*     │
 │   - Git operations (simple-git)         │
 └─────────────────────────────────────────┘
+
+* Default: Vercel AI Gateway for all AI operations
+  Exception: Direct Anthropic API for local claude-flow development
 ```
 
 ---
@@ -187,7 +190,7 @@ export const vaultFileCreatedWorkflow = workflow(
     // Step 7: Generate embedding (optional, for semantic search)
     if (ctx.config.enableEmbeddings) {
       await ctx.step('generate-embedding', async () => {
-        // Use Claude API or local model to generate embedding
+        // Use Vercel AI Gateway for embedding generation
         const embedding = await generateEmbedding(body);
         await shadowCache.updateEmbedding(input.filePath, embedding);
       });
@@ -637,7 +640,7 @@ export const validateNodeSchemaWorkflow = workflow(
 ## Core Workflow 6: extract-and-store-memories
 
 **Trigger**: Can be scheduled or manually triggered
-**Purpose**: Use Claude API to extract structured memories from content
+**Purpose**: Use AI (via Vercel AI Gateway) to extract structured memories from content
 
 ```typescript
 export const extractAndStoreMemoriesWorkflow = workflow(
@@ -656,7 +659,7 @@ export const extractAndStoreMemoriesWorkflow = workflow(
       return parseFrontmatter(content);
     });
 
-    // Step 3: Extract memories using Claude API
+    // Step 3: Extract memories using AI (via Vercel AI Gateway)
     const memories = await ctx.step('extract-memories', async () => {
       const prompt = `Extract key memories from this content. Categorize by:
 1. Episodic (what happened)

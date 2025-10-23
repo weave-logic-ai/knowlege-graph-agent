@@ -116,6 +116,9 @@ mvp_required: true/false
 future_only: true/false
 maturity: [experimental|stable|mature|legacy]
 
+# COGNITIVE GROUP - Thinking patterns
+thinking-pattern: [convergent|divergent|lateral|systems|critical|adaptive]
+
 # RELATIONSHIPS GROUP - Graph connections
 used_in_services:
   - service-name-1
@@ -141,6 +144,75 @@ cssclasses:
 - **Date**: `created: 2025-10-23` - ISO 8601 format
 - **Array**: `tags: [tag1, tag2]` - list of values (inline or multiline)
 - **Object**: `nested: {key: value}` - nested properties
+
+**Thinking Pattern Field** (`thinking-pattern`):
+
+The `thinking-pattern` field tracks the cognitive approach used when creating or working with a node. This enables AI agents to adapt their reasoning style to match the node's purpose and helps identify cognitive diversity in the knowledge graph.
+
+**Allowed Values**:
+- **convergent**: Focused, analytical thinking toward a single solution
+  - Use for: Technical specifications, bug fixes, optimization tasks, implementation details
+  - Characteristics: Logical reasoning, narrowing options, definitive answers
+  - Example: "Implement authentication using JWT tokens with 256-bit encryption"
+
+- **divergent**: Creative, exploratory thinking generating multiple possibilities
+  - Use for: Brainstorming, research, alternative solutions, conceptual exploration
+  - Characteristics: Idea generation, open-ended questions, expanding possibilities
+  - Example: "Explore different approaches to visualize knowledge graph relationships"
+
+- **lateral**: Cross-domain connections and unconventional problem-solving
+  - Use for: Innovation, analogies, reframing problems, interdisciplinary insights
+  - Characteristics: Drawing parallels, metaphorical thinking, unexpected connections
+  - Example: "Apply neural network pruning techniques to knowledge graph optimization"
+
+- **systems**: Holistic, interconnected thinking about relationships and patterns
+  - Use for: Architecture design, integration planning, impact analysis, emergent behavior
+  - Characteristics: Feedback loops, interdependencies, whole-system perspective
+  - Example: "Design event-driven architecture considering all component interactions"
+
+- **critical**: Evaluative, questioning thinking that challenges assumptions
+  - Use for: Code review, decision analysis, risk assessment, trade-off evaluation
+  - Characteristics: Skeptical inquiry, evidence evaluation, identifying weaknesses
+  - Example: "Evaluate security implications of exposing MCP server to network"
+
+- **adaptive**: Context-switching, flexible thinking that adjusts to changing conditions
+  - Use for: Refactoring, iterative development, learning from feedback, pivoting
+  - Characteristics: Responsiveness, pattern recognition, learning from experience
+  - Example: "Refactor rule engine based on performance profiling results"
+
+**Usage Guidelines**:
+- **Single Pattern**: Most nodes should have one primary thinking pattern
+- **Optional Field**: Not all nodes require this field (especially older/legacy nodes)
+- **Agent Integration**: AI agents can query `thinking-pattern` to select appropriate reasoning strategies
+- **Cognitive Diversity**: Track distribution of patterns to ensure balanced knowledge graph
+- **Evolution**: Patterns may change as nodes evolve (e.g., divergent → convergent as ideas solidify)
+
+**Examples**:
+```yaml
+---
+type: feature
+thinking-pattern: divergent
+# Brainstorming visualization approaches
+---
+
+---
+type: technical-primitive
+thinking-pattern: convergent
+# Implementing specific API endpoint
+---
+
+---
+type: architecture
+thinking-pattern: systems
+# Designing microservices integration
+---
+
+---
+type: decision
+thinking-pattern: critical
+# Evaluating database technology choices
+---
+```
 
 **Parsing in Python (MCP Server)**:
 ```python
@@ -283,7 +355,68 @@ CREATE TABLE node_metadata (
   updated_at TIMESTAMP
 );
 CREATE INDEX idx_type ON node_metadata ((frontmatter->>'type'));
+CREATE INDEX idx_thinking_pattern ON node_metadata ((frontmatter->>'thinking-pattern'));
 ```
+
+### Phase 8+ (Hive Mind) - Cognitive Pattern Integration
+**Status**: AI agents use `thinking-pattern` to select reasoning strategies
+**Enhancement**: Hive Mind analyzes cognitive diversity across knowledge graph
+**Agent Integration**:
+```python
+# Agent selects reasoning strategy based on node's thinking pattern
+def select_agent_strategy(node_metadata: dict) -> str:
+    """Match agent reasoning to node's cognitive pattern."""
+    pattern = node_metadata.get('thinking-pattern', 'adaptive')
+
+    strategy_map = {
+        'convergent': 'analytical_agent',      # Focused problem-solving
+        'divergent': 'creative_agent',          # Idea generation
+        'lateral': 'innovation_agent',          # Cross-domain thinking
+        'systems': 'architect_agent',           # Holistic design
+        'critical': 'reviewer_agent',           # Evaluation and critique
+        'adaptive': 'generalist_agent'          # Flexible approach
+    }
+
+    return strategy_map.get(pattern, 'generalist_agent')
+
+# Query nodes by cognitive pattern
+def find_similar_thinking(pattern: str) -> list:
+    """Find nodes using same cognitive approach."""
+    query = """
+        SELECT file_path, frontmatter->>'type' as type
+        FROM node_metadata
+        WHERE frontmatter->>'thinking-pattern' = %s
+        ORDER BY updated_at DESC
+    """
+    return db.execute(query, [pattern])
+
+# Analyze cognitive diversity
+def analyze_cognitive_balance() -> dict:
+    """Check distribution of thinking patterns."""
+    query = """
+        SELECT
+            frontmatter->>'thinking-pattern' as pattern,
+            COUNT(*) as count
+        FROM node_metadata
+        WHERE frontmatter->>'thinking-pattern' IS NOT NULL
+        GROUP BY pattern
+        ORDER BY count DESC
+    """
+    results = db.execute(query)
+
+    return {
+        'distribution': results,
+        'dominant_pattern': results[0]['pattern'],
+        'diversity_score': len(results) / 6.0  # 6 possible patterns
+    }
+```
+
+**Hive Mind Use Cases**:
+- **Agent Assignment**: Route tasks to agents with matching cognitive patterns
+- **Cognitive Gaps**: Identify underrepresented thinking patterns in knowledge graph
+- **Pattern Evolution**: Track how node patterns change over time (divergent → convergent)
+- **Team Formation**: Assemble diverse agent teams with complementary thinking styles
+- **Knowledge Mining**: Find lateral connections between nodes with different patterns
 
 ---
 
@@ -377,6 +510,49 @@ python scripts/validate_schema.py /vault
      - "[[node1]]"
      - "[[node2]]"
    ```
+
+5. **Issue**: Invalid thinking-pattern value
+   **Solution**: Use only the 6 allowed values (convergent, divergent, lateral, systems, critical, adaptive)
+   ```yaml
+   # ❌ WRONG (invalid values)
+   thinking-pattern: analytical    # Not a valid option
+   thinking-pattern: exploratory   # Not a valid option
+   thinking-pattern: creative      # Not a valid option
+
+   # ✅ CORRECT
+   thinking-pattern: convergent    # Focused, analytical
+   thinking-pattern: divergent     # Creative, exploratory
+   thinking-pattern: lateral       # Cross-domain connections
+   ```
+
+6. **Issue**: Multiple thinking patterns assigned to single node
+   **Solution**: Choose the PRIMARY pattern; nodes should have one dominant cognitive approach
+   ```yaml
+   # ❌ WRONG (multiple patterns)
+   thinking-pattern:
+     - convergent
+     - systems
+
+   # ✅ CORRECT (single pattern)
+   thinking-pattern: systems       # Primary approach for this node
+   # If node evolves, update pattern or add comment
+   thinking-pattern: convergent    # Evolved from divergent after prototyping
+   ```
+
+**Validation Scripts**:
+```bash
+# Validate thinking-pattern values across vault
+python scripts/validate_thinking_patterns.py /vault
+# Expected: ✓ All thinking-pattern values are valid
+
+# Find nodes missing thinking-pattern (for new feature tracking)
+grep -L "thinking-pattern:" /vault/**/*.md | grep -E "(features|concepts)/"
+# These may benefit from cognitive pattern tagging
+
+# Analyze cognitive diversity
+python scripts/analyze_cognitive_balance.py /vault
+# Expected: Balanced distribution across 6 patterns
+```
 
 ---
 
