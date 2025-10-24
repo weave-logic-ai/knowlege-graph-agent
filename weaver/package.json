@@ -12,7 +12,8 @@
     "test:watch": "vitest --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "generate-spec": "tsx scripts/generate-phase-spec.ts"
   },
   "keywords": [
     "weave-nn",
