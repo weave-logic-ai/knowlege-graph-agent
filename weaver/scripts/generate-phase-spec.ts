@@ -5,10 +5,8 @@
  *   bun run generate-spec <phase-id>
  *   bun run generate-spec phase-5-mcp-integration
  *
- * This script:
- * 1. Generates initial specs from phase document
- * 2. Provides instructions for AI refinement via Claude Code
- * 3. Shows next steps for syncing back to phase doc
+ * This script generates initial spec files.
+ * Run /speckit.* commands in Claude Code for AI refinement.
  */
 
 import { join } from 'path';
@@ -102,17 +100,15 @@ async function main() {
     console.log('');
     console.log('✅ Spec-kit files generated successfully!');
     console.log('');
-    console.log('Next steps:');
+    console.log('Next steps (run in Claude Code):');
     console.log(`  1. cd ${SPECS_DIR}/${phaseId.toLowerCase()}`);
-    console.log('  2. Open constitution.md in Claude Code');
-    console.log('  3. Run: /speckit.constitution');
-    console.log('  4. Run: /speckit.specify');
-    console.log('  5. Run: /speckit.plan');
-    console.log('  6. Run: /speckit.tasks');
+    console.log('  2. Run: /speckit.constitution');
+    console.log('  3. Run: /speckit.specify');
+    console.log('  4. Run: /speckit.plan');
+    console.log('  5. Run: /speckit.tasks');
     console.log('');
-    console.log('Documentation:');
-    console.log('  - README.md in the spec directory');
-    console.log('  - /weaver/docs/SPEC-KIT-INTEGRATION.md');
+    console.log('After refinement, sync tasks:');
+    console.log(`  bun run sync-tasks-ai ${phaseId.toLowerCase().replace('phase-', '')}`);
     console.log('');
   } catch (error) {
     console.error('❌ Failed to generate spec-kit files:', error);

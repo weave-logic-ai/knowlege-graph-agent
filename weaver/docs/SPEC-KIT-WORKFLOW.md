@@ -4,22 +4,25 @@ AI-powered specification generation using GitHub's Spec-Kit methodology with Cla
 
 ## Quick Start
 
+**Step 1:** Generate initial specs
 ```bash
 cd /home/aepod/dev/weave-nn/weaver
 bun run generate-spec phase-6-vault-initialization
 ```
 
-This **single command** will:
-1. Generate initial specs from phase document
-2. Run `/speckit.constitution` to refine principles
-3. Run `/speckit.specify` to elaborate requirements
-4. Run `/speckit.plan` to create implementation plan
-5. Run `/speckit.tasks` to generate task breakdown
-
-All steps are **fully automated** - the workflow calls Claude Code commands directly.
-
-**After completion:** Review specs and sync back to phase document:
+**Step 2:** Refine with Claude Code commands
 ```bash
+cd ../_planning/specs/phase-6-vault-initialization
+# Then run in Claude Code:
+/speckit.constitution
+/speckit.specify
+/speckit.plan
+/speckit.tasks
+```
+
+**Step 3:** Sync tasks back to phase document
+```bash
+cd /home/aepod/dev/weave-nn/weaver
 bun run sync-tasks-ai phase-6
 ```
 
@@ -138,22 +141,21 @@ bun run sync-tasks phase-6
 
 ## Benefits
 
-### Fully Automated
-- **One command** runs entire spec-kit pipeline
-- Calls Claude Code commands directly via workflow
-- No manual intervention required
-- Complete automation from phase → specs
-
 ### AI-Powered Quality
 - Claude Code refines all specifications
 - Validates principles and constraints
 - Ensures measurable criteria
 - Creates actionable task breakdown
 
-### Seamless Integration
+### Simple 3-Step Workflow
+- Generate initial specs (automated)
+- Refine with /speckit.* commands (interactive)
+- Sync tasks back to phase (AI-powered)
+
+### Intelligent Parsing
 - Works with any phase document structure
-- Context-aware AI parsing
-- Intelligent task extraction
+- Context-aware AI task extraction
+- Preserves Success Criteria sections
 - No brittle regex patterns
 
 ### Vault Native
