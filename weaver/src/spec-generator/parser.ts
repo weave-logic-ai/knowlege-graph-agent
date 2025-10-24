@@ -120,6 +120,7 @@ function extractDeliverables(content: string): string[] {
 
 /**
  * Extract tasks from various formats
+ * Converts Day/Week hierarchies to flat task/subtask numbering
  */
 function extractTasks(content: string): PhaseTask[] {
   const tasks: PhaseTask[] = [];
@@ -129,68 +130,75 @@ function extractTasks(content: string): PhaseTask[] {
 
   if (tasksMatch && tasksMatch[1]) {
     const section = tasksMatch[1];
+    let taskCounter = 1;
 
-    // Extract Day/Phase subsections (e.g., "### Day 1: Project Setup")
-    const dayMatches = section.match(/###\s+Day\s+\d+:.*?\n([\s\S]*?)(?=###\s+Day|\n###\s*$|$)/gi);
+    // Extract Week/Day subsections (### Week 1, ### Day 1, etc.)
+    const periodMatches = section.match(/###\s+(?:Week|Day)\s+\d+.*?\n([\s\S]*?)(?=###\s+(?:Week|Day)|\n###\s*$|$)/gi);
 
-    if (dayMatches && dayMatches.length > 0) {
-      // Process day-based structure
-      dayMatches.forEach((daySection, dayIndex) => {
-        const dayTitleMatch = daySection.match(/###\s+(Day\s+\d+:.*?)[\n\r]/);
-        const dayTitle = dayTitleMatch ? dayTitleMatch[1] : `Day ${dayIndex + 1}`;
+    if (periodMatches && periodMatches.length > 0) {
+      // Process week/day-based structure - extract as flat tasks
+      periodMatches.forEach((periodSection) => {
+        const periodTitleMatch = periodSection.match(/###\s+((?:Week|Day)\s+\d+:.*?)[\n\r]/);
+        const periodTitle = periodTitleMatch ? periodTitleMatch[1].trim() : '';
 
-        // Extract subsections within the day (Morning/Afternoon or direct tasks)
-        const subSections = daySection.match(/####\s+(.*?)[\n\r]([\s\S]*?)(?=####|$)/g);
+        // Extract subsections (#### Morning, #### Day 1-2, etc.)
+        const subSections = periodSection.match(/####\s+(.*?)[\n\r]([\s\S]*?)(?=####|$)/g);
 
         if (subSections) {
           subSections.forEach((subSection) => {
             const subTitleMatch = subSection.match(/####\s+(.*?)[\n\r]/);
-            const subTitle = subTitleMatch ? subTitleMatch[1] : '';
+            const subTitle = subTitleMatch ? subTitleMatch[1].trim() : '';
 
-            // Extract task description from first paragraph or bullet point
-            const taskDescMatch = subSection.match(/####.*?[\n\r]+(.*?)(?:\n\n|\n```|$)/s);
-            const taskDesc = (taskDescMatch && taskDescMatch[1]) ? taskDescMatch[1].trim() : subTitle;
+            // Extract checkbox tasks from this subsection
+            const checkboxMatches = subSection.match(/^- \[([ x])\] (.+)$/gm);
 
-            if (taskDesc && taskDesc.length > 5) {
-              const firstLine = taskDesc.split('\n')[0];
-              if (firstLine) {
+            if (checkboxMatches && checkboxMatches.length > 0) {
+              // Use subsection as main task, checkboxes as subtasks
+              const mainTask: PhaseTask = {
+                id: `task-${taskCounter}`,
+                description: subTitle || periodTitle,
+                status: 'pending',
+                subtasks: [],
+              };
+
+              checkboxMatches.forEach((checkbox) => {
+                const match = checkbox.match(/^- \[([ x])\] (.+)$/);
+                if (match && match[2]) {
+                  mainTask.subtasks?.push(match[2].trim());
+                }
+              });
+
+              if (mainTask.subtasks && mainTask.subtasks.length > 0) {
+                tasks.push(mainTask);
+                taskCounter++;
+              }
+            } else {
+              // No checkboxes, use subsection as standalone task
+              if (subTitle && subTitle.length > 5) {
                 tasks.push({
-                  id: `task-day${dayIndex + 1}-${tasks.length}`,
-                  description: `${dayTitle} - ${subTitle}: ${firstLine.substring(0, 100)}`,
+                  id: `task-${taskCounter}`,
+                  description: subTitle,
                   status: 'pending',
                   subtasks: [],
                 });
+                taskCounter++;
               }
             }
           });
-        } else {
-          // No subsections, extract from day section directly
-          const descMatch = daySection.match(/###.*?[\n\r]+([\s\S]*?)(?:\n###|$)/);
-          if (descMatch && descMatch[1]) {
-            const firstLine = descMatch[1].trim().split('\n')[0];
-            if (firstLine && firstLine.length > 5) {
-              tasks.push({
-                id: `task-day${dayIndex + 1}`,
-                description: `${dayTitle}: ${firstLine.substring(0, 100)}`,
-                status: 'pending',
-                subtasks: [],
-              });
-            }
-          }
         }
       });
     }
 
-    // Also look for standard checkbox tasks
+    // Also extract any standalone checkbox tasks (not under Week/Day sections)
     const lines = section.split('\n');
     let currentTask: PhaseTask | null = null;
 
-    lines.forEach((line, index) => {
+    lines.forEach((line) => {
       const trimmed = line.trim();
 
-      // Main task
+      // Main task (no indentation)
       if (trimmed.startsWith('- [ ]') || trimmed.startsWith('- [x]')) {
-        if (currentTask) {
+        if (currentTask && !tasks.find(t => t.description === currentTask?.description)) {
           tasks.push(currentTask);
         }
 
@@ -199,15 +207,16 @@ function extractTasks(content: string): PhaseTask[] {
 
         if (description && description.length > 5) {
           currentTask = {
-            id: `task-checkbox-${index}`,
+            id: `task-${taskCounter}`,
             description,
             status: isCompleted ? 'completed' : 'pending',
             subtasks: [],
           };
+          taskCounter++;
         }
       }
-      // Subtask
-      else if (currentTask && trimmed.startsWith('  - [ ]')) {
+      // Subtask (indented)
+      else if (currentTask && (trimmed.startsWith('  - [ ]') || trimmed.startsWith('  - [x]'))) {
         const subtask = trimmed.replace(/^\s*-\s*\[[x\s]\]\s*/, '').trim();
         if (subtask) {
           currentTask.subtasks?.push(subtask);
@@ -215,7 +224,7 @@ function extractTasks(content: string): PhaseTask[] {
       }
     });
 
-    if (currentTask) {
+    if (currentTask && !tasks.find(t => t.description === currentTask?.description)) {
       tasks.push(currentTask);
     }
   }

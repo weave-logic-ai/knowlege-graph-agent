@@ -116,10 +116,10 @@ bun add fast-glob
 ```
 
 **Success Criteria**:
-- [x] Detects 6+ framework types with 95%+ accuracy
-- [x] Scans directory tree with configurable depth
-- [x] Extracts components and dependencies
-- [x] Unit tests passing
+- [ ] Detects 6+ framework types with 95%+ accuracy
+- [ ] Scans directory tree with configurable depth
+- [ ] Extracts components and dependencies
+- [ ] Unit tests passing
 
 #### Day 3-4: Template System
 
@@ -185,9 +185,9 @@ graph:
 - [ ] Write template tests
 
 **Success Criteria**:
-- [x] 5 templates defined and validated
-- [x] Template loader working
-- [x] All templates have example outputs
+- [ ] 5 templates defined and validated
+- [ ] Template loader working
+- [ ] All templates have example outputs
 
 #### Day 5: Documentation Extractor
 
@@ -218,10 +218,10 @@ class DocumentationExtractor {
 - [ ] Write integration tests
 
 **Success Criteria**:
-- [x] README parsing working
-- [x] Code comment extraction functional
-- [x] AI concept extraction via Claude-Flow
-- [x] Integration tests passing
+- [ ] README parsing working
+- [ ] Code comment extraction functional
+- [ ] AI concept extraction via Claude-Flow
+- [ ] Integration tests passing
 
 ---
 
@@ -277,10 +277,10 @@ class KnowledgeGraphGenerator {
 - [ ] Write integration tests
 
 **Success Criteria**:
-- [x] Vault structure generation working
-- [x] All node types supported
-- [x] Wikilinks created automatically
-- [x] Frontmatter valid and complete
+- [ ] Vault structure generation working
+- [ ] All node types supported
+- [ ] Wikilinks created automatically
+- [ ] Frontmatter valid and complete
 
 #### Day 8-9: AI Content Generation
 
@@ -319,10 +319,10 @@ class AIContentGenerator {
 - [ ] Write integration tests with Claude-Flow
 
 **Success Criteria**:
-- [x] AI-generated content for all node types
-- [x] Content quality passes human review
-- [x] Caching reduces API costs
-- [x] Offline mode functional
+- [ ] AI-generated content for all node types
+- [ ] Content quality passes human review
+- [ ] Caching reduces API costs
+- [ ] Offline mode functional
 
 #### Day 10: Vault Finalizer
 
@@ -356,10 +356,10 @@ class VaultFinalizer {
 - [ ] Write end-to-end tests
 
 **Success Criteria**:
-- [x] All files written correctly
-- [x] Shadow cache populated (100% of files indexed)
-- [x] Git repo initialized
-- [x] README and concept-map generated
+- [ ] All files written correctly
+- [ ] Shadow cache populated (100% of files indexed)
+- [ ] Git repo initialized
+- [ ] README and concept-map generated
 
 ---
 
@@ -407,10 +407,10 @@ Use these MCP tools:
 - [ ] Write integration tests
 
 **Success Criteria**:
-- [x] Claude-Flow integration working
-- [x] Project context stored in memory
-- [x] Embeddings generated and stored
-- [x] Semantic search functional
+- [ ] Claude-Flow integration working
+- [ ] Project context stored in memory
+- [ ] Embeddings generated and stored
+- [ ] Semantic search functional
 
 #### Day 13-14: CLI Tool
 
@@ -452,11 +452,11 @@ bun add commander inquirer ora chalk cli-progress
 ```
 
 **Success Criteria**:
-- [x] CLI command functional
-- [x] Interactive prompts working
-- [x] Progress reporting clear
-- [x] Error handling robust
-- [x] Documentation complete
+- [ ] CLI command functional
+- [ ] Interactive prompts working
+- [ ] Progress reporting clear
+- [ ] Error handling robust
+- [ ] Documentation complete
 
 #### Day 15: Workflow Integration
 
@@ -487,9 +487,9 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
 - [ ] Write integration tests
 
 **Success Criteria**:
-- [x] Workflow registered and functional
-- [x] MCP tool working
-- [x] Execution tracked
+- [ ] Workflow registered and functional
+- [ ] MCP tool working
+- [ ] Execution tracked
 - [x] Integration tests passing
 
 ---
@@ -526,10 +526,10 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
 - [ ] Performance testing (measure initialization time)
 
 **Success Criteria**:
-- [x] 80%+ test coverage
-- [x] All tests passing
-- [x] E2E tests for all 5 templates
-- [x] Performance benchmarks met
+- [ ] 80%+ test coverage
+- [ ] All tests passing
+- [ ] E2E tests for all 5 templates
+- [ ] Performance benchmarks met
 
 #### Day 18-19: Documentation
 
@@ -562,10 +562,10 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
 - [ ] Add inline code documentation (JSDoc)
 
 **Success Criteria**:
-- [x] Complete user guide
-- [x] Complete developer guide
-- [x] All templates documented
-- [x] API reference complete
+- [ ] Complete user guide
+- [ ] Complete developer guide
+- [ ] All templates documented
+- [ ] API reference complete
 
 #### Day 20: Example Vaults
 
@@ -585,9 +585,9 @@ Generate example vaults for:
 - [ ] Create comparison screenshots
 
 **Success Criteria**:
-- [x] 5 example vaults created
-- [x] All examples validated
-- [x] Screenshots added to docs
+- [ ] 5 example vaults created
+- [ ] All examples validated
+- [ ] Screenshots added to docs
 
 ---
 

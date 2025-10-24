@@ -177,22 +177,23 @@ export function generateSpecification(phase: PhaseData): string {
     sections.push('');
   }
 
-  // Tasks (if available)
+  // Tasks (if available) - numbered format
   if (phase.tasks.length > 0) {
     sections.push('## Initial Task Breakdown');
     sections.push('');
     sections.push('_Note: This is preliminary. Run /speckit.tasks for AI-powered task generation._');
     sections.push('');
 
-    phase.tasks.forEach((task) => {
-      sections.push(`- [ ] ${task.description}`);
+    phase.tasks.forEach((task, index) => {
+      sections.push(`### Task ${index + 1}: ${task.description}`);
+      sections.push('');
       if (task.subtasks && task.subtasks.length > 0) {
-        task.subtasks.forEach((subtask) => {
-          sections.push(`  - [ ] ${subtask}`);
+        task.subtasks.forEach((subtask, subIndex) => {
+          sections.push(`${index + 1}.${subIndex + 1}. ${subtask}`);
         });
+        sections.push('');
       }
     });
-    sections.push('');
   }
 
   // Success Criteria

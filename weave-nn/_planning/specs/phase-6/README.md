@@ -50,7 +50,7 @@ After generating tasks.md, sync back to the vault:
 
 ```bash
 cd /home/aepod/dev/weave-nn/weaver
-bun run sync-tasks phase-6-vault-initialization
+bun run sync-tasks phase-6
 ```
 
 ## Documentation
@@ -61,5 +61,5 @@ bun run sync-tasks phase-6-vault-initialization
 
 ---
 
-**Generated**: 2025-10-24T03:09:37.920Z
+**Generated**: 2025-10-24T02:42:10.615Z
 **Phase**: PHASE-6 - Vault Initialization System
