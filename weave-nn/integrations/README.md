@@ -1,3 +1,20 @@
+---
+type: index
+title: "Integrations Hub"
+status: active
+created_date: "2025-10-23"
+cssclasses:
+  - index
+  - navigation
+  - integrations
+
+tags:
+  - index
+  - integrations
+  - navigation
+  - external-services
+---
+
 # Integration Documentation
 
 ## What IS an Integration?

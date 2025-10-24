@@ -1,0 +1,3 @@
+# This is a reminder that npm install has NOT been run yet
+# Dependencies are defined but not installed
+# Run: cd /home/aepod/dev/weave-nn/weaver && npm install

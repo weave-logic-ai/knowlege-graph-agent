@@ -1,3 +1,20 @@
+---
+type: index
+title: "Standards Hub"
+status: active
+created_date: "2025-10-23"
+cssclasses:
+  - index
+  - navigation
+  - standards
+
+tags:
+  - index
+  - standards
+  - navigation
+  - conventions
+---
+
 # Standards Directory
 
 > **Formal specifications for data formats, APIs, markup, and conventions**

@@ -1,3 +1,21 @@
+---
+type: index
+title: "Weave-NN Knowledge Base"
+status: active
+created_date: "2025-10-20"
+updated_date: "2025-10-23"
+cssclasses:
+  - index
+  - navigation
+  - vault-home
+
+tags:
+  - index
+  - navigation
+  - knowledge-graph
+  - vault-home
+---
+
 # Weave-NN Knowledge Base
 
 **AI-Powered Knowledge Graph for Managing AI-Generated Documentation**

@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Package manager files (we use Bun)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+# Keep bun.lockb (Bun's lockfile)
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Data files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/shadow-cache.db*
+data/workflows.db*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+*.tmp

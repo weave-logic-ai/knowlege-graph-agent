@@ -1,3 +1,20 @@
+---
+type: index
+title: "External Services Hub"
+status: active
+created_date: "2025-10-23"
+cssclasses:
+  - index
+  - navigation
+  - services
+
+tags:
+  - index
+  - services
+  - navigation
+  - external-apis
+---
+
 # Services Directory
 
 **CRITICAL**: This directory documents EXTERNAL third-party APIs and SaaS platforms that our system consumes.

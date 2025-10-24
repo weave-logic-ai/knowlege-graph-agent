@@ -1,3 +1,20 @@
+---
+type: index
+title: "Guides Hub"
+status: active
+created_date: "2025-10-23"
+cssclasses:
+  - index
+  - navigation
+  - guides
+
+tags:
+  - index
+  - guides
+  - navigation
+  - howto
+---
+
 # Guides Directory
 
 **Purpose**: Step-by-step how-to guides for implementing, deploying, troubleshooting, and operating WeaveNN systems.
