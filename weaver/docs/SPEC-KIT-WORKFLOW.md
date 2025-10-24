@@ -1,6 +1,6 @@
-# Spec-Kit Automated Workflow
+# Spec-Kit Claude Code Workflow
 
-Fully automated specification generation using AI-powered spec-kit methodology.
+AI-powered specification generation using GitHub's Spec-Kit methodology with Claude Code.
 
 ## Quick Start
 
@@ -9,14 +9,20 @@ cd /home/aepod/dev/weave-nn/weaver
 bun run generate-spec phase-6-vault-initialization
 ```
 
-This single command will:
-1. ✅ Generate initial specs from phase document
-2. 🤖 Run `/speckit.constitution` (AI refinement)
-3. 🤖 Run `/speckit.specify` (AI elaboration)
-4. 🤖 Run `/speckit.plan` (AI planning)
-5. 🤖 Run `/speckit.tasks` (AI task breakdown)
-6. 👁️ Prompt for review
-7. 🔄 Sync tasks back to phase document
+**Step 1:** Generate initial specs (automated)
+
+**Step 2-5:** Run spec-kit commands in Claude Code:
+```
+/speckit.constitution   # Refine principles & constraints
+/speckit.specify        # Elaborate requirements & scope
+/speckit.plan          # Create implementation plan
+/speckit.tasks         # Generate detailed task breakdown
+```
+
+**Step 6:** Sync tasks back to phase document:
+```bash
+bun run sync-tasks-ai phase-6
+```
 
 ## Workflow Steps
 
@@ -27,62 +33,53 @@ Parses phase document and creates:
 - `README.md` - Quick reference
 - `.speckit/metadata.json` - Tracking data
 
-### Step 2: AI Constitution Refinement
-AI reviews and refines:
-- Project principles clarity
-- Technical constraints realism
-- Dependency accuracy
-- Success criteria measurability
-- Quality standards completeness
+### Step 2-5: Claude Code AI Refinement
 
-### Step 3: AI Specification Elaboration
-AI adds:
-- Comprehensive requirements for each objective
-- Clear deliverables with acceptance criteria
-- In-scope vs out-of-scope definitions
-- Architectural considerations
-- Integration points
+Open the generated specs in Claude Code and run:
 
-### Step 4: AI Implementation Plan
-AI creates:
-- Implementation phases/milestones
-- Critical path identification
-- Effort and timeline estimates
-- Resource requirements
-- Risk assessment and mitigation
-- Dependency graph
+**Step 2: `/speckit.constitution`**
+- Reviews and refines project principles
+- Validates technical constraints
+- Checks dependency accuracy
+- Ensures measurable success criteria
+- Adds missing quality standards
 
-### Step 5: AI Task Breakdown
-AI generates:
-- Hierarchical task numbering (1, 1.1, 1.2, 2, 2.1)
-- Clear task descriptions
-- Task dependencies
-- Effort estimates per task
-- Priority levels
-- Acceptance criteria per task
+**Step 3: `/speckit.specify`**
+- Elaborates comprehensive requirements
+- Defines clear deliverables with acceptance criteria
+- Clarifies in-scope vs out-of-scope
+- Adds architectural considerations
+- Identifies integration points
 
-### Step 6: Review Prompt
-Interactive review before syncing:
-```
-✅ Spec generation complete!
+**Step 4: `/speckit.plan`**
+- Creates implementation phases/milestones
+- Identifies critical path
+- Estimates effort and timeline
+- Defines resource requirements
+- Assesses risks and mitigation
+- Builds dependency graph
 
-📁 Spec files generated in: /path/to/specs/phase-6
-   - constitution.md (principles & constraints)
-   - specification.md (requirements & scope)
-   - plan.md (implementation plan)
-   - tasks.md (detailed task breakdown)
+**Step 5: `/speckit.tasks`**
+- Generates hierarchical task breakdown (1, 1.1, 1.2)
+- Writes clear task descriptions
+- Defines task dependencies
+- Estimates effort per task
+- Assigns priority levels
+- Adds acceptance criteria per task
 
-Please review the generated specs before syncing back to phase document.
+### Step 6: AI-Powered Sync
 
-Sync tasks back to phase document? (yes/no):
+After reviewing the generated specs, sync tasks back:
+
+```bash
+bun run sync-tasks-ai phase-6
 ```
 
-### Step 7: AI-Powered Sync
-If approved, Claude:
-- Reads tasks from `tasks.md`
-- Updates task checkboxes in phase document
-- Preserves Success Criteria sections
-- Maintains all formatting
+Claude AI will:
+- Read tasks from generated specs
+- Update task checkboxes in phase document
+- Preserve Success Criteria sections (never modify)
+- Maintain all formatting and structure
 
 ## File Structure
 

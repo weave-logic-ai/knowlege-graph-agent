@@ -201,3 +201,8 @@ export function getProofWorkflows(): WorkflowDefinition[] {
     generalTaskTracker,
   ];
 }
+
+/**
+ * Export all workflows
+ */
+export { specKitWorkflow } from './spec-kit-workflow.js';

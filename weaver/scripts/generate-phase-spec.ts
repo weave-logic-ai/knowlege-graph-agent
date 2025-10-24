@@ -4,6 +4,11 @@
  * Usage:
  *   bun run generate-spec <phase-id>
  *   bun run generate-spec phase-5-mcp-integration
+ *
+ * This script:
+ * 1. Generates initial specs from phase document
+ * 2. Provides instructions for AI refinement via Claude Code
+ * 3. Shows next steps for syncing back to phase doc
  */
 
 import { join } from 'path';
