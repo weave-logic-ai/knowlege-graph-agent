@@ -119,16 +119,70 @@ function extractDeliverables(content: string): string[] {
 }
 
 /**
- * Extract tasks
+ * Extract tasks from various formats
  */
 function extractTasks(content: string): PhaseTask[] {
   const tasks: PhaseTask[] = [];
-  const tasksMatch = content.match(/##\s*.*Tasks.*\n([\s\S]*?)(?=\n##|\n---|\n$)/i);
+
+  // Find the Implementation Tasks or Tasks section
+  const tasksMatch = content.match(/##\s*.*(?:Implementation\s+)?Tasks.*\n([\s\S]*?)(?=\n##\s*✅|$)/i);
 
   if (tasksMatch && tasksMatch[1]) {
     const section = tasksMatch[1];
-    const lines = section.split('\n');
 
+    // Extract Day/Phase subsections (e.g., "### Day 1: Project Setup")
+    const dayMatches = section.match(/###\s+Day\s+\d+:.*?\n([\s\S]*?)(?=###\s+Day|\n###\s*$|$)/gi);
+
+    if (dayMatches && dayMatches.length > 0) {
+      // Process day-based structure
+      dayMatches.forEach((daySection, dayIndex) => {
+        const dayTitleMatch = daySection.match(/###\s+(Day\s+\d+:.*?)[\n\r]/);
+        const dayTitle = dayTitleMatch ? dayTitleMatch[1] : `Day ${dayIndex + 1}`;
+
+        // Extract subsections within the day (Morning/Afternoon or direct tasks)
+        const subSections = daySection.match(/####\s+(.*?)[\n\r]([\s\S]*?)(?=####|$)/g);
+
+        if (subSections) {
+          subSections.forEach((subSection) => {
+            const subTitleMatch = subSection.match(/####\s+(.*?)[\n\r]/);
+            const subTitle = subTitleMatch ? subTitleMatch[1] : '';
+
+            // Extract task description from first paragraph or bullet point
+            const taskDescMatch = subSection.match(/####.*?[\n\r]+(.*?)(?:\n\n|\n```|$)/s);
+            const taskDesc = (taskDescMatch && taskDescMatch[1]) ? taskDescMatch[1].trim() : subTitle;
+
+            if (taskDesc && taskDesc.length > 5) {
+              const firstLine = taskDesc.split('\n')[0];
+              if (firstLine) {
+                tasks.push({
+                  id: `task-day${dayIndex + 1}-${tasks.length}`,
+                  description: `${dayTitle} - ${subTitle}: ${firstLine.substring(0, 100)}`,
+                  status: 'pending',
+                  subtasks: [],
+                });
+              }
+            }
+          });
+        } else {
+          // No subsections, extract from day section directly
+          const descMatch = daySection.match(/###.*?[\n\r]+([\s\S]*?)(?:\n###|$)/);
+          if (descMatch && descMatch[1]) {
+            const firstLine = descMatch[1].trim().split('\n')[0];
+            if (firstLine && firstLine.length > 5) {
+              tasks.push({
+                id: `task-day${dayIndex + 1}`,
+                description: `${dayTitle}: ${firstLine.substring(0, 100)}`,
+                status: 'pending',
+                subtasks: [],
+              });
+            }
+          }
+        }
+      });
+    }
+
+    // Also look for standard checkbox tasks
+    const lines = section.split('\n');
     let currentTask: PhaseTask | null = null;
 
     lines.forEach((line, index) => {
@@ -143,12 +197,14 @@ function extractTasks(content: string): PhaseTask[] {
         const isCompleted = trimmed.startsWith('- [x]');
         const description = trimmed.replace(/^-\s*\[[x\s]\]\s*/, '').replace(/^\*\*/, '').replace(/\*\*$/, '').trim();
 
-        currentTask = {
-          id: `task-${index}`,
-          description,
-          status: isCompleted ? 'completed' : 'pending',
-          subtasks: [],
-        };
+        if (description && description.length > 5) {
+          currentTask = {
+            id: `task-checkbox-${index}`,
+            description,
+            status: isCompleted ? 'completed' : 'pending',
+            subtasks: [],
+          };
+        }
       }
       // Subtask
       else if (currentTask && trimmed.startsWith('  - [ ]')) {
