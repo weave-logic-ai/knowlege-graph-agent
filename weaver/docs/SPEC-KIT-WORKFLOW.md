@@ -4,25 +4,28 @@ AI-powered specification generation using GitHub's Spec-Kit methodology with Cla
 
 ## Quick Start
 
-**Step 1:** Generate initial specs
+**Step 1:** Generate initial specs and get agent commands
 ```bash
 cd /home/aepod/dev/weave-nn/weaver
 bun run generate-spec phase-6-vault-initialization
 ```
 
-**Step 2:** Refine with Claude Code commands
-```bash
-cd ../_planning/specs/phase-6-vault-initialization
-# Then run in Claude Code:
-/speckit.constitution
-/speckit.specify
-/speckit.plan
-/speckit.tasks
+This generates specs and outputs Task tool commands to run in Claude Code.
+
+**Step 2:** Spawn Claude Code agents (copy/paste from output)
+
+The workflow outputs commands like:
+```
+Task("Constitution agent", "cd /path/to/specs && run /speckit.constitution...", "general-purpose")
+Task("Specification agent", "cd /path/to/specs && run /speckit.specify...", "general-purpose")
+Task("Planning agent", "cd /path/to/specs && run /speckit.plan...", "general-purpose")
+Task("Task breakdown agent", "cd /path/to/specs && run /speckit.tasks...", "general-purpose")
 ```
 
-**Step 3:** Sync tasks back to phase document
+**Paste all Task() calls in a SINGLE Claude Code message** to spawn agents concurrently.
+
+**Step 3:** After agents complete, sync tasks
 ```bash
-cd /home/aepod/dev/weave-nn/weaver
 bun run sync-tasks-ai phase-6
 ```
 
@@ -35,24 +38,25 @@ Parses phase document and creates:
 - `README.md` - Quick reference
 - `.speckit/metadata.json` - Tracking data
 
-### Step 2: `/speckit.constitution` (Automated)
-Claude Code refines:
+### Step 2: Spawn Agents (Copy/Paste)
+
+The workflow outputs Task() commands to spawn 4 concurrent agents:
+
+**Constitution Agent** - Refines:
 - Project principles and values
 - Technical constraints validation
 - Dependency accuracy checks
 - Measurable success criteria
 - Quality standards
 
-### Step 3: `/speckit.specify` (Automated)
-Claude Code elaborates:
+**Specification Agent** - Elaborates:
 - Comprehensive requirements
 - Clear deliverables with acceptance criteria
 - In-scope vs out-of-scope boundaries
 - Architectural considerations
 - Integration points
 
-### Step 4: `/speckit.plan` (Automated)
-Claude Code creates:
+**Planning Agent** - Creates:
 - Implementation phases/milestones
 - Critical path identification
 - Effort and timeline estimates
@@ -60,8 +64,7 @@ Claude Code creates:
 - Risk assessment and mitigation
 - Dependency graph
 
-### Step 5: `/speckit.tasks` (Automated)
-Claude Code generates:
+**Task Breakdown Agent** - Generates:
 - Hierarchical task breakdown (1, 1.1, 1.2)
 - Clear task descriptions
 - Task dependencies
@@ -69,7 +72,9 @@ Claude Code generates:
 - Priority levels
 - Acceptance criteria per task
 
-### Step 6: Review & Sync (Manual)
+**All agents run concurrently** when spawned in a single message.
+
+### Step 3: Review & Sync (Manual)
 
 Review the generated specs, then sync tasks back:
 
@@ -141,15 +146,21 @@ bun run sync-tasks phase-6
 
 ## Benefits
 
+### Concurrent Agent Execution
+- **4 agents run in parallel** when spawned together
+- Significantly faster than sequential execution
+- Each agent specializes in one spec-kit phase
+- Copy/paste Task() commands from workflow output
+
 ### AI-Powered Quality
-- Claude Code refines all specifications
+- Claude Code agents refine all specifications
 - Validates principles and constraints
 - Ensures measurable criteria
 - Creates actionable task breakdown
 
 ### Simple 3-Step Workflow
-- Generate initial specs (automated)
-- Refine with /speckit.* commands (interactive)
+- Generate specs + get Task commands (automated)
+- Spawn agents in Claude Code (copy/paste)
 - Sync tasks back to phase (AI-powered)
 
 ### Intelligent Parsing

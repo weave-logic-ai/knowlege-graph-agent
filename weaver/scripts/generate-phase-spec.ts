@@ -5,13 +5,15 @@
  *   bun run generate-spec <phase-id>
  *   bun run generate-spec phase-5-mcp-integration
  *
- * This script generates initial spec files.
- * Run /speckit.* commands in Claude Code for AI refinement.
+ * This script:
+ * 1. Generates initial spec files
+ * 2. Invokes workflow to get agent tasks
+ * 3. Prints instructions for spawning agents in Claude Code
  */
 
 import { join } from 'path';
 import { existsSync, readdirSync } from 'fs';
-import { generatePhaseSpec } from '../src/spec-generator/index.js';
+import { specKitWorkflow } from '../src/workflows/spec-kit-workflow.js';
 
 const VAULT_PATH = process.env['VAULT_PATH'] || '/home/aepod/dev/weave-nn/weave-nn';
 const PHASES_DIR = join(VAULT_PATH, '_planning/phases');
@@ -82,36 +84,55 @@ async function main() {
   const phaseFile = phaseFiles[0];
   const phasePath = join(PHASES_DIR, phaseFile);
 
-  console.log('🔧 Generating spec-kit files');
+  console.log('🚀 Starting Spec-Kit Workflow');
   console.log(`Phase: ${phaseFile}`);
   console.log(`Source: ${phasePath}`);
   console.log(`Output: ${SPECS_DIR}/${phaseId.toLowerCase()}`);
   console.log('');
 
   try {
-    await generatePhaseSpec({
-      phaseId,
-      phasePath,
-      outputDir: SPECS_DIR,
-      includeContext: false,
-      verbose: true,
+    // Invoke workflow
+    const result = await specKitWorkflow.handler({
+      input: { phaseId, phasePath },
+      fileEvent: undefined,
+      trigger: 'manual',
     });
 
     console.log('');
-    console.log('✅ Spec-kit files generated successfully!');
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log('✅ Initial specs generated!');
     console.log('');
-    console.log('Next steps (run in Claude Code):');
-    console.log(`  1. cd ${SPECS_DIR}/${phaseId.toLowerCase()}`);
-    console.log('  2. Run: /speckit.constitution');
-    console.log('  3. Run: /speckit.specify');
-    console.log('  4. Run: /speckit.plan');
-    console.log('  5. Run: /speckit.tasks');
+    console.log('🤖 Ready to spawn Claude Code agents');
     console.log('');
-    console.log('After refinement, sync tasks:');
+    console.log('Copy and paste this into Claude Code to spawn agents:');
+    console.log('');
+    console.log('─────────────────────────────────────────────────────────');
+
+    // Generate Task tool calls for Claude Code
+    if (result.agentTasks) {
+      result.agentTasks.forEach((task, index) => {
+        console.log(`Task ${index + 1}: ${task.name}`);
+        console.log(`Working directory: ${task.workingDir}`);
+        console.log(`Command: ${task.command}`);
+        console.log('');
+      });
+    }
+
+    console.log('Spawn all agents in a SINGLE Claude Code message:');
+    console.log('');
+    console.log(`Task("Constitution agent", "cd ${result.specDir} && run ${result.agentTasks?.[0]?.command} to refine principles and constraints", "general-purpose")`);
+    console.log(`Task("Specification agent", "cd ${result.specDir} && run ${result.agentTasks?.[1]?.command} to elaborate requirements", "general-purpose")`);
+    console.log(`Task("Planning agent", "cd ${result.specDir} && run ${result.agentTasks?.[2]?.command} to create implementation plan", "general-purpose")`);
+    console.log(`Task("Task breakdown agent", "cd ${result.specDir} && run ${result.agentTasks?.[3]?.command} to generate detailed tasks", "general-purpose")`);
+    console.log('');
+    console.log('─────────────────────────────────────────────────────────');
+    console.log('');
+    console.log('After agents complete, sync tasks:');
     console.log(`  bun run sync-tasks-ai ${phaseId.toLowerCase().replace('phase-', '')}`);
+    console.log('═══════════════════════════════════════════════════════════');
     console.log('');
   } catch (error) {
-    console.error('❌ Failed to generate spec-kit files:', error);
+    console.error('❌ Workflow failed:', error);
     process.exit(1);
   }
 }

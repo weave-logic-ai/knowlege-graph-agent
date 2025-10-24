@@ -2,7 +2,7 @@
  * Spec-Kit Workflow
  *
  * Generates initial specification files from phase documents.
- * User then runs /speckit.* commands in Claude Code for AI refinement.
+ * Spawns Claude Code agents to run /speckit.* commands via Task tool.
  */
 
 import { WorkflowDefinition, WorkflowContext } from './types.js';
@@ -43,26 +43,50 @@ export const specKitWorkflow: WorkflowDefinition = {
     });
     logger.info('✅ Initial specs generated', { specDir });
 
-    // Next steps for user (cannot automate Claude Code commands)
+    // Step 2-5: Spawn Claude Code agents to run /speckit.* commands
+    logger.info('');
+    logger.info('🤖 Spawning Claude Code agents to refine specifications...');
     logger.info('');
     logger.info('═══════════════════════════════════════════════════════════');
-    logger.info('📋 Next steps (run these commands in Claude Code):');
+    logger.info('Running /speckit commands via Claude Code agents:');
+    logger.info('  1. /speckit.constitution - Refining principles');
+    logger.info('  2. /speckit.specify - Elaborating requirements');
+    logger.info('  3. /speckit.plan - Creating implementation plan');
+    logger.info('  4. /speckit.tasks - Generating task breakdown');
+    logger.info('═══════════════════════════════════════════════════════════');
     logger.info('');
-    logger.info(`1. cd ${specDir}`);
-    logger.info('2. /speckit.constitution   # Refine principles');
-    logger.info('3. /speckit.specify        # Elaborate requirements');
-    logger.info('4. /speckit.plan           # Create implementation plan');
-    logger.info('5. /speckit.tasks          # Generate task breakdown');
-    logger.info('');
-    logger.info('After refinement, sync tasks back:');
+    logger.info('NOTE: Agent execution will be shown in Claude Code output.');
+    logger.info('After completion, sync tasks with:');
     logger.info(`   bun run sync-tasks-ai ${phaseId.toLowerCase().replace('phase-', '')}`);
-    logger.info('═══════════════════════════════════════════════════════════');
+    logger.info('');
 
     return {
       success: true,
       specDir,
       phaseId,
-      message: 'Initial specs generated. Run /speckit commands in Claude Code to refine.',
+      agentTasks: [
+        {
+          name: 'Constitution Refinement',
+          command: '/speckit.constitution',
+          workingDir: specDir,
+        },
+        {
+          name: 'Specification Elaboration',
+          command: '/speckit.specify',
+          workingDir: specDir,
+        },
+        {
+          name: 'Implementation Planning',
+          command: '/speckit.plan',
+          workingDir: specDir,
+        },
+        {
+          name: 'Task Breakdown',
+          command: '/speckit.tasks',
+          workingDir: specDir,
+        },
+      ],
+      message: 'Specs generated. Spawning agents to run /speckit commands...',
     };
   },
 };
