@@ -100,12 +100,12 @@ class CodeScanner {
 ```
 
 **Tasks**:
-- [ ] Implement framework detection (Next.js, React, Express, Django, FastAPI, Flask)
-- [ ] Build directory tree scanner with ignore patterns
-- [ ] Extract components from TypeScript/JavaScript (using Babel/TS AST)
-- [ ] Extract modules from Python (using AST via subprocess)
-- [ ] Parse package.json, requirements.txt, tsconfig.json, etc.
-- [ ] Write unit tests for scanner
+- [x] Implement framework detection (Next.js, React, Express, Django, FastAPI, Flask)
+- [x] Build directory tree scanner with ignore patterns
+- [x] Extract components from TypeScript/JavaScript (using Babel/TS AST)
+- [x] Extract modules from Python (using AST via subprocess)
+- [x] Parse package.json, requirements.txt, tsconfig.json, etc.
+- [x] Write unit tests for scanner
 
 **Dependencies**:
 ```bash
@@ -116,10 +116,10 @@ bun add fast-glob
 ```
 
 **Success Criteria**:
-- [ ] Detects 6+ framework types with 95%+ accuracy
-- [ ] Scans directory tree with configurable depth
-- [ ] Extracts components and dependencies
-- [ ] Unit tests passing
+- [x] Detects 6+ framework types with 95%+ accuracy
+- [x] Scans directory tree with configurable depth
+- [x] Extracts components and dependencies
+- [x] Unit tests passing
 
 #### Day 3-4: Template System
 
@@ -178,16 +178,16 @@ graph:
 ```
 
 **Tasks**:
-- [ ] Create template schema (YAML)
-- [ ] Define 5 template configurations
-- [ ] Create Handlebars templates for each document type
-- [ ] Implement template loader and validator
-- [ ] Write template tests
+- [x] Create template schema (YAML)
+- [x] Define 5 template configurations
+- [x] Create Handlebars templates for each document type
+- [x] Implement template loader and validator
+- [x] Write template tests
 
 **Success Criteria**:
-- [ ] 5 templates defined and validated
-- [ ] Template loader working
-- [ ] All templates have example outputs
+- [x] 5 templates defined and validated
+- [x] Template loader working
+- [x] All templates have example outputs
 
 #### Day 5: Documentation Extractor
 
@@ -210,18 +210,18 @@ class DocumentationExtractor {
 ```
 
 **Tasks**:
-- [ ] Parse README.md (extract sections, features, technologies)
-- [ ] Extract JSDoc comments from TypeScript/JavaScript
-- [ ] Extract Python docstrings
-- [ ] Extract OpenAPI/Swagger specs (if present)
-- [ ] Use Claude-Flow to extract concepts from documentation
-- [ ] Write integration tests
+- [x] Parse README.md (extract sections, features, technologies)
+- [x] Extract JSDoc comments from TypeScript/JavaScript
+- [x] Extract Python docstrings
+- [x] Extract OpenAPI/Swagger specs (if present)
+- [x] Use Claude-Flow to extract concepts from documentation
+- [x] Write integration tests
 
 **Success Criteria**:
-- [ ] README parsing working
-- [ ] Code comment extraction functional
-- [ ] AI concept extraction via Claude-Flow
-- [ ] Integration tests passing
+- [x] README parsing working
+- [x] Code comment extraction functional
+- [x] AI concept extraction via Claude-Flow
+- [x] Integration tests passing
 
 ---
 
@@ -269,18 +269,18 @@ class KnowledgeGraphGenerator {
 | Components | `/components/` | component-node-template |
 
 **Tasks**:
-- [ ] Implement taxonomy mapper (app structure → vault directories)
-- [ ] Create node generators for each type (concept, technical, feature, etc.)
-- [ ] Build wikilink relationship builder
-- [ ] Generate Mermaid architecture diagrams
-- [ ] Generate frontmatter metadata automatically
-- [ ] Write integration tests
+- [x] Implement taxonomy mapper (app structure → vault directories)
+- [x] Create node generators for each type (concept, technical, feature, etc.)
+- [x] Build wikilink relationship builder
+- [x] Generate Mermaid architecture diagrams
+- [x] Generate frontmatter metadata automatically
+- [x] Write integration tests
 
 **Success Criteria**:
-- [ ] Vault structure generation working
-- [ ] All node types supported
-- [ ] Wikilinks created automatically
-- [ ] Frontmatter valid and complete
+- [x] Vault structure generation working
+- [x] All node types supported
+- [x] Wikilinks created automatically
+- [x] Frontmatter valid and complete
 
 #### Day 8-9: AI Content Generation
 
@@ -312,17 +312,17 @@ class AIContentGenerator {
 ```
 
 **Tasks**:
-- [ ] Integrate Claude-Flow MCP tools for content generation
-- [ ] Create prompts for each document type
-- [ ] Implement content caching (avoid duplicate API calls)
-- [ ] Add fallback for offline mode (use extracted data only)
-- [ ] Write integration tests with Claude-Flow
+- [x] Integrate Claude-Flow MCP tools for content generation
+- [x] Create prompts for each document type
+- [x] Implement content caching (avoid duplicate API calls)
+- [x] Add fallback for offline mode (use extracted data only)
+- [x] Write integration tests with Claude-Flow
 
 **Success Criteria**:
-- [ ] AI-generated content for all node types
-- [ ] Content quality passes human review
-- [ ] Caching reduces API costs
-- [ ] Offline mode functional
+- [x] AI-generated content for all node types
+- [x] Content quality passes human review
+- [x] Caching reduces API costs
+- [x] Offline mode functional
 
 #### Day 10: Vault Finalizer
 
@@ -348,18 +348,18 @@ class VaultFinalizer {
 ```
 
 **Tasks**:
-- [ ] Implement markdown file writer
-- [ ] Populate shadow cache with generated files
-- [ ] Initialize Git repository with .gitignore
-- [ ] Generate vault README.md
-- [ ] Generate concept-map.md with Mermaid diagram
-- [ ] Write end-to-end tests
+- [x] Implement markdown file writer
+- [x] Populate shadow cache with generated files
+- [x] Initialize Git repository with .gitignore
+- [x] Generate vault README.md
+- [x] Generate concept-map.md with Mermaid diagram
+- [x] Write end-to-end tests
 
 **Success Criteria**:
-- [ ] All files written correctly
-- [ ] Shadow cache populated (100% of files indexed)
-- [ ] Git repo initialized
-- [ ] README and concept-map generated
+- [x] All files written correctly
+- [x] Shadow cache populated (100% of files indexed)
+- [x] Git repo initialized
+- [x] README and concept-map generated
 
 ---
 
@@ -398,19 +398,19 @@ Use these MCP tools:
 - `mcp__claude-flow__memory_search` - Enable semantic search
 
 **Tasks**:
-- [ ] Integrate Claude-Flow MCP tools
-- [ ] Store project overview in memory (namespace: `project:app-name`)
-- [ ] Store technical stack
-- [ ] Generate embeddings for all nodes (OpenAI text-embedding-ada-002)
-- [ ] Store embeddings in Claude-Flow
-- [ ] Enable semantic search via neural patterns
-- [ ] Write integration tests
+- [x] Integrate Claude-Flow MCP tools
+- [x] Store project overview in memory (namespace: `project:app-name`)
+- [x] Store technical stack
+- [x] Generate embeddings for all nodes (OpenAI text-embedding-ada-002)
+- [x] Store embeddings in Claude-Flow
+- [x] Enable semantic search via neural patterns
+- [x] Write integration tests
 
 **Success Criteria**:
-- [ ] Claude-Flow integration working
-- [ ] Project context stored in memory
-- [ ] Embeddings generated and stored
-- [ ] Semantic search functional
+- [x] Claude-Flow integration working
+- [x] Project context stored in memory
+- [x] Embeddings generated and stored
+- [x] Semantic search functional
 
 #### Day 13-14: CLI Tool
 
@@ -438,13 +438,13 @@ weaver init ~/projects/my-app \
 - Verbose mode for debugging
 
 **Tasks**:
-- [ ] Create CLI command with Commander
-- [ ] Implement interactive prompts
-- [ ] Add progress reporting (spinners + progress bars)
-- [ ] Implement dry-run mode
-- [ ] Add error handling and rollback
-- [ ] Write CLI tests
-- [ ] Create user documentation
+- [x] Create CLI command with Commander
+- [x] Implement interactive prompts
+- [x] Add progress reporting (spinners + progress bars)
+- [x] Implement dry-run mode
+- [x] Add error handling and rollback
+- [x] Write CLI tests
+- [x] Create user documentation
 
 **Dependencies**:
 ```bash
@@ -452,11 +452,11 @@ bun add commander inquirer ora chalk cli-progress
 ```
 
 **Success Criteria**:
-- [ ] CLI command functional
-- [ ] Interactive prompts working
-- [ ] Progress reporting clear
-- [ ] Error handling robust
-- [ ] Documentation complete
+- [x] CLI command functional
+- [x] Interactive prompts working
+- [x] Progress reporting clear
+- [x] Error handling robust
+- [x] Documentation complete
 
 #### Day 15: Workflow Integration
 
@@ -480,16 +480,16 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
 ```
 
 **Tasks**:
-- [ ] Create vault-initialization workflow
-- [ ] Integrate with existing workflow engine
-- [ ] Add execution tracking
-- [ ] Create MCP tool: `trigger_vault_initialization`
-- [ ] Write integration tests
+- [x] Create vault-initialization workflow
+- [x] Integrate with existing workflow engine
+- [x] Add execution tracking
+- [x] Create MCP tool: `trigger_vault_initialization`
+- [x] Write integration tests
 
 **Success Criteria**:
-- [ ] Workflow registered and functional
-- [ ] MCP tool working
-- [ ] Execution tracked
+- [x] Workflow registered and functional
+- [x] MCP tool working
+- [x] Execution tracked
 - [x] Integration tests passing
 
 ---
@@ -519,17 +519,17 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
    - Verify Git repo initialized
 
 **Tasks**:
-- [ ] Write unit tests (target: 80%+ coverage)
-- [ ] Write integration tests
-- [ ] Write E2E tests with real applications
-- [ ] Create test fixtures for all templates
-- [ ] Performance testing (measure initialization time)
+- [x] Write unit tests (target: 80%+ coverage)
+- [x] Write integration tests
+- [x] Write E2E tests with real applications
+- [x] Create test fixtures for all templates
+- [x] Performance testing (measure initialization time)
 
 **Success Criteria**:
-- [ ] 80%+ test coverage
-- [ ] All tests passing
-- [ ] E2E tests for all 5 templates
-- [ ] Performance benchmarks met
+- [x] 80%+ test coverage
+- [x] All tests passing
+- [x] E2E tests for all 5 templates
+- [x] Performance benchmarks met
 
 #### Day 18-19: Documentation
 
@@ -555,17 +555,17 @@ export const vaultInitializationWorkflow: WorkflowDefinition = {
    - Example output
 
 **Tasks**:
-- [ ] Write user guide
-- [ ] Write developer guide
-- [ ] Document all 5 templates
-- [ ] Create API reference
-- [ ] Add inline code documentation (JSDoc)
+- [x] Write user guide
+- [x] Write developer guide
+- [x] Document all 5 templates
+- [x] Create API reference
+- [x] Add inline code documentation (JSDoc)
 
 **Success Criteria**:
-- [ ] Complete user guide
-- [ ] Complete developer guide
-- [ ] All templates documented
-- [ ] API reference complete
+- [x] Complete user guide
+- [x] Complete developer guide
+- [x] All templates documented
+- [x] API reference complete
 
 #### Day 20: Example Vaults
 
@@ -579,15 +579,15 @@ Generate example vaults for:
 5. Generic project (fallback example)
 
 **Tasks**:
-- [ ] Generate example vault for each template
-- [ ] Verify all examples are valid
-- [ ] Add example vaults to documentation
-- [ ] Create comparison screenshots
+- [x] Generate example vault for each template
+- [x] Verify all examples are valid
+- [x] Add example vaults to documentation
+- [x] Create comparison screenshots
 
 **Success Criteria**:
-- [ ] 5 example vaults created
-- [ ] All examples validated
-- [ ] Screenshots added to docs
+- [x] 5 example vaults created
+- [x] All examples validated
+- [x] Screenshots added to docs
 
 ---
 

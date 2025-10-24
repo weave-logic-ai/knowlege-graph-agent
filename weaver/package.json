@@ -15,7 +15,8 @@
     "clean": "rm -rf dist",
     "generate-spec": "tsx scripts/generate-phase-spec.ts",
     "sync-tasks": "tsx scripts/sync-tasks.ts",
-    "sync-tasks-ai": "tsx scripts/sync-tasks-ai.ts"
+    "sync-tasks-ai": "tsx scripts/sync-tasks-ai.ts",
+    "sync-tasks-simple": "tsx scripts/sync-tasks-simple.ts"
   },
   "keywords": [
     "weave-nn",
