@@ -9,67 +9,66 @@ cd /home/aepod/dev/weave-nn/weaver
 bun run generate-spec phase-6-vault-initialization
 ```
 
-**Step 1:** Generate initial specs (automated)
+This **single command** will:
+1. Generate initial specs from phase document
+2. Run `/speckit.constitution` to refine principles
+3. Run `/speckit.specify` to elaborate requirements
+4. Run `/speckit.plan` to create implementation plan
+5. Run `/speckit.tasks` to generate task breakdown
 
-**Step 2-5:** Run spec-kit commands in Claude Code:
-```
-/speckit.constitution   # Refine principles & constraints
-/speckit.specify        # Elaborate requirements & scope
-/speckit.plan          # Create implementation plan
-/speckit.tasks         # Generate detailed task breakdown
-```
+All steps are **fully automated** - the workflow calls Claude Code commands directly.
 
-**Step 6:** Sync tasks back to phase document:
+**After completion:** Review specs and sync back to phase document:
 ```bash
 bun run sync-tasks-ai phase-6
 ```
 
 ## Workflow Steps
 
-### Step 1: Initial Generation
+### Step 1: Initial Generation (Automated)
 Parses phase document and creates:
 - `constitution.md` - Principles, constraints, success criteria
 - `specification.md` - Requirements and scope
 - `README.md` - Quick reference
 - `.speckit/metadata.json` - Tracking data
 
-### Step 2-5: Claude Code AI Refinement
+### Step 2: `/speckit.constitution` (Automated)
+Claude Code refines:
+- Project principles and values
+- Technical constraints validation
+- Dependency accuracy checks
+- Measurable success criteria
+- Quality standards
 
-Open the generated specs in Claude Code and run:
+### Step 3: `/speckit.specify` (Automated)
+Claude Code elaborates:
+- Comprehensive requirements
+- Clear deliverables with acceptance criteria
+- In-scope vs out-of-scope boundaries
+- Architectural considerations
+- Integration points
 
-**Step 2: `/speckit.constitution`**
-- Reviews and refines project principles
-- Validates technical constraints
-- Checks dependency accuracy
-- Ensures measurable success criteria
-- Adds missing quality standards
+### Step 4: `/speckit.plan` (Automated)
+Claude Code creates:
+- Implementation phases/milestones
+- Critical path identification
+- Effort and timeline estimates
+- Resource requirements
+- Risk assessment and mitigation
+- Dependency graph
 
-**Step 3: `/speckit.specify`**
-- Elaborates comprehensive requirements
-- Defines clear deliverables with acceptance criteria
-- Clarifies in-scope vs out-of-scope
-- Adds architectural considerations
-- Identifies integration points
+### Step 5: `/speckit.tasks` (Automated)
+Claude Code generates:
+- Hierarchical task breakdown (1, 1.1, 1.2)
+- Clear task descriptions
+- Task dependencies
+- Effort estimates per task
+- Priority levels
+- Acceptance criteria per task
 
-**Step 4: `/speckit.plan`**
-- Creates implementation phases/milestones
-- Identifies critical path
-- Estimates effort and timeline
-- Defines resource requirements
-- Assesses risks and mitigation
-- Builds dependency graph
+### Step 6: Review & Sync (Manual)
 
-**Step 5: `/speckit.tasks`**
-- Generates hierarchical task breakdown (1, 1.1, 1.2)
-- Writes clear task descriptions
-- Defines task dependencies
-- Estimates effort per task
-- Assigns priority levels
-- Adds acceptance criteria per task
-
-### Step 6: AI-Powered Sync
-
-After reviewing the generated specs, sync tasks back:
+Review the generated specs, then sync tasks back:
 
 ```bash
 bun run sync-tasks-ai phase-6
@@ -139,28 +138,29 @@ bun run sync-tasks phase-6
 
 ## Benefits
 
-### AI-Powered
-- Handles any document structure
-- Context-aware parsing
+### Fully Automated
+- **One command** runs entire spec-kit pipeline
+- Calls Claude Code commands directly via workflow
+- No manual intervention required
+- Complete automation from phase → specs
+
+### AI-Powered Quality
+- Claude Code refines all specifications
+- Validates principles and constraints
+- Ensures measurable criteria
+- Creates actionable task breakdown
+
+### Seamless Integration
+- Works with any phase document structure
+- Context-aware AI parsing
 - Intelligent task extraction
 - No brittle regex patterns
 
-### Seamless Workflow
-- One command to generate everything
-- Interactive review step
-- Automatic sync back to phase
-
-### Vault Integration
+### Vault Native
 - YAML frontmatter for metadata
 - Wikilink cross-references
 - Obsidian graph view integration
 - Tag-based organization
-
-### Quality Assurance
-- AI validates principles
-- Checks constraints realism
-- Ensures measurable criteria
-- Creates actionable tasks
 
 ## Environment Setup
 
