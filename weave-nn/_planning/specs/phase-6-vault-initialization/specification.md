@@ -1,3 +1,21 @@
+---
+spec_type: "specification"
+phase_id: "PHASE-6"
+phase_name: "Vault Initialization System"
+status: "pending"
+priority: "high"
+duration: "15-20 days"
+generated_date: "2025-10-24"
+task_count: 63
+tags:
+  - spec-kit
+  - specification
+  - phase-6
+links:
+  phase_document: "[[phase planning document]]"
+  constitution: "[[constitution.md]]"
+---
+
 # Vault Initialization System - Specification
 
 **Phase ID**: PHASE-6
@@ -161,5 +179,5 @@ _Items explicitly excluded from this phase:_
 
 ---
 
-**Generated**: 2025-10-24T03:15:39.371Z
+**Generated**: 2025-10-24T03:19:55.955Z
 **Source**: Phase planning document for PHASE-6

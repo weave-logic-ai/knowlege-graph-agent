@@ -14,6 +14,26 @@ import type { PhaseData, SpecKitFiles } from './types.js';
 export function generateConstitution(phase: PhaseData): string {
   const sections: string[] = [];
 
+  // YAML Frontmatter
+  sections.push('---');
+  sections.push(`spec_type: "constitution"`);
+  sections.push(`phase_id: "${phase.phaseId}"`);
+  sections.push(`phase_name: "${phase.phaseName}"`);
+  sections.push(`status: "${phase.status}"`);
+  if (phase.priority) {
+    sections.push(`priority: "${phase.priority}"`);
+  }
+  if (phase.duration) {
+    sections.push(`duration: "${phase.duration}"`);
+  }
+  sections.push(`generated_date: "${new Date().toISOString().split('T')[0]}"`);
+  sections.push('tags:');
+  sections.push('  - spec-kit');
+  sections.push('  - constitution');
+  sections.push(`  - ${phase.phaseId.toLowerCase()}`);
+  sections.push('---');
+  sections.push('');
+
   // Header
   sections.push(`# ${phase.phaseName} - Constitution`);
   sections.push('');
@@ -130,6 +150,30 @@ export function generateConstitution(phase: PhaseData): string {
  */
 export function generateSpecification(phase: PhaseData): string {
   const sections: string[] = [];
+
+  // YAML Frontmatter
+  sections.push('---');
+  sections.push(`spec_type: "specification"`);
+  sections.push(`phase_id: "${phase.phaseId}"`);
+  sections.push(`phase_name: "${phase.phaseName}"`);
+  sections.push(`status: "${phase.status}"`);
+  if (phase.priority) {
+    sections.push(`priority: "${phase.priority}"`);
+  }
+  if (phase.duration) {
+    sections.push(`duration: "${phase.duration}"`);
+  }
+  sections.push(`generated_date: "${new Date().toISOString().split('T')[0]}"`);
+  sections.push(`task_count: ${phase.tasks.length}`);
+  sections.push('tags:');
+  sections.push('  - spec-kit');
+  sections.push('  - specification');
+  sections.push(`  - ${phase.phaseId.toLowerCase()}`);
+  sections.push('links:');
+  sections.push('  phase_document: "[[phase planning document]]"');
+  sections.push('  constitution: "[[constitution.md]]"');
+  sections.push('---');
+  sections.push('');
 
   // Header
   sections.push(`# ${phase.phaseName} - Specification`);
