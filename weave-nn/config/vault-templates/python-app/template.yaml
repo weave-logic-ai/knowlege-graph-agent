@@ -1,0 +1,254 @@
+# Python Application Template
+
+id: python-app
+name: Python Application
+description: |
+  Template for Python applications including FastAPI services, Flask APIs, Django apps,
+  and CLI tools. Includes module structure, package documentation, and Python-specific
+  development workflows.
+version: "1.0.0"
+author: Weave-NN Team
+tags:
+  - python
+  - fastapi
+  - flask
+  - django
+  - backend
+application_types:
+  - api
+  - backend
+  - cli
+  - library
+complexity: moderate
+estimated_setup_time: "30-45 minutes"
+
+# Directory Structure
+directory_structure:
+  - path: "technical"
+    description: "Python technology documentation"
+    required: true
+  - path: "architecture"
+    description: "System architecture"
+    required: true
+  - path: "architecture/modules"
+    description: "Module structure and organization"
+    required: true
+  - path: "features"
+    description: "Feature specifications"
+    required: true
+  - path: "decisions"
+    description: "Technical decisions"
+    required: true
+  - path: "decisions/technical"
+    description: "Technical architecture decisions"
+    required: true
+  - path: "workflows"
+    description: "Development workflows"
+    required: true
+  - path: "concepts"
+    description: "Core concepts"
+    required: true
+  - path: "docs"
+    description: "Documentation"
+    required: true
+  - path: "_planning"
+    description: "Project planning"
+    required: true
+  - path: "templates"
+    description: "Note templates"
+    required: true
+  - path: "_files"
+    description: "Attachments"
+    required: true
+
+# Required Documents
+required_documents:
+  - path: "README.md"
+    type: "documentation"
+    description: "Project overview"
+    template: "documents/README.md"
+    frontmatter:
+      type: "documentation"
+      category: "overview"
+      status: "active"
+
+  - path: "technical/python.md"
+    type: "technical"
+    description: "Python language"
+    template: "documents/technical/python.md"
+    frontmatter:
+      technical_id: "T-001"
+      category: "language"
+      status: "selected"
+
+  - path: "technical/fastapi.md"
+    type: "technical"
+    description: "FastAPI framework"
+    template: "documents/technical/fastapi.md"
+    frontmatter:
+      technical_id: "T-002"
+      category: "framework"
+      status: "selected"
+
+  - path: "technical/pydantic.md"
+    type: "technical"
+    description: "Pydantic data validation"
+    template: "documents/technical/pydantic.md"
+    frontmatter:
+      technical_id: "T-003"
+      category: "library"
+      status: "selected"
+
+  - path: "architecture/system-architecture.md"
+    type: "documentation"
+    description: "System design"
+    template: "documents/architecture/system-architecture.md"
+    frontmatter:
+      type: "architecture"
+      category: "system"
+      status: "draft"
+
+  - path: "architecture/modules/module-structure.md"
+    type: "documentation"
+    description: "Python module organization"
+    template: "documents/architecture/modules/module-structure.md"
+    frontmatter:
+      type: "architecture"
+      category: "modules"
+      status: "draft"
+
+  - path: "architecture/api-design.md"
+    type: "documentation"
+    description: "API endpoints and design"
+    template: "documents/architecture/api-design.md"
+    frontmatter:
+      type: "architecture"
+      category: "api"
+      status: "draft"
+
+  - path: "architecture/database-models.md"
+    type: "documentation"
+    description: "Database models and ORM"
+    template: "documents/architecture/database-models.md"
+    frontmatter:
+      type: "architecture"
+      category: "database"
+      status: "draft"
+
+  - path: "concepts/project-overview.md"
+    type: "concept"
+    description: "Project concept"
+    template: "documents/concepts/project-overview.md"
+    frontmatter:
+      concept_id: "C-001"
+      category: "project"
+      status: "active"
+
+  - path: "workflows/development-setup.md"
+    type: "workflow"
+    description: "Virtual environment setup"
+    template: "documents/workflows/development-setup.md"
+    frontmatter:
+      workflow_id: "W-001"
+      category: "development"
+      status: "active"
+
+  - path: "workflows/testing-with-pytest.md"
+    type: "workflow"
+    description: "Testing with pytest"
+    template: "documents/workflows/testing-with-pytest.md"
+    frontmatter:
+      workflow_id: "W-002"
+      category: "testing"
+      status: "active"
+
+  - path: "_planning/project-plan.md"
+    type: "planning"
+    description: "Project roadmap"
+    template: "documents/planning/project-plan.md"
+    frontmatter:
+      type: "planning"
+      category: "roadmap"
+      status: "active"
+
+# Knowledge Graph
+knowledge_graph:
+  node_types:
+    - type: "technical"
+      count: "5-10"
+      description: "Python stack documentation"
+    - type: "architecture"
+      count: "4-8"
+      description: "Architecture documents"
+    - type: "feature"
+      count: "5-15"
+      description: "Feature specifications"
+    - type: "decision"
+      count: "3-10"
+      description: "Technical decisions"
+    - type: "workflow"
+      count: "4-8"
+      description: "Development workflows"
+    - type: "concept"
+      count: "3-7"
+      description: "Core concepts"
+
+  core_connections:
+    - from: "README.md"
+      to: "concepts/project-overview.md"
+      relationship: "introduces"
+      bidirectional: true
+    - from: "technical/fastapi.md"
+      to: "technical/python.md"
+      relationship: "runs-on"
+      bidirectional: false
+    - from: "technical/pydantic.md"
+      to: "technical/fastapi.md"
+      relationship: "used-by"
+      bidirectional: false
+    - from: "architecture/system-architecture.md"
+      to: "technical/fastapi.md"
+      relationship: "built-with"
+      bidirectional: false
+
+  expected_metrics:
+    total_nodes: "22-45"
+    total_connections: "45-90"
+    avg_connections_per_node: "3-5"
+    clusters: "4-6"
+
+# Variables
+variables:
+  PROJECT_NAME:
+    description: "Project name"
+    type: "string"
+    required: true
+  PROJECT_DESCRIPTION:
+    description: "Project description"
+    type: "string"
+    required: true
+  AUTHOR:
+    description: "Author name"
+    type: "string"
+    required: true
+  PYTHON_VERSION:
+    description: "Python version"
+    type: "string"
+    default: "3.11"
+  FRAMEWORK:
+    description: "Python framework"
+    type: "string"
+    default: "fastapi"
+    validation:
+      options: ["fastapi", "flask", "django"]
+  CREATED_DATE:
+    description: "Creation date"
+    type: "date"
+    required: false
+
+metadata:
+  created_date: "2025-10-23"
+  last_updated: "2025-10-23"
+  compatibility:
+    weave_nn_version: ">=0.1.0"
+    obsidian_version: ">=1.0.0"

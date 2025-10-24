@@ -1,0 +1,46 @@
+Python Application Vault Structure
+====================================
+
+{{PROJECT_NAME}}/
+├── README.md                                    # Project overview
+│
+├── concepts/                                    # Core concepts
+│   ├── project-overview.md
+│   └── ...
+│
+├── technical/                                   # Python technology stack
+│   ├── python.md                                # Python language
+│   ├── fastapi.md                               # FastAPI framework
+│   ├── pydantic.md                              # Data validation
+│   ├── sqlalchemy.md                            # [Optional] ORM
+│   └── ...
+│
+├── architecture/                                # System architecture
+│   ├── system-architecture.md                   # System design
+│   ├── api-design.md                            # API endpoints
+│   ├── database-models.md                       # Database models
+│   └── modules/                                 # Module structure
+│       ├── module-structure.md                  # Python module organization
+│       └── ...
+│
+├── features/                                    # Feature specifications
+│   └── ...
+│
+├── decisions/                                   # Decision records
+│   ├── technical/
+│   │   └── ...
+│   └── ...
+│
+├── workflows/                                   # Development workflows
+│   ├── development-setup.md                     # Virtual environment setup
+│   ├── testing-with-pytest.md                   # Testing approach
+│   └── ...
+│
+├── docs/                                        # Documentation
+├── _planning/                                   # Project planning
+│   ├── project-plan.md
+│   └── ...
+├── templates/                                   # Note templates
+└── _files/                                      # Attachments
+
+Estimated Nodes: 22-45 | Connections: 45-90 | Clusters: 4-6

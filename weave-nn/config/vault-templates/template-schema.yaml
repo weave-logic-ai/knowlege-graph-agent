@@ -1,0 +1,408 @@
+# Template Schema Definition
+# Defines the structure and validation rules for vault templates
+
+$schema: http://json-schema.org/draft-07/schema#
+title: Weave-NN Vault Template Schema
+version: "1.0.0"
+
+type: object
+required:
+  - id
+  - name
+  - description
+  - version
+  - author
+  - tags
+  - application_types
+  - complexity
+  - directory_structure
+  - required_documents
+  - knowledge_graph
+
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
+    description: "Unique template identifier (kebab-case)"
+    examples:
+      - "typescript-node"
+      - "nextjs-react"
+      - "python-app"
+
+  name:
+    type: string
+    minLength: 3
+    maxLength: 100
+    description: "Human-readable template name"
+    examples:
+      - "TypeScript/Node.js Application"
+      - "Next.js/React Web Application"
+
+  description:
+    type: string
+    minLength: 20
+    maxLength: 500
+    description: "Brief description of template purpose and use cases"
+
+  version:
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+    description: "Semantic version (major.minor.patch)"
+    examples:
+      - "1.0.0"
+      - "2.1.3"
+
+  author:
+    type: string
+    description: "Template creator or maintainer"
+    examples:
+      - "Weave-NN Team"
+      - "Community"
+
+  tags:
+    type: array
+    items:
+      type: string
+    minItems: 2
+    maxItems: 10
+    description: "Categorization tags"
+    examples:
+      - ["typescript", "nodejs", "api"]
+      - ["python", "fastapi", "backend"]
+
+  application_types:
+    type: array
+    items:
+      type: string
+      enum:
+        - "api"
+        - "web-app"
+        - "cli"
+        - "library"
+        - "microservice"
+        - "monorepo"
+        - "mobile"
+        - "desktop"
+        - "backend"
+        - "frontend"
+        - "fullstack"
+    minItems: 1
+    maxItems: 5
+    description: "Types of applications this template supports"
+
+  complexity:
+    type: string
+    enum: ["simple", "moderate", "complex", "very-complex"]
+    description: "Template complexity level"
+
+  estimated_setup_time:
+    type: string
+    pattern: "^\\d+-\\d+ (minutes|hours|days)$"
+    description: "Estimated time to customize and set up"
+    examples:
+      - "5-10 minutes"
+      - "30-60 minutes"
+      - "1-2 hours"
+
+  directory_structure:
+    type: array
+    items:
+      type: object
+      required:
+        - path
+        - description
+      properties:
+        path:
+          type: string
+          description: "Directory path relative to vault root"
+        description:
+          type: string
+          description: "Purpose of this directory"
+        required:
+          type: boolean
+          default: true
+          description: "Whether directory is required"
+    minItems: 5
+    description: "List of directories to create"
+
+  required_documents:
+    type: array
+    items:
+      type: object
+      required:
+        - path
+        - type
+        - description
+      properties:
+        path:
+          type: string
+          description: "Document path relative to vault root"
+        type:
+          type: string
+          enum:
+            - "concept"
+            - "technical"
+            - "feature"
+            - "decision"
+            - "planning"
+            - "workflow"
+            - "documentation"
+          description: "Document type (determines template)"
+        description:
+          type: string
+          description: "Purpose of this document"
+        template:
+          type: string
+          description: "Template file to use for generation"
+        frontmatter:
+          type: object
+          description: "Additional frontmatter fields"
+    minItems: 3
+    description: "Documents that must be generated"
+
+  optional_documents:
+    type: array
+    items:
+      type: object
+      required:
+        - path
+        - type
+        - description
+      properties:
+        path:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        template:
+          type: string
+        frontmatter:
+          type: object
+        condition:
+          type: string
+          description: "Condition for including this document"
+    description: "Documents that can be optionally included"
+
+  knowledge_graph:
+    type: object
+    required:
+      - node_types
+      - core_connections
+      - connection_patterns
+    properties:
+      node_types:
+        type: array
+        items:
+          type: object
+          required:
+            - type
+            - count
+            - description
+          properties:
+            type:
+              type: string
+            count:
+              type: string
+              description: "Expected count (exact number or range)"
+            description:
+              type: string
+        description: "Expected node types in the graph"
+
+      core_connections:
+        type: array
+        items:
+          type: object
+          required:
+            - from
+            - to
+            - relationship
+          properties:
+            from:
+              type: string
+              description: "Source node path"
+            to:
+              type: string
+              description: "Target node path"
+            relationship:
+              type: string
+              description: "Type of relationship"
+            bidirectional:
+              type: boolean
+              default: true
+        description: "Core wikilink connections to create"
+
+      connection_patterns:
+        type: array
+        items:
+          type: object
+          required:
+            - pattern
+            - description
+          properties:
+            pattern:
+              type: string
+              description: "Pattern name"
+            description:
+              type: string
+              description: "When and how to use this pattern"
+            example:
+              type: string
+              description: "Example wikilink"
+        description: "Wikilink patterns and conventions"
+
+      expected_metrics:
+        type: object
+        properties:
+          total_nodes:
+            type: string
+          total_connections:
+            type: string
+          avg_connections_per_node:
+            type: string
+          clusters:
+            type: string
+        description: "Expected graph metrics after initialization"
+
+  variables:
+    type: object
+    additionalProperties:
+      type: object
+      required:
+        - description
+        - type
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+          enum: ["string", "number", "boolean", "date", "array"]
+        default:
+          description: "Default value"
+        required:
+          type: boolean
+          default: false
+        validation:
+          type: object
+          properties:
+            pattern:
+              type: string
+            min:
+              type: number
+            max:
+              type: number
+            options:
+              type: array
+    description: "Custom variables for template substitution"
+
+  conditional_sections:
+    type: array
+    items:
+      type: object
+      required:
+        - condition
+        - action
+      properties:
+        condition:
+          type: string
+          description: "Condition expression (e.g., 'options.includeTests')"
+        action:
+          type: string
+          enum: ["include", "exclude"]
+        target:
+          type: string
+          description: "Path or section identifier"
+    description: "Conditional content rules"
+
+  hooks:
+    type: object
+    properties:
+      pre_generation:
+        type: array
+        items:
+          type: string
+        description: "Scripts to run before generation"
+      post_generation:
+        type: array
+        items:
+          type: string
+        description: "Scripts to run after generation"
+      validation:
+        type: array
+        items:
+          type: string
+        description: "Validation scripts to run"
+    description: "Lifecycle hooks for custom processing"
+
+  dependencies:
+    type: object
+    properties:
+      obsidian_plugins:
+        type: array
+        items:
+          type: string
+        description: "Required Obsidian plugins"
+      npm_packages:
+        type: array
+        items:
+          type: string
+        description: "Required npm packages"
+      system_tools:
+        type: array
+        items:
+          type: string
+        description: "Required system tools"
+    description: "External dependencies"
+
+  examples:
+    type: array
+    items:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        path:
+          type: string
+          description: "Path to example vault"
+        url:
+          type: string
+          format: uri
+          description: "URL to example project"
+    description: "Example projects using this template"
+
+  metadata:
+    type: object
+    properties:
+      created_date:
+        type: string
+        format: date
+      last_updated:
+        type: string
+        format: date
+      compatibility:
+        type: object
+        properties:
+          weave_nn_version:
+            type: string
+          obsidian_version:
+            type: string
+      changelog:
+        type: array
+        items:
+          type: object
+          properties:
+            version:
+              type: string
+            date:
+              type: string
+              format: date
+            changes:
+              type: array
+              items:
+                type: string
+    description: "Template metadata"

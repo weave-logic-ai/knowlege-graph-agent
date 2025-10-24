@@ -1,0 +1,348 @@
+# Monorepo/Multi-Service Template
+
+id: monorepo
+name: Monorepo/Multi-Service Application
+description: |
+  Template for monorepo projects with multiple services, packages, and applications.
+  Includes service mapping, inter-service dependencies, shared packages, and
+  cross-service integration patterns. Ideal for microservices and multi-package projects.
+version: "1.0.0"
+author: Weave-NN Team
+tags:
+  - monorepo
+  - microservices
+  - multi-service
+  - packages
+  - polyglot
+application_types:
+  - monorepo
+  - microservice
+  - fullstack
+complexity: complex
+estimated_setup_time: "1-2 hours"
+
+# Directory Structure
+directory_structure:
+  - path: "services"
+    description: "Service-level documentation"
+    required: true
+  - path: "packages"
+    description: "Shared package documentation"
+    required: true
+  - path: "technical"
+    description: "Technology stack (cross-service)"
+    required: true
+  - path: "architecture"
+    description: "System architecture"
+    required: true
+  - path: "architecture/services"
+    description: "Individual service architectures"
+    required: true
+  - path: "architecture/integration"
+    description: "Inter-service integration patterns"
+    required: true
+  - path: "architecture/shared"
+    description: "Shared infrastructure and resources"
+    required: true
+  - path: "features"
+    description: "Cross-service features"
+    required: true
+  - path: "decisions"
+    description: "Technical decisions"
+    required: true
+  - path: "decisions/technical"
+    description: "Technical architecture decisions"
+    required: true
+  - path: "decisions/infrastructure"
+    description: "Infrastructure decisions"
+    required: true
+  - path: "workflows"
+    description: "Development workflows"
+    required: true
+  - path: "workflows/deployment"
+    description: "Deployment strategies"
+    required: true
+  - path: "concepts"
+    description: "Core concepts"
+    required: true
+  - path: "docs"
+    description: "Documentation"
+    required: true
+  - path: "_planning"
+    description: "Project planning"
+    required: true
+  - path: "_planning/services"
+    description: "Service-specific plans"
+    required: true
+  - path: "templates"
+    description: "Note templates"
+    required: true
+  - path: "_files"
+    description: "Attachments"
+    required: true
+
+# Required Documents
+required_documents:
+  - path: "README.md"
+    type: "documentation"
+    description: "Monorepo overview"
+    template: "documents/README.md"
+    frontmatter:
+      type: "documentation"
+      category: "overview"
+      status: "active"
+
+  - path: "architecture/monorepo-architecture.md"
+    type: "documentation"
+    description: "Overall monorepo structure"
+    template: "documents/architecture/monorepo-architecture.md"
+    frontmatter:
+      type: "architecture"
+      category: "system"
+      status: "draft"
+
+  - path: "architecture/service-map.md"
+    type: "documentation"
+    description: "Service inventory and relationships"
+    template: "documents/architecture/service-map.md"
+    frontmatter:
+      type: "architecture"
+      category: "services"
+      status: "active"
+
+  - path: "architecture/integration/api-gateway.md"
+    type: "documentation"
+    description: "API gateway and routing"
+    template: "documents/architecture/integration/api-gateway.md"
+    frontmatter:
+      type: "architecture"
+      category: "integration"
+      status: "draft"
+
+  - path: "architecture/integration/message-bus.md"
+    type: "documentation"
+    description: "Event-driven messaging"
+    template: "documents/architecture/integration/message-bus.md"
+    frontmatter:
+      type: "architecture"
+      category: "integration"
+      status: "draft"
+
+  - path: "architecture/integration/inter-service-communication.md"
+    type: "documentation"
+    description: "Communication patterns between services"
+    template: "documents/architecture/integration/inter-service-communication.md"
+    frontmatter:
+      type: "architecture"
+      category: "integration"
+      status: "draft"
+
+  - path: "architecture/shared/shared-infrastructure.md"
+    type: "documentation"
+    description: "Shared databases, caches, and resources"
+    template: "documents/architecture/shared/shared-infrastructure.md"
+    frontmatter:
+      type: "architecture"
+      category: "infrastructure"
+      status: "draft"
+
+  - path: "packages/shared-packages.md"
+    type: "documentation"
+    description: "Shared package inventory"
+    template: "documents/packages/shared-packages.md"
+    frontmatter:
+      type: "documentation"
+      category: "packages"
+      status: "active"
+
+  - path: "services/service-template.md"
+    type: "documentation"
+    description: "Template for new service documentation"
+    template: "documents/services/service-template.md"
+    frontmatter:
+      type: "template"
+      category: "services"
+      status: "active"
+
+  - path: "concepts/project-overview.md"
+    type: "concept"
+    description: "Project concept"
+    template: "documents/concepts/project-overview.md"
+    frontmatter:
+      concept_id: "C-001"
+      category: "project"
+      status: "active"
+
+  - path: "concepts/microservices-principles.md"
+    type: "concept"
+    description: "Microservices design principles"
+    template: "documents/concepts/microservices-principles.md"
+    frontmatter:
+      concept_id: "C-002"
+      category: "architecture"
+      status: "active"
+
+  - path: "workflows/development-setup.md"
+    type: "workflow"
+    description: "Monorepo development setup"
+    template: "documents/workflows/development-setup.md"
+    frontmatter:
+      workflow_id: "W-001"
+      category: "development"
+      status: "active"
+
+  - path: "workflows/deployment/deployment-strategy.md"
+    type: "workflow"
+    description: "Service deployment process"
+    template: "documents/workflows/deployment/deployment-strategy.md"
+    frontmatter:
+      workflow_id: "W-002"
+      category: "deployment"
+      status: "active"
+
+  - path: "workflows/adding-new-service.md"
+    type: "workflow"
+    description: "Process for creating new services"
+    template: "documents/workflows/adding-new-service.md"
+    frontmatter:
+      workflow_id: "W-003"
+      category: "development"
+      status: "active"
+
+  - path: "_planning/project-plan.md"
+    type: "planning"
+    description: "Master project roadmap"
+    template: "documents/planning/project-plan.md"
+    frontmatter:
+      type: "planning"
+      category: "roadmap"
+      status: "active"
+
+  - path: "_planning/service-roadmap.md"
+    type: "planning"
+    description: "Service development timeline"
+    template: "documents/planning/service-roadmap.md"
+    frontmatter:
+      type: "planning"
+      category: "services"
+      status: "active"
+
+# Knowledge Graph
+knowledge_graph:
+  node_types:
+    - type: "service"
+      count: "3-10"
+      description: "Service documentation nodes"
+    - type: "package"
+      count: "2-8"
+      description: "Shared package documentation"
+    - type: "technical"
+      count: "8-15"
+      description: "Technology stack (multiple languages/frameworks)"
+    - type: "architecture"
+      count: "8-15"
+      description: "Architecture and integration documents"
+    - type: "feature"
+      count: "10-25"
+      description: "Cross-service features"
+    - type: "decision"
+      count: "6-15"
+      description: "Technical and infrastructure decisions"
+    - type: "workflow"
+      count: "6-12"
+      description: "Development and deployment workflows"
+    - type: "concept"
+      count: "4-10"
+      description: "Core architectural concepts"
+
+  core_connections:
+    - from: "README.md"
+      to: "architecture/monorepo-architecture.md"
+      relationship: "describes"
+      bidirectional: true
+    - from: "architecture/monorepo-architecture.md"
+      to: "architecture/service-map.md"
+      relationship: "contains"
+      bidirectional: false
+    - from: "architecture/service-map.md"
+      to: "services/*"
+      relationship: "lists"
+      bidirectional: false
+    - from: "services/*"
+      to: "packages/shared-packages.md"
+      relationship: "depends-on"
+      bidirectional: false
+    - from: "architecture/integration/message-bus.md"
+      to: "architecture/service-map.md"
+      relationship: "connects"
+      bidirectional: false
+    - from: "workflows/adding-new-service.md"
+      to: "services/service-template.md"
+      relationship: "uses"
+      bidirectional: false
+
+  connection_patterns:
+    - pattern: "service-to-service"
+      description: "Link services that communicate with each other"
+      example: "[[services/api-gateway]] routes to [[services/user-service]]"
+    - pattern: "service-to-package"
+      description: "Link services to shared packages they use"
+      example: "[[services/auth-service]] uses [[packages/common-types]]"
+    - pattern: "integration-to-services"
+      description: "Link integration patterns to services they connect"
+      example: "[[architecture/integration/message-bus]] connects [[services/order-service]] and [[services/inventory-service]]"
+    - pattern: "feature-to-services"
+      description: "Link cross-service features to implementing services"
+      example: "[[features/checkout-flow]] implemented by [[services/cart]], [[services/payment]], [[services/inventory]]"
+
+  expected_metrics:
+    total_nodes: "40-100"
+    total_connections: "100-250"
+    avg_connections_per_node: "4-7"
+    clusters: "8-12"
+
+# Variables
+variables:
+  PROJECT_NAME:
+    description: "Monorepo project name"
+    type: "string"
+    required: true
+  PROJECT_DESCRIPTION:
+    description: "Project description"
+    type: "string"
+    required: true
+  AUTHOR:
+    description: "Author name"
+    type: "string"
+    required: true
+  SERVICE_COUNT:
+    description: "Number of initial services"
+    type: "number"
+    default: 3
+    validation:
+      min: 2
+      max: 20
+  PACKAGE_COUNT:
+    description: "Number of shared packages"
+    type: "number"
+    default: 2
+    validation:
+      min: 1
+      max: 10
+  ORCHESTRATION:
+    description: "Orchestration platform"
+    type: "string"
+    default: "docker-compose"
+    validation:
+      options: ["docker-compose", "kubernetes", "nomad"]
+  CREATED_DATE:
+    description: "Creation date"
+    type: "date"
+    required: false
+
+metadata:
+  created_date: "2025-10-23"
+  last_updated: "2025-10-23"
+  compatibility:
+    weave_nn_version: ">=0.1.0"
+    obsidian_version: ">=1.0.0"

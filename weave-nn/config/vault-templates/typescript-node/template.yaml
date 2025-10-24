@@ -1,0 +1,482 @@
+# TypeScript/Node.js Application Template
+
+id: typescript-node
+name: TypeScript/Node.js Application
+description: |
+  Template for TypeScript/Node.js applications including Express APIs, CLI tools,
+  and libraries. Includes technical stack documentation, architecture diagrams,
+  API specifications, and development workflows.
+version: "1.0.0"
+author: Weave-NN Team
+tags:
+  - typescript
+  - nodejs
+  - api
+  - backend
+  - express
+application_types:
+  - api
+  - cli
+  - library
+  - backend
+complexity: moderate
+estimated_setup_time: "30-45 minutes"
+
+# Directory Structure
+directory_structure:
+  - path: "technical"
+    description: "Technical documentation for technologies and tools"
+    required: true
+  - path: "architecture"
+    description: "Architecture diagrams and system design documents"
+    required: true
+  - path: "features"
+    description: "Feature specifications and requirements"
+    required: true
+  - path: "decisions"
+    description: "Technical decision records (ADRs)"
+    required: true
+  - path: "decisions/technical"
+    description: "Technical architecture decisions"
+    required: true
+  - path: "workflows"
+    description: "Development workflows and processes"
+    required: true
+  - path: "concepts"
+    description: "Core concepts and domain knowledge"
+    required: true
+  - path: "docs"
+    description: "Additional documentation and guides"
+    required: true
+  - path: "mcp"
+    description: "MCP integration documentation"
+    required: false
+  - path: "_planning"
+    description: "Project planning and task management"
+    required: true
+  - path: "_planning/phases"
+    description: "Development phase plans"
+    required: true
+  - path: "_planning/daily-logs"
+    description: "Daily development logs"
+    required: true
+  - path: "templates"
+    description: "Obsidian note templates"
+    required: true
+  - path: "_files"
+    description: "Attachments and media files"
+    required: true
+
+# Required Documents
+required_documents:
+  # README
+  - path: "README.md"
+    type: "documentation"
+    description: "Project overview and entry point"
+    template: "documents/README.md"
+    frontmatter:
+      type: "documentation"
+      category: "overview"
+      status: "active"
+
+  # Technical Stack
+  - path: "technical/typescript.md"
+    type: "technical"
+    description: "TypeScript language and tooling"
+    template: "documents/technical/typescript.md"
+    frontmatter:
+      technical_id: "T-001"
+      category: "language"
+      status: "selected"
+      maturity: "stable"
+
+  - path: "technical/nodejs.md"
+    type: "technical"
+    description: "Node.js runtime environment"
+    template: "documents/technical/nodejs.md"
+    frontmatter:
+      technical_id: "T-002"
+      category: "runtime"
+      status: "selected"
+      maturity: "stable"
+
+  - path: "technical/express.md"
+    type: "technical"
+    description: "Express.js web framework"
+    template: "documents/technical/express.md"
+    frontmatter:
+      technical_id: "T-003"
+      category: "framework"
+      status: "selected"
+      maturity: "stable"
+
+  # Architecture
+  - path: "architecture/system-architecture.md"
+    type: "documentation"
+    description: "Overall system architecture"
+    template: "documents/architecture/system-architecture.md"
+    frontmatter:
+      type: "architecture"
+      category: "system-design"
+      status: "draft"
+
+  - path: "architecture/api-design.md"
+    type: "documentation"
+    description: "REST API design and endpoints"
+    template: "documents/architecture/api-design.md"
+    frontmatter:
+      type: "architecture"
+      category: "api"
+      status: "draft"
+
+  - path: "architecture/data-models.md"
+    type: "documentation"
+    description: "Data models and schemas"
+    template: "documents/architecture/data-models.md"
+    frontmatter:
+      type: "architecture"
+      category: "data"
+      status: "draft"
+
+  # Core Concepts
+  - path: "concepts/project-overview.md"
+    type: "concept"
+    description: "High-level project concept and goals"
+    template: "documents/concepts/project-overview.md"
+    frontmatter:
+      concept_id: "C-001"
+      category: "project"
+      status: "active"
+
+  # Development Workflows
+  - path: "workflows/development-setup.md"
+    type: "workflow"
+    description: "Local development environment setup"
+    template: "documents/workflows/development-setup.md"
+    frontmatter:
+      workflow_id: "W-001"
+      category: "development"
+      status: "active"
+
+  - path: "workflows/git-workflow.md"
+    type: "workflow"
+    description: "Git branching and commit strategy"
+    template: "documents/workflows/git-workflow.md"
+    frontmatter:
+      workflow_id: "W-002"
+      category: "version-control"
+      status: "active"
+
+  # Planning
+  - path: "_planning/project-plan.md"
+    type: "planning"
+    description: "Master project plan and roadmap"
+    template: "documents/planning/project-plan.md"
+    frontmatter:
+      type: "planning"
+      category: "roadmap"
+      status: "active"
+
+  - path: "_planning/tasks.md"
+    type: "planning"
+    description: "Task tracking and backlog"
+    template: "documents/planning/tasks.md"
+    frontmatter:
+      type: "planning"
+      category: "tasks"
+      status: "active"
+
+# Optional Documents
+optional_documents:
+  # Testing
+  - path: "workflows/testing-strategy.md"
+    type: "workflow"
+    description: "Testing approach and guidelines"
+    template: "documents/workflows/testing-strategy.md"
+    condition: "options.includeTesting"
+    frontmatter:
+      workflow_id: "W-003"
+      category: "testing"
+      status: "active"
+
+  # CI/CD
+  - path: "workflows/ci-cd-pipeline.md"
+    type: "workflow"
+    description: "Continuous integration and deployment"
+    template: "documents/workflows/ci-cd-pipeline.md"
+    condition: "options.includeCICD"
+    frontmatter:
+      workflow_id: "W-004"
+      category: "deployment"
+      status: "planned"
+
+  # Database
+  - path: "architecture/database-design.md"
+    type: "documentation"
+    description: "Database schema and migrations"
+    template: "documents/architecture/database-design.md"
+    condition: "options.includeDatabase"
+    frontmatter:
+      type: "architecture"
+      category: "database"
+      status: "draft"
+
+  # Authentication
+  - path: "features/authentication.md"
+    type: "feature"
+    description: "User authentication and authorization"
+    template: "documents/features/authentication.md"
+    condition: "options.includeAuth"
+    frontmatter:
+      feature_id: "F-001"
+      category: "security"
+      status: "planned"
+
+# Knowledge Graph Structure
+knowledge_graph:
+  node_types:
+    - type: "technical"
+      count: "5-10"
+      description: "Technical stack documentation nodes"
+    - type: "architecture"
+      count: "3-8"
+      description: "Architecture and design documents"
+    - type: "feature"
+      count: "5-15"
+      description: "Feature specifications"
+    - type: "decision"
+      count: "3-10"
+      description: "Technical decision records"
+    - type: "workflow"
+      count: "4-8"
+      description: "Development workflows"
+    - type: "concept"
+      count: "3-7"
+      description: "Core concept documents"
+
+  core_connections:
+    # README connections
+    - from: "README.md"
+      to: "concepts/project-overview.md"
+      relationship: "introduces"
+      bidirectional: true
+
+    - from: "README.md"
+      to: "architecture/system-architecture.md"
+      relationship: "references"
+      bidirectional: false
+
+    - from: "README.md"
+      to: "workflows/development-setup.md"
+      relationship: "guides-to"
+      bidirectional: false
+
+    # Technical stack connections
+    - from: "technical/typescript.md"
+      to: "technical/nodejs.md"
+      relationship: "runs-on"
+      bidirectional: false
+
+    - from: "technical/express.md"
+      to: "technical/nodejs.md"
+      relationship: "depends-on"
+      bidirectional: false
+
+    - from: "architecture/system-architecture.md"
+      to: "technical/express.md"
+      relationship: "uses"
+      bidirectional: false
+
+    # Architecture connections
+    - from: "architecture/api-design.md"
+      to: "architecture/system-architecture.md"
+      relationship: "part-of"
+      bidirectional: false
+
+    - from: "architecture/data-models.md"
+      to: "architecture/system-architecture.md"
+      relationship: "part-of"
+      bidirectional: false
+
+    # Workflow connections
+    - from: "workflows/development-setup.md"
+      to: "technical/nodejs.md"
+      relationship: "requires"
+      bidirectional: false
+
+    - from: "workflows/git-workflow.md"
+      to: "workflows/development-setup.md"
+      relationship: "follows"
+      bidirectional: false
+
+    # Planning connections
+    - from: "_planning/project-plan.md"
+      to: "architecture/system-architecture.md"
+      relationship: "implements"
+      bidirectional: false
+
+    - from: "_planning/tasks.md"
+      to: "_planning/project-plan.md"
+      relationship: "tracks"
+      bidirectional: false
+
+  connection_patterns:
+    - pattern: "technical-to-architecture"
+      description: "Link technical documentation to architecture documents that use those technologies"
+      example: "[[technical/express]] is used in [[architecture/api-design]]"
+
+    - pattern: "feature-to-technical"
+      description: "Link feature specifications to technical stack that implements them"
+      example: "[[features/user-api]] uses [[technical/express]]"
+
+    - pattern: "workflow-to-technical"
+      description: "Link workflows to technical tools they require"
+      example: "[[workflows/development-setup]] requires [[technical/nodejs]]"
+
+    - pattern: "decision-to-architecture"
+      description: "Link technical decisions to architecture they affect"
+      example: "[[decisions/technical/rest-api-framework]] impacts [[architecture/api-design]]"
+
+    - pattern: "planning-to-features"
+      description: "Link planning documents to features being developed"
+      example: "[[_planning/project-plan]] includes [[features/user-authentication]]"
+
+  expected_metrics:
+    total_nodes: "20-40"
+    total_connections: "40-80"
+    avg_connections_per_node: "3-5"
+    clusters: "4-6"
+
+# Template Variables
+variables:
+  PROJECT_NAME:
+    description: "Project name"
+    type: "string"
+    required: true
+    validation:
+      pattern: "^[a-z0-9-]+$"
+
+  PROJECT_DESCRIPTION:
+    description: "Brief project description"
+    type: "string"
+    required: true
+    validation:
+      min: 20
+      max: 200
+
+  AUTHOR:
+    description: "Project author or team name"
+    type: "string"
+    required: true
+
+  TECH_STACK:
+    description: "Primary technologies"
+    type: "array"
+    default: ["TypeScript", "Node.js", "Express.js"]
+    required: false
+
+  API_VERSION:
+    description: "Initial API version"
+    type: "string"
+    default: "v1"
+    required: false
+
+  PORT:
+    description: "Default server port"
+    type: "number"
+    default: 3000
+    validation:
+      min: 1024
+      max: 65535
+
+  INCLUDE_TESTING:
+    description: "Include testing documentation"
+    type: "boolean"
+    default: true
+
+  INCLUDE_DATABASE:
+    description: "Include database design documents"
+    type: "boolean"
+    default: false
+
+  INCLUDE_AUTH:
+    description: "Include authentication feature"
+    type: "boolean"
+    default: false
+
+  CREATED_DATE:
+    description: "Template creation date"
+    type: "date"
+    required: false
+
+# Conditional Sections
+conditional_sections:
+  - condition: "options.includeTesting === true"
+    action: "include"
+    target: "workflows/testing-strategy.md"
+
+  - condition: "options.includeDatabase === true"
+    action: "include"
+    target: "architecture/database-design.md"
+
+  - condition: "options.includeAuth === true"
+    action: "include"
+    target: "features/authentication.md"
+
+  - condition: "options.includeCICD === true"
+    action: "include"
+    target: "workflows/ci-cd-pipeline.md"
+
+# Lifecycle Hooks
+hooks:
+  pre_generation:
+    - "validate-project-name"
+    - "check-dependencies"
+
+  post_generation:
+    - "initialize-git"
+    - "create-gitignore"
+    - "validate-wikilinks"
+    - "generate-graph-metrics"
+
+  validation:
+    - "validate-frontmatter"
+    - "validate-directory-structure"
+    - "check-wikilink-integrity"
+
+# Dependencies
+dependencies:
+  obsidian_plugins:
+    - "obsidian-local-rest-api"
+    - "dataview"
+    - "templater"
+  npm_packages: []
+  system_tools:
+    - "git"
+    - "node"
+    - "npm"
+
+# Examples
+examples:
+  - name: "Express REST API"
+    description: "Simple Express REST API with TypeScript"
+    path: "examples/express-api-vault"
+
+  - name: "CLI Tool"
+    description: "Command-line tool built with Node.js"
+    path: "examples/cli-tool-vault"
+
+# Metadata
+metadata:
+  created_date: "2025-10-23"
+  last_updated: "2025-10-23"
+  compatibility:
+    weave_nn_version: ">=0.1.0"
+    obsidian_version: ">=1.0.0"
+  changelog:
+    - version: "1.0.0"
+      date: "2025-10-23"
+      changes:
+        - "Initial template creation"
+        - "Core document structure defined"
+        - "Knowledge graph patterns established"

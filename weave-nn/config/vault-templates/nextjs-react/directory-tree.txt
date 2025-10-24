@@ -1,0 +1,52 @@
+Next.js/React Web Application Vault Structure
+=============================================
+
+{{PROJECT_NAME}}/
+├── README.md                                    # Project overview
+│
+├── concepts/                                    # Core concepts
+│   ├── project-overview.md
+│   └── ...
+│
+├── technical/                                   # Frontend technology stack
+│   ├── nextjs.md                                # Next.js framework
+│   ├── react.md                                 # React library
+│   ├── typescript.md                            # TypeScript
+│   ├── tailwindcss.md                           # [Optional] Styling
+│   └── ...
+│
+├── architecture/                                # Application architecture
+│   ├── application-architecture.md              # Overall app structure
+│   ├── api-routes.md                            # Next.js API routes
+│   ├── state-management.md                      # State management strategy
+│   ├── components/                              # Component architecture
+│   │   ├── component-hierarchy.md               # Component organization
+│   │   └── ...
+│   └── pages/                                   # Page structure
+│       ├── page-structure.md                    # Routing and pages
+│       └── ...
+│
+├── features/                                    # Features and UI flows
+│   ├── ui/                                      # UI component features
+│   │   └── ...
+│   └── ...
+│
+├── decisions/                                   # Decision records
+│   ├── technical/                               # Technical decisions
+│   │   └── ...
+│   └── design/                                  # Design/UX decisions
+│       └── ...
+│
+├── workflows/                                   # Development workflows
+│   ├── development-setup.md
+│   ├── component-development.md
+│   └── ...
+│
+├── docs/                                        # Documentation
+├── _planning/                                   # Project planning
+│   ├── project-plan.md
+│   └── ...
+├── templates/                                   # Note templates
+└── _files/                                      # Attachments
+
+Estimated Nodes: 25-50 | Connections: 60-120 | Clusters: 5-7

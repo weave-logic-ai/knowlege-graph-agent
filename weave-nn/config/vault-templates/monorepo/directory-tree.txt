@@ -1,0 +1,61 @@
+Monorepo/Multi-Service Vault Structure
+=======================================
+
+{{PROJECT_NAME}}/
+├── README.md                                    # Monorepo overview
+│
+├── services/                                    # Service documentation
+│   ├── service-template.md                      # Template for new services
+│   ├── api-gateway.md
+│   ├── user-service.md
+│   └── ... (per-service docs)
+│
+├── packages/                                    # Shared packages
+│   ├── shared-packages.md                       # Package inventory
+│   └── ... (per-package docs)
+│
+├── concepts/                                    # Core concepts
+│   ├── project-overview.md
+│   ├── microservices-principles.md
+│   └── ...
+│
+├── technical/                                   # Technology stack
+│   └── ... (multiple languages/frameworks)
+│
+├── architecture/                                # System architecture
+│   ├── monorepo-architecture.md                 # Overall structure
+│   ├── service-map.md                           # Service relationships
+│   ├── services/                                # Service architectures
+│   │   └── ...
+│   ├── integration/                             # Inter-service patterns
+│   │   ├── api-gateway.md                       # Gateway routing
+│   │   ├── message-bus.md                       # Event messaging
+│   │   └── inter-service-communication.md
+│   └── shared/                                  # Shared infrastructure
+│       ├── shared-infrastructure.md
+│       └── ...
+│
+├── features/                                    # Cross-service features
+│   └── ...
+│
+├── decisions/                                   # Decision records
+│   ├── technical/
+│   └── infrastructure/
+│
+├── workflows/                                   # Development workflows
+│   ├── development-setup.md
+│   ├── adding-new-service.md
+│   └── deployment/                              # Deployment strategies
+│       ├── deployment-strategy.md
+│       └── ...
+│
+├── docs/                                        # Documentation
+├── _planning/                                   # Project planning
+│   ├── project-plan.md
+│   ├── service-roadmap.md
+│   └── services/                                # Service-specific plans
+│       └── ...
+├── templates/                                   # Note templates
+└── _files/                                      # Attachments
+
+Estimated Nodes: 40-100 | Connections: 100-250 | Clusters: 8-12

@@ -1,0 +1,116 @@
+TypeScript/Node.js Application Vault Structure
+==============================================
+
+{{PROJECT_NAME}}/
+├── README.md                                    # Project overview and entry point
+│
+├── concepts/                                    # Core concepts and domain knowledge
+│   ├── project-overview.md                      # High-level project concept
+│   └── ... (additional concepts)
+│
+├── technical/                                   # Technical stack documentation
+│   ├── typescript.md                            # TypeScript configuration
+│   ├── nodejs.md                                # Node.js runtime
+│   ├── express.md                               # Express.js framework
+│   ├── jest.md                                  # [Optional] Testing framework
+│   └── ... (additional tools)
+│
+├── architecture/                                # System architecture and design
+│   ├── system-architecture.md                   # Overall system design
+│   ├── api-design.md                            # REST API specifications
+│   ├── data-models.md                           # Data schemas and models
+│   ├── database-design.md                       # [Optional] Database design
+│   └── ... (additional architecture docs)
+│
+├── features/                                    # Feature specifications
+│   ├── authentication.md                        # [Optional] User authentication
+│   └── ... (feature specs)
+│
+├── decisions/                                   # Decision records
+│   ├── technical/                               # Technical decisions
+│   │   ├── D-001-typescript-adoption.md         # Language choice
+│   │   ├── D-002-express-framework.md           # Framework selection
+│   │   └── ... (technical decisions)
+│   └── ... (other decision types)
+│
+├── workflows/                                   # Development workflows
+│   ├── development-setup.md                     # Setup instructions
+│   ├── git-workflow.md                          # Git strategy
+│   ├── testing-strategy.md                      # [Optional] Testing approach
+│   ├── ci-cd-pipeline.md                        # [Optional] CI/CD setup
+│   └── ... (additional workflows)
+│
+├── docs/                                        # Additional documentation
+│   └── ... (guides, references)
+│
+├── mcp/                                         # [Optional] MCP integration
+│   └── ... (MCP tools and configs)
+│
+├── _planning/                                   # Project planning
+│   ├── project-plan.md                          # Master plan and roadmap
+│   ├── tasks.md                                 # Task backlog
+│   ├── phases/                                  # Phase-based planning
+│   │   └── ... (phase documents)
+│   └── daily-logs/                              # Daily development logs
+│       └── ... (daily notes)
+│
+├── templates/                                   # Obsidian note templates
+│   ├── feature-node-template.md
+│   ├── technical-node-template.md
+│   ├── decision-node-template.md
+│   └── ... (node templates)
+│
+├── _files/                                      # Attachments and media
+│   └── ... (images, diagrams, assets)
+│
+└── .obsidian/                                   # Obsidian configuration
+    └── ... (workspace settings)
+
+
+Directory Descriptions
+======================
+
+Core Directories:
+-----------------
+concepts/        Core project concepts and domain knowledge
+technical/       Documentation for technologies, tools, and libraries
+architecture/    System design, API specs, data models
+features/        Feature specifications and requirements
+decisions/       Technical decision records (ADRs)
+workflows/       Development processes and procedures
+docs/            General documentation and guides
+
+Organization Directories:
+------------------------
+_planning/       Project planning, roadmaps, tasks, phases
+templates/       Reusable Obsidian note templates
+_files/          Media files, diagrams, attachments
+.obsidian/       Obsidian workspace configuration
+
+Optional Directories:
+--------------------
+mcp/            MCP server integration documentation
+
+
+Estimated Node Count
+====================
+Total Nodes:              20-40
+Technical Nodes:          5-10
+Architecture Nodes:       3-8
+Feature Nodes:            5-15
+Decision Nodes:           3-10
+Workflow Nodes:           4-8
+Concept Nodes:            3-7
+
+Total Connections:        40-80
+Avg Connections/Node:     3-5
+Expected Clusters:        4-6
+
+
+Connection Patterns
+===================
+1. Technical → Architecture (technologies used in system design)
+2. Features → Technical (features implemented with specific tools)
+3. Workflows → Technical (processes requiring specific tools)
+4. Decisions → Architecture (decisions affecting design)
+5. Planning → Features (roadmap tracking feature development)

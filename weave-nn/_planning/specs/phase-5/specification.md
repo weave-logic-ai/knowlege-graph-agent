@@ -24,6 +24,10 @@ _Note: This is preliminary. Run /speckit.tasks for AI-powered task generation._
 - [ ] Day 3: Workflow MCP Tools (8 hours) - Morning (4 hours): Workflow Tool Implementation: **Implement Workflow Tools**:
 - [ ] Day 3: Workflow MCP Tools (8 hours) - Afternoon (4 hours): Proof Workflow Enhancement: **Enhance Task Completion Workflow** (`src/workflows/proof-workflows.ts`):
 - [ ] Day 4: Integration, Testing & Documentation (8 hours) - Tasks:: - [ ] Complete integration testing (MCP server + tools)
+- [ ] Implement `@modelcontextprotocol/sdk` server
+- [ ] Stdio transport for Claude Desktop integration
+- [ ] Server lifecycle (startup, shutdown, health checks)
+- [ ] Error handling and logging
 - [ ] MCP server starts and connects via stdio
 - [ ] Server responds to ListTools request
 - [ ] Basic error handling in place
@@ -32,6 +36,12 @@ _Note: This is preliminary. Run /speckit.tasks for AI-powered task generation._
 - [ ] Tool definitions created (stubs)
 - [ ] Integration points identified
 - [ ] Documentation started
+- [ ] `query_files` - Search files by path, type, status, tag
+- [ ] `get_file` - Retrieve specific file metadata
+- [ ] `get_file_content` - Read file content
+- [ ] `search_tags` - Find files by tags
+- [ ] `search_links` - Query wikilink relationships
+- [ ] `get_stats` - Vault statistics
 - [ ] 5 shadow cache tools implemented
 - [ ] All tools using existing shadow cache methods
 - [ ] Response format consistent
@@ -40,6 +50,10 @@ _Note: This is preliminary. Run /speckit.tasks for AI-powered task generation._
 - [ ] All 5 tools tested end-to-end
 - [ ] Performance benchmarks (<10ms queries)
 - [ ] Documentation updated
+- [ ] `trigger_workflow` - Manually trigger workflow
+- [ ] `get_workflow_status` - Check execution status
+- [ ] `list_workflows` - Show registered workflows
+- [ ] `get_workflow_history` - View execution history
 - [ ] 4 workflow tools implemented
 - [ ] Integration with existing workflow engine
 - [ ] Workflow execution tracking working
@@ -73,5 +87,5 @@ _Items explicitly excluded from this phase:_
 
 ---
 
-**Generated**: 2025-10-24T02:12:09.214Z
+**Generated**: 2025-10-24T02:22:02.774Z
 **Source**: Phase planning document for PHASE-5

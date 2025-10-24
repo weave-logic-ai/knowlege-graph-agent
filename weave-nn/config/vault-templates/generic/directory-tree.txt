@@ -1,0 +1,65 @@
+Generic Application Vault Structure
+====================================
+
+{{PROJECT_NAME}}/
+├── README.md                                    # Project overview
+│
+├── concepts/                                    # Core concepts
+│   ├── project-overview.md
+│   └── ... (user-defined)
+│
+├── technical/                                   # Technology documentation
+│   ├── tech-stack.md                            # Technology overview
+│   └── ... (user-defined)
+│
+├── architecture/                                # Architecture and design
+│   ├── system-overview.md                       # System architecture
+│   ├── api-design.md                            # [Optional] API design
+│   ├── database-design.md                       # [Optional] Database design
+│   └── ... (user-defined)
+│
+├── features/                                    # Feature specifications
+│   └── ... (user-defined)
+│
+├── decisions/                                   # Decision records
+│   ├── technical/
+│   │   └── ... (user-defined)
+│   └── ... (user-defined)
+│
+├── workflows/                                   # Development workflows
+│   ├── development-setup.md                     # Setup instructions
+│   ├── testing-strategy.md                      # [Optional] Testing
+│   ├── deployment-process.md                    # [Optional] Deployment
+│   └── ... (user-defined)
+│
+├── docs/                                        # Documentation
+│   └── ... (user-defined)
+│
+├── _planning/                                   # Project planning
+│   ├── project-plan.md                          # Project roadmap
+│   ├── tasks.md                                 # Task tracking
+│   └── ... (user-defined)
+│
+├── templates/                                   # Note templates
+│   └── ... (user-defined)
+│
+└── _files/                                      # Attachments
+    └── ... (user-defined)
+
+
+Customization Instructions
+===========================
+
+This generic template provides a minimal starting structure.
+Customize by adding:
+
+1. Additional directories for your specific needs
+2. More technical documentation in technical/
+3. Detailed architecture documents in architecture/
+4. Feature specifications in features/
+5. Decision records as you make them
+6. Custom workflows for your development process
+
+The structure is intentionally minimal to allow maximum flexibility.
+
+Estimated Nodes: 15-35 | Connections: 30-70 | Clusters: 3-5

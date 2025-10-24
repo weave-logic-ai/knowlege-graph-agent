@@ -1,0 +1,356 @@
+# Generic Application Template
+
+id: generic
+name: Generic Application Template
+description: |
+  Fallback template for any project type. Provides minimal structure with maximum
+  flexibility for customization. Suitable for projects that don't fit other templates,
+  experimental projects, or custom application types.
+version: "1.0.0"
+author: Weave-NN Team
+tags:
+  - generic
+  - fallback
+  - custom
+  - flexible
+application_types:
+  - api
+  - web-app
+  - cli
+  - library
+  - microservice
+  - backend
+  - frontend
+  - fullstack
+  - desktop
+  - mobile
+complexity: simple
+estimated_setup_time: "15-30 minutes"
+
+# Directory Structure
+directory_structure:
+  - path: "technical"
+    description: "Technical documentation"
+    required: true
+  - path: "architecture"
+    description: "Architecture and design"
+    required: true
+  - path: "features"
+    description: "Feature specifications"
+    required: true
+  - path: "decisions"
+    description: "Decision records"
+    required: true
+  - path: "decisions/technical"
+    description: "Technical decisions"
+    required: true
+  - path: "workflows"
+    description: "Development workflows"
+    required: true
+  - path: "concepts"
+    description: "Core concepts"
+    required: true
+  - path: "docs"
+    description: "Documentation"
+    required: true
+  - path: "_planning"
+    description: "Project planning"
+    required: true
+  - path: "templates"
+    description: "Note templates"
+    required: true
+  - path: "_files"
+    description: "Attachments"
+    required: true
+
+# Required Documents (Minimal Set)
+required_documents:
+  - path: "README.md"
+    type: "documentation"
+    description: "Project overview"
+    template: "documents/README.md"
+    frontmatter:
+      type: "documentation"
+      category: "overview"
+      status: "active"
+
+  - path: "concepts/project-overview.md"
+    type: "concept"
+    description: "High-level project concept"
+    template: "documents/concepts/project-overview.md"
+    frontmatter:
+      concept_id: "C-001"
+      category: "project"
+      status: "active"
+
+  - path: "architecture/system-overview.md"
+    type: "documentation"
+    description: "System architecture overview"
+    template: "documents/architecture/system-overview.md"
+    frontmatter:
+      type: "architecture"
+      category: "system"
+      status: "draft"
+
+  - path: "technical/tech-stack.md"
+    type: "technical"
+    description: "Technology stack overview"
+    template: "documents/technical/tech-stack.md"
+    frontmatter:
+      technical_id: "T-001"
+      category: "stack"
+      status: "draft"
+
+  - path: "workflows/development-setup.md"
+    type: "workflow"
+    description: "Development environment setup"
+    template: "documents/workflows/development-setup.md"
+    frontmatter:
+      workflow_id: "W-001"
+      category: "development"
+      status: "draft"
+
+  - path: "_planning/project-plan.md"
+    type: "planning"
+    description: "Project roadmap and planning"
+    template: "documents/planning/project-plan.md"
+    frontmatter:
+      type: "planning"
+      category: "roadmap"
+      status: "active"
+
+  - path: "_planning/tasks.md"
+    type: "planning"
+    description: "Task tracking"
+    template: "documents/planning/tasks.md"
+    frontmatter:
+      type: "planning"
+      category: "tasks"
+      status: "active"
+
+# Optional Documents (User Customization)
+optional_documents:
+  - path: "architecture/api-design.md"
+    type: "documentation"
+    description: "API design (if applicable)"
+    template: "documents/architecture/api-design.md"
+    condition: "options.includeAPI"
+    frontmatter:
+      type: "architecture"
+      category: "api"
+      status: "draft"
+
+  - path: "architecture/database-design.md"
+    type: "documentation"
+    description: "Database design (if applicable)"
+    template: "documents/architecture/database-design.md"
+    condition: "options.includeDatabase"
+    frontmatter:
+      type: "architecture"
+      category: "database"
+      status: "draft"
+
+  - path: "workflows/testing-strategy.md"
+    type: "workflow"
+    description: "Testing approach"
+    template: "documents/workflows/testing-strategy.md"
+    condition: "options.includeTesting"
+    frontmatter:
+      workflow_id: "W-002"
+      category: "testing"
+      status: "draft"
+
+  - path: "workflows/deployment-process.md"
+    type: "workflow"
+    description: "Deployment process"
+    template: "documents/workflows/deployment-process.md"
+    condition: "options.includeDeployment"
+    frontmatter:
+      workflow_id: "W-003"
+      category: "deployment"
+      status: "draft"
+
+# Knowledge Graph (Minimal Structure)
+knowledge_graph:
+  node_types:
+    - type: "technical"
+      count: "3-8"
+      description: "Technology documentation"
+    - type: "architecture"
+      count: "2-6"
+      description: "Architecture documents"
+    - type: "feature"
+      count: "3-10"
+      description: "Feature specifications"
+    - type: "decision"
+      count: "2-8"
+      description: "Decision records"
+    - type: "workflow"
+      count: "3-6"
+      description: "Workflows and processes"
+    - type: "concept"
+      count: "2-5"
+      description: "Core concepts"
+
+  core_connections:
+    - from: "README.md"
+      to: "concepts/project-overview.md"
+      relationship: "introduces"
+      bidirectional: true
+    - from: "README.md"
+      to: "architecture/system-overview.md"
+      relationship: "describes"
+      bidirectional: false
+    - from: "README.md"
+      to: "workflows/development-setup.md"
+      relationship: "guides-to"
+      bidirectional: false
+    - from: "architecture/system-overview.md"
+      to: "technical/tech-stack.md"
+      relationship: "uses"
+      bidirectional: false
+    - from: "workflows/development-setup.md"
+      to: "technical/tech-stack.md"
+      relationship: "requires"
+      bidirectional: false
+    - from: "_planning/project-plan.md"
+      to: "architecture/system-overview.md"
+      relationship: "implements"
+      bidirectional: false
+
+  connection_patterns:
+    - pattern: "concept-to-architecture"
+      description: "Link concepts to their architectural implementations"
+      example: "[[concepts/data-flow]] implemented in [[architecture/system-overview]]"
+    - pattern: "technical-to-workflow"
+      description: "Link technical tools to workflows that use them"
+      example: "[[technical/tech-stack]] required by [[workflows/development-setup]]"
+    - pattern: "planning-to-features"
+      description: "Link planning documents to features being developed"
+      example: "[[_planning/project-plan]] tracks [[features/core-functionality]]"
+
+  expected_metrics:
+    total_nodes: "15-35"
+    total_connections: "30-70"
+    avg_connections_per_node: "2-4"
+    clusters: "3-5"
+
+# Variables
+variables:
+  PROJECT_NAME:
+    description: "Project name"
+    type: "string"
+    required: true
+    validation:
+      pattern: "^[a-zA-Z0-9-_]+$"
+
+  PROJECT_DESCRIPTION:
+    description: "Brief project description"
+    type: "string"
+    required: true
+    validation:
+      min: 10
+      max: 300
+
+  AUTHOR:
+    description: "Project author or team"
+    type: "string"
+    required: true
+
+  PROJECT_TYPE:
+    description: "Type of project"
+    type: "string"
+    default: "application"
+    required: false
+
+  PRIMARY_LANGUAGE:
+    description: "Primary programming language"
+    type: "string"
+    default: "Unknown"
+    required: false
+
+  INCLUDE_API:
+    description: "Include API design documentation"
+    type: "boolean"
+    default: false
+
+  INCLUDE_DATABASE:
+    description: "Include database design documentation"
+    type: "boolean"
+    default: false
+
+  INCLUDE_TESTING:
+    description: "Include testing documentation"
+    type: "boolean"
+    default: false
+
+  INCLUDE_DEPLOYMENT:
+    description: "Include deployment documentation"
+    type: "boolean"
+    default: false
+
+  CREATED_DATE:
+    description: "Template creation date"
+    type: "date"
+    required: false
+
+# Conditional Sections
+conditional_sections:
+  - condition: "options.includeAPI === true"
+    action: "include"
+    target: "architecture/api-design.md"
+
+  - condition: "options.includeDatabase === true"
+    action: "include"
+    target: "architecture/database-design.md"
+
+  - condition: "options.includeTesting === true"
+    action: "include"
+    target: "workflows/testing-strategy.md"
+
+  - condition: "options.includeDeployment === true"
+    action: "include"
+    target: "workflows/deployment-process.md"
+
+# Lifecycle Hooks
+hooks:
+  pre_generation:
+    - "validate-project-name"
+
+  post_generation:
+    - "create-gitignore"
+    - "validate-structure"
+
+  validation:
+    - "validate-frontmatter"
+    - "check-required-documents"
+
+# Dependencies (Minimal)
+dependencies:
+  obsidian_plugins:
+    - "obsidian-local-rest-api"
+    - "dataview"
+  npm_packages: []
+  system_tools:
+    - "git"
+
+# Examples
+examples:
+  - name: "Generic Project"
+    description: "Example of a generic project vault"
+    path: "examples/generic-vault"
+
+# Metadata
+metadata:
+  created_date: "2025-10-23"
+  last_updated: "2025-10-23"
+  compatibility:
+    weave_nn_version: ">=0.1.0"
+    obsidian_version: ">=1.0.0"
+  changelog:
+    - version: "1.0.0"
+      date: "2025-10-23"
+      changes:
+        - "Initial generic template creation"
+        - "Minimal structure for maximum flexibility"
+        - "User customization hooks defined"

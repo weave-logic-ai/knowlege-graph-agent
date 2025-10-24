@@ -1,0 +1,443 @@
+# Knowledge Graph Schema for Vault Templates
+# Defines node types, relationships, and connection patterns
+
+schema_version: "1.0.0"
+created_date: "2025-10-23"
+
+# Node Type Definitions
+node_types:
+  concept:
+    description: "Core concepts and domain knowledge"
+    frontmatter_fields:
+      required:
+        - concept_id
+        - category
+        - status
+      optional:
+        - related_concepts
+        - complexity
+    naming_convention: "kebab-case.md"
+    example: "concepts/knowledge-graph.md"
+    typical_count: "3-10"
+
+  technical:
+    description: "Technology, library, framework, or tool documentation"
+    frontmatter_fields:
+      required:
+        - technical_id
+        - technical_name
+        - category
+        - status
+        - maturity
+      optional:
+        - language
+        - license
+        - pros
+        - cons
+        - alternatives
+    naming_convention: "kebab-case.md"
+    example: "technical/typescript.md"
+    typical_count: "5-15"
+
+  architecture:
+    description: "System architecture and design documents"
+    frontmatter_fields:
+      required:
+        - type
+        - category
+        - status
+      optional:
+        - complexity
+        - dependencies
+    naming_convention: "kebab-case.md"
+    example: "architecture/system-architecture.md"
+    typical_count: "3-12"
+
+  feature:
+    description: "Feature specifications and requirements"
+    frontmatter_fields:
+      required:
+        - feature_id
+        - feature_name
+        - category
+        - status
+        - priority
+      optional:
+        - release
+        - complexity
+        - dependencies
+    naming_convention: "F-NNN-feature-name.md"
+    example: "features/F-001-user-authentication.md"
+    typical_count: "5-20"
+
+  decision:
+    description: "Technical decision records (ADRs)"
+    frontmatter_fields:
+      required:
+        - decision_id
+        - decision_type
+        - status
+        - decision_date
+      optional:
+        - affects
+        - supersedes
+        - superseded_by
+    naming_convention: "D-NNN-decision-name.md"
+    example: "decisions/technical/D-001-rest-api-framework.md"
+    typical_count: "3-15"
+
+  workflow:
+    description: "Development workflows and processes"
+    frontmatter_fields:
+      required:
+        - workflow_id
+        - category
+        - status
+      optional:
+        - frequency
+        - automation_level
+    naming_convention: "kebab-case.md"
+    example: "workflows/development-setup.md"
+    typical_count: "4-10"
+
+  planning:
+    description: "Project planning and phase documents"
+    frontmatter_fields:
+      required:
+        - type
+        - category
+        - status
+      optional:
+        - phase
+        - sprint
+        - timeline
+    naming_convention: "kebab-case.md"
+    example: "_planning/project-plan.md"
+    typical_count: "5-15"
+
+  service:
+    description: "Service documentation (monorepo only)"
+    frontmatter_fields:
+      required:
+        - service_id
+        - service_name
+        - category
+        - status
+      optional:
+        - language
+        - framework
+        - dependencies
+        - port
+    naming_convention: "kebab-case.md"
+    example: "services/user-service.md"
+    typical_count: "3-10"
+
+  package:
+    description: "Shared package documentation (monorepo only)"
+    frontmatter_fields:
+      required:
+        - package_id
+        - package_name
+        - category
+        - status
+      optional:
+        - language
+        - version
+        - consumers
+    naming_convention: "kebab-case.md"
+    example: "packages/common-types.md"
+    typical_count: "2-8"
+
+# Relationship Types
+relationship_types:
+  uses:
+    description: "Source uses/depends on target"
+    direction: "directional"
+    example: "[[technical/express]] uses [[technical/nodejs]]"
+    cardinality: "many-to-many"
+
+  implements:
+    description: "Source implements concept/spec from target"
+    direction: "directional"
+    example: "[[features/user-auth]] implements [[concepts/authentication]]"
+    cardinality: "many-to-one"
+
+  part-of:
+    description: "Source is a component/part of target"
+    direction: "directional"
+    example: "[[architecture/api-design]] is part-of [[architecture/system-architecture]]"
+    cardinality: "many-to-one"
+
+  affects:
+    description: "Source decision/change affects target"
+    direction: "directional"
+    example: "[[decisions/D-001]] affects [[architecture/api-design]]"
+    cardinality: "one-to-many"
+
+  relates-to:
+    description: "General bidirectional relationship"
+    direction: "bidirectional"
+    example: "[[concepts/rest-api]] relates-to [[concepts/http]]"
+    cardinality: "many-to-many"
+
+  depends-on:
+    description: "Source requires target to function"
+    direction: "directional"
+    example: "[[features/checkout]] depends-on [[features/authentication]]"
+    cardinality: "many-to-many"
+
+  supersedes:
+    description: "Source decision replaces target decision"
+    direction: "directional"
+    example: "[[decisions/D-002]] supersedes [[decisions/D-001]]"
+    cardinality: "one-to-one"
+
+  guides-to:
+    description: "Source guides/leads to target"
+    direction: "directional"
+    example: "[[README]] guides-to [[workflows/development-setup]]"
+    cardinality: "one-to-many"
+
+  connects:
+    description: "Source connects/integrates multiple targets"
+    direction: "directional"
+    example: "[[architecture/message-bus]] connects [[services/service-a]] and [[services/service-b]]"
+    cardinality: "one-to-many"
+
+# Connection Patterns by Template
+connection_patterns:
+  typescript-node:
+    - pattern: "technical-to-architecture"
+      description: "Link technical docs to architecture that uses them"
+      from_type: "technical"
+      to_type: "architecture"
+      relationship: "uses"
+      example: "[[architecture/api-design]] uses [[technical/express]]"
+
+    - pattern: "feature-to-technical"
+      description: "Link features to implementing technologies"
+      from_type: "feature"
+      to_type: "technical"
+      relationship: "implements"
+      example: "[[features/user-api]] implements [[technical/express]]"
+
+    - pattern: "workflow-to-technical"
+      description: "Link workflows to required tools"
+      from_type: "workflow"
+      to_type: "technical"
+      relationship: "depends-on"
+      example: "[[workflows/development-setup]] depends-on [[technical/nodejs]]"
+
+    - pattern: "decision-to-architecture"
+      description: "Link decisions to affected architecture"
+      from_type: "decision"
+      to_type: "architecture"
+      relationship: "affects"
+      example: "[[decisions/D-001]] affects [[architecture/api-design]]"
+
+  nextjs-react:
+    - pattern: "component-to-page"
+      description: "Link components to pages that use them"
+      from_type: "architecture"
+      to_type: "architecture"
+      relationship: "part-of"
+      example: "[[architecture/components/header]] part-of [[architecture/pages/home]]"
+
+    - pattern: "feature-to-component"
+      description: "Link UI features to implementing components"
+      from_type: "feature"
+      to_type: "architecture"
+      relationship: "implements"
+      example: "[[features/user-auth]] implements [[architecture/components/auth-form]]"
+
+    - pattern: "design-decision-to-component"
+      description: "Link design decisions to components"
+      from_type: "decision"
+      to_type: "architecture"
+      relationship: "affects"
+      example: "[[decisions/design/D-001]] affects [[architecture/components/button]]"
+
+  python-app:
+    - pattern: "module-to-architecture"
+      description: "Link module docs to system architecture"
+      from_type: "architecture"
+      to_type: "architecture"
+      relationship: "part-of"
+      example: "[[architecture/modules/auth]] part-of [[architecture/system-architecture]]"
+
+    - pattern: "model-to-feature"
+      description: "Link database models to features"
+      from_type: "architecture"
+      to_type: "feature"
+      relationship: "implements"
+      example: "[[architecture/database-models]] implements [[features/user-management]]"
+
+  monorepo:
+    - pattern: "service-to-service"
+      description: "Link services that communicate"
+      from_type: "service"
+      to_type: "service"
+      relationship: "depends-on"
+      example: "[[services/api-gateway]] depends-on [[services/user-service]]"
+
+    - pattern: "service-to-package"
+      description: "Link services to shared packages"
+      from_type: "service"
+      to_type: "package"
+      relationship: "uses"
+      example: "[[services/auth-service]] uses [[packages/common-types]]"
+
+    - pattern: "integration-to-services"
+      description: "Link integration patterns to services"
+      from_type: "architecture"
+      to_type: "service"
+      relationship: "connects"
+      example: "[[architecture/integration/message-bus]] connects [[services/order]] and [[services/inventory]]"
+
+    - pattern: "feature-to-services"
+      description: "Link cross-service features"
+      from_type: "feature"
+      to_type: "service"
+      relationship: "implements"
+      example: "[[features/checkout]] implements [[services/cart]], [[services/payment]]"
+
+  generic:
+    - pattern: "concept-to-architecture"
+      description: "Link concepts to implementations"
+      from_type: "concept"
+      to_type: "architecture"
+      relationship: "implements"
+      example: "[[concepts/data-flow]] implements [[architecture/system-overview]]"
+
+    - pattern: "technical-to-workflow"
+      description: "Link tools to workflows"
+      from_type: "technical"
+      to_type: "workflow"
+      relationship: "depends-on"
+      example: "[[workflows/development-setup]] depends-on [[technical/tech-stack]]"
+
+# Graph Metrics by Template
+expected_metrics:
+  typescript-node:
+    total_nodes: "20-40"
+    total_connections: "40-80"
+    avg_connections_per_node: "3-5"
+    clusters: "4-6"
+    density: "0.15-0.25"
+
+  nextjs-react:
+    total_nodes: "25-50"
+    total_connections: "60-120"
+    avg_connections_per_node: "3-6"
+    clusters: "5-7"
+    density: "0.18-0.28"
+
+  python-app:
+    total_nodes: "22-45"
+    total_connections: "45-90"
+    avg_connections_per_node: "3-5"
+    clusters: "4-6"
+    density: "0.15-0.25"
+
+  monorepo:
+    total_nodes: "40-100"
+    total_connections: "100-250"
+    avg_connections_per_node: "4-7"
+    clusters: "8-12"
+    density: "0.20-0.35"
+
+  generic:
+    total_nodes: "15-35"
+    total_connections: "30-70"
+    avg_connections_per_node: "2-4"
+    clusters: "3-5"
+    density: "0.10-0.20"
+
+# Wikilink Syntax
+wikilink_syntax:
+  basic:
+    format: "[[path/to/note]]"
+    description: "Basic wikilink"
+    example: "[[technical/typescript]]"
+
+  with_alias:
+    format: "[[path/to/note|Display Text]]"
+    description: "Wikilink with custom display text"
+    example: "[[technical/typescript|TypeScript Documentation]]"
+
+  with_heading:
+    format: "[[path/to/note#heading]]"
+    description: "Link to specific section"
+    example: "[[architecture/api-design#authentication]]"
+
+  with_block:
+    format: "[[path/to/note#^block-id]]"
+    description: "Link to specific block"
+    example: "[[decisions/D-001#^rationale]]"
+
+# Validation Rules
+validation_rules:
+  wikilinks:
+    - rule: "target_exists"
+      description: "All wikilink targets must exist"
+      severity: "error"
+
+    - rule: "no_circular_dependencies"
+      description: "No circular dependency chains"
+      severity: "warning"
+
+    - rule: "orphan_nodes"
+      description: "Nodes should have at least one connection"
+      severity: "warning"
+      threshold: 2
+
+  frontmatter:
+    - rule: "required_fields"
+      description: "All required frontmatter fields must be present"
+      severity: "error"
+
+    - rule: "valid_status"
+      description: "Status must be from allowed list"
+      severity: "error"
+      allowed_values: ["draft", "active", "completed", "archived"]
+
+  structure:
+    - rule: "naming_convention"
+      description: "Files must follow naming convention"
+      severity: "warning"
+
+    - rule: "directory_structure"
+      description: "Required directories must exist"
+      severity: "error"
+
+# Analysis Queries
+analysis_queries:
+  hub_nodes:
+    description: "Find nodes with most connections (hubs)"
+    query: "SELECT node WHERE connections > AVG(connections) * 1.5"
+    visualization: "highlight"
+
+  orphan_nodes:
+    description: "Find nodes with no connections"
+    query: "SELECT node WHERE connections = 0"
+    visualization: "red"
+
+  bridge_nodes:
+    description: "Find nodes connecting clusters (bridges)"
+    query: "SELECT node WHERE betweenness_centrality > 0.5"
+    visualization: "yellow"
+
+  leaf_nodes:
+    description: "Find terminal nodes (leaves)"
+    query: "SELECT node WHERE outgoing_connections = 0"
+    visualization: "green"
+
+  cluster_analysis:
+    description: "Identify knowledge clusters"
+    algorithm: "louvain"
+    min_cluster_size: 3
+
+  temporal_growth:
+    description: "Analyze graph growth over time"
+    metric: "nodes_added_per_week"
+    visualization: "timeline"

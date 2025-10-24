@@ -1,9 +1,9 @@
-# MCP Integration & Workflow Enhancement - Constitution
+# Vault Initialization System - Constitution
 
-**Phase ID**: PHASE-5
+**Phase ID**: PHASE-6
 **Status**: pending
-**Priority**: critical
-**Duration**: 3-4 days
+**Priority**: high
+**Duration**: 15-20 days
 
 ---
 
@@ -39,5 +39,5 @@ bun run build     # Must complete successfully
 
 ---
 
-**Generated**: 2025-10-24T02:12:09.214Z
-**Source**: Phase planning document for PHASE-5
+**Generated**: 2025-10-24T02:30:57.433Z
+**Source**: Phase planning document for PHASE-6

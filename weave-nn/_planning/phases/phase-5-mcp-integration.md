@@ -84,6 +84,10 @@ Phase 5 focuses on **exposing existing components** via MCP protocol, not rebuil
 ## 📋 Implementation Tasks
 
 ### Day 1: MCP Server Setup (8 hours)
+- [ ] Implement `@modelcontextprotocol/sdk` server
+- [ ] Stdio transport for Claude Desktop integration
+- [ ] Server lifecycle (startup, shutdown, health checks)
+- [ ] Error handling and logging
 
 #### Morning (4 hours): MCP Server Foundation
 
@@ -181,6 +185,13 @@ export function getToolDefinitions(): Tool[] {
 ---
 
 ### Day 2: Shadow Cache MCP Tools (8 hours)
+
+- [ ] `query_files` - Search files by path, type, status, tag
+- [ ] `get_file` - Retrieve specific file metadata
+- [ ] `get_file_content` - Read file content
+- [ ] `search_tags` - Find files by tags
+- [ ] `search_links` - Query wikilink relationships
+- [ ] `get_stats` - Vault statistics
 
 #### Morning (4 hours): Query Tools
 
@@ -301,6 +312,11 @@ describe('MCP Shadow Cache Tools', () => {
 ---
 
 ### Day 3: Workflow MCP Tools (8 hours)
+
+- [ ] `trigger_workflow` - Manually trigger workflow
+- [ ] `get_workflow_status` - Check execution status
+- [ ] `list_workflows` - Show registered workflows
+- [ ] `get_workflow_history` - View execution history
 
 #### Morning (4 hours): Workflow Tool Implementation
 

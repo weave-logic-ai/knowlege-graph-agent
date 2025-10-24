@@ -1,0 +1,272 @@
+# Next.js/React Web Application Template
+
+id: nextjs-react
+name: Next.js/React Web Application
+description: |
+  Template for Next.js/React web applications including SaaS products, marketing sites,
+  and full-stack web apps. Includes component hierarchy, page structure, API routes,
+  and frontend architecture documentation.
+version: "1.0.0"
+author: Weave-NN Team
+tags:
+  - nextjs
+  - react
+  - frontend
+  - web-app
+  - fullstack
+application_types:
+  - web-app
+  - fullstack
+  - frontend
+complexity: moderate
+estimated_setup_time: "30-45 minutes"
+
+# Directory Structure
+directory_structure:
+  - path: "technical"
+    description: "Frontend technology documentation"
+    required: true
+  - path: "architecture"
+    description: "Application architecture and design"
+    required: true
+  - path: "architecture/components"
+    description: "Component hierarchy and design"
+    required: true
+  - path: "architecture/pages"
+    description: "Page structure and routing"
+    required: true
+  - path: "features"
+    description: "Feature specifications and UI flows"
+    required: true
+  - path: "features/ui"
+    description: "UI component features"
+    required: true
+  - path: "decisions"
+    description: "Technical decision records"
+    required: true
+  - path: "decisions/technical"
+    description: "Technical decisions"
+    required: true
+  - path: "decisions/design"
+    description: "Design and UX decisions"
+    required: true
+  - path: "workflows"
+    description: "Development workflows"
+    required: true
+  - path: "concepts"
+    description: "Core concepts"
+    required: true
+  - path: "docs"
+    description: "Documentation"
+    required: true
+  - path: "_planning"
+    description: "Project planning"
+    required: true
+  - path: "templates"
+    description: "Note templates"
+    required: true
+  - path: "_files"
+    description: "Attachments"
+    required: true
+
+# Required Documents
+required_documents:
+  - path: "README.md"
+    type: "documentation"
+    description: "Project overview"
+    template: "documents/README.md"
+    frontmatter:
+      type: "documentation"
+      category: "overview"
+      status: "active"
+
+  - path: "technical/nextjs.md"
+    type: "technical"
+    description: "Next.js framework"
+    template: "documents/technical/nextjs.md"
+    frontmatter:
+      technical_id: "T-001"
+      category: "framework"
+      status: "selected"
+
+  - path: "technical/react.md"
+    type: "technical"
+    description: "React library"
+    template: "documents/technical/react.md"
+    frontmatter:
+      technical_id: "T-002"
+      category: "library"
+      status: "selected"
+
+  - path: "technical/typescript.md"
+    type: "technical"
+    description: "TypeScript"
+    template: "documents/technical/typescript.md"
+    frontmatter:
+      technical_id: "T-003"
+      category: "language"
+      status: "selected"
+
+  - path: "architecture/application-architecture.md"
+    type: "documentation"
+    description: "Application structure"
+    template: "documents/architecture/application-architecture.md"
+    frontmatter:
+      type: "architecture"
+      category: "application"
+      status: "draft"
+
+  - path: "architecture/components/component-hierarchy.md"
+    type: "documentation"
+    description: "Component organization"
+    template: "documents/architecture/components/component-hierarchy.md"
+    frontmatter:
+      type: "architecture"
+      category: "components"
+      status: "draft"
+
+  - path: "architecture/pages/page-structure.md"
+    type: "documentation"
+    description: "Page routing and structure"
+    template: "documents/architecture/pages/page-structure.md"
+    frontmatter:
+      type: "architecture"
+      category: "pages"
+      status: "draft"
+
+  - path: "architecture/api-routes.md"
+    type: "documentation"
+    description: "API route handlers"
+    template: "documents/architecture/api-routes.md"
+    frontmatter:
+      type: "architecture"
+      category: "api"
+      status: "draft"
+
+  - path: "architecture/state-management.md"
+    type: "documentation"
+    description: "State management strategy"
+    template: "documents/architecture/state-management.md"
+    frontmatter:
+      type: "architecture"
+      category: "state"
+      status: "draft"
+
+  - path: "concepts/project-overview.md"
+    type: "concept"
+    description: "Project concept"
+    template: "documents/concepts/project-overview.md"
+    frontmatter:
+      concept_id: "C-001"
+      category: "project"
+      status: "active"
+
+  - path: "workflows/development-setup.md"
+    type: "workflow"
+    description: "Dev environment setup"
+    template: "documents/workflows/development-setup.md"
+    frontmatter:
+      workflow_id: "W-001"
+      category: "development"
+      status: "active"
+
+  - path: "_planning/project-plan.md"
+    type: "planning"
+    description: "Project roadmap"
+    template: "documents/planning/project-plan.md"
+    frontmatter:
+      type: "planning"
+      category: "roadmap"
+      status: "active"
+
+# Knowledge Graph
+knowledge_graph:
+  node_types:
+    - type: "technical"
+      count: "6-12"
+      description: "Frontend stack docs"
+    - type: "architecture"
+      count: "5-10"
+      description: "Architecture documents"
+    - type: "feature"
+      count: "8-20"
+      description: "UI features"
+    - type: "decision"
+      count: "4-12"
+      description: "Design decisions"
+    - type: "workflow"
+      count: "4-8"
+      description: "Development workflows"
+    - type: "concept"
+      count: "3-7"
+      description: "Core concepts"
+
+  core_connections:
+    - from: "README.md"
+      to: "concepts/project-overview.md"
+      relationship: "introduces"
+      bidirectional: true
+    - from: "technical/nextjs.md"
+      to: "technical/react.md"
+      relationship: "uses"
+      bidirectional: false
+    - from: "architecture/application-architecture.md"
+      to: "technical/nextjs.md"
+      relationship: "built-with"
+      bidirectional: false
+    - from: "architecture/components/component-hierarchy.md"
+      to: "technical/react.md"
+      relationship: "uses"
+      bidirectional: false
+    - from: "architecture/state-management.md"
+      to: "architecture/application-architecture.md"
+      relationship: "part-of"
+      bidirectional: false
+
+  connection_patterns:
+    - pattern: "component-to-page"
+      description: "Link components to pages that use them"
+      example: "[[features/ui/header-component]] used in [[architecture/pages/home-page]]"
+    - pattern: "feature-to-component"
+      description: "Link UI features to implementing components"
+      example: "[[features/user-auth]] implemented by [[architecture/components/auth-components]]"
+
+  expected_metrics:
+    total_nodes: "25-50"
+    total_connections: "60-120"
+    avg_connections_per_node: "3-6"
+    clusters: "5-7"
+
+# Variables
+variables:
+  PROJECT_NAME:
+    description: "Project name"
+    type: "string"
+    required: true
+  PROJECT_DESCRIPTION:
+    description: "Project description"
+    type: "string"
+    required: true
+  AUTHOR:
+    description: "Author name"
+    type: "string"
+    required: true
+  INCLUDE_AUTHENTICATION:
+    description: "Include auth features"
+    type: "boolean"
+    default: true
+  INCLUDE_DATABASE:
+    description: "Include database integration"
+    type: "boolean"
+    default: true
+  CREATED_DATE:
+    description: "Creation date"
+    type: "date"
+    required: false
+
+metadata:
+  created_date: "2025-10-23"
+  last_updated: "2025-10-23"
+  compatibility:
+    weave_nn_version: ">=0.1.0"
+    obsidian_version: ">=1.0.0"
