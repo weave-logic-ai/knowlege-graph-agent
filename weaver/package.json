@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "clean": "rm -rf dist",
-    "generate-spec": "tsx scripts/generate-phase-spec.ts",
+    "generate-spec": "tsx scripts/generate-and-sync.ts",
+    "generate-spec-simple": "tsx scripts/generate-phase-spec.ts",
     "sync-tasks": "tsx scripts/sync-tasks.ts",
     "sync-tasks-ai": "tsx scripts/sync-tasks-ai.ts"
   },
