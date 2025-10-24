@@ -167,20 +167,22 @@ bun run sync-tasks phase-6
 
 ## Environment Setup
 
-Requires `ANTHROPIC_API_KEY` in `/weaver/.env`:
+Requires `VERCEL_AI_GATEWAY_API_KEY` in `/weaver/.env`:
 
 ```bash
-ANTHROPIC_API_KEY=sk-ant-...
+VERCEL_AI_GATEWAY_API_KEY=vck_...
 VAULT_PATH=/home/aepod/dev/weave-nn/weave-nn
 ```
+
+The system uses Vercel AI Gateway (Cloudflare) for secure, rate-limited API access to Claude.
 
 ## Troubleshooting
 
 ### API Key Error
 ```
-❌ Error: ANTHROPIC_API_KEY environment variable not set
+❌ Error: VERCEL_AI_GATEWAY_API_KEY environment variable not set
 ```
-**Solution**: Add key to `/weaver/.env`
+**Solution**: Add Vercel AI Gateway key to `/weaver/.env`
 
 ### Phase Not Found
 ```

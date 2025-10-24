@@ -28,15 +28,18 @@ config();
 const VAULT_PATH = process.env['VAULT_PATH'] || '/home/aepod/dev/weave-nn/weave-nn';
 const PHASES_DIR = join(VAULT_PATH, '_planning/phases');
 const SPECS_DIR = join(VAULT_PATH, '_planning/specs');
-const ANTHROPIC_API_KEY = process.env['ANTHROPIC_API_KEY'];
+const VERCEL_AI_GATEWAY_API_KEY = process.env['VERCEL_AI_GATEWAY_API_KEY'];
 
-if (!ANTHROPIC_API_KEY) {
-  console.error('❌ Error: ANTHROPIC_API_KEY environment variable not set');
+if (!VERCEL_AI_GATEWAY_API_KEY) {
+  console.error('❌ Error: VERCEL_AI_GATEWAY_API_KEY environment variable not set');
   console.error('   Make sure it exists in /weaver/.env');
   process.exit(1);
 }
 
-const anthropic = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
+const anthropic = new Anthropic({
+  apiKey: VERCEL_AI_GATEWAY_API_KEY,
+  baseURL: 'https://gateway.vercel.com/v1/anthropic',
+});
 
 interface SpecKitStep {
   name: string;
