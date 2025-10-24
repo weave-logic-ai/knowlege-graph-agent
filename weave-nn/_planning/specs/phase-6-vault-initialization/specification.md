@@ -29,211 +29,119 @@ _Note: This is preliminary. Run /speckit.tasks for AI-powered task generation._
 
 ### Task 6: Write unit tests for scanner
 
-### Task 7: Detects 6+ framework types with 95%+ accuracy
+### Task 7: Create template schema (YAML)
 
-### Task 8: Scans directory tree with configurable depth
+### Task 8: Define 5 template configurations
 
-### Task 9: Extracts components and dependencies
+### Task 9: Create Handlebars templates for each document type
 
-### Task 10: Unit tests passing
+### Task 10: Implement template loader and validator
 
-### Task 11: Create template schema (YAML)
+### Task 11: Write template tests
 
-### Task 12: Define 5 template configurations
+### Task 12: Parse README.md (extract sections, features, technologies)
 
-### Task 13: Create Handlebars templates for each document type
+### Task 13: Extract JSDoc comments from TypeScript/JavaScript
 
-### Task 14: Implement template loader and validator
+### Task 14: Extract Python docstrings
 
-### Task 15: Write template tests
+### Task 15: Extract OpenAPI/Swagger specs (if present)
 
-### Task 16: 5 templates defined and validated
+### Task 16: Use Claude-Flow to extract concepts from documentation
 
-### Task 17: Template loader working
+### Task 17: Write integration tests
 
-### Task 18: All templates have example outputs
+### Task 18: Implement taxonomy mapper (app structure → vault directories)
 
-### Task 19: Parse README.md (extract sections, features, technologies)
+### Task 19: Create node generators for each type (concept, technical, feature, etc.)
 
-### Task 20: Extract JSDoc comments from TypeScript/JavaScript
+### Task 20: Build wikilink relationship builder
 
-### Task 21: Extract Python docstrings
+### Task 21: Generate Mermaid architecture diagrams
 
-### Task 22: Extract OpenAPI/Swagger specs (if present)
+### Task 22: Generate frontmatter metadata automatically
 
-### Task 23: Use Claude-Flow to extract concepts from documentation
+### Task 23: Integrate Claude-Flow MCP tools for content generation
 
-### Task 24: Write integration tests
+### Task 24: Create prompts for each document type
 
-### Task 25: README parsing working
+### Task 25: Implement content caching (avoid duplicate API calls)
 
-### Task 26: Code comment extraction functional
+### Task 26: Add fallback for offline mode (use extracted data only)
 
-### Task 27: AI concept extraction via Claude-Flow
+### Task 27: Write integration tests with Claude-Flow
 
-### Task 28: Integration tests passing
+### Task 28: Implement markdown file writer
 
-### Task 29: Implement taxonomy mapper (app structure → vault directories)
+### Task 29: Populate shadow cache with generated files
 
-### Task 30: Create node generators for each type (concept, technical, feature, etc.)
+### Task 30: Initialize Git repository with .gitignore
 
-### Task 31: Build wikilink relationship builder
+### Task 31: Generate vault README.md
 
-### Task 32: Generate Mermaid architecture diagrams
+### Task 32: Generate concept-map.md with Mermaid diagram
 
-### Task 33: Generate frontmatter metadata automatically
+### Task 33: Write end-to-end tests
 
-### Task 34: Vault structure generation working
+### Task 34: Integrate Claude-Flow MCP tools
 
-### Task 35: All node types supported
+### Task 35: Store project overview in memory (namespace: `project:app-name`)
 
-### Task 36: Wikilinks created automatically
+### Task 36: Store technical stack
 
-### Task 37: Frontmatter valid and complete
+### Task 37: Generate embeddings for all nodes (OpenAI text-embedding-ada-002)
 
-### Task 38: Integrate Claude-Flow MCP tools for content generation
+### Task 38: Store embeddings in Claude-Flow
 
-### Task 39: Create prompts for each document type
+### Task 39: Enable semantic search via neural patterns
 
-### Task 40: Implement content caching (avoid duplicate API calls)
+### Task 40: Create CLI command with Commander
 
-### Task 41: Add fallback for offline mode (use extracted data only)
+### Task 41: Implement interactive prompts
 
-### Task 42: Write integration tests with Claude-Flow
+### Task 42: Add progress reporting (spinners + progress bars)
 
-### Task 43: AI-generated content for all node types
+### Task 43: Implement dry-run mode
 
-### Task 44: Content quality passes human review
+### Task 44: Add error handling and rollback
 
-### Task 45: Caching reduces API costs
+### Task 45: Write CLI tests
 
-### Task 46: Offline mode functional
+### Task 46: Create user documentation
 
-### Task 47: Implement markdown file writer
+### Task 47: Create vault-initialization workflow
 
-### Task 48: Populate shadow cache with generated files
+### Task 48: Integrate with existing workflow engine
 
-### Task 49: Initialize Git repository with .gitignore
+### Task 49: Add execution tracking
 
-### Task 50: Generate vault README.md
+### Task 50: Create MCP tool: `trigger_vault_initialization`
 
-### Task 51: Generate concept-map.md with Mermaid diagram
+### Task 51: Write unit tests (target: 80%+ coverage)
 
-### Task 52: Write end-to-end tests
+### Task 52: Write E2E tests with real applications
 
-### Task 53: All files written correctly
+### Task 53: Create test fixtures for all templates
 
-### Task 54: Shadow cache populated (100% of files indexed)
+### Task 54: Performance testing (measure initialization time)
 
-### Task 55: Git repo initialized
+### Task 55: Write user guide
 
-### Task 56: README and concept-map generated
+### Task 56: Write developer guide
 
-### Task 57: Integrate Claude-Flow MCP tools
+### Task 57: Document all 5 templates
 
-### Task 58: Store project overview in memory (namespace: `project:app-name`)
+### Task 58: Create API reference
 
-### Task 59: Store technical stack
+### Task 59: Add inline code documentation (JSDoc)
 
-### Task 60: Generate embeddings for all nodes (OpenAI text-embedding-ada-002)
+### Task 60: Generate example vault for each template
 
-### Task 61: Store embeddings in Claude-Flow
+### Task 61: Verify all examples are valid
 
-### Task 62: Enable semantic search via neural patterns
+### Task 62: Add example vaults to documentation
 
-### Task 63: Claude-Flow integration working
-
-### Task 64: Project context stored in memory
-
-### Task 65: Embeddings generated and stored
-
-### Task 66: Semantic search functional
-
-### Task 67: Create CLI command with Commander
-
-### Task 68: Implement interactive prompts
-
-### Task 69: Add progress reporting (spinners + progress bars)
-
-### Task 70: Implement dry-run mode
-
-### Task 71: Add error handling and rollback
-
-### Task 72: Write CLI tests
-
-### Task 73: Create user documentation
-
-### Task 74: CLI command functional
-
-### Task 75: Interactive prompts working
-
-### Task 76: Progress reporting clear
-
-### Task 77: Error handling robust
-
-### Task 78: Documentation complete
-
-### Task 79: Create vault-initialization workflow
-
-### Task 80: Integrate with existing workflow engine
-
-### Task 81: Add execution tracking
-
-### Task 82: Create MCP tool: `trigger_vault_initialization`
-
-### Task 83: Workflow registered and functional
-
-### Task 84: MCP tool working
-
-### Task 85: Execution tracked
-
-### Task 86: Write unit tests (target: 80%+ coverage)
-
-### Task 87: Write E2E tests with real applications
-
-### Task 88: Create test fixtures for all templates
-
-### Task 89: Performance testing (measure initialization time)
-
-### Task 90: 80%+ test coverage
-
-### Task 91: All tests passing
-
-### Task 92: E2E tests for all 5 templates
-
-### Task 93: Performance benchmarks met
-
-### Task 94: Write user guide
-
-### Task 95: Write developer guide
-
-### Task 96: Document all 5 templates
-
-### Task 97: Create API reference
-
-### Task 98: Add inline code documentation (JSDoc)
-
-### Task 99: Complete user guide
-
-### Task 100: Complete developer guide
-
-### Task 101: All templates documented
-
-### Task 102: API reference complete
-
-### Task 103: Generate example vault for each template
-
-### Task 104: Verify all examples are valid
-
-### Task 105: Add example vaults to documentation
-
-### Task 106: Create comparison screenshots
-
-### Task 107: 5 example vaults created
-
-### Task 108: All examples validated
-
-### Task 109: Screenshots added to docs
+### Task 63: Create comparison screenshots
 
 ## Acceptance Criteria
 
@@ -253,5 +161,5 @@ _Items explicitly excluded from this phase:_
 
 ---
 
-**Generated**: 2025-10-24T03:09:37.920Z
+**Generated**: 2025-10-24T03:15:39.371Z
 **Source**: Phase planning document for PHASE-6

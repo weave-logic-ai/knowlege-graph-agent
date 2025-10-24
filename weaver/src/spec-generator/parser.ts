@@ -149,40 +149,43 @@ function extractTasks(content: string): PhaseTask[] {
             const subTitleMatch = subSection.match(/####\s+(.*?)[\n\r]/);
             const subTitle = subTitleMatch ? subTitleMatch[1].trim() : '';
 
-            // Extract checkbox tasks from this subsection
-            const checkboxMatches = subSection.match(/^- \[([ x])\] (.+)$/gm);
+            // Only extract tasks from **Tasks**: sections, not **Success Criteria**:
+            const tasksOnlySection = subSection.match(/\*\*Tasks\*\*:[\s\S]*?(?=\*\*(?:Success Criteria|Dependencies|Deliverables)\*\*:|$)/i);
 
-            if (checkboxMatches && checkboxMatches.length > 0) {
-              // Use subsection as main task, checkboxes as subtasks
-              const mainTask: PhaseTask = {
-                id: `task-${taskCounter}`,
-                description: subTitle || periodTitle,
-                status: 'pending',
-                subtasks: [],
-              };
+            if (tasksOnlySection) {
+              // Extract checkbox tasks from Tasks section only
+              const checkboxMatches = tasksOnlySection[0].match(/^- \[([ x])\] (.+)$/gm);
 
-              checkboxMatches.forEach((checkbox) => {
-                const match = checkbox.match(/^- \[([ x])\] (.+)$/);
-                if (match && match[2]) {
-                  mainTask.subtasks?.push(match[2].trim());
-                }
-              });
-
-              if (mainTask.subtasks && mainTask.subtasks.length > 0) {
-                tasks.push(mainTask);
-                taskCounter++;
-              }
-            } else {
-              // No checkboxes, use subsection as standalone task
-              if (subTitle && subTitle.length > 5) {
-                tasks.push({
+              if (checkboxMatches && checkboxMatches.length > 0) {
+                // Use subsection as main task, checkboxes as subtasks
+                const mainTask: PhaseTask = {
                   id: `task-${taskCounter}`,
-                  description: subTitle,
+                  description: subTitle || periodTitle,
                   status: 'pending',
                   subtasks: [],
+                };
+
+                checkboxMatches.forEach((checkbox) => {
+                  const match = checkbox.match(/^- \[([ x])\] (.+)$/);
+                  if (match && match[2]) {
+                    mainTask.subtasks?.push(match[2].trim());
+                  }
                 });
-                taskCounter++;
+
+                if (mainTask.subtasks && mainTask.subtasks.length > 0) {
+                  tasks.push(mainTask);
+                  taskCounter++;
+                }
               }
+            } else if (subTitle && subTitle.length > 5 && !subTitle.match(/Success Criteria|Dependencies|Deliverables/i)) {
+              // No Tasks section, use subsection as standalone task (if not a meta section)
+              tasks.push({
+                id: `task-${taskCounter}`,
+                description: subTitle,
+                status: 'pending',
+                subtasks: [],
+              });
+              taskCounter++;
             }
           });
         }
@@ -190,11 +193,29 @@ function extractTasks(content: string): PhaseTask[] {
     }
 
     // Also extract any standalone checkbox tasks (not under Week/Day sections)
+    // But exclude checkboxes under **Success Criteria**:, **Dependencies**:, etc.
     const lines = section.split('\n');
     let currentTask: PhaseTask | null = null;
+    let inSuccessCriteria = false;
 
     lines.forEach((line) => {
       const trimmed = line.trim();
+
+      // Track if we're in a Success Criteria / Dependencies section
+      if (trimmed.match(/^\*\*(?:Success Criteria|Dependencies|Deliverables)\*\*:/i)) {
+        inSuccessCriteria = true;
+        return;
+      }
+
+      // Reset when we hit **Tasks**: or a new section header
+      if (trimmed.match(/^\*\*Tasks\*\*:/i) || trimmed.match(/^###/)) {
+        inSuccessCriteria = false;
+      }
+
+      // Skip checkboxes in Success Criteria sections
+      if (inSuccessCriteria) {
+        return;
+      }
 
       // Main task (no indentation)
       if (trimmed.startsWith('- [ ]') || trimmed.startsWith('- [x]')) {
