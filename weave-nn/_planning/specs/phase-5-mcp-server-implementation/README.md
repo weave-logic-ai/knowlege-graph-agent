@@ -50,7 +50,7 @@ After generating tasks.md, sync back to the vault:
 
 ```bash
 cd /home/aepod/dev/weave-nn/weaver
-bun run sync-tasks phase-5
+bun run sync-tasks phase-5-mcp-server-implementation
 ```
 
 ## Documentation
@@ -61,5 +61,5 @@ bun run sync-tasks phase-5
 
 ---
 
-**Generated**: 2025-10-24T02:01:16.926Z
+**Generated**: 2025-10-24T02:06:30.606Z
 **Phase**: PHASE-5 - MCP Server Implementation (Node.js/TypeScript)

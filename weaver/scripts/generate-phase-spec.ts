@@ -12,7 +12,7 @@ import { generatePhaseSpec } from '../src/spec-generator/index.js';
 
 const VAULT_PATH = process.env['VAULT_PATH'] || '/home/aepod/dev/weave-nn/weave-nn';
 const PHASES_DIR = join(VAULT_PATH, '_planning/phases');
-const SPECS_DIR = join(process.cwd(), 'specs');
+const SPECS_DIR = join(VAULT_PATH, '_planning/specs');
 
 async function main() {
   const args = process.argv.slice(2);
