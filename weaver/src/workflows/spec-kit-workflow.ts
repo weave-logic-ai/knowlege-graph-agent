@@ -5,8 +5,7 @@
  * Spawns Claude Code agents to run /speckit.* commands via Task tool.
  */
 
-import { WorkflowDefinition, WorkflowContext } from './types.js';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { WorkflowDefinition, WorkflowContext } from '../workflow-engine/types.js';
 import { join } from 'path';
 import { generatePhaseSpec } from '../spec-generator/index.js';
 import { logger } from '../utils/logger.js';
@@ -20,14 +19,14 @@ export const specKitWorkflow: WorkflowDefinition = {
   triggers: [], // Manual trigger only
 
   handler: async (context: WorkflowContext) => {
-    const { input } = context;
+    const { metadata } = context;
 
-    if (!input?.phaseId) {
-      throw new Error('phaseId required in workflow input');
+    if (!metadata?.['phaseId']) {
+      throw new Error('phaseId required in workflow metadata');
     }
 
-    const phaseId = input.phaseId as string;
-    const phasePath = input.phasePath as string;
+    const phaseId = metadata['phaseId'] as string;
+    const phasePath = metadata['phasePath'] as string;
     const specsDir = join(config.vault.path, '_planning/specs');
     const specDir = join(specsDir, phaseId.toLowerCase());
 
@@ -59,34 +58,6 @@ export const specKitWorkflow: WorkflowDefinition = {
     logger.info('After completion, sync tasks with:');
     logger.info(`   bun run sync-tasks-ai ${phaseId.toLowerCase().replace('phase-', '')}`);
     logger.info('');
-
-    return {
-      success: true,
-      specDir,
-      phaseId,
-      agentTasks: [
-        {
-          name: 'Constitution Refinement',
-          command: '/speckit.constitution',
-          workingDir: specDir,
-        },
-        {
-          name: 'Specification Elaboration',
-          command: '/speckit.specify',
-          workingDir: specDir,
-        },
-        {
-          name: 'Implementation Planning',
-          command: '/speckit.plan',
-          workingDir: specDir,
-        },
-        {
-          name: 'Task Breakdown',
-          command: '/speckit.tasks',
-          workingDir: specDir,
-        },
-      ],
-      message: 'Specs generated. Spawning agents to run /speckit commands...',
-    };
+    logger.info('✅ Spec-Kit workflow completed', { phaseId, specDir });
   },
 };

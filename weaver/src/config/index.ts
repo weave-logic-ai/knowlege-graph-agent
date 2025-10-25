@@ -37,7 +37,7 @@ const ConfigSchema = z.object({
 
   // Weaver Service Configuration
   service: z.object({
-    env: z.enum(['development', 'production']).default('development'),
+    env: z.enum(['development', 'production', 'test']).default('development'),
     port: z.number().int().positive().default(3000),
     logLevel: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
   }),
@@ -104,7 +104,7 @@ function loadConfig(): WeaverConfig {
       defaultModel: env['DEFAULT_AI_MODEL'] || 'claude-3-5-sonnet-20241022',
     },
     service: {
-      env: (env['NODE_ENV'] as 'development' | 'production') || 'development',
+      env: (env['NODE_ENV'] as 'development' | 'production' | 'test') || 'development',
       port: parseInt(env['WEAVER_PORT'] || '3000', 10),
       logLevel: (env['LOG_LEVEL'] as 'debug' | 'info' | 'warn' | 'error') || 'info',
     },

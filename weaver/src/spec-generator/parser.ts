@@ -139,7 +139,7 @@ function extractTasks(content: string): PhaseTask[] {
       // Process week/day-based structure - extract as flat tasks
       periodMatches.forEach((periodSection) => {
         const periodTitleMatch = periodSection.match(/###\s+((?:Week|Day)\s+\d+:.*?)[\n\r]/);
-        const periodTitle = periodTitleMatch ? periodTitleMatch[1].trim() : '';
+        const periodTitle = periodTitleMatch?.[1]?.trim() ?? '';
 
         // Extract subsections (#### Morning, #### Day 1-2, etc.)
         const subSections = periodSection.match(/####\s+(.*?)[\n\r]([\s\S]*?)(?=####|$)/g);
@@ -147,7 +147,7 @@ function extractTasks(content: string): PhaseTask[] {
         if (subSections) {
           subSections.forEach((subSection) => {
             const subTitleMatch = subSection.match(/####\s+(.*?)[\n\r]/);
-            const subTitle = subTitleMatch ? subTitleMatch[1].trim() : '';
+            const subTitle = subTitleMatch?.[1]?.trim() ?? '';
 
             // Only extract tasks from **Tasks**: sections, not **Success Criteria**:
             const tasksOnlySection = subSection.match(/\*\*Tasks\*\*:[\s\S]*?(?=\*\*(?:Success Criteria|Dependencies|Deliverables)\*\*:|$)/i);

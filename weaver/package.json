@@ -4,6 +4,9 @@
   "description": "Unified MCP server + workflow orchestrator for Weave-NN knowledge graph",
   "main": "dist/index.js",
   "type": "module",
+  "bin": {
+    "weaver-mcp": "./dist/mcp-server/cli.js"
+  },
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
@@ -30,9 +33,10 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.0",
     "@hono/node-server": "^1.13.7",
-    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@modelcontextprotocol/sdk": "^1.20.2",
     "better-sqlite3": "^11.7.0",
     "chokidar": "^4.0.3",
+    "commander": "^14.0.1",
     "dotenv": "^16.4.7",
     "hono": "^4.6.15",
     "simple-git": "^3.27.0",

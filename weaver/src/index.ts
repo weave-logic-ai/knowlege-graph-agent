@@ -123,8 +123,15 @@ async function main() {
 
     await fileWatcher.start();
 
+    // Initialize MCP Server
+    // Note: MCP Server will be started separately via `node dist/mcp-server/index.js`
+    // This is just documenting that shadow cache is available for MCP tools
+    logger.debug('Shadow cache ready for MCP server', {
+      dbPath: config.shadowCache.dbPath,
+      vaultPath: config.vault.path,
+    });
+
     // TODO: Initialize remaining components
-    // - MCP Server
     // - HTTP Server (health checks, metrics)
 
     const workflowStats = workflowEngine?.getStats();
