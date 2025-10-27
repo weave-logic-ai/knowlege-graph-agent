@@ -251,52 +251,52 @@ describe('MCP Server End-to-End Tests', () => {
       if (workflows.length === 0) return;
 
       const result = await callTool(mcpServer, 'trigger_workflow', {
-        workflow_id: workflows[0].id,
+        workflowId: workflows[0].id,
         input: { test: true },
       });
 
       expect(result).toHaveProperty('content');
       const response = JSON.parse(result.content[0].text);
       expect(response.success).toBe(true);
-      expect(response.data?.execution_id).toBeDefined();
+      expect(response.data?.executionId).toBeDefined();
     });
 
     it('should execute get_workflow_status tool', async () => {
       if (!existsSync(VAULT_PATH)) return;
 
       // Trigger a workflow first
-      const workflows = workflowEngine.listWorkflows();
+      const workflows = workflowEngine.getRegistry().getAllWorkflows();
       if (workflows.length === 0) return;
 
       const triggerResult = await callTool(mcpServer, 'trigger_workflow', {
-        workflow_id: workflows[0].id,
+        workflowId: workflows[0].id,
         input: {},
       });
 
       const triggerResponse = JSON.parse(triggerResult.content[0].text);
-      const executionId = triggerResponse.data?.execution_id;
+      const executionId = triggerResponse.data?.executionId;
 
       if (!executionId) return;
 
       // Check status
       const result = await callTool(mcpServer, 'get_workflow_status', {
-        execution_id: executionId,
+        executionId: executionId,
       });
 
       expect(result).toHaveProperty('content');
       const response = JSON.parse(result.content[0].text);
       expect(response.success).toBe(true);
-      expect(response.data?.execution_id).toBe(executionId);
+      expect(response.data?.executionId).toBe(executionId);
     });
 
     it('should execute get_workflow_history tool', async () => {
       if (!existsSync(VAULT_PATH)) return;
 
-      const workflows = workflowEngine.listWorkflows();
+      const workflows = workflowEngine.getRegistry().getAllWorkflows();
       if (workflows.length === 0) return;
 
       const result = await callTool(mcpServer, 'get_workflow_history', {
-        workflow_id: workflows[0].id,
+        workflowId: workflows[0].id,
         limit: 5,
       });
 
@@ -349,22 +349,22 @@ describe('MCP Server End-to-End Tests', () => {
 
       // Step 2: Trigger workflow
       const triggerResult = await callTool(mcpServer, 'trigger_workflow', {
-        workflow_id: workflowId,
+        workflowId: workflowId,
         input: { chained: true },
       });
       const triggerResponse = JSON.parse(triggerResult.content[0].text);
       expect(triggerResponse.success).toBe(true);
 
-      const executionId = triggerResponse.data?.execution_id;
+      const executionId = triggerResponse.data?.executionId;
       expect(executionId).toBeDefined();
 
       // Step 3: Check status
       const statusResult = await callTool(mcpServer, 'get_workflow_status', {
-        execution_id: executionId,
+        executionId: executionId,
       });
       const statusResponse = JSON.parse(statusResult.content[0].text);
       expect(statusResponse.success).toBe(true);
-      expect(statusResponse.data?.execution_id).toBe(executionId);
+      expect(statusResponse.data?.executionId).toBe(executionId);
     });
 
     it('should combine shadow cache queries with workflow execution', async () => {
@@ -423,7 +423,7 @@ describe('MCP Server End-to-End Tests', () => {
       if (!existsSync(VAULT_PATH)) return;
 
       const result = await callTool(mcpServer, 'trigger_workflow', {
-        workflow_id: 'nonexistent-workflow-id',
+        workflowId: 'nonexistent-workflow-id',
         input: {},
       });
       const response = JSON.parse(result.content[0].text);

@@ -56,6 +56,7 @@ function extractTasksFromTasksMd(content: string): TaskGroup[] {
     }
 
     // Match task headers: "### 1.1 Framework Detection" or "#### 1.1. Install MCP SDK"
+    // Now supports both formats for backward compatibility
     const taskMatch = line.match(/^#{3,4}\s+(\d+(?:\.\d+)?)\s*\.?\s*(.+)/);
     if (taskMatch) {
       if (currentTask && currentGroup) {
@@ -74,12 +75,35 @@ function extractTasksFromTasksMd(content: string): TaskGroup[] {
 
     if (!currentTask) continue;
 
-    // Match effort/priority/dependencies line
+    // Match effort/priority/dependencies line (single-line format with pipes)
     const metaMatch = line.match(/\*\*Effort\*\*:\s*(.+?)\s*\|\s*\*\*Priority\*\*:\s*(.+?)(?:\s*\|\s*\*\*Dependencies\*\*:\s*(.+))?$/);
     if (metaMatch) {
       currentTask.effort = metaMatch[1];
       currentTask.priority = metaMatch[2];
       currentTask.dependencies = metaMatch[3] || 'None';
+      continue;
+    }
+
+    // Backward compatibility: Handle old multi-line format
+    // **Priority**: High (on separate line)
+    const priorityMatch = line.match(/^\*\*Priority\*\*:\s*(.+)$/);
+    if (priorityMatch && !currentTask.priority) {
+      currentTask.priority = priorityMatch[1];
+      continue;
+    }
+    const effortMatch = line.match(/^\*\*Effort\*\*:\s*(.+)$/);
+    if (effortMatch && !currentTask.effort) {
+      currentTask.effort = effortMatch[1];
+      continue;
+    }
+    const depsMatch = line.match(/^\*\*Dependencies\*\*:\s*(.+)$/);
+    if (depsMatch && !currentTask.dependencies) {
+      currentTask.dependencies = depsMatch[1];
+      continue;
+    }
+
+    // Skip Status field (deprecated)
+    if (line.match(/^\*\*Status\*\*:/)) {
       continue;
     }
 
@@ -232,6 +256,17 @@ async function main() {
   console.log(`Tasks: ${tasksPath}`);
   console.log(`Phase: ${phasePath}`);
   console.log('');
+
+  // Check for metadata and warn about snake_case
+  const metadataPath = join(specDir, '.speckit/metadata.json');
+  if (existsSync(metadataPath)) {
+    const metadata = JSON.parse(readFileSync(metadataPath, 'utf-8'));
+    if ('source_document' in metadata) {
+      console.log('⚠️  Warning: metadata.json uses deprecated "source_document" field');
+      console.log('   Please migrate to "sourceDocument" (camelCase)');
+      console.log('');
+    }
+  }
   
   // Read files
   const tasksContent = readFileSync(tasksPath, 'utf-8');

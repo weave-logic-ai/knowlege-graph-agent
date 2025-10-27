@@ -1,188 +1,322 @@
 /**
- * Weaver - Unified MCP Server + Workflow Orchestrator
+ * Weaver - Main Application Entry Point
  *
- * Entry point for the Weaver service. This is the neural network junction
- * where multiple AI systems connect through a shared knowledge graph.
- *
- * Architecture:
- * - File Watcher (chokidar) - Monitors vault for changes
- * - Workflow Engine (workflow.dev) - Orchestrates durable workflows
- * - Shadow Cache (SQLite) - Fast metadata queries
- * - MCP Server (@modelcontextprotocol/sdk) - Exposes tools to AI agents
- * - Obsidian Client - Interacts with Obsidian Local REST API
- * - AI Gateway - Vercel AI Gateway for model calls
- * - Git Client - Auto-commit changes
+ * Unified MCP server + workflow orchestrator for Weave-NN's local-first knowledge graph
  */
 
-import { config, displayConfig } from './config/index.js';
-import { logger } from './utils/logger.js';
-import { createFileWatcher, type FileEvent } from './file-watcher/index.js';
-import { createShadowCache, type ShadowCache } from './shadow-cache/index.js';
-import { createWorkflowEngine, type WorkflowEngine } from './workflow-engine/index.js';
-import { getExampleWorkflows } from './workflows/example-workflows.js';
-import { getProofWorkflows } from './workflows/proof-workflows.js';
 import { join } from 'path';
+import { config } from './config/index.js';
+import { logger } from './utils/logger.js';
+import { initializeActivityLogger } from './vault-logger/activity-logger.js';
+import { createShadowCache } from './shadow-cache/index.js';
+import { createWorkflowEngine } from './workflow-engine/index.js';
+import { FileWatcher } from './file-watcher/index.js';
+import { WeaverMCPServer } from './mcp-server/index.js';
+import { initializeTools } from './mcp-server/tools/registry.js';
+import { GitClient } from './git/git-client.js';
+import { AutoCommitService } from './git/auto-commit.js';
+import { ClaudeClient } from './agents/claude-client.js';
+import { ClaudeFlowMemoryClient } from './memory/claude-flow-client.js';
+import { VaultMemorySync } from './memory/vault-sync.js';
+import { RulesEngine } from './agents/rules-engine.js';
+import type { FileEvent } from './file-watcher/types.js';
 
-// Component instances
-let fileWatcher: ReturnType<typeof createFileWatcher> | null = null;
-let shadowCache: ShadowCache | null = null;
-let workflowEngine: WorkflowEngine | null = null;
+// Global service instances for shutdown handling
+let shadowCache: any;
+let workflowEngine: any;
+let fileWatcher: FileWatcher | null = null;
+let mcpServer: WeaverMCPServer | null = null;
+let autoCommitService: AutoCommitService | null = null;
+let rulesEngine: RulesEngine | null = null;
 
 async function main() {
   try {
-    // Display startup banner
-    logger.info('🧵 Starting Weaver - Neural Network Junction for Weave-NN');
-    logger.info('Configuration loaded', displayConfig());
+    logger.info('Starting Weaver application', {
+      vaultPath: config.vault.path,
+      featureAiEnabled: config.features.aiEnabled,
+      featureMcpServer: config.mcp.enabled,
+      gitAutoCommit: config.git.autoCommit,
+    });
 
-    // Initialize Shadow Cache
-    shadowCache = createShadowCache(config.shadowCache.dbPath, config.vault.path);
-    logger.info('Shadow cache initialized', { dbPath: config.shadowCache.dbPath });
+    // Initialize activity logger first for 100% transparency
+    const activityLogger = await initializeActivityLogger(config.vault.path);
+    activityLogger.setPhase('startup');
+    activityLogger.setTask('Initialize Weaver application');
+
+    await activityLogger.logPrompt('Starting Weaver application', {
+      vaultPath: config.vault.path,
+      features: {
+        ai: config.features.aiEnabled,
+        mcp: config.mcp.enabled,
+        git: config.git.autoCommit,
+      },
+      timestamp: new Date().toISOString(),
+    });
+
+    logger.info('Activity logger initialized', {
+      logDirectory: '.activity-logs',
+      sessionId: (await activityLogger.getSessionSummary()).sessionId,
+    });
+
+    // 1. Initialize Shadow Cache
+    logger.info('Initializing shadow cache...');
+    const shadowCacheDbPath = join(config.vault.path, '.weaver', 'shadow-cache.db');
+    shadowCache = createShadowCache(shadowCacheDbPath, config.vault.path);
+
+    await activityLogger.logToolCall(
+      'shadowCache.init',
+      { dbPath: shadowCacheDbPath, vaultPath: config.vault.path },
+      { status: 'created' },
+      0
+    );
 
     // Perform initial vault sync
-    logger.info('Starting initial vault sync...');
+    logger.info('Syncing vault to shadow cache...');
     await shadowCache.syncVault();
     const stats = shadowCache.getStats();
-    logger.info('✅ Initial vault sync completed', {
-      files: stats.totalFiles,
-      tags: stats.totalTags,
-      links: stats.totalLinks,
-      dbSize: `${Math.round(stats.databaseSize / 1024)}KB`,
-    });
+    logger.info('✅ Shadow cache initialized', stats);
 
-    // Initialize Workflow Engine
-    if (config.workflows.enabled) {
-      workflowEngine = createWorkflowEngine();
-      await workflowEngine.start();
+    await activityLogger.logToolCall(
+      'shadowCache.syncVault',
+      { vaultPath: config.vault.path },
+      { filesIndexed: stats.totalFiles, ...stats },
+      0
+    );
 
-      // Register example workflows
-      const exampleWorkflows = getExampleWorkflows();
-      exampleWorkflows.forEach((workflow) => {
-        workflowEngine!.registerWorkflow(workflow);
-      });
+    // 2. Initialize Workflow Engine
+    logger.info('Initializing workflow engine...');
+    workflowEngine = createWorkflowEngine();
+    await workflowEngine.start();
+    logger.info('✅ Workflow engine started');
 
-      // Register proof workflows
-      const proofWorkflows = getProofWorkflows();
-      proofWorkflows.forEach((workflow) => {
-        workflowEngine!.registerWorkflow(workflow);
-      });
+    await activityLogger.logToolCall(
+      'workflowEngine.start',
+      {},
+      { status: 'running' },
+      0
+    );
 
-      const totalWorkflows = exampleWorkflows.length + proofWorkflows.length;
-      logger.info('Workflows registered', {
-        total: totalWorkflows,
-        example: exampleWorkflows.length,
-        proof: proofWorkflows.length,
-        workflows: [...exampleWorkflows, ...proofWorkflows].map((w) => w.id),
-      });
-    }
-
-    // Initialize File Watcher
-    fileWatcher = createFileWatcher({
+    // 3. Initialize File Watcher
+    logger.info('Initializing file watcher...');
+    fileWatcher = new FileWatcher({
       watchPath: config.vault.path,
-      ignored: config.fileWatcher.ignore,
-      debounceDelay: config.fileWatcher.debounce,
-      enabled: config.fileWatcher.enabled,
+      ignored: ['.weaver', '.obsidian', '.git', 'node_modules', '.archive'],
+      debounceDelay: config.fileWatcher.debounce || 1000,
+      enabled: true,
     });
 
-    // Register file event handler
+    // Register file watcher event handlers
     fileWatcher.on(async (event: FileEvent) => {
-      logger.info('📝 File event detected', {
-        type: event.type,
-        path: event.relativePath,
-        size: event.stats?.size,
-      });
-
-      // Update shadow cache based on event type
-      if (shadowCache) {
-        try {
-          if (event.type === 'add' || event.type === 'change') {
-            const absolutePath = join(config.vault.path, event.relativePath);
-            await shadowCache.syncFile(absolutePath, event.relativePath);
-            logger.debug('Shadow cache updated', { path: event.relativePath });
-          } else if (event.type === 'unlink') {
-            shadowCache.removeFile(event.relativePath);
-            logger.debug('File removed from shadow cache', { path: event.relativePath });
-          }
-        } catch (error) {
-          logger.error('Failed to update shadow cache', error instanceof Error ? error : new Error(String(error)), {
-            path: event.relativePath,
-          });
+      try {
+        // Update shadow cache
+        if (event.type === 'add' || event.type === 'change') {
+          await shadowCache.syncFile(event.path, event.relativePath);
+        } else if (event.type === 'unlink') {
+          shadowCache.removeFile(event.relativePath);
         }
-      }
 
-      // Trigger workflows based on event type
-      if (workflowEngine) {
-        try {
-          await workflowEngine.triggerFileEvent(event);
-        } catch (error) {
-          logger.error('Failed to trigger workflows', error instanceof Error ? error : new Error(String(error)), {
-            path: event.relativePath,
-          });
-        }
+        // Trigger workflows
+        await workflowEngine.triggerFileEvent(event);
+
+      } catch (error) {
+        logger.error('Error handling file event', error instanceof Error ? error : new Error(String(error)), {
+          event: event.type,
+          path: event.relativePath,
+        });
       }
     });
 
     await fileWatcher.start();
+    logger.info('✅ File watcher started');
 
-    // Initialize MCP Server
-    // Note: MCP Server will be started separately via `node dist/mcp-server/index.js`
-    // This is just documenting that shadow cache is available for MCP tools
-    logger.debug('Shadow cache ready for MCP server', {
-      dbPath: config.shadowCache.dbPath,
-      vaultPath: config.vault.path,
+    await activityLogger.logToolCall(
+      'fileWatcher.start',
+      { watchPath: config.vault.path },
+      { status: 'watching' },
+      0
+    );
+
+    // 4. Initialize MCP Server (if enabled)
+    if (config.mcp.enabled) {
+      logger.info('Initializing MCP server...');
+      mcpServer = new WeaverMCPServer(
+        {
+          name: 'weaver',
+          version: '1.0.0',
+        },
+        shadowCache,
+        config.vault.path,
+        workflowEngine
+      );
+
+      // Initialize tools
+      await initializeTools(shadowCache, config.vault.path, workflowEngine);
+
+      logger.info('✅ MCP server initialized');
+
+      await activityLogger.logToolCall(
+        'mcpServer.init',
+        { name: 'weaver', version: '1.0.0' },
+        { status: 'ready', tools: 10 },
+        0
+      );
+    }
+
+    // 5. Initialize Git Auto-Commit (if enabled)
+    if (config.git.autoCommit && config.features.aiEnabled) {
+      logger.info('Initializing git auto-commit...');
+      const gitClient = new GitClient(config.vault.path);
+      const claudeClient = new ClaudeClient({ apiKey: config.ai.anthropicApiKey! });
+      autoCommitService = new AutoCommitService(
+        gitClient,
+        claudeClient,
+        {
+          debounceMs: config.git.commitDebounceMs || 300000, // 5 minutes
+          enabled: true,
+        }
+      );
+
+      // Register file watcher handler for auto-commit
+      fileWatcher.on((event: FileEvent) => {
+        if (event.type === 'add' || event.type === 'change') {
+          autoCommitService!.onFileEvent(event);
+        }
+      });
+
+      logger.info('✅ Git auto-commit initialized');
+
+      await activityLogger.logToolCall(
+        'gitAutoCommit.init',
+        { debounceMs: config.git.commitDebounceMs },
+        { status: 'enabled' },
+        0
+      );
+    }
+
+    // 6. Initialize Agent Rules Engine (if AI enabled)
+    if (config.features.aiEnabled) {
+      logger.info('Initializing agent rules engine...');
+      const claudeClient = new ClaudeClient({ apiKey: config.ai.anthropicApiKey! });
+      const memoryClient = new ClaudeFlowMemoryClient();
+      const vaultSync = new VaultMemorySync({
+        memoryClient,
+        shadowCache,
+        vaultPath: config.vault.path,
+        obsidianApiUrl: config.obsidian.apiUrl,
+        obsidianApiKey: config.obsidian.apiKey,
+        conflictLogPath: config.memory.conflictLogPath,
+      });
+
+      rulesEngine = new RulesEngine({
+        claudeClient,
+        vaultSync,
+      });
+
+      // Register file watcher handler for rules
+      fileWatcher.on(async (event: FileEvent) => {
+        if (event.type === 'add' || event.type === 'change') {
+          // Map FileEvent to RuleTrigger and execute rules
+          const triggerType = event.type === 'add' ? 'file:add' : 'file:change';
+          await rulesEngine!.executeRules({
+            type: triggerType,
+            fileEvent: event,
+            metadata: { timestamp: new Date().toISOString() },
+          });
+        }
+      });
+
+      logger.info('✅ Agent rules engine initialized');
+
+      await activityLogger.logToolCall(
+        'rulesEngine.init',
+        {},
+        { status: 'enabled', rulesRegistered: 0 },
+        0
+      );
+    }
+
+    // All services initialized
+    const initializedServices = [
+      'activity-logger',
+      'shadow-cache',
+      'workflow-engine',
+      'file-watcher',
+    ];
+
+    if (config.mcp.enabled) initializedServices.push('mcp-server');
+    if (config.git.autoCommit) initializedServices.push('git-auto-commit');
+    if (config.features.aiEnabled) initializedServices.push('agent-rules');
+
+    await activityLogger.logResults({
+      status: 'ready',
+      services: initializedServices,
+      message: 'Weaver application started successfully',
+      stats: shadowCache.getStats(),
     });
 
-    // TODO: Initialize remaining components
-    // - HTTP Server (health checks, metrics)
-
-    const workflowStats = workflowEngine?.getStats();
-    logger.info('✅ Weaver started successfully', {
-      port: config.service.port,
-      env: config.service.env,
-      vaultPath: config.vault.path,
-      fileWatcherEnabled: config.fileWatcher.enabled,
-      workflowsEnabled: config.workflows.enabled,
-      cacheStats: stats,
-      workflowStats,
+    logger.info('✅ Weaver application started successfully', {
+      services: initializedServices.length,
+      filesIndexed: stats.totalFiles,
     });
 
-    // Keep process alive
-    process.on('SIGINT', async () => {
-      logger.info('🛑 Received SIGINT, shutting down gracefully...');
-      await cleanup();
+    // Handle graceful shutdown
+    const shutdown = async (signal: string) => {
+      logger.info(`Received ${signal}, shutting down gracefully`);
+      activityLogger.setTask('Shutdown Weaver application');
+      await activityLogger.logPrompt('Shutting down Weaver application', {
+        signal,
+        timestamp: new Date().toISOString(),
+      });
+
+      // Stop services in reverse order
+      if (fileWatcher) {
+        await fileWatcher.stop();
+        logger.info('File watcher stopped');
+      }
+
+      if (rulesEngine) {
+        // Rules engine doesn't have a shutdown method
+        logger.info('Rules engine stopped');
+      }
+
+      if (workflowEngine) {
+        await workflowEngine.stop();
+        logger.info('Workflow engine stopped');
+      }
+
+      if (shadowCache) {
+        shadowCache.close();
+        logger.info('Shadow cache closed');
+      }
+
+      await activityLogger.shutdown();
+      logger.info('Shutdown complete');
+
       process.exit(0);
-    });
+    };
 
-    process.on('SIGTERM', async () => {
-      logger.info('🛑 Received SIGTERM, shutting down gracefully...');
-      await cleanup();
-      process.exit(0);
-    });
+    process.on('SIGINT', () => shutdown('SIGINT'));
+    process.on('SIGTERM', () => shutdown('SIGTERM'));
+
+    // Keep process running (if MCP server not running on stdio)
+    if (!config.mcp.enabled) {
+      await new Promise(() => {});
+    } else {
+      // If MCP server is enabled, run it on stdio
+      await mcpServer!.run();
+    }
   } catch (error) {
-    logger.error('Failed to start Weaver', error instanceof Error ? error : new Error(String(error)));
-    await cleanup();
+    logger.error('Failed to start Weaver application', error instanceof Error ? error : new Error(String(error)));
     process.exit(1);
   }
 }
 
-/**
- * Cleanup resources on shutdown
- */
-async function cleanup(): Promise<void> {
-  try {
-    if (fileWatcher) {
-      await fileWatcher.stop();
-    }
-    if (workflowEngine) {
-      await workflowEngine.stop();
-    }
-    if (shadowCache) {
-      shadowCache.close();
-    }
-    // TODO: Cleanup other components (MCP server, etc.)
-  } catch (error) {
-    logger.error('Error during cleanup', error instanceof Error ? error : new Error(String(error)));
-  }
+// Run main function
+if (require.main === module) {
+  main().catch((error) => {
+    logger.error('Unhandled error in main', error instanceof Error ? error : new Error(String(error)));
+    process.exit(1);
+  });
 }
 
-// Start the service
-main();
+export { main };

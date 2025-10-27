@@ -72,6 +72,17 @@ const ConfigSchema = z.object({
     autoCommit: z.boolean().default(true),
     authorName: z.string().default('Weaver'),
     authorEmail: z.string().default('weaver@weave-nn.local'),
+    commitDebounceMs: z.number().int().positive().default(300000), // 5 minutes
+  }),
+
+  // Memory Synchronization Configuration
+  memory: z.object({
+    enabled: z.boolean().default(true),
+    defaultNamespace: z.string().default('vault/'),
+    defaultTTL: z.number().int().nonnegative().default(0),
+    retryAttempts: z.number().int().positive().default(3),
+    retryDelay: z.number().int().positive().default(1000),
+    conflictLogPath: z.string().default('./data/sync-conflicts.json'),
   }),
 
   // Feature Flags
@@ -79,6 +90,7 @@ const ConfigSchema = z.object({
     aiEnabled: z.boolean().default(true),
     temporalEnabled: z.boolean().default(false),
     graphAnalytics: z.boolean().default(false),
+    memorySync: z.boolean().default(true),
   }),
 });
 
@@ -129,11 +141,21 @@ function loadConfig(): WeaverConfig {
       autoCommit: env['GIT_AUTO_COMMIT'] !== 'false',
       authorName: env['GIT_AUTHOR_NAME'] || 'Weaver',
       authorEmail: env['GIT_AUTHOR_EMAIL'] || 'weaver@weave-nn.local',
+      commitDebounceMs: parseInt(env['GIT_COMMIT_DEBOUNCE_MS'] || '300000', 10),
+    },
+    memory: {
+      enabled: env['MEMORY_SYNC_ENABLED'] !== 'false',
+      defaultNamespace: env['MEMORY_DEFAULT_NAMESPACE'] || 'vault/',
+      defaultTTL: parseInt(env['MEMORY_DEFAULT_TTL'] || '0', 10),
+      retryAttempts: parseInt(env['MEMORY_RETRY_ATTEMPTS'] || '3', 10),
+      retryDelay: parseInt(env['MEMORY_RETRY_DELAY'] || '1000', 10),
+      conflictLogPath: env['MEMORY_CONFLICT_LOG_PATH'] || './data/sync-conflicts.json',
     },
     features: {
       aiEnabled: env['FEATURE_AI_ENABLED'] !== 'false',
       temporalEnabled: env['FEATURE_TEMPORAL_ENABLED'] === 'true',
       graphAnalytics: env['FEATURE_GRAPH_ANALYTICS'] === 'true',
+      memorySync: env['FEATURE_MEMORY_SYNC'] !== 'false',
     },
   };
 
@@ -190,6 +212,7 @@ export function displayConfig(): Record<string, unknown> {
     workflows: config.workflows,
     mcp: config.mcp,
     git: config.git,
+    memory: config.memory,
     features: config.features,
   };
 }

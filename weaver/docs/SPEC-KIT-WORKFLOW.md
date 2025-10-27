@@ -1,225 +1,236 @@
-# Spec-Kit Claude Code Workflow
+# Spec-Kit Workflow - Complete Guide
 
-AI-powered specification generation using GitHub's Spec-Kit methodology with Claude Code.
+## Overview
 
-## Quick Start
+The Spec-Kit workflow automates specification generation and task syncing for development phases.
 
-**Step 1:** Generate initial specs and get agent commands
-```bash
-cd /home/aepod/dev/weave-nn/weaver
-bun run generate-spec phase-6-vault-initialization
+**Flow**: Phase Planning Doc → Constitution + Specification + Tasks → Sync to Phase Doc
+
+## Required Format Standards
+
+### 1. Task Numbering Format
+
+Tasks MUST use the format: `### X.Y Task Name`
+
+```markdown
+✅ CORRECT:
+### 1.1 Install Claude SDK and configure client
+### 2.3 Add rule execution logging
+
+❌ WRONG:
+### Task 1: Install Claude SDK and configure client
+### Task 2.3: Add rule execution logging
 ```
 
-This generates specs and outputs Task tool commands to run in Claude Code.
+### 2. Task Metadata Format
 
-**Step 2:** Spawn Claude Code agents (copy/paste from output)
+Metadata MUST be on a single line with pipe separators:
 
-The workflow outputs commands like:
-```
-Task("Constitution agent", "cd /path/to/specs && run /speckit.constitution...", "general-purpose")
-Task("Specification agent", "cd /path/to/specs && run /speckit.specify...", "general-purpose")
-Task("Planning agent", "cd /path/to/specs && run /speckit.plan...", "general-purpose")
-Task("Task breakdown agent", "cd /path/to/specs && run /speckit.tasks...", "general-purpose")
-```
+```markdown
+✅ CORRECT:
+**Effort**: 2 hours | **Priority**: High | **Dependencies**: 1.1
 
-**Paste all Task() calls in a SINGLE Claude Code message** to spawn agents concurrently.
-
-**Step 3:** After agents complete, sync tasks
-```bash
-bun run sync-tasks-ai phase-6
+❌ WRONG:
+**Priority**: High
+**Status**: pending
+**Dependencies**: None
+**Effort**: 2 hours
 ```
 
-## Workflow Steps
+### 3. Metadata Field Requirements
 
-### Step 1: Initial Generation (Automated)
-Parses phase document and creates:
-- `constitution.md` - Principles, constraints, success criteria
-- `specification.md` - Requirements and scope
-- `README.md` - Quick reference
-- `.speckit/metadata.json` - Tracking data
+**Required Fields**:
+- `sourceDocument` (camelCase, not snake_case) - absolute path to phase document
+- `phaseId` - Phase identifier (e.g., "PHASE-6")
+- `phaseName` - Human-readable phase name
+- `generatedAt` - ISO timestamp
 
-### Step 2: Spawn Agents (Copy/Paste)
+**Task Fields**:
+- `**Effort**: X hours` - Time estimate
+- `**Priority**: High|Medium|Low` - Task priority
+- `**Dependencies**: X.Y, X.Z` or `None` - Task dependencies
 
-The workflow outputs Task() commands to spawn 4 concurrent agents:
+**Deprecated Fields** (will show warnings):
+- `source_document` → Use `sourceDocument` instead
+- `phase_id` → Use `phaseId` instead
+- `phase_name` → Use `phaseName` instead
+- `generated_at` → Use `generatedAt` instead
 
-**Constitution Agent** - Refines:
-- Project principles and values
-- Technical constraints validation
-- Dependency accuracy checks
-- Measurable success criteria
-- Quality standards
+### 4. Phase Document Section Header
 
-**Specification Agent** - Elaborates:
-- Comprehensive requirements
-- Clear deliverables with acceptance criteria
-- In-scope vs out-of-scope boundaries
-- Architectural considerations
-- Integration points
+Phase documents MUST have this exact header:
 
-**Planning Agent** - Creates:
-- Implementation phases/milestones
-- Critical path identification
-- Effort and timeline estimates
-- Resource requirements
-- Risk assessment and mitigation
-- Dependency graph
+```markdown
+## 📋 Implementation Tasks
+```
 
-**Task Breakdown Agent** - Generates:
-- Hierarchical task breakdown (1, 1.1, 1.2)
-- Clear task descriptions
-- Task dependencies
-- Effort estimates per task
-- Priority levels
-- Acceptance criteria per task
+## Validation
 
-**All agents run concurrently** when spawned in a single message.
-
-### Step 3: Review & Sync (Manual)
-
-Review the generated specs, then sync tasks back:
+Validate phase documents before generating specs:
 
 ```bash
-bun run sync-tasks-ai phase-6
+# Validate specific phase
+bun run validate-spec phase-6
+
+# Validate all phases
+bun run validate-spec
+
+# Validate with full path
+bun run validate-spec /path/to/phase-6-vault-initialization.md
 ```
 
-Claude AI will:
-- Read tasks from generated specs
-- Update task checkboxes in phase document
-- Preserve Success Criteria sections (never modify)
-- Maintain all formatting and structure
+**Validation Checks**:
+- ✅ Has "## 📋 Implementation Tasks" section
+- ✅ Tasks use "### X.Y Task Name" format (not "### Task X.Y:")
+- ✅ Metadata on single line with pipes
+- ✅ No **Status**: field in tasks
+- ✅ Metadata uses camelCase (not snake_case)
+- ✅ All required metadata fields present
 
-## File Structure
+## Workflow Commands
 
-```
-_planning/
-├── phases/
-│   └── phase-6-vault-initialization.md  # Source phase document
-└── specs/
-    └── phase-6/
-        ├── constitution.md        # AI-refined principles
-        ├── specification.md       # AI-elaborated requirements
-        ├── plan.md               # AI-generated implementation plan
-        ├── tasks.md              # AI-generated task breakdown
-        ├── README.md             # Quick reference
-        └── .speckit/
-            └── metadata.json     # Generation metadata
-```
-
-## YAML Frontmatter
-
-All spec files include vault-compatible frontmatter:
-
-```yaml
----
-spec_type: "specification"
-phase_id: "PHASE-6"
-phase_name: "Vault Initialization System"
-status: "pending"
-priority: "high"
-duration: "15-20 days"
-generated_date: "2025-10-24"
-task_count: 63
-tags:
-  - spec-kit
-  - specification
-  - phase-6
-links:
-  phase_document: "[[phase planning document]]"
-  constitution: "[[constitution.md]]"
----
-```
-
-## Manual Commands
-
-If you need individual steps:
+### 1. Generate Spec-Kit Files
 
 ```bash
-# Simple generation (no AI refinement)
-bun run generate-spec-simple phase-6
-
-# AI-powered task sync only
-bun run sync-tasks-ai phase-6
-
-# Legacy regex sync
-bun run sync-tasks phase-6
+bun run generate-spec <phase-id>
 ```
 
-## Benefits
+Generates:
+- `constitution.md` - Principles and constraints
+- `specification.md` - Requirements and deliverables
+- `tasks.md` - Task breakdown with correct format
+- `.speckit/metadata.json` - Metadata with camelCase fields
+- `README.md` - Guide for next steps
 
-### Concurrent Agent Execution
-- **4 agents run in parallel** when spawned together
-- Significantly faster than sequential execution
-- Each agent specializes in one spec-kit phase
-- Copy/paste Task() commands from workflow output
-
-### AI-Powered Quality
-- Claude Code agents refine all specifications
-- Validates principles and constraints
-- Ensures measurable criteria
-- Creates actionable task breakdown
-
-### Simple 3-Step Workflow
-- Generate specs + get Task commands (automated)
-- Spawn agents in Claude Code (copy/paste)
-- Sync tasks back to phase (AI-powered)
-
-### Intelligent Parsing
-- Works with any phase document structure
-- Context-aware AI task extraction
-- Preserves Success Criteria sections
-- No brittle regex patterns
-
-### Vault Native
-- YAML frontmatter for metadata
-- Wikilink cross-references
-- Obsidian graph view integration
-- Tag-based organization
-
-## Environment Setup
-
-Requires `VERCEL_AI_GATEWAY_API_KEY` in `/weaver/.env`:
+### 2. Sync Tasks to Phase Document
 
 ```bash
-VERCEL_AI_GATEWAY_API_KEY=vck_...
-VAULT_PATH=/home/aepod/dev/weave-nn/weave-nn
+bun run sync-tasks-simple phase-6
 ```
 
-The system uses Vercel AI Gateway (Cloudflare) for secure, rate-limited API access to Claude.
+Syncs task checkboxes from `tasks.md` back to phase document.
+
+**Backward Compatibility**: The sync script handles both old and new formats:
+- ✅ New format: `### X.Y Task Name` with single-line metadata
+- ✅ Old format: Multi-line metadata (with deprecation warning)
+
+### 3. Validate Phase Document
+
+```bash
+bun run validate-spec phase-6
+```
+
+Checks format compliance and provides fix suggestions.
+
+## Migration Guide
+
+### Updating Existing Metadata (snake_case → camelCase)
+
+If you have existing specs with snake_case metadata:
+
+```javascript
+// Old format (deprecated)
+{
+  "phase_id": "PHASE-6",
+  "phase_name": "Vault Initialization",
+  "source_document": "/path/to/phase.md",
+  "generated_at": "2025-10-24T05:34:48.855Z"
+}
+
+// New format (required)
+{
+  "phaseId": "PHASE-6",
+  "phaseName": "Vault Initialization",
+  "sourceDocument": "/path/to/phase.md",
+  "generatedAt": "2025-10-24T05:34:48.855Z"
+}
+```
+
+**Migration**:
+1. Run `bun run validate-spec` to find deprecated fields
+2. Regenerate metadata with `bun run generate-spec <phase-id>`
+3. Verify with `bun run validate-spec <phase-id>`
+
+### Updating Task Format
+
+If you have tasks in old format:
+
+```markdown
+❌ OLD FORMAT:
+### Task 1.1: Install MCP SDK
+**Priority**: High
+**Dependencies**: None
+**Effort**: 2 hours
+
+✅ NEW FORMAT:
+### 1.1 Install MCP SDK
+**Effort**: 2 hours | **Priority**: High | **Dependencies**: None
+```
+
+**Migration**: Regenerate `tasks.md` with `/speckit.tasks` command or `bun run generate-spec`.
+
+## Testing
+
+Run the complete E2E test suite:
+
+```bash
+bun run test tests/spec-kit/e2e-workflow.test.ts
+```
+
+**Tests Validate**:
+- ✅ Phase document parsing
+- ✅ Task generation in correct format
+- ✅ Metadata creation with camelCase
+- ✅ Task count matching
+- ✅ Format compliance (no Status field, single-line metadata)
+- ✅ Edge cases (minimal phase, empty tasks)
 
 ## Troubleshooting
 
-### API Key Error
+### Error: Missing "## 📋 Implementation Tasks" section
+
+**Fix**: Add this section header to your phase document before task list.
+
+### Warning: Metadata uses deprecated "source_document"
+
+**Fix**: Run `bun run generate-spec <phase-id>` to regenerate metadata with camelCase.
+
+### Error: Task format incorrect "### Task X.Y:"
+
+**Fix**: Use format `### X.Y Task Name` instead.
+
+### Warning: Multi-line metadata detected
+
+**Fix**: Combine metadata fields on single line with pipes:
+```markdown
+**Effort**: 2 hours | **Priority**: High | **Dependencies**: 1.1
 ```
-❌ Error: VERCEL_AI_GATEWAY_API_KEY environment variable not set
-```
-**Solution**: Add Vercel AI Gateway key to `/weaver/.env`
 
-### Phase Not Found
-```
-❌ No phase document found matching: phase-6
-```
-**Solution**: Use exact phase file name (without .md extension)
+## Architecture
 
-### Multiple Phases Found
-```
-⚠️  Multiple phase documents found for: phase-6
-```
-**Solution**: Use more specific name (e.g., `phase-6-vault-initialization`)
+**Core Modules**:
+- `src/spec-generator/parser.ts` - Parses phase documents
+- `src/spec-generator/generator.ts` - Generates constitution and specification
+- `src/spec-generator/task-generator.ts` - Generates tasks.md with correct format
+- `src/spec-generator/metadata-writer.ts` - Writes metadata.json with camelCase
+- `scripts/validate-spec.ts` - Validates phase document format
+- `scripts/sync-tasks-simple.ts` - Syncs tasks (with backward compatibility)
 
-## Integration with Spec-Kit Protocol
+**Test Suite**:
+- `tests/spec-kit/e2e-workflow.test.ts` - End-to-end workflow tests
+- `tests/spec-kit/fixtures/` - Test data and sample phase documents
 
-This workflow implements GitHub's Spec-Kit methodology:
+## Best Practices
 
-1. **Constitution** → Define principles and constraints
-2. **Specify** → Elaborate requirements and scope
-3. **Plan** → Create implementation roadmap
-4. **Tasks** → Break down into actionable items
-5. **Implement** → Execute with spec as reference
+1. **Always validate before generating**: Run `validate-spec` to catch issues early
+2. **Use single-line metadata**: Easier to parse and more compact
+3. **Avoid Status field**: Task status is tracked in phase document checkboxes
+4. **Use camelCase in metadata**: Consistent with JavaScript/TypeScript conventions
+5. **Keep task numbers sequential**: 1.1, 1.2, 2.1, 2.2, etc.
+6. **Group related tasks**: Use category headers (## Category Name)
 
-Learn more: https://github.com/github/spec-kit
+## See Also
 
----
-
-**Generated**: 2025-10-24
-**Workflow**: Automated AI-powered spec generation
-**Version**: 1.0.0
+- Full documentation: `/home/aepod/dev/weave-nn/weaver/docs/SPEC-KIT-WORKFLOW.md`
+- Example phase: `tests/spec-kit/fixtures/sample-phase.md`
+- E2E tests: `tests/spec-kit/e2e-workflow.test.ts`
