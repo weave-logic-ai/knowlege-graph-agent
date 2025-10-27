@@ -1,0 +1,140 @@
+{
+  "version": "1.0.0",
+  "phase_id": "PHASE-11",
+  "phase_name": "CLI Service Management & AI Feature Creator",
+  "status": "pending",
+  "priority": "high",
+  "created_date": "2025-10-27",
+  "start_date": null,
+  "end_date": null,
+  "duration_days": 25,
+  "estimated_hours": 156,
+  "dependencies": {
+    "requires": ["PHASE-10"],
+    "enables": ["PHASE-12"]
+  },
+  "team": {
+    "lead": "TBD",
+    "developers": [],
+    "reviewers": []
+  },
+  "sections": {
+    "cli_service_management": {
+      "tasks": 7,
+      "effort_hours": 44,
+      "priority": "critical",
+      "components": [
+        "process-manager",
+        "health-checks",
+        "logging-system",
+        "metrics-collection",
+        "manual-operations",
+        "config-management",
+        "integration-tests"
+      ]
+    },
+    "mvp_enhancements": {
+      "tasks": 5,
+      "effort_hours": 50,
+      "priority": "high",
+      "components": [
+        "advanced-mcp",
+        "ai-commit-messages",
+        "advanced-agent-rules",
+        "performance-dashboard",
+        "stress-testing"
+      ]
+    },
+    "ai_feature_creator": {
+      "tasks": 8,
+      "effort_hours": 62,
+      "priority": "high",
+      "components": [
+        "spec-generator",
+        "requirements-analysis",
+        "architecture-planning",
+        "auto-implementation",
+        "test-generation",
+        "doc-generation",
+        "workflow-integration",
+        "e2e-tests"
+      ]
+    }
+  },
+  "success_criteria": {
+    "functional": [
+      "All CLI commands implemented",
+      "Service lifecycle management functional",
+      "Health checks passing",
+      "AI feature creator working",
+      "Auto-implementation workflow functional"
+    ],
+    "performance": [
+      "Service startup < 5s",
+      "Health check < 100ms",
+      "Feature spec generation < 30s",
+      "24h stress test passing"
+    ],
+    "quality": [
+      "Test coverage > 85%",
+      "TypeScript strict mode",
+      "Zero linting errors",
+      "Complete documentation"
+    ]
+  },
+  "deliverables": {
+    "code": [
+      "/weaver/src/cli/commands/",
+      "/weaver/src/service-manager/",
+      "/weaver/src/feature-creator/",
+      "/weaver/src/dashboard/"
+    ],
+    "documentation": [
+      "/weaver/docs/CLI-REFERENCE.md",
+      "/weaver/docs/SERVICE-MANAGEMENT.md",
+      "/weaver/docs/FEATURE-CREATION.md",
+      "/weaver/docs/PERFORMANCE-DASHBOARD.md"
+    ],
+    "tests": [
+      "/weaver/tests/cli/",
+      "/weaver/tests/service-manager/",
+      "/weaver/tests/feature-creator/"
+    ]
+  },
+  "risks": [
+    {
+      "risk": "Process management complexity",
+      "impact": "high",
+      "probability": "medium",
+      "mitigation": "Use proven PM2 library, comprehensive testing"
+    },
+    {
+      "risk": "AI-generated code quality",
+      "impact": "high",
+      "probability": "medium",
+      "mitigation": "Multiple validation gates, human review required"
+    },
+    {
+      "risk": "Performance regression",
+      "impact": "medium",
+      "probability": "low",
+      "mitigation": "Continuous benchmarking, stress testing"
+    }
+  ],
+  "tags": [
+    "phase",
+    "cli",
+    "service-management",
+    "ai-features",
+    "automation",
+    "high-priority"
+  ],
+  "links": {
+    "phase_document": "../../../phases/phase-11-cli-service-management.md",
+    "readme": "./README.md",
+    "constitution": "./constitution.md",
+    "specification": "./specification.md",
+    "tasks": "./tasks.md",
+    "plan": "./plan.md"
+  }
+}
