@@ -3,6 +3,7 @@ import { workflowRollupPlugin } from 'workflow/rollup-plugin';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { resolve } from 'path';
+import { copyFileSync, mkdirSync } from 'fs';
 
 /**
  * Vite Configuration for Weaver
@@ -23,6 +24,20 @@ export default defineConfig({
       outDir: 'dist/types',
       exclude: ['**/*.test.ts', '**/*.spec.ts', 'tests/**'],
     }),
+
+    // Copy SQL schema files to dist
+    {
+      name: 'copy-sql-files',
+      closeBundle() {
+        try {
+          mkdirSync('dist/shadow-cache', { recursive: true });
+          copyFileSync('src/shadow-cache/schema.sql', 'dist/shadow-cache/schema.sql');
+          console.log('✓ Copied schema.sql to dist/');
+        } catch (err) {
+          console.error('Failed to copy SQL files:', err);
+        }
+      }
+    }
   ],
 
   build: {

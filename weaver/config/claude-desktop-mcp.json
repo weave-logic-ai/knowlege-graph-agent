@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "weaver": {
+      "command": "node",
+      "args": [
+        "/home/aepod/dev/weave-nn/weaver/dist/mcp-server/cli.js"
+      ],
+      "env": {
+        "VAULT_PATH": "/path/to/your/vault",
+        "SHADOW_CACHE_PATH": "/path/to/your/vault/.shadow-cache.db",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}

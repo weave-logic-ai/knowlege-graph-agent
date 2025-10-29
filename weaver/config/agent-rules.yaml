@@ -1,0 +1,195 @@
+# Weaver Agent Rules for Claude-Flow Integration
+version: 1.0
+description: Autonomous agent rules for knowledge graph management
+
+# Global settings
+settings:
+  auto_commit: true
+  commit_threshold: 5  # Auto-commit after N file changes
+  max_batch_size: 50
+  dry_run: false
+
+# Agent Rules
+rules:
+  # Rule 1: Auto-cultivate on file changes
+  - name: auto-cultivate-on-change
+    enabled: true
+    priority: high
+    trigger:
+      type: file_changed
+      debounce: 5s  # Wait 5 seconds for batch changes
+    conditions:
+      - path_matches: "**/*.md"
+      - not_in_path: ".git"
+      - not_in_path: "node_modules"
+      - not_in_path: ".obsidian"
+    actions:
+      - tool: weaver_cultivate
+        args:
+          mode: incremental
+          icons: true
+          connections: true
+          metadata: false  # Don't auto-update metadata on every change
+          max: 10
+
+  # Rule 2: Enhance metadata for new files
+  - name: enhance-new-file-metadata
+    enabled: true
+    priority: high
+    trigger:
+      type: file_created
+    conditions:
+      - path_matches: "**/*.md"
+      - missing_frontmatter: true
+    actions:
+      - tool: weaver_update_metadata
+        args:
+          auto: true
+          ai_enhance: false  # Set to true if you want AI to generate metadata
+
+  # Rule 3: Connect orphaned documents
+  - name: connect-orphans-scheduled
+    enabled: true
+    priority: medium
+    trigger:
+      type: scheduled
+      schedule: "0 */6 * * *"  # Every 6 hours
+    actions:
+      - tool: weaver_cultivate
+        args:
+          orphans_only: true
+          connections: true
+          max: 20
+          min_connections: 2
+
+  # Rule 4: Full cultivation daily
+  - name: daily-full-cultivation
+    enabled: true
+    priority: low
+    trigger:
+      type: scheduled
+      schedule: "0 2 * * *"  # Daily at 2 AM
+    actions:
+      - tool: weaver_cultivate
+        args:
+          mode: full
+          all: true
+          max: 100
+
+  # Rule 5: Auto-commit on batch operations
+  - name: auto-commit-batch
+    enabled: true
+    priority: medium
+    trigger:
+      type: batch_complete
+    conditions:
+      - files_changed: ">= 5"
+    actions:
+      - tool: weaver_commit
+        args:
+          message: "chore: auto-commit from weaver agent"
+          conventional: true
+
+  # Rule 6: Cleanup on file deletion
+  - name: cleanup-on-delete
+    enabled: true
+    priority: high
+    trigger:
+      type: file_deleted
+    conditions:
+      - path_matches: "**/*.md"
+    actions:
+      - tool: weaver_cleanup_references
+        args:
+          path: "${trigger.path}"
+          remove_broken_links: true
+
+  # Rule 7: Update connections on content change
+  - name: update-connections-on-edit
+    enabled: false  # Disabled by default (can be expensive)
+    priority: low
+    trigger:
+      type: file_modified
+    conditions:
+      - path_matches: "**/*.md"
+      - content_changed: true
+      - significant_change: true  # Only if >10% of content changed
+    actions:
+      - tool: weaver_cultivate
+        args:
+          path: "${trigger.path}"
+          connections: true
+          max: 5
+
+# Workflows - Complex multi-step operations
+workflows:
+  # Workflow 1: New document onboarding
+  - name: onboard-new-document
+    description: Fully process a new document with AI
+    trigger:
+      type: file_created
+      conditions:
+        - path_matches: "**/*.md"
+    steps:
+      - name: extract-metadata
+        tool: weaver_update_metadata
+        args:
+          auto: true
+          ai_enhance: true
+      
+      - name: suggest-connections
+        tool: weaver_cultivate
+        args:
+          connections: true
+          max: 5
+      
+      - name: apply-icons
+        tool: weaver_cultivate
+        args:
+          icons: true
+      
+      - name: commit
+        tool: weaver_commit
+        args:
+          message: "feat: add ${file.name}"
+
+  # Workflow 2: Weekly knowledge graph health check
+  - name: weekly-health-check
+    description: Comprehensive KG maintenance
+    trigger:
+      type: scheduled
+      schedule: "0 0 * * 0"  # Weekly on Sunday at midnight
+    steps:
+      - name: detect-orphans
+        tool: weaver_search_vault
+        args:
+          filter: orphaned
+      
+      - name: connect-orphans
+        tool: weaver_cultivate
+        args:
+          orphans_only: true
+          connections: true
+      
+      - name: update-all-metadata
+        tool: weaver_cultivate
+        args:
+          metadata: true
+          all: true
+      
+      - name: apply-icons
+        tool: weaver_cultivate
+        args:
+          icons: true
+          mode: full
+      
+      - name: cleanup
+        tool: weaver_cleanup
+        args:
+          remove_broken_links: true
+          fix_malformed_frontmatter: true
+      
+      - name: commit
+        tool: weaver_commit
+        args:
+          message: "chore: weekly knowledge graph maintenance"

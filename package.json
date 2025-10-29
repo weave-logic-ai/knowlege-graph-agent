@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "workflow": "^4.0.1-beta.4"
+  }
+}

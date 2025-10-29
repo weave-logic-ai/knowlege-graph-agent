@@ -1,0 +1,379 @@
+/**
+ * Weave-NN Visual Styling System - Icons
+ * Phase 1: Foundation
+ *
+ * Purpose: Add visual icons to files, headings, and navigation
+ * Usage: Icons from frontmatter metadata displayed in UI
+ */
+
+/* ==========================================
+   FILE EXPLORER ICONS
+   ========================================== */
+
+/* Hub files get special hub icon */
+.nav-file-title[data-path$="-hub.md"]::before {
+  content: "🏠 ";
+  font-size: 0.9em;
+}
+
+/* Index files */
+.nav-file-title[data-path*="index"]::before,
+.nav-file-title[data-path*="INDEX"]::before {
+  content: "📑 ";
+  font-size: 0.9em;
+}
+
+/* Planning documents */
+.nav-file-title[data-path*="planning"]::before,
+.nav-file-title[data-path*="_planning"]::before {
+  content: "📋 ";
+  font-size: 0.9em;
+}
+
+/* Phase documents */
+.nav-file-title[data-path*="phase-"]::before {
+  content: "🎯 ";
+  font-size: 0.9em;
+}
+
+/* Implementation files */
+.nav-file-title[data-path*="implementation"]::before {
+  content: "⚙️ ";
+  font-size: 0.9em;
+}
+
+/* Research documents */
+.nav-file-title[data-path*="research"]::before {
+  content: "🔬 ";
+  font-size: 0.9em;
+}
+
+/* Architecture documents */
+.nav-file-title[data-path*="architecture"]::before {
+  content: "🏗️ ";
+  font-size: 0.9em;
+}
+
+/* Documentation */
+.nav-file-title[data-path*="docs/"]::before,
+.nav-file-title[data-path*="documentation"]::before {
+  content: "📚 ";
+  font-size: 0.9em;
+}
+
+/* Test files */
+.nav-file-title[data-path*="test"]::before,
+.nav-file-title[data-path*="spec"]::before {
+  content: "🧪 ";
+  font-size: 0.9em;
+}
+
+/* Decision records */
+.nav-file-title[data-path*="decision"]::before {
+  content: "🎲 ";
+  font-size: 0.9em;
+}
+
+/* Guides and tutorials */
+.nav-file-title[data-path*="guide"]::before,
+.nav-file-title[data-path*="tutorial"]::before {
+  content: "📖 ";
+  font-size: 0.9em;
+}
+
+/* Workflows */
+.nav-file-title[data-path*="workflow"]::before {
+  content: "🔄 ";
+  font-size: 0.9em;
+}
+
+/* Templates */
+.nav-file-title[data-path*="template"]::before {
+  content: "📄 ";
+  font-size: 0.9em;
+}
+
+/* Configuration files */
+.nav-file-title[data-path*="config"]::before {
+  content: "⚙️ ";
+  font-size: 0.9em;
+}
+
+/* ==========================================
+   HEADING ICONS BASED ON CONTENT
+   ========================================== */
+
+/* Add icons to specific heading patterns */
+h1:has(+ p:contains("Phase")),
+h2:has(+ p:contains("Phase")) {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+h1:has(+ p:contains("Phase"))::before,
+h2:has(+ p:contains("Phase"))::before {
+  content: "🎯";
+  position: absolute;
+  left: 0;
+}
+
+/* Implementation sections */
+h2:contains("Implementation")::before,
+h3:contains("Implementation")::before {
+  content: "⚙️ ";
+}
+
+/* Architecture sections */
+h2:contains("Architecture")::before,
+h3:contains("Architecture")::before {
+  content: "🏗️ ";
+}
+
+/* Testing sections */
+h2:contains("Test")::before,
+h2:contains("Testing")::before,
+h3:contains("Test")::before {
+  content: "🧪 ";
+}
+
+/* Documentation sections */
+h2:contains("Documentation")::before,
+h3:contains("Documentation")::before {
+  content: "📚 ";
+}
+
+/* ==========================================
+   FRONTMATTER ICON SUPPORT
+   ========================================== */
+
+/* Display icon from frontmatter in document header */
+.markdown-preview-view .frontmatter-container {
+  position: relative;
+}
+
+.markdown-preview-view .frontmatter-container::before {
+  content: attr(data-icon);
+  font-size: 2em;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* ==========================================
+   TAG ICONS
+   ========================================== */
+
+/* Visual icons for common tags */
+.tag[href="#index"]::before,
+.tag[href="#navigation"]::before {
+  content: "🗺️ ";
+}
+
+.tag[href="#phase"]::before,
+.tag[href="#planning"]::before {
+  content: "📋 ";
+}
+
+.tag[href="#implementation"]::before {
+  content: "⚙️ ";
+}
+
+.tag[href="#research"]::before {
+  content: "🔬 ";
+}
+
+.tag[href="#architecture"]::before {
+  content: "🏗️ ";
+}
+
+.tag[href="#testing"]::before {
+  content: "🧪 ";
+}
+
+.tag[href="#documentation"]::before {
+  content: "📚 ";
+}
+
+.tag[href="#decision"]::before {
+  content: "🎲 ";
+}
+
+.tag[href="#knowledge-graph"]::before {
+  content: "🕸️ ";
+}
+
+.tag[href="#vault-home"]::before {
+  content: "🏠 ";
+}
+
+.tag[href="#active"]::before {
+  content: "✅ ";
+}
+
+.tag[href="#deprecated"]::before,
+.tag[href="#obsolete"]::before {
+  content: "❌ ";
+}
+
+.tag[href="#archived"]::before {
+  content: "📦 ";
+}
+
+/* ==========================================
+   LINK ICONS
+   ========================================== */
+
+/* External links */
+a.external-link::after {
+  content: " 🔗";
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
+/* Internal wikilinks to hub documents */
+a.internal-link[href$="-hub"]::before {
+  content: "🏠 ";
+  font-size: 0.85em;
+}
+
+/* Links to phase documents */
+a.internal-link[href*="phase-"]::before {
+  content: "🎯 ";
+  font-size: 0.85em;
+}
+
+/* ==========================================
+   FOLDER ICONS IN EXPLORER
+   ========================================== */
+
+/* Main folders */
+.nav-folder-title[data-path="weave-nn"]::before {
+  content: "🧠 ";
+}
+
+.nav-folder-title[data-path*="_planning"]::before {
+  content: "📋 ";
+}
+
+.nav-folder-title[data-path*="docs"]::before {
+  content: "📚 ";
+}
+
+.nav-folder-title[data-path*="architecture"]::before {
+  content: "🏗️ ";
+}
+
+.nav-folder-title[data-path*="research"]::before {
+  content: "🔬 ";
+}
+
+.nav-folder-title[data-path*="tests"]::before,
+.nav-folder-title[data-path*="testing"]::before {
+  content: "🧪 ";
+}
+
+.nav-folder-title[data-path*="workflows"]::before {
+  content: "🔄 ";
+}
+
+.nav-folder-title[data-path*="templates"]::before {
+  content: "📄 ";
+}
+
+.nav-folder-title[data-path*="concepts"]::before {
+  content: "💡 ";
+}
+
+.nav-folder-title[data-path*="decisions"]::before {
+  content: "🎲 ";
+}
+
+.nav-folder-title[data-path*=".archive"]::before,
+.nav-folder-title[data-path*="archive"]::before {
+  content: "📦 ";
+}
+
+/* ==========================================
+   STATUS INDICATORS
+   ========================================== */
+
+/* Add status badges to file titles */
+.nav-file-title[data-path*="COMPLETE"]::after,
+.nav-file-title[data-path*="complete"]::after {
+  content: " ✅";
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.nav-file-title[data-path*="WIP"]::after,
+.nav-file-title[data-path*="draft"]::after {
+  content: " 🚧";
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+.nav-file-title[data-path*="TODO"]::after {
+  content: " ⏳";
+  font-size: 0.8em;
+  opacity: 0.7;
+}
+
+/* ==========================================
+   CUSTOM ICON SUPPORT
+   ========================================== */
+
+/* Allow custom icons via CSS classes */
+.icon-brain::before { content: "🧠 "; }
+.icon-gear::before { content: "⚙️ "; }
+.icon-book::before { content: "📚 "; }
+.icon-microscope::before { content: "🔬 "; }
+.icon-building::before { content: "🏗️ "; }
+.icon-test-tube::before { content: "🧪 "; }
+.icon-home::before { content: "🏠 "; }
+.icon-target::before { content: "🎯 "; }
+.icon-clipboard::before { content: "📋 "; }
+.icon-recycle::before { content: "🔄 "; }
+.icon-document::before { content: "📄 "; }
+.icon-lightbulb::before { content: "💡 "; }
+.icon-dice::before { content: "🎲 "; }
+.icon-package::before { content: "📦 "; }
+.icon-checkmark::before { content: "✅ "; }
+.icon-construction::before { content: "🚧 "; }
+.icon-hourglass::before { content: "⏳ "; }
+.icon-web::before { content: "🕸️ "; }
+.icon-map::before { content: "🗺️ "; }
+
+/* ==========================================
+   DARK MODE ADJUSTMENTS
+   ========================================== */
+
+.theme-dark .nav-file-title::before,
+.theme-dark .nav-folder-title::before {
+  filter: brightness(1.2);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+/* Option to hide icons for screen readers */
+@media (prefers-reduced-motion: reduce) {
+  .nav-file-title::before,
+  .nav-folder-title::before,
+  h1::before, h2::before, h3::before {
+    display: none;
+  }
+}
+
+/* High contrast mode - use symbols instead of emojis */
+@media (prefers-contrast: high) {
+  .nav-file-title[data-path$="-hub.md"]::before {
+    content: "[HUB] ";
+    font-weight: bold;
+  }
+
+  .nav-file-title[data-path*="phase-"]::before {
+    content: "[PHASE] ";
+    font-weight: bold;
+  }
+}

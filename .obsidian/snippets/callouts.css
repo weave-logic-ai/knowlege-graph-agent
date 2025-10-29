@@ -1,0 +1,395 @@
+/**
+ * Weave-NN Visual Styling System - Custom Callouts
+ * Phase 1: Foundation
+ *
+ * Purpose: Define custom callout types for phase markers, gaps, decisions, etc.
+ * Usage: Use in markdown with > [!callout-type]
+ */
+
+/* ==========================================
+   PHASE CALLOUTS - Blue Theme
+   ========================================== */
+
+.callout[data-callout="phase"] {
+  --callout-color: 59, 130, 246;
+  --callout-icon: lucide-target;
+}
+
+.callout[data-callout="phase-planning"] {
+  --callout-color: 96, 165, 250;
+  --callout-icon: lucide-clipboard;
+}
+
+.callout[data-callout="phase-complete"] {
+  --callout-color: 37, 99, 235;
+  --callout-icon: lucide-check-circle;
+}
+
+/* ==========================================
+   IMPLEMENTATION CALLOUTS - Green Theme
+   ========================================== */
+
+.callout[data-callout="implementation"] {
+  --callout-color: 16, 185, 129;
+  --callout-icon: lucide-settings;
+}
+
+.callout[data-callout="code"] {
+  --callout-color: 16, 185, 129;
+  --callout-icon: lucide-code;
+}
+
+.callout[data-callout="feature"] {
+  --callout-color: 34, 197, 94;
+  --callout-icon: lucide-sparkles;
+}
+
+/* ==========================================
+   GAP IDENTIFICATION - Red Theme
+   ========================================== */
+
+.callout[data-callout="gap"] {
+  --callout-color: 239, 68, 68;
+  --callout-icon: lucide-alert-triangle;
+}
+
+.callout[data-callout="blocker"] {
+  --callout-color: 220, 38, 38;
+  --callout-icon: lucide-octagon;
+}
+
+.callout[data-callout="missing"] {
+  --callout-color: 248, 113, 113;
+  --callout-icon: lucide-help-circle;
+}
+
+/* ==========================================
+   SUCCESS CRITERIA - Green Checkmark Theme
+   ========================================== */
+
+.callout[data-callout="success"] {
+  --callout-color: 16, 185, 129;
+  --callout-icon: lucide-check-circle-2;
+}
+
+.callout[data-callout="criteria"] {
+  --callout-color: 34, 197, 94;
+  --callout-icon: lucide-list-checks;
+}
+
+.callout[data-callout="acceptance"] {
+  --callout-color: 22, 163, 74;
+  --callout-icon: lucide-badge-check;
+}
+
+/* ==========================================
+   ARCHITECTURE DECISIONS - Orange Theme
+   ========================================== */
+
+.callout[data-callout="architecture"] {
+  --callout-color: 245, 158, 11;
+  --callout-icon: lucide-building;
+}
+
+.callout[data-callout="decision"] {
+  --callout-color: 251, 146, 60;
+  --callout-icon: lucide-git-branch;
+}
+
+.callout[data-callout="design"] {
+  --callout-color: 249, 115, 22;
+  --callout-icon: lucide-pen-tool;
+}
+
+/* ==========================================
+   RESEARCH & ANALYSIS - Purple Theme
+   ========================================== */
+
+.callout[data-callout="research"] {
+  --callout-color: 139, 92, 246;
+  --callout-icon: lucide-microscope;
+}
+
+.callout[data-callout="analysis"] {
+  --callout-color: 168, 85, 247;
+  --callout-icon: lucide-bar-chart;
+}
+
+.callout[data-callout="hypothesis"] {
+  --callout-color: 124, 58, 237;
+  --callout-icon: lucide-lightbulb;
+}
+
+/* ==========================================
+   TEST SCENARIOS - Pink Theme
+   ========================================== */
+
+.callout[data-callout="test"] {
+  --callout-color: 236, 72, 153;
+  --callout-icon: lucide-flask;
+}
+
+.callout[data-callout="scenario"] {
+  --callout-color: 244, 114, 182;
+  --callout-icon: lucide-play-circle;
+}
+
+.callout[data-callout="validation"] {
+  --callout-color: 219, 39, 119;
+  --callout-icon: lucide-shield-check;
+}
+
+/* ==========================================
+   CODE EXAMPLES - Teal Theme
+   ========================================== */
+
+.callout[data-callout="example"] {
+  --callout-color: 20, 184, 166;
+  --callout-icon: lucide-code-2;
+}
+
+.callout[data-callout="snippet"] {
+  --callout-color: 45, 212, 191;
+  --callout-icon: lucide-file-code;
+}
+
+.callout[data-callout="demo"] {
+  --callout-color: 13, 148, 136;
+  --callout-icon: lucide-presentation;
+}
+
+/* ==========================================
+   WORKFLOW & PROCESS - Indigo Theme
+   ========================================== */
+
+.callout[data-callout="workflow"] {
+  --callout-color: 99, 102, 241;
+  --callout-icon: lucide-workflow;
+}
+
+.callout[data-callout="process"] {
+  --callout-color: 129, 140, 248;
+  --callout-icon: lucide-list-ordered;
+}
+
+.callout[data-callout="step"] {
+  --callout-color: 79, 70, 229;
+  --callout-icon: lucide-footprints;
+}
+
+/* ==========================================
+   DOCUMENTATION - Cyan Theme
+   ========================================== */
+
+.callout[data-callout="docs"] {
+  --callout-color: 6, 182, 212;
+  --callout-icon: lucide-book-open;
+}
+
+.callout[data-callout="guide"] {
+  --callout-color: 34, 211, 238;
+  --callout-icon: lucide-map;
+}
+
+.callout[data-callout="reference"] {
+  --callout-color: 8, 145, 178;
+  --callout-icon: lucide-bookmark;
+}
+
+/* ==========================================
+   STATUS & TRACKING - Mixed Theme
+   ========================================== */
+
+.callout[data-callout="todo"] {
+  --callout-color: 251, 191, 36;
+  --callout-icon: lucide-circle;
+}
+
+.callout[data-callout="in-progress"] {
+  --callout-color: 59, 130, 246;
+  --callout-icon: lucide-loader;
+}
+
+.callout[data-callout="complete"] {
+  --callout-color: 16, 185, 129;
+  --callout-icon: lucide-check-circle;
+}
+
+.callout[data-callout="deprecated"] {
+  --callout-color: 107, 114, 128;
+  --callout-icon: lucide-archive;
+}
+
+/* ==========================================
+   SPECIAL CALLOUTS
+   ========================================== */
+
+.callout[data-callout="sparc"] {
+  --callout-color: 139, 92, 246;
+  --callout-icon: lucide-zap;
+}
+
+.callout[data-callout="mcp"] {
+  --callout-color: 99, 102, 241;
+  --callout-icon: lucide-network;
+}
+
+.callout[data-callout="agent"] {
+  --callout-color: 236, 72, 153;
+  --callout-icon: lucide-bot;
+}
+
+.callout[data-callout="swarm"] {
+  --callout-color: 168, 85, 247;
+  --callout-icon: lucide-git-merge;
+}
+
+.callout[data-callout="neural"] {
+  --callout-color: 124, 58, 237;
+  --callout-icon: lucide-brain;
+}
+
+/* ==========================================
+   CALLOUT ENHANCEMENTS
+   ========================================== */
+
+/* Add subtle gradient to callout backgrounds */
+.callout {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--callout-color), 0.05) 0%,
+    rgba(var(--callout-color), 0.02) 100%
+  );
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhance callout titles */
+.callout-title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Add icon pulse animation for important callouts */
+.callout[data-callout="blocker"] .callout-icon,
+.callout[data-callout="gap"] .callout-icon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Collapsible callout styling */
+.callout.is-collapsible {
+  cursor: pointer;
+}
+
+.callout.is-collapsible:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--callout-color), 0.08) 0%,
+    rgba(var(--callout-color), 0.04) 100%
+  );
+}
+
+/* ==========================================
+   NESTED CALLOUTS
+   ========================================== */
+
+/* Reduce visual weight of nested callouts */
+.callout .callout {
+  opacity: 0.95;
+  margin-left: 1em;
+  border-left-width: 2px;
+}
+
+.callout .callout .callout {
+  opacity: 0.9;
+  margin-left: 2em;
+  border-left-width: 1px;
+}
+
+/* ==========================================
+   DARK MODE ADJUSTMENTS
+   ========================================== */
+
+.theme-dark .callout {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--callout-color), 0.1) 0%,
+    rgba(var(--callout-color), 0.05) 100%
+  );
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .callout:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--callout-color), 0.15) 0%,
+    rgba(var(--callout-color), 0.08) 100%
+  );
+}
+
+/* ==========================================
+   MOBILE OPTIMIZATIONS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .callout {
+    border-radius: 4px;
+    padding: 0.75em;
+  }
+
+  .callout-title {
+    font-size: 0.95em;
+  }
+
+  /* Simplify nested callouts on mobile */
+  .callout .callout {
+    margin-left: 0.5em;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .callout {
+    border: 1px solid rgb(var(--callout-color));
+    background: white !important;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  .callout-icon {
+    display: none; /* Hide decorative icons in print */
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .callout {
+    border-width: 2px;
+    border-color: rgb(var(--callout-color));
+    background: transparent;
+  }
+
+  .callout-title {
+    font-weight: 700;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .callout[data-callout="blocker"] .callout-icon,
+  .callout[data-callout="gap"] .callout-icon {
+    animation: none;
+  }
+}

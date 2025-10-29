@@ -34,40 +34,31 @@ weaver service logs --level <level>     # Filter by log level (debug|info|warn|e
 ### Service Configuration
 
 ```bash
-weaver service config show              # Show current configuration
-weaver service config validate          # Validate configuration
-weaver service config reload            # Reload configuration
+weaver config show                      # Show current configuration
+weaver config validate                  # Validate configuration
+weaver config reload                    # Reload configuration
 ```
 
 ---
 
 ## Vault Operations
 
-### Vault Management
+### Vault Initialization
 
 ```bash
-weaver vault init --path <path>                          # Initialize vault
-weaver vault stats --path <path>                         # Show vault statistics
-weaver vault sync                                        # Sync vault with shadow cache
-weaver vault validate --path <path>                      # Validate vault structure
+weaver init-vault <project-path>                         # Initialize vault from existing project
+weaver init-vault <project-path> -o <output-path>        # Specify output directory
+weaver init-vault <project-path> -t nextjs               # Use specific template
+weaver init-vault <project-path> --dry-run               # Preview without creating files
+weaver init-vault <project-path> --offline               # Offline mode (no AI features)
+weaver init-vault <project-path> --no-git                # Skip git initialization
 ```
 
-### Metadata Operations
+### Service Sync
 
 ```bash
-weaver vault enhance-metadata --target <path>            # Enhance all metadata
-weaver vault enhance-metadata --target <path> --dry-run  # Preview changes
-weaver vault enhance-metadata --batch-size <n>           # Set batch size
-weaver vault enhance-metadata --priority-files <list>    # Prioritize specific files
-```
-
-### Icon Application
-
-```bash
-weaver vault apply-icons --mode incremental              # Apply icons to new files
-weaver vault apply-icons --mode full                     # Apply icons to all files
-weaver vault apply-icons --mode watch                    # Watch and apply icons
-weaver vault apply-icons --dry-run                       # Preview changes
+weaver service sync                                      # Sync services with vault
+weaver service sync --force                              # Force synchronization
 ```
 
 ---

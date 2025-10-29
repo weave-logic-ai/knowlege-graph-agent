@@ -1,0 +1,313 @@
+/**
+ * Weave-NN Visual Styling System - Color Coding
+ * Phase 1: Foundation
+ *
+ * Purpose: Apply visual color coding based on document type, phase, and status
+ * Usage: Applied automatically via CSS classes from frontmatter metadata
+ */
+
+/* ==========================================
+   PHASE DOCUMENTS - Blue Gradient Scale
+   ========================================== */
+
+/* Phase planning and specifications */
+.phase-planning,
+[data-cssclass*="phase-planning"] {
+  border-left: 4px solid #3B82F6;
+  padding-left: 12px;
+}
+
+.phase-specification,
+[data-cssclass*="phase-specification"] {
+  border-left: 4px solid #60A5FA;
+  padding-left: 12px;
+}
+
+.phase-implementation,
+[data-cssclass*="phase-implementation"] {
+  border-left: 4px solid #2563EB;
+  padding-left: 12px;
+}
+
+/* ==========================================
+   TYPE-BASED COLORS
+   ========================================== */
+
+/* Implementation documents - Green */
+.type-implementation,
+[data-cssclass*="type-implementation"] {
+  border-left: 4px solid #10B981;
+  padding-left: 12px;
+}
+
+/* Research documents - Purple */
+.type-research,
+[data-cssclass*="type-research"] {
+  border-left: 4px solid #8B5CF6;
+  padding-left: 12px;
+}
+
+/* Architecture documents - Orange */
+.type-architecture,
+[data-cssclass*="type-architecture"] {
+  border-left: 4px solid #F59E0B;
+  padding-left: 12px;
+}
+
+/* Documentation - Cyan */
+.type-documentation,
+[data-cssclass*="type-documentation"] {
+  border-left: 4px solid #06B6D4;
+  padding-left: 12px;
+}
+
+/* Testing documents - Pink */
+.type-testing,
+[data-cssclass*="type-testing"] {
+  border-left: 4px solid #EC4899;
+  padding-left: 12px;
+}
+
+/* Decision records - Indigo */
+.type-decision,
+[data-cssclass*="type-decision"] {
+  border-left: 4px solid #6366F1;
+  padding-left: 12px;
+}
+
+/* ==========================================
+   HUB DOCUMENTS - Red with Background
+   ========================================== */
+
+.type-hub,
+[data-cssclass*="type-hub"],
+.type-index,
+[data-cssclass*="type-index"] {
+  background: linear-gradient(to right, #EF4444 4px, transparent 4px);
+  border-radius: 4px;
+  padding-left: 16px;
+}
+
+/* Navigation hubs - special treatment */
+.navigation,
+[data-cssclass*="navigation"] {
+  background: linear-gradient(to right, #EF4444 4px, rgba(239, 68, 68, 0.05) 4px);
+  border-radius: 4px;
+  padding: 8px 8px 8px 16px;
+}
+
+/* ==========================================
+   STATUS-BASED COLORS
+   ========================================== */
+
+/* Active/In Progress - Green glow */
+.status-active,
+[data-cssclass*="status-active"] {
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.2);
+  border-radius: 4px;
+}
+
+/* Deprecated/Obsolete - Red with strikethrough effect */
+.status-deprecated,
+[data-cssclass*="status-deprecated"],
+.status-obsolete,
+[data-cssclass*="status-obsolete"] {
+  opacity: 0.6;
+  background: rgba(239, 68, 68, 0.05);
+  border-left: 4px solid #EF4444;
+  padding-left: 12px;
+}
+
+/* Archive - Gray tone */
+.status-archived,
+[data-cssclass*="status-archived"] {
+  opacity: 0.5;
+  background: rgba(107, 114, 128, 0.05);
+  border-left: 4px solid #6B7280;
+  padding-left: 12px;
+}
+
+/* Planned/Pending - Yellow highlight */
+.status-planned,
+[data-cssclass*="status-planned"],
+.status-pending,
+[data-cssclass*="status-pending"] {
+  border-left: 4px solid #F59E0B;
+  background: rgba(245, 158, 11, 0.05);
+  padding-left: 12px;
+}
+
+/* ==========================================
+   PRIORITY-BASED HIGHLIGHTING
+   ========================================== */
+
+/* High priority - Red accent */
+.priority-high,
+[data-cssclass*="priority-high"] {
+  border-top: 2px solid #EF4444;
+  padding-top: 8px;
+}
+
+/* Medium priority - Yellow accent */
+.priority-medium,
+[data-cssclass*="priority-medium"] {
+  border-top: 2px solid #F59E0B;
+  padding-top: 8px;
+}
+
+/* Low priority - Gray accent */
+.priority-low,
+[data-cssclass*="priority-low"] {
+  border-top: 2px solid #9CA3AF;
+  padding-top: 8px;
+}
+
+/* ==========================================
+   SCOPE-BASED COLORS
+   ========================================== */
+
+/* System-wide scope - Blue background */
+.scope-system,
+[data-cssclass*="scope-system"] {
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/* Module scope - Green background */
+.scope-module,
+[data-cssclass*="scope-module"] {
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/* Feature scope - Purple background */
+.scope-feature,
+[data-cssclass*="scope-feature"] {
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/* ==========================================
+   GRAPH GROUP VISUAL INDICATORS
+   ========================================== */
+
+/* Core concepts - Teal */
+.graph-group-core,
+[data-cssclass*="graph-group-core"] {
+  border-bottom: 3px solid #14B8A6;
+}
+
+/* Technical docs - Orange */
+.graph-group-technical,
+[data-cssclass*="graph-group-technical"] {
+  border-bottom: 3px solid #F97316;
+}
+
+/* Business docs - Green */
+.graph-group-business,
+[data-cssclass*="graph-group-business"] {
+  border-bottom: 3px solid #22C55E;
+}
+
+/* ==========================================
+   COMBINATION CLASSES
+   ========================================== */
+
+/* Hub + Active */
+.type-hub.status-active,
+[data-cssclass*="type-hub"][data-cssclass*="status-active"] {
+  background: linear-gradient(to right, #EF4444 4px, rgba(239, 68, 68, 0.08) 4px);
+  box-shadow: inset 0 0 0 1px rgba(239, 68, 68, 0.2);
+}
+
+/* Implementation + High Priority */
+.type-implementation.priority-high,
+[data-cssclass*="type-implementation"][data-cssclass*="priority-high"] {
+  border-left-width: 6px;
+  border-left-color: #10B981;
+  border-top: 2px solid #EF4444;
+}
+
+/* ==========================================
+   DARK MODE ADJUSTMENTS
+   ========================================== */
+
+.theme-dark .type-hub,
+.theme-dark [data-cssclass*="type-hub"] {
+  background: linear-gradient(to right, #EF4444 4px, rgba(239, 68, 68, 0.1) 4px);
+}
+
+.theme-dark .status-active,
+.theme-dark [data-cssclass*="status-active"] {
+  box-shadow: inset 0 0 0 1px rgba(16, 185, 129, 0.3);
+}
+
+.theme-dark .status-deprecated,
+.theme-dark [data-cssclass*="status-deprecated"] {
+  background: rgba(239, 68, 68, 0.1);
+  opacity: 0.7;
+}
+
+/* ==========================================
+   FILE EXPLORER COLORS
+   ========================================== */
+
+/* Color code in file explorer */
+.nav-file-title[data-path*="phase"] {
+  color: #3B82F6;
+}
+
+.nav-file-title[data-path*="implementation"] {
+  color: #10B981;
+}
+
+.nav-file-title[data-path*="research"] {
+  color: #8B5CF6;
+}
+
+.nav-file-title[data-path*="architecture"] {
+  color: #F59E0B;
+}
+
+.nav-file-title[data-path*="hub"] {
+  color: #EF4444;
+  font-weight: 600;
+}
+
+/* ==========================================
+   ACCESSIBILITY - HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .type-hub, [data-cssclass*="type-hub"] {
+    border-left: 6px solid #DC2626;
+  }
+
+  .type-implementation, [data-cssclass*="type-implementation"] {
+    border-left: 6px solid #059669;
+  }
+
+  .type-research, [data-cssclass*="type-research"] {
+    border-left: 6px solid #7C3AED;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  /* Preserve important visual indicators in print */
+  .type-hub, [data-cssclass*="type-hub"] {
+    border-left: 4px solid #000;
+    background: none;
+  }
+
+  .priority-high, [data-cssclass*="priority-high"] {
+    border-top: 2px solid #000;
+    page-break-after: avoid;
+  }
+}

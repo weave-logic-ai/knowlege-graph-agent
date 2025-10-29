@@ -29,6 +29,7 @@ async function loadCommands(): Promise<any> {
     { createCommitCommand },
     { createConfigCommand },
     { createAgentsCommand },
+    { createSetupCommand },
     opsCommands,
   ] = await Promise.all([
     import('./commands/init-vault.js'),
@@ -41,6 +42,7 @@ async function loadCommands(): Promise<any> {
     import('./commands/commit.js'),
     import('./commands/config.js'),
     import('./commands/agents.js'),
+    import('./commands/setup.js'),
     import('./commands/ops/index.js'),
   ]);
 
@@ -55,6 +57,7 @@ async function loadCommands(): Promise<any> {
     createCommitCommand,
     createConfigCommand,
     createAgentsCommand,
+    createSetupCommand,
     ...opsCommands,
   };
 
@@ -94,21 +97,9 @@ export function createCLI(): Command {
     process.exit(1);
   });
 
-  // Hook to lazy-load commands before parsing
-  const originalParse = program.parseAsync.bind(program);
-  program.parseAsync = async function (argv?: readonly string[], options?: any) {
-    // Only load commands if not just showing help/version
-    const args = argv || process.argv;
-    const isHelp = args.includes('--help') || args.includes('-h');
-    const isVersion = args.includes('--version') || args.includes('-v');
-
-    if (!isHelp && !isVersion) {
-      await loadAndRegisterCommands(program);
-    }
-
-    return originalParse(argv, options);
-  };
-
+  // Always load commands on first use
+  // (The lazy loading is handled internally per command)
+  
   return program;
 }
 
@@ -163,6 +154,9 @@ async function loadAndRegisterCommands(program: Command): Promise<void> {
 
   // Add agent orchestration commands
   program.addCommand(commands.createAgentsCommand());
+
+  // Add setup commands
+  program.addCommand(commands.createSetupCommand());
 }
 
 /**
@@ -170,6 +164,9 @@ async function loadAndRegisterCommands(program: Command): Promise<void> {
  */
 export async function runCLI(args = process.argv): Promise<void> {
   const program = createCLI();
+  
+  // Load and register all commands before parsing
+  await loadAndRegisterCommands(program);
 
   try {
     await program.parseAsync(args);

@@ -40,3 +40,12 @@ hive-mind-prompt-*.txt
 .research/
 .ruv-swarm/
 .env
+
+# Node modules
+node_modules/
+
+# Weaver runtime directories
+weaver/.weaver/
+weaver/.workflow-data/
+weaver/.next/
+weaver/weave-nn/

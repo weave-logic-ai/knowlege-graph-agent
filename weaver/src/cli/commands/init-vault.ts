@@ -286,4 +286,7 @@ export async function initVault(
   console.log(formatInfo('  3. Start the Weaver service to enable file watching'));
   console.log();
   console.log(formatSuccess('Happy weaving! 🧵'));
+  
+  // Force exit to prevent hanging (ora spinners can keep process alive)
+  process.exit(0);
 }
