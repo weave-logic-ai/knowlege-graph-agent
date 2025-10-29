@@ -16,13 +16,14 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
 version: '3.0'
+icon: 📄
 ---
 
 # Weave-NN Knowledge Base
@@ -57,6 +58,26 @@ This architecture follows research on **federated learning** and **knowledge gra
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[DIRECTORY-HUB-CREATION-SUMMARY]]
+## Related
+
+[[standards-overview-hub]]
+## Related
+
+[[services-architecture-hub]]
+## Related
+
+[[concepts-overview-hub]]
 ## 🗺️ Navigation
 
 ### Core Concepts
