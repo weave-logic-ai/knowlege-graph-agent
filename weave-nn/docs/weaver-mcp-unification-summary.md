@@ -1,7 +1,30 @@
 ---
+title: 'Weaver: Unified MCP + Workflows + File Watcher'
+type: implementation
+status: in-progress
+phase_id: PHASE-0
+tags:
+  - phase/phase-0
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:05.783Z'
+keywords:
+  - executive summary
+  - before vs after
+  - technical implementation
+  - file watcher integration with chokidar
+  - mcp integration options
+  - architecture benefits
+  - 1. simplified deployment
+  - 2. unified codebase
+  - 3. shared context
+  - 4. simpler configuration
 ---
 # Weaver: Unified MCP + Workflows + File Watcher
 

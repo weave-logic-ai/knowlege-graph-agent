@@ -1,9 +1,7 @@
 ---
+title: Obsidian Properties & Groups System
 type: workflow
-workflow_name: Obsidian Properties & Groups System
 status: active
-created_date: '2025-10-21'
-priority: critical
 tags:
   - workflow
   - obsidian
@@ -11,18 +9,29 @@ tags:
   - groups
   - standards
   - mvp
-icon: ⚙️
-cssclasses:
-  - workflow
-  - critical
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:06.644Z'
 version: '3.0'
-updated_date: '2025-10-28'
+keywords:
+  - "\U0001F3F7️ tag system"
+  - tag hierarchy
+  - standard tag categories
+  - related
+  - "\U0001F4CA property groups"
+  - 'group: scope management'
+  - 'group: node metadata'
+  - 'group: technology stack'
+  - 'group: decision tracking'
+  - 'group: task management'
 ---
 
 # Obsidian Properties & Groups System

@@ -1,33 +1,46 @@
 ---
-phase_id: PHASE-6
-phase_name: Vault Initialization System
+title: 'Phase 6: Vault Initialization System'
+type: planning
 status: pending
-priority: high
-created_date: '2025-10-24'
-start_date: TBD
-end_date: TBD
-duration: 15-20 days
-dependencies:
-  requires:
-    - PHASE-5
-  enables:
-    - PHASE-7
+phase_id: PHASE-6
 tags:
   - phase
   - vault-initialization
   - automation
   - claude-flow
   - high-priority
+  - phase/phase-6
+  - type/documentation
+  - status/draft
+  - domain/vault-init
+domain:
+  - vault-init
+priority: high
 visual:
   icon: rocket
+  color: '#8E8E93'
   cssclasses:
     - type-implementation
     - status-pending
     - priority-high
-type: planning
+updated: '2025-10-29T04:55:04.102Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🚀
+dependencies:
+  requires:
+    - PHASE-5
+  enables:
+    - PHASE-7
+keywords:
+  - "\U0001F3AF objectives"
+  - primary goals
+  - related
+  - "\U0001F4CB implementation tasks"
+  - project codebase scanner
+  - template system
+  - documentation extraction
+  - node generation
+  - claude-flow integration
+  - vault structure generation
 ---
 
 # Phase 6: Vault Initialization System

@@ -1,7 +1,30 @@
 ---
+title: Weaver CLI Integration Audit Report
+type: documentation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.751Z'
+keywords:
+  - executive summary
+  - 'current state: **partial cli capability**'
+  - 1. current cli execution capabilities
+  - 1.1 existing process execution
+  - '1.2 pm2 integration (library-based, not cli)'
+  - 1.3 simple-git integration (library-based)
+  - 1.4 package manager references
+  - 2. dependencies analysis
+  - 2.1 current dependencies (package.json)
+  - 2.2 missing dependencies
 ---
 # Weaver CLI Integration Audit Report
 
@@ -1022,3 +1045,13 @@ try {
 ---
 
 **End of Audit Report**
+
+## Related Documents
+
+### Related Files
+- [[DOCS-HUB.md]] - Parent hub
+- [[phase-12-mcp-tools-audit.md]] - Same directory
+- [[phase-12-pillar-mapping.md]] - Same directory
+- [[phase-12-weaver-inventory.md]] - Same directory
+- [[service-readme-template.md]] - Same directory
+

@@ -1,25 +1,37 @@
 ---
+title: Node Templates
 type: documentation
-category: templates
 status: active
-created_date: '2025-10-20'
+phase_id: PHASE-6
 tags:
   - templates
   - documentation
   - process
-scope: system
+  - phase/phase-6
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.809Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - "\U0001F4DA available templates"
+  - 1. concept node template
+  - 2. platform node template
+  - 3. technical node template
+  - 4. feature node template
+  - 5. decision node template
+  - 6. workflow node template
+  - 7. question node template
+  - 8. planning node template
+  - 9. daily log template
 ---
 
 # Node Templates

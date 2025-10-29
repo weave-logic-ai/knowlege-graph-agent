@@ -1,35 +1,37 @@
 ---
-feature_id: F-019
-feature_name: Automated Daily Logs
-category: planning
+title: Automated Daily Logs
+type: documentation
 status: planned
-priority: low
-release: v2.0
-complexity: complex
-dependencies:
-  requires:
-    - F-011
-    - F-026
-  blocks: []
-related_decisions:
-  - '[[../decisions/features/ai-integration]]'
+phase_id: PHASE-13
 tags:
   - feature
   - planning
   - v2.0
   - automation
-type: documentation
-scope: feature
+  - phase/phase-13
+  - type/implementation
+  - status/in-progress
+priority: low
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-planned
     - priority-low
+updated: '2025-10-29T04:55:05.819Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+dependencies:
+  requires:
+    - F-011
+    - F-026
+keywords:
+  - user story
+  - key capabilities
+  - dependencies
+  - why v2.0
+  - implementation notes
+  - related
 ---
 
 # Automated Daily Logs

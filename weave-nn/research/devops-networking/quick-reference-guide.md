@@ -1,7 +1,30 @@
 ---
+title: 'Quick Reference Guide: Service Mesh & Networking Architecture'
+type: documentation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔬
-icon: 🔬
+  icon: "\U0001F52C"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.186Z'
+keywords:
+  - 1. service mesh decision matrix
+  - 2. rabbitmq deployment checklist
+  - 3. observability stack components
+  - 4. security layers (zero-trust)
+  - 5. network topology
+  - 6. technology stack recommendations
+  - 'minimal stack (startups, <10 services)'
+  - enterprise stack (>20 services)
+  - 7. message queue patterns
+  - 8. implementation phases
 ---
 # Quick Reference Guide: Service Mesh & Networking Architecture
 
@@ -360,3 +383,13 @@ kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releas
 **Full Report:** `/home/aepod/dev/weave-nn/weave-nn/research/devops-networking/service-mesh-networking-recommendations.md`
 
 **Coordination Key:** `swarm/devops-researcher/architecture-recommendations`
+
+## Related Documents
+
+### Related Files
+- [[DEVOPS-NETWORKING-HUB.md]] - Parent hub
+- [[service-mesh-networking-recommendations.md]] - Same directory
+
+### Similar Content
+- [[service-mesh-networking-recommendations.md]] - Semantic similarity: 75.2%
+

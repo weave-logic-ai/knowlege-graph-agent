@@ -1,30 +1,8 @@
 ---
-decision_id: TS-009
-decision_type: technical
 title: 'Agent Rule Execution: Event-Driven vs Polling'
+type: architecture
 status: decided
-priority: critical
-category: architecture
-created_date: '2025-10-22'
-last_updated: '2025-10-23'
-decided_date: '2025-10-22'
-implemented_date: '2025-10-22'
-decision_maker: System Architect
-stakeholders:
-  - Agent Team
-  - Infrastructure Team
-  - Performance Team
-ai_assisted: 'true'
-blocks: []
-impacts:
-  - rule-engine
-  - agent-automation
-  - rabbitmq-message-queue
-  - file-watcher-integration
-  - scalability
-requires: []
-research_status: completed
-selected_option: B
+phase_id: PHASE-1
 tags:
   - decision
   - architecture
@@ -32,17 +10,30 @@ tags:
   - event-driven
   - messaging
   - scalability
-type: architecture
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-decided
     - priority-critical
+updated: '2025-10-29T04:55:03.508Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - question
+  - context
+  - options evaluated
+  - a. polling-based architecture
+  - b. event-driven architecture with rabbitmq ✅ chosen
+  - c. cron-based scheduled execution
+  - 'd. hybrid: polling + event notifications'
+  - research summary
+  - decision rationale
+  - 'key reasoning:'
 ---
 
 # TS-009: Agent Rule Execution: Event-Driven vs Polling

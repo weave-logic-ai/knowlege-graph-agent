@@ -1,39 +1,37 @@
 ---
+title: Obsidian Tasks Plugin
 type: technical-primitive
-category: tool
 status: in-use
-first_used_phase: PHASE-0
-mvp_required: true
-future_only: false
-maturity: mature
-used_in_services:
-  - mcp-server
-  - agent-orchestration
-  - task-automation
-deployment: obsidian-plugin
-alternatives_considered:
-  - '[[obsidian-dataview-tasks]]'
-  - '[[native-markdown-checkboxes]]'
-  - '[[todoist-obsidian-integration]]'
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/task-management-system]]'
-architecture: '[[../architecture/task-tracking-layer]]'
+phase_id: PHASE-0
 tags:
   - technical
   - tool
   - in-use
   - obsidian-plugin
   - task-management
-scope: task
+  - phase/phase-0
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.383Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - deployment
+  - trade-offs
+  - alternatives considered
+  - '[[obsidian-dataview-tasks]]'
+  - '[[native-markdown-checkboxes]]'
 ---
 
 # Obsidian Tasks Plugin

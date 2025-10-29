@@ -1,26 +1,39 @@
 ---
+title: Structural Gap Detection
 type: concept
+status: active
 tags:
   - graph-analysis
   - knowledge-discovery
   - link-prediction
   - innovation
+  - type/documentation
+  - status/in-progress
+priority: medium
 related:
   - '[[betweenness-centrality]]'
   - '[[graph-topology-analysis]]'
   - '[[ecological-thinking]]'
   - '[[F-018-semantic-bridge-builder]]'
-status: active
-created: {}
-source: InfraNodus and Knowledge Graph Research
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#8E8E93'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.810Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - core concept
+  - types of gaps
+  - 1. bridge gaps
+  - 2. shortcut gaps
+  - 3. hierarchy gaps
+  - 4. orphan gaps
+  - gap scoring framework
+  - multi-criteria gap score
+  - prioritization tiers
 ---
 
 # Structural Gap Detection

@@ -1,36 +1,7 @@
 ---
-feature_id: F-008
-feature_name: Git Version Control Integration
-category: integration
+title: Git Version Control Integration (Obsidian-First)
+type: documentation
 status: planned
-priority: critical
-release: mvp
-complexity: moderate
-created_date: '2025-10-20'
-updated_date: '2025-10-28'
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-dependencies:
-  requires: []
-  enables:
-    - github-issues-integration
-  related_features:
-    - obsidian-tasks-integration
-relationships:
-  related_decisions:
-    - IR-2
-  related_features:
-    - obsidian-tasks-integration
-    - github-issues-integration
-visual:
-  icon: git-branch
-  cssclasses:
-    - type-feature
-    - scope-mvp
-    - priority-critical
-    - tech-git
 tags:
   - scope/mvp
   - type/feature
@@ -39,9 +10,35 @@ tags:
   - tech/git
   - tech/python
   - category/integration
-type: documentation
+  - type/architecture
+  - status/in-progress
+priority: critical
+visual:
+  icon: git-branch
+  color: '#50E3C2'
+  cssclasses:
+    - type-feature
+    - scope-mvp
+    - priority-critical
+    - tech-git
+updated: '2025-10-29T04:55:05.834Z'
 version: '3.0'
-icon: git-branch
+dependencies:
+  enables:
+    - github-issues-integration
+  related_features:
+    - obsidian-tasks-integration
+keywords:
+  - "\U0001F3AF user story"
+  - related
+  - "\U0001F680 key capabilities"
+  - automatic commits (optional setting)
+  - manual commit control
+  - sync with remotes
+  - change history & diff
+  - pre-commit validation
+  - "\U0001F3D7️ implementation (obsidian-first)"
+  - technology stack
 ---
 
 # Git Version Control Integration (Obsidian-First)

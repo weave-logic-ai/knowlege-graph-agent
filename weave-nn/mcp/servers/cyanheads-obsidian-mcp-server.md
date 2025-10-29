@@ -1,25 +1,33 @@
 ---
 title: Cyanheads Obsidian MCP Server
 type: tool
-category: mcp-server
+status: in-progress
 tags:
   - mcp
   - obsidian
   - vault-management
   - knowledge-graph-editing
-created: {}
-repository: 'https://github.com/cyanheads/obsidian-mcp-server'
+  - type/documentation
+  - status/in-progress
+priority: medium
 related:
   - '[[model-context-protocol]]'
   - '[[ai-agent-integration]]'
   - '[[obsidian-vault]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-tool
+updated: '2025-10-29T04:55:05.976Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - key capabilities
+  - why it's critical for weave-nn
+  - integration with weave-nn
+  - related documents
+  - related files
 ---
 
 # Cyanheads Obsidian MCP Server
@@ -63,3 +71,9 @@ Weave-NN configures this MCP server to point at its Obsidian vault directory. AI
 5. Maintain consistent metadata schemas across note types
 
 This creates a virtuous cycle where AI interactions continuously refine and expand the knowledge graph.
+
+## Related Documents
+
+### Related Files
+- [[SERVERS-HUB.md]] - Parent hub
+

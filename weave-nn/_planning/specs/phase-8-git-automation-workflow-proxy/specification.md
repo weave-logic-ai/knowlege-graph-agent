@@ -1,31 +1,38 @@
 ---
-spec_type: specification
-phase_id: PHASE-8
-phase_name: Git Automation & Workflow Proxy
+title: Specification - Git Automation & Workflow Proxy
+type: planning
 status: pending
-priority: medium
-generated_date: '2025-10-26'
+phase_id: PHASE-8
 tags:
   - spec-kit
   - specification
   - phase-8
   - requirements
-links:
-  constitution: '[[constitution.md]]'
-  tasks: '[[tasks.md]]'
-  phase_document: '[[phase-8-git-automation-workflow-proxy]]'
-type: planning
+  - phase/phase-8
+  - type/documentation
+  - status/draft
+priority: medium
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-medium
     - phase-8
+updated: '2025-10-29T04:55:04.525Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - "\U0001F4CB overview"
+  - related
+  - "\U0001F3AF functional requirements"
+  - 'fr-1: git client wrapper'
+  - 'fr-2: auto-commit service'
+  - 'fr-3: commit message generation'
+  - 'fr-4: weaver workflow proxy'
+  - 'fr-5: git proxy api endpoints'
+  - 'fr-6: git operation logging'
+  - 'fr-7: file watcher integration'
 ---
 
 # Specification - Git Automation & Workflow Proxy

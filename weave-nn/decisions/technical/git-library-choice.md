@@ -1,7 +1,30 @@
 ---
+title: 'Decision Record: Git Library Choice'
+type: implementation
+status: in-progress
+phase_id: PHASE-8
+tags:
+  - phase/phase-8
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
   icon: ⚖️
-icon: ⚖️
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:04.920Z'
+keywords:
+  - context
+  - decision
+  - alternatives considered
+  - 1. **isomorphic-git**
+  - 2. **nodegit**
+  - 3. **direct `child_process.exec`**
+  - rationale
+  - 'why `simple-git` is the best choice:'
+  - trade-offs
+  - 'accepted trade-offs:'
 ---
 # Decision Record: Git Library Choice
 
@@ -219,3 +242,12 @@ try {
 - D-024: Git Commit Message Format (pending)
 
 **Tags:** `git`, `automation`, `dependencies`, `phase-8`, `tooling`
+
+## Related Documents
+
+### Related Files
+- [[TECHNICAL-HUB.md]] - Parent hub
+- [[sqlite-library-choice.md]] - Same directory
+- [[testing-framework-choice.md]] - Same directory
+- [[web-framework-choice.md]] - Same directory
+

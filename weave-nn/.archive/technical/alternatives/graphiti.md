@@ -39,3 +39,9 @@ Traditional graph databases like Neo4j offer mature query languages (Cypher), ex
 - **[Decision: Knowledge Graph Engine]** - Graphiti vs Neo4j vs PostgreSQL with graph extensions
 - **[Decision: Temporal Data Model]** - How version history and time-awareness are implemented
 - **[Decision: Backend Language]** - Python integration implications for Graphiti
+
+## Related Documents
+
+### Related Files
+- [[ALTERNATIVES-HUB.md]] - Parent hub
+

@@ -1,31 +1,37 @@
 ---
-spec_type: specification
-phase_id: PHASE-7
-phase_name: Agent Rules & Memory Sync
+title: Agent Rules & Memory Sync - Specification
+type: planning
 status: pending
-priority: high
-duration: 2-3 days
-generated_date: '2025-10-25'
-task_count: 9
+phase_id: PHASE-7
 tags:
   - spec-kit
   - specification
   - phase-7
-links:
-  phase_document: '[[phase planning document]]'
-  constitution: '[[constitution.md]]'
-type: planning
+  - phase/phase-7
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-7
+updated: '2025-10-29T04:55:04.518Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - key components
+  - related
+  - requirements
+  - functional requirements
+  - non-functional requirements
+  - initial task breakdown
+  - 'task 1: set up claude mcp client'
+  - 'task 2: create agent rules engine'
+  - 'task 3: implement auto-tagging rule'
 ---
 
 # Agent Rules & Memory Sync - Specification

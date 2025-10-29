@@ -1,26 +1,36 @@
 ---
 title: AI Agent Integration via MCP
 type: concept
-category: architecture
+status: in-progress
+phase_id: PHASE-5
 tags:
   - ai-agents
   - mcp
   - integration
   - automation
   - knowledge-graph
-created: {}
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: medium
 related:
   - '[[model-context-protocol]]'
   - '[[cyanheads-obsidian-mcp-server]]'
   - '[[claude-desktop]]'
   - '[[knowledge-graph-maintenance]]'
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#8E8E93'
   cssclasses:
     - type-concept
+updated: '2025-10-29T04:55:05.930Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - the integration pattern
+  - related
+  - how ai agents edit the knowledge graph
+  - why this approach works
+  - enabling continuous knowledge refinement
 ---
 
 # AI Agent Integration via MCP

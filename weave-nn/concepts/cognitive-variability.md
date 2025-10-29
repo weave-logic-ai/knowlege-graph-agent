@@ -1,25 +1,38 @@
 ---
+title: Cognitive Variability
 type: concept
+status: active
 tags:
   - thinking-patterns
   - knowledge-management
   - meta-cognition
   - neural-networks
+  - type/research
+  - status/in-progress
+priority: medium
 related:
   - '[[sparse-memory-finetuning]]'
   - '[[ecological-thinking]]'
   - '[[F-017-cognitive-variability-tracker]]'
-status: active
-created: {}
-source: InfraNodus Analysis and Multi-Graph Research
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#BD10E0'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.779Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - core dimensions
+  - 1. structural variability
+  - 2. semantic variability
+  - 3. temporal variability
+  - infranodus integration
+  - network metrics for cognitive states
+  - gap detection
+  - application to knowledge graphs
+  - phase detection
 ---
 
 # Cognitive Variability

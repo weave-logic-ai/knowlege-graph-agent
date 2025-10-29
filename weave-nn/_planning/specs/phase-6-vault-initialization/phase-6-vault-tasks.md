@@ -1,35 +1,41 @@
 ---
-spec_type: tasks
-phase_id: PHASE-6
-phase_name: Vault Initialization System
+title: Vault Initialization System - Task Breakdown
+type: planning
 status: pending
-priority: high
-duration: 15-20 days
-generated_date: '2025-10-24'
-total_tasks: 63
-estimated_effort: 15-20 days
+phase_id: PHASE-6
 tags:
   - spec-kit
   - tasks
   - phase-6
   - implementation
-links:
-  constitution: '[[constitution.md]]'
-  specification: '[[specification.md]]'
-  phase_document: '[[phase-6-vault-initialization]]'
-type: planning
-scope: task
+  - phase/phase-6
+  - type/documentation
+  - status/in-progress
+  - domain/vault-init
+domain:
+  - vault-init
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-6
+updated: '2025-10-29T04:55:04.498Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - 1. project codebase scanner (days 1-3)
+  - 1.1 framework detection
+  - 1.2 directory tree scanner
+  - 1.3 typescript/javascript component extractor
+  - 1.4 python module extractor
+  - 1.5 configuration file parser
+  - 1.6 scanner integration tests
+  - 2. template system (days 4-5)
 ---
 
 # Vault Initialization System - Task Breakdown

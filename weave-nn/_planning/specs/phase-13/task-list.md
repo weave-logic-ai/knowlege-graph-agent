@@ -1,7 +1,30 @@
 ---
+title: 'Phase 13: Complete Task List'
+type: implementation
+status: complete
+phase_id: PHASE-13
+tags:
+  - phase/phase-13
+  - type/implementation
+  - status/complete
+priority: high
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:03.293Z'
+keywords:
+  - "\U0001F4CB task organization"
+  - 'category 1: core integration (critical path)'
+  - '⭐ task 1.1: integrate learning loop into weaver core'
+  - '⭐ task 1.2: advanced chunking system'
+  - '⭐ task 1.3: vector embeddings & semantic search'
+  - 'task 1.4: knowledge graph & markdown linking'
+  - 'category 2: enhanced perception'
+  - 'task 2.1: web scraping & search tools'
+  - 'task 2.2: multi-source perception fusion'
+  - 'category 3: production hardening'
 ---
 # Phase 13: Complete Task List
 **Discrete, Actionable Tasks with Dependencies**

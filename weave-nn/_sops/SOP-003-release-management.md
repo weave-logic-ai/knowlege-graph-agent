@@ -1,24 +1,30 @@
 ---
-sop_id: SOP-003
-sop_name: Release Management Workflow
-category: operations
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop release <version>
-  - weaver release prepare <version>
-learning_enabled: true
-estimated_duration: 45-60 minutes
-complexity: medium
+title: 'SOP-003: Release Management Workflow'
 type: sop
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.560Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. coder agent
+  - 2. tester agent
+  - 3. reviewer agent
+  - 4. documenter agent
 ---
 
 # SOP-003: Release Management Workflow
@@ -661,3 +667,13 @@ weaver sop release 3.0.0 --type major
 
 **Version History**
 - 1.0.0 (2025-10-27): Initial SOP with multi-agent validation workflow
+
+## Related Documents
+
+### Related Files
+- [[_SOPS-HUB.md]] - Parent hub
+- [[SOP-001-feature-planning.md]] - Same directory
+- [[SOP-002-phase-planning.md]] - Same directory
+- [[SOP-008-performance-analysis.md]] - Same directory
+- [[sops-framework-hub.md]] - Same directory
+

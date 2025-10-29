@@ -1,10 +1,15 @@
 ---
-architecture_id: A-001
-layer_name: Frontend Layer
-category: presentation
+title: Frontend Layer
+type: architecture
 status: planned
-created_date: '2025-10-21'
-complexity: complex
+tags:
+  - architecture
+  - frontend
+  - ui-components
+  - visualization
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[../technical/react-flow]]'
   - '[[../technical/svelte-flow]]'
@@ -13,21 +18,24 @@ related:
   - '[[../features/markdown-editor-component]]'
   - '[[../concepts/knowledge-graph]]'
   - '[[api-layer]]'
-tags:
-  - architecture
-  - frontend
-  - ui-components
-  - visualization
-type: architecture
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
+updated: '2025-10-29T04:55:03.438Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - core components
+  - technology stack considerations
+  - performance optimization
+  - integration points
+  - related
+  - architecture
+  - technical
+  - features
+  - concepts
 ---
 
 # Frontend Layer

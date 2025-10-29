@@ -1,7 +1,30 @@
 ---
+title: Agent Rules & Memory Sync - Spec-Kit Workflow
+type: hub
+status: in-progress
+phase_id: PHASE-7
+tags:
+  - phase/phase-7
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.361Z'
+keywords:
+  - generated specifications
+  - next steps
+  - 1. review constitution
+  - 2. elaborate specification
+  - 3. generate implementation plan
+  - 4. break down tasks
+  - 5. implement
+  - sync tasks to vault
+  - documentation
+  - related documents
 ---
 # Agent Rules & Memory Sync - Spec-Kit Workflow
 
@@ -68,3 +91,12 @@ bun run sync-tasks-simple phase-7-agent-rules-memory-sync
 
 **Generated**: 2025-10-25
 **Phase**: PHASE-7 - Agent Rules & Memory Sync
+
+## Related Documents
+
+### Related Files
+- [[PHASE-7-AGENT-RULES-MEMORY-SYNC-HUB.md]] - Parent hub
+
+### Similar Content
+- [[phase-5-specification-hub.md]] - Semantic similarity: 88.2%
+

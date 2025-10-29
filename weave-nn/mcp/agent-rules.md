@@ -1,28 +1,43 @@
 ---
+title: MCP Agent Rules for Weave-NN
 type: integration-spec
 status: active
-priority: critical
-created_date: '2025-10-20'
+phase_id: PHASE-4
 tags:
   - mcp
   - agent-rules
   - automation
   - claude-flow
   - integration
+  - phase/phase-4
+  - type/implementation
+  - status/complete
+priority: critical
 related:
   - '[[claude-flow-schema-mapping]]'
   - '[[claude-flow-memory-visualization]]'
   - '[[ai-agent-integration]]'
   - '[[model-context-protocol]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:05.924Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F4CB agent rules overview"
+  - related
+  - implementation status
+  - what's implemented
+  - implementation status by rule
+  - code example
+  - next steps
+  - "\U0001F504 rule 1: memory sync"
+  - purpose
+  - trigger events
 ---
 
 # MCP Agent Rules for Weave-NN

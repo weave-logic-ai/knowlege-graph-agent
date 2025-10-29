@@ -2,14 +2,15 @@
 title: Weaver Workflow Automation Rules
 type: architecture
 status: active
-priority: critical
-created: {}
 tags:
   - workflows
   - automation
   - knowledge-graph
   - durable-execution
   - weaver
+  - type/architecture
+  - status/in-progress
+priority: critical
 related:
   - '[[claude-flow-tight-coupling]]'
   - '[[claude-flow-schema-mapping]]'
@@ -17,15 +18,25 @@ related:
   - '[[../integrations/obsidian/obsidian-weaver-mcp]]'
   - '[[../docs/local-first-architecture-overview]]'
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:05.917Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - overview
+  - why durable workflows?
+  - architecture
+  - 'core workflow 1: vault-file-created'
+  - 'core workflow 2: vault-file-updated'
+  - 'core workflow 3: vault-file-deleted'
+  - 'core workflow 4: ensure-bidirectional-link'
+  - 'core workflow 5: validate-node-schema'
+  - 'core workflow 6: extract-and-store-memories'
+  - workflow orchestration
 ---
 
 # Weaver Workflow Automation Rules

@@ -1,10 +1,16 @@
 ---
-architecture_id: A-002
-layer_name: API & Backend Layer
-category: application-services
+title: API & Backend Layer
+type: architecture
 status: planned
-created_date: '2025-10-21'
-complexity: complex
+tags:
+  - architecture
+  - backend
+  - api
+  - authentication
+  - real-time
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[../technical/supabase]]'
   - '[[../mcp/model-context-protocol]]'
@@ -12,22 +18,25 @@ related:
   - '[[frontend-layer]]'
   - '[[data-knowledge-layer]]'
   - '[[ai-integration-layer]]'
-tags:
-  - architecture
-  - backend
-  - api
-  - authentication
-  - real-time
-type: architecture
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
+updated: '2025-10-29T04:55:03.538Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - core responsibilities
+  - mcp server integration
+  - api design patterns
+  - infrastructure considerations
+  - performance and caching
+  - related
+  - architecture
+  - technical
+  - features
+  - message queue integration
 ---
 
 # API & Backend Layer

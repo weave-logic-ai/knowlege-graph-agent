@@ -1,30 +1,39 @@
 ---
-spec_type: tasks
-phase_id: PHASE-7
-phase_name: Agent Rules & Memory Sync
+title: Agent Rules & Memory Sync - Tasks
+type: planning
 status: pending
-priority: high
-duration: 2-3 days
-generated_date: '2025-10-25'
+phase_id: PHASE-7
 tags:
   - spec-kit
   - tasks
   - phase-7
   - agent-rules
   - memory-sync
-type: planning
-scope: task
+  - phase/phase-7
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-7
+updated: '2025-10-29T04:55:04.511Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - task categories
+  - 'category 1: claude ai integration (fr-2)'
+  - 'category 2: rules engine (fr-1)'
+  - 'category 3: memory synchronization (fr-7)'
+  - 'category 4: auto-tagging (fr-3)'
+  - 'category 5: auto-linking (fr-4)'
+  - 'category 6: daily notes (fr-5)'
+  - 'category 7: meeting notes (fr-6)'
+  - 'category 8: testing & quality'
+  - 'category 9: spec-kit workflow improvements'
 ---
 
 # Agent Rules & Memory Sync - Tasks

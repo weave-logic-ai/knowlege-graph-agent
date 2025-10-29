@@ -1,26 +1,39 @@
 ---
+title: Graph Topology Analysis
 type: concept
+status: active
 tags:
   - graph-theory
   - network-analysis
   - topology
   - knowledge-structure
+  - type/implementation
+  - status/in-progress
+priority: medium
 related:
   - '[[betweenness-centrality]]'
   - '[[structural-gap-detection]]'
   - '[[ecological-thinking]]'
   - '[[F-016-graph-topology-analyzer]]'
-status: active
-created: {}
-source: Memory Networks and Multi-Graph Research
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.828Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - core topological properties
+  - 1. small-world metrics
+  - 2. degree distribution
+  - 3. network modularity
+  - kleinberg's navigability theorem
+  - long-range connection distribution
+  - implementation guidelines
+  - topology types and use cases
+  - 1. hierarchical topology
 ---
 
 # Graph Topology Analysis

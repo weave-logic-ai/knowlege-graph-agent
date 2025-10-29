@@ -1,30 +1,37 @@
 ---
-type: index
 title: Core Concepts Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - concepts
 tags:
   - index
   - concepts
   - navigation
   - knowledge-graph
   - foundation
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.469Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - foundation concepts
+  - advanced concepts
+  - graph analysis & topology
+  - ai & cognition
+  - related
+  - related documentation
+  - architecture
+  - technical implementation
+  - features
 ---
 
 # Core Concepts

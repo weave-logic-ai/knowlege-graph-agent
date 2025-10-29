@@ -1,29 +1,39 @@
 ---
-spec_type: constitution
-phase_id: PHASE-7
-phase_name: Agent Rules & Memory Sync
+title: Agent Rules & Memory Sync - Constitution
+type: planning
 status: pending
-priority: high
-duration: 2-3 days
-generated_date: '2025-10-25'
+phase_id: PHASE-7
 tags:
   - spec-kit
   - constitution
   - phase-7
   - agent-rules
   - memory-sync
-type: planning
+  - phase/phase-7
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-7
+updated: '2025-10-29T04:55:04.504Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - project principles
+  - 1. ai-powered automation
+  - 2. bidirectional sync
+  - 3. rule-based architecture
+  - 4. performance & reliability
+  - 5. user experience
+  - related
+  - technical constraints
+  - integration requirements
+  - performance constraints
 ---
 
 # Agent Rules & Memory Sync - Constitution

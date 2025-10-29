@@ -1,38 +1,41 @@
 ---
-feature_id: F-032
-feature_name: Agent Automation
-category: ai
+title: Agent Automation
+type: documentation
 status: planned
-priority: high
-release: mvp
-complexity: complex
-dependencies:
-  requires:
-    - F-031
-  blocks:
-    - F-105
-related_decisions:
-  - '[[technical/rule-engine]]'
-  - '[[planning/agent-rules]]'
-  - '[[technical/ai-agent-integration]]'
 tags:
   - feature
   - ai
   - mvp
   - automation
   - knowledge-graph
-type: documentation
-scope: feature
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-planned
     - priority-high
+updated: '2025-10-29T04:55:05.804Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+dependencies:
+  requires:
+    - F-031
+  blocks:
+    - F-105
+keywords:
+  - user story
+  - key capabilities
+  - dependencies
+  - implementation notes
+  - user experience
+  - acceptance criteria
+  - edge cases
+  - performance considerations
+  - security considerations
+  - testing strategy
 ---
 
 # Agent Automation

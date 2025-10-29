@@ -1,24 +1,30 @@
 ---
-sop_id: SOP-004
-sop_name: Systematic Debugging Workflow
-category: quality
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop debug <issue-id>
-  - weaver debug investigate <description>
-learning_enabled: true
-estimated_duration: 30-120 minutes
-complexity: medium
+title: 'SOP-004: Systematic Debugging Workflow'
 type: sop
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.580Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. analyst agent
+  - 2. coder agent (investigator)
+  - 3. coder agent (fixer)
+  - 4. tester agent
 ---
 
 # SOP-004: Systematic Debugging Workflow

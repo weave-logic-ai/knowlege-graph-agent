@@ -1,24 +1,30 @@
 ---
-sop_id: SOP-008
-sop_name: Performance Analysis & Optimization Workflow
-category: quality
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop perf <component>
-  - weaver analyze performance <service>
-learning_enabled: true
-estimated_duration: 30-60 minutes
-complexity: high
+title: 'SOP-008: Performance Analysis & Optimization Workflow'
 type: sop
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.600Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. performance analyzer agent
+  - 2. code analyzer agent
+  - 3. coder agent (optimizer)
+  - 4. tester agent (validator)
 ---
 
 # SOP-008: Performance Analysis & Optimization Workflow
@@ -859,3 +865,13 @@ weaver sop perf notification-service
 
 **Version History**
 - 1.0.0 (2025-10-27): Initial SOP with systematic performance optimization workflow
+
+## Related Documents
+
+### Related Files
+- [[_SOPS-HUB.md]] - Parent hub
+- [[SOP-001-feature-planning.md]] - Same directory
+- [[SOP-002-phase-planning.md]] - Same directory
+- [[SOP-003-release-management.md]] - Same directory
+- [[sops-framework-hub.md]] - Same directory
+

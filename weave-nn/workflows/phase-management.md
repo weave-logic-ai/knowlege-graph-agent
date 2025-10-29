@@ -1,23 +1,36 @@
 ---
+title: Phase Management Process
 type: workflow
-workflow_name: Phase Management Process
 status: active
-created_date: '2025-10-20'
-complexity: moderate
-estimated_time: Ongoing throughout project
+phase_id: PHASE-2
 tags:
   - workflow
   - planning
   - phase-management
   - project-management
+  - phase/phase-2
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.651Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB process overview"
+  - related
+  - "\U0001F504 detailed workflow"
+  - 'step 1: plan phase scope'
+  - 'step 2: create phase node'
+  - 'step 3: create todos'
+  - 'step 4: update phase status to in-progress'
+  - 'step 5: execute phase work'
+  - 'phase [x] progress'
+  - 'step 6: track progress continuously'
 ---
 
 # Phase Management Process

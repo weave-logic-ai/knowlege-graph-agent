@@ -1,7 +1,28 @@
 ---
+title: Weaver
+type: architecture
+status: complete
+tags:
+  - type/architecture
+  - status/complete
+priority: medium
 visual:
-  icon: 💡
-icon: 💡
+  icon: "\U0001F4A1"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:04.834Z'
+keywords:
+  - overview
+  - core philosophy
+  - architecture
+  - why "weaver"?
+  - key capabilities
+  - 1. stateful execution
+  - 2. zero latency communication
+  - 3. single point of configuration
+  - 4. unified logging
+  - technology stack
 ---
 #---
 type: concept

@@ -1,30 +1,39 @@
 ---
-type: index
 title: Documentation Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - documentation
+phase_id: PHASE-1
 tags:
   - index
   - documentation
   - navigation
   - architecture
   - implementation
-scope: system
+  - phase/phase-1
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.524Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - architecture documentation
+  - monorepo structure
+  - core architecture
+  - implementation guides
+  - weaver service
+  - technology stack
+  - migration & strategy
+  - migration guides
+  - configuration & setup
 ---
 
 # Documentation Hub

@@ -1,7 +1,36 @@
 ---
+title: >-
+  Memory Networks and Knowledge Graph Design  A Research Synthesis for LLM
+  Augmented Systems
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.298Z'
+keywords:
+  - memory-augmented architectures reveal fundamental design patterns
+  - chunking strategies demand logical boundaries over arbitrary sizes
+  - >-
+    network topology must balance clustering with navigable long-range
+    connections
+  - faceted metadata systems scale through multi-dimensional independence
+  - >-
+    curation strategies require continuous automated scanning with human
+    oversight
+  - >-
+    modern rag systems achieve quality through adaptive retrieval and hybrid
+    search
+  - proven implementations validate design patterns at massive scale
+  - 'synthesis: architectural recommendations for claude-flow + obsidian'
+  - 'conclusion: convergence on adaptive, multi-modal approaches'
+  - related documents
 ---
 
 
@@ -80,3 +109,11 @@ These patterns achieve the dual goals of human navigability and machine retrieva
 ## Conclusion: convergence on adaptive, multi-modal approaches
 
 The research literature reveals fundamental agreement across domains that once seemed distinct. Memory-augmented neural networks established key-value separation and multi-hop retrieval; modern RAG systems validated adaptive necessity prediction and hybrid search; enterprise implementations proved lightweight schemas with rich instances scale better than complex ontologies; and personal knowledge management validated atomic notes with progressive formalization. The unified insight: **effective knowledge systems at scale require multi-modal representation (symbolic + neural), adaptive retrieval (query-aware granularity), structural awareness (graph topology), semantic richness (faceted metadata), and continuous curation (automated detection + human oversight)**. For Claude-Flow + Obsidian managing development workflows, requirements analysis, and cross-project knowledge retention, these patterns provide concrete implementation paths backed by theoretical foundations and empirical validation from systems spanning personal (90K notes), collaborative (100M+ entities), and enterprise (millions of integrated records) scales.
+
+## Related Documents
+
+### Related Files
+- [[RESEARCH-HUB.md]] - Parent hub
+- [[Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md]] - Same directory
+- [[research-analysis-knowledge-graph-mapping.md]] - Same directory
+

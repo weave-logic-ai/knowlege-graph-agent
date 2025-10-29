@@ -1,7 +1,30 @@
 ---
+title: Service Mesh and Networking Architecture Recommendations
+type: implementation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔬
-icon: 🔬
+  icon: "\U0001F52C"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:06.211Z'
+keywords:
+  - executive summary
+  - 1. service mesh recommendation
+  - 'decision: **conditional service mesh adoption**'
+  - recommendation by use case
+  - service mesh core capabilities
+  - implementation pattern (istio)
+  - 2. rabbitmq kubernetes deployment patterns
+  - '✅ strongly recommended: rabbitmq cluster operator'
+  - deployment architecture
+  - best practices
 ---
 # Service Mesh and Networking Architecture Recommendations
 
@@ -1111,3 +1134,14 @@ Security:
 
 **Contact:** DevOps Research Agent
 **Coordination:** `swarm/devops-researcher/architecture-recommendations`
+
+## Related Documents
+
+### Related Files
+- [[DEVOPS-NETWORKING-HUB.md]] - Parent hub
+- [[quick-reference-guide.md]] - Same directory
+
+### Similar Content
+- [[quick-reference-guide.md]] - Semantic similarity: 75.2%
+- [[microservices-architecture.md]] - Semantic similarity: 31.2%
+

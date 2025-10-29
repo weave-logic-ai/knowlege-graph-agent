@@ -1,23 +1,36 @@
 ---
+title: Canvas Creation Process
 type: workflow
-workflow_name: Canvas Creation Process
 status: active
-created_date: '2025-10-20'
-complexity: moderate
-estimated_time: 30-60 minutes per canvas
+phase_id: PHASE-2
 tags:
   - workflow
   - canvas
   - visualization
   - obsidian
+  - phase/phase-2
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#7ED321'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.617Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB process overview"
+  - related
+  - "\U0001F504 detailed workflow"
+  - 'step 1: identify visualization need'
+  - 'step 2: choose canvas type'
+  - 'step 3: create canvas file'
+  - 'step 4: add structure and nodes'
+  - 'step 5: connect nodes'
+  - 'step 6: style and organize'
+  - 'step 7: link to knowledge graph'
 ---
 
 # Canvas Creation Process

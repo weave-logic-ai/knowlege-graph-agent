@@ -1,32 +1,8 @@
 ---
+title: Obsidian Native Integration Analysis
 type: architecture-analysis
 status: active
-priority: critical
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
-architecture_id: A-006
-architecture_name: Obsidian Native Integration Analysis
-category: integration-architecture
-decided_date: '2025-10-21'
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-  deferred: false
-relationships:
-  related_architecture:
-    - obsidian-first-architecture
-    - data-knowledge-layer
-  related_features:
-    - git-integration
-    - obsidian-tasks-integration
-visual:
-  icon: puzzle
-  cssclasses:
-    - type-architecture
-    - scope-mvp
-    - priority-critical
-    - tech-obsidian
+phase_id: PHASE-2
 tags:
   - scope/mvp
   - type/architecture
@@ -36,8 +12,30 @@ tags:
   - tech/python
   - category/integration
   - analysis
+  - phase/phase-2
+  - status/draft
+priority: critical
+visual:
+  icon: puzzle
+  color: '#50E3C2'
+  cssclasses:
+    - type-architecture
+    - scope-mvp
+    - priority-critical
+    - tech-obsidian
+updated: '2025-10-29T04:55:03.475Z'
 version: '3.0'
-icon: 🧩
+keywords:
+  - "\U0001F3AF tight coupling philosophy"
+  - related
+  - "\U0001F4C1 obsidian data storage deep dive"
+  - vault structure
+  - key insights
+  - "\U0001F517 obsidian uri protocol"
+  - standard obsidian uri actions
+  - advanced uri plugin (extended capabilities)
+  - "\U0001F4A1 tight coupling strategies"
+  - 'strategy 1: mcp tools via obsidian uri (not file system)'
 ---
 
 # Obsidian Native Integration Analysis

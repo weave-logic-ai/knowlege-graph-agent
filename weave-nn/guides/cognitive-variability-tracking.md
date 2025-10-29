@@ -1,28 +1,34 @@
 ---
 title: 'Guide: How to Track Cognitive Variability'
-category: operations
-difficulty: intermediate
-estimated_time: '30 minutes for initial setup, 5 minutes per session'
-prerequisites:
-  - Obsidian vault with graph view enabled
-  - Basic understanding of YAML frontmatter
-  - Familiarity with wikilink syntax
-  - Optional: Dataview plugin installed
-last_updated: {}
+type: documentation
+status: in-progress
+tags:
+  - type/research
+  - status/in-progress
+priority: medium
 related:
   - '[[cognitive-variability]]'
   - '[[ecological-thinking]]'
   - '[[graph-topology-analysis]]'
   - '[[F-017-cognitive-variability-tracker]]'
-type: documentation
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
+updated: '2025-10-29T04:55:05.854Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - overview
+  - prerequisites
+  - understanding cognitive variability
+  - the four cognitive phases
+  - steps
+  - 1. set up frontmatter template
+  - 2. add cognitive tracking to daily notes
+  - morning review
+  - work sessions
+  - 'session 1: [time]'
 ---
 
 # How to Track Cognitive Variability

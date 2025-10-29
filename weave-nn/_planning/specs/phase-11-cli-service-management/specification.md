@@ -1,7 +1,32 @@
 ---
+title: >-
+  Phase 11: CLI Service Management & AI Feature Creator - Technical
+  Specification
+type: documentation
+status: draft
+phase_id: PHASE-11
+tags:
+  - phase/phase-11
+  - type/documentation
+  - status/draft
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.445Z'
+keywords:
+  - 1. overview
+  - 2. scope
+  - 2.1 in scope
+  - 2.2 out of scope
+  - 2.3 assumptions
+  - 3. technical specification
+  - 3.1 cli service management system
+  - 3.2 process manager integration
+  - 3.3 health check system
+  - 3.4 metrics collection
 ---
 # Phase 11: CLI Service Management & AI Feature Creator - Technical Specification
 

@@ -1,21 +1,8 @@
 ---
-phase_id: PHASE-9
-phase_name: Testing & Documentation
+title: 'Phase 9: Testing & Documentation'
 type: implementation
 status: pending
-priority: high
-created_date: '2025-10-23'
-duration: 2 days
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-dependencies:
-  requires:
-    - PHASE-8
-  enables:
-    - PHASE-10
-  blocks: []
+phase_id: PHASE-9
 tags:
   - scope/mvp
   - type/implementation
@@ -25,16 +12,36 @@ tags:
   - testing
   - documentation
   - quality-assurance
+  - phase/phase-9
+  - type/documentation
+  - status/draft
+priority: high
 visual:
   icon: check-circle
+  color: '#8E8E93'
   cssclasses:
     - type-implementation
     - scope-mvp
     - status-pending
     - priority-high
+updated: '2025-10-29T04:55:04.131Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ✅
+dependencies:
+  requires:
+    - PHASE-8
+  enables:
+    - PHASE-10
+keywords:
+  - "\U0001F3AF objective"
+  - related
+  - "\U0001F4CB tasks"
+  - 'day 1: testing implementation (6-8 hours)'
+  - 'day 2: documentation (6-8 hours)'
+  - "\U0001F3D7️ architecture"
+  - test structure
+  - "\U0001F4BB implementation"
+  - '9.1: jest configuration'
+  - '9.2: unit test example (obsidianclient)'
 ---
 
 # Phase 9: Testing & Documentation

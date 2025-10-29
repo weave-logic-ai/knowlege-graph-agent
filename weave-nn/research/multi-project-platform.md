@@ -1,7 +1,30 @@
 ---
+title: 'Multi-Project AI Development Platform: Research-Backed Architecture'
+type: documentation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔬
-icon: 🔬
+  icon: "\U0001F52C"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.243Z'
+keywords:
+  - 1. multi-agent team architecture
+  - 'foundation: metagpt + chatdev patterns'
+  - 2. agent learning & expertise evolution
+  - 'foundation: professional agents + seagent + digirl'
+  - agent skill trees (per role)
+  - learning loop (seagent-style)
+  - '3. centralized meta-learning: vector db architecture'
+  - 'foundation: transfer learning + graphrag + hybrid search'
+  - '4. training data extraction: local dev workflows'
+  - 'foundation: jetbrains mellum + vscode telemetry research'
 ---
 # Multi-Project AI Development Platform: Research-Backed Architecture
 

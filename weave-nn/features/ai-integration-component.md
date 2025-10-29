@@ -1,34 +1,30 @@
 ---
-feature_id: F-005
-feature_name: MCP-Based AI Integration
-category: ai
+title: MCP-Based AI Integration
+type: documentation
 status: planned
-priority: critical
-release: mvp
-complexity: very-complex
-dependencies:
-  requires: []
-  blocks: []
-related_decisions:
-  - '[[../decisions/features/ai-integration]]'
-  - '[[../decisions/technical/mcp-protocol]]'
 tags:
   - feature
   - ai
   - mvp
   - critical
-type: documentation
-scope: component
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-planned
     - priority-critical
+updated: '2025-10-29T04:55:05.796Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - user story
+  - key capabilities
+  - dependencies
+  - implementation notes
+  - related
 ---
 
 # MCP-Based AI Integration

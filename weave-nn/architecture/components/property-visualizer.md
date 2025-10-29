@@ -1,46 +1,35 @@
 ---
-technical_id: T-009
-technical_name: Obsidian Property Visualizer
-category: tool
+title: <span class="lucide-chart-bar"></span> Obsidian Property Visualizer
+type: architecture
 status: implemented
-created_date: '2025-10-22'
-maturity: stable
-complexity: complex
-language: JavaScript
-license: MIT
-open_source: 'yes'
-pros:
-  - Automatic property type inference with eight supported types
-  - Built-in caching system reduces API calls by 80%+
-  - 'Multiple export formats (JSON, CSV) for data portability'
-cons:
-  - Large vaults (>10k notes) can cause memory pressure
-  - No streaming API for incremental processing
-  - Visualization rendering requires external libraries
-alternatives:
-  - Dataview Plugin (Obsidian-native)
-  - Custom Python Scripts
-  - D3.js Direct Integration
-related_decisions:
-  - '[[obsidian-properties-standard]]'
-  - '[[obsidian-properties-groups]]'
 tags:
   - technical
   - tool
   - javascript
   - visualization
   - data-analysis
-type: architecture
-scope: component
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-implemented
+updated: '2025-10-29T04:55:03.454Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - overview
+  - related
+  - key features
+  - how it works
+  - pros
+  - cons
+  - use cases for weave-nn
+  - integration requirements
+  - alternatives
+  - performance considerations
 ---
 
 # <span class="lucide-chart-bar"></span> Obsidian Property Visualizer

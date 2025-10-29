@@ -1,28 +1,37 @@
 ---
-concept_id: C-XXX
-concept_name: '[Descriptive Name]'
-concept_type: '[project|system|technology|pattern|practice]'
+title: '[Concept Name]'
+type: template
 status: '[active|planned|deprecated|draft]'
-category: '[core-concept|architecture|methodology|tool]'
-created_date: YYYY-MM-DD
-complexity: '[simple|moderate|complex]'
-related:
-  - '[[path/to/related-node]]'
-  - '[[path/to/another-node]]'
 tags:
   - concept
   - - primary-category
   - - specific-topic
   - - additional-tags
-type: template
+  - type/implementation
+  - status/in-progress
+priority: medium
+related:
+  - '[[path/to/related-node]]'
+  - '[[path/to/another-node]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-template
     - 'status-[active|planned|deprecated|draft]'
+updated: '2025-10-29T04:55:06.421Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why it matters
+  - key characteristics
+  - examples
+  - common use cases
+  - implementation considerations
+  - "\U0001F517 related"
+  - concepts
+  - technical
+  - platforms
 ---
 
 # [Concept Name]

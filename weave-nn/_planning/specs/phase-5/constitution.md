@@ -1,7 +1,30 @@
 ---
+title: MCP Integration & Workflow Enhancement - Constitution
+type: architecture
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/architecture
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:04.424Z'
+keywords:
+  - project principles
+  - 1. **integration over reimplementation**
+  - 2. **mcp protocol-first design**
+  - 3. **performance by design**
+  - 4. **incremental delivery**
+  - 5. **test-driven quality**
+  - 6. **documentation as deliverable**
+  - 7. **error handling excellence**
+  - 8. **backwards compatibility**
+  - technical constraints
 ---
 # MCP Integration & Workflow Enhancement - Constitution
 

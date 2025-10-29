@@ -1,7 +1,30 @@
 ---
+title: Backend Systems Quick Reference - Phase 13
+type: documentation
+status: in-progress
+phase_id: PHASE-13
+tags:
+  - phase/phase-13
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.985Z'
+keywords:
+  - "\U0001F4E6 import paths"
+  - 'chunking system:'
+  - 'embeddings system:'
+  - "\U0001F680 quick start examples"
+  - '1. process a document (full pipeline):'
+  - '2. search for content:'
+  - '3. find similar chunks:'
+  - "\U0001F39B️ configuration options"
+  - 'chunking strategies:'
+  - "\U0001F4CA content type mapping"
 ---
 # Backend Systems Quick Reference - Phase 13
 

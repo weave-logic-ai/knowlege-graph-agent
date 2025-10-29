@@ -1,25 +1,37 @@
 ---
+title: '{{PROJECT_NAME}}'
 type: documentation
-category: overview
 status: active
-created_date: '{{CREATED_DATE}}'
+phase_id: PHASE-1
 tags:
   - overview
   - readme
   - project-root
-scope: system
+  - phase/phase-1
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.494Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - quick start
+  - project overview
+  - technical stack
+  - getting started
+  - project structure
+  - documentation index
+  - essential documents
+  - knowledge graph
+  - development workflow
+  - daily development
 ---
 
 # {{PROJECT_NAME}}

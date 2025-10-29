@@ -1,25 +1,30 @@
 ---
-sop_id: SOP-006
-sop_name: Markdown/Vault Management Workflow
-category: documentation
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop vault organize
-  - weaver vault cleanup
-  - weaver vault reindex
-learning_enabled: true
-estimated_duration: 15-30 minutes
-complexity: low
+title: 'SOP-006: Markdown/Vault Management Workflow'
 type: sop
+status: active
+tags:
+  - type/guide
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.607Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. analyst agent
+  - 2. coder agent (organizer)
+  - mcp tools used
+  - memory compression
 ---
 
 # SOP-006: Markdown/Vault Management Workflow

@@ -4,38 +4,20 @@ title: >-
   Design
 type: architecture
 status: draft
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-11
 tags:
   - phase-11
   - cli-service-management
   - system-architecture
   - pm2-integration
   - process-management
-category: technical
+  - phase/phase-11
+  - type/documentation
+  - status/in-progress
 domain: phase-11
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - cli-service-management
-  - pm2
-  - process-lifecycle
-  - health-checks
-  - logging
-  - metrics
-  - weaver-hooks
-related_files:
-  - phase-11-research-findings.md
-  - phase-11-cli-service-management.md
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-author: ai-generated
-version: 1.0.0
-phase_id: PHASE-11
 priority: medium
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
@@ -43,7 +25,20 @@ visual:
     - priority-medium
     - phase-11
     - domain-phase-11
-icon: 🏗️
+updated: '2025-10-29T04:55:03.678Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - table of contents
+  - related
+  - 1. executive summary
+  - 1.1 key architectural principles
+  - 1.2 quality attributes
+  - 2. system architecture overview
+  - 2.1 high-level architecture (c4 context diagram)
+  - 2.2 container architecture (c4 container diagram)
+  - 3. component architecture
+  - 3.1 service manager core
 ---
 
 # Phase 11: CLI Service Management & AI Feature Creator - System Architecture Design

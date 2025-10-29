@@ -1,31 +1,35 @@
 ---
-question_id: 'Q-[CATEGORY]-XXX'
+title: 'Q-[CATEGORY]-XXX: [Question Title]'
 type: question
-question_type: '[technical|process|business|feature|architecture]'
 status: '[open|researching|answered|deferred]'
-priority: '[critical|high|medium|low]'
-confidence: '[high|medium|low]'
-created_date: YYYY-MM-DD
-answered_date: null
-relates_to:
-  - '[[path/to/related-decision]]'
-  - '[[path/to/related-feature]]'
-blocks: []
-impacts: []
 tags:
   - question
   - - category
   - - domain
   - - status
+  - type/implementation
+  - status/in-progress
+priority: '[critical|high|medium|low]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-question
     - 'status-[open|researching|answered|deferred]'
     - 'priority-[critical|high|medium|low]'
+updated: '2025-10-29T04:55:06.477Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - question
+  - context
+  - options / possible answers
+  - 'option a: [option title]'
+  - 'option b: [option title]'
+  - 'option c: [option title] [⭐ recommended if applicable]'
+  - 'option d: research needed'
+  - recommendation
+  - 'reasoning:'
+  - 'trade-offs:'
 ---
 
 # Q-[CATEGORY]-XXX: [Question Title]

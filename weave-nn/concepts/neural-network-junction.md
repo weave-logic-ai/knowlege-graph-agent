@@ -1,25 +1,39 @@
 ---
+title: Neural Network Junction
 type: concept
-category: architecture
 status: active
 tags:
   - architecture
   - ai
   - knowledge-graph
   - neural-networks
+  - type/research
+  - status/in-progress
+priority: medium
 related:
   - '[[weaver]]'
   - '[[knowledge-graph]]'
   - '[[compound-learning]]'
   - '[[local-first-architecture]]'
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#BD10E0'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.797Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - core concept
+  - metaphor
+  - research foundation
+  - 1. key-value memory networks
+  - 2. federated learning & knowledge graph enhanced neural networks
+  - 3. sparse memory finetuning
+  - 4. memory-augmented neural networks
+  - how it works
+  - without neural junction (traditional)
+  - with neural junction (weave-nn)
 ---
 
 # Neural Network Junction

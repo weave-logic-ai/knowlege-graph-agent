@@ -2,43 +2,40 @@
 title: Claude-Flow Integration Architecture Design
 type: architecture
 status: in-progress
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - claude-flow
   - integration-architecture
   - mcp-tools
   - orchestration
   - swarm-coordination
-category: technical
+  - phase/phase-12
+  - type/implementation
+  - status/in-progress
 domain: weaver
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - claude-flow
-  - mcp-integration
-  - swarm-orchestration
-  - workflow-automation
-  - agent-coordination
-related_files:
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-  - phase-12-mcp-tools-audit.md
-  - PHASE-12-LEARNING-LOOP-BLUEPRINT.md
-  - weaver-cli-integration-audit.md
-author: ai-generated
-version: 1.0.0
 priority: high
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-in-progress
     - priority-high
     - domain-weaver
-icon: 🏗️
+updated: '2025-10-29T04:55:05.389Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - table of contents
+  - related
+  - executive summary
+  - key design goals
+  - architecture overview
+  - system context diagram
+  - component interaction flow
+  - module structure
+  - directory layout
+  - interface definitions
 ---
 
 # Claude-Flow Integration Architecture Design

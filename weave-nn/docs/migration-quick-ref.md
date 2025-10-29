@@ -1,7 +1,30 @@
 ---
+title: Migration Quick Reference Guide
+type: documentation
+status: complete
+phase_id: PHASE-0
+tags:
+  - phase/phase-0
+  - type/documentation
+  - status/complete
+priority: critical
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.462Z'
+keywords:
+  - "\U0001F3AF three-phase migration strategy"
+  - ✅ local mvp best practices (phase 0)
+  - 1. service boundary structure
+  - 2. event-driven communication
+  - 3. configuration management
+  - 4. database abstraction
+  - "\U0001F500 service extraction pattern (phase 1)"
+  - strangler fig pattern steps
+  - "\U0001F5C3️ database migration strategy"
+  - dual-write pattern (zero downtime)
 ---
 # Migration Quick Reference Guide
 

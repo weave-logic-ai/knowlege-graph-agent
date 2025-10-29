@@ -1,25 +1,37 @@
 ---
+title: Obsidian Properties Standard
 type: workflow
-workflow_name: Obsidian Properties Standard
 status: active
-created_date: '2025-10-20'
-icon: ⚙️
-cssclasses:
-  - workflow
-  - standard
+phase_id: PHASE-1
 tags:
   - workflow
   - obsidian
   - properties
   - standard
   - formatting
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#7ED321'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.693Z'
 version: '3.0'
-updated_date: '2025-10-28'
+keywords:
+  - "\U0001F3AF core principles"
+  - related
+  - "\U0001F4CB standard properties by node type"
+  - concept nodes
+  - platform nodes
+  - technical nodes
+  - feature nodes
+  - decision nodes
+  - workflow nodes
+  - question nodes
 ---
 
 # Obsidian Properties Standard

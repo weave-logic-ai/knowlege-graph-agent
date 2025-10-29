@@ -1,7 +1,28 @@
 ---
+title: Schemas Directory
+type: hub
+status: complete
+tags:
+  - type/hub
+  - status/complete
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.775Z'
+keywords:
+  - what is a schema?
+  - 'example schema types:'
+  - core characteristics
+  - schema vs standard vs model
+  - scope boundaries
+  - 'what belongs in /schemas/:'
+  - 'what does not belong here:'
+  - directory structure
+  - schema categories
+  - 1. events (`/schemas/events/`)
 ---
 # Schemas Directory
 
@@ -780,3 +801,9 @@ This directory requires:
 ---
 
 *Remember: Schemas define the shape of data, not how to build or use systems. Keep them pure, formal, and focused on structure.*
+
+## Related Documents
+
+### Related Files
+- [[SCHEMAS-HUB.md]] - Parent hub
+

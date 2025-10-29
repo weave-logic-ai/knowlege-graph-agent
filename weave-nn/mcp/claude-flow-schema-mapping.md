@@ -1,8 +1,8 @@
 ---
+title: Claude-Flow Schema Mapping
 type: integration-spec
 status: active
-priority: critical
-created_date: '2025-10-20'
+phase_id: PHASE-4
 tags:
   - claude-flow
   - memory
@@ -10,20 +10,35 @@ tags:
   - mapping
   - mcp
   - integration
+  - phase/phase-4
+  - type/planning
+  - status/in-progress
+priority: critical
 related:
   - '[[claude-flow-memory-visualization]]'
   - '[[ai-agent-integration]]'
   - '[[model-context-protocol]]'
   - '[[../_planning/phases/phase-4-claude-flow-integration]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#F5A623'
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:05.950Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F4CA claude-flow memory architecture"
+  - storage infrastructure
+  - "\U0001F5C4️ database schema (12 tables)"
+  - core tables
+  - "\U0001F3AF primary mapping: `memory_store` table"
+  - table structure (inferred from documentation)
+  - value field structure (json)
+  - "\U0001F5FA️ complete field mapping"
+  - claude-flow `memory_store` → weave-nn node
+  - "\U0001F4CB namespace mapping"
 ---
 
 # Claude-Flow Schema Mapping

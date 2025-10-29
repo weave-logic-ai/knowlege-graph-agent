@@ -1,22 +1,8 @@
 ---
-phase_id: PHASE-7
-phase_name: Agent Rules & Memory Sync
+title: 'Phase 7: Agent Rules & Memory Sync'
 type: implementation
 status: complete
-priority: high
-created_date: '2025-10-23'
-completed_date: '2025-10-25'
-duration: 2-3 days
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-dependencies:
-  requires:
-    - PHASE-6
-  enables:
-    - PHASE-8
-  blocks: []
+phase_id: PHASE-7
 tags:
   - scope/mvp
   - type/implementation
@@ -27,16 +13,35 @@ tags:
   - memory-sync
   - auto-linking
   - auto-tagging
+  - phase/phase-7
+  - status/draft
+priority: high
 visual:
   icon: brain
+  color: '#7ED321'
   cssclasses:
     - type-implementation
     - scope-mvp
     - status-complete
     - priority-high
+updated: '2025-10-29T04:55:04.117Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: brain
+dependencies:
+  requires:
+    - PHASE-6
+  enables:
+    - PHASE-8
+keywords:
+  - "\U0001F3AF objective"
+  - related
+  - "\U0001F4CB implementation tasks"
+  - task categories
+  - task details
+  - 'category 9: spec-kit workflow improvements'
+  - summary
+  - "\U0001F3D7️ architecture"
+  - components
+  - data flow
 ---
 
 # Phase 7: Agent Rules & Memory Sync

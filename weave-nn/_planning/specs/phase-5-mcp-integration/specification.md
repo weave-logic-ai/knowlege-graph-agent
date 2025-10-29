@@ -1,36 +1,38 @@
 ---
-spec_type: specification
-phase_id: PHASE-5
-phase_name: MCP Integration & Workflow Enhancement
+title: MCP Integration & Workflow Enhancement - Specification
+type: planning
 status: elaborated
-priority: critical
-duration: 3-4 days
-generated_date: '2025-10-24'
-elaborated_date: '2025-10-24'
-task_count: 27
-requirement_count: 44
-acceptance_criteria_count: 47
-out_of_scope_count: 52
+phase_id: PHASE-5
 tags:
   - spec-kit
   - specification
   - phase-5
   - elaborated
-links:
-  phase_document: '[[phase-5-mcp-integration|Phase 5 Planning Document]]'
-  constitution: '[[constitution.md]]'
-type: planning
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-elaborated
     - priority-critical
     - phase-5
+updated: '2025-10-29T04:55:04.479Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - executive summary
+  - requirements
+  - functional requirements
+  - non-functional requirements
+  - initial task breakdown
+  - 'task 1: morning (4 hours): mcp server foundation'
+  - 'task 2: afternoon (4 hours): tool registry & architecture'
+  - 'task 3: morning (4 hours): query tools'
 ---
 
 # MCP Integration & Workflow Enhancement - Specification

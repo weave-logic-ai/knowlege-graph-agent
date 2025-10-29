@@ -1,7 +1,30 @@
 ---
+title: 'Test Strategy Report: Weave-NN MVP Development'
+type: implementation
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:04.095Z'
+keywords:
+  - executive summary
+  - table of contents
+  - critical integration points
+  - 1. file watcher → rabbitmq publisher
+  - 2. rabbitmq exchange → queue routing
+  - 3. mcp sync consumer → shadow cache
+  - 4. obsidian rest api → mcp server
+  - 5. git auto-commit consumer → git repository
+  - 6. claude-flow memory sync
+  - 7. agent rules execution
 ---
 # Test Strategy Report: Weave-NN MVP Development
 

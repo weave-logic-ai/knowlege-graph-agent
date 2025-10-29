@@ -1,36 +1,38 @@
 ---
-business_id: BM-003
-business_type: pricing-model
 title: SaaS Pricing Model
+type: business
 status: draft
-category: business-model
-created_date: '2025-10-21'
-last_updated: '2025-10-21'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - weave-nn
-related_decisions:
-  - ED-1
-related_business:
-  - value-proposition
-  - target-users
-  - cost-analysis
+phase_id: PHASE-1
 tags:
   - business-model
   - pricing
   - saas
   - monetization
   - revenue
-type: business
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💼
+  icon: "\U0001F4BC"
+  color: '#8E8E93'
   cssclasses:
     - type-business
     - status-draft
-updated_date: '2025-10-28'
-icon: 💼
+updated: '2025-10-29T04:55:04.614Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - pricing philosophy
+  - pricing tiers
+  - 'free tier: individual explorer'
+  - 'pro tier: power user'
+  - 'team tier: collaborative workspace'
+  - 'enterprise tier: organization-wide knowledge graph'
+  - feature comparison matrix
+  - revenue projections
+  - year 1 target (launch + 12 months)
+  - year 2 target
 ---
 
 # SaaS Pricing Model

@@ -4,7 +4,7 @@ category: database
 maturity: mature
 pros:
   - Proven reliability and ACID compliance
-  - Rich extension ecosystem (full-text, JSON, graph)
+  - 'Rich extension ecosystem (full-text, JSON, graph)'
   - Advanced querying and indexing
   - Strong consistency guarantees
 cons:
@@ -42,3 +42,12 @@ Managed PostgreSQL services (Supabase, AWS RDS, Neon) trade operational control 
 - **[Decision: Hosting Strategy]** - Managed service vs self-hosted
 - **[Decision: Graph Storage]** - Apache AGE extension vs dedicated graph database
 - **[Decision: Full-text Search]** - PostgreSQL native vs Elasticsearch vs embedded solutions
+
+## Related Documents
+
+### Related Files
+- [[FUTURE-FEATURES-HUB.md]] - Parent hub
+
+### Similar Content
+- [[supabase.md]] - Semantic similarity: 31.7%
+

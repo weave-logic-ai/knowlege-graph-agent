@@ -2,37 +2,20 @@
 title: Research Impact Metrics for Knowledge Graph Evolution
 type: documentation
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - research-impact
   - knowledge-graph
   - metrics
   - connection-evolution
   - learning-velocity
-category: research
+  - phase/phase-12
+  - type/research
+  - status/draft
 domain: knowledge-graph
-scope: system
-audience:
-  - researchers
-  - architects
-  - analysts
-related_concepts:
-  - knowledge-graph
-  - connection-metrics
-  - research-impact
-  - iterative-improvement
-  - learning-velocity
-  - document-centrality
-related_files:
-  - hive-mind/naming-metadata-audit.md
-  - phase-12-capability-matrix.md
-  - phase-12-weaver-inventory.md
-author: ai-generated
-version: '1.0'
 priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -40,7 +23,20 @@ visual:
     - priority-medium
     - domain-knowledge-graph
   graph_group: navigation
-icon: 📚
+updated: '2025-10-29T04:55:05.725Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - "\U0001F3AF executive summary"
+  - key metrics categories
+  - success criteria
+  - related
+  - "\U0001F4C8 1. connection evolution metrics"
+  - 1.1 connection strength metric
+  - 1.2 connection density delta
+  - 1.3 link type distribution
+  - "\U0001F4CA 2. research impact indicators"
+  - 2.1 document importance score (pagerank)
 ---
 
 # Research Impact Metrics for Knowledge Graph Evolution

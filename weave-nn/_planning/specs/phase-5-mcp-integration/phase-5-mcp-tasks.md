@@ -1,34 +1,38 @@
 ---
-spec_type: tasks
-phase_id: PHASE-5
-phase_name: MCP Integration & Workflow Enhancement
+title: MCP Integration & Workflow Enhancement - Task Breakdown
+type: planning
 status: pending
-priority: critical
-duration: 3-4 days
-generated_date: '2025-10-24'
-task_count: 48
+phase_id: PHASE-5
 tags:
   - spec-kit
   - tasks
   - phase-5
   - mcp
-links:
-  phase_document: '[[phase-5-mcp-integration]]'
-  constitution: '[[constitution.md]]'
-  specification: '[[specification.md]]'
-type: planning
-scope: task
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-critical
     - phase-5
+updated: '2025-10-29T04:55:04.459Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - 'day 1: mcp server foundation (8 hours)'
+  - 'task 1: project setup & dependencies (1 hour)'
+  - 'task 2: core mcp server implementation (3 hours)'
+  - 'task 3: tool registry architecture (2 hours)'
+  - 'task 4: server lifecycle management (2 hours)'
+  - 'day 2: shadow cache mcp tools (8 hours)'
+  - 'task 5: query files tool (1.5 hours)'
+  - 'task 6: get file tool (1 hour)'
 ---
 
 # MCP Integration & Workflow Enhancement - Task Breakdown

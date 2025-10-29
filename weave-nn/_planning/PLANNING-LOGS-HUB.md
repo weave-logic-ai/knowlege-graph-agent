@@ -1,24 +1,54 @@
 ---
-tags: 'hub, planning, phases, roadmap, knowledge-graph'
-created: {}
-modified: {}
+title: Planning Logs Hub
 type: hub
 status: active
-coverage: 47 planning files
-impact: high
-scope: system
+phase_id: PHASE-1
+tags:
+  - h
+  - u
+  - b
+  - ','
+  - ' '
+  - p
+  - l
+  - a
+  - 'n'
+  - i
+  - g
+  - s
+  - e
+  - r
+  - o
+  - d
+  - m
+  - k
+  - w
+  - '-'
+  - phase/phase-1
+  - type/architecture
+  - status/complete
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.938Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🌐
+keywords:
+  - overview
+  - planning categories
+  - "\U0001F4CB master planning (2 files)"
+  - "\U0001F4C5 daily logs (3 files)"
+  - "\U0001F3D7️ architecture planning (2 files)"
+  - "\U0001F4CA decision records (1 file)"
+  - "\U0001F3AF phase specifications"
+  - "\U0001F50D critical path analysis (4 files)"
+  - "\U0001F4D0 metadata & organization (4 files)"
+  - phase overview
 ---
 
 # Planning Logs Hub

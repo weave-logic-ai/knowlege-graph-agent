@@ -1,37 +1,18 @@
 ---
-decision_id: TS-010
-decision_type: technical
 title: Property Visualization Caching Strategy
+type: decision
 status: decided
-priority: high
-category: performance
-created_date: '2025-10-22'
-last_updated: '2025-10-22'
-decided_date: '2025-10-22'
-implemented_date: null
-decision_maker: System Architect
-stakeholders:
-  - Performance Team
-  - Frontend Team
-  - Backend Team
-ai_assisted: 'true'
-blocks: []
-impacts:
-  - property-visualizer
-  - property-analytics
-  - api-performance
-  - user-experience
-requires:
-  - singleton-pattern-choice
-research_status: completed
-selected_option: C
+phase_id: PHASE-1
 tags:
   - decision
   - performance
   - decided
   - caching
   - optimization
-type: decision
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -39,9 +20,19 @@ visual:
     - type-decision
     - status-decided
     - priority-high
+updated: '2025-10-29T04:55:04.895Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚖️
+keywords:
+  - question
+  - context
+  - options evaluated
+  - a. no caching (baseline)
+  - b. single-layer in-memory lru cache
+  - 'c. multi-layer: lru → redis → sqlite shadow cache ✅ chosen'
+  - d. cdn-based caching with pre-generated graphs
+  - e. incremental graph updates with differential caching
+  - research summary
+  - decision rationale
 ---
 
 # TS-010: Property Visualization Caching Strategy

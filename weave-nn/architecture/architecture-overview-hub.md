@@ -1,30 +1,39 @@
 ---
-type: index
 title: Architecture Documentation Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - architecture
+phase_id: PHASE-6
 tags:
   - index
   - architecture
   - navigation
   - documentation
   - system-design
-scope: system
+  - phase/phase-6
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.545Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - architecture layers
+  - data & knowledge layer
+  - api layer
+  - frontend layer (future)
+  - ai integration layer
+  - architecture philosophies
+  - obsidian-first design
+  - multi-project vision
+  - component architecture
 ---
 
 # Architecture Documentation

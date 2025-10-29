@@ -1,27 +1,42 @@
 ---
+title: Claude-Flow Memory Visualization
 type: integration-spec
 status: draft
-priority: critical
-created_date: '2025-10-20'
+phase_id: PHASE-5
 tags:
   - claude-flow
   - memory
   - visualization
   - mcp
   - integration
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: critical
 related:
   - '[[ai-agent-integration]]'
   - '[[model-context-protocol]]'
   - '[[../_planning/phases/phase-4-claude-flow-integration]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-integration-spec
     - status-draft
     - priority-critical
+updated: '2025-10-29T04:55:05.943Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F3AF objective"
+  - related
+  - "\U0001F9E0 claude-flow memory structure (to research)"
+  - current understanding (hypothetical)
+  - questions to answer
+  - "\U0001F5FA️ memory → node mapping"
+  - 'proposed 1:1 parity mapping'
+  - "\U0001F4CA type mapping"
+  - memory type → node folder
+  - "\U0001F504 weaver workflow integration (mvp)"
 ---
 
 # Claude-Flow Memory Visualization

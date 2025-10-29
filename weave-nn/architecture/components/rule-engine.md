@@ -1,46 +1,35 @@
 ---
-technical_id: T-008
-technical_name: Agent Rule Engine
-category: framework
+title: <span class="lucide-brain"></span> Agent Rule Engine
+type: architecture
 status: implemented
-created_date: '2025-10-22'
-maturity: stable
-complexity: complex
-language: JavaScript
-license: MIT
-open_source: 'yes'
-pros:
-  - Five-level priority system with automatic conflict resolution
-  - Flexible condition/action pattern supports sync and async operations
-  - Comprehensive metrics tracking for performance analysis
-cons:
-  - In-memory storage only (no persistence)
-  - Complex conflict resolution logic requires careful testing
-  - No declarative rule definition format (code-based only)
-alternatives:
-  - Drools (Java-based rules engine)
-  - Easy Rules (Simple Java library)
-  - JSON Rules Engine (Node.js)
-related_decisions:
-  - '[[agent-rules]]'
-  - '[[ai-agent-integration]]'
 tags:
   - technical
   - framework
   - javascript
   - rules-engine
   - autonomous-agents
-type: architecture
-scope: component
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-implemented
+updated: '2025-10-29T04:55:03.404Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - overview
+  - related
+  - key features
+  - how it works
+  - pros
+  - cons
+  - use cases for weave-nn
+  - integration requirements
+  - alternatives
+  - performance considerations
 ---
 
 # <span class="lucide-brain"></span> Agent Rule Engine

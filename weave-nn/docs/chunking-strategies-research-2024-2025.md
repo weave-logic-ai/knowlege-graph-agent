@@ -2,8 +2,6 @@
 title: 'Text Chunking Strategies for Vector Embeddings: Research Synthesis 2024-2025'
 type: research
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
 tags:
   - chunking
   - research-synthesis
@@ -11,37 +9,33 @@ tags:
   - late-chunking
   - semantic-chunking
   - 2024-2025
-category: research
+  - type/documentation
+  - status/in-progress
+  - domain/chunking
 domain: chunking
-scope: module
-audience:
-  - developers
-  - architects
-  - researchers
-related_concepts:
-  - late-chunking
-  - semantic-chunking
-  - recursive-chunking
-  - overlap-strategies
-  - memorographic-embeddings
-  - xenova-transformers
-related_files:
-  - CHUNKING-STRATEGY-SYNTHESIS.md
-  - chunking-implementation-guide.md
-  - chunking-quick-reference.md
-  - CHUNKING-IMPLEMENTATION-DESIGN.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 🔬
+  icon: "\U0001F52C"
   color: '#8B5CF6'
   cssclasses:
     - type-research
     - status-complete
     - priority-high
     - domain-chunking
-icon: 🔬
+updated: '2025-10-29T04:55:05.396Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - executive summary
+  - top 5 chunking strategies (2024-2025)
+  - 1. **late chunking** (2024 innovation) ⭐ recommended
+  - 2. **recursive/hierarchical chunking with semantic boundaries**
+  - 3. **contextual retrieval with chunk enrichment** (anthropic 2024)
+  - 4. **semantic boundary detection (embedding-based)**
+  - 5. **fixed-size with optimal overlap** (baseline)
+  - specific recommendations for learning & memory content
+  - learning-specific chunking strategies
+  - memorographic embeddings
 ---
 
 # Text Chunking Strategies for Vector Embeddings: Research Synthesis 2024-2025

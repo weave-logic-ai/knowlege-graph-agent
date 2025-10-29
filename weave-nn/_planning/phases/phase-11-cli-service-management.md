@@ -1,17 +1,8 @@
 ---
-phase_id: PHASE-11
-phase_name: CLI Service Management & AI Feature Creator
+title: 'Phase 11: CLI Service Management & AI Feature Creator'
+type: planning
 status: pending
-priority: high
-created_date: '2025-10-27'
-start_date: TBD
-end_date: TBD
-duration: 20-25 days
-dependencies:
-  requires:
-    - PHASE-10
-  enables:
-    - PHASE-12
+phase_id: PHASE-11
 tags:
   - phase
   - cli
@@ -19,17 +10,35 @@ tags:
   - ai-features
   - automation
   - high-priority
+  - phase/phase-11
+  - type/documentation
+  - status/draft
+priority: high
 visual:
   icon: rocket
+  color: '#8E8E93'
   cssclasses:
     - type-implementation
     - status-pending
     - priority-high
-type: planning
-scope: component
+updated: '2025-10-29T04:55:04.014Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🚀
+dependencies:
+  requires:
+    - PHASE-10
+  enables:
+    - PHASE-12
+keywords:
+  - "\U0001F3AF objectives"
+  - primary goals
+  - related
+  - "\U0001F4CB implementation tasks"
+  - 'cli service management (priority: critical)'
+  - 'mvp future enhancements (priority: high)'
+  - 'ai-powered feature creation system (priority: high)'
+  - ✅ success criteria
+  - functional requirements
+  - performance requirements
 ---
 
 # Phase 11: CLI Service Management & AI Feature Creator

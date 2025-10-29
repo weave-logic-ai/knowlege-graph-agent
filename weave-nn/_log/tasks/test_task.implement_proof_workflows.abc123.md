@@ -1,18 +1,30 @@
 ---
+title: 'Test Task: Implement Proof Workflows'
 type: task_log
 status: completed
-created_date: '2025-10-24'
-scope: task
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-task_log
     - status-completed
+updated: '2025-10-29T04:55:03.888Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - related documents
+  - related files
 ---
 
 # Test Task: Implement Proof Workflows
 
 Task completed successfully.
+
+## Related Documents
+
+### Related Files
+- [[TASKS-HUB.md]] - Parent hub
+

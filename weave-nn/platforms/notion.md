@@ -1,36 +1,37 @@
 ---
-platform_id: notion
+title: Notion Platform Analysis
 type: knowledge-management
-architecture: cloud-based
-knowledge_graph_support: third-party
-pros:
-  - real_time_collaboration
-  - web_based_access
-  - rich_database_views
-  - user_friendly_interface
-  - team_workspaces
-cons:
-  - no_native_knowledge_graph
-  - api_rate_limits
-  - vendor_lock_in
-  - not_markdown_native
-  - higher_team_costs
+status: in-progress
 tags:
   - platform
   - cloud-based
   - collaboration
   - database
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[obsidian]]'
   - '[[custom-solution]]'
   - '[[collaboration-requirements]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#50E3C2'
   cssclasses:
     - type-knowledge-management
+updated: '2025-10-29T04:55:06.125Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - architecture
+  - collaboration strengths
+  - database views
+  - api limitations
+  - knowledge graph gap
+  - cost considerations
+  - comparison to alternatives
+  - ideal use cases
+  - integration challenges
 ---
 
 # Notion Platform Analysis

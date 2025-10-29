@@ -1,23 +1,8 @@
 ---
+title: SQLite
 type: technical-primitive
-category: database
 status: in-use
-first_used_phase: PHASE-5
-mvp_required: true
-future_only: false
-maturity: mature
-used_in_services:
-  - mcp-server
-  - event-consumer
-deployment: docker-compose
-alternatives_considered:
-  - PostgreSQL
-  - MongoDB
-  - In-memory data structures
-replaces: null
-replaced_by: '[[postgresql]]'
-decision: '[[../decisions/technical/mvp-database-choice]]'
-architecture: '[[../architecture/shadow-cache]]'
+phase_id: PHASE-5
 tags:
   - technical
   - database
@@ -25,14 +10,29 @@ tags:
   - mvp
   - shadow-cache
   - deprecated-in-v1
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.401Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - shadow cache database schema
+  - docker compose integration (mvp)
+  - environment variables
+  - key configuration files
+  - deployment
 ---
 
 # SQLite

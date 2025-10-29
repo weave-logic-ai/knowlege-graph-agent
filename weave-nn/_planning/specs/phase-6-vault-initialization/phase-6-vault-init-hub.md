@@ -1,7 +1,32 @@
 ---
+title: Vault Initialization System - Spec-Kit Workflow
+type: hub
+status: in-progress
+phase_id: PHASE-6
+tags:
+  - phase/phase-6
+  - type/hub
+  - status/in-progress
+  - domain/vault-init
+domain:
+  - vault-init
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.346Z'
+keywords:
+  - generated specifications
+  - next steps
+  - 1. review constitution
+  - 2. elaborate specification
+  - 3. generate implementation plan
+  - 4. break down tasks
+  - 5. implement
+  - sync tasks to vault
+  - documentation
 ---
 # Vault Initialization System - Spec-Kit Workflow
 

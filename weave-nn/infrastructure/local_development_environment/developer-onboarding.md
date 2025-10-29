@@ -1,23 +1,38 @@
 ---
+title: Weave-NN Developer Onboarding Guide
 type: guide
 status: active
-priority: critical
-created_date: '2025-10-21'
+phase_id: PHASE-4A
 tags:
   - scope/mvp
   - type/guide
   - priority/critical
   - infrastructure
   - onboarding
+  - phase/phase-4a
+  - type/documentation
+  - status/in-progress
+domain: infrastructure
+priority: critical
 visual:
   icon: rocket
+  color: '#8E8E93'
   cssclasses:
     - type-guide
     - priority-critical
-domain: infrastructure
+updated: '2025-10-29T04:55:05.868Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🚀
+keywords:
+  - "\U0001F3AF overview"
+  - related
+  - "\U0001F4CB prerequisites"
+  - required
+  - optional
+  - "\U0001F680 quick start (automated setup)"
+  - 'step 1: clone repository'
+  - 'step 2: run bootstrap script'
+  - 'step 3: log out and back in'
+  - 'step 4: configure environment'
 ---
 
 # Weave-NN Developer Onboarding Guide

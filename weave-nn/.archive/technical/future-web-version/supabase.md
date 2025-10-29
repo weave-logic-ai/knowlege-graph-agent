@@ -3,7 +3,7 @@ tech_id: supabase
 category: backend-platform
 maturity: stable
 pros:
-  - Comprehensive BaaS with auth, storage, and realtime
+  - 'Comprehensive BaaS with auth, storage, and realtime'
   - PostgreSQL foundation with full SQL access
   - Open source with self-hosting option
   - Generous free tier
@@ -40,3 +40,13 @@ Building a custom backend with Node.js/Python and PostgreSQL offers maximum cont
 - **[Decision: Database Platform]** - Supabase-managed vs self-hosted PostgreSQL
 - **[Decision: Authentication Strategy]** - Integrated auth vs custom implementation
 - **[Decision: Real-time Infrastructure]** - Supabase realtime vs WebSocket servers
+
+## Related Documents
+
+### Related Files
+- [[FUTURE-WEB-VERSION-HUB.md]] - Parent hub
+- [[tiptap-editor.md]] - Same directory
+
+### Similar Content
+- [[postgresql.md]] - Semantic similarity: 31.7%
+

@@ -1,20 +1,35 @@
 ---
+title: Folder Taxonomy Validation Report
 type: validation-report
-phase: phase-4b
 status: completed
-created: {}
+phase_id: PHASE-1
 tags:
   - validation
   - folder-structure
   - organization
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-validation-report
     - status-completed
+updated: '2025-10-29T04:55:03.978Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - executive summary
+  - 1. directory analysis
+  - 1.1 root level directories (/home/aepod/dev/weave-nn/)
+  - 1.2 vault directories (/home/aepod/dev/weave-nn/weave-nn/)
+  - 2. issues identified
+  - 2.1 critical issues (blocking mvp)
+  - 2.2 high priority issues
+  - 2.3 medium priority issues
+  - 2.4 low priority issues (review later)
+  - 3. missing directories (per mvp structure)
 ---
 
 # Folder Taxonomy Validation Report

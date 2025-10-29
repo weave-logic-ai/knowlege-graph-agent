@@ -2,8 +2,7 @@
 title: 'Weaver: Complete Implementation Guide - Phase 12 & SOPs'
 type: guide
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - weaver
   - implementation-guide
@@ -11,35 +10,33 @@ tags:
   - sops
   - four-pillar-framework
   - autonomous-agents
-category: technical
+  - phase/phase-12
+  - type/research
+  - status/complete
 domain: weaver
-scope: project
-audience:
-  - developers
-  - architects
-  - project-managers
-related_concepts:
-  - four-pillar-framework
-  - sops-framework
-  - autonomous-agents
-  - mcp-tools
-  - learning-loop
-related_files:
-  - WEAVER-SOPS-FRAMEWORK.md
-  - PHASE-12-COMPLETE-PLAN.md
-  - PHASE-12-EXECUTIVE-SUMMARY.md
-  - phase-12-mcp-tools-audit.md
-author: ai-generated
-version: '1.0'
 priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#BD10E0'
   cssclasses:
     - type-guide
     - status-complete
     - priority-critical
     - domain-weaver
-icon: 📄
+updated: '2025-10-29T04:55:05.346Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - phase 12 four-pillar autonomous agents + standard operating procedures
+  - related
+  - "\U0001F4DA related documentation"
+  - historical context
+  - phase 12 components
+  - mcp tools
+  - standard operating procedures
+  - evolution & future
+  - "\U0001F3AF executive summary"
+  - what was accomplished
 ---
 
 # Weaver: Complete Implementation Guide

@@ -1,30 +1,17 @@
 ---
-type: decision
-decision_id: D-007
-decision_type: technical
 title: FastMCP Framework for MCP Server
+type: decision
 status: obsolete
-created_date: {}
-decided_date: {}
-obsolete_date: {}
-replaced_by: D-021 (JavaScript/TypeScript Stack Pivot)
+phase_id: PHASE-3
 tags:
   - mcp
   - python
   - framework
   - obsolete
-related_concepts:
-  - '[[C-001-weave-nn-core]]'
-  - '[[C-008-agent-coordination]]'
-related_features:
-  - '[[F-001-mcp-server]]'
-phase: phase-0
+  - phase/phase-3
+  - type/documentation
+  - status/in-progress
 priority: high
-impact: high
-cssclasses:
-  - decision
-  - obsolete
-  - technical
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -32,9 +19,19 @@ visual:
     - type-decision
     - status-obsolete
     - priority-high
+updated: '2025-10-29T04:55:04.878Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚖️
+keywords:
+  - decision summary
+  - ⚠️ obsolescence notice
+  - original decision context (2025-10-21)
+  - the problem
+  - decision
+  - rationale (at time of decision)
+  - components affected (original plan)
+  - why this decision became obsolete
+  - discovery timeline
+  - critical discoveries
 ---
 
 # Decision: FastMCP Framework for MCP Server (OBSOLETE)

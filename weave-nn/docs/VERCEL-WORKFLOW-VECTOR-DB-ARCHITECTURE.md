@@ -2,45 +2,40 @@
 title: Vercel Workflow + Vector DB Architecture
 type: architecture
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - vercel-workflow
   - vector-db
   - architecture
   - markdown-templates
   - workflow-orchestration
-category: technical
+  - phase/phase-12
+  - type/documentation
+  - status/in-progress
 domain: weaver
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - vercel-workflow
-  - vector-db
-  - markdown-templates
-  - durable-workflows
-  - traceability
-  - chunking
-  - embeddings
-related_files:
-  - VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md
-  - MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md
-  - CHUNKING-IMPLEMENTATION-DESIGN.md
-  - WORKFLOW-EXTENSION-GUIDE.md
-author: ai-generated
-version: 2.0.0
 priority: medium
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-complete
     - priority-medium
     - domain-weaver
-icon: 🏗️
+updated: '2025-10-29T04:55:05.333Z'
+author: ai-generated
+version: 2.0.0
+keywords:
+  - "\U0001F3AF overview"
+  - related
+  - "\U0001F3D7️ architecture principles"
+  - 1. vercel workflow for orchestration
+  - 2. markdown for data & user interaction
+  - 3. combined flow
+  - "\U0001F4E6 technology stack"
+  - core technologies
+  - workflow execution
+  - "\U0001F504 workflow definitions"
 ---
 
 # Vercel Workflow + Vector DB Architecture

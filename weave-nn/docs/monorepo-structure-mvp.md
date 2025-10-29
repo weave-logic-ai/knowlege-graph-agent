@@ -1,7 +1,30 @@
 ---
+title: Weave-NN Monorepo Structure (MVP-Focused)
+type: planning
+status: in-progress
+phase_id: PHASE-4B
+tags:
+  - phase/phase-4b
+  - type/planning
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#F5A623'
+  cssclasses:
+    - planning-document
+updated: '2025-10-29T04:55:05.494Z'
+keywords:
+  - overview
+  - root directory structure
+  - 1. weave-nn vault directory (stays in place)
+  - 2. weaver service (mvp - node.js/typescript)
+  - 3. services directory (future microservices)
+  - future services (post-mvp)
+  - phase 1 split (v0.5)
+  - phase 2 services (v1.0)
+  - phase 3 services (v2.0)
+  - migration path
 ---
 # Weave-NN Monorepo Structure (MVP-Focused)
 

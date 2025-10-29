@@ -1,23 +1,37 @@
 ---
+title: Durable Workflows
 type: concept
-category: architecture
 status: active
 tags:
   - workflows
   - statefulness
   - weaver
   - resilience
+  - type/documentation
+  - status/in-progress
+priority: medium
 related:
   - '[[weaver]]'
   - '[[local-first-architecture]]'
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#8E8E93'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.785Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - core concept
+  - why this matters
+  - without durable workflows
+  - with durable workflows
+  - real-world scenario
+  - technical implementation
+  - step-level persistence
+  - retry with exponential backoff
+  - time-travel debugging
+  - comparison with rabbitmq
 ---
 
 # Durable Workflows

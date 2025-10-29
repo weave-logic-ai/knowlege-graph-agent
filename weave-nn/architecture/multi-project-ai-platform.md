@@ -1,7 +1,21 @@
 ---
+title: Multi-Project AI Development Platform Architecture
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🏗️
-icon: 🏗️
+  icon: "\U0001F3D7️"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:03.431Z'
+keywords:
+  - 1. main system architecture
+  - 2. knowledge extraction workflow
+  - 3. project seeding & deployment workflow
 ---
 # Multi-Project AI Development Platform Architecture
 

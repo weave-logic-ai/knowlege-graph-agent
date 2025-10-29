@@ -1,25 +1,8 @@
 ---
+title: Weaver (workflow.dev) - Durable Workflow Engine
 type: technical-primitive
-category: service
 status: planned
-first_used_phase: PHASE-6
-mvp_required: false
-future_only: false
-maturity: mature
-complexity: moderate
-used_in_services:
-  - workflow-engine
-  - event-consumer
-  - task-automation
-deployment: local-development
-alternatives_considered:
-  - '[[n8n-workflow-automation]]'
-  - '[[temporal-io]]'
-  - '[[apache-airflow]]'
-replaces: '[[n8n-workflow-automation]]'
-replaced_by: null
-decision: '[[../decisions/technical/workflow-automation-platform]]'
-architecture: '[[../architecture/workflow-automation-system]]'
+phase_id: PHASE-6
 tags:
   - technical
   - tool
@@ -28,16 +11,31 @@ tags:
   - automation
   - planned
   - durable-execution
+  - phase/phase-6
+  - type/architecture
+  - status/in-progress
 domain: weaver
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#50E3C2'
   cssclasses:
     - type-technical-primitive
     - status-planned
     - domain-weaver
+updated: '2025-10-29T04:55:06.408Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - durable workflows
+  - event-driven architecture
+  - time-travel debugging
+  - local-first development
+  - integration points
+  - architecture
+  - workflow.dev infrastructure
 ---
 
 # Weaver (workflow.dev) - Durable Workflow Engine

@@ -1,29 +1,36 @@
 ---
-type: index
 title: Integrations Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - integrations
 tags:
   - index
   - integrations
   - navigation
   - external-services
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.725Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - what is an integration?
+  - real-world analogy
+  - core characteristics
+  - what makes something an integration?
+  - what is not an integration?
+  - scope boundaries
+  - integration vs pattern
+  - integration vs architecture
+  - integration vs technical
+  - directory structure
 ---
 
 # Integration Documentation

@@ -1,21 +1,8 @@
 ---
-phase_id: PHASE-8
-phase_name: Git Automation & Workflow Proxy
+title: 'Phase 8: Git Automation & Workflow Proxy'
 type: implementation
 status: pending
-priority: medium
-created_date: '2025-10-23'
-duration: 2 days
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-dependencies:
-  requires:
-    - PHASE-7
-  enables:
-    - PHASE-9
-  blocks: []
+phase_id: PHASE-8
 tags:
   - scope/mvp
   - type/implementation
@@ -25,16 +12,36 @@ tags:
   - git-automation
   - workflow-proxy
   - auto-commit
+  - phase/phase-8
+  - type/documentation
+  - status/draft
+priority: medium
 visual:
   icon: git-branch
+  color: '#8E8E93'
   cssclasses:
     - type-implementation
     - scope-mvp
     - status-pending
     - priority-medium
+updated: '2025-10-29T04:55:04.124Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: git-branch
+dependencies:
+  requires:
+    - PHASE-7
+  enables:
+    - PHASE-9
+keywords:
+  - "\U0001F3AF objective"
+  - related
+  - "\U0001F4CB implementation tasks"
+  - git client setup
+  - auto-commit service
+  - weaver workflow proxy
+  - logging & observability
+  - testing & documentation
+  - success metrics
+  - risk mitigation
 ---
 
 # Phase 8: Git Automation & Workflow Proxy

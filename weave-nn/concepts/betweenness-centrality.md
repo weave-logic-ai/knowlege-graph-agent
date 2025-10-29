@@ -1,26 +1,39 @@
 ---
+title: Betweenness Centrality
 type: concept
+status: active
 tags:
   - graph-theory
   - centrality-metrics
   - network-analysis
   - keystone-concepts
+  - type/research
+  - status/in-progress
+priority: critical
 related:
   - '[[graph-topology-analysis]]'
   - '[[structural-gap-detection]]'
   - '[[ecological-thinking]]'
   - '[[sparse-memory-finetuning]]'
-status: active
-created: {}
-source: Network Science and Knowledge Graph Research
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#BD10E0'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.771Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - mathematical definition
+  - interpretation
+  - betweenness scores
+  - why betweenness matters
+  - betweenness vs. other centrality metrics
+  - degree centrality
+  - closeness centrality
+  - pagerank
+  - application to knowledge graphs
 ---
 
 # Betweenness Centrality

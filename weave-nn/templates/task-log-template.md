@@ -1,44 +1,30 @@
 ---
+title: 'Task Log: [Task Name]'
 type: task_log
-task_id: '[phase].[day].[task].[subtask].[hash]'
-phase: ''
-day: ''
-task_name: ''
-subtask_name: ''
-agent: ''
-priority: ''
-start_time: ''
-end_time: ''
-duration_minutes: 0
 status: completed|partial|blocked|deferred|paused|cancelled
-success: false
-quality_score: 0
-memory_types:
-  - ''
-approach: ''
-challenges: []
-solutions: []
-lessons_learned: []
-files_modified: 0
-lines_added: 0
-lines_removed: 0
-tests_added: 0
-test_coverage: 0
-related_concepts: []
-related_features: []
-related_decisions: []
-tags: []
-cssclasses:
-  - task-log
-scope: task
+tags:
+  - type/implementation
+  - status/complete
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-task_log
     - status-completed|partial|blocked|deferred|paused|cancelled
+updated: '2025-10-29T04:55:06.594Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - task overview and context
+  - approach and strategy
+  - strategy selected
+  - architecture and design decisions
+  - tools and technologies used
+  - implementation details
+  - code changes summary
+  - configuration changes
+  - challenges and solutions
+  - 'challenge 1: [descriptive title]'
 ---
 
 <!-- RAG OPTIMIZATION NOTES:

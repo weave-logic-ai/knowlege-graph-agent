@@ -1,22 +1,8 @@
 ---
-phase_id: PHASE-2A
-phase_name: Documentation Capture & Process Formalization
+title: 'Phase 2A: Documentation Capture & Process Formalization'
 type: planning
 status: completed
-priority: critical
-created_date: '2025-10-20'
-start_date: '2025-10-20'
-end_date: '2025-10-20'
-duration: 1 day
-scope:
-  current_phase: mvp
-  obsidian_only: true
-dependencies:
-  requires:
-    - PHASE-1
-  enables:
-    - PHASE-3
-    - PHASE-4
+phase_id: PHASE-2A
 tags:
   - scope/mvp
   - type/planning
@@ -24,15 +10,35 @@ tags:
   - priority/critical
   - phase-2a
   - documentation
+  - phase/phase-2a
+  - status/complete
+priority: critical
 visual:
   icon: file-text
+  color: '#F5A623'
   cssclasses:
     - type-planning
     - scope-mvp
     - status-completed
+updated: '2025-10-29T04:55:04.037Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+dependencies:
+  requires:
+    - PHASE-1
+  enables:
+    - PHASE-3
+    - PHASE-4
+keywords:
+  - "\U0001F3AF core objective"
+  - related
+  - "\U0001F4CB primary deliverables"
+  - 1. process documentation ⏳
+  - "2. features list population \U0001F534 high priority"
+  - "3. claude-flow integration spec \U0001F534 critical"
+  - 4. suggestion & multiple-choice pattern ⏳
+  - "5. templates creation \U0001F7E1 medium priority"
+  - "6. open questions documentation \U0001F7E1 medium priority"
+  - "7. obsidian properties standardization \U0001F534 high priority (new)"
 ---
 
 # Phase 2A: Documentation Capture & Process Formalization

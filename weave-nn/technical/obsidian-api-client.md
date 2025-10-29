@@ -1,45 +1,35 @@
 ---
-technical_id: T-007
-technical_name: Obsidian REST API Client
-category: library
+title: <span class="lucide-plug"></span> Obsidian REST API Client
+type: documentation
 status: implemented
-created_date: '2025-10-22'
-maturity: stable
-complexity: moderate
-language: JavaScript
-license: MIT
-open_source: 'yes'
-pros:
-  - Comprehensive CRUD operations for Obsidian vault management
-  - Robust error handling with exponential backoff retry logic
-  - Flexible request/response interceptor system
-cons:
-  - Requires Obsidian REST API plugin installation
-  - Authentication token management needed
-  - No built-in caching mechanism
-alternatives:
-  - Direct File System Access
-  - Obsidian Local REST API
-  - Custom WebSocket Implementation
-related_decisions:
-  - '[[rest-api-integration]]'
-  - '[[model-context-protocol]]'
 tags:
   - technical
   - library
   - javascript
   - api-client
   - obsidian
-type: documentation
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-implemented
+updated: '2025-10-29T04:55:06.365Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - overview
+  - related
+  - key features
+  - how it works
+  - pros
+  - cons
+  - use cases for weave-nn
+  - integration requirements
+  - alternatives
+  - performance considerations
 ---
 
 # <span class="lucide-plug"></span> Obsidian REST API Client

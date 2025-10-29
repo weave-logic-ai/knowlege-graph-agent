@@ -1,36 +1,35 @@
 ---
-business_id: BM-001
-business_type: value-proposition
 title: Weave-NN Value Proposition
+type: business
 status: active
-category: business-model
-created_date: '2025-10-21'
-last_updated: '2025-10-21'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - weave-nn
-  - knowledge-graph
-  - ai-generated-documentation
-related_decisions:
-  - ED-1
-related_business:
-  - target-users
-  - saas-pricing-model
 tags:
   - business-model
   - value-proposition
   - saas
   - competitive-advantage
-type: business
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💼
+  icon: "\U0001F4BC"
+  color: '#8E8E93'
   cssclasses:
     - type-business
     - status-active
-updated_date: '2025-10-28'
-icon: 💼
+updated: '2025-10-29T04:55:04.750Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - the problem we solve
+  - our solution
+  - target users
+  - 'primary personas:'
+  - why weave-nn beats alternatives
+  - vs. obsidian
+  - vs. notion
+  - vs. roam research / logseq
+  - vs. building custom solution
+  - key differentiators
 ---
 
 # Weave-NN Value Proposition

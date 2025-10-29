@@ -1,37 +1,37 @@
 ---
-decision_id: '[ED|TS|FP|BM|OP]-XXX'
-decision_type: '[executive|technical|feature-prioritization|business|operational]'
 title: '[Decision Title]'
+type: template
 status: '[open|researching|decided|deferred|revisit]'
-priority: '[critical|high|medium|low]'
-category: '[strategic|architecture|implementation|process|business]'
-created_date: YYYY-MM-DD
-last_updated: YYYY-MM-DD
-decided_date: null
-implemented_date: null
-decision_maker: '[Name or Role]'
-stakeholders: []
-ai_assisted: '[true|false]'
-blocks: []
-impacts: []
-requires: []
-research_status: '[not-started|in-progress|completed]'
-selected_option: null
+phase_id: PHASE-1
 tags:
   - decision
   - - category
   - - status
   - - domain
-type: template
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: '[critical|high|medium|low]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-template
     - 'status-[open|researching|decided|deferred|revisit]'
     - 'priority-[critical|high|medium|low]'
+updated: '2025-10-29T04:55:06.444Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - question and context
+  - the decision question
+  - why this decision matters
+  - current situation and constraints
+  - options evaluated
+  - 'option a: [option a title]'
+  - 'option b: [option b title]'
+  - 'option c: [option c title] [✅ chosen if decided]'
+  - research summary and analysis
+  - key sources and methodologies
 ---
 
 <!--

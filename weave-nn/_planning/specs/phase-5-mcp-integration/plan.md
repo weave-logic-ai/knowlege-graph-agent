@@ -1,32 +1,38 @@
 ---
-spec_type: implementation_plan
-phase_id: PHASE-5
-phase_name: MCP Integration & Workflow Enhancement
+title: MCP Integration & Workflow Enhancement - Implementation Plan
+type: planning
 status: ready
-priority: critical
-duration: 3-4 days
-generated_date: '2025-10-24'
+phase_id: PHASE-5
 tags:
   - spec-kit
   - implementation-plan
   - phase-5
   - mcp-integration
-links:
-  constitution: '[[constitution.md]]'
-  specification: '[[specification.md]]'
-  phase_document: '[[../../phases/phase-5-mcp-integration.md]]'
-type: planning
+  - phase/phase-5
+  - type/architecture
+  - status/complete
+priority: critical
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-ready
     - priority-critical
     - phase-5
+updated: '2025-10-29T04:55:04.465Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - executive summary
+  - key deliverables
+  - success metrics
+  - related
+  - architecture overview
+  - current state (phase 4b complete)
+  - target state (phase 5)
+  - components to build
+  - day-by-day implementation plan
+  - 'day 1: mcp server foundation (8 hours)'
 ---
 
 # MCP Integration & Workflow Enhancement - Implementation Plan

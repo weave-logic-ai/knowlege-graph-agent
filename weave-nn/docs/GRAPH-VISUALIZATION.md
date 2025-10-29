@@ -1,7 +1,25 @@
 ---
+title: Knowledge Graph Visualization
+type: documentation
+status: in-progress
+phase_id: PHASE-12
+tags:
+  - phase/phase-12
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.023Z'
+keywords:
+  - summary
+  - legend
+  - hub documents view
+  - directory cluster view
+  - orphaned files view
 ---
 # Knowledge Graph Visualization
 

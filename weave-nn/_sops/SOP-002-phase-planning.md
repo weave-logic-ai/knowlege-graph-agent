@@ -1,24 +1,32 @@
 ---
-sop_id: SOP-002
-sop_name: Phase/Milestone Planning Workflow
-category: development
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop phase-plan <phase-number>
-  - weaver plan milestone <name>
-learning_enabled: true
-estimated_duration: 60-90 minutes
-complexity: high
+title: 'SOP-002: Phase/Milestone Planning Workflow'
 type: sop
+status: active
+phase_id: PHASE-12
+tags:
+  - phase/phase-12
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.566Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. researcher agent
+  - 2. planner agent
+  - 3. architect agent
+  - 4. analyst agent
 ---
 
 # SOP-002: Phase/Milestone Planning Workflow
@@ -577,3 +585,16 @@ weaver sop phase-plan debt-cleanup \
 
 **Version History**
 - 1.0.0 (2025-10-27): Initial SOP with hierarchical agent coordination
+
+## Related Documents
+
+### Related Files
+- [[_SOPS-HUB.md]] - Parent hub
+- [[SOP-001-feature-planning.md]] - Same directory
+- [[SOP-003-release-management.md]] - Same directory
+- [[SOP-008-performance-analysis.md]] - Same directory
+- [[sops-framework-hub.md]] - Same directory
+
+### Similar Content
+- [[SOP-001-feature-planning.md]] - Semantic similarity: 43.5%
+

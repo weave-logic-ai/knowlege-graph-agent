@@ -1,26 +1,32 @@
 ---
 title: File Watcher → Weaver Workflows Integration
-integration_type: event-driven
-systems:
-  - name: File System Watcher (chokidar)
-    role: producer
-  - name: Weaver Workflows
-    role: orchestrator
-direction: unidirectional
-protocol: In-process (function calls)
-authentication: none (same process)
-status: active
-created: {}
-updated: {}
 type: workflow
+status: active
+phase_id: PHASE-7
+tags:
+  - phase/phase-7
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:05.905Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - overview
+  - systems involved
+  - file system watcher (chokidar)
+  - weaver workflows
+  - integration architecture
+  - data flow
+  - components
+  - configuration
+  - environment variables
+  - workflow configuration file
 ---
 
 # File Watcher → Weaver Workflows Integration

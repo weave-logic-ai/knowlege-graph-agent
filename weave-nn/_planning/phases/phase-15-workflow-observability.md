@@ -1,7 +1,30 @@
 ---
+title: 'Phase 15: Workflow Observability & Workflow.dev Integration'
+type: documentation
+status: in-progress
+phase_id: PHASE-15
+tags:
+  - phase/phase-15
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.029Z'
+keywords:
+  - "\U0001F3AF executive summary"
+  - "\U0001F4CB current state analysis"
+  - what we have (custom workflow engine)
+  - what we need
+  - "\U0001F680 phase 15 strategy: poc-first approach"
+  - two-phase execution
+  - "\U0001F4E6 technical architecture"
+  - workflow devkit integration
+  - directory structure
+  - "\U0001F3AF phase 15 deliverables"
 ---
 # Phase 15: Workflow Observability & Workflow.dev Integration
 

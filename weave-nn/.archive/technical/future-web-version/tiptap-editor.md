@@ -41,3 +41,10 @@ ProseMirror's underlying complexity occasionally surfaces in advanced extension 
 - **[Decision: Text Editor]** - Tiptap vs Quill vs Monaco vs plain textarea
 - **[Decision: Markdown Strategy]** - How markdown fits into the content model
 - **[Decision: Collaborative Editing]** - Real-time collaboration architecture and infrastructure
+
+## Related Documents
+
+### Related Files
+- [[FUTURE-WEB-VERSION-HUB.md]] - Parent hub
+- [[supabase.md]] - Same directory
+

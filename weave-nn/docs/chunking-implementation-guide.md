@@ -2,41 +2,39 @@
 title: Practical Chunking Implementation Guide for Weave-NN
 type: guide
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
 tags:
   - chunking
   - implementation-guide
   - practical-guide
   - configuration
   - weave-nn
-category: technical
+  - type/implementation
+  - status/in-progress
+  - domain/chunking
 domain: chunking
-scope: module
-audience:
-  - developers
-related_concepts:
-  - chunking-strategies
-  - contextual-boundary
-  - semantic-chunking
-  - embeddings
-  - vector-db
-related_files:
-  - CHUNKING-STRATEGY-SYNTHESIS.md
-  - chunking-quick-reference.md
-  - chunking-strategies-research-2024-2025.md
-  - CHUNKING-IMPLEMENTATION-DESIGN.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-guide
     - status-complete
     - priority-high
     - domain-chunking
-icon: 📄
+updated: '2025-10-29T04:55:05.376Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - 'quick start: recommended configuration'
+  - related
+  - implementation architecture
+  - core chunker class
+  - type definitions
+  - usage examples
+  - 'example 1: learning journal entry'
+  - 'example 2: knowledge article'
+  - how embeddings work
+  - applications
 ---
 
 # Practical Chunking Implementation Guide for Weave-NN

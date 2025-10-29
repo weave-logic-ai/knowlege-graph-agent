@@ -1,38 +1,37 @@
 ---
+title: Obsidian Local REST API Plugin
 type: technical-primitive
-category: tool
 status: in-use
-first_used_phase: PHASE-0
-mvp_required: true
-future_only: false
-maturity: stable
-used_in_services:
-  - mcp-server
-  - agent-orchestration
-  - file-watcher
-deployment: obsidian-plugin
-alternatives_considered:
-  - '[[obsidian-dataview-api]]'
-  - '[[direct-file-system-access]]'
-  - '[[obsidian-uri-protocol]]'
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/obsidian-programmatic-access]]'
-architecture: '[[../architecture/obsidian-integration-layer]]'
+phase_id: PHASE-0
 tags:
   - technical
   - tool
   - in-use
   - obsidian-plugin
   - rest-api
+  - phase/phase-0
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.371Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - deployment
+  - trade-offs
+  - alternatives considered
+  - '[[obsidian-dataview-api]]'
+  - '[[direct-file-system-access]]'
 ---
 
 # Obsidian Local REST API Plugin

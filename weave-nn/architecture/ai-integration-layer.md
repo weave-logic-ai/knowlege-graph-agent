@@ -1,10 +1,16 @@
 ---
-architecture_id: A-004
-layer_name: AI Integration Layer
-category: intelligence
+title: AI Integration Layer
+type: architecture
 status: planned
-created_date: '2025-10-21'
-complexity: complex
+tags:
+  - architecture
+  - ai-integration
+  - mcp
+  - agents
+  - memory
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[../mcp/model-context-protocol]]'
   - '[[../mcp/claude-flow-tight-coupling]]'
@@ -13,22 +19,24 @@ related:
   - '[[../concepts/ai-generated-documentation]]'
   - '[[api-layer]]'
   - '[[data-knowledge-layer]]'
-tags:
-  - architecture
-  - ai-integration
-  - mcp
-  - agents
-  - memory
-type: architecture
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
+updated: '2025-10-29T04:55:03.395Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - mcp protocol foundation
+  - claude-flow integration
+  - agent rules and constraints
+  - memory system architecture
+  - ai-assisted workflows
+  - related
+  - architecture
+  - concepts
+  - features
 ---
 
 # AI Integration Layer

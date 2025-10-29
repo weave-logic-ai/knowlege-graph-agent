@@ -9,20 +9,31 @@ tags:
   - frontmatter
   - obsidian
   - visual-intelligence
+  - phase/phase-14
+  - type/implementation
+  - status/complete
 domain: knowledge-graph
-scope: system
 priority: critical
-created_date: 2025-10-28T00:00:00.000Z
-updated_date: 2025-10-28T00:00:00.000Z
-version: '3.0'
 visual:
-  icon: 📊
+  icon: "\U0001F4CA"
   color: '#EC4899'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-critical
-icon: 📊
+updated: '2025-10-29T04:55:06.307Z'
+version: '3.0'
+keywords:
+  - overview
+  - what's new in v3.0
+  - complete schema
+  - field descriptions
+  - core identifiers
+  - visual properties (new!)
+  - relationships
+  - dataview fields
+  - migration from v2.0 to v3.0
+  - automatic upgrade script
 ---
 
 # Metadata Schema v3.0 - Obsidian Visual Intelligence

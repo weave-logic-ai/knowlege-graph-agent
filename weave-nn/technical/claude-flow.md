@@ -1,39 +1,37 @@
 ---
+title: Claude Flow
 type: technical-primitive
-category: framework
 status: in-use
-first_used_phase: PHASE-5
-mvp_required: true
-future_only: false
-maturity: stable
-used_in_services:
-  - mcp-server
-  - agent-orchestration
-  - task-automation
-  - swarm-coordination
-deployment: npm-package
-alternatives_considered:
-  - '[[langchain]]'
-  - '[[autogen]]'
-  - '[[crewai]]'
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/agent-orchestration-framework]]'
-architecture: '[[../architecture/agent-coordination-layer]]'
+phase_id: PHASE-5
 tags:
   - technical
   - framework
   - in-use
   - ai-orchestration
   - swarm-coordination
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.336Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - deployment
+  - trade-offs
+  - alternatives considered
+  - '[[langchain]]'
+  - '[[autogen]]'
 ---
 
 # Claude Flow

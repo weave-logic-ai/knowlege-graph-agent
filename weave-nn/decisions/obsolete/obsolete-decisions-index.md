@@ -1,7 +1,26 @@
 ---
+title: Obsolete Decisions Archive
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.872Z'
+keywords:
+  - purpose
+  - obsolete decisions
+  - 'd-007: fastmcp framework (python)'
+  - 'd-014: n8n workflow automation (node.js)'
+  - how decisions become obsolete
+  - archive process
+  - best practices
+  - see also
 ---
 # Obsolete Decisions Archive
 

@@ -8,20 +8,31 @@ tags:
   - visual-intelligence
   - icons
   - metadata
+  - phase/phase-14
+  - type/implementation
+  - status/in-progress
 domain: knowledge-graph
-scope: system
 priority: high
-created_date: 2025-10-28T00:00:00.000Z
-updated_date: 2025-10-28T00:00:00.000Z
-version: '1.0'
 visual:
-  icon: 🎨
+  icon: "\U0001F3A8"
   color: '#EC4899'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-high
-icon: 🎨
+updated: '2025-10-29T04:55:06.317Z'
+version: '1.0'
+keywords:
+  - overview
+  - document type icons
+  - status icons
+  - priority icons
+  - phase icons
+  - domain icons
+  - scope icons
+  - agent icons
+  - technology icons
+  - special markers
 ---
 
 # Obsidian Icon System

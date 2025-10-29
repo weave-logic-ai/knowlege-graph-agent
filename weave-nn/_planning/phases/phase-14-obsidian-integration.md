@@ -1,17 +1,8 @@
 ---
-phase_id: PHASE-14
-phase_name: Obsidian-Native Knowledge Graph & Visual Intelligence
+title: 'Phase 14: Obsidian-Native Knowledge Graph & Visual Intelligence'
+type: planning
 status: planned
-priority: high
-created_date: '2025-10-28'
-start_date: TBD
-end_date: TBD
-duration: 7-8 weeks
-dependencies:
-  requires:
-    - PHASE-13
-  enables:
-    - PHASE-15
+phase_id: PHASE-14
 tags:
   - phase
   - knowledge-graph
@@ -22,21 +13,35 @@ tags:
   - dataview
   - canvas
   - high-priority
+  - phase/phase-14
+  - type/implementation
+  - status/complete
+priority: high
 visual:
   icon: network
+  color: '#7ED321'
   cssclasses:
     - type-integration
     - status-planned
     - priority-high
-related_files:
-  - phase-13-master-plan.md
-  - phase-13-enhanced-agent-intelligence.md
-  - KNOWLEDGE-GRAPH-STATUS.md
-  - phase-12-four-pillar-autonomous-agents.md
-type: planning
+updated: '2025-10-29T04:55:03.149Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: network
+dependencies:
+  requires:
+    - PHASE-13
+  enables:
+    - PHASE-15
+keywords:
+  - "\U0001F3AF executive summary"
+  - the knowledge graph problem
+  - what phase 14 delivers
+  - "\U0001F4DA background & context"
+  - phase 13 accomplishments ✅
+  - the orphaned file crisis
+  - obsidian features not yet used
+  - "\U0001F3AF phase 14 objectives"
+  - 'objective 1: complete knowledge graph connectivity ⭐ critical'
+  - 'objective 2: obsidian visual styling ⭐ high'
 ---
 
 # Phase 14: Obsidian-Native Knowledge Graph & Visual Intelligence

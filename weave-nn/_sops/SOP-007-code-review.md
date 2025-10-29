@@ -1,24 +1,30 @@
 ---
-sop_id: SOP-007
-sop_name: Multi-Agent Code Review Workflow
-category: quality
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop review <pr-number>
-  - weaver review code <files>
-learning_enabled: true
-estimated_duration: 15-30 minutes
-complexity: medium
+title: 'SOP-007: Multi-Agent Code Review Workflow'
 type: sop
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.587Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. code analyzer agent
+  - 2. security manager agent
+  - 3. performance analyzer agent
+  - 4. tester agent
 ---
 
 # SOP-007: Multi-Agent Code Review Workflow

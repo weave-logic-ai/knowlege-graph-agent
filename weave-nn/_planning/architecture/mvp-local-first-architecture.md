@@ -1,7 +1,30 @@
 ---
+title: MVP Local-First Architecture Specification
+type: documentation
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:03.077Z'
+keywords:
+  - executive summary
+  - '1. mvp vs full microservices: service consolidation'
+  - 1.1 mvp-critical services (week 1-2)
+  - 1.2 post-mvp services (future)
+  - 2. local-first docker compose architecture
+  - 2.1 service topology (mvp)
+  - 2.2 docker compose configuration (mvp)
+  - 2.3 environment configuration
+  - 3. code organization for future splitting
+  - 3.1 service structure (designed for splitting)
 ---
 # MVP Local-First Architecture Specification
 
@@ -892,3 +915,13 @@ weave-nn/
 - Next Review: After Week 1 completion
 - Approval: Pending
 - Distribution: Development Team
+
+## Related Documents
+
+### Related Files
+- [[ARCHITECTURE-HUB.md]] - Parent hub
+- [[microservices-architecture.md]] - Same directory
+
+### Similar Content
+- [[microservices-architecture.md]] - Semantic similarity: 42.4%
+

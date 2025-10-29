@@ -1,32 +1,41 @@
 ---
-spec_type: implementation-plan
-phase_id: PHASE-6
-phase_name: Vault Initialization System
+title: Vault Initialization System - Implementation Plan
+type: planning
 status: pending
-priority: high
-duration: 15-20 days
-generated_date: '2025-10-24'
+phase_id: PHASE-6
 tags:
   - spec-kit
   - implementation-plan
   - phase-6
   - vault-initialization
-links:
-  specification: '[[specification.md]]'
-  constitution: '[[constitution.md]]'
-  phase_document: '[[../../phases/phase-6-vault-initialization.md]]'
-type: planning
+  - phase/phase-6
+  - type/implementation
+  - status/in-progress
+  - domain/vault-init
+domain:
+  - vault-init
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-6
+updated: '2025-10-29T04:55:04.491Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - executive summary
+  - related
+  - architecture overview
+  - 'week 1: foundation (days 1-5)'
+  - 'day 1-2: code scanner module'
+  - 'day 3-4: template system'
+  - overview
+  - structure
+  - quick navigation
+  - statistics
 ---
 
 # Vault Initialization System - Implementation Plan

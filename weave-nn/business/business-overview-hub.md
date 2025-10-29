@@ -1,30 +1,37 @@
 ---
-type: index
 title: Business Model & Strategy Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - business
 tags:
   - index
   - business
   - navigation
   - strategy
   - saas
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.462Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - business documentation
+  - market & users
+  - product & positioning
+  - pricing & revenue
+  - financial analysis
+  - key insights
+  - target market
+  - monetization strategy
+  - related
 ---
 
 # Business Model & Strategy

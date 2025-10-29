@@ -1,21 +1,33 @@
 ---
+title: Vault Template Comparison
 type: documentation
-category: templates
 status: active
-created_date: '2025-10-23'
 tags:
   - templates
   - comparison
   - reference
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
+updated: '2025-10-29T04:55:04.852Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - template overview
+  - detailed comparison
+  - 1. typescript/node.js application
+  - 2. next.js/react web application
+  - 3. python application
+  - 4. monorepo/multi-service
+  - 5. generic application
+  - decision matrix
+  - 'choose typescript/node.js if:'
+  - 'choose next.js/react if:'
 ---
 
 # Vault Template Comparison

@@ -1,38 +1,37 @@
 ---
+title: Wikilinks
 type: technical-primitive
-category: standard
 status: in-use
-first_used_phase: PHASE-1
-mvp_required: true
-future_only: false
-maturity: mature
-used_in_services:
-  - mcp-server
-  - event-consumer
-  - file-watcher
-deployment: local-dev
-alternatives_considered:
-  - '[[markdown-links]]'
-  - '[[html-links]]'
-  - '[[custom-link-syntax]]'
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/link-syntax-standard]]'
-architecture: '[[../architecture/knowledge-graph-schema]]'
+phase_id: PHASE-1
 tags:
   - technical
   - standard
   - linking
   - obsidian
   - in-use
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.269Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - deployment
+  - trade-offs
+  - alternatives considered
+  - '[[markdown-links]]'
+  - '[[html-links]]'
 ---
 
 # Wikilinks

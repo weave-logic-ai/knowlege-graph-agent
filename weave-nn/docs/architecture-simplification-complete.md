@@ -1,7 +1,30 @@
 ---
+title: 'Architecture Simplification: Complete Journey (4 → 1 Service)'
+type: architecture
+status: in-progress
+phase_id: PHASE-0
+tags:
+  - phase/phase-0
+  - type/architecture
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:03.516Z'
+keywords:
+  - executive summary
+  - 'the journey: three major simplifications'
+  - 'simplification 1: defer rabbitmq to post-mvp'
+  - 'simplification 2: integrate mcp into weaver'
+  - 'simplification 3: integrate file watcher into weaver'
+  - before vs after
+  - 'before: 4 separate services'
+  - 'after: 1 unified service'
+  - comparison table
+  - technical implementation
 ---
 # Architecture Simplification: Complete Journey (4 → 1 Service)
 

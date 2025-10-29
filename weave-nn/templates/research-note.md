@@ -1,34 +1,35 @@
 ---
-research_id: R-XXX
-research_title: '[Research Topic Title]'
-research_type: '[technical|competitive|academic|market|architectural]'
+title: '[Research Title]'
+type: research
 status: '[planning|in-progress|completed|archived]'
-priority: '[critical|high|medium|low]'
-created_date: YYYY-MM-DD
-last_updated: YYYY-MM-DD
-completed_date: null
-researcher: '[Name or Role]'
-stakeholders: []
-ai_assisted: '[true|false]'
-research_questions: []
-key_findings: []
-related_decisions: []
 tags:
   - research
   - - research_type
   - - domain
   - - status
-type: research
+  - type/research
+  - status/in-progress
+priority: '[critical|high|medium|low]'
 visual:
-  icon: 🔬
+  icon: "\U0001F52C"
   color: '#8B5CF6'
   cssclasses:
     - type-research
     - 'status-[planning|in-progress|completed|archived]'
     - 'priority-[critical|high|medium|low]'
+updated: '2025-10-29T04:55:06.470Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔬
+keywords:
+  - research overview and objectives
+  - research context
+  - primary research questions
+  - research scope and boundaries
+  - research methodology and approach
+  - research design
+  - data collection methods
+  - analysis framework
+  - key findings and discoveries
+  - 'finding 1: [finding title]'
 ---
 
 <!--

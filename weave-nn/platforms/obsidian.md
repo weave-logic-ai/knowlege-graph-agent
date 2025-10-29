@@ -1,37 +1,40 @@
 ---
-platform_id: obsidian
+title: Obsidian Platform Analysis
 type: knowledge-management
-architecture: local-first
-knowledge_graph_support: native
-pros:
-  - native_graph_visualization
-  - local_first_privacy
-  - markdown_native
-  - mcp_integration
-  - no_api_limits
-  - version_control_friendly
-cons:
-  - limited_real_time_collaboration
-  - desktop_app_required
-  - setup_complexity
-  - no_web_interface
+status: in-progress
+phase_id: PHASE-1
 tags:
   - platform
   - local-first
   - knowledge-graph
   - mcp
+  - phase/phase-1
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[notion]]'
   - '[[custom-solution]]'
   - '[[mcp-integration]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#50E3C2'
   cssclasses:
     - type-knowledge-management
+updated: '2025-10-29T04:55:06.145Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - architecture
+  - knowledge graph capabilities
+  - mcp integration
+  - key advantages
+  - limitations
+  - comparison to alternatives
+  - ideal use cases
+  - integration with weave-nn
+  - technical requirements
 ---
 
 # Obsidian Platform Analysis

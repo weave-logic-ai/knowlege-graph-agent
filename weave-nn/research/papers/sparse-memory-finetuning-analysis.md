@@ -1,35 +1,37 @@
 ---
+title: >-
+  Sparse Memory Finetuning for Continual Learning: Analysis & Applications to
+  Weave-NN
 type: research
-category: papers
 status: active
-created_date: '2025-10-23'
-updated_date: '2025-10-28'
-paper_title: Continual Learning via Sparse Memory Finetuning
-arxiv_id: 2510.15103v1
-research_focus:
-  - sparse-memory-techniques
-  - continual-learning
-  - catastrophic-forgetting-mitigation
-  - knowledge-graph-applications
-related_to:
-  - '[[../memory-networks-research]]'
-  - '[[../memory-design]]'
-  - '[[../../architecture/ai-integration-layer]]'
-  - '[[../../architecture/cross-project-knowledge-retention]]'
 tags:
   - type/research
   - category/papers
   - topic/memory-architecture
   - topic/continual-learning
   - status/active
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔬
+  icon: "\U0001F52C"
   color: '#8B5CF6'
   cssclasses:
     - type-research
     - status-active
+updated: '2025-10-29T04:55:06.252Z'
 version: '3.0'
-icon: 🔬
+keywords:
+  - executive summary
+  - key concepts extracted
+  - 1. **sparse memory architecture**
+  - 2. **tf-idf-based parameter selection**
+  - 3. **catastrophic forgetting mitigation**
+  - 4. **multi-granularity memory organization**
+  - 5. **dynamic memory allocation**
+  - applicable techniques for weave-nn
+  - 'technique 1: selective knowledge base updates'
+  - 'technique 2: layered knowledge stability'
 ---
 
 # Sparse Memory Finetuning for Continual Learning: Analysis & Applications to Weave-NN

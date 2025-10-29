@@ -1,29 +1,36 @@
 ---
-type: index
 title: Guides Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - guides
 tags:
   - index
   - guides
   - navigation
   - howto
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.711Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - what is a guide?
+  - core characteristics
+  - what makes it a guide?
+  - guide vs other documentation
+  - scope boundaries
+  - ✅ this is a guide
+  - ❌ this is not a guide
+  - directory structure
+  - 5 guide categories
+  - 1. setup (`/guides/setup/`)
 ---
 
 # Guides Directory

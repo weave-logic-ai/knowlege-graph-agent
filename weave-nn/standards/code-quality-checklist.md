@@ -1,24 +1,34 @@
 ---
-type: standard
 title: Code Quality Checklist
+type: standard
 status: active
-created_date: '2025-10-24'
 tags:
   - standards
   - code-quality
   - development
   - testing
-cssclasses:
-  - standard
-  - checklist
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-standard
     - status-active
+updated: '2025-10-29T04:55:06.277Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - pre-completion checklist
+  - 1. type checking ✅
+  - 2. linting ✅
+  - 3. build verification ✅
+  - 4. code review
+  - related
+  - task completion flow
+  - quality standards
+  - typescript
+  - code style
 ---
 
 # Code Quality Checklist

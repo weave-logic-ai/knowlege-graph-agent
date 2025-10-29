@@ -1,28 +1,43 @@
 ---
+title: Claude-Flow Tight Coupling Architecture
 type: integration-spec
 status: active
-priority: critical
-created_date: '2025-10-20'
+phase_id: PHASE-4
 tags:
   - claude-flow
   - tight-coupling
   - mcp
   - hive-mind
   - architecture
+  - phase/phase-4
+  - type/documentation
+  - status/in-progress
+priority: critical
 related:
   - '[[ai-agent-integration]]'
   - '[[model-context-protocol]]'
   - '[[agent-rules]]'
   - '[[../concepts/weave-nn]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:05.956Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F3AF core principle"
+  - related
+  - "\U0001F3D7️ architecture (mvp with weaver)"
+  - single source of truth with weaver integration
+  - "\U0001F504 how it actually works"
+  - 'scenario: ai creates a concept'
+  - 'scenario: ai reads related concepts'
+  - 'scenario: update node status'
+  - "\U0001F4CB mcp tools = memory operations"
+  - claude-flow "memory" operations mapped to mcp tools
 ---
 
 # Claude-Flow Tight Coupling Architecture

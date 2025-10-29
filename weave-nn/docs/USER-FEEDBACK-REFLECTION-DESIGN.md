@@ -2,44 +2,40 @@
 title: User Feedback Integration for Reflection Stage
 type: architecture
 status: in-progress
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - user-feedback
   - reflection-stage
   - learning-loop
   - markdown-workflows
   - integration
-category: technical
+  - phase/phase-12
+  - type/documentation
+  - status/in-progress
 domain: phase-12
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - user-feedback
-  - reflection
-  - learning-loop
-  - markdown-workflows
-  - async-feedback
-  - workflow-orchestration
-related_files:
-  - PHASE-12-LEARNING-LOOP-BLUEPRINT.md
-  - MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md
-  - WORKFLOW-EXTENSION-GUIDE.md
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-author: ai-generated
-version: 1.0.0
 priority: medium
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-in-progress
     - priority-medium
     - domain-phase-12
-icon: 🏗️
+updated: '2025-10-29T04:55:05.325Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - "\U0001F4DA related documentation"
+  - learning loop components
+  - workflow integration
+  - memory & embeddings
+  - see also
+  - related
+  - executive summary
+  - table of contents
+  - 1. system architecture
+  - 1.1 high-level architecture
 ---
 
 # User Feedback Integration for Reflection Stage

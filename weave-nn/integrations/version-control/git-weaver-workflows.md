@@ -1,28 +1,32 @@
 ---
 title: Git ↔ Weaver Workflows Integration
-integration_type: event-driven
-systems:
-  - name: Git Repository
-    role: version-control
-  - name: Weaver Workflows
-    role: orchestrator
-direction: bidirectional
-protocol: In-process (simple-git library)
-authentication: none (local repository)
-status: active
-created: {}
-updated: {}
 type: workflow
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
 domain: weaver
+priority: medium
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
     - domain-weaver
+updated: '2025-10-29T04:55:05.894Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - overview
+  - systems involved
+  - git repository
+  - weaver workflows
+  - integration architecture
+  - data flow
+  - components
+  - configuration
+  - environment variables
+  - git repository setup
 ---
 
 # Git ↔ Weaver Workflows Integration

@@ -1,7 +1,30 @@
 ---
+title: 'Weaver: Neural Network Junction & Workflow Proxy for Weave-NN'
+type: implementation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:03.718Z'
+keywords:
+  - executive summary
+  - 'core concept: neural network junction'
+  - problem statement
+  - proposed solution
+  - architecture overview
+  - key features
+  - 1. durable workflows ("use workflow")
+  - 2. webhook-driven architecture
+  - 3. unified proxy for all tool calls
+  - 4. knowledge graph integration
 ---
 # Weaver: Neural Network Junction & Workflow Proxy for Weave-NN
 

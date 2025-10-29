@@ -1,30 +1,16 @@
 ---
-type: decision
-decision_id: D-017
-decision_type: technical
 title: Obsidian REST API Client Architecture
+type: decision
 status: implemented
-created_date: {}
-updated_date: '2025-10-28'
 tags:
   - architecture
   - rest-api
   - obsidian
   - day-2
   - mvp
-related_concepts:
-  - '[[C-002-obsidian-vault]]'
-  - '[[C-013-rest-api-integration]]'
-related_features:
-  - '[[F-003-obsidian-integration]]'
-related_decisions:
-  - '[[day-4-agent-rules]]'
-  - '[[day-11-properties-visualization]]'
-phase: phase-5
+  - type/implementation
+  - status/in-progress
 priority: critical
-cssclasses:
-  - decision
-  - implemented
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -32,8 +18,19 @@ visual:
     - type-decision
     - status-implemented
     - priority-critical
+updated: '2025-10-29T04:55:04.901Z'
 version: '3.0'
-icon: ⚖️
+keywords:
+  - decision summary
+  - context
+  - decision
+  - architectural pattern
+  - key components
+  - crud operations
+  - security measures
+  - implementation details
+  - request/response interceptors
+  - connection testing
 ---
 
 # Day 2: Obsidian REST API Client Architecture

@@ -1,24 +1,37 @@
 ---
 title: Model Context Protocol (MCP)
 type: protocol
-category: integration
+status: in-progress
 tags:
   - mcp
   - protocol
   - ai-integration
   - context-management
-created: {}
+  - type/documentation
+  - status/in-progress
+priority: critical
 related:
   - '[[ai-agent-integration]]'
   - '[[cyanheads-obsidian-mcp-server]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-protocol
+updated: '2025-10-29T04:55:05.966Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - what is mcp?
+  - why mcp matters for weave-nn
+  - how it enables weave-nn
+  - integration examples
+  - obsidianapiclient mcp integration
+  - weaver workflow integration via mcp (mvp)
+  - 'legacy: ruleengine event handling via mcp'
+  - 'example: ai agent workflow with mcp'
+  - benefits of mcp integration
+  - related
 ---
 
 # Model Context Protocol (MCP)

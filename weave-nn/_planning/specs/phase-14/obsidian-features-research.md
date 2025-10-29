@@ -1,9 +1,8 @@
 ---
-phase_id: PHASE-14
-document_type: research
+title: Obsidian Features Research for Phase 14 Integration
+type: planning
 status: complete
-created_date: '2025-10-28'
-author: researcher-agent
+phase_id: PHASE-14
 tags:
   - obsidian
   - knowledge-graph
@@ -13,23 +12,32 @@ tags:
   - graph-view
   - metadata
   - plugins
+  - phase/phase-14
+  - type/implementation
+  - status/draft
 priority: critical
-related_phases:
-  - PHASE-13
-  - PHASE-14
-type: planning
-scope: feature
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-complete
     - priority-critical
     - phase-14
+updated: '2025-10-29T04:55:03.334Z'
+author: researcher-agent
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - executive summary
+  - top priorities (must-have)
+  - quick wins (easy integration)
+  - 1. visual styling features
+  - 1.1 note colors & highlights
+  - 1.2 file & folder icons
+  - 1.3 graph view colors & groups
+  - 1.4 callout boxes & styling
+  - 1.5 css themes & snippets
+  - 1.6 emoji support
 ---
 
 # Obsidian Features Research for Phase 14 Integration

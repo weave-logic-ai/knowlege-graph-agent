@@ -1,7 +1,30 @@
 ---
+title: 'Phase 13: Task Dependencies & Critical Path'
+type: implementation
+status: in-progress
+phase_id: PHASE-13
+tags:
+  - phase/phase-13
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:03.219Z'
+keywords:
+  - "\U0001F3AF overview"
+  - "\U0001F4CA dependency graph"
+  - visual dependency map
+  - "\U0001F517 detailed dependency matrix"
+  - 'task p13-t1.1: learning loop integration'
+  - '⭐ task p13-t1.2: advanced chunking system (critical path)'
+  - '⭐ task p13-t1.3: vector embeddings & semantic search (critical path)'
+  - 'task p13-t6: knowledge graph & markdown linking'
+  - 'task p13-t2.1: web tools'
+  - 'task p13-t2.2: multi-source fusion'
 ---
 # Phase 13: Task Dependencies & Critical Path
 **Complete Dependency Mapping and Scheduling**

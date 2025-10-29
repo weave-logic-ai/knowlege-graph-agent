@@ -1,29 +1,36 @@
 ---
-type: index
 title: Weave-NN Knowledge Base
+type: index
 status: active
-created_date: '2025-10-20'
-updated_date: '2025-10-28'
-cssclasses:
-  - index
-  - navigation
-  - vault-home
 tags:
   - index
   - navigation
   - knowledge-graph
   - vault-home
-scope: system
+  - type/hub
+  - status/draft
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.802Z'
 version: '3.0'
-icon: 📄
+keywords:
+  - "\U0001F3AF what is weave-nn?"
+  - "\U0001F9E0 core philosophy: local loop with neural network junction"
+  - related
+  - "\U0001F5FA️ navigation"
+  - core concepts
+  - platforms considered
+  - tech stack
+  - current decisions
+  - "\U0001F4CA project status"
+  - implemented features
 ---
 
 # Weave-NN Knowledge Base

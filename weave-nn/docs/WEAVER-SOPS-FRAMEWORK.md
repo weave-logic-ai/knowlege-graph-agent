@@ -2,43 +2,41 @@
 title: Weaver Standard Operating Procedures (SOPs) Framework
 type: reference
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - sops
   - framework
   - standard-operating-procedures
   - workflow-automation
   - orchestration
-category: process
+  - phase/phase-12
+  - type/implementation
+  - status/complete
 domain: weaver
-scope: system
-audience:
-  - developers
-  - architects
-  - users
-related_concepts:
-  - workflow-orchestration
-  - autonomous-agents
-  - repeatable-workflows
-  - sop-templates
-  - governance
-related_files:
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-  - WORKFLOW-EXTENSION-GUIDE.md
-  - phase-12-workflow-inventory.md
-author: ai-generated
-version: 1.0.0
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-reference
     - status-complete
     - priority-high
     - domain-weaver
   graph_group: navigation
-icon: 📄
+updated: '2025-10-29T04:55:05.360Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - table of contents
+  - "\U0001F4DA related documentation"
+  - core implementation
+  - learning loop & workflows
+  - workflow architecture
+  - mcp tools
+  - see also
+  - 1. sop framework architecture
+  - 1.1 what is an sop in weaver?
+  - 1.2 core sop components
 ---
 
 # Weaver Standard Operating Procedures (SOPs) Framework

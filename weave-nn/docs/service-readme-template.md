@@ -1,7 +1,30 @@
 ---
+title: '[Service Name]'
+type: architecture
+status: in-progress
+phase_id: PHASE-12
+tags:
+  - phase/phase-12
+  - type/architecture
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:05.716Z'
+keywords:
+  - overview
+  - key responsibilities
+  - non-responsibilities
+  - architecture
+  - service type
+  - event-driven integration
+  - dependencies
+  - api endpoints (if applicable)
+  - local development
+  - prerequisites
 ---
 # [Service Name]
 
@@ -471,3 +494,13 @@ python -m pdb src/main.py
 **Created**: 2025-10-23
 **Last Updated**: 2025-10-23
 **Maintained By**: [Team Name]
+
+## Related Documents
+
+### Related Files
+- [[DOCS-HUB.md]] - Parent hub
+- [[phase-12-mcp-tools-audit.md]] - Same directory
+- [[phase-12-pillar-mapping.md]] - Same directory
+- [[phase-12-weaver-inventory.md]] - Same directory
+- [[weaver-cli-integration-audit.md]] - Same directory
+

@@ -1,7 +1,28 @@
 ---
+title: Git and Docker Ignore Patterns for Weave-NN
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.403Z'
+keywords:
+  - root `.gitignore`
+  - root `.dockerignore`
+  - service-specific `.dockerignore`
+  - patterns for specific file types
+  - python bytecode
+  - virtual environments
+  - ide files
+  - test coverage
+  - secrets
+  - best practices
 ---
 # Git and Docker Ignore Patterns for Weave-NN
 

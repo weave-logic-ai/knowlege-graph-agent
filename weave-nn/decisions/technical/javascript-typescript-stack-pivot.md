@@ -1,12 +1,8 @@
 ---
-type: decision
-decision_id: D-021
-decision_type: technical
 title: JavaScript/TypeScript Stack Pivot for MVP
+type: decision
 status: decided
-created_date: {}
-updated_date: '2025-10-28'
-decided_date: {}
+phase_id: PHASE-4B
 tags:
   - architecture
   - stack-selection
@@ -14,28 +10,10 @@ tags:
   - nodejs
   - mcp
   - infrastructure
-related_concepts:
-  - '[[C-008-agent-coordination]]'
-  - '[[C-001-weave-nn-core]]'
-related_features:
-  - '[[F-001-mcp-server]]'
-  - '[[F-002-file-watcher]]'
-  - '[[F-006-automation]]'
-related_decisions:
-  - '[[adopt-weaver-workflow-proxy]]'
-  - '[[event-driven-architecture]]'
-obsoletes:
-  - D-007 (FastMCP Python Stack)
-  - D-014 (N8N Workflow Automation)
-defers:
-  - D-013 (RabbitMQ Message Queue)
-phase: phase-0
+  - phase/phase-4b
+  - type/implementation
+  - status/in-progress
 priority: critical
-impact: critical
-cssclasses:
-  - decision
-  - decided
-  - critical
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -43,8 +21,19 @@ visual:
     - type-decision
     - status-decided
     - priority-critical
+updated: '2025-10-29T04:55:04.926Z'
 version: '3.0'
-icon: ⚖️
+keywords:
+  - decision summary
+  - context
+  - the original plan (phases 1-4a)
+  - the phase 4b reality check
+  - decision
+  - technology selections
+  - rationale
+  - 1. official mcp sdk support
+  - 2. weaver integration advantages
+  - 3. unified development experience
 ---
 
 # Decision: JavaScript/TypeScript Stack Pivot for MVP

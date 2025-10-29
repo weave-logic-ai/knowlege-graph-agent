@@ -1,7 +1,33 @@
 ---
+title: memory networks research
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔬
-icon: 🔬
+  icon: "\U0001F52C"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.218Z'
+keywords:
+  - memory-augmented architectures reveal fundamental design patterns
+  - chunking strategies demand logical boundaries over arbitrary sizes
+  - >-
+    network topology must balance clustering with navigable long-range
+    connections
+  - faceted metadata systems scale through multi-dimensional independence
+  - >-
+    curation strategies require continuous automated scanning with human
+    oversight
+  - >-
+    modern rag systems achieve quality through adaptive retrieval and hybrid
+    search
+  - proven implementations validate design patterns at massive scale
+  - 'synthesis: architectural recommendations for claude-flow + obsidian'
+  - 'conclusion: convergence on adaptive, multi-modal approaches'
 ---
 
 

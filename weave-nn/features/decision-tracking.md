@@ -1,35 +1,36 @@
 ---
-feature_id: F-007
-feature_name: Decision Tracking System
-category: planning
+title: Decision Tracking System
+type: documentation
 status: planned
-priority: high
-release: mvp
-complexity: moderate
-dependencies:
-  requires:
-    - F-001
-    - F-002
-  blocks: []
-related_decisions:
-  - '[[../meta/DECISIONS-INDEX]]'
+phase_id: PHASE-4B
 tags:
   - feature
   - planning
   - mvp
   - high-priority
-type: documentation
-scope: feature
+  - phase/phase-4b
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-planned
     - priority-high
+updated: '2025-10-29T04:55:05.827Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+dependencies:
+  requires:
+    - F-001
+    - F-002
+keywords:
+  - user story
+  - key capabilities
+  - dependencies
+  - implementation notes
+  - related
 ---
 
 # Decision Tracking System

@@ -1,25 +1,38 @@
 ---
+title: Ecological Thinking
 type: concept
+status: active
 tags:
   - systems-thinking
   - knowledge-ecology
   - network-theory
   - biodiversity
+  - type/implementation
+  - status/in-progress
+priority: medium
 related:
   - '[[cognitive-variability]]'
   - '[[graph-topology-analysis]]'
   - '[[structural-gap-detection]]'
-status: active
-created: {}
-source: InfraNodus Ecological Network Analysis
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.817Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - core ecological principles
+  - 1. diversity as optimization target
+  - 2. keystone concepts
+  - 3. niche specialization
+  - 4. succession and evolution
+  - structural gap detection
+  - finding "ecological niches"
+  - gap prioritization
+  - resilience through redundancy
 ---
 
 # Ecological Thinking

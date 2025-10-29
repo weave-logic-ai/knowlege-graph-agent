@@ -2,32 +2,19 @@
 title: Planning Directory Hub
 type: hub
 status: active
-created_date: {}
+phase_id: PHASE-13
 tags:
   - planning
   - navigation
   - hub
   - directory-hub
-category: planning
+  - phase/phase-13
+  - type/implementation
+  - status/draft
 domain: meta
-scope: project
-audience:
-  - developers
-  - architects
-  - project-managers
-related_concepts:
-  - project-management
-  - phase-planning
-  - task-tracking
-related_files:
-  - planning-overview-hub.md
-  - phase-13-master-plan.md
-  - MASTER-PLAN.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -35,8 +22,20 @@ visual:
     - priority-high
     - domain-meta
   graph_group: navigation
-updated_date: '2025-10-28'
-icon: 🌐
+updated: '2025-10-29T04:55:03.909Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - "\U0001F4CB overview"
+  - "\U0001F5C2️ directory structure"
+  - '`/phases/` - development phases'
+  - '`/phases/phase4b/` - phase 4b details'
+  - '`/phases/phase-6/` - phase 6 architecture'
+  - "\U0001F4DA specifications (`/specs/`)"
+  - phase 13 specifications
+  - phase 14 specifications
+  - phase 11 specifications
+  - phase 8 specifications
 ---
 
 # Planning Directory Hub

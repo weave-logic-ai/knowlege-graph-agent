@@ -1,21 +1,8 @@
 ---
-concept_id: C-005
-concept_type: technical-concept
 title: Temporal Queries
+type: concept
 status: active
-category: core-concept
-created_date: '2025-10-20'
-last_updated: '2025-10-20'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - knowledge-graph
-  - weave-nn
-  - ai-generated-documentation
-related_decisions:
-  - TS-4
-  - FP-2
+phase_id: PHASE-1
 tags:
   - temporal
   - queries
@@ -23,14 +10,30 @@ tags:
   - time-series
   - core-concept
   - advanced-feature
-type: concept
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
-updated_date: '2025-10-28'
-icon: 💡
+updated: '2025-10-29T04:55:04.884Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - core concept
+  - temporal vs traditional queries
+  - traditional query (snapshot)
+  - temporal query (time-aware)
+  - evolution query
+  - 'implementation: graphiti'
+  - key capabilities
+  - architecture integration
+  - use cases in weave-nn
+  - 1. point-in-time knowledge reconstruction
 ---
 
 # Temporal Queries

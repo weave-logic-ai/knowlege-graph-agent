@@ -1,31 +1,42 @@
 ---
-spec_type: specification
-phase_id: PHASE-6
-phase_name: Vault Initialization System
+title: Vault Initialization System - Specification
+type: planning
 status: pending
-priority: high
-duration: 15-20 days
-generated_date: '2025-10-24'
-task_count: 63
+phase_id: PHASE-6
 tags:
   - spec-kit
   - specification
   - phase-6
-links:
-  phase_document: '[[phase planning document]]'
-  constitution: '[[constitution.md]]'
-type: planning
+  - phase/phase-6
+  - type/implementation
+  - status/in-progress
+  - domain/vault-init
+domain:
+  - vault-init
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-6
+updated: '2025-10-29T04:55:04.485Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - requirements
+  - initial task breakdown
+  - >-
+    task 1: implement framework detection (next.js, react, express, django,
+    fastapi, flask)
+  - 'task 2: build directory tree scanner with ignore patterns'
+  - 'task 3: extract components from typescript/javascript (using babel/ts ast)'
+  - 'task 4: extract modules from python (using ast via subprocess)'
+  - 'task 5: parse package.json, requirements.txt, tsconfig.json, etc.'
+  - 'task 6: write unit tests for scanner'
 ---
 
 # Vault Initialization System - Specification

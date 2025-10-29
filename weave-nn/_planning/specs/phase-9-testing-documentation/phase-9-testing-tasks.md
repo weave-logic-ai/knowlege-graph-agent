@@ -1,13 +1,8 @@
 ---
-spec_type: tasks
-phase_id: PHASE-9
-phase_name: Testing & Documentation + Phase 8 Completion
+title: 'Phase 9: Testing & Documentation + Phase 8 Completion - Task Breakdown'
+type: planning
 status: pending
-priority: high
-duration: 3-4 days
-generated_date: '2025-10-26'
-total_tasks: 14
-estimated_effort: 3-4 days
+phase_id: PHASE-9
 tags:
   - spec-kit
   - tasks
@@ -15,23 +10,31 @@ tags:
   - testing
   - documentation
   - phase-8-completion
-links:
-  constitution: '[[constitution.md]]'
-  specification: '[[specification.md]]'
-  phase_document: '[[phase-9-testing-documentation]]'
-type: planning
-scope: task
+  - phase/phase-9
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-high
     - phase-9
+updated: '2025-10-29T04:55:04.531Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - 'section 1: phase 8 completion (day 1) - 11 hours'
+  - '1.1: write unit tests for gitclient'
+  - '1.2: write integration tests for auto-commit'
+  - '1.3: update git documentation'
+  - '1.4: create gitworkflowproxy class'
+  - '1.5: create weaver git-commit workflow'
+  - '1.6: add git proxy api endpoints'
+  - '1.7: add git metrics endpoint'
 ---
 
 # Phase 9: Testing & Documentation + Phase 8 Completion - Task Breakdown

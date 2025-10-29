@@ -1,25 +1,37 @@
 ---
+title: Immediate Action Checklist (Next 4 Hours)
 type: checklist
 status: urgent
-priority: critical
-created_date: {}
+phase_id: PHASE-5
 tags:
   - planning
   - checklist
   - action-required
   - immediate
-cssclasses:
-  - type-checklist
-  - priority-critical
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-checklist
     - status-urgent
     - priority-critical
+updated: '2025-10-29T04:55:04.176Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - '⚡ priority 1: reconcile phase numbering (30 minutes)'
+  - decision point
+  - update all documents (15 minutes)
+  - document decision (15 minutes)
+  - related
+  - '⚡ priority 2: extract phase 8 prerequisites to phase 0 (1 hour)'
+  - items to extract (from phase 8 line 76-125)
+  - update phase 0 document (20 minutes)
+  - update phase 8 document (10 minutes)
+  - update tasks.md (15 minutes)
 ---
 
 # Immediate Action Checklist (Next 4 Hours)

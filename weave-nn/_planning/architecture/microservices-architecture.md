@@ -1,7 +1,30 @@
 ---
+title: Weave-NN Microservices Architecture Specification
+type: documentation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:03.095Z'
+keywords:
+  - executive summary
+  - key design principles
+  - 1. service topology
+  - 1.1 core services
+  - 1.2 supporting services
+  - 2. network architecture
+  - 2.1 network topology
+  - 2.2 network zones
+  - 2.3 security boundaries
+  - 3. data flow patterns
 ---
 # Weave-NN Microservices Architecture Specification
 
@@ -1107,3 +1130,14 @@ kubectl logs -n weave-nn-app deployment/mcp-server --tail=100 -f
 - Next Review: 2025-11-23
 - Approval: Pending
 - Distribution: Engineering Team, DevOps, Product
+
+## Related Documents
+
+### Related Files
+- [[ARCHITECTURE-HUB.md]] - Parent hub
+- [[mvp-local-first-architecture.md]] - Same directory
+
+### Similar Content
+- [[mvp-local-first-architecture.md]] - Semantic similarity: 42.4%
+- [[service-mesh-networking-recommendations.md]] - Semantic similarity: 31.2%
+

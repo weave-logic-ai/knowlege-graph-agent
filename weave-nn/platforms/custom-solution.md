@@ -1,25 +1,17 @@
 ---
-platform_id: custom-solution
+title: Custom-Built Solution Analysis
 type: knowledge-management
-architecture: custom
-knowledge_graph_support: fully-customizable
-pros:
-  - unlimited_customization
-  - no_vendor_lock_in
-  - saas_potential
-  - native_ai_integration
-  - temporal_queries
-  - full_control
-cons:
-  - development_time_required
-  - maintenance_overhead
-  - initial_complexity
-  - higher_upfront_cost
+status: in-progress
+phase_id: PHASE-1
 tags:
   - platform
   - custom-development
   - saas
   - temporal-knowledge-graph
+  - phase/phase-1
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[obsidian]]'
   - '[[notion]]'
@@ -27,12 +19,23 @@ related:
   - '[[react-flow]]'
   - '[[svelte-flow]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#50E3C2'
   cssclasses:
     - type-knowledge-management
+updated: '2025-10-29T04:55:06.116Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - the growing markdown problem
+  - architecture vision
+  - key differentiators
+  - technology stack options
+  - fast path (sveltekit)
+  - saas path (next.js)
+  - build vs buy decision
+  - hybrid development path
+  - development costs
 ---
 
 # Custom-Built Solution Analysis

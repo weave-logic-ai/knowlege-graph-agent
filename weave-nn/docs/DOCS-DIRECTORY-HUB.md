@@ -2,31 +2,19 @@
 title: Documentation Directory Hub
 type: hub
 status: active
-created_date: {}
+phase_id: PHASE-12
 tags:
   - documentation
   - navigation
   - hub
   - directory-hub
-category: documentation
+  - phase/phase-12
+  - type/implementation
+  - status/draft
 domain: meta
-scope: project
-audience:
-  - developers
-  - architects
-  - users
-related_concepts:
-  - documentation
-  - knowledge-management
-  - technical-writing
-related_files:
-  - documentation-hub.md
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -34,8 +22,20 @@ visual:
     - priority-high
     - domain-meta
   graph_group: navigation
-updated_date: '2025-10-28'
-icon: 🌐
+updated: '2025-10-29T04:55:05.035Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - "\U0001F4CB overview"
+  - "\U0001F5C2️ directory structure"
+  - phase 12 documentation (four-pillar autonomous agents)
+  - phase 13 documentation
+  - phase 11 documentation
+  - "\U0001F9E0 chunking system documentation"
+  - "\U0001F52C research documentation (`/research/`)"
+  - "\U0001F3D7️ architecture documentation"
+  - "\U0001F504 workflow documentation"
+  - "\U0001F6E0️ weaver implementation documentation"
 ---
 
 # Documentation Directory Hub

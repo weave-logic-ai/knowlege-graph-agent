@@ -1,7 +1,30 @@
 ---
+title: 'Prioritized Action Items: Research Synthesis Implementation'
+type: documentation
+status: in-progress
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.734Z'
+keywords:
+  - "\U0001F3AF phase 1: quick wins (weeks 1-2)"
+  - 'priority: critical - week 1'
+  - 'priority: high - week 2'
+  - "\U0001F7E2 phase 2: custom scripts (weeks 3-6)"
+  - 'priority: high - weeks 3-4'
+  - 'priority: medium - weeks 5-6'
+  - context
+  - problem
+  - solution
+  - trade-offs
 ---
 # Prioritized Action Items: Research Synthesis Implementation
 
@@ -1211,3 +1234,9 @@ Create `/metrics/implementation-dashboard.md` to track progress:
 
 **Status**: ✅ READY FOR EXECUTION
 **Next Agent**: Implementation agent can begin Phase 1 Week 1 actions
+
+## Related Documents
+
+### Similar Content
+- [[phase-12-paper-analysis.md]] - Semantic similarity: 53.3%
+

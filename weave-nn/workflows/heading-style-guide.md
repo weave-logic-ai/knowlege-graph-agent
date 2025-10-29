@@ -1,7 +1,28 @@
 ---
+title: Heading Style Guide for Perplexity-Based Chunking
+type: implementation
+status: in-progress
+tags:
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🔄
-icon: 🔄
+  icon: "\U0001F504"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:06.657Z'
+keywords:
+  - overview
+  - core principles
+  - perplexity target range
+  - token count guidelines by heading level
+  - 'h2: main sections (200-300 tokens)'
+  - purpose
+  - characteristics
+  - structure guidelines
+  - 'example: technical documentation'
+  - authentication system architecture
 ---
 # Heading Style Guide for Perplexity-Based Chunking
 
@@ -319,3 +340,14 @@ This heading style guide provides a systematic approach to structuring documents
 - RAG evaluation benchmarks: [Lewis et al., 2020]
 - Multi-hop reasoning datasets: [Yang et al., 2018]
 - Semantic boundary detection: [Choi, 2000]
+
+## Related Documents
+
+### Related Files
+- [[WORKFLOWS-HUB.md]] - Parent hub
+- [[task-workflow-test.md]] - Same directory
+- [[version-control-integration.md]] - Same directory
+
+### Similar Content
+- [[perplexity-validator.md]] - Semantic similarity: 37.3%
+

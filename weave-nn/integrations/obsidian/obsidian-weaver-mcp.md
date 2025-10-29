@@ -1,29 +1,32 @@
 ---
 title: Obsidian ↔ Weaver MCP Integration
-integration_type: hub-and-spoke
-systems:
-  - name: Obsidian Vault
-    role: both
-  - name: Weaver MCP
-    role: hub
-direction: bidirectional
-protocol: HTTP (Local REST API)
-authentication: api-key
-status: active
-created: {}
-updated: {}
 type: documentation
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
 domain: weaver
+priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
     - domain-weaver
+updated: '2025-10-29T04:55:05.888Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - overview
+  - systems involved
+  - obsidian vault
+  - weaver mcp
+  - integration architecture
+  - data flow
+  - components
+  - configuration
+  - environment variables
+  - claude desktop configuration
 ---
 
 # Obsidian ↔ Weaver MCP Integration

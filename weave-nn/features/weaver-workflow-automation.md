@@ -1,45 +1,8 @@
 ---
-feature_id: F-020
-feature_name: Weaver Workflow Automation
-category: automation
+title: Weaver Workflow Automation (workflow.dev)
+type: documentation
 status: planned
-priority: high
-release: mvp
-complexity: moderate
-created_date: '2025-10-23'
-updated_date: '2025-10-28'
-scope:
-  current_phase: mvp
-  obsidian_only: false
-  web_version_needed: false
-  infrastructure: true
-dependencies:
-  requires:
-    - rabbitmq-message-queue
-  enables:
-    - cross-project-knowledge-retention
-    - github-issues-integration
-  related_features:
-    - rabbitmq-message-queue
-    - git-integration
-    - obsidian-tasks-integration
-  replaces:
-    - n8n-workflow-automation
-relationships:
-  related_decisions:
-    - IR-3
-  related_architecture:
-    - obsidian-first-architecture
-    - ai-integration-layer
-  replaces:
-    - n8n-workflow-automation
-visual:
-  icon: workflow
-  cssclasses:
-    - type-feature
-    - scope-mvp
-    - priority-high
-    - tech-weaver
+phase_id: PHASE-9
 tags:
   - scope/mvp
   - type/feature
@@ -52,10 +15,44 @@ tags:
   - category/automation
   - category/infrastructure
   - durable-execution
-type: documentation
+  - phase/phase-9
+  - type/architecture
+  - status/in-progress
 domain: weaver
+priority: high
+visual:
+  icon: workflow
+  color: '#50E3C2'
+  cssclasses:
+    - type-feature
+    - scope-mvp
+    - priority-high
+    - tech-weaver
+updated: '2025-10-29T04:55:05.875Z'
 version: '3.0'
-icon: workflow
+dependencies:
+  requires:
+    - rabbitmq-message-queue
+  enables:
+    - cross-project-knowledge-retention
+    - github-issues-integration
+  related_features:
+    - rabbitmq-message-queue
+    - git-integration
+    - obsidian-tasks-integration
+  replaces:
+    - n8n-workflow-automation
+keywords:
+  - "\U0001F3AF user story"
+  - related
+  - "\U0001F4A1 business value"
+  - problem solved
+  - roi metrics
+  - "\U0001F680 key capabilities"
+  - durable workflow execution
+  - automatic retry logic
+  - time-travel debugging
+  - code-first workflows
 ---
 
 # Weaver Workflow Automation (workflow.dev)

@@ -1,32 +1,35 @@
 ---
-feature_id: F-XXX
-feature_name: '[Feature Name]'
-category: '[knowledge-graph|editor|ai|planning|data|collaboration]'
+title: '[Feature Name]'
+type: template
 status: '[planned|in-progress|completed|deferred]'
-priority: '[critical|high|medium|low]'
-release: '[mvp|v1.0|v1.1|v2.0]'
-complexity: '[simple|moderate|complex|very-complex]'
-dependencies:
-  requires: []
-  blocks: []
-related_decisions:
-  - '[[path/to/decision]]'
 tags:
   - feature
   - - category
   - - release
   - - primary-capability
-type: template
-scope: feature
+  - type/implementation
+  - status/in-progress
+priority: '[critical|high|medium|low]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-template
     - 'status-[planned|in-progress|completed|deferred]'
     - 'priority-[critical|high|medium|low]'
+updated: '2025-10-29T04:55:06.451Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - user story
+  - key capabilities
+  - dependencies
+  - implementation notes
+  - user experience
+  - acceptance criteria
+  - edge cases
+  - performance considerations
+  - security considerations
+  - testing strategy
 ---
 
 # [Feature Name]

@@ -2,24 +2,37 @@
 title: MCP Directory - Weaver Integration Documentation
 type: directory-index
 status: active
-created: {}
+phase_id: PHASE-5
 tags:
   - mcp
   - weaver
   - integration
   - architecture
-scope: system
+  - phase/phase-5
+  - type/hub
+  - status/complete
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-directory-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.745Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - what is mcp?
+  - directory contents
+  - core documentation
+  - legacy documentation
+  - mcp servers
+  - architecture overview
+  - current mvp architecture
+  - related
+  - related documentation
+  - integration docs
 ---
 
 # MCP Directory

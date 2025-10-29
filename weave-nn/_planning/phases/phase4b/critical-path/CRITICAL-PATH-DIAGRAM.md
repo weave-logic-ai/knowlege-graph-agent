@@ -1,25 +1,37 @@
 ---
+title: 'Critical Path Diagram: Phases 0-8'
 type: diagram
 status: active
-priority: critical
-created_date: {}
+phase_id: PHASE-0
 tags:
   - planning
   - critical-path
   - visualization
   - dependencies
-cssclasses:
-  - type-diagram
-  - priority-critical
+  - phase/phase-0
+  - type/documentation
+  - status/complete
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-diagram
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:04.158Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - current state (broken - do not use)
+  - related
+  - corrected plan (use this)
+  - detailed dependency chain
+  - critical path timeline
+  - prerequisites heatmap
+  - risk distribution
+  - time impact analysis
+  - decision tree
+  - integration testing checkpoints
 ---
 
 # Critical Path Diagram: Phases 0-8

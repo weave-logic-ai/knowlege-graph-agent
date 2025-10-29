@@ -1,7 +1,30 @@
 ---
+title: Knowledge Graph Baseline Metrics
+type: documentation
+status: draft
+phase_id: PHASE-6
+tags:
+  - phase/phase-6
+  - type/documentation
+  - status/draft
+priority: critical
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.410Z'
+keywords:
+  - "\U0001F3AF executive summary"
+  - "\U0001F4CA core metrics"
+  - overall graph health
+  - file distribution
+  - "\U0001F50D discovery results"
+  - connection opportunities
+  - top 5 high-confidence connections
+  - "\U0001F3F7️ topic clusters (9 identified)"
+  - "\U0001F534 critical orphaned files (top 10)"
+  - "\U0001F4C8 comparison to target state"
 ---
 # Knowledge Graph Baseline Metrics
 **Analysis Date**: 2025-10-28
@@ -205,3 +228,11 @@ These are phase/spec pairs that should already be linked:
 ---
 
 **Next Steps**: Begin implementing high-confidence connections (Phase 1) using the connection suggestions report.
+
+## Related Documents
+
+### Related Files
+- [[HIVE-MIND-HUB.md]] - Parent hub
+- [[GRAPH-IMPROVEMENTS-COMPLETE.md]] - Same directory
+- [[risk-analysis.md]] - Same directory
+

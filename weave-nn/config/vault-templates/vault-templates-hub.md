@@ -1,25 +1,37 @@
 ---
+title: Vault Template System
 type: documentation
-category: configuration
 status: active
-created_date: '2025-10-23'
+phase_id: PHASE-6
 tags:
   - templates
   - vault-initialization
   - project-scaffolding
-scope: system
+  - phase/phase-6
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.530Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - overview
+  - available templates
+  - template files
+  - 1. template specification (`template.yaml`)
+  - 2. directory tree (`directory-tree.txt`)
+  - 3. document templates (`documents/*.md`)
+  - 4. example output (`examples/`)
+  - 5. knowledge graph schema (`knowledge-graph.yaml`)
+  - using templates
+  - cli command (future)
 ---
 
 # Vault Template System

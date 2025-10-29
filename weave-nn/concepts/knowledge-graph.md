@@ -1,37 +1,38 @@
 ---
-concept_id: C-002
-concept_type: technical-concept
 title: Knowledge Graph
+type: concept
 status: active
-category: core-concept
-created_date: '2025-10-20'
-last_updated: '2025-10-20'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - weave-nn
-  - wikilinks
-  - temporal-queries
-  - ai-generated-documentation
-related_decisions:
-  - TS-2
-  - FP-1
 tags:
   - graph-visualization
   - data-structure
   - core-concept
   - navigation
-type: concept
+  - type/implementation
+  - status/in-progress
+  - domain/knowledge-graph
 domain: knowledge-graph
+priority: medium
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
     - domain-knowledge-graph
-updated_date: '2025-10-28'
-icon: 💡
+updated: '2025-10-29T04:55:04.791Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - core concept
+  - implementation in weave-nn
+  - node types
+  - edge types
+  - visualization features
+  - platforms compared
+  - temporal knowledge graphs
+  - graph-driven workflows
+  - related concepts
+  - related decisions
 ---
 
 # Knowledge Graph

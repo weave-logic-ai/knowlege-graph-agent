@@ -1,28 +1,38 @@
 ---
+title: Weave-NN Master Plan (Obsidian-First)
 type: master-plan
 status: active
-priority: critical
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
-version: 2.0-obsidian-first
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-  deferred: false
+phase_id: PHASE-4
 tags:
   - scope/mvp
   - type/planning
   - status/active
   - priority/critical
   - obsidian-first
+  - phase/phase-4
+  - type/architecture
+  - status/draft
+priority: critical
 visual:
   icon: map
+  color: '#50E3C2'
   cssclasses:
     - type-planning
     - scope-mvp
     - priority-critical
-icon: 🗺️
+updated: '2025-10-29T04:55:03.902Z'
+version: 2.0-obsidian-first
+keywords:
+  - "\U0001F3AF overall objectives"
+  - primary goals (revised)
+  - related
+  - "\U0001F50C obsidian integration strategy"
+  - 'primary integration method: rest api'
+  - required obsidian plugins
+  - "\U0001F504 event-driven architecture"
+  - rabbitmq message queue
+  - "\U0001F916 weaver workflow automation"
+  - "\U0001F4DA cross-project knowledge retention"
 ---
 
 # Weave-NN Master Plan (Obsidian-First)

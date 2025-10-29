@@ -1,26 +1,35 @@
 ---
+title: Suggestion & Multiple-Choice Pattern
 type: workflow
-workflow_name: Suggestion & Multiple-Choice Pattern
 status: active
-created_date: '2025-10-20'
-complexity: moderate
-related_systems:
-  - Claude-Flow MCP Memory
-  - Obsidian Knowledge Graph
 tags:
   - workflow
   - pattern
   - ai-integration
   - decision-support
   - claude-flow
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.664Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB pattern overview"
+  - "\U0001F3AF core structure"
+  - yaml frontmatter
+  - markdown body structure
+  - question
+  - context
+  - options / possible answers
+  - 'option a: [title]'
+  - 'option b: [title]'
+  - 'option c: research needed'
 ---
 
 # Suggestion & Multiple-Choice Pattern

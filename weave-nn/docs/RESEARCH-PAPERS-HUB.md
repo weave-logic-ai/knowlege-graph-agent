@@ -1,24 +1,52 @@
 ---
-tags: 'hub, research, papers, ai, knowledge-graph'
-created: {}
-modified: {}
+title: Research Papers Hub
 type: hub
 status: active
-coverage: 35 research files
-impact: medium
-scope: system
+tags:
+  - h
+  - u
+  - b
+  - ','
+  - ' '
+  - r
+  - e
+  - s
+  - a
+  - c
+  - p
+  - i
+  - k
+  - 'n'
+  - o
+  - w
+  - l
+  - d
+  - g
+  - '-'
+  - type/research
+  - status/in-progress
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:05.301Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🌐
+keywords:
+  - overview
+  - research categories
+  - "\U0001F9E0 ai & machine learning"
+  - "\U0001F4CA knowledge graphs"
+  - "\U0001F504 distributed systems"
+  - "\U0001F4BE data management"
+  - "\U0001F9E9 software architecture"
+  - key research papers
+  - adaptive learning
+  - autonomous agents
 ---
 
 # Research Papers Hub

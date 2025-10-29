@@ -1,35 +1,16 @@
 ---
-decision_id: ED-1
-decision_type: executive
 title: Project Scope & Purpose
+type: decision
 status: decided
-priority: critical
-category: strategic
-created_date: '2025-10-20'
-last_updated: '2025-10-20'
-decided_date: '2025-10-20'
-implemented_date: null
-decision_maker: Mathew
-stakeholders:
-  - Development Team
-  - Business Team
-ai_assisted: true
-blocks: []
-impacts:
-  - TS-1
-  - TS-3
-  - BM-1
-  - architecture
-requires: []
-research_status: completed
-selected_option: C
 tags:
   - executive
   - scope
   - saas
   - critical
   - decided
-type: decision
+  - type/architecture
+  - status/in-progress
+priority: critical
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -37,9 +18,19 @@ visual:
     - type-decision
     - status-decided
     - priority-critical
+updated: '2025-10-29T04:55:04.866Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚖️
+keywords:
+  - question
+  - options evaluated
+  - a. internal tool only
+  - 'b. internal tool first, potential saas later'
+  - c. build as saas product from day one ✅ **chosen**
+  - d. open source project with optional paid hosting
+  - decision rationale
+  - 'key reasoning:'
+  - 'quote from decision maker:'
+  - impact on other decisions
 ---
 
 # ED-1: Project Scope & Purpose

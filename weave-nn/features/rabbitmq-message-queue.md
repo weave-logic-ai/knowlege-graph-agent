@@ -1,44 +1,8 @@
 ---
-feature_id: F-015
-feature_name: RabbitMQ Message Queue
-category: infrastructure
+title: RabbitMQ Message Queue
+type: documentation
 status: deferred-to-post-mvp
-priority: low
-release: post-mvp
-complexity: moderate
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
-deferred_reason: >-
-  Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP.
-  RabbitMQ will be added post-MVP when multi-service architecture or
-  high-throughput streaming (>1000 events/sec) is needed.
-decision_reference: D-013
-scope:
-  current_phase: mvp
-  obsidian_only: false
-  web_version_needed: false
-  infrastructure: true
-dependencies:
-  requires: []
-  enables:
-    - weaver-workflow-automation
-    - cross-project-knowledge-retention
-  related_features:
-    - weaver-workflow-automation
-    - git-integration
-relationships:
-  related_decisions:
-    - IR-3
-  related_architecture:
-    - obsidian-first-architecture
-    - ai-integration-layer
-visual:
-  icon: message-square
-  cssclasses:
-    - type-feature
-    - scope-mvp
-    - priority-critical
-    - tech-rabbitmq
+phase_id: PHASE-2
 tags:
   - scope/mvp
   - type/feature
@@ -48,9 +12,38 @@ tags:
   - tech/python
   - category/infrastructure
   - category/async
-type: documentation
+  - phase/phase-2
+  - type/architecture
+  - status/in-progress
+priority: low
+visual:
+  icon: message-square
+  color: '#50E3C2'
+  cssclasses:
+    - type-feature
+    - scope-mvp
+    - priority-critical
+    - tech-rabbitmq
+updated: '2025-10-29T04:55:05.848Z'
 version: '3.0'
-icon: message-square
+dependencies:
+  enables:
+    - weaver-workflow-automation
+    - cross-project-knowledge-retention
+  related_features:
+    - weaver-workflow-automation
+    - git-integration
+keywords:
+  - why deferred
+  - related
+  - original documentation (for reference)
+  - "\U0001F3AF user story"
+  - "\U0001F680 key capabilities"
+  - event-driven architecture
+  - core event types
+  - message structure
+  - "\U0001F3D7️ architecture"
+  - message flow diagram
 ---
 
 # RabbitMQ Message Queue

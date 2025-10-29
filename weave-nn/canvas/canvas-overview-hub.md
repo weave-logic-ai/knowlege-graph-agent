@@ -1,23 +1,37 @@
 ---
+title: Canvas Hub
 type: canvas-hub
 status: active
-created_date: '2025-10-20'
+phase_id: PHASE-2
 tags:
   - canvas
   - visualization
   - workflows
-scope: system
+  - phase/phase-2
+  - type/hub
+  - status/draft
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-canvas-hub
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.501Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F4CA available canvases"
+  - decision trees
+  - workflows
+  - project views
+  - knowledge clusters
+  - related
+  - "\U0001F3A8 canvas types"
+  - 1. decision trees
+  - 2. workflow diagrams
+  - 3. task boards
 ---
 
 # Canvas Hub

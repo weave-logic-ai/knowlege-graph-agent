@@ -1,35 +1,36 @@
 ---
-concept_id: C-003
-concept_type: technical-concept
 title: Wikilinks
+type: concept
 status: active
-category: core-concept
-created_date: '2025-10-20'
-last_updated: '2025-10-20'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - knowledge-graph
-  - weave-nn
-  - ai-generated-documentation
-related_decisions:
-  - TS-2
-  - IR-1
 tags:
   - linking
   - markdown
   - syntax
   - bidirectional
   - core-concept
-type: concept
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
-updated_date: '2025-10-28'
-icon: 💡
+updated: '2025-10-29T04:55:04.840Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - core concept
+  - syntax variations
+  - basic wikilink
+  - aliased wikilink
+  - heading links
+  - relative path links
+  - bidirectional linking
+  - platform support comparison
+  - ai-assisted linking
+  - implementation in weave-nn
 ---
 
 # Wikilinks

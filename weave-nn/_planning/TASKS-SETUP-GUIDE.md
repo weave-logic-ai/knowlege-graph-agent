@@ -1,23 +1,37 @@
 ---
+title: Obsidian Tasks Setup Guide
 type: guide
 status: active
-priority: critical
-created_date: '2025-10-21'
+phase_id: PHASE-4A
 tags:
   - scope/mvp
   - type/guide
   - priority/critical
   - setup
-scope: task
+  - phase/phase-4a
+  - type/implementation
+  - status/complete
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-guide
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:03.930Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F4E5 step 1: install obsidian-tasks plugin"
+  - 'in obsidian:'
+  - related
+  - '⚙️ step 2: configure plugin settings'
+  - 'recommended settings:'
+  - "\U0001F4DD step 3: test task format"
+  - 'create a test note:'
+  - "\U0001F50D step 4: test task queries"
+  - 'create query block:'
+  - all test tasks
 ---
 
 # Obsidian Tasks Setup Guide

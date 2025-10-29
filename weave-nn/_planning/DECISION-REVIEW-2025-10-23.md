@@ -1,7 +1,30 @@
 ---
+title: 'Decision Review: Post-Phase Reorganization (2025-10-23)'
+type: implementation
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:03.895Z'
+keywords:
+  - executive summary
+  - critical findings
+  - detailed analysis
+  - 1. obsolete decisions (immediate action required)
+  - 'd-007-v2: mcp sdk framework (node.js)'
+  - 'd-014: n8n workflow automation (replaced)'
+  - 'd-013: rabbitmq message queue (deferred)'
+  - 2. decisions needing updates (not obsolete)
+  - 'amendment (2025-10-23): weaver interim implementation'
+  - implementation update
 ---
 # Decision Review: Post-Phase Reorganization (2025-10-23)
 

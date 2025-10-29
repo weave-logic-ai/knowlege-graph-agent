@@ -1,28 +1,8 @@
 ---
-decision_id: TS-021
-decision_type: technical
 title: MVP Test Strategy - Complete Report
+type: decision
 status: decided
-priority: critical
-category: implementation
-created_date: '2025-10-21'
-last_updated: '2025-10-23'
-decided_date: '2025-10-21'
-implemented_date: null
-decision_maker: TESTER Agent (Hive Mind)
-stakeholders:
-  - Development Team
-  - Project Lead
-  - QA Team
-ai_assisted: true
-blocks: []
-impacts:
-  - '[[test-strategy-summary]]'
-  - '[[../phases/phase-5-mvp-week-1]]'
-  - '[[../phases/phase-6-mvp-week-2]]'
-requires: []
-research_status: completed
-selected_option: detailed-test-cases-and-scenarios
+phase_id: PHASE-5
 tags:
   - decision
   - technical
@@ -30,7 +10,10 @@ tags:
   - test-cases
   - e2e-scenarios
   - critical
-type: decision
+  - phase/phase-5
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -38,9 +21,19 @@ visual:
     - type-decision
     - status-decided
     - priority-critical
+updated: '2025-10-29T04:55:04.940Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚖️
+keywords:
+  - question
+  - context
+  - options evaluated
+  - a. reference external document only
+  - b. detailed test cases and scenarios ✅ chosen
+  - c. inline full report in decision node
+  - research summary
+  - decision rationale
+  - 'key reasoning:'
+  - 'quote from decision maker:'
 ---
 
 # TS-021: MVP Test Strategy - Complete Report

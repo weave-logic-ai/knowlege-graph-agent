@@ -1,36 +1,8 @@
 ---
+title: Obsidian-First Architecture
 type: architecture
 status: active
-priority: critical
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
-architecture_id: A-005
-architecture_name: Obsidian-First Architecture
-category: system-architecture
-decided_date: '2025-10-21'
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-  deferred: false
-relationships:
-  related_decisions:
-    - ED-1
-    - TS-2
-    - TS-3
-    - TS-4
-    - TS-5
-    - IR-1
-  related_features:
-    - knowledge-graph-visualization
-    - markdown-editor-component
-    - basic-ai-integration-mcp
-visual:
-  icon: layout-grid
-  cssclasses:
-    - type-architecture
-    - scope-mvp
-    - priority-critical
+phase_id: PHASE-10
 tags:
   - scope/mvp
   - scope/obsidian-only
@@ -42,8 +14,30 @@ tags:
   - tech/mcp
   - tech/claude-flow
   - category/architecture
+  - phase/phase-10
+  - type/implementation
+  - status/in-progress
+priority: critical
+visual:
+  icon: layout-grid
+  color: '#7ED321'
+  cssclasses:
+    - type-architecture
+    - scope-mvp
+    - priority-critical
+updated: '2025-10-29T04:55:03.445Z'
 version: '3.0'
-icon: 📐
+keywords:
+  - "\U0001F3AF architectural decision"
+  - related
+  - "\U0001F4D0 system architecture"
+  - "\U0001F3D7️ layer breakdown"
+  - 'layer 1: user interface (obsidian desktop)'
+  - 'layer 2: data layer (markdown files)'
+  - 'layer 3: backend services'
+  - 'layer 4: future - multiplayer layer (supabase)'
+  - "\U0001F680 mvp implementation (2 weeks)"
+  - 'week 1: core backend'
 ---
 
 # Obsidian-First Architecture

@@ -1,24 +1,38 @@
 ---
+title: Local-First Architecture
 type: concept
-category: architecture
 status: active
 tags:
   - architecture
   - privacy
   - local-first
   - mvp-scope
+  - type/implementation
+  - status/in-progress
+priority: medium
 related:
   - '[[weaver]]'
   - '[[neural-network-junction]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:03.484Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - core philosophy
+  - the local loop
+  - key principles
+  - 1. privacy-first
+  - 2. speed-first
+  - 3. ownership-first
+  - 4. composability-first
+  - benefits
+  - for individuals
+  - for teams (post-mvp)
 ---
 
 # Local-First Architecture

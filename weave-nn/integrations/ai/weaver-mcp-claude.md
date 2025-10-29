@@ -1,29 +1,32 @@
 ---
 title: Weaver MCP ↔ Claude API Integration
-integration_type: api-gateway
-systems:
-  - name: Weaver MCP
-    role: gateway
-  - name: Claude API
-    role: ai-service
-direction: bidirectional
-protocol: HTTPS (REST API)
-authentication: api-key (Anthropic)
-status: active
-created: {}
-updated: {}
 type: documentation
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
 domain: weaver
+priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
     - domain-weaver
+updated: '2025-10-29T04:55:05.881Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📚
+keywords:
+  - overview
+  - systems involved
+  - weaver mcp
+  - claude api
+  - integration architecture
+  - data flow
+  - components
+  - configuration
+  - environment variables
+  - claude desktop configuration
 ---
 
 # Weaver MCP ↔ Claude API Integration

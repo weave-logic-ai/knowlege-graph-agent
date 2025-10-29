@@ -1,25 +1,30 @@
 ---
-sop_id: SOP-001
-sop_name: Feature Planning Workflow
-category: development
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop feature-plan <description>
-  - weaver plan feature <description>
-learning_enabled: true
-estimated_duration: 30-45 minutes
-complexity: medium
+title: 'SOP-001: Feature Planning Workflow'
 type: sop
-scope: feature
+status: active
+tags:
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.552Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. researcher agent
+  - 2. architect agent
+  - 3. planner agent
+  - mcp tools used
 ---
 
 # SOP-001: Feature Planning Workflow
@@ -466,3 +471,17 @@ weaver sop feature-plan "Add Redis caching layer to reduce database load"
 
 **Version History**
 - 1.0.0 (2025-10-27): Initial SOP creation with full agent coordination
+
+## Related Documents
+
+### Related Files
+- [[_SOPS-HUB.md]] - Parent hub
+- [[SOP-002-phase-planning.md]] - Same directory
+- [[SOP-003-release-management.md]] - Same directory
+- [[SOP-008-performance-analysis.md]] - Same directory
+- [[sops-framework-hub.md]] - Same directory
+
+### Similar Content
+- [[SOP-002-phase-planning.md]] - Semantic similarity: 43.5%
+- [[sops-framework-hub.md]] - Semantic similarity: 38.5%
+

@@ -1,7 +1,28 @@
 ---
+title: Standard Operating Procedures (SOPs)
+type: hub
+status: in-progress
+tags:
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.382Z'
+keywords:
+  - available sops
+  - development workflows
+  - operations workflows
+  - quality workflows
+  - documentation workflows
+  - quick reference
+  - by use case
+  - sop structure
+  - yaml frontmatter
+  - content sections
 ---
 # Standard Operating Procedures (SOPs)
 
@@ -275,3 +296,16 @@ For issues or questions about SOPs:
 
 **Last Updated**: 2025-10-27
 **Maintained By**: Weave-NN Development Team
+
+## Related Documents
+
+### Related Files
+- [[_SOPS-HUB.md]] - Parent hub
+- [[SOP-001-feature-planning.md]] - Same directory
+- [[SOP-002-phase-planning.md]] - Same directory
+- [[SOP-003-release-management.md]] - Same directory
+- [[SOP-008-performance-analysis.md]] - Same directory
+
+### Similar Content
+- [[SOP-001-feature-planning.md]] - Semantic similarity: 38.5%
+

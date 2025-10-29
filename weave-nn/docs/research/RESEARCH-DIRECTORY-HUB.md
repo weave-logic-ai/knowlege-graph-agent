@@ -2,33 +2,20 @@
 title: Research Directory Hub
 type: hub
 status: active
-created_date: {}
+phase_id: PHASE-12
 tags:
   - research
   - navigation
   - hub
   - directory-hub
   - academic
-category: research
+  - phase/phase-12
+  - type/implementation
+  - status/draft
 domain: research
-scope: project
-audience:
-  - researchers
-  - architects
-  - developers
-related_concepts:
-  - academic-research
-  - machine-learning
-  - embeddings
-  - knowledge-graphs
-related_files:
-  - memorographic-embeddings-research.md
-  - arxiv-2510-20809-analysis.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -36,8 +23,20 @@ visual:
     - priority-high
     - domain-research
   graph_group: navigation
-updated_date: '2025-10-28'
-icon: 🌐
+updated: '2025-10-29T04:55:05.687Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - "\U0001F4CB overview"
+  - "\U0001F5C2️ active research"
+  - memory & embeddings research
+  - "\U0001F52C research categories"
+  - 1. memory systems & knowledge graphs
+  - 2. embeddings & vector search
+  - 3. chunking strategies
+  - 4. architecture & system design
+  - 5. autonomous learning systems
+  - "\U0001F4CA research impact assessment"
 ---
 
 # Research Directory Hub

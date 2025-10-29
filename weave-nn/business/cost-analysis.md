@@ -1,36 +1,36 @@
 ---
-business_id: BM-004
-business_type: cost-analysis
 title: Cost Analysis & Break-Even Model
+type: business
 status: draft
-category: business-model
-created_date: '2025-10-21'
-last_updated: '2025-10-21'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - weave-nn
-related_decisions:
-  - ED-1
-related_business:
-  - saas-pricing-model
-  - target-users
-  - value-proposition
 tags:
   - business-model
   - costs
   - financials
   - break-even
   - infrastructure
-type: business
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💼
+  icon: "\U0001F4BC"
+  color: '#8E8E93'
   cssclasses:
     - type-business
     - status-draft
-updated_date: '2025-10-28'
-icon: 💼
+updated: '2025-10-29T04:55:04.620Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - infrastructure costs (google cloud platform)
+  - mvp phase (0-500 users)
+  - 'growth phase (500-5,000 users)'
+  - 'scale phase (5,000-50,000 users)'
+  - development costs
+  - initial development (mvp - 4 months)
+  - ongoing development (post-mvp)
+  - revenue model & break-even analysis
+  - monthly recurring costs by phase
+  - break-even scenarios
 ---
 
 # Cost Analysis & Break-Even Model

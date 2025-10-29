@@ -1,10 +1,16 @@
 ---
-architecture_id: A-003
-layer_name: Data & Knowledge Graph Layer
-category: data-persistence
+title: Data & Knowledge Graph Layer
+type: architecture
 status: planned
-created_date: '2025-10-21'
-complexity: complex
+tags:
+  - architecture
+  - data
+  - knowledge-graph
+  - database
+  - temporal
+  - type/architecture
+  - status/in-progress
+priority: medium
 related:
   - '[[../technical/graphiti]]'
   - '[[../technical/postgresql]]'
@@ -12,22 +18,25 @@ related:
   - '[[../concepts/knowledge-graph]]'
   - '[[../concepts/temporal-queries]]'
   - '[[api-layer]]'
-tags:
-  - architecture
-  - data
-  - knowledge-graph
-  - database
-  - temporal
-type: architecture
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
+updated: '2025-10-29T04:55:03.424Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🏗️
+keywords:
+  - database foundation
+  - knowledge graph structure
+  - temporal awareness
+  - embeddings and semantic search
+  - graphiti integration
+  - related
+  - architecture
+  - technical
+  - concepts
+  - features
 ---
 
 # Data & Knowledge Graph Layer

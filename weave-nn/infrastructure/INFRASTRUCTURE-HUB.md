@@ -1,16 +1,39 @@
 ---
-tags: 'hub, infrastructure, devops, deployment, knowledge-graph'
-created: {}
-modified: {}
+title: Infrastructure Hub
 type: hub
 status: active
-coverage: 26 infrastructure files
-impact: medium
+tags:
+  - h
+  - u
+  - b
+  - ','
+  - ' '
+  - i
+  - 'n'
+  - f
+  - r
+  - a
+  - s
+  - t
+  - c
+  - e
+  - d
+  - v
+  - o
+  - p
+  - l
+  - 'y'
+  - m
+  - k
+  - w
+  - g
+  - '-'
+  - type/documentation
+  - status/in-progress
 domain: infrastructure
-scope: system
 priority: high
 visual:
-  icon: 🌐
+  icon: "\U0001F310"
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -18,9 +41,19 @@ visual:
     - priority-high
     - domain-infrastructure
   graph_group: navigation
+updated: '2025-10-29T04:55:05.861Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🌐
+keywords:
+  - overview
+  - infrastructure categories
+  - ☸️ kubernetes deployment (5 files)
+  - "\U0001F3E0 local development environment (8 files)"
+  - "\U0001F4E6 package management (3 files)"
+  - "\U0001F680 deployment pipelines (4 files)"
+  - "\U0001F527 infrastructure as code (3 files)"
+  - "\U0001F510 security & secrets (2 files)"
+  - "\U0001F4CA monitoring & observability (1 file)"
+  - infrastructure architecture
 ---
 
 # Infrastructure Hub

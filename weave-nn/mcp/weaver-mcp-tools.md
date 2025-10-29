@@ -2,30 +2,42 @@
 title: Weaver MCP Tools
 type: reference
 status: active
-priority: high
-created: {}
 tags:
   - mcp
   - weaver
   - tools
   - api
   - knowledge-graph
+  - type/architecture
+  - status/in-progress
+domain: weaver
+priority: high
 related:
   - '[[claude-flow-tight-coupling]]'
   - '[[model-context-protocol]]'
   - '[[../integrations/obsidian/obsidian-weaver-mcp]]'
   - '[[servers/cyanheads-obsidian-mcp-server]]'
-domain: weaver
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#50E3C2'
   cssclasses:
     - type-reference
     - status-active
     - priority-high
     - domain-weaver
+updated: '2025-10-29T04:55:06.100Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - architecture
+  - tool categories
+  - 1. core crud operations
+  - 2. search & discovery
+  - 3. link management
+  - 4. metadata operations
+  - 5. ai-enhanced operations
+  - 6. graph analytics
+  - core crud operations
 ---
 
 # Weaver MCP Tools

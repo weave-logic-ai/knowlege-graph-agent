@@ -1,7 +1,30 @@
 ---
+title: Technical Primitives Directory
+type: hub
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.790Z'
+keywords:
+  - what is a technical primitive?
+  - core characteristics
+  - scope boundaries
+  - categories of technical primitives
+  - 1. languages
+  - 2. frameworks
+  - 3. libraries
+  - 4. services
+  - 5. protocols
+  - 6. standards
 ---
 # Technical Primitives Directory
 

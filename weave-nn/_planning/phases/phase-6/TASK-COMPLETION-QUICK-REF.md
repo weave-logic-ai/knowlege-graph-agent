@@ -1,23 +1,36 @@
 ---
+title: Task Completion Feedback Loop - Quick Reference
 type: quick-reference
 status: active
-priority: high
-created_date: '2025-10-21'
-parent_architecture: task-completion-feedback-loop
+phase_id: PHASE-5
 tags:
   - quick-reference
   - cheatsheet
   - task-completion
-scope: task
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-quick-reference
     - status-active
     - priority-high
+updated: '2025-10-29T04:55:04.080Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F4CB daily log file format"
+  - essential frontmatter fields
+  - essential content sections
+  - what was accomplished
+  - challenges & solutions
+  - agent learning & insights
+  - "\U0001F504 event types"
+  - "\U0001F5C2️ memory namespaces"
+  - claude-flow namespaces
+  - reasoningbank domains
 ---
 
 # Task Completion Feedback Loop - Quick Reference

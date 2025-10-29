@@ -1,7 +1,30 @@
 ---
+title: 'Archival Summary: Archetype Directory Reorganization'
+type: architecture
+status: in-progress
+phase_id: PHASE-0
+tags:
+  - phase/phase-0
+  - type/architecture
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:05.371Z'
+keywords:
+  - executive summary
+  - technical directory
+  - archived (11 files)
+  - kept (8 files)
+  - created (7 files)
+  - features directory
+  - archived (13 files)
+  - platforms directory
+  - 'status: kept (3 files)'
+  - patterns directory
 ---
 # Archival Summary: Archetype Directory Reorganization
 

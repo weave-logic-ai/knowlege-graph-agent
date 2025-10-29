@@ -275,3 +275,11 @@ Successfully designed a comprehensive, production-ready monorepo folder structur
 **Agent**: Backend Developer
 **Coordination**: Claude Flow Swarm
 **Version**: 1.0
+
+## Related Documents
+
+### Related Files
+- [[DOCS-HUB.md]] - Parent hub
+- [[docker-compose-summary.md]] - Same directory
+- [[docker-workflows.md]] - Same directory
+

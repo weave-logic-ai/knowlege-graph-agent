@@ -1,24 +1,30 @@
 ---
-sop_id: SOP-005
-sop_name: Documentation Generation Workflow
-category: documentation
-version: 1.0.0
-status: active
-triggers:
-  - weaver sop docs generate <path>
-  - weaver docs create <type>
-learning_enabled: true
-estimated_duration: 20-40 minutes
-complexity: low
+title: 'SOP-005: Documentation Generation Workflow'
 type: sop
+status: active
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📝
+  icon: "\U0001F4DD"
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
-updated_date: '2025-10-28'
-icon: 📝
+updated: '2025-10-29T04:55:04.594Z'
+version: 1.0.0
+keywords:
+  - overview
+  - prerequisites
+  - inputs
+  - required
+  - optional
+  - agent coordination
+  - 1. researcher agent
+  - 2. documenter agent
+  - 3. reviewer agent
+  - mcp tools used
 ---
 
 # SOP-005: Documentation Generation Workflow

@@ -1,33 +1,34 @@
 ---
-technical_id: T-XXX
-technical_name: '[Technology/Library/Service Name]'
-category: '[library|framework|service|tool|infrastructure]'
+title: '[Technology Name]'
+type: template
 status: '[evaluated|selected|rejected|planned]'
-created_date: YYYY-MM-DD
-maturity: '[experimental|beta|stable|mature]'
-complexity: '[simple|moderate|complex]'
-language: '[JavaScript|Python|Go|etc.]'
-license: '[MIT|Apache|Proprietary|etc.]'
-open_source: '[yes|no]'
-pros: []
-cons: []
-alternatives: []
-related_decisions:
-  - '[[path/to/decision]]'
 tags:
   - technical
   - - category
   - - language
   - - use-case
-type: template
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-template
     - 'status-[evaluated|selected|rejected|planned]'
+updated: '2025-10-29T04:55:06.601Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - key features
+  - how it works
+  - pros
+  - cons
+  - use cases for weave-nn
+  - integration requirements
+  - alternatives
+  - performance considerations
+  - documentation & resources
 ---
 
 # [Technology Name]

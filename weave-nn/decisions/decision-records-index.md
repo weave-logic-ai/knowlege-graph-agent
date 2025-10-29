@@ -1,22 +1,36 @@
 ---
+title: Weave-NN Decision Index
 type: decision-index
 status: active
-priority: critical
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
+phase_id: PHASE-4A
 tags:
   - type/decision
   - status/active
   - scope/mvp
   - obsidian-first
+  - phase/phase-4a
+  - type/research
+  - status/in-progress
+priority: critical
 visual:
   icon: check-circle
+  color: '#BD10E0'
   cssclasses:
     - type-decision
     - scope-mvp
-scope: system
+updated: '2025-10-29T04:55:04.846Z'
 version: '3.0'
-icon: ✅
+keywords:
+  - "\U0001F4CA quick summary"
+  - related
+  - ✅ executive decisions
+  - 'd-001: project approach'
+  - 'd-002: multi-client production system'
+  - 'd-003: budget & deployment model'
+  - 'd-004: timeline & scope'
+  - 'd-005: knowledge retention strategy'
+  - "\U0001F527 technical decisions"
+  - 'd-006: primary integration method'
 ---
 
 # Weave-NN Decision Index

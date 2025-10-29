@@ -1,7 +1,30 @@
 ---
+title: Architectural Patterns Directory
+type: hub
+status: in-progress
+phase_id: PHASE-5
+tags:
+  - phase/phase-5
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.752Z'
+keywords:
+  - what is an architectural pattern?
+  - core characteristics
+  - scope boundaries
+  - pattern vs architecture vs technical vs protocol
+  - pattern (abstract solution)
+  - architecture (our specific design)
+  - technical (technology choice)
+  - protocol (communication specification)
+  - the relationship
+  - 'concrete example: file change notifications'
 ---
 # Architectural Patterns Directory
 

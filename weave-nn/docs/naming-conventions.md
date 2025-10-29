@@ -1,7 +1,28 @@
 ---
+title: Weave-NN Naming Conventions
+type: architecture
+status: in-progress
+tags:
+  - type/architecture
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:05.488Z'
+keywords:
+  - general principles
+  - python code
+  - files and modules
+  - classes
+  - functions and methods
+  - variables
+  - constants
+  - type hints
+  - services and packages
+  - service names
 ---
 # Weave-NN Naming Conventions
 

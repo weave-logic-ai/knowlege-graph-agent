@@ -1,7 +1,28 @@
 ---
+title: 'Decision Record: Web Framework for Weaver Webhooks'
+type: implementation
+status: in-progress
+tags:
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
   icon: ⚖️
-icon: ⚖️
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:04.968Z'
+keywords:
+  - context
+  - decision
+  - alternatives considered
+  - 1. express.js
+  - 2. fastify
+  - 3. node.js http module
+  - rationale
+  - performance
+  - typescript-first design
+  - edge runtime compatible
 ---
 # Decision Record: Web Framework for Weaver Webhooks
 
@@ -181,3 +202,12 @@ If future requirements demand framework change:
 
 **Last Updated:** 2025-10-23
 **Next Review:** 2025-11-23 (or when edge deployment requirements change)
+
+## Related Documents
+
+### Related Files
+- [[TECHNICAL-HUB.md]] - Parent hub
+- [[git-library-choice.md]] - Same directory
+- [[sqlite-library-choice.md]] - Same directory
+- [[testing-framework-choice.md]] - Same directory
+

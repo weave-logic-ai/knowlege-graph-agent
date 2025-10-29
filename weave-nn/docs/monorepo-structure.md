@@ -1,7 +1,28 @@
 ---
+title: Weave-NN Monorepo Folder Structure
+type: architecture
+status: in-progress
+tags:
+  - type/architecture
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#50E3C2'
+  cssclasses:
+    - architecture-document
+updated: '2025-10-29T04:55:05.482Z'
+keywords:
+  - overview
+  - root directory structure
+  - detailed structure
+  - 1. `/services/` - microservices
+  - 2. `/packages/` - shared libraries
+  - 3. `/infrastructure/` - deployment and configuration
+  - 4. `/tools/` - cli tools and development utilities
+  - 5. `/docs/` - project-wide documentation
+  - 6. `/tests/` - integration and e2e tests
+  - 7. `/scripts/` - utility scripts
 ---
 # Weave-NN Monorepo Folder Structure
 

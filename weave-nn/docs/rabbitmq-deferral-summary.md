@@ -1,7 +1,30 @@
 ---
+title: RabbitMQ Deferral to Post-MVP - Summary
+type: research
+status: in-progress
+phase_id: PHASE-6
+tags:
+  - phase/phase-6
+  - type/research
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#BD10E0'
+  cssclasses:
+    - research-document
+updated: '2025-10-29T04:55:05.699Z'
+keywords:
+  - executive summary
+  - 'analysis: why rabbitmq is redundant'
+  - original design (with rabbitmq)
+  - simplified design (without rabbitmq)
+  - what weaver already provides
+  - 'comparison: before vs after'
+  - before (with rabbitmq)
+  - after (without rabbitmq)
+  - when to add rabbitmq (post-mvp)
+  - files updated
 ---
 # RabbitMQ Deferral to Post-MVP - Summary
 

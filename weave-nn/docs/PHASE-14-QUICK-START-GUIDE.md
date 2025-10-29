@@ -8,18 +8,29 @@ tags:
   - obsidian
   - quickstart
   - guide
+  - type/documentation
+  - status/complete
 domain: knowledge-graph
-scope: system
 priority: high
-created_date: 2025-10-28T00:00:00.000Z
 visual:
-  icon: 🚀
+  icon: "\U0001F680"
   color: '#10B981'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-high
-icon: 🚀
+updated: '2025-10-29T04:55:05.288Z'
+keywords:
+  - 'step 1: enable css (30 seconds)'
+  - related
+  - 'step 2: enable nested tags (30 seconds)'
+  - 'step 3: run batch script (2 minutes)'
+  - 'step 4: view graph (1 minute)'
+  - verify installation
+  - check css is active
+  - check icons display
+  - check tags work
+  - what you get
 ---
 
 # Phase 14 - Obsidian Visual Intelligence Quick Start

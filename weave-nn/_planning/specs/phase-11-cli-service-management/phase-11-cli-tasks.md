@@ -1,7 +1,30 @@
 ---
+title: 'Phase 11: CLI Service Management & AI Feature Creator - Task Breakdown'
+type: implementation
+status: in-progress
+phase_id: PHASE-11
+tags:
+  - phase/phase-11
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:04.411Z'
+keywords:
+  - 'section 1: cli service management (44h)'
+  - 'task 1.1: process manager integration'
+  - 'task 1.2: health check system'
+  - 'task 1.3: logging system & `weaver logs` command'
+  - 'task 1.4: metrics collection & `weaver metrics/stats` commands'
+  - 'task 1.5: manual operations commands'
+  - 'task 1.6: service configuration management'
+  - 'task 1.7: cli integration tests'
+  - 'section 2: mvp future enhancements (50h)'
+  - 'task 2.1: advanced mcp features'
 ---
 # Phase 11: CLI Service Management & AI Feature Creator - Task Breakdown
 

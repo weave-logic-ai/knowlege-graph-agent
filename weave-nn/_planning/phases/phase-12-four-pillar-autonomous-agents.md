@@ -1,17 +1,8 @@
 ---
-phase_id: PHASE-12
-phase_name: Four-Pillar Autonomous Agent System
+title: 'Phase 12: Four-Pillar Autonomous Agent System'
+type: planning
 status: planned
-priority: critical
-created_date: '2025-10-27'
-start_date: TBD
-end_date: TBD
-duration: 8-10 weeks
-dependencies:
-  requires:
-    - PHASE-11
-  enables:
-    - PHASE-13
+phase_id: PHASE-12
 tags:
   - phase
   - autonomous-agents
@@ -22,16 +13,35 @@ tags:
   - execution
   - ai-enhancement
   - critical-priority
+  - phase/phase-12
+  - type/documentation
+  - status/draft
+priority: critical
 visual:
   icon: brain
+  color: '#8E8E93'
   cssclasses:
     - type-implementation
     - status-planned
     - priority-critical
-type: planning
+updated: '2025-10-29T04:55:04.022Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: brain
+dependencies:
+  requires:
+    - PHASE-11
+  enables:
+    - PHASE-13
+keywords:
+  - "\U0001F3AF objectives"
+  - primary goals
+  - current state analysis
+  - "\U0001F4CB implementation tasks"
+  - 'phase 1: foundation (2-3 weeks) - critical path'
+  - 'phase 2: advanced reasoning (3-4 weeks)'
+  - 'phase 3: perception enhancement (2-3 weeks)'
+  - 'phase 4: execution expansion (optional - 2-3 weeks)'
+  - 'phase 5: integration & testing (1-2 weeks)'
+  - ✅ success criteria
 ---
 
 # Phase 12: Four-Pillar Autonomous Agent System

@@ -1,7 +1,30 @@
 ---
+title: Phase 13 Testing Guide
+type: documentation
+status: complete
+phase_id: PHASE-13
+tags:
+  - phase/phase-13
+  - type/documentation
+  - status/complete
+priority: high
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.318Z'
+keywords:
+  - "\U0001F3AF overview"
+  - test coverage
+  - "\U0001F4CB quick start"
+  - run all tests
+  - run specific test suites
+  - run with coverage
+  - watch mode (development)
+  - "\U0001F9EA test structure"
+  - directory organization
+  - "\U0001F4CA test categories"
 ---
 # Phase 13 Testing Guide
 

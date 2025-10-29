@@ -2,43 +2,40 @@
 title: Workflow Engine Extension Guide
 type: guide
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - workflow-engine
   - extension-guide
   - vector-db
   - learning-loop
   - markdown-workflows
-category: technical
+  - phase/phase-12
+  - type/implementation
+  - status/complete
 domain: weaver
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - workflow-orchestration
-  - vector-db
-  - learning-loop
-  - markdown-triggers
-  - chunking
-  - embeddings
-related_files:
-  - MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md
-  - MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md
-  - VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md
-  - WEAVER-SOPS-FRAMEWORK.md
-author: ai-generated
-version: 1.0.0
 priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-guide
     - status-complete
     - priority-medium
     - domain-weaver
-icon: 📄
+updated: '2025-10-29T04:55:05.354Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - "\U0001F4DA related documentation"
+  - workflow architecture
+  - learning loop integration
+  - implementation context
+  - chunking workflows
+  - see also
+  - related
+  - "\U0001F3AF overview"
+  - "\U0001F3D7️ existing workflow engine"
+  - architecture
 ---
 
 # Workflow Engine Extension Guide

@@ -424,3 +424,14 @@ test:
 - [Docker Documentation](https://docs.docker.com/)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
 - [Weave-NN Architecture](../weave-nn-project-hub.md)
+
+## Related Documents
+
+### Related Files
+- [[DOCS-HUB.md]] - Parent hub
+- [[backend-dev-folder-structure-summary.md]] - Same directory
+- [[docker-compose-summary.md]] - Same directory
+
+### Similar Content
+- [[docker-compose-summary.md]] - Semantic similarity: 41.5%
+

@@ -1,7 +1,30 @@
 ---
+title: 'Hive Mind Knowledge Graph: Naming & Metadata Audit'
+type: documentation
+status: draft
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/draft
+priority: critical
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.444Z'
+keywords:
+  - "\U0001F4CA executive summary"
+  - findings overview
+  - critical issues identified
+  - "\U0001F50D detailed analysis"
+  - 1. generic filename patterns
+  - 2. current shadow cache schema analysis
+  - 3. frontmatter schema analysis
+  - 4. connection pattern analysis
+  - "\U0001F3AF proposed metadata schema"
+  - unified frontmatter schema v2.0
 ---
 # Hive Mind Knowledge Graph: Naming & Metadata Audit
 

@@ -1,7 +1,33 @@
 ---
+title: Knowledge Graph Structure Analysis
+type: documentation
+status: complete
+phase_id: PHASE-1
+tags:
+  - phase/phase-1
+  - type/documentation
+  - status/complete
+  - domain/knowledge-graph
+domain:
+  - knowledge-graph
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.438Z'
+keywords:
+  - systematic exploration of weave-nn directory structure
+  - executive summary
+  - key metrics
+  - critical findings
+  - 1. directory structure analysis
+  - 1.1 main knowledge graph components
+  - 1.2 connected components
+  - 1.3 orphaned/disconnected nodes
+  - 2. wikilink pattern analysis
+  - 2.1 linking density
 ---
 # Knowledge Graph Structure Analysis
 ## Systematic Exploration of Weave-NN Directory Structure

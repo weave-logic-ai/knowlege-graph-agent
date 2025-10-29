@@ -1,35 +1,38 @@
 ---
-spec_type: tasks
-phase_id: PHASE-8
-phase_name: Git Automation & Workflow Proxy
+title: Git Automation & Workflow Proxy - Task Breakdown
+type: planning
 status: pending
-priority: medium
-duration: 2 days
-generated_date: '2025-10-26'
-total_tasks: 12
-estimated_effort: 2 days
+phase_id: PHASE-8
 tags:
   - spec-kit
   - tasks
   - phase-8
   - implementation
-links:
-  constitution: '[[constitution.md]]'
-  specification: '[[specification.md]]'
-  phase_document: '[[phase-8-git-automation-workflow-proxy]]'
-type: planning
-scope: task
+  - phase/phase-8
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-medium
     - phase-8
+updated: '2025-10-29T04:55:04.545Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - overview
+  - related
+  - 1. git client setup (day 1 - morning)
+  - 1.1 install simple-git library
+  - 1.2 create gitclient wrapper class
+  - 1.3 add git configuration to .env
+  - 2. auto-commit service (day 1 - afternoon)
+  - 2.1 create autocommitservice class
+  - 2.2 implement commit message generation
+  - 2.3 integrate auto-commit with file watcher
 ---
 
 # Git Automation & Workflow Proxy - Task Breakdown

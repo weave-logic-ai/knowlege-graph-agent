@@ -1,9 +1,8 @@
 ---
+title: 'Critical Path Analysis: Phases 5-8 (MVP & Post-MVP)'
 type: analysis
 status: active
-priority: critical
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-5
 tags:
   - planning
   - critical-path
@@ -11,17 +10,30 @@ tags:
   - phases-5-8
   - prerequisites
   - dependencies
-cssclasses:
-  - type-analysis
-  - priority-critical
+  - phase/phase-5
+  - type/implementation
+  - status/complete
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-analysis
     - status-active
     - priority-critical
+updated: '2025-10-29T04:55:04.149Z'
 version: '3.0'
-icon: 📄
+keywords:
+  - "\U0001F6A8 executive summary"
+  - critical findings
+  - related
+  - "\U0001F4CA prerequisites matrix"
+  - phase 5 prerequisites (claude-flow mcp integration)
+  - phase 6 prerequisites (mvp week 1 - backend)
+  - phase 7 prerequisites (mvp week 2 - automation)
+  - phase 8 prerequisites (hive mind - post-mvp)
+  - "\U0001F50D missing requirements deep dive"
+  - 1. phase 5 (claude-flow integration) - critical gaps
 ---
 
 # Critical Path Analysis: Phases 5-8 (MVP & Post-MVP)

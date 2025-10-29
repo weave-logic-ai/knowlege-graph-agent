@@ -1,26 +1,37 @@
 ---
+title: '[Workflow Name]'
 type: workflow
-workflow_name: '[Workflow Name]'
 status: '[active|draft|deprecated]'
-created_date: YYYY-MM-DD
-complexity: '[simple|moderate|complex]'
-estimated_time: '[Time estimate for completion]'
 tags:
   - workflow
   - process
   - - category
   - - domain
+  - type/documentation
+  - status/in-progress
+priority: critical
 related:
   - '[[path/to/related-workflow]]'
   - '[[path/to/template]]'
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - 'status-[active|draft|deprecated]'
+updated: '2025-10-29T04:55:06.632Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB process overview"
+  - "\U0001F504 detailed workflow"
+  - 'step 1: [step name]'
+  - 'step 2: [step name]'
+  - 'step 3: [step name]'
+  - 'step 4: [step name]'
+  - 'step 5: [step name]'
+  - "\U0001F3AF quality standards"
+  - excellent outcome
+  - acceptable outcome
 ---
 
 # [Workflow Name]

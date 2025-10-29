@@ -1,26 +1,38 @@
 ---
+title: Task Completion Feedback Loop - Integration Guide
 type: integration-guide
 status: active
-priority: high
-category: implementation
-created_date: '2025-10-21'
-parent_architecture: task-completion-feedback-loop
+phase_id: PHASE-1
 tags:
   - architecture
   - integration
   - deployment
   - task-completion
   - feedback-loop
-scope: task
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-integration-guide
     - status-active
     - priority-high
+updated: '2025-10-29T04:55:03.178Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F3AF integration overview"
+  - system components to integrate
+  - related
+  - "\U0001F4CB phase 1: prerequisites (day 0)"
+  - 1.1 environment setup
+  - 1.2 configuration files
+  - 1.3 rabbitmq queue setup
+  - "\U0001F680 phase 2: deploy core services (days 1-2)"
+  - 2.1 start memory extraction service
+  - 2.2 start performance tracker
 ---
 
 # Task Completion Feedback Loop - Integration Guide

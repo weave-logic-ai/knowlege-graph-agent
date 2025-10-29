@@ -2,42 +2,40 @@
 title: Weaver CLI Integration Audit - Executive Summary
 type: documentation
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-1
 tags:
   - weaver
   - cli-integration
   - audit
   - typescript
   - child-process
-category: technical
+  - phase/phase-1
+  - type/architecture
+  - status/in-progress
 domain: weaver
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - cli-integration
-  - child-process
-  - claude-flow-integration
-  - service-architecture
-  - streaming-output
-related_files:
-  - weaver-cli-integration-audit.md
-  - claude-flow-integration-design.md
-  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-high
     - domain-weaver
-icon: 📚
+updated: '2025-10-29T04:55:05.745Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - tl;dr - key findings
+  - ✅ good news
+  - ⚠️ gaps
+  - related
+  - current state matrix
+  - what exists today
+  - 1. single cli execution pattern
+  - 2. library-based integrations (not cli)
+  - 3. workflow engine (ready for cli integration)
+  - what needs to be built
 ---
 
 # Weaver CLI Integration Audit - Executive Summary

@@ -2,41 +2,20 @@
 title: 'Phase 12: Workflow Inventory & Pattern Analysis'
 type: documentation
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - phase-12
   - workflow-inventory
   - pattern-analysis
   - automation-rules
   - hive-mind
-category: technical
+  - phase/phase-12
+  - type/documentation
+  - status/in-progress
 domain: phase-12
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - workflow-engine
-  - automation-rules
-  - event-driven
-  - concurrent-execution
-  - error-isolation
-  - cognitive-intelligence
-related_files:
-  - phase-12-capability-matrix.md
-  - WORKFLOW-EXTENSION-GUIDE.md
-  - WEAVER-SOPS-FRAMEWORK.md
-  - phase-12-weaver-inventory.md
-author: ai-generated
-version: '1.0'
-phase_id: PHASE-12
-swarm_id: swarm-1761605786400-fs7eya6ip
 priority: high
-workflow_count: '6'
-loc: '975'
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -44,7 +23,20 @@ visual:
     - priority-high
     - phase-12
     - domain-phase-12
-icon: 📚
+updated: '2025-10-29T04:55:05.681Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - executive summary
+  - key statistics
+  - related
+  - 1. workflow engine architecture
+  - 1.1 core workflow engine
+  - 1.2 workflow types & registry
+  - 1.3 activity logging middleware
+  - 2. existing workflow implementations
+  - 2.1 file change logger workflow
+  - 2.2 markdown analyzer workflow
 ---
 
 # Phase 12: Workflow Inventory & Pattern Analysis

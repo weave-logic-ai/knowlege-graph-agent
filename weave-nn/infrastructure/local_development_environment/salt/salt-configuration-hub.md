@@ -1,11 +1,8 @@
 ---
+title: Weave-NN Developer Environment Automation
 type: infrastructure
 status: active
-priority: high
-created_date: '2025-10-21'
-scope:
-  current_phase: mvp
-  infrastructure: true
+phase_id: PHASE-6
 tags:
   - scope/mvp
   - type/infrastructure
@@ -13,15 +10,30 @@ tags:
   - tech/saltstack
   - tech/linux
   - category/automation
+  - phase/phase-6
+  - type/hub
+  - status/in-progress
+domain: infrastructure
+priority: high
 visual:
   icon: settings
+  color: '#4A90E2'
   cssclasses:
     - type-infrastructure
     - scope-mvp
-domain: infrastructure
+updated: '2025-10-29T04:55:03.731Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚙️
+keywords:
+  - "\U0001F3AF what gets installed"
+  - core tools
+  - weave-nn specific
+  - obsidian plugins (automated install)
+  - python packages
+  - configuration
+  - related
+  - "\U0001F680 quick start"
+  - prerequisites
+  - installation
 ---
 
 # Weave-NN Developer Environment Automation

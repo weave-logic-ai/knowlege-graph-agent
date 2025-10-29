@@ -1,7 +1,30 @@
 ---
+title: Tester Agent → Backend Developer Handoff
+type: documentation
+status: in-progress
+phase_id: PHASE-13
+tags:
+  - phase/phase-13
+  - type/documentation
+  - status/in-progress
+priority: high
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:05.312Z'
+keywords:
+  - "\U0001F3AF what was delivered"
+  - complete test suite (180+ tests)
+  - "\U0001F680 how to use this test suite"
+  - 'step 1: run tests before implementation'
+  - 'step 2: implement real modules (replace mocks)'
+  - 'step 3: run tests after implementation'
+  - 'step 4: check coverage'
+  - 'step 5: run full validation'
+  - "\U0001F4CB implementation checklist"
+  - chunking strategies
 ---
 # Tester Agent → Backend Developer Handoff
 

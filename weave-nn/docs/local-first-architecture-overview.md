@@ -1,7 +1,30 @@
 ---
+title: 'Local-First Architecture Overview: The Neural Network Junction'
+type: research
+status: in-progress
+phase_id: PHASE-0
+tags:
+  - phase/phase-0
+  - type/research
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📚
-icon: 📚
+  icon: "\U0001F4DA"
+  color: '#BD10E0'
+  cssclasses:
+    - research-document
+updated: '2025-10-29T04:55:03.662Z'
+keywords:
+  - "\U0001F3AF executive summary"
+  - core principle
+  - "\U0001F9E0 the neural network junction concept"
+  - what is a "neural network junction"?
+  - research foundation
+  - "\U0001F4D0 architecture diagram"
+  - mvp local loop
+  - 'data flow: the local loop'
+  - "\U0001F3D7️ mvp scope: what we're building"
+  - ✅ in scope (mvp - local loop only)
 ---
 # Local-First Architecture Overview: The Neural Network Junction
 

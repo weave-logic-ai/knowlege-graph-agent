@@ -1,11 +1,8 @@
 ---
+title: Weaver Migration Guide
 type: documentation
-category: migration-guide
 status: draft
-created_date: '2025-10-23'
-updated_date: '2025-10-28'
-audience: developers
-estimated_time: 4-8 hours
+phase_id: PHASE-1
 tags:
   - migration
   - weaver
@@ -13,16 +10,31 @@ tags:
   - n8n
   - bash-hooks
   - automation
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
 domain: weaver
+priority: medium
 visual:
-  icon: 📚
+  icon: "\U0001F4DA"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-draft
     - domain-weaver
+updated: '2025-10-29T04:55:05.776Z'
 version: '3.0'
-icon: 📚
+keywords:
+  - table of contents
+  - related
+  - prerequisites
+  - required tools
+  - recommended skills
+  - migration strategy
+  - overview
+  - success criteria
+  - 'phase 1: setup weaver'
+  - 'step 1.1: install weaver cli'
 ---
 
 # Weaver Migration Guide

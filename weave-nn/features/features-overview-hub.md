@@ -1,21 +1,35 @@
 ---
+title: Weave-NN Features (MVP - Obsidian-First)
 type: feature-hub
 status: active
-created_date: '2025-10-20'
-updated_date: '2025-10-21'
-scope: mvp
-obsidian_first: true
+phase_id: PHASE-5
 tags:
   - features
   - mvp
   - obsidian-first
   - scope/mvp
+  - phase/phase-5
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
   icon: zap
+  color: '#4A90E2'
   cssclasses:
     - type-features
     - scope-mvp
-icon: ⚡
+updated: '2025-10-29T04:55:03.696Z'
+keywords:
+  - "\U0001F4CA mvp feature summary"
+  - ✅ mvp features (obsidian-first)
+  - backend infrastructure
+  - workflow automation
+  - ai & intelligence
+  - "\U0001F6AB archived features (web-focused / future)"
+  - archived to `.archive/features/`
+  - "\U0001F3AF mvp scope rationale"
+  - why obsidian-first?
+  - "\U0001F4CB feature template (mvp version)"
 ---
 
 # Weave-NN Features (MVP - Obsidian-First)

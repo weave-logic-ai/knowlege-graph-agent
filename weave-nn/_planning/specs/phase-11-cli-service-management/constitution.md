@@ -1,7 +1,30 @@
 ---
+title: Phase 11 Constitution
+type: documentation
+status: in-progress
+phase_id: PHASE-11
+tags:
+  - phase/phase-11
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📋
-icon: 📋
+  icon: "\U0001F4CB"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:04.405Z'
+keywords:
+  - core principles
+  - 1. user experience first
+  - 2. reliability & robustness
+  - 3. performance & efficiency
+  - 4. security & privacy
+  - 5. ai feature quality
+  - technical constraints
+  - 1. backward compatibility
+  - 2. platform support
+  - 3. dependencies
 ---
 # Phase 11 Constitution
 

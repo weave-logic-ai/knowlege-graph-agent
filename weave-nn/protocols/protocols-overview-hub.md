@@ -1,7 +1,28 @@
 ---
+title: Protocol Documentation
+type: hub
+status: in-progress
+tags:
+  - type/hub
+  - status/in-progress
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.738Z'
+keywords:
+  - what is a protocol?
+  - protocol vs other concepts
+  - core characteristics of protocols
+  - 1. **defines wire format**
+  - 2. **manages state transitions**
+  - 3. **handles errors formally**
+  - 4. **osi layer 4-7 operation**
+  - 5. **multi-vendor specification**
+  - scope boundaries
+  - ✅ document as protocol
 ---
 # Protocol Documentation
 
@@ -750,3 +771,9 @@ mv protocols/application/rabbitmq.md technical/services/rabbitmq.md
 2. Create protocol documents using the template
 3. Link from architecture and technical docs
 4. Update as protocols evolve
+
+## Related Documents
+
+### Related Files
+- [[PROTOCOLS-HUB.md]] - Parent hub
+

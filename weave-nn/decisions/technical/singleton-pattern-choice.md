@@ -1,29 +1,8 @@
 ---
-decision_id: TS-008
-decision_type: technical
 title: 'API Client Pattern: Singleton vs Factory'
+type: decision
 status: decided
-priority: high
-category: architecture
-created_date: '2025-10-22'
-last_updated: '2025-10-22'
-decided_date: '2025-10-22'
-implemented_date: '2025-10-22'
-decision_maker: System Architect
-stakeholders:
-  - Backend Team
-  - Performance Team
-  - Infrastructure Team
-ai_assisted: 'true'
-blocks: []
-impacts:
-  - rest-api-integration
-  - obsidian-api-client
-  - connection-pooling
-  - multi-layer-caching
-requires: []
-research_status: completed
-selected_option: A
+phase_id: PHASE-1
 tags:
   - decision
   - architecture
@@ -31,7 +10,10 @@ tags:
   - api-design
   - performance
   - singleton-pattern
-type: decision
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: high
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -39,9 +21,19 @@ visual:
     - type-decision
     - status-decided
     - priority-high
+updated: '2025-10-29T04:55:04.934Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: ⚖️
+keywords:
+  - question
+  - context
+  - options evaluated
+  - a. singleton pattern with connection pooling ✅ chosen
+  - b. factory pattern with instance pool
+  - c. service locator pattern
+  - research summary
+  - decision rationale
+  - 'key reasoning:'
+  - 'quote from decision maker:'
 ---
 
 # TS-008: API Client Pattern: Singleton vs Factory

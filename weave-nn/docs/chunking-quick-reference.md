@@ -2,40 +2,41 @@
 title: Chunking Strategies Quick Reference
 type: reference
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-1
 tags:
   - chunking
   - quick-reference
   - configuration
   - decision-tree
   - weave-nn
-category: technical
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+  - domain/chunking
 domain: chunking
-scope: module
-audience:
-  - developers
-related_concepts:
-  - chunking-strategies
-  - semantic-boundary
-  - configuration
-  - chunk-size
-  - overlap
-related_files:
-  - chunking-implementation-guide.md
-  - CHUNKING-STRATEGY-SYNTHESIS.md
-  - chunking-strategies-research-2024-2025.md
-author: ai-generated
-version: '1.0'
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-reference
     - status-complete
     - priority-high
     - domain-chunking
-icon: 📄
+updated: '2025-10-29T04:55:05.383Z'
+author: ai-generated
+version: '1.0'
+keywords:
+  - tl;dr recommendations for weave-nn
+  - default configuration (start here)
+  - related
+  - decision tree
+  - strategy cheat sheet
+  - model-specific recommendations
+  - for @xenova/transformers
+  - token size guidelines
+  - by content length
+  - by query type
 ---
 
 # Chunking Strategies Quick Reference

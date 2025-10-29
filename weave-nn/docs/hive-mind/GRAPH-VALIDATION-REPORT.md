@@ -1,22 +1,36 @@
 ---
 title: Knowledge Graph Validation Report
-date: {}
 type: validation-report
-phase: 13
 status: completed
+phase_id: PHASE-13
 tags:
   - knowledge-graph
   - metrics
   - validation
   - hive-mind
+  - phase/phase-13
+  - type/documentation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-validation-report
     - status-completed
+updated: '2025-10-29T04:55:05.423Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - executive summary
+  - related
+  - metrics comparison
+  - core metrics
+  - detailed analysis
+  - phase 13 validation ✅
+  - tool analysis
+  - graph analysis tools
+  - successes ✅
+  - critical issues ❌
 ---
 
 # Knowledge Graph Validation Report

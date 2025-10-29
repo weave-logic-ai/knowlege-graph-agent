@@ -599,3 +599,14 @@ channel_max = 4094
 **Configuration Complete!** 🎉
 
 All files created and ready for deployment.
+
+## Related Documents
+
+### Related Files
+- [[DOCS-HUB.md]] - Parent hub
+- [[backend-dev-folder-structure-summary.md]] - Same directory
+- [[docker-workflows.md]] - Same directory
+
+### Similar Content
+- [[docker-workflows.md]] - Semantic similarity: 41.5%
+

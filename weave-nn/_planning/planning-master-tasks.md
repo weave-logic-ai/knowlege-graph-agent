@@ -2,28 +2,34 @@
 title: Weave-NN Development Tasks
 type: task-tracking
 status: active
-updated: {}
-phase_summary:
-  phase_0_progress: 33%
-  phase_5_progress: 0%
-  phase_6_progress: 0%
-  phase_7_progress: 0%
-  phase_8_progress: 0%
-total_estimated_hours: 231-315
-critical_path: Phase 0 → 5 → 6 → 7 → 8
+phase_id: PHASE-5
 tags:
   - task-tracking
   - project-management
   - mvp
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
   icon: check-square
+  color: '#8E8E93'
   cssclasses:
     - type-tasks
     - scope-mvp
-scope: task
+updated: '2025-10-29T04:55:04.307Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: check-square
+keywords:
+  - "\U0001F680 today's tasks"
+  - ⏰ overdue tasks
+  - "\U0001F4C5 this week"
+  - "\U0001F525 high priority (all)"
+  - "\U0001F4E6 by phase"
+  - phase 5 tasks (week 1 backend)
+  - phase 6 tasks (week 2 automation)
+  - "\U0001F3F7️ by category"
+  - infrastructure tasks
+  - python development tasks
 ---
 
 # Weave-NN Development Tasks

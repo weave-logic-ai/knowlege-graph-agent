@@ -1,27 +1,38 @@
 ---
+title: Decision Making Process
 type: workflow
-workflow_name: Decision Making Process
 status: active
-created_date: '2025-10-20'
-complexity: complex
-estimated_time: 1-7 days per decision (varies by complexity)
 tags:
   - workflow
   - process
   - decision-making
   - governance
+  - type/research
+  - status/in-progress
+priority: critical
 related:
   - '[[../templates/decision-node-template]]'
   - '[[../templates/question-node-template]]'
   - '[[node-creation-process]]'
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#BD10E0'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.623Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB process overview"
+  - "\U0001F504 detailed workflow"
+  - 'step 1: identify decision need'
+  - 'step 2: frame the question'
+  - question
+  - context
+  - 'step 3: research options'
+  - 'step 4: create decision canvas (optional)'
+  - 'step 5: analyze options'
+  - 'step 6: socialize & decide'
 ---
 
 # Decision Making Process

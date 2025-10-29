@@ -2,27 +2,41 @@
 title: AI Model Configuration for Weaver
 type: technical-reference
 status: active
-priority: high
-created: {}
+phase_id: PHASE-1
 tags:
   - ai
   - configuration
   - vercel
   - anthropic
   - weaver
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: high
 related:
   - '[[weaver-mcp-tools]]'
   - '[[agent-rules-workflows]]'
   - '[[model-context-protocol]]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-reference
     - status-active
     - priority-high
+updated: '2025-10-29T04:55:05.937Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - configuration
+  - environment variables
+  - ai provider strategy
+  - 'default: vercel ai gateway'
+  - 'exception: direct anthropic api'
+  - model selection guide
+  - available models via vercel ai gateway
+  - use cases in weaver
+  - 1. extract memories (mcp tool)
 ---
 
 # AI Model Configuration for Weaver

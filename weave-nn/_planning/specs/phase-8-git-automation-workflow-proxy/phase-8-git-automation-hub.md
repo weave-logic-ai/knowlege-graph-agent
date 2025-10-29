@@ -1,7 +1,30 @@
 ---
+title: 'Phase 8: Git Automation & Workflow Proxy - Spec Kit'
+type: hub
+status: draft
+phase_id: PHASE-8
+tags:
+  - phase/phase-8
+  - type/hub
+  - status/draft
+priority: medium
 visual:
-  icon: 🌐
-icon: 🌐
+  icon: "\U0001F310"
+  color: '#4A90E2'
+  cssclasses:
+    - hub-document
+updated: '2025-10-29T04:55:03.371Z'
+keywords:
+  - "\U0001F4C1 spec-kit contents"
+  - files
+  - "\U0001F3AF phase overview"
+  - "\U0001F3D7️ architecture"
+  - components
+  - "\U0001F680 quick start"
+  - 1. read the constitution
+  - 2. review the specification
+  - 3. implement tasks
+  - "\U0001F4CA implementation tasks"
 ---
 # Phase 8: Git Automation & Workflow Proxy - Spec Kit
 

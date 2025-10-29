@@ -1,23 +1,8 @@
 ---
+title: MCP Protocol (Model Context Protocol)
 type: technical-primitive
-category: protocol
 status: in-use
-first_used_phase: PHASE-5
-mvp_required: true
-future_only: false
-maturity: experimental
-used_in_services:
-  - mcp-server
-  - claude-desktop
-deployment: docker-compose
-alternatives_considered:
-  - REST API only
-  - GraphQL
-  - gRPC
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/mcp-integration-strategy]]'
-architecture: '[[../architecture/mcp-server]]'
+phase_id: PHASE-5
 tags:
   - technical
   - protocol
@@ -25,14 +10,29 @@ tags:
   - mvp
   - anthropic
   - claude
+  - phase/phase-5
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.135Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - mcp protocol architecture
+  - core concepts
+  - mcp message flow
+  - configuration
+  - mcp server implementation (fastapi)
+  - claude desktop configuration
 ---
 
 # MCP Protocol (Model Context Protocol)

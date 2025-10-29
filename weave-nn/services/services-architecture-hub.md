@@ -1,29 +1,36 @@
 ---
-type: index
 title: External Services Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - services
 tags:
   - index
   - services
   - navigation
   - external-apis
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.783Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F3AF what is a service?"
+  - 'key question: "who hosts and maintains this?"'
+  - "\U0001F50D core characteristics"
+  - what makes something a "service" (this directory)?
+  - "\U0001F6A7 scope boundaries"
+  - what belongs here (✅)
+  - what does not belong here (❌)
+  - "\U0001F4C2 directory structure"
+  - "\U0001F3A8 categories explained"
+  - 1. `/ai/` - ai and machine learning services
 ---
 
 # Services Directory

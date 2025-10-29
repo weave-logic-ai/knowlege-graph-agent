@@ -1,27 +1,41 @@
 ---
+title: Node Creation Process
 type: workflow
-workflow_name: Node Creation Process
 status: active
-created_date: '2025-10-20'
-complexity: moderate
+phase_id: PHASE-2
 tags:
   - workflow
   - process
   - documentation
   - node-creation
+  - phase/phase-2
+  - type/documentation
+  - status/in-progress
+priority: critical
 related:
   - '[[../templates/concept-node-template]]'
   - '[[../templates/feature-node-template]]'
   - '[[../templates/decision-node-template]]'
   - '[[../_planning/phases/phase-2-documentation-capture]]'
 visual:
-  icon: 🔄
+  icon: "\U0001F504"
+  color: '#8E8E93'
   cssclasses:
     - type-workflow
     - status-active
+updated: '2025-10-29T04:55:06.679Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 🔄
+keywords:
+  - "\U0001F4CB process overview"
+  - "\U0001F504 detailed workflow"
+  - 'step 1: identify need'
+  - 'step 2: choose template'
+  - 'step 3: research'
+  - 'step 4: write content'
+  - 'step 5: add wikilinks'
+  - "\U0001F517 related"
+  - concepts
+  - decisions
 ---
 
 # Node Creation Process

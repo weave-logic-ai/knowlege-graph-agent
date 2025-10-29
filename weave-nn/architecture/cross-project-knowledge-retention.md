@@ -1,30 +1,8 @@
 ---
+title: Cross-Project Knowledge Retention Architecture
 type: architecture
 status: active
-priority: high
-created_date: '2025-10-21'
-updated_date: '2025-10-28'
-architecture_id: A-007
-architecture_name: Cross-Project Knowledge Retention
-category: knowledge-management
-decided_date: '2025-10-21'
-scope:
-  current_phase: mvp
-  obsidian_only: true
-  web_version_needed: false
-relationships:
-  related_features:
-    - n8n-workflow-automation
-    - rabbitmq-message-queue
-    - git-integration
-  related_architecture:
-    - obsidian-first-architecture
-visual:
-  icon: book-open
-  cssclasses:
-    - type-architecture
-    - scope-mvp
-    - priority-high
+phase_id: PHASE-7
 tags:
   - scope/mvp
   - type/architecture
@@ -34,8 +12,30 @@ tags:
   - tech/obsidian
   - tech/n8n
   - tech/claude
+  - phase/phase-7
+  - type/implementation
+  - status/in-progress
+priority: high
+visual:
+  icon: book-open
+  color: '#7ED321'
+  cssclasses:
+    - type-architecture
+    - scope-mvp
+    - priority-high
+updated: '2025-10-29T04:55:03.415Z'
 version: '3.0'
-icon: 📖
+keywords:
+  - "\U0001F3AF the problem"
+  - current state (without knowledge retention)
+  - desired state (with knowledge retention)
+  - "\U0001F4D0 architecture design"
+  - knowledge flow
+  - "\U0001F3D7️ knowledge base structure"
+  - folder hierarchy
+  - "\U0001F916 ai-powered knowledge extraction"
+  - extraction workflow (n8n)
+  - project files
 ---
 
 # Cross-Project Knowledge Retention Architecture

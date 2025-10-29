@@ -1,35 +1,35 @@
 ---
-business_id: BM-002
-business_type: target-users
 title: Target Users & Personas
+type: business
 status: active
-category: business-model
-created_date: '2025-10-21'
-last_updated: '2025-10-21'
-version: '1.0'
-author: Hive Mind (Claude)
-ai_generated: true
-related_concepts:
-  - weave-nn
-  - knowledge-graph
-related_decisions:
-  - ED-1
-related_business:
-  - value-proposition
-  - saas-pricing-model
 tags:
   - business-model
   - target-users
   - personas
   - market-analysis
-type: business
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 💼
+  icon: "\U0001F4BC"
+  color: '#8E8E93'
   cssclasses:
     - type-business
     - status-active
-updated_date: '2025-10-28'
-icon: 💼
+updated: '2025-10-29T04:55:04.628Z'
+author: Hive Mind (Claude)
+version: '1.0'
+keywords:
+  - 'primary persona 1: ai-native development teams'
+  - profile
+  - pain points
+  - use cases for weave-nn
+  - value delivered
+  - pricing tier
+  - 'primary persona 2: technical knowledge workers'
+  - 'primary persona 3: product & engineering leaders'
+  - 'secondary persona: solo developers & indie hackers'
+  - 'enterprise persona: corporate knowledge management teams'
 ---
 
 # Target Users & Personas

@@ -1,23 +1,33 @@
 ---
+title: Research Directory
 type: directory_index
-category: research
-description: 'Research papers, findings, and analysis that inform implementation decisions'
+status: in-progress
 tags:
   - research
   - meta
-cssclasses:
-  - research-index
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-directory_index
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.759Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - purpose
+  - related
+  - directory organization
+  - academic research
+  - implementation research
+  - status snapshots
+  - relationship to implementation
+  - tagging strategy
+  - primary tags
+  - secondary tags
 ---
 
 # Research Directory

@@ -1,31 +1,38 @@
 ---
-spec_type: constitution
-phase_id: PHASE-8
-phase_name: Git Automation & Workflow Proxy
+title: Constitution - Git Automation & Workflow Proxy
+type: planning
 status: pending
-priority: medium
-generated_date: '2025-10-26'
+phase_id: PHASE-8
 tags:
   - spec-kit
   - constitution
   - phase-8
   - principles
-links:
-  specification: '[[specification.md]]'
-  tasks: '[[tasks.md]]'
-  phase_document: '[[phase-8-git-automation-workflow-proxy]]'
-type: planning
+  - phase/phase-8
+  - type/documentation
+  - status/draft
+priority: medium
 visual:
-  icon: 📋
+  icon: "\U0001F4CB"
   color: '#3B82F6'
   cssclasses:
     - type-planning
     - status-pending
     - priority-medium
     - phase-8
+updated: '2025-10-29T04:55:04.572Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📋
+keywords:
+  - "\U0001F3AF core purpose"
+  - related
+  - "\U0001F3DB️ guiding principles"
+  - 1. **automation first**
+  - 2. **semantic commit messages**
+  - 3. **intelligent batching**
+  - 4. **non-blocking workflows**
+  - 5. **safety & rollback**
+  - 6. **workflow composability**
+  - 7. **zero configuration**
 ---
 
 # Constitution - Git Automation & Workflow Proxy

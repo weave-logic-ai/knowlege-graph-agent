@@ -1,31 +1,38 @@
 ---
-phase_id: PHASE-X
-phase_name: '[Phase Name]'
+title: 'Phase [X]: [Phase Name]'
+type: template
 status: '[planned|in-progress|completed|blocked|deferred]'
-priority: '[critical|high|medium|low]'
-start_date: null
-end_date: null
-duration: '[X days/weeks estimated]'
-assigned_to: '[Team or Person]'
-blocks: []
-blocked_by: []
-depends_on: []
+phase_id: PHASE-X
 tags:
   - phase
   - planning
   - - category
   - - status
-type: template
+  - phase/phase-4b
+  - type/planning
+  - status/complete
+priority: '[critical|high|medium|low]'
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#F5A623'
   cssclasses:
     - type-template
     - 'status-[planned|in-progress|completed|blocked|deferred]'
     - 'priority-[critical|high|medium|low]'
     - phase-x
+updated: '2025-10-29T04:55:06.457Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F3AF core objective"
+  - related
+  - "\U0001F4CB primary deliverables"
+  - "1. [deliverable 1] [\U0001F534 priority if applicable]"
+  - '2. [deliverable 2]'
+  - '3. [deliverable 3]'
+  - ✅ completed this phase
+  - "\U0001F4CA detailed task breakdown"
+  - 'week 1 focus: [focus area]'
+  - 'week 2 focus: [focus area]'
 ---
 
 # Phase [X]: [Phase Name]

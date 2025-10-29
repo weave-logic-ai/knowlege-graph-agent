@@ -1,32 +1,31 @@
 ---
+title: Daily Log - <% tp.date.now("YYYY-MM-DD") %>
 type: daily_log
-date: YYYY-MM-DD
-day_of_week: Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday
-thinking_pattern: convergent|divergent|balanced|exploration|consolidation
-cognitive_phase: feeding|parking|exploration|assembly
-energy_level: low|medium|high
-focus_quality: poor|fair|good|excellent
-mood: stressed|neutral|positive|energized
-total_notes_created: 0
-total_notes_modified: 0
-total_wikilinks_added: 0
-total_tags_added: 0
-tasks_completed: 0
-tasks_added: 0
-primary_activity: research|development|planning|review|writing|learning
-secondary_activity: ''
+status: in-progress
 tags:
   - daily-log
   - YYYY-MM
-cssclasses:
-  - daily-log
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-daily_log
+updated: '2025-10-29T04:55:06.437Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - "\U0001F9E0 cognitive state"
+  - dominant thinking mode
+  - cognitive phase notes
+  - "\U0001F4CA daily summary"
+  - what i accomplished
+  - what i learned
+  - key decisions made
+  - "\U0001F4DD notes activity"
+  - new notes created
+  - notes modified/enhanced
 ---
 
 <!--

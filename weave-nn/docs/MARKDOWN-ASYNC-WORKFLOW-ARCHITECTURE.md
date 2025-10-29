@@ -2,43 +2,40 @@
 title: Markdown-Based Async Feedback & Workflow Architecture
 type: architecture
 status: complete
-created_date: {}
-updated_date: '2025-10-28'
+phase_id: PHASE-12
 tags:
   - markdown-workflows
   - async-architecture
   - workflow-automation
   - user-feedback
   - file-watchers
-category: technical
+  - phase/phase-12
+  - type/implementation
+  - status/in-progress
 domain: weaver
-scope: module
-audience:
-  - developers
-  - architects
-related_concepts:
-  - async-workflows
-  - markdown-based-workflows
-  - user-feedback
-  - workflow-orchestration
-  - file-watchers
-related_files:
-  - WORKFLOW-EXTENSION-GUIDE.md
-  - VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md
-  - USER-FEEDBACK-REFLECTION-DESIGN.md
-  - MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md
-author: ai-generated
-version: 1.0.0
 priority: medium
 visual:
-  icon: 🏗️
+  icon: "\U0001F3D7️"
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-complete
     - priority-medium
     - domain-weaver
-icon: 🏗️
+updated: '2025-10-29T04:55:05.046Z'
+author: ai-generated
+version: 1.0.0
+keywords:
+  - "\U0001F4DA related documentation"
+  - workflow architecture
+  - learning loop integration
+  - implementation context
+  - see also
+  - related
+  - "\U0001F3AF overview"
+  - "\U0001F3D7️ architecture principles"
+  - 1. async-first design
+  - 2. workflow-per-stage
 ---
 
 # Markdown-Based Async Feedback & Workflow Architecture

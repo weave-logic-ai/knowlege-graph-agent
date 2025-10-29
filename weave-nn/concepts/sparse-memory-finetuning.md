@@ -1,25 +1,40 @@
 ---
+title: Sparse Memory Fine-Tuning
 type: concept
+status: active
+phase_id: PHASE-1
 tags:
   - machine-learning
   - memory-optimization
   - neural-networks
   - parameter-efficiency
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: medium
 related:
   - '[[cognitive-variability]]'
   - '[[graph-topology-analysis]]'
   - '[[F-019-pattern-library-plasticity]]'
-status: active
-created: {}
-source: Memory Networks and Knowledge Graph Design Research
 visual:
-  icon: 💡
+  icon: "\U0001F4A1"
+  color: '#7ED321'
   cssclasses:
     - type-concept
     - status-active
+updated: '2025-10-29T04:55:04.804Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 💡
+keywords:
+  - overview
+  - core principles
+  - fisher information matrix
+  - selective weight preservation
+  - memory efficiency
+  - application to knowledge graphs
+  - parameter importance tracking
+  - embedding space refinement
+  - implementation strategy
+  - 'phase 1: foundation (projects 1-10)'
 ---
 
 # Sparse Memory Fine-Tuning

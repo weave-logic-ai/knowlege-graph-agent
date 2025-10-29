@@ -1,30 +1,37 @@
 ---
-type: index
 title: Workflows & Processes Hub
+type: index
 status: active
-created_date: '2025-10-23'
-cssclasses:
-  - index
-  - navigation
-  - workflow
 tags:
   - index
   - workflow
   - navigation
   - processes
   - standards
-scope: system
+  - type/hub
+  - status/in-progress
 priority: high
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#4A90E2'
   cssclasses:
     - type-index
     - status-active
     - priority-high
   graph_group: navigation
+updated: '2025-10-29T04:55:03.822Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - vault management workflows
+  - metadata & properties
+  - content standards
+  - development workflows
+  - node creation
+  - canvas creation
+  - ai-assisted workflows
+  - project management workflows
+  - phase management
 ---
 
 # Workflows & Processes

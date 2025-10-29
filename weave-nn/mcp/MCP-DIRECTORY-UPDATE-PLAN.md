@@ -2,20 +2,35 @@
 title: MCP Directory Update Plan
 type: plan
 status: active
-created: {}
+phase_id: PHASE-1
 tags:
   - mcp
   - refactoring
   - architecture
   - mvp
+  - phase/phase-1
+  - type/implementation
+  - status/in-progress
+priority: critical
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#7ED321'
   cssclasses:
     - type-plan
     - status-active
+updated: '2025-10-29T04:55:05.911Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - current state assessment
+  - related
+  - files by status
+  - ✅ mvp-relevant (update for weaver)
+  - ✅ mvp-essential (claude-flow integration)
+  - "\U0001F525 critical update (complete rewrite)"
+  - update strategy
+  - 'phase 1: understand claude-flow integration ⚠️'
+  - 'phase 2: update conceptual docs'
+  - 'phase 3: rewrite agent rules ⚠️ critical'
 ---
 
 # MCP Directory Update Plan

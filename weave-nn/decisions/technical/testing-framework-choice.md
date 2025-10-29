@@ -1,7 +1,30 @@
 ---
+title: 'D-024: Testing Framework Selection - Vitest'
+type: implementation
+status: in-progress
+phase_id: PHASE-9
+tags:
+  - phase/phase-9
+  - type/implementation
+  - status/in-progress
+priority: medium
 visual:
   icon: ⚖️
-icon: ⚖️
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:04.954Z'
+keywords:
+  - metadata
+  - context
+  - requirements
+  - decision
+  - alternatives considered
+  - 1. jest
+  - 2. node.js native test runner
+  - 3. mocha + chai
+  - rationale
+  - why vitest wins
 ---
 # D-024: Testing Framework Selection - Vitest
 
@@ -259,3 +282,12 @@ export default defineConfig({
 
 **Decision Status**: ✅ **IMPLEMENTED**
 **Next Review Date**: 2026-04-23 (6 months)
+
+## Related Documents
+
+### Related Files
+- [[TECHNICAL-HUB.md]] - Parent hub
+- [[git-library-choice.md]] - Same directory
+- [[sqlite-library-choice.md]] - Same directory
+- [[web-framework-choice.md]] - Same directory
+

@@ -9,20 +9,31 @@ tags:
   - organization
   - obsidian
   - metadata
+  - phase/phase-14
+  - type/documentation
+  - status/in-progress
 domain: knowledge-graph
-scope: system
 priority: high
-created_date: 2025-10-28T00:00:00.000Z
-updated_date: 2025-10-28T00:00:00.000Z
-version: '1.0'
 visual:
-  icon: 🏷️
+  icon: "\U0001F3F7️"
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-high
-icon: 🏷️
+updated: '2025-10-29T04:55:06.330Z'
+version: '1.0'
+keywords:
+  - overview
+  - benefits
+  - core tag hierarchies
+  - 1. phase hierarchy
+  - 2. status hierarchy
+  - 3. domain hierarchy
+  - 4. priority hierarchy
+  - 5. type hierarchy
+  - 6. technology hierarchy
+  - 7. agent hierarchy
 ---
 
 # Tag Hierarchy System

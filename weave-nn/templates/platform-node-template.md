@@ -1,32 +1,34 @@
 ---
-platform_id: P-XXX
-platform_name: '[Platform Name]'
+title: '[Platform Name]'
+type: template
 status: '[evaluated|selected|rejected|alternative]'
-category: '[tool|service|framework|infrastructure]'
-created_date: YYYY-MM-DD
-architecture: '[local-first|cloud-based|hybrid]'
-knowledge_graph_support: '[native|plugin|api|none]'
-pricing_model: '[free|freemium|paid|enterprise]'
-open_source: '[yes|no|partial]'
-strengths: []
-weaknesses: []
-use_cases: []
-related_decisions:
-  - '[[path/to/decision]]'
 tags:
   - platform
   - - category
   - - primary-tech
   - - use-case
-type: template
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-template
     - 'status-[evaluated|selected|rejected|alternative]'
+updated: '2025-10-29T04:55:06.464Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - core features
+  - '[feature category 1]'
+  - '[feature category 2]'
+  - '[feature category 3]'
+  - strengths
+  - weaknesses
+  - knowledge graph support
+  - integration capabilities
+  - pricing
 ---
 
 # [Platform Name]

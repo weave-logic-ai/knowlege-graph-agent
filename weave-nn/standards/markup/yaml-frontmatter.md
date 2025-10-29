@@ -1,38 +1,37 @@
 ---
+title: YAML Frontmatter
 type: technical-primitive
-category: standard
 status: in-use
-first_used_phase: PHASE-1
-mvp_required: true
-future_only: false
-maturity: mature
-used_in_services:
-  - mcp-server
-  - file-watcher
-  - event-consumer
-deployment: local-dev
-alternatives_considered:
-  - '[[json-metadata]]'
-  - '[[toml-frontmatter]]'
-  - '[[custom-metadata-format]]'
-replaces: null
-replaced_by: null
-decision: '[[../decisions/technical/metadata-format-selection]]'
-architecture: '[[../architecture/knowledge-graph-schema]]'
+phase_id: PHASE-1
 tags:
   - technical
   - standard
   - metadata
   - obsidian
   - in-use
+  - phase/phase-1
+  - type/documentation
+  - status/in-progress
+priority: medium
 visual:
-  icon: 📄
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
   cssclasses:
     - type-technical-primitive
     - status-in-use
+updated: '2025-10-29T04:55:06.295Z'
 version: '3.0'
-updated_date: '2025-10-28'
-icon: 📄
+keywords:
+  - overview
+  - why we use it
+  - key capabilities
+  - integration points
+  - configuration
+  - deployment
+  - trade-offs
+  - alternatives considered
+  - '[[json-metadata]]'
+  - '[[toml-frontmatter]]'
 ---
 
 # YAML Frontmatter

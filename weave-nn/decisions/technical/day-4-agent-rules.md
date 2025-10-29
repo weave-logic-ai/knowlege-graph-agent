@@ -1,11 +1,7 @@
 ---
-type: decision
-decision_id: D-018
-decision_type: technical
 title: Agent Rule Engine Architecture
+type: decision
 status: implemented
-created_date: {}
-updated_date: '2025-10-28'
 tags:
   - architecture
   - rules-engine
@@ -13,20 +9,9 @@ tags:
   - day-4
   - mvp
   - automation
-related_concepts:
-  - '[[C-002-obsidian-vault]]'
-  - '[[C-008-agent-coordination]]'
-related_features:
-  - '[[F-006-automation]]'
-related_decisions:
-  - '[[day-2-rest-api-client]]'
-  - '[[day-11-properties-visualization]]'
-  - '[[event-driven-architecture]]'
-phase: phase-5
+  - type/implementation
+  - status/in-progress
 priority: high
-cssclasses:
-  - decision
-  - implemented
 visual:
   icon: ⚖️
   color: '#A855F7'
@@ -34,8 +19,19 @@ visual:
     - type-decision
     - status-implemented
     - priority-high
+updated: '2025-10-29T04:55:04.914Z'
 version: '3.0'
-icon: ⚖️
+keywords:
+  - decision summary
+  - context
+  - decision
+  - architectural pattern
+  - rule engine design
+  - six core rules
+  - '1. memory sync rule (priority: critical)'
+  - '2. node creation rule (priority: high)'
+  - '3. update propagation rule (priority: high)'
+  - '4. schema validation rule (priority: medium)'
 ---
 
 # Day 4: Agent Rule Engine Architecture
