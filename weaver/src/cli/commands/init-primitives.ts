@@ -405,13 +405,20 @@ Vault primitives are foundational building blocks organizing knowledge by domain
 `;
 }
 
+interface GeneratedNode {
+  path: string;
+  title: string;
+  content: string;
+  tags: string[];
+}
+
 /**
  * Detect project context and enhance primitives with AI
  */
 async function enhancePrimitivesWithContext(vaultPath: string): Promise<{
   framework?: string;
   subdirs?: Record<string, string[]>;
-  content?: Record<string, string>;
+  nodes?: GeneratedNode[];
 }> {
   const spinner = showSpinner('Analyzing project context...');
   
@@ -426,67 +433,98 @@ async function enhancePrimitivesWithContext(vaultPath: string): Promise<{
     if (existsSync(packageJsonPath)) {
       const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
       const deps = { ...pkg.dependencies, ...pkg.devDependencies };
-      techStack = Object.keys(deps).slice(0, 20); // Top 20 deps
+      techStack = Object.keys(deps);
     }
     
-    // Check for AI/ML indicators
-    const isAIProject = techStack.some(dep => 
-      dep.includes('anthropic') || 
-      dep.includes('openai') || 
-      dep.includes('langchain') ||
-      dep.includes('transformers')
-    );
-    
-    // Use Claude to suggest context-specific subdirectories
+    // Use Claude to generate actual content nodes
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (apiKey) {
-      updateSpinner(spinner, 'Generating context-specific primitives with AI...');
+      updateSpinner(spinner, 'Generating context-specific nodes with AI...');
       
       const client = new Anthropic({ apiKey });
       const response = await client.messages.create({
         model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 2000,
+        max_tokens: 4000,
         messages: [{
           role: 'user',
-          content: `Project Analysis:
-- Framework: ${frameworkInfo.type} ${frameworkInfo.version || ''}
-- Features: ${frameworkInfo.features?.join(', ') || 'none'}
-- Key Dependencies: ${techStack.slice(0, 10).join(', ')}
-- AI/ML Project: ${isAIProject ? 'Yes' : 'No'}
+          content: `You are creating a knowledge graph vault for this project:
 
-Based on this project, suggest 3-5 additional subdirectories for each primitive category that would be most relevant:
+**Framework**: ${frameworkInfo.type} ${frameworkInfo.version || ''}
+**Features**: ${frameworkInfo.features?.join(', ') || 'none'}
+**Dependencies** (top 15): ${techStack.slice(0, 15).join(', ')}
 
-1. patterns/ - What architectural patterns are most relevant?
-2. protocols/ - What protocols matter for this stack?
-3. standards/ - What standards should be documented?
-4. integrations/ - What integrations are most likely?
-5. schemas/ - What schemas are most common?
+Generate 8-12 actual documentation nodes that would be most useful for this project. Create nodes for:
 
-Return ONLY a JSON object with this structure:
-{
-  "patterns": ["pattern1", "pattern2"],
-  "protocols": ["protocol1"],
-  "standards": ["standard1"],
-  "integrations": ["integration1"],
-  "schemas": ["schema1"]
-}
+1. **Patterns** - Specific architectural patterns used (e.g., "server-components-pattern.md", "api-routes-pattern.md" for Next.js)
+2. **Protocols** - Communication protocols used (e.g., "http-api-protocol.md", "websocket-protocol.md")
+3. **Standards** - Standards to follow (e.g., "react-coding-standards.md", "typescript-standards.md")
+4. **Integrations** - Key integrations detected (e.g., "anthropic-integration.md" if @anthropic-ai/sdk found)
+5. **Schemas** - Data schemas used (e.g., "user-schema.md", "api-response-schema.md")
 
-Be specific to ${frameworkInfo.type} projects. Keep names short and lowercase with hyphens.`
+For each node, provide:
+- Filename (lowercase-with-hyphens.md)
+- Category (patterns/protocols/standards/integrations/schemas)
+- Subcategory (which subdir it goes in)
+- Title
+- Brief useful content (100-300 words) specific to THIS project
+
+Return ONLY a JSON array:
+[
+  {
+    "filename": "next-server-components.md",
+    "category": "patterns",
+    "subcategory": "api-patterns",
+    "title": "Next.js Server Components Pattern",
+    "content": "## Overview\\n\\nServer Components in Next.js 13+...",
+    "tags": ["nextjs", "react", "server-components"]
+  }
+]
+
+Be specific and practical. Only suggest nodes for technologies ACTUALLY in the dependencies.`
         }]
       });
       
       const content = response.content[0];
       if (content.type === 'text') {
         try {
-          const suggestions = JSON.parse(content.text.match(/\{[\s\S]*\}/)?.[0] || '{}');
-          succeedSpinner(spinner, `AI-enhanced primitives for ${frameworkInfo.type}`);
-          return { framework: frameworkInfo.type, subdirs: suggestions };
-        } catch {
-          succeedSpinner(spinner, `Using default primitives`);
+          const nodesJson = content.text.match(/\[[\s\S]*\]/)?.[0];
+          if (nodesJson) {
+            const nodes = JSON.parse(nodesJson);
+            succeedSpinner(spinner, `Generated ${nodes.length} context-specific nodes for ${frameworkInfo.type}`);
+            return { 
+              framework: frameworkInfo.type, 
+              nodes: nodes.map((n: any) => ({
+                path: `${n.category}/${n.subcategory}/${n.filename}`,
+                title: n.title,
+                content: `---
+type: ${n.category.slice(0, -1)}
+status: active
+framework: ${frameworkInfo.type}
+tags: [${n.tags.join(', ')}]
+created: ${new Date().toISOString().split('T')[0]}
+---
+
+# ${n.title}
+
+${n.content}
+
+---
+
+**Framework**: ${frameworkInfo.type} ${frameworkInfo.version || ''}
+**Category**: ${n.category}
+**Status**: Active
+`,
+                tags: n.tags
+              }))
+            };
+          }
+        } catch (e) {
+          console.error('Failed to parse AI response:', e);
         }
       }
+      succeedSpinner(spinner, `Using default primitives`);
     } else {
-      succeedSpinner(spinner, `Detected: ${frameworkInfo.type} (using defaults, set ANTHROPIC_API_KEY for AI enhancement)`);
+      succeedSpinner(spinner, `Detected: ${frameworkInfo.type} (set ANTHROPIC_API_KEY for AI-generated content)`);
     }
     
     return { framework: frameworkInfo.type };
@@ -518,9 +556,16 @@ export function createInitPrimitivesCommand(): Command {
         
         // Create each primitive directory
         for (const primitive of PRIMITIVES) {
-          const spinner = showSpinner(`Creating ${primitive.name}/...`);
-          
           const primDir = join(absolutePath, primitive.name);
+          const readmePath = join(primDir, 'README.md');
+          const alreadyExists = existsSync(primDir);
+          
+          const spinner = showSpinner(
+            alreadyExists 
+              ? `Updating ${primitive.name}/...` 
+              : `Creating ${primitive.name}/...`
+          );
+          
           mkdirSync(primDir, { recursive: true });
           
           // Merge default subdirs with AI-suggested ones
@@ -529,34 +574,99 @@ export function createInitPrimitivesCommand(): Command {
             ...(context.subdirs?.[primitive.name] || [])
           ];
           
-          // Create subdirectories
+          // Create subdirectories (skip if exists)
+          let newSubdirs = 0;
           for (const subdir of subdirs) {
-            mkdirSync(join(primDir, subdir), { recursive: true });
+            const subdirPath = join(primDir, subdir);
+            if (!existsSync(subdirPath)) {
+              mkdirSync(subdirPath, { recursive: true });
+              newSubdirs++;
+            }
           }
           
-          // Create README with context
-          const readmePath = join(primDir, 'README.md');
-          let readme = createReadme(primitive);
-          
-          // Add context-specific section if AI enhanced
-          if (context.framework && context.subdirs?.[primitive.name]?.length) {
-            readme = readme.replace(
-              '---\n\n**Status**:',
-              `\n### ${context.framework} Specific\n\nAdditional subdirectories for ${context.framework} projects:\n${context.subdirs[primitive.name].map((s: string) => `- /${s}`).join('\n')}\n\n---\n\n**Status**:`
-            );
+          // Create or update README (don't overwrite if exists)
+          if (!existsSync(readmePath)) {
+            let readme = createReadme(primitive);
+            
+            // Add context-specific section if AI enhanced
+            if (context.framework && context.subdirs?.[primitive.name]?.length) {
+              readme = readme.replace(
+                '---\n\n**Status**:',
+                `\n### ${context.framework} Specific\n\nAdditional subdirectories for ${context.framework} projects:\n${context.subdirs[primitive.name].map((s: string) => `- /${s}`).join('\n')}\n\n---\n\n**Status**:`
+              );
+            }
+            
+            writeFileSync(readmePath, readme, 'utf-8');
           }
           
-          writeFileSync(readmePath, readme, 'utf-8');
-          
-          const total = subdirs.length;
-          succeedSpinner(spinner, `Created ${primitive.name}/ (${total} subdirs${context.subdirs?.[primitive.name]?.length ? `, +${context.subdirs[primitive.name].length} AI-enhanced` : ''})`);
+          const status = alreadyExists 
+            ? `Updated ${primitive.name}/ (+${newSubdirs} new subdirs)`
+            : `Created ${primitive.name}/ (${subdirs.length} subdirs${context.subdirs?.[primitive.name]?.length ? `, +${context.subdirs[primitive.name].length} AI-enhanced` : ''})`;
+          succeedSpinner(spinner, status);
         }
         
-        // Create PRIMITIVES.md index
-        const indexSpinner = showSpinner('Creating PRIMITIVES.md...');
+        // Generate AI content nodes (skip if file already exists)
+        if (context.nodes?.length) {
+          const nodesSpinner = showSpinner('Generating content nodes...');
+          let created = 0;
+          let skipped = 0;
+          
+          for (const node of context.nodes) {
+            const nodePath = join(absolutePath, node.path);
+            
+            if (existsSync(nodePath)) {
+              skipped++;
+              continue; // Don't overwrite existing nodes
+            }
+            
+            const nodeDir = join(nodePath, '..');
+            mkdirSync(nodeDir, { recursive: true });
+            writeFileSync(nodePath, node.content, 'utf-8');
+            created++;
+          }
+          
+          const msg = created > 0 
+            ? `Generated ${created} new nodes${skipped > 0 ? ` (${skipped} already exist)` : ''}`
+            : `All ${skipped} nodes already exist`;
+          succeedSpinner(nodesSpinner, msg);
+        }
+        
+        // Create or update PRIMITIVES.md index
         const primitivesPath = join(absolutePath, 'PRIMITIVES.md');
-        writeFileSync(primitivesPath, createPrimitivesIndex(absolutePath), 'utf-8');
-        succeedSpinner(indexSpinner, 'Created PRIMITIVES.md');
+        const primitivesExists = existsSync(primitivesPath);
+        const indexSpinner = showSpinner(
+          primitivesExists ? 'Updating PRIMITIVES.md...' : 'Creating PRIMITIVES.md...'
+        );
+        
+        let primitivesContent = createPrimitivesIndex(absolutePath);
+        
+        // Add AI-generated nodes section
+        if (context.nodes?.length && context.framework) {
+          const nodesList = context.nodes
+            .map(n => `- [[${n.path.replace('.md', '')}|${n.title}]]`)
+            .join('\n');
+          
+          primitivesContent = primitivesContent.replace(
+            '**Navigation**:',
+            `## 🎯 Generated Nodes for ${context.framework}
+
+The following nodes were auto-generated based on your project:
+
+${nodesList}
+
+---
+
+**Navigation**:`
+          );
+        }
+        
+        // Only write if doesn't exist or content changed
+        if (!primitivesExists || readFileSync(primitivesPath, 'utf-8') !== primitivesContent) {
+          writeFileSync(primitivesPath, primitivesContent, 'utf-8');
+          succeedSpinner(indexSpinner, primitivesExists ? 'Updated PRIMITIVES.md' : 'Created PRIMITIVES.md');
+        } else {
+          succeedSpinner(indexSpinner, 'PRIMITIVES.md unchanged');
+        }
         
         // Create reorganized directories
         const techSpinner = showSpinner('Reorganizing technical/...');
