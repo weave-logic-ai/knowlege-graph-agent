@@ -3,7 +3,7 @@
  */
 
 import { Command } from 'commander';
-import { mkdirSync, writeFileSync, existsSync } from 'fs';
+import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import {
   formatSuccess,
@@ -13,7 +13,10 @@ import {
 import {
   showSpinner,
   succeedSpinner,
+  updateSpinner,
 } from '../utils/progress.js';
+import { detectFramework } from '../../vault-init/scanner/framework-detector.js';
+import Anthropic from '@anthropic-ai/sdk';
 
 interface PrimitiveConfig {
   name: string;
@@ -402,11 +405,103 @@ Vault primitives are foundational building blocks organizing knowledge by domain
 `;
 }
 
+/**
+ * Detect project context and enhance primitives with AI
+ */
+async function enhancePrimitivesWithContext(vaultPath: string): Promise<{
+  framework?: string;
+  subdirs?: Record<string, string[]>;
+  content?: Record<string, string>;
+}> {
+  const spinner = showSpinner('Analyzing project context...');
+  
+  try {
+    // Detect framework
+    const frameworkInfo = await detectFramework(vaultPath);
+    updateSpinner(spinner, `Detected: ${frameworkInfo.type} ${frameworkInfo.version || ''}`);
+    
+    // Detect tech stack from package.json
+    let techStack: string[] = [];
+    const packageJsonPath = join(vaultPath, 'package.json');
+    if (existsSync(packageJsonPath)) {
+      const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+      const deps = { ...pkg.dependencies, ...pkg.devDependencies };
+      techStack = Object.keys(deps).slice(0, 20); // Top 20 deps
+    }
+    
+    // Check for AI/ML indicators
+    const isAIProject = techStack.some(dep => 
+      dep.includes('anthropic') || 
+      dep.includes('openai') || 
+      dep.includes('langchain') ||
+      dep.includes('transformers')
+    );
+    
+    // Use Claude to suggest context-specific subdirectories
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (apiKey) {
+      updateSpinner(spinner, 'Generating context-specific primitives with AI...');
+      
+      const client = new Anthropic({ apiKey });
+      const response = await client.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 2000,
+        messages: [{
+          role: 'user',
+          content: `Project Analysis:
+- Framework: ${frameworkInfo.type} ${frameworkInfo.version || ''}
+- Features: ${frameworkInfo.features?.join(', ') || 'none'}
+- Key Dependencies: ${techStack.slice(0, 10).join(', ')}
+- AI/ML Project: ${isAIProject ? 'Yes' : 'No'}
+
+Based on this project, suggest 3-5 additional subdirectories for each primitive category that would be most relevant:
+
+1. patterns/ - What architectural patterns are most relevant?
+2. protocols/ - What protocols matter for this stack?
+3. standards/ - What standards should be documented?
+4. integrations/ - What integrations are most likely?
+5. schemas/ - What schemas are most common?
+
+Return ONLY a JSON object with this structure:
+{
+  "patterns": ["pattern1", "pattern2"],
+  "protocols": ["protocol1"],
+  "standards": ["standard1"],
+  "integrations": ["integration1"],
+  "schemas": ["schema1"]
+}
+
+Be specific to ${frameworkInfo.type} projects. Keep names short and lowercase with hyphens.`
+        }]
+      });
+      
+      const content = response.content[0];
+      if (content.type === 'text') {
+        try {
+          const suggestions = JSON.parse(content.text.match(/\{[\s\S]*\}/)?.[0] || '{}');
+          succeedSpinner(spinner, `AI-enhanced primitives for ${frameworkInfo.type}`);
+          return { framework: frameworkInfo.type, subdirs: suggestions };
+        } catch {
+          succeedSpinner(spinner, `Using default primitives`);
+        }
+      }
+    } else {
+      succeedSpinner(spinner, `Detected: ${frameworkInfo.type} (using defaults, set ANTHROPIC_API_KEY for AI enhancement)`);
+    }
+    
+    return { framework: frameworkInfo.type };
+  } catch (error) {
+    succeedSpinner(spinner, 'Using default primitives');
+    return {};
+  }
+}
+
 export function createInitPrimitivesCommand(): Command {
   return new Command('init-primitives')
     .description('Initialize vault primitives structure (patterns, protocols, standards, etc.)')
     .argument('[vault-path]', 'Path to vault', '.')
-    .action(async (vaultPath: string) => {
+    .option('--no-ai', 'Skip AI enhancement', false)
+    .action(async (vaultPath: string, options: { ai?: boolean }) => {
       try {
         console.log(formatHeader('🧵 Initializing Vault Primitives'));
         console.log();
@@ -418,6 +513,9 @@ export function createInitPrimitivesCommand(): Command {
           mkdirSync(absolutePath, { recursive: true });
         }
         
+        // Enhance primitives with project context
+        const context = options.ai !== false ? await enhancePrimitivesWithContext(absolutePath) : {};
+        
         // Create each primitive directory
         for (const primitive of PRIMITIVES) {
           const spinner = showSpinner(`Creating ${primitive.name}/...`);
@@ -425,16 +523,33 @@ export function createInitPrimitivesCommand(): Command {
           const primDir = join(absolutePath, primitive.name);
           mkdirSync(primDir, { recursive: true });
           
+          // Merge default subdirs with AI-suggested ones
+          const subdirs = [
+            ...primitive.subdirs,
+            ...(context.subdirs?.[primitive.name] || [])
+          ];
+          
           // Create subdirectories
-          for (const subdir of primitive.subdirs) {
+          for (const subdir of subdirs) {
             mkdirSync(join(primDir, subdir), { recursive: true });
           }
           
-          // Create README
+          // Create README with context
           const readmePath = join(primDir, 'README.md');
-          writeFileSync(readmePath, createReadme(primitive), 'utf-8');
+          let readme = createReadme(primitive);
           
-          succeedSpinner(spinner, `Created ${primitive.name}/`);
+          // Add context-specific section if AI enhanced
+          if (context.framework && context.subdirs?.[primitive.name]?.length) {
+            readme = readme.replace(
+              '---\n\n**Status**:',
+              `\n### ${context.framework} Specific\n\nAdditional subdirectories for ${context.framework} projects:\n${context.subdirs[primitive.name].map((s: string) => `- /${s}`).join('\n')}\n\n---\n\n**Status**:`
+            );
+          }
+          
+          writeFileSync(readmePath, readme, 'utf-8');
+          
+          const total = subdirs.length;
+          succeedSpinner(spinner, `Created ${primitive.name}/ (${total} subdirs${context.subdirs?.[primitive.name]?.length ? `, +${context.subdirs[primitive.name].length} AI-enhanced` : ''})`);
         }
         
         // Create PRIMITIVES.md index

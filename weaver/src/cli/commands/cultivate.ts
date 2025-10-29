@@ -266,11 +266,11 @@ export function createCultivateCommand(): Command {
             targetDirectory: absolutePath,
             dryRun: options.dryRun || false,
             force: options.mode === 'full',
-            skipUnmodified: !options.force,
+            skipUnmodified: options.mode !== 'full',
             generateMissing: intelligentTasks.generateMissing,
             buildFooters: intelligentTasks.buildFooters,
             useAgents: options.useContext !== false,
-            agentMode: options.agentMode || 'adaptive',
+            agentMode: (options.agentMode || 'adaptive') as 'sequential' | 'parallel' | 'adaptive',
             maxAgents: parseInt(options.maxAgents || '5', 10),
             verbose: options.verbose || false,
           };
@@ -331,10 +331,11 @@ export function createCultivateCommand(): Command {
           const report = await engine.getReport();
           console.log(chalk.bold.green('\n✨ Intelligent Cultivation Complete\n'));
           console.log(chalk.cyan('Summary:'));
-          console.log(`  Files processed: ${report.filesProcessed}`);
-          console.log(`  Frontmatter added: ${report.frontmatterAdded}`);
-          console.log(`  Documents generated: ${report.documentsGenerated}`);
-          console.log(`  Footers updated: ${report.footersUpdated}`);
+          console.log(`  Files processed: ${report.frontmatter.processed}`);
+          console.log(`  Frontmatter updated: ${report.frontmatter.updated}`);
+          console.log(`  Documents generated: ${report.generation.created}`);
+          console.log(`  Footers updated: ${report.footers.updated}`);
+          console.log(`  Processing time: ${(report.duration / 1000).toFixed(2)}s`);
 
           if (report.warnings.length > 0) {
             console.log(chalk.yellow(`\n  Warnings: ${report.warnings.length}`));

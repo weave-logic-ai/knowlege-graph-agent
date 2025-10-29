@@ -20,8 +20,7 @@ import { AgentOrchestrator } from './agent-orchestrator.js';
 import { FooterBuilder } from './footer-builder.js';
 import type {
   VaultContext,
-  GeneratedDocument,
-  FrontmatterMetadata
+  GeneratedDocument
 } from './types.js';
 
 /**
@@ -144,14 +143,15 @@ export interface CultivationReport {
 export class CultivationEngine {
   private options: CultivationOptions;
   private contextLoader: ContextLoader;
-  private frontmatterGenerator: FrontmatterGenerator;
-  private documentGenerator: DocumentGenerator;
-  private agentOrchestrator: AgentOrchestrator;
-  private footerBuilder: FooterBuilder;
+  private frontmatterGenerator?: FrontmatterGenerator;
+  private documentGenerator?: DocumentGenerator;
+  private agentOrchestrator?: AgentOrchestrator;
+  private footerBuilder?: FooterBuilder;
 
   private startTime: number = 0;
   private warnings: string[] = [];
   private errors: string[] = [];
+  private vaultContext?: VaultContext;
 
   // Phase results
   private discoveryResult?: DiscoveryResult;
@@ -161,16 +161,28 @@ export class CultivationEngine {
 
   constructor(options: CultivationOptions) {
     this.options = options;
+    this.startTime = Date.now();
 
-    // Initialize all modules
+    // Only initialize context loader
     this.contextLoader = new ContextLoader(options.targetDirectory);
-    this.frontmatterGenerator = new FrontmatterGenerator();
-    this.documentGenerator = new DocumentGenerator();
-    this.agentOrchestrator = new AgentOrchestrator({
-      mode: options.agentMode,
-      maxConcurrent: options.maxAgents
-    });
-    this.footerBuilder = new FooterBuilder();
+  }
+
+  /**
+   * Initialize modules after context is loaded
+   */
+  private initializeModules(context: VaultContext): void {
+    if (!this.frontmatterGenerator) {
+      this.frontmatterGenerator = new FrontmatterGenerator(context, this.options.useAgents);
+    }
+    if (!this.documentGenerator) {
+      this.documentGenerator = new DocumentGenerator(context, this.options.useAgents);
+    }
+    if (!this.agentOrchestrator) {
+      this.agentOrchestrator = new AgentOrchestrator(context);
+    }
+    if (!this.footerBuilder) {
+      this.footerBuilder = new FooterBuilder(context);
+    }
   }
 
   /**
@@ -243,10 +255,14 @@ export class CultivationEngine {
     this.log('📚 Loading vault context...');
 
     const context = await this.contextLoader.loadContext();
+    this.vaultContext = context;
 
-    this.log(`  Loaded ${context.primitives.length} primitives`);
-    this.log(`  Loaded ${context.features.length} features`);
-    this.log(`  Loaded ${context.techSpecs.length} tech specs`);
+    // Initialize modules now that we have context
+    this.initializeModules(context);
+
+    const hasFiles = [context.primitives, context.features, context.techSpecs].filter(Boolean).length;
+    this.log(`  Loaded context from ${hasFiles} reference files`);
+    this.log(`  Found ${context.allFiles.length} markdown files`);
 
     return context;
   }
@@ -256,6 +272,14 @@ export class CultivationEngine {
    */
   async generateFrontmatter(): Promise<FrontmatterResult> {
     this.log('✨ Generating frontmatter...');
+
+    if (!this.vaultContext) {
+      throw new Error('Must call loadContext() before generateFrontmatter()');
+    }
+
+    if (!this.frontmatterGenerator) {
+      this.initializeModules(this.vaultContext);
+    }
 
     if (!this.discoveryResult) {
       throw new Error('Must run discover() before generateFrontmatter()');
@@ -268,36 +292,33 @@ export class CultivationEngine {
 
     for (const filePath of this.discoveryResult.files) {
       try {
-        const content = await fs.readFile(filePath, 'utf-8');
-        const parsed = matter(content);
+        processed++;
+
+        // Analyze document and get suggested frontmatter
+        const analysis = await this.frontmatterGenerator!.analyzeDocument(filePath);
 
         // Skip if unmodified and skipUnmodified is set
-        if (this.options.skipUnmodified && !this.options.force && parsed.data.updated) {
+        if (this.options.skipUnmodified && !analysis.isModified && analysis.existingFrontmatter) {
           skipped++;
           continue;
         }
 
-        processed++;
-
-        // Generate new frontmatter
-        const newFrontmatter = await this.frontmatterGenerator.generate(
-          filePath,
-          content,
-          parsed.data
-        );
-
-        // Check if frontmatter actually changed
-        if (this.hasChanged(parsed.data, newFrontmatter)) {
-          if (!this.options.dryRun) {
-            // Write updated file
-            const newContent = matter.stringify(parsed.content, newFrontmatter);
-            await fs.writeFile(filePath, newContent, 'utf-8');
-          }
-          updated++;
-          this.log(`  Updated: ${path.relative(this.options.targetDirectory, filePath)}`);
-        } else {
+        // Skip if no frontmatter needed and not forcing
+        if (!this.options.force && !analysis.needsFrontmatter && !analysis.isModified) {
           skipped++;
+          continue;
         }
+
+        if (!this.options.dryRun) {
+          // Write updated file with new frontmatter
+          const content = await fs.readFile(filePath, 'utf-8');
+          const parsed = matter(content);
+          const newContent = matter.stringify(parsed.content, analysis.suggestedFrontmatter);
+          await fs.writeFile(filePath, newContent, 'utf-8');
+        }
+
+        updated++;
+        this.log(`  Updated: ${path.relative(this.options.targetDirectory, filePath)}`);
       } catch (error) {
         const msg = `Failed to process ${filePath}: ${error}`;
         errorMessages.push(msg);
@@ -340,65 +361,37 @@ export class CultivationEngine {
       };
     }
 
-    const context = await this.loadContext();
-    const gaps = await this.documentGenerator.analyzeGaps(context);
-
-    this.log(`  Found ${gaps.length} gaps to fill`);
-
-    const documents: GeneratedDocument[] = [];
-    const errors: string[] = [];
-
-    if (this.options.useAgents && gaps.length > 0) {
-      // Use agent orchestrator for generation
-      try {
-        const generated = await this.agentOrchestrator.generateDocuments(gaps, context);
-        documents.push(...generated);
-      } catch (error) {
-        const msg = `Agent orchestration failed: ${error}`;
-        errors.push(msg);
-        this.addError(msg);
-      }
-    } else {
-      // Generate documents synchronously
-      for (const gap of gaps) {
-        try {
-          const doc = await this.documentGenerator.generateDocument(gap, context);
-          documents.push(doc);
-        } catch (error) {
-          const msg = `Failed to generate ${gap.suggestedPath}: ${error}`;
-          errors.push(msg);
-          this.addError(msg);
-        }
-      }
+    if (!this.vaultContext) {
+      throw new Error('Must call loadContext() before generateDocuments()');
     }
 
-    // Write generated documents
-    if (!this.options.dryRun) {
-      for (const doc of documents) {
-        try {
-          const fullPath = path.join(this.options.targetDirectory, doc.path);
-          await fs.mkdir(path.dirname(fullPath), { recursive: true });
-          await fs.writeFile(fullPath, doc.content, 'utf-8');
-          this.log(`  Created: ${doc.path}`);
-        } catch (error) {
-          const msg = `Failed to write ${doc.path}: ${error}`;
-          errors.push(msg);
-          this.addError(msg);
-        }
-      }
+    if (!this.documentGenerator) {
+      this.initializeModules(this.vaultContext);
     }
+
+    // Analyze gaps
+    const gaps = await this.documentGenerator!.analyzeGaps();
+    const totalGaps = gaps.missingConcepts.length +
+                      gaps.missingFeatures.length +
+                      gaps.missingArchitecture.length +
+                      gaps.missingIntegrations.length;
+
+    this.log(`  Found ${totalGaps} missing documents`);
+
+    // Generate missing documents
+    const documents = await this.documentGenerator!.generateMissingDocuments(gaps, this.options.dryRun);
 
     const result: GenerationResult = {
       created: documents.length,
       documents,
-      errors
+      errors: []
     };
 
     this.generationResult = result;
 
-    this.log(`  Created ${documents.length} documents`);
-    if (errors.length > 0) {
-      this.log(`  ⚠️  ${errors.length} errors`);
+    this.log(`  Generated ${documents.length} documents`);
+    if (this.options.dryRun) {
+      this.log('  (dry run - no files written)');
     }
 
     return result;
@@ -419,54 +412,28 @@ export class CultivationEngine {
       };
     }
 
+    if (!this.vaultContext) {
+      throw new Error('Must call loadContext() before buildFooters()');
+    }
+
+    if (!this.footerBuilder) {
+      this.initializeModules(this.vaultContext);
+    }
+
     if (!this.discoveryResult) {
       throw new Error('Must run discover() before buildFooters()');
     }
 
-    // Build link graph
-    const linkGraph = await this.buildLinkGraph();
-
-    let updated = 0;
-    let skipped = 0;
-    const errors: string[] = [];
-
-    for (const filePath of this.discoveryResult.files) {
-      try {
-        const content = await fs.readFile(filePath, 'utf-8');
-        const newContent = await this.footerBuilder.buildFooter(
-          filePath,
-          content,
-          linkGraph
-        );
-
-        if (newContent !== content) {
-          if (!this.options.dryRun) {
-            await fs.writeFile(filePath, newContent, 'utf-8');
-          }
-          updated++;
-          this.log(`  Updated footer: ${path.relative(this.options.targetDirectory, filePath)}`);
-        } else {
-          skipped++;
-        }
-      } catch (error) {
-        const msg = `Failed to build footer for ${filePath}: ${error}`;
-        errors.push(msg);
-        this.addError(msg);
-      }
-    }
-
-    const result: FooterBuildResult = {
-      updated,
-      skipped,
-      errors
-    };
+    // Use footer builder to build all footers
+    const result = await this.footerBuilder!.buildFooters(this.discoveryResult.files);
 
     this.footerResult = result;
 
-    this.log(`  Updated ${updated} footers`);
-    this.log(`  Skipped ${skipped} files`);
-    if (errors.length > 0) {
-      this.log(`  ⚠️  ${errors.length} errors`);
+    this.log(`  Updated ${result.updated} footers`);
+    this.log(`  Skipped ${result.skipped} files`);
+    if (result.errors.length > 0) {
+      this.log(`  ⚠️  ${result.errors.length} errors`);
+      result.errors.forEach(err => this.addError(err));
     }
 
     return result;
