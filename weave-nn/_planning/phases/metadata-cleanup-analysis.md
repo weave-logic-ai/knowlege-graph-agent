@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Metadata Cleanup Analysis
 
 **Created**: 2025-10-23

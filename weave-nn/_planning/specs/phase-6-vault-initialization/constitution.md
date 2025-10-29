@@ -12,7 +12,7 @@ tags:
   - phase-6
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -21,6 +21,7 @@ visual:
     - phase-6
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Vault Initialization System - Constitution
@@ -36,6 +37,16 @@ updated_date: '2025-10-28'
 
 _Principles to be defined during spec-kit workflow_
 
+
+
+
+
+## Related
+
+[[constitution]] • [[constitution]]
+## Related
+
+[[phase-6-vault-tasks]] • [[plan]] • [[specification]]
 ## Technical Constraints
 
 - TypeScript strict mode

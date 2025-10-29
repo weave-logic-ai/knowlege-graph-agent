@@ -2,28 +2,21 @@
 type: technical-primitive
 category: tool
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "[[gunicorn]]"
-  - "[[hypercorn]]"
-  - "[[daphne]]"
+  - '[[gunicorn]]'
+  - '[[hypercorn]]'
+  - '[[daphne]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/asgi-server-selection]]"
-architecture: "[[../architecture/mcp-server]]"
-
+decision: '[[../decisions/technical/asgi-server-selection]]'
+architecture: '[[../architecture/mcp-server]]'
 tags:
   - technical
   - tool
@@ -318,6 +311,36 @@ ps aux | grep uvicorn
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[wikilinks]]
+## Related
+
+[[pyyaml]]
+## Related
+
+[[gitpython]]
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[docker-compose]] • [[n8n-workflow-automation]] • [[property-visualizer]]
+## Related
+
+[[obsidian-local-rest-api-plugin]] • [[obsidian-tasks-plugin]]
 ## Related Nodes
 
 **Architecture**:

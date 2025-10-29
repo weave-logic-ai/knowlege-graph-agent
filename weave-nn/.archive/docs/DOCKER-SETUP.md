@@ -1,9 +1,18 @@
+---
+title: DOCKER-SETUP
+created: '2025-10-28'
+---
 # Docker Setup - Quick Reference
 
 ## Overview
 
 Production-ready Docker Compose configuration for Weave-NN MVP with 6 core services.
 
+
+
+## Related
+
+[[docker-compose-summary]]
 ## Architecture
 
 ```

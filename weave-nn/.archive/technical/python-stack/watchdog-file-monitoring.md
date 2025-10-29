@@ -2,28 +2,21 @@
 type: technical-primitive
 category: library
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - file-watcher
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "inotify (Linux only)"
-  - "Polling with os.walk"
-  - "fswatch"
+  - inotify (Linux only)
+  - Polling with os.walk
+  - fswatch
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/file-monitoring-library]]"
-architecture: "[[../architecture/file-watcher]]"
-
+decision: '[[../decisions/technical/file-monitoring-library]]'
+architecture: '[[../architecture/file-watcher]]'
 tags:
   - technical
   - library
@@ -557,6 +550,31 @@ touch /path/to/vault/test-watchdog.md
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[test-strategy-summary]] • [[wikilinks]]
+## Related
+
+[[uvicorn]]
+## Related
+
+[[mcp]] • [[obsidian-api-client]] • [[sqlite]]
+## Related
+
+[[pyyaml]]
+## Related
+
+[[gitpython]]
 ## Related Nodes
 
 **Architecture**:

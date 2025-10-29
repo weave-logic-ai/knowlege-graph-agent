@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Multi-Project AI Development Platform: Research-Backed Architecture
 
 **System Vision**: AI-augmented software development platform where isolated project knowledge graphs feed a centralized meta-learning system, enabling team-based AI agents that evolve expertise through real development work, with complete transparency and human oversight gates.

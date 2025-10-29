@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # MCP Tools SDK Integration Status
 **Version**: v2.5.0-alpha.130
 **Date**: 2025-09-30

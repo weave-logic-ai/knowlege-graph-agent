@@ -12,13 +12,14 @@ tags:
   - ai-learning
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-executive-summary
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Task Completion Feedback Loop - Executive Summary

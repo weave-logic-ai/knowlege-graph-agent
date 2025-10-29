@@ -1,19 +1,18 @@
 ---
-feature_id: "F-019"
-feature_name: "Automated Daily Logs"
-category: "planning"
-status: "planned"
-priority: "low"
-release: "v2.0"
-complexity: "complex"
-
+feature_id: F-019
+feature_name: Automated Daily Logs
+category: planning
+status: planned
+priority: low
+release: v2.0
+complexity: complex
 dependencies:
-  requires: ["F-011", "F-026"]
+  requires:
+    - F-011
+    - F-026
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/ai-integration]]"
-
+  - '[[../decisions/features/ai-integration]]'
 tags:
   - feature
   - planning
@@ -52,6 +51,51 @@ Requires comprehensive activity tracking infrastructure across all system compon
 - Background job scheduling for daily generation
 - Estimated effort: 6-8 weeks
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[agent-automation]]
+## Related
+
+[[multi-vault]]
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[team-analytics]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[daily-log-automation]] • [[decision-tracking]] • [[phase-management]]
+## Related
+
+[[auto-tagging]]
 ## Related
 - [[../concepts/temporal-queries|Temporal Queries]]
 - [[todo-management|Todo Management Feature]]

@@ -1,26 +1,21 @@
 ---
-# Node Metadata
-phase_id: "PHASE-6"
-phase_name: "File Watcher & Weaver Integration"
+phase_id: PHASE-6
+phase_name: File Watcher & Weaver Integration
 type: implementation
-status: "pending"
-priority: "high"
-created_date: "2025-10-23"
-duration: "2-3 days"
-
-# Scope
+status: pending
+priority: high
+created_date: '2025-10-23'
+duration: 2-3 days
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-5"]
-  enables: ["PHASE-7"]
+  requires:
+    - PHASE-5
+  enables:
+    - PHASE-7
   blocks: []
-
-# Tags
 tags:
   - scope/mvp
   - type/implementation
@@ -30,10 +25,8 @@ tags:
   - file-watcher
   - weaver-integration
   - event-streaming
-
-# Visual
 visual:
-  icon: "eye"
+  icon: eye
   cssclasses:
     - type-implementation
     - scope-mvp
@@ -64,6 +57,41 @@ Implement real-time file watching for the Obsidian vault using **chokidar** and 
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-3b-node-expansion-legacy]]
+## Related
+
+[[weaver-workflow-automation]] • [[salt-configuration-hub]]
+## Related
+
+[[github-issues-integration]]
+## Related
+
+[[cross-project-knowledge-retention]]
+## Related
+
+[[phase-7-mvp-week-2]]
+## Related
+
+[[phase-10-mvp-readiness-launch]] • [[phase-8-git-automation-workflow-proxy]]
+## Related
+
+[[phase-9-testing-documentation]]
 ## 📋 Tasks
 
 ### Day 1: File Watcher Implementation (4-6 hours)

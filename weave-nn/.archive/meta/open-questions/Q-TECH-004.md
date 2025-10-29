@@ -1,36 +1,31 @@
 ---
-question_id: "Q-TECH-004"
-question_type: "technical"
-title: "Vector Database Selection for Semantic Search"
-status: "open"
-priority: "medium"
-category: "backend"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-due_date: "2025-11-10"
-
-assigned_to: "Backend Team"
+question_id: Q-TECH-004
+question_type: technical
+title: Vector Database Selection for Semantic Search
+status: open
+priority: medium
+category: backend
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+due_date: '2025-11-10'
+assigned_to: Backend Team
 stakeholders:
-  - "AI Integration Team"
-  - "Data Team"
-  - "Infrastructure Team"
+  - AI Integration Team
+  - Data Team
+  - Infrastructure Team
 ai_assisted: true
-
 related_decisions:
-  - "TS-4"  # Database & Storage
-  - "Q-TECH-002"  # Graphiti integration (affects vector DB choice)
-  - "ED-1"  # Project Scope (SaaS)
-
+  - TS-4
+  - Q-TECH-002
+  - ED-1
 research_tasks:
-  - "Benchmark pgvector vs Pinecone vs Qdrant"
-  - "Test semantic search quality with OpenAI embeddings"
-  - "Evaluate multi-tenancy and data isolation"
-  - "Compare costs at different scales (1k, 10k, 100k docs)"
-  - "Test integration with Graphiti (if used)"
-  - "Assess Google Cloud Vertex AI Vector Search"
-  - "Prototype hybrid search (vector + lexical)"
-
+  - Benchmark pgvector vs Pinecone vs Qdrant
+  - Test semantic search quality with OpenAI embeddings
+  - Evaluate multi-tenancy and data isolation
+  - 'Compare costs at different scales (1k, 10k, 100k docs)'
+  - Test integration with Graphiti (if used)
+  - Assess Google Cloud Vertex AI Vector Search
+  - Prototype hybrid search (vector + lexical)
 tags:
   - technical
   - backend
@@ -59,6 +54,16 @@ Which vector database should we use for semantic search in Weave-NN, and should 
 
 ---
 
+
+
+
+
+## Related
+
+[[fastapi]]
+## Related
+
+[[Q-TECH-001]]
 ## Context from Analysis
 
 ### From Custom Solution Analysis

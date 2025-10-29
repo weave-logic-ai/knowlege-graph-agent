@@ -15,7 +15,7 @@ tags:
 type: planning
 scope: task
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -24,6 +24,7 @@ visual:
     - phase-7
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Agent Rules & Memory Sync - Tasks
@@ -96,6 +97,31 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-8-git-tasks]] • [[phase-9-testing-tasks]] • [[specification]]
+## Related
+
+[[phase-5-mcp-tasks]]
+## Related
+
+[[phase-6-vault-tasks]]
+## Related
+
+[[phase-7-agent-rules-memory-sync]]
+## Related
+
+[[constitution]]
 ## Task Details
 
 ### Category 1: Claude AI Integration

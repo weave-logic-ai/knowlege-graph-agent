@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # MCP Integration & Workflow Enhancement - Constitution
 
 **Phase ID**: PHASE-5

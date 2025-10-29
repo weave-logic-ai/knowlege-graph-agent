@@ -15,7 +15,7 @@ tags:
   - architecture
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -24,6 +24,7 @@ visual:
     - phase-3
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Phase 3: Node Expansion & Architecture
@@ -49,6 +50,11 @@ Create remaining structural nodes using templates from Phase 2:
 
 ---
 
+
+
+## Related
+
+[[phase-5-mcp-server-implementation]]
 ## 📋 Deliverables
 
 ### Architecture Nodes (4 nodes) - CRITICAL

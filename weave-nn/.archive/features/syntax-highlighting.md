@@ -1,19 +1,17 @@
 ---
-feature_id: "F-012"
-feature_name: "Syntax Highlighting"
-category: "editor"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "simple"
-
+feature_id: F-012
+feature_name: Syntax Highlighting
+category: editor
+status: planned
+priority: high
+release: mvp
+complexity: simple
 dependencies:
-  requires: ["F-002"]
+  requires:
+    - F-002
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/markdown-editor]]"
-
+  - '[[../decisions/technical/markdown-editor]]'
 tags:
   - feature
   - editor
@@ -58,6 +56,26 @@ As a **developer writing technical documentation**, I want to **see syntax highl
 
 **Languages Priority**: Start with top 20 most common languages, add more on demand.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[todo-management]] • [[knowledge-graph-visualization]] • [[user-permissions]] • [[workspace-management]]
+## Related
+
+[[data-portability]]
+## Related
+
+[[wikilink-autocomplete]] • [[collaborative-editing]] • [[version-history]] • [[collaborative-editing]] • [[tag-based-filtering]]
+## Related
+
+[[decision-tracking]]
 ## Related
 
 - [[markdown-editor-component]]

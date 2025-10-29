@@ -1,19 +1,16 @@
 ---
-feature_id: "F-011"
-feature_name: "Data Portability & Standards"
-category: "data"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "moderate"
-
+feature_id: F-011
+feature_name: Data Portability & Standards
+category: data
+status: planned
+priority: high
+release: mvp
+complexity: moderate
 dependencies:
   requires: []
   blocks: []
-
 related_decisions:
-  - "[[../decisions/architectural/data-standards]]"
-
+  - '[[../decisions/architectural/data-standards]]'
 tags:
   - feature
   - data
@@ -65,6 +62,36 @@ As a **concerned user**, I want to **own my data in open formats** so that I can
 - Map external wikilink formats to Weave-NN format
 - Bulk import with progress tracking
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[user-permissions]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[decision-tracking]] • [[syntax-highlighting]] • [[tag-based-filtering]] • [[todo-management]] • [[wikilink-autocomplete]]
+## Related
+
+[[backup-sync]]
 ## Related
 
 - [[../concepts/data-ownership]]

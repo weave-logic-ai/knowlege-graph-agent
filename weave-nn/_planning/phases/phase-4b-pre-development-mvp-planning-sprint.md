@@ -26,6 +26,7 @@ visual:
 type: planning
 version: '3.0'
 updated_date: '2025-10-28'
+icon: clipboard-check
 ---
 
 # Phase 4B: Pre-Development MVP Planning Sprint
@@ -73,6 +74,11 @@ By the end of Phase 4, we need:
 
 ---
 
+
+
+## Related
+
+[[planning-node-template]] • [[decision-tracking]] • [[todo-management]] • [[decision-tracking]]
 ## 📋 Tasks & Checklist
 
 ### 1. Documentation Review & Organization

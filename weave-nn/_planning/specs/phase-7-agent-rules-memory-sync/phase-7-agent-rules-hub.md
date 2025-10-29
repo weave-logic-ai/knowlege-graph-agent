@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Agent Rules & Memory Sync - Spec-Kit Workflow
 
 ## Generated Specifications

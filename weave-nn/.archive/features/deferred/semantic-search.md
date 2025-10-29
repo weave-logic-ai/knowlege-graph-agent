@@ -1,20 +1,19 @@
 ---
-feature_id: "F-106"
-feature_name: "Semantic Search"
-category: "ai"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "complex"
-
+feature_id: F-106
+feature_name: Semantic Search
+category: ai
+status: planned
+priority: high
+release: v1.1
+complexity: complex
 dependencies:
-  requires: ["F-004", "F-101"]
+  requires:
+    - F-004
+    - F-101
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/ai-integration]]"
-  - "[[../decisions/technical/search-indexing]]"
-
+  - '[[../decisions/features/ai-integration]]'
+  - '[[../decisions/technical/search-indexing]]'
 tags:
   - feature
   - ai
@@ -73,6 +72,16 @@ Storage considerations:
 - Index optimization for fast k-NN queries
 - Caching layer for common searches
 
+
+
+
+
+## Related
+
+[[collaborative-editing]] • [[comments-annotations]] • [[export-import]] • [[phase-management]]
+## Related
+
+[[agent-automation]]
 ## Related
 
 - [[../technical/postgresql|PostgreSQL with pgvector]]

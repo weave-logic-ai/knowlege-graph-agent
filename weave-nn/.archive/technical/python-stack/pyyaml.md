@@ -2,30 +2,23 @@
 type: technical-primitive
 category: library
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - file-watcher
   - agent-orchestration
 deployment: python-package
-
-# Relationships
 alternatives_considered:
-  - "[[ruamel-yaml]]"
-  - "[[pyyaml-env-tag]]"
-  - "[[json-frontmatter]]"
+  - '[[ruamel-yaml]]'
+  - '[[pyyaml-env-tag]]'
+  - '[[json-frontmatter]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/yaml-parser-library]]"
-architecture: "[[../architecture/metadata-processing-layer]]"
-
+decision: '[[../decisions/technical/yaml-parser-library]]'
+architecture: '[[../architecture/metadata-processing-layer]]'
 tags:
   - technical
   - library
@@ -496,6 +489,41 @@ async def query_notes_by_metadata(
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[mcp]]
+## Related
+
+[[wikilinks]]
+## Related
+
+[[yaml-frontmatter]] • [[uvicorn]]
+## Related
+
+[[obsidian-api-client]]
+## Related
+
+[[pika-rabbitmq-client]]
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[gitpython]]
 ## Related Nodes
 
 **Architecture**:

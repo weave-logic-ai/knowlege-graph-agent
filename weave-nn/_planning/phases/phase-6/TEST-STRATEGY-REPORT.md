@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Test Strategy Report: Weave-NN MVP Development
 
 **Report Date**: 2025-10-21

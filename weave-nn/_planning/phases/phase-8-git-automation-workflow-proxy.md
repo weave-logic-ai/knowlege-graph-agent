@@ -34,6 +34,7 @@ visual:
     - priority-medium
 version: '3.0'
 updated_date: '2025-10-28'
+icon: git-branch
 ---
 
 # Phase 8: Git Automation & Workflow Proxy
@@ -59,6 +60,16 @@ Implement **git automation** using simple-git to auto-commit vault changes, and 
 
 ---
 
+
+
+
+
+## Related
+
+[[phase-10-mvp-readiness-launch]]
+## Related
+
+[[phase-6-file-watcher-weaver-integration]]
 ## 📋 Implementation Tasks
 
 ### Git Client Setup

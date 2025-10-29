@@ -2,29 +2,22 @@
 type: technical-primitive
 category: library
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - event-consumer
   - git-autocommit-worker
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "subprocess git commands"
-  - "pygit2 (libgit2 bindings)"
-  - "dulwich (pure Python)"
+  - subprocess git commands
+  - pygit2 (libgit2 bindings)
+  - dulwich (pure Python)
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/git-automation-library]]"
-architecture: "[[../architecture/event-consumer]]"
-
+decision: '[[../decisions/technical/git-automation-library]]'
+architecture: '[[../architecture/event-consumer]]'
 tags:
   - technical
   - library
@@ -686,6 +679,26 @@ docker exec weave-git-worker git -C /vault diff --stat
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[n8n-workflow-automation]]
+## Related
+
+[[uvicorn]]
+## Related
+
+[[mcp]] • [[obsidian-api-client]] • [[sqlite]]
+## Related
+
+[[watchdog-file-monitoring]] • [[pyyaml]]
 ## Related Nodes
 
 **Architecture**:

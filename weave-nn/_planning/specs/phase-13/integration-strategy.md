@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Integration Strategy
 ## Seamless Enhancement of Phase 12 Autonomous Learning Loop
 

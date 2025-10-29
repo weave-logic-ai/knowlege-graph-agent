@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # MVP Local-First Architecture Specification
 
 **Version**: 1.0

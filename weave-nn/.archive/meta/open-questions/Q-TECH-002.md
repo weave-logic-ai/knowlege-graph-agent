@@ -1,36 +1,31 @@
 ---
-question_id: "Q-TECH-002"
-question_type: "technical"
-title: "Graphiti Integration Strategy & Temporal Knowledge Graph Architecture"
-status: "open"
-priority: "high"
-category: "backend"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-due_date: "2025-11-03"
-
-assigned_to: "Backend Team"
+question_id: Q-TECH-002
+question_type: technical
+title: Graphiti Integration Strategy & Temporal Knowledge Graph Architecture
+status: open
+priority: high
+category: backend
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+due_date: '2025-11-03'
+assigned_to: Backend Team
 stakeholders:
-  - "Architecture Team"
-  - "AI Integration Team"
-  - "Data Team"
+  - Architecture Team
+  - AI Integration Team
+  - Data Team
 ai_assisted: true
-
 related_decisions:
-  - "TS-3"  # Backend Architecture
-  - "TS-4"  # Database & Storage
-  - "ED-1"  # Project Scope (SaaS)
-
+  - TS-3
+  - TS-4
+  - ED-1
 research_tasks:
-  - "Set up Graphiti locally and test basic operations"
-  - "Evaluate multi-tenancy support in Graphiti"
-  - "Test temporal queries and point-in-time retrieval"
-  - "Benchmark performance with 10k+ episodes"
-  - "Design integration architecture (sidecar vs embedded)"
-  - "Test hybrid search (semantic + BM25 + graph)"
-  - "Evaluate Graphiti MCP server capabilities"
-
+  - Set up Graphiti locally and test basic operations
+  - Evaluate multi-tenancy support in Graphiti
+  - Test temporal queries and point-in-time retrieval
+  - Benchmark performance with 10k+ episodes
+  - Design integration architecture (sidecar vs embedded)
+  - Test hybrid search (semantic + BM25 + graph)
+  - Evaluate Graphiti MCP server capabilities
 tags:
   - technical
   - backend
@@ -59,6 +54,16 @@ How should we integrate **Graphiti** (temporal knowledge graph engine) into Weav
 
 ---
 
+
+
+
+
+## Related
+
+[[fastapi]] • [[tag-based-filtering]] • [[phase-14-obsidian-integration]]
+## Related
+
+[[Q-TECH-005]]
 ## Context from Analysis
 
 ### From Custom Solution Analysis

@@ -19,11 +19,12 @@ cssclasses:
   - in-progress
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-task_list
     - status-in_progress
 version: '3.0'
+icon: 📄
 ---
 
 # MVP Week 1 Implementation Checklist

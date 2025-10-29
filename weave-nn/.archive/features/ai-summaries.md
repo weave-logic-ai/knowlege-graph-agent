@@ -1,19 +1,18 @@
 ---
-feature_id: "F-014"
-feature_name: "AI-Generated Summaries"
-category: "ai"
-status: "planned"
-priority: "medium"
-release: "v2.0"
-complexity: "complex"
-
+feature_id: F-014
+feature_name: AI-Generated Summaries
+category: ai
+status: planned
+priority: medium
+release: v2.0
+complexity: complex
 dependencies:
-  requires: ["F-011", "F-012"]
+  requires:
+    - F-011
+    - F-012
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/ai-integration]]"
-
+  - '[[../decisions/features/ai-integration]]'
 tags:
   - feature
   - ai
@@ -52,6 +51,26 @@ Requires sophisticated LLM integration with context management for long document
 - Quality scoring and validation
 - Estimated effort: 6-8 weeks
 
+
+
+
+
+
+
+
+
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[multi-vault]] • [[team-analytics]]
+## Related
+
+[[activity-feed]]
+## Related
+
+[[auto-tagging]] • [[auto-tagging]] • [[agent-automation]] • [[daily-log-automation]]
 ## Related
 - [[../concepts/ai-generated-documentation|AI-Generated Documentation]]
 - [[../concepts/knowledge-graph|Knowledge Graph]]

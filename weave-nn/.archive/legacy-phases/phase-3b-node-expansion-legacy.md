@@ -1,30 +1,29 @@
 ---
-# Node Metadata
-phase_id: "PHASE-3B"
-phase_name: "Node Expansion & Decision Documentation (Legacy)"
+phase_id: PHASE-3B
+phase_name: Node Expansion & Decision Documentation (Legacy)
 type: planning
-status: "archived"
-priority: "historical"
-created_date: "2025-10-20"
-start_date: "2025-10-20"
-end_date: "2025-10-20"
-duration: "1 day"
-updated_date: "2025-10-23"
-archived_date: "2025-10-23"
-archived_reason: "Obsoleted by Obsidian-First pivot and primitive architype reorganization"
-note: "Renamed from PHASE-2B to PHASE-3B for clarity. Originally executed as Phase 3 work. ARCHIVED 2025-10-23: Original scope (SaaS, custom UI, graph visualization component) superseded by Obsidian-First architecture decision and research synthesis integration."
-
-# Scope
+status: archived
+priority: historical
+created_date: '2025-10-20'
+start_date: '2025-10-20'
+end_date: '2025-10-20'
+duration: 1 day
+updated_date: '2025-10-23'
+archived_date: '2025-10-23'
+archived_reason: Obsoleted by Obsidian-First pivot and primitive architype reorganization
+note: >-
+  Renamed from PHASE-2B to PHASE-3B for clarity. Originally executed as Phase 3
+  work. ARCHIVED 2025-10-23: Original scope (SaaS, custom UI, graph
+  visualization component) superseded by Obsidian-First architecture decision
+  and research synthesis integration.
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-2A"]
-  enables: ["PHASE-4"]
-
-# Tags
+  requires:
+    - PHASE-2A
+  enables:
+    - PHASE-4
 tags:
   - scope/mvp
   - type/planning
@@ -33,10 +32,8 @@ tags:
   - phase-3b
   - expansion
   - legacy
-
-# Visual
 visual:
-  icon: "git-branch"
+  icon: git-branch
   cssclasses:
     - type-planning
     - scope-mvp
@@ -97,6 +94,36 @@ This document is preserved for:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[MASTER-PLAN]] • [[phase-6-file-watcher-weaver-integration]] • [[phase-7-agent-rules-memory-sync]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
+## Related
+
+[[phase-2-documentation-capture]]
+## Related
+
+[[phase-7-mvp-week-2]]
+## Related
+
+[[phase-6-mvp-week-1]]
+## Related
+
+[[phase-4a-decision-closure]]
 ## 🎯 Objectives
 
 ### Primary Goals

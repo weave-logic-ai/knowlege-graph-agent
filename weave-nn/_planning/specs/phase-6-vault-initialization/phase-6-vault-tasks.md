@@ -20,7 +20,7 @@ links:
 type: planning
 scope: task
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -29,6 +29,7 @@ visual:
     - phase-6
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Vault Initialization System - Task Breakdown
@@ -47,6 +48,31 @@ Comprehensive task breakdown for implementing the Vault Initialization System. T
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-9-testing-tasks]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-5-mcp-tasks]]
+## Related
+
+[[plan]] • [[phase-7-agent-tasks]] • [[specification]]
+## Related
+
+[[phase-8-git-tasks]]
 ## 1. Project Codebase Scanner (Days 1-3)
 
 ### 1.1 Framework Detection

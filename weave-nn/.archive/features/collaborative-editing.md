@@ -1,19 +1,19 @@
 ---
-feature_id: "F-103"
-feature_name: "Real-Time Collaborative Editing"
-category: "editor"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "complex"
-
+feature_id: F-103
+feature_name: Real-Time Collaborative Editing
+category: editor
+status: planned
+priority: high
+release: v1.1
+complexity: complex
 dependencies:
-  requires: ["F-002", "F-008"]
-  blocks: ["F-112"]
-
+  requires:
+    - F-002
+    - F-008
+  blocks:
+    - F-112
 related_decisions:
-  - "[[../decisions/technical/realtime-collaboration]]"
-
+  - '[[../decisions/technical/realtime-collaboration]]'
 tags:
   - feature
   - editor
@@ -66,6 +66,56 @@ Technical approach:
 - Store CRDT state in PostgreSQL for persistence
 - Implement presence awareness via Supabase channels
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[user-permissions]]
+## Related
+
+[[export-import]]
+## Related
+
+[[temporal-view]]
+## Related
+
+[[node-search]]
+## Related
+
+[[semantic-search]]
+## Related
+
+[[phase-management]]
+## Related
+
+[[team-analytics]]
+## Related
+
+[[wikilink-autocomplete]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[collaborative-editing]]
 ## Related
 
 - [[../technical/tiptap-editor|TipTap Editor]]

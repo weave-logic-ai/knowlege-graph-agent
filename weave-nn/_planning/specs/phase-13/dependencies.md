@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Task Dependencies & Critical Path
 **Complete Dependency Mapping and Scheduling**
 

@@ -1,19 +1,18 @@
 ---
-feature_id: "F-108"
-feature_name: "Phase/Milestone Management"
-category: "planning"
-status: "planned"
-priority: "medium"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-108
+feature_name: Phase/Milestone Management
+category: planning
+status: planned
+priority: medium
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-005", "F-006"]
+  requires:
+    - F-005
+    - F-006
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/planning-workflow]]"
-
+  - '[[../decisions/features/planning-workflow]]'
 tags:
   - feature
   - planning
@@ -80,6 +79,31 @@ milestones:
   - completion_criteria
 ```
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[export-import]]
+## Related
+
+[[semantic-search]]
+## Related
+
+[[collaborative-editing]] • [[comments-annotations]] • [[sharing]]
+## Related
+
+[[backup-sync]]
+## Related
+
+[[daily-log-automation]]
 ## Related
 
 - [[../planning/phases/|Project Phases]]

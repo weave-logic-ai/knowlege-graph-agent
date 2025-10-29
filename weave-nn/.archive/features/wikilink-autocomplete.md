@@ -1,19 +1,17 @@
 ---
-feature_id: "F-003"
-feature_name: "Wikilink Autocomplete"
-category: "editor"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "moderate"
-
+feature_id: F-003
+feature_name: Wikilink Autocomplete
+category: editor
+status: planned
+priority: high
+release: mvp
+complexity: moderate
 dependencies:
-  requires: ["F-002"]
+  requires:
+    - F-002
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/markdown-editor]]"
-
+  - '[[../decisions/technical/markdown-editor]]'
 tags:
   - feature
   - editor
@@ -55,6 +53,46 @@ As a **note-taker**, I want to **see suggestions for existing notes when I type 
 
 **Architecture**: Maintain in-memory search index with periodic sync to backend. Use debouncing (150-200ms) to prevent excessive queries while typing.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[Q-TECH-003]]
+## Related
+
+[[todo-management]]
+## Related
+
+[[data-portability]]
+## Related
+
+[[version-history]]
+## Related
+
+[[tag-based-filtering]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[decision-tracking]]
+## Related
+
+[[collaborative-editing]]
 ## Related
 
 - [[../concepts/wikilinks]]

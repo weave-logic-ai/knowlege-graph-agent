@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Implementation Workflow
 **Step-by-Step Execution Guide**
 

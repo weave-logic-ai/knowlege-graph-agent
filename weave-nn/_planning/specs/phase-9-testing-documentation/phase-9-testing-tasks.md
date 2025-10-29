@@ -22,7 +22,7 @@ links:
 type: planning
 scope: task
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -31,6 +31,7 @@ visual:
     - phase-9
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Phase 9: Testing & Documentation + Phase 8 Completion - Task Breakdown
@@ -55,6 +56,26 @@ This phase combines comprehensive testing and documentation for the entire Weave
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-6-vault-tasks]]
+## Related
+
+[[phase-7-agent-tasks]]
+## Related
+
+[[phase-9-testing-documentation]]
+## Related
+
+[[phase-8-git-tasks]]
 ## Section 1: Phase 8 Completion (Day 1) - 11 hours
 
 ### 1.1: Write unit tests for GitClient

@@ -2,7 +2,7 @@
 type: technical-primitive
 category: language
 status: in-use
-first_used_phase: "PHASE-0"
+first_used_phase: PHASE-0
 mvp_required: true
 future_only: false
 tags:
@@ -11,11 +11,11 @@ tags:
   - runtime
   - scope/mvp
 related_architecture:
-  - "[[mvp-local-first-architecture]]"
-  - "[[obsidian-first-architecture]]"
+  - '[[mvp-local-first-architecture]]'
+  - '[[obsidian-first-architecture]]'
 related_features:
-  - "[[mcp-server]]"
-  - "[[claude-flow-integration]]"
+  - '[[mcp-server]]'
+  - '[[claude-flow-integration]]'
 dependencies: []
 ---
 
@@ -25,6 +25,11 @@ dependencies: []
 
 Python 3.11 is the runtime environment for the entire Weave-NN backend infrastructure, chosen for its async capabilities, mature ecosystem, and MCP SDK support.
 
+
+
+## Related
+
+[[docker-compose]] • [[docker]] • [[rabbitmq]]
 ## Category
 
 **Language / Runtime Environment**

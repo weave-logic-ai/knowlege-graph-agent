@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Planning Review - 2025-10-21
 
 ## Comprehensive Multi-Agent Planning Audit

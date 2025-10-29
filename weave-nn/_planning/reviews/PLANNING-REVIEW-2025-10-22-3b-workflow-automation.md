@@ -16,7 +16,7 @@ tags:
   - hooks
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -25,6 +25,7 @@ visual:
     - phase-3b
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Phase 3b: Workflow Automation & Hooks Implementation
@@ -56,6 +57,31 @@ Implement Claude-Flow hooks in `.claude/settings.json` that automatically:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-1-knowledge-graph-transformation]] • [[weaver]]
+## Related
+
+[[phase-6-vault-initialization]]
+## Related
+
+[[phase-11-cli-service-management]]
+## Related
+
+[[n8n-workflow-automation]]
+## Related
+
+[[phase-5-mcp-server-implementation]]
 ## 📋 Deliverables
 
 ### Core Deliverables (ALL COMPLETED ✅)

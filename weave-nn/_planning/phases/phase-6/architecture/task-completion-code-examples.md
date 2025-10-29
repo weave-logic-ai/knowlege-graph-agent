@@ -13,13 +13,14 @@ tags:
   - memory-storage
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-spec
     - status-active
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Task Completion Feedback Loop - Code Examples
@@ -65,6 +66,11 @@ weave-nn-mcp/
 
 ---
 
+
+
+## Related
+
+[[documentation-hub]]
 ## 🔧 1. Task Completion Logger
 
 **File**: `publishers/task_logger.py`

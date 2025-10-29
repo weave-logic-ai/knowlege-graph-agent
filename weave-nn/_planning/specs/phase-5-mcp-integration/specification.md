@@ -21,7 +21,7 @@ links:
   constitution: '[[constitution.md]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -30,6 +30,7 @@ visual:
     - phase-5
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # MCP Integration & Workflow Enhancement - Specification
@@ -43,6 +44,26 @@ updated_date: '2025-10-28'
 
 Implementation phase for MCP Integration & Workflow Enhancement.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[specification]] • [[specification]] • [[specification]]
+## Related
+
+[[constitution]]
+## Related
+
+[[plan]]
+## Related
+
+[[phase-5-mcp-tasks]]
 ## Executive Summary
 
 Phase 5 focuses on exposing Weaver's existing capabilities (shadow cache, workflow engine) to AI agents via the Model Context Protocol (MCP). This enables Claude Desktop and Claude Code to directly query vault metadata, trigger workflows, and enhance proof workflows with task tracking. The implementation leverages components already built in Phase 4B, reducing scope to 3-4 days of integration work.

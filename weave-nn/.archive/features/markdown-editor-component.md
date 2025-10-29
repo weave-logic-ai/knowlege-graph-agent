@@ -1,19 +1,18 @@
 ---
-feature_id: "F-002"
-feature_name: "WYSIWYG Markdown Editor"
-category: "editor"
-status: "planned"
-priority: "critical"
-release: "mvp"
-complexity: "complex"
-
+feature_id: F-002
+feature_name: WYSIWYG Markdown Editor
+category: editor
+status: planned
+priority: critical
+release: mvp
+complexity: complex
 dependencies:
   requires: []
-  blocks: ["F-003", "F-012"]
-
+  blocks:
+    - F-003
+    - F-012
 related_decisions:
-  - "[[../decisions/technical/markdown-editor]]"
-
+  - '[[../decisions/technical/markdown-editor]]'
 tags:
   - feature
   - editor
@@ -55,6 +54,31 @@ As a **content creator**, I want to **edit my notes with a visual editor that su
 
 **Architecture**: Component-based editor with clear separation between editor state, rendering, and markdown serialization.
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[test-strategy-summary]]
+## Related
+
+[[obsidian-tasks-integration]]
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[knowledge-graph-visualization]] • [[user-permissions]] • [[workspace-management]]
 ## Related
 
 - [[../concepts/markdown-standard]]

@@ -36,6 +36,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: brain
 ---
 
 # Phase 7: Agent Rules & Memory Sync
@@ -62,6 +63,36 @@ Implement **agent rules engine** that automatically processes vault notes using 
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[cross-project-knowledge-retention]]
+## Related
+
+[[phase-3b-node-expansion-legacy]]
+## Related
+
+[[weaver-workflow-automation]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-10-mvp-readiness-launch]]
+## Related
+
+[[phase-9-testing-documentation]] • [[phase-7-agent-tasks]]
 ## 📋 Implementation Tasks
 
 ### Task Categories

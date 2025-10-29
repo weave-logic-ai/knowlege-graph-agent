@@ -1,19 +1,18 @@
 ---
-feature_id: "F-111"
-feature_name: "Public/Private Sharing"
-category: "collaboration"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-111
+feature_name: Public/Private Sharing
+category: collaboration
+status: planned
+priority: high
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-008", "F-009"]
+  requires:
+    - F-008
+    - F-009
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/collaboration]]"
-
+  - '[[../decisions/features/collaboration]]'
 tags:
   - feature
   - collaboration
@@ -100,6 +99,41 @@ shares:
 - Optional password protection for sensitive shares
 - Audit log of share access
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[auto-linking]]
+## Related
+
+[[export-import]]
+## Related
+
+[[phase-management]]
+## Related
+
+[[temporal-view]] • [[version-history]]
+## Related
+
+[[backup-sync]]
+## Related
+
+[[team-analytics]]
+## Related
+
+[[activity-feed]]
 ## Related
 
 - [[workspace-management|Workspace Management]]

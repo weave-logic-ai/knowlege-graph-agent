@@ -1,19 +1,17 @@
 ---
-feature_id: "F-010"
-feature_name: "User Permissions & Roles"
-category: "collaboration"
-status: "planned"
-priority: "critical"
-release: "mvp"
-complexity: "moderate"
-
+feature_id: F-010
+feature_name: User Permissions & Roles
+category: collaboration
+status: planned
+priority: critical
+release: mvp
+complexity: moderate
 dependencies:
-  requires: ["F-009"]
+  requires:
+    - F-009
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/authentication]]"
-
+  - '[[../decisions/technical/authentication]]'
 tags:
   - feature
   - collaboration
@@ -62,6 +60,36 @@ As a **workspace administrator**, I want to **assign roles and permissions to te
 
 **Security**: All permission checks must happen server-side. Frontend hiding of UI elements is convenience only.
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[collaborative-editing]] • [[data-portability]] • [[decision-tracking]] • [[tag-based-filtering]] • [[todo-management]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[obsidian-tasks-integration]]
+## Related
+
+[[markdown-editor-component]]
+## Related
+
+[[knowledge-graph-visualization]]
+## Related
+
+[[comments-annotations]]
 ## Related
 
 - [[../concepts/access-control]]

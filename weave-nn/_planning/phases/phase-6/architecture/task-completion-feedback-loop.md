@@ -48,6 +48,7 @@ tags:
   - claude-flow
   - reasoningbank
 version: '3.0'
+icon: refresh-cw
 ---
 
 # Task Completion Feedback Loop Architecture
@@ -94,6 +95,11 @@ Task Completion (better results)
 
 ---
 
+
+
+## Related
+
+[[claude-flow-tight-coupling]]
 ## 📋 Component 1: Daily Log Template
 
 ### File Naming Convention

@@ -1,46 +1,39 @@
 ---
-# Node Metadata
-feature_id: "F-013"
-feature_name: "GitHub Issues Integration"
-category: "integration"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "moderate"
-created_date: "2025-10-21"
-updated_date: "2025-10-21"
-
-# Scope
+feature_id: F-013
+feature_name: GitHub Issues Integration
+category: integration
+status: planned
+priority: high
+release: mvp
+complexity: moderate
+created_date: '2025-10-21'
+updated_date: '2025-10-21'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["git-integration", "obsidian-tasks-integration"]
+  requires:
+    - git-integration
+    - obsidian-tasks-integration
   enables: []
-  related_features: ["git-integration", "obsidian-tasks-integration"]
-
-# Relationships
+  related_features:
+    - git-integration
+    - obsidian-tasks-integration
 relationships:
   related_decisions:
-    - "IR-2"
-    - "IR-3"
+    - IR-2
+    - IR-3
   related_features:
-    - "git-integration"
-    - "obsidian-tasks-integration"
-
-# Visual
+    - git-integration
+    - obsidian-tasks-integration
 visual:
-  icon: "github"
+  icon: github
   cssclasses:
     - type-feature
     - scope-mvp
     - priority-high
     - tech-github
-
-# Tags
 tags:
   - scope/mvp
   - type/feature
@@ -65,6 +58,26 @@ As a **project manager using Weave-NN**, I want to **sync tasks between Obsidian
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-6-file-watcher-weaver-integration]] • [[phase-9-testing-documentation]] • [[cross-project-knowledge-retention]] • [[obsidian-first-architecture]]
+## Related
+
+[[obsidian-native-integration-analysis]]
+## Related
+
+[[rabbitmq-message-queue]] • [[weaver-workflow-automation]]
+## Related
+
+[[github-issues-integration]]
 ## 🚀 Key Capabilities
 
 ### Bidirectional Task Sync

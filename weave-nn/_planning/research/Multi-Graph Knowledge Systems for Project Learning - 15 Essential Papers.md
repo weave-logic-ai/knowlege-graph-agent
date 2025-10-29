@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 
 
 **The multi-project meta-learning architecture—extracting patterns from isolated knowledge graphs into a central vector database that seeds new projects—is directly supported by cutting-edge research across transfer learning, meta-learning, and continual learning.** The academic literature demonstrates that systems processing 10-100+ sequential projects can achieve 50%+ efficiency gains through knowledge accumulation, with proven architectures for extraction, vector organization, feedback loops, and bootstrapping mechanisms. This synthesis of 15 highly-cited papers (2017-2025) provides concrete implementation guidance for each component of your system.

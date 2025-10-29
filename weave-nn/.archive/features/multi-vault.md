@@ -1,19 +1,18 @@
 ---
-feature_id: "F-024"
-feature_name: "Multi-Vault Support"
-category: "data"
-status: "planned"
-priority: "medium"
-release: "v2.0"
-complexity: "very-complex"
-
+feature_id: F-024
+feature_name: Multi-Vault Support
+category: data
+status: planned
+priority: medium
+release: v2.0
+complexity: very-complex
 dependencies:
-  requires: ["F-021", "F-022"]
+  requires:
+    - F-021
+    - F-022
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/data-storage]]"
-
+  - '[[../decisions/technical/data-storage]]'
 tags:
   - feature
   - data
@@ -53,6 +52,41 @@ Requires fundamental architectural changes to support data isolation, routing, a
 - Permission inheritance and isolation model
 - Estimated effort: 10-12 weeks
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[daily-log-automation]] • [[team-analytics]]
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[auto-tagging]]
+## Related
+
+[[activity-feed]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[export-import]]
 ## Related
 - [[../concepts/knowledge-graph|Knowledge Graph]]
 - [[workspace-management|Workspace Management Feature]]

@@ -36,6 +36,7 @@ related_files:
 type: planning
 version: '3.0'
 updated_date: '2025-10-28'
+icon: network
 ---
 
 # Phase 14: Obsidian-Native Knowledge Graph & Visual Intelligence
@@ -967,6 +968,21 @@ This document has been superseded by modern implementations:
 ```markdown
 # In each orphaned document, add:
 
+
+
+
+
+
+
+## Related
+
+[[Q-TECH-002]]
+## Related
+
+[[phase-6-vault-initialization]]
+## Related
+
+[[phase-11-cli-service-management]]
 ## Related Documentation
 ### Current Implementation
 - [[current-implementation]] - Modern approach

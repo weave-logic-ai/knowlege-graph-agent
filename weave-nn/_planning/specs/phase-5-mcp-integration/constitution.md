@@ -12,7 +12,7 @@ tags:
   - phase-5
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -21,6 +21,7 @@ visual:
     - phase-5
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # MCP Integration & Workflow Enhancement - Constitution
@@ -43,6 +44,11 @@ updated_date: '2025-10-28'
 7. **Incremental Delivery**: Tool-by-tool implementation with continuous testing and validation
 8. **Standards Compliance**: Full adherence to MCP protocol specification v1.0+
 
+
+
+## Related
+
+[[specification]] • [[constitution]] • [[constitution]] • [[phase-5-mcp-tasks]] • [[plan]]
 ## Technical Constraints
 
 ### Language & Tooling

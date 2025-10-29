@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Complete Task List
 **Discrete, Actionable Tasks with Dependencies**
 

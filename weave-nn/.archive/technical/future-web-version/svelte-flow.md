@@ -34,6 +34,11 @@ Choosing Svelte Flow commits you to the Svelte ecosystem, which has a smaller co
 
 The library is newer than React Flow, meaning fewer battle-tested patterns and potentially fewer community solutions for edge cases. However, the core team maintains both libraries, ensuring feature parity over time.
 
+
+
+## Related
+
+[[tiptap-editor]]
 ## Related Decisions
 
 - **[Decision: Graph Visualization Library]** - Direct comparison with React Flow

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Implementation Roadmap
 ## Detailed Task Breakdown and Timeline
 

@@ -1,28 +1,23 @@
 ---
-# Node Metadata
-phase_id: "PHASE-6"
-phase_name: "MVP Development - Week 1 (Backend Infrastructure)"
+phase_id: PHASE-6
+phase_name: MVP Development - Week 1 (Backend Infrastructure)
 type: planning
-status: "pending"
-priority: "critical"
-created_date: "2025-10-21"
-start_date: "TBD"
-end_date: "TBD"
-duration: "5 days"
-
-# Scope
+status: pending
+priority: critical
+created_date: '2025-10-21'
+start_date: TBD
+end_date: TBD
+duration: 5 days
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-5"]
-  enables: ["PHASE-7"]
+  requires:
+    - PHASE-5
+  enables:
+    - PHASE-7
   blocks: []
-
-# Tags
 tags:
   - scope/mvp
   - type/planning
@@ -31,10 +26,8 @@ tags:
   - phase-5
   - week-1
   - backend
-
-# Visual
 visual:
-  icon: "server"
+  icon: server
   cssclasses:
     - type-planning
     - scope-mvp
@@ -70,6 +63,26 @@ visual:
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-3b-node-expansion-legacy]]
+## Related
+
+[[phase-4a-decision-closure]] • [[MASTER-PLAN]] • [[phase-10-mvp-readiness-launch]] • [[phase-2-documentation-capture]]
+## Related
+
+[[phase-7-mvp-week-2]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
 ## 📋 Day-by-Day Breakdown
 
 ### Day 0 (Weekend/Prep): Prerequisites & Plugin Installation

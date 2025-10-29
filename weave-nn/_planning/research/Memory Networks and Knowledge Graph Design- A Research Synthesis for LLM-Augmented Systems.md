@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 
 
 **The optimal design for large-scale knowledge graphs combines atomic chunking with key-value separation, multi-hop retrieval mechanisms, and lightweight hierarchical structures that balance local clustering with strategic long-range connections.** Recent research across memory-augmented neural networks, retrieval systems, and enterprise knowledge graphs converges on specific architectural patterns: content-based and structural addressing must coexist, semantic boundaries matter more than fixed sizes for chunking, and adaptive retrieval significantly outperforms static approaches. For systems scaling to thousands of nodes like Claude-Flow + Obsidian, the evidence strongly supports perplexity-based logical chunking (70-262 tokens), multi-dimensional faceted metadata (4-7 core dimensions), small-world network topology (clustering coefficient >0.3), and continuous curation through automated duplicate detection combined with human oversight. These patterns emerge consistently across foundational memory network architectures, modern RAG systems, and proven implementations like Wikidata's 100+ million entities and Luhmann's 90,000-note Zettelkasten.

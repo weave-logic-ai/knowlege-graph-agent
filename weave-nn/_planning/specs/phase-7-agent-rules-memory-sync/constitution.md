@@ -14,7 +14,7 @@ tags:
   - memory-sync
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -23,6 +23,7 @@ visual:
     - phase-7
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Agent Rules & Memory Sync - Constitution
@@ -68,6 +69,26 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[specification]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-7-agent-rules-memory-sync]]
+## Related
+
+[[phase-7-agent-tasks]]
 ## Technical Constraints
 
 ### Integration Requirements

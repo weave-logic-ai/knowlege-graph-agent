@@ -12,13 +12,14 @@ cssclasses:
   - type-diagram
   - priority-critical
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-diagram
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Critical Path Diagram: Phases 0-8
@@ -61,6 +62,11 @@ graph TB
 
 ---
 
+
+
+## Related
+
+[[CRITICAL-PATH-ANALYSIS-PHASES-5-8]]
 ## Corrected Plan (USE THIS)
 
 ```mermaid

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Research Analysis: Knowledge Graph Integration Mapping
 
 **Date**: 2025-10-23

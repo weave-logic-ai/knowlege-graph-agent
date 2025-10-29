@@ -31,6 +31,7 @@ visual:
 type: planning
 version: '3.0'
 updated_date: '2025-10-28'
+icon: brain
 ---
 
 # Phase 12: Four-Pillar Autonomous Agent System

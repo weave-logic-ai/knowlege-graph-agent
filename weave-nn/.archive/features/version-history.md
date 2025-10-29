@@ -1,19 +1,18 @@
 ---
-feature_id: "F-104"
-feature_name: "Document Version History"
-category: "editor"
-status: "planned"
-priority: "medium"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-104
+feature_name: Document Version History
+category: editor
+status: planned
+priority: medium
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-002", "F-010"]
+  requires:
+    - F-002
+    - F-010
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/version-control]]"
-
+  - '[[../decisions/technical/version-control]]'
 tags:
   - feature
   - editor
@@ -64,6 +63,36 @@ Technical approach:
 - Implement markdown-aware diffing (treat semantic blocks, not just lines)
 - Cache recent diffs for performance
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[auto-linking]]
+## Related
+
+[[comments-annotations]] • [[comments-annotations]]
+## Related
+
+[[node-search]]
+## Related
+
+[[sharing]]
+## Related
+
+[[wikilink-autocomplete]]
+## Related
+
+[[syntax-highlighting]]
 ## Related
 
 - [[git-integration|Git Integration]]

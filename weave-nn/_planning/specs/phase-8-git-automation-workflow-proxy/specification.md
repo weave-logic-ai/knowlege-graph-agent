@@ -16,7 +16,7 @@ links:
   phase_document: '[[phase-8-git-automation-workflow-proxy]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -25,6 +25,7 @@ visual:
     - phase-8
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Specification - Git Automation & Workflow Proxy
@@ -46,6 +47,21 @@ This specification defines the requirements for implementing automated git versi
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[specification]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-8-git-tasks]]
 ## 🎯 Functional Requirements
 
 ### FR-1: Git Client Wrapper

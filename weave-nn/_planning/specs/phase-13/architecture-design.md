@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Technical Architecture Design
 ## Enhanced Agent Intelligence System
 

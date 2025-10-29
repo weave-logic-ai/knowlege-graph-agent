@@ -3,7 +3,7 @@ tech_id: daisyui
 category: component-library
 maturity: stable
 pros:
-  - Framework-agnostic (works with React, Svelte, Vue)
+  - 'Framework-agnostic (works with React, Svelte, Vue)'
   - Semantic HTML with class-based styling
   - Built-in themes and dark mode
   - Zero JavaScript dependency
@@ -36,6 +36,11 @@ DaisyUI's pre-built themes mean less granular control than [[technical/shadcn-ui
 
 [[technical/shadcn-ui|shadcn/ui]] offers deeper customization and includes JavaScript behavior, but locks you into React. Material-UI and similar libraries provide more complex components but with framework and bundle size overhead. DaisyUI occupies a middle ground: faster than building from scratch, more flexible than React libraries, but less powerful than full component frameworks.
 
+
+
+## Related
+
+[[shadcn-ui]]
 ## Related Decisions
 
 - **[Decision: Frontend Framework]** - Works with both Next.js and SvelteKit

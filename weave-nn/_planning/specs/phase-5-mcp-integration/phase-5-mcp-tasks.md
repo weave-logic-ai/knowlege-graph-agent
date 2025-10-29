@@ -19,7 +19,7 @@ links:
 type: planning
 scope: task
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -28,6 +28,7 @@ visual:
     - phase-5
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # MCP Integration & Workflow Enhancement - Task Breakdown
@@ -46,6 +47,21 @@ This task breakdown provides a detailed, hierarchical list of all implementation
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-8-git-tasks]] • [[phase-6-vault-tasks]] • [[phase-7-agent-tasks]]
+## Related
+
+[[plan]] • [[specification]]
 ## Day 1: MCP Server Foundation (8 hours)
 
 ### Task 1: Project Setup & Dependencies (1 hour)

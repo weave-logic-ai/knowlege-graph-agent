@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Vault Initialization System - Spec-Kit Workflow
 
 ## Generated Specifications

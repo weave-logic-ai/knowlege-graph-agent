@@ -1,19 +1,17 @@
 ---
-feature_id: "F-009"
-feature_name: "Workspace/Organization Management"
-category: "collaboration"
-status: "planned"
-priority: "critical"
-release: "mvp"
-complexity: "complex"
-
+feature_id: F-009
+feature_name: Workspace/Organization Management
+category: collaboration
+status: planned
+priority: critical
+release: mvp
+complexity: complex
 dependencies:
   requires: []
-  blocks: ["F-010"]
-
+  blocks:
+    - F-010
 related_decisions:
-  - "[[../decisions/technical/multi-tenancy]]"
-
+  - '[[../decisions/technical/multi-tenancy]]'
 tags:
   - feature
   - collaboration
@@ -59,6 +57,26 @@ As a **SaaS administrator**, I want to **create and manage separate workspaces f
 - Application: Workspace context in authentication token, validated on every request
 - Frontend: Workspace switcher in navigation, workspace context in global state
 
+
+
+
+
+
+
+
+
+## Related
+
+[[decision-tracking]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[obsidian-tasks-integration]]
+## Related
+
+[[markdown-editor-component]]
 ## Related
 
 - [[../concepts/multi-tenancy]]

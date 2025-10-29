@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # MCP Integration & Workflow Enhancement - Spec-Kit Workflow
 
 ## Generated Specifications

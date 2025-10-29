@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Technical Directory Reorganization - Completion Summary
 
 **Date**: 2025-10-23

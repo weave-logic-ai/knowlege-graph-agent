@@ -1,33 +1,28 @@
 ---
-question_id: "Q-TECH-001"
-question_type: "technical"
-title: "React Flow vs Svelte Flow for Knowledge Graph Visualization"
-status: "open"
-priority: "critical"
-category: "frontend"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-due_date: "2025-10-27"
-
-assigned_to: "Development Team"
+question_id: Q-TECH-001
+question_type: technical
+title: React Flow vs Svelte Flow for Knowledge Graph Visualization
+status: open
+priority: critical
+category: frontend
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+due_date: '2025-10-27'
+assigned_to: Development Team
 stakeholders:
-  - "Frontend Architects"
-  - "UX Team"
+  - Frontend Architects
+  - UX Team
 ai_assisted: true
-
 related_decisions:
-  - "TS-1"  # Frontend Framework
-  - "ED-1"  # Project Scope (SaaS)
-
+  - TS-1
+  - ED-1
 research_tasks:
-  - "Prototype basic graph with both React Flow and Svelte Flow"
-  - "Benchmark performance with 1000+ node graphs"
-  - "Test custom node rendering capabilities"
-  - "Evaluate ecosystem and community support"
-  - "Assess TypeScript integration quality"
-  - "Review documentation and learning curve"
-
+  - Prototype basic graph with both React Flow and Svelte Flow
+  - Benchmark performance with 1000+ node graphs
+  - Test custom node rendering capabilities
+  - Evaluate ecosystem and community support
+  - Assess TypeScript integration quality
+  - Review documentation and learning curve
 tags:
   - technical
   - frontend
@@ -55,6 +50,16 @@ This is a critical architectural decision that impacts:
 
 ---
 
+
+
+
+
+## Related
+
+[[test-strategy-full-report]] • [[test-strategy-summary]]
+## Related
+
+[[Q-TECH-004]] • [[Q-TECH-005]]
 ## Context from Analysis
 
 ### From Custom Solution Analysis

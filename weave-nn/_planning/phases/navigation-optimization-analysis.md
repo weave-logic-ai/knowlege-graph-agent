@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Navigation Optimization Analysis
 
 **Created**: 2025-10-23

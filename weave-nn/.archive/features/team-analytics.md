@@ -1,19 +1,18 @@
 ---
-feature_id: "F-027"
-feature_name: "Team Analytics & Insights"
-category: "collaboration"
-status: "planned"
-priority: "low"
-release: "v2.0"
-complexity: "very-complex"
-
+feature_id: F-027
+feature_name: Team Analytics & Insights
+category: collaboration
+status: planned
+priority: low
+release: v2.0
+complexity: very-complex
 dependencies:
-  requires: ["F-005", "F-026"]
+  requires:
+    - F-005
+    - F-026
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/collaboration]]"
-
+  - '[[../decisions/features/collaboration]]'
 tags:
   - feature
   - collaboration
@@ -54,6 +53,41 @@ Requires sophisticated data aggregation across multiple dimensions (time, user, 
 - Role-based analytics visibility
 - Estimated effort: 10-12 weeks
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[multi-vault]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[collaborative-editing]] • [[daily-log-automation]] • [[collaborative-editing]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[auto-tagging]]
+## Related
+
+[[sharing]]
+## Related
+
+[[comments-annotations]]
 ## Related
 - [[graph-analytics|Graph Analytics Feature]]
 - [[activity-feed|Activity Feed Feature]]

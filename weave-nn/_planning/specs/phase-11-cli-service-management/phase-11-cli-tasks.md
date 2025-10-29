@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 11: CLI Service Management & AI Feature Creator - Task Breakdown
 
 **Phase Duration**: ~156 hours (19.5 days)

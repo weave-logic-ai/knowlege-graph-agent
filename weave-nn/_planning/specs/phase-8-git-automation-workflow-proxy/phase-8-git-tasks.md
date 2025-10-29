@@ -20,7 +20,7 @@ links:
 type: planning
 scope: task
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -29,6 +29,7 @@ visual:
     - phase-8
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Git Automation & Workflow Proxy - Task Breakdown
@@ -47,6 +48,36 @@ Comprehensive task breakdown for implementing Git automation with simple-git, Cl
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-7-agent-tasks]]
+## Related
+
+[[specification]]
+## Related
+
+[[phase-5-mcp-tasks]]
+## Related
+
+[[phase-9-testing-tasks]]
+## Related
+
+[[phase-6-vault-tasks]]
 ## 1. Git Client Setup (Day 1 - Morning)
 
 ### 1.1 Install simple-git library

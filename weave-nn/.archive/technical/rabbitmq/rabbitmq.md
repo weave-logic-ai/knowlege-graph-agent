@@ -2,7 +2,7 @@
 type: technical-primitive
 category: service
 status: in-use
-first_used_phase: "PHASE-0"
+first_used_phase: PHASE-0
 mvp_required: true
 future_only: false
 tags:
@@ -12,14 +12,14 @@ tags:
   - event-driven
   - scope/mvp
 related_architecture:
-  - "[[mvp-local-first-architecture]]"
-  - "[[event-driven-architecture]]"
+  - '[[mvp-local-first-architecture]]'
+  - '[[event-driven-architecture]]'
 related_features:
-  - "[[file-watcher]]"
-  - "[[git-automation]]"
+  - '[[file-watcher]]'
+  - '[[git-automation]]'
 dependencies:
-  - "[[docker]]"
-  - "[[pika-rabbitmq-client]]"
+  - '[[docker]]'
+  - '[[pika-rabbitmq-client]]'
 ---
 
 # RabbitMQ
@@ -28,6 +28,21 @@ dependencies:
 
 Open source message broker implementing AMQP protocol. Enables event-driven architecture for file watcher → MCP sync → Git commit workflows in Weave-NN.
 
+
+
+
+
+
+
+## Related
+
+[[event-driven-architecture]]
+## Related
+
+[[python-3-11]]
+## Related
+
+[[fastapi]]
 ## Category
 
 **Service / Message Broker**

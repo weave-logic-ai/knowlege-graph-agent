@@ -12,7 +12,7 @@ cons:
   - React-specific (framework lock-in)
   - Complexity can be overkill for simple apps
   - Bundle size larger than lighter alternatives
-  - Learning curve for advanced features (App Router, RSC)
+  - 'Learning curve for advanced features (App Router, RSC)'
 use_case: Production-ready React applications with SSR/SSG requirements
 ---
 
@@ -36,6 +36,11 @@ Next.js commits you to the React ecosystem and adds framework complexity beyond 
 
 For simpler applications, the full Next.js stack may be over-engineered. However, for SaaS products requiring scalability, performance, and rich features, the framework's opinions accelerate development.
 
+
+
+## Related
+
+[[sveltekit]]
 ## Related Decisions
 
 - **[Decision: Frontend Framework]** - Next.js vs SvelteKit comparison for Weave-NN

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Test Strategy Executive Summary
 
 **Date**: 2025-10-21

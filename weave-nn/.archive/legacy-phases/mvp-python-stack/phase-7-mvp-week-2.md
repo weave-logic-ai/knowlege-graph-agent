@@ -1,28 +1,22 @@
 ---
-# Node Metadata
-phase_id: "PHASE-7"
-phase_name: "MVP Completion - Week 2 (Automation & Deployment)"
+phase_id: PHASE-7
+phase_name: MVP Completion - Week 2 (Automation & Deployment)
 type: planning
-status: "pending"
-priority: "critical"
-created_date: "2025-10-21"
-start_date: "TBD"
-end_date: "TBD"
-duration: "5-7 days"
-
-# Scope
+status: pending
+priority: critical
+created_date: '2025-10-21'
+start_date: TBD
+end_date: TBD
+duration: 5-7 days
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-6"]
+  requires:
+    - PHASE-6
   enables: []
   blocks: []
-
-# Tags
 tags:
   - scope/mvp
   - type/planning
@@ -32,10 +26,8 @@ tags:
   - week-2
   - automation
   - deployment
-
-# Visual
 visual:
-  icon: "rocket"
+  icon: rocket
   cssclasses:
     - type-planning
     - scope-mvp
@@ -72,6 +64,31 @@ visual:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-6-file-watcher-weaver-integration]] • [[phase-3b-node-expansion-legacy]]
+## Related
+
+[[phase-4a-decision-closure]] • [[MASTER-PLAN]] • [[phase-2-documentation-capture]]
+## Related
+
+[[phase-10-mvp-readiness-launch]]
+## Related
+
+[[phase-6-mvp-week-1]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
 ## 📋 Day-by-Day Breakdown
 
 ### Day 8 (Monday): N8N Installation + Basic Workflows

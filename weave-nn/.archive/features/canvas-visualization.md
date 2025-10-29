@@ -1,19 +1,18 @@
 ---
-feature_id: "F-107"
-feature_name: "Canvas Visualizations"
-category: "planning"
-status: "planned"
-priority: "medium"
-release: "v1.1"
-complexity: "complex"
-
+feature_id: F-107
+feature_name: Canvas Visualizations
+category: planning
+status: planned
+priority: medium
+release: v1.1
+complexity: complex
 dependencies:
-  requires: ["F-001", "F-002"]
+  requires:
+    - F-001
+    - F-002
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/graph-visualization]]"
-
+  - '[[../decisions/technical/graph-visualization]]'
 tags:
   - feature
   - planning
@@ -68,6 +67,21 @@ Technical approach:
 - Implement local-first with sync to server
 - Consider using Tldraw SDK for drawing features
 
+
+
+
+
+
+
+## Related
+
+[[comments-annotations]] • [[export-import]] • [[node-search]]
+## Related
+
+[[backup-sync]]
+## Related
+
+[[daily-log-automation]] • [[decision-tracking]] • [[todo-management]]
 ## Related
 
 - [[../technical/react-flow|React Flow]]

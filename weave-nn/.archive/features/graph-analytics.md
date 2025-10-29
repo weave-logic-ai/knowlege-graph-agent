@@ -1,19 +1,19 @@
 ---
-feature_id: "F-005"
-feature_name: "Graph Analytics & Insights"
-category: "knowledge-graph"
-status: "planned"
-priority: "medium"
-release: "v2.0"
-complexity: "complex"
-
+feature_id: F-005
+feature_name: Graph Analytics & Insights
+category: knowledge-graph
+status: planned
+priority: medium
+release: v2.0
+complexity: complex
 dependencies:
-  requires: ["F-001", "F-002", "F-004"]
+  requires:
+    - F-001
+    - F-002
+    - F-004
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/graph-visualization]]"
-
+  - '[[../decisions/technical/graph-visualization]]'
 tags:
   - feature
   - knowledge-graph
@@ -51,6 +51,41 @@ Requires significant data processing infrastructure for graph algorithms, histor
 - Visualization library for charts and graph overlays
 - Estimated effort: 6-8 weeks
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[agent-automation]]
+## Related
+
+[[daily-log-automation]] • [[multi-vault]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[auto-tagging]]
+## Related
+
+[[activity-feed]]
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[tag-based-filtering]]
 ## Related
 - [[../concepts/knowledge-graph|Knowledge Graph]]
 - [[../concepts/temporal-queries|Temporal Queries]]

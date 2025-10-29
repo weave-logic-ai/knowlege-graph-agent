@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 11: CLI Service Management & AI Feature Creator - Implementation Plan
 
 **Version**: 1.0.0

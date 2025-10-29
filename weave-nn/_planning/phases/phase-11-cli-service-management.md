@@ -29,6 +29,7 @@ type: planning
 scope: component
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🚀
 ---
 
 # Phase 11: CLI Service Management & AI Feature Creator
@@ -71,6 +72,21 @@ Transform Weaver from a basic npm-based service into a fully-managed CLI applica
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[PLANNING-REVIEW-2025-10-22-3b-workflow-automation]]
+## Related
+
+[[phase-13-enhanced-agent-intelligence]] • [[phase-14-obsidian-integration]]
+## Related
+
+[[phase-6-vault-initialization]]
 ## 📋 Implementation Tasks
 
 ### CLI Service Management (Priority: CRITICAL)

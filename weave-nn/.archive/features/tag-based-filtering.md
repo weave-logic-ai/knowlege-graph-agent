@@ -1,19 +1,17 @@
 ---
-feature_id: "F-004"
-feature_name: "Tag-Based Filtering"
-category: "knowledge-graph"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "simple"
-
+feature_id: F-004
+feature_name: Tag-Based Filtering
+category: knowledge-graph
+status: planned
+priority: high
+release: mvp
+complexity: simple
 dependencies:
-  requires: ["F-001"]
+  requires:
+    - F-001
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/graph-visualization]]"
-
+  - '[[../decisions/technical/graph-visualization]]'
 tags:
   - feature
   - knowledge-graph
@@ -55,6 +53,46 @@ As a **knowledge manager**, I want to **filter my graph and notes by tags** so t
 
 **Performance**: Should handle 10,000+ nodes with 100+ unique tags without noticeable lag.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[Q-TECH-002]]
+## Related
+
+[[user-permissions]]
+## Related
+
+[[agent-automation]]
+## Related
+
+[[data-portability]]
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[rest-api-integration]] • [[temporal-view]] • [[todo-management]] • [[wikilink-autocomplete]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[decision-tracking]]
 ## Related
 
 - [[../concepts/tagging-system]]

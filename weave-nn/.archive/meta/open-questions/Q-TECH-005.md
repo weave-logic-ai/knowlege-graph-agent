@@ -1,38 +1,33 @@
 ---
-question_id: "Q-TECH-005"
-question_type: "technical"
-title: "Real-time Collaboration Conflict Resolution Strategy"
-status: "open"
-priority: "high"
-category: "features"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-due_date: "2025-11-10"
-
-assigned_to: "Full Stack Team"
+question_id: Q-TECH-005
+question_type: technical
+title: Real-time Collaboration Conflict Resolution Strategy
+status: open
+priority: high
+category: features
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+due_date: '2025-11-10'
+assigned_to: Full Stack Team
 stakeholders:
-  - "Frontend Team"
-  - "Backend Team"
-  - "Product Team"
-  - "UX Team"
+  - Frontend Team
+  - Backend Team
+  - Product Team
+  - UX Team
 ai_assisted: true
-
 related_decisions:
-  - "FT-3"  # Real-time Collaboration (to be created)
-  - "Q-TECH-003"  # Markdown Editor (affects collaboration)
-  - "TS-4"  # Database & Storage
-  - "ED-1"  # Project Scope (SaaS with teams)
-
+  - FT-3
+  - Q-TECH-003
+  - TS-4
+  - ED-1
 research_tasks:
-  - "Test Y.js CRDT conflict resolution with Tiptap"
-  - "Evaluate Supabase Realtime for presence and updates"
-  - "Design conflict scenarios (AI vs human, human vs human)"
-  - "Prototype offline-first with sync capabilities"
-  - "Test with concurrent edits from 5+ users"
-  - "Evaluate operational transformation vs CRDT"
-  - "Design UX for conflict awareness and resolution"
-
+  - Test Y.js CRDT conflict resolution with Tiptap
+  - Evaluate Supabase Realtime for presence and updates
+  - 'Design conflict scenarios (AI vs human, human vs human)'
+  - Prototype offline-first with sync capabilities
+  - Test with concurrent edits from 5+ users
+  - Evaluate operational transformation vs CRDT
+  - Design UX for conflict awareness and resolution
 tags:
   - technical
   - features
@@ -63,6 +58,16 @@ How should we handle real-time collaborative editing conflicts in Weave-NN, espe
 
 ---
 
+
+
+
+
+## Related
+
+[[Q-TECH-001]]
+## Related
+
+[[Q-TECH-002]]
 ## Context from Analysis
 
 ### From Custom Solution Analysis

@@ -3,9 +3,9 @@ tech_id: railway
 category: deployment-platform
 maturity: stable
 pros:
-  - Simple, predictable pricing model
+  - 'Simple, predictable pricing model'
   - Supports long-running processes and background jobs
-  - Works with any framework (Next.js, SvelteKit, etc)
+  - 'Works with any framework (Next.js, SvelteKit, etc)'
   - Built-in PostgreSQL and Redis
   - No bandwidth or function execution charges
 cons:
@@ -36,6 +36,11 @@ Railway lacks Vercel's edge network and framework-specific optimizations. For st
 
 [[technical/vercel|Vercel]] excels for frontend-centric apps with light backend needs. Self-hosting on AWS/DigitalOcean offers more control but requires DevOps expertise. Railway balances modern developer experience with traditional hosting flexibility, ideal for teams wanting simplicity without serverless limitations.
 
+
+
+## Related
+
+[[vercel]]
 ## Related Decisions
 
 - **[Decision: Deployment Platform]** - Railway vs Vercel vs self-hosted comparison

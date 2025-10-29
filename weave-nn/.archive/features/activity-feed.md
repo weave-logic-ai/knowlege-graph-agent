@@ -1,19 +1,18 @@
 ---
-feature_id: "F-026"
-feature_name: "Activity Feed & Notifications"
-category: "collaboration"
-status: "planned"
-priority: "medium"
-release: "v2.0"
-complexity: "complex"
-
+feature_id: F-026
+feature_name: Activity Feed & Notifications
+category: collaboration
+status: planned
+priority: medium
+release: v2.0
+complexity: complex
 dependencies:
-  requires: ["F-008", "F-025"]
+  requires:
+    - F-008
+    - F-025
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/collaboration]]"
-
+  - '[[../decisions/features/collaboration]]'
 tags:
   - feature
   - collaboration
@@ -54,6 +53,21 @@ Requires real-time event streaming infrastructure, WebSocket connections, notifi
 - Read/unread state management
 - Estimated effort: 8-10 weeks
 
+
+
+
+
+
+
+## Related
+
+[[ai-summaries]] • [[auto-tagging]] • [[graph-analytics]] • [[multi-vault]]
+## Related
+
+[[comments-annotations]]
+## Related
+
+[[sharing]]
 ## Related
 - [[collaborative-editing|Collaborative Editing Feature]]
 - [[comments-annotations|Comments & Annotations Feature]]

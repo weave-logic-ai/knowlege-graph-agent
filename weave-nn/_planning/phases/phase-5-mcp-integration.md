@@ -26,6 +26,7 @@ visual:
 type: planning
 version: '3.0'
 updated_date: '2025-10-28'
+icon: plug
 ---
 
 # Phase 5: MCP Integration & Workflow Enhancement
@@ -58,6 +59,31 @@ Vault Files → File Watcher ✅ → Shadow Cache ✅ → Workflow Engine ✅ �
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[ai-agent-integration]] • [[claude-flow-memory-visualization]]
+## Related
+
+[[agent-rules]]
+## Related
+
+[[phase-13-master-plan]] • [[mcp-integration-hub]]
+## Related
+
+[[phase-5-mcp-server-implementation]]
+## Related
+
+[[phase-5-claude-flow-integration]]
 ## 🎯 Phase 5 Objectives (Revised Scope)
 
 Phase 5 focuses on **exposing existing components** via MCP protocol, not rebuilding them.

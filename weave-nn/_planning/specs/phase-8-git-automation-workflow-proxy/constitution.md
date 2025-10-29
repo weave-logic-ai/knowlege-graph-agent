@@ -16,7 +16,7 @@ links:
   phase_document: '[[phase-8-git-automation-workflow-proxy]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -25,6 +25,7 @@ visual:
     - phase-8
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Constitution - Git Automation & Workflow Proxy
@@ -44,6 +45,16 @@ Establish automated version control for the Obsidian vault through intelligent g
 
 ---
 
+
+
+
+
+## Related
+
+[[phase-8-git-tasks]] • [[specification]]
+## Related
+
+[[constitution]]
 ## 🏛️ Guiding Principles
 
 ### 1. **Automation First**

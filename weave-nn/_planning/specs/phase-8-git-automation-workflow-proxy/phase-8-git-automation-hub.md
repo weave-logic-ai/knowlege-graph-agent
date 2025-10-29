@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Phase 8: Git Automation & Workflow Proxy - Spec Kit
 
 **Phase ID**: PHASE-8

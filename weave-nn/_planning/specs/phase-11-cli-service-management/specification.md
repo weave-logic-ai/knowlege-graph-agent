@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 11: CLI Service Management & AI Feature Creator - Technical Specification
 
 ## 1. Overview

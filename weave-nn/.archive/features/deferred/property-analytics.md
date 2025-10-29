@@ -1,20 +1,18 @@
 ---
-feature_id: "F-033"
-feature_name: "Property Analytics"
-category: "data"
-status: "planned"
-priority: "medium"
-release: "v1.0"
-complexity: "moderate"
-
+feature_id: F-033
+feature_name: Property Analytics
+category: data
+status: planned
+priority: medium
+release: v1.0
+complexity: moderate
 dependencies:
-  requires: ["F-031"]
+  requires:
+    - F-031
   blocks: []
-
 related_decisions:
-  - "[[technical/property-visualizer]]"
-  - "[[standards/obsidian-properties-standard]]"
-
+  - '[[technical/property-visualizer]]'
+  - '[[standards/obsidian-properties-standard]]'
 tags:
   - feature
   - data
@@ -190,6 +188,21 @@ Users access analytics through a dedicated panel in Obsidian that displays prope
 - Collaborative analytics (shared dashboards for team vaults)
 - Integration with external BI tools (Tableau, Power BI connectors)
 
+
+
+
+
+
+
+## Related
+
+[[data-portability]] • [[graph-analytics]] • [[team-analytics]]
+## Related
+
+[[export-import]] • [[multi-vault]]
+## Related
+
+[[backup-sync]]
 ## Related
 
 - [[technical/property-visualizer]]

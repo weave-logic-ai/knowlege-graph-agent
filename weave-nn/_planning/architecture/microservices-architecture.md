@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Weave-NN Microservices Architecture Specification
 
 **Version**: 1.0

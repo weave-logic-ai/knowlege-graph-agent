@@ -17,7 +17,7 @@ links:
   phase_document: '[[../../phases/phase-6-vault-initialization.md]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -26,6 +26,7 @@ visual:
     - phase-6
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Vault Initialization System - Implementation Plan
@@ -50,6 +51,26 @@ This plan details the technical implementation of a comprehensive vault initiali
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[specification]]
+## Related
+
+[[constitution]]
+## Related
+
+[[plan]]
+## Related
+
+[[phase-6-vault-tasks]]
 ## Architecture Overview
 
 ```

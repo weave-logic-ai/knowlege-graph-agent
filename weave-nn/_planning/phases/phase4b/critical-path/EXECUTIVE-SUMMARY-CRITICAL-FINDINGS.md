@@ -12,13 +12,14 @@ cssclasses:
   - type-planning
   - priority-critical
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-executive-summary
     - status-urgent
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Executive Summary: Critical Path Analysis - Immediate Actions Required
@@ -100,6 +101,11 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+## Related
+
+[[IMMEDIATE-ACTION-CHECKLIST]]
 ## 📊 By The Numbers
 
 | Metric | Value | Status |

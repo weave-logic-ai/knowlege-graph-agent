@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # File Naming Standardization Analysis
 
 **Created**: 2025-10-23

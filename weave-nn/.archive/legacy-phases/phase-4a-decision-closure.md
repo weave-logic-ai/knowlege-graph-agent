@@ -1,30 +1,26 @@
 ---
-# Node Metadata
-phase_id: "PHASE-4A"
-phase_name: "Decision Closure & Obsidian-First Pivot"
+phase_id: PHASE-4A
+phase_name: Decision Closure & Obsidian-First Pivot
 type: planning
-status: "archived"
-priority: "historical"
-created_date: "2025-10-21"
-start_date: "2025-10-21"
-end_date: "2025-10-21"
-archived_date: "2025-10-23"
-archived_reason: "Work completed; archived for historical reference alongside Phase 3B"
-duration: "1 evening"
-
-# Scope
+status: archived
+priority: historical
+created_date: '2025-10-21'
+start_date: '2025-10-21'
+end_date: '2025-10-21'
+archived_date: '2025-10-23'
+archived_reason: Work completed; archived for historical reference alongside Phase 3B
+duration: 1 evening
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-3"]
-  enables: ["PHASE-5", "PHASE-6"]
+  requires:
+    - PHASE-3
+  enables:
+    - PHASE-5
+    - PHASE-6
   blocks: []
-
-# Tags
 tags:
   - scope/mvp
   - type/planning
@@ -33,10 +29,8 @@ tags:
   - phase-4
   - decisions
   - obsidian-first
-
-# Visual
 visual:
-  icon: "check-circle"
+  icon: check-circle
   cssclasses:
     - type-planning
     - scope-mvp
@@ -95,6 +89,41 @@ This document is preserved for:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[TASKS-SETUP-GUIDE]]
+## Related
+
+[[phase-10-mvp-readiness-launch]] • [[decision-records-index]] • [[rabbitmq-message-queue]] • [[developer-onboarding]]
+## Related
+
+[[phase-3b-node-expansion-legacy]]
+## Related
+
+[[phase-7-mvp-week-2]]
+## Related
+
+[[phase-6-mvp-week-1]]
+## Related
+
+[[phase-2-documentation-capture]] • [[MASTER-PLAN]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
 ## 🎯 Objective
 
 **Original Goal**: Review 23 open decisions and close as many as possible based on Phase 1-3 work.

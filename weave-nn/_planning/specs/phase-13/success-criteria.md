@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 13: Success Criteria & Validation Metrics
 **Comprehensive Success Definition for Phase 13 Completion**
 

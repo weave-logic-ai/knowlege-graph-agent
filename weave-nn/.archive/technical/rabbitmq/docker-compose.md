@@ -2,7 +2,7 @@
 type: technical-primitive
 category: tool
 status: planned
-first_used_phase: "PHASE-7"
+first_used_phase: PHASE-7
 mvp_required: true
 future_only: false
 tags:
@@ -12,13 +12,13 @@ tags:
   - deployment
   - scope/mvp
 related_architecture:
-  - "[[mvp-local-first-architecture]]"
-  - "[[deployment-architecture]]"
+  - '[[mvp-local-first-architecture]]'
+  - '[[deployment-architecture]]'
 related_features:
-  - "[[mcp-server]]"
-  - "[[file-watcher]]"
+  - '[[mcp-server]]'
+  - '[[file-watcher]]'
 dependencies:
-  - "[[docker]]"
+  - '[[docker]]'
 ---
 
 # Docker Compose
@@ -27,6 +27,36 @@ dependencies:
 
 Multi-container orchestration tool for defining and running multi-service Docker applications. Replaces Kubernetes complexity for Weave-NN MVP local deployment.
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[weaver]]
+## Related
+
+[[python-3-11]]
+## Related
+
+[[pika-rabbitmq-client]]
+## Related
+
+[[fastapi]]
+## Related
+
+[[n8n-workflow-automation]] • [[property-visualizer]] • [[obsidian-local-rest-api-plugin]] • [[obsidian-tasks-plugin]]
+## Related
+
+[[uvicorn]]
 ## Category
 
 **Tool / Container Orchestration**

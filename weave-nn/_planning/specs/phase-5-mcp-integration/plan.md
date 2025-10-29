@@ -17,7 +17,7 @@ links:
   phase_document: '[[../../phases/phase-5-mcp-integration.md]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -26,6 +26,7 @@ visual:
     - phase-5
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # MCP Integration & Workflow Enhancement - Implementation Plan
@@ -57,6 +58,26 @@ Phase 5 focuses on exposing existing Weaver components (Shadow Cache, Workflow E
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[constitution]]
+## Related
+
+[[plan]]
+## Related
+
+[[specification]]
+## Related
+
+[[phase-5-mcp-tasks]]
 ## Architecture Overview
 
 ### Current State (Phase 4B Complete)

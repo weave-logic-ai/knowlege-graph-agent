@@ -1,20 +1,19 @@
 ---
-feature_id: "F-110"
-feature_name: "Cloud Backup & Sync"
-category: "data"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-110
+feature_name: Cloud Backup & Sync
+category: data
+status: planned
+priority: high
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-010", "F-008"]
+  requires:
+    - F-010
+    - F-008
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/version-control]]"
-  - "[[../decisions/features/data-portability]]"
-
+  - '[[../decisions/technical/version-control]]'
+  - '[[../decisions/features/data-portability]]'
 tags:
   - feature
   - data
@@ -90,6 +89,21 @@ Technical approach:
 - User prompt for conflicting structural changes
 - Always preserve both versions, allow manual merge
 
+
+
+
+
+
+
+## Related
+
+[[canvas-visualization]] • [[comments-annotations]] • [[phase-management]] • [[sharing]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[data-portability]]
 ## Related
 
 - [[../technical/supabase|Supabase Storage & Realtime]]

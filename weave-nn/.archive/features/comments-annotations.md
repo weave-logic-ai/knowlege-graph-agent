@@ -1,19 +1,18 @@
 ---
-feature_id: "F-112"
-feature_name: "Comments & Annotations"
-category: "collaboration"
-status: "planned"
-priority: "medium"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-112
+feature_name: Comments & Annotations
+category: collaboration
+status: planned
+priority: medium
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-002", "F-008"]
+  requires:
+    - F-002
+    - F-008
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/collaboration]]"
-
+  - '[[../decisions/features/collaboration]]'
 tags:
   - feature
   - collaboration
@@ -97,6 +96,51 @@ highlights:
 - Presence indicators showing who's commenting
 - Optimistic UI updates (instant feedback)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[version-history]]
+## Related
+
+[[export-import]]
+## Related
+
+[[temporal-view]]
+## Related
+
+[[node-search]]
+## Related
+
+[[semantic-search]]
+## Related
+
+[[phase-management]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[backup-sync]]
+## Related
+
+[[comments-annotations]] • [[user-permissions]] • [[team-analytics]]
 ## Related
 
 - [[../technical/tiptap-editor|TipTap Editor]]

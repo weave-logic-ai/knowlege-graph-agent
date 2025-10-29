@@ -2,7 +2,7 @@
 type: technical-primitive
 category: framework
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 tags:
@@ -12,14 +12,14 @@ tags:
   - api
   - scope/mvp
 related_architecture:
-  - "[[mvp-local-first-architecture]]"
-  - "[[mcp-server-architecture]]"
+  - '[[mvp-local-first-architecture]]'
+  - '[[mcp-server-architecture]]'
 related_features:
-  - "[[mcp-server]]"
-  - "[[obsidian-api-client]]"
+  - '[[mcp-server]]'
+  - '[[obsidian-api-client]]'
 dependencies:
-  - "[[python-3-11]]"
-  - "[[uvicorn]]"
+  - '[[python-3-11]]'
+  - '[[uvicorn]]'
 ---
 
 # FastAPI
@@ -28,6 +28,26 @@ dependencies:
 
 Modern Python web framework for building high-performance APIs with automatic OpenAPI documentation, async support, and runtime type validation. Powers the Weave-NN MCP server.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[Q-TECH-004]]
+## Related
+
+[[Q-TECH-002]]
+## Related
+
+[[docker-compose]] • [[docker]] • [[rabbitmq]]
+## Related
+
+[[rule-engine]] • [[jest-testing-framework]]
 ## Category
 
 **Framework / Backend Web Framework**

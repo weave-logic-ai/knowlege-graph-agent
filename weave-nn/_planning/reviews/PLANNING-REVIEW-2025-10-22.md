@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Weave-NN _planning/ Integration - Status Report
 
 **Date**: 2025-10-22

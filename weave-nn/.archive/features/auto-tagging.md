@@ -1,19 +1,18 @@
 ---
-feature_id: "F-013"
-feature_name: "AI-Powered Auto-Tagging"
-category: "ai"
-status: "planned"
-priority: "medium"
-release: "v2.0"
-complexity: "complex"
-
+feature_id: F-013
+feature_name: AI-Powered Auto-Tagging
+category: ai
+status: planned
+priority: medium
+release: v2.0
+complexity: complex
 dependencies:
-  requires: ["F-011", "F-012"]
+  requires:
+    - F-011
+    - F-012
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/ai-integration]]"
-
+  - '[[../decisions/features/ai-integration]]'
 tags:
   - feature
   - ai
@@ -51,6 +50,31 @@ Requires advanced NLP infrastructure, embeddings database, and machine learning 
 - Active learning from user feedback
 - Estimated effort: 8-10 weeks
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[graph-analytics]] • [[multi-vault]] • [[team-analytics]]
+## Related
+
+[[activity-feed]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[auto-tagging]] • [[agent-automation]] • [[daily-log-automation]]
 ## Related
 - [[../concepts/ai-generated-documentation|AI-Generated Documentation]]
 - [[semantic-search|Semantic Search Feature]]

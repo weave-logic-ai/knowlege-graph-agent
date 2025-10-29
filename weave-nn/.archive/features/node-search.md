@@ -1,19 +1,19 @@
 ---
-feature_id: "F-101"
-feature_name: "Advanced Node Search"
-category: "knowledge-graph"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-101
+feature_name: Advanced Node Search
+category: knowledge-graph
+status: planned
+priority: high
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-001", "F-003"]
-  blocks: ["F-105"]
-
+  requires:
+    - F-001
+    - F-003
+  blocks:
+    - F-105
 related_decisions:
-  - "[[../decisions/technical/search-indexing]]"
-
+  - '[[../decisions/technical/search-indexing]]'
 tags:
   - feature
   - knowledge-graph
@@ -57,6 +57,26 @@ Key challenges:
 - Ranking/relevance scoring
 - Mobile-friendly search UI
 
+
+
+
+
+
+
+
+
+## Related
+
+[[collaborative-editing]] • [[version-history]] • [[collaborative-editing]] • [[comments-annotations]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[temporal-view]]
 ## Related
 
 - [[../concepts/knowledge-graph|Knowledge Graph]]

@@ -1,35 +1,30 @@
 ---
-question_id: "Q-TECH-003"
-question_type: "technical"
-title: "Markdown Editor Selection: Tiptap vs Alternatives"
-status: "open"
-priority: "high"
-category: "frontend"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-due_date: "2025-11-03"
-
-assigned_to: "Frontend Team"
+question_id: Q-TECH-003
+question_type: technical
+title: 'Markdown Editor Selection: Tiptap vs Alternatives'
+status: open
+priority: high
+category: frontend
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+due_date: '2025-11-03'
+assigned_to: Frontend Team
 stakeholders:
-  - "UX Team"
-  - "Product Team"
+  - UX Team
+  - Product Team
 ai_assisted: true
-
 related_decisions:
-  - "TS-1"  # Frontend Framework
-  - "TS-7"  # Markdown Editor (to be created)
-  - "Q-TECH-001"  # React vs Svelte (affects editor choice)
-
+  - TS-1
+  - TS-7
+  - Q-TECH-001
 research_tasks:
-  - "Prototype with Tiptap in both React and Svelte"
-  - "Test markdown round-trip fidelity"
-  - "Evaluate WYSIWYG vs plain markdown editing UX"
-  - "Test collaboration features (Y.js integration)"
-  - "Compare with Monaco, CodeMirror, and Lexical"
-  - "Assess extension ecosystem and customization"
-  - "Test performance with large documents (10k+ lines)"
-
+  - Prototype with Tiptap in both React and Svelte
+  - Test markdown round-trip fidelity
+  - Evaluate WYSIWYG vs plain markdown editing UX
+  - Test collaboration features (Y.js integration)
+  - 'Compare with Monaco, CodeMirror, and Lexical'
+  - Assess extension ecosystem and customization
+  - Test performance with large documents (10k+ lines)
 tags:
   - technical
   - frontend
@@ -58,6 +53,11 @@ Which markdown editor should we use for Weave-NN, and should it be WYSIWYG (like
 
 ---
 
+
+
+## Related
+
+[[wikilink-autocomplete]]
 ## Context from Analysis
 
 ### From Custom Solution Analysis

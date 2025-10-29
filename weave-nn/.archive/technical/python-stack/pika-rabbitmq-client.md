@@ -2,7 +2,7 @@
 type: technical-primitive
 category: library
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 tags:
@@ -12,14 +12,14 @@ tags:
   - python
   - scope/mvp
 related_architecture:
-  - "[[event-driven-architecture]]"
-  - "[[mvp-local-first-architecture]]"
+  - '[[event-driven-architecture]]'
+  - '[[mvp-local-first-architecture]]'
 related_features:
-  - "[[file-watcher]]"
-  - "[[git-automation]]"
+  - '[[file-watcher]]'
+  - '[[git-automation]]'
 dependencies:
-  - "[[python-3-11]]"
-  - "[[rabbitmq]]"
+  - '[[python-3-11]]'
+  - '[[rabbitmq]]'
 ---
 
 # Pika (RabbitMQ Client)
@@ -28,6 +28,26 @@ dependencies:
 
 Pure-Python AMQP client library for connecting to RabbitMQ. Provides both blocking and async interfaces for publishing and consuming messages in Weave-NN event-driven architecture.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
+## Related
+
+[[docker]] • [[docker-compose]]
+## Related
+
+[[obsidian-api-client]]
+## Related
+
+[[pyyaml]]
 ## Category
 
 **Library / Messaging Client**

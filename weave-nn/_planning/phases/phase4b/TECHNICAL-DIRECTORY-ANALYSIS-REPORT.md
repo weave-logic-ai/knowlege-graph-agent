@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Technical Directory Analysis Report
 
 **Date**: 2025-10-23

@@ -16,7 +16,7 @@ links:
   constitution: '[[constitution.md]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -25,6 +25,7 @@ visual:
     - phase-6
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Vault Initialization System - Specification
@@ -38,6 +39,26 @@ updated_date: '2025-10-28'
 
 Implementation phase for Vault Initialization System.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[specification]]
+## Related
+
+[[plan]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-6-vault-tasks]]
 ## Requirements
 
 _Requirements to be elaborated during /speckit.specify workflow_

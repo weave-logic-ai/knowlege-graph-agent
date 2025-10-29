@@ -1,11 +1,10 @@
 ---
 type: planning
-version: "v2.0-web"
+version: v2.0-web
 status: future
 priority: low
-created_date: "2025-10-21"
-estimated_timeline: "6-12 months post-MVP"
-
+created_date: '2025-10-21'
+estimated_timeline: 6-12 months post-MVP
 tags:
   - planning
   - future
@@ -38,6 +37,11 @@ The Obsidian-first MVP proves value with:
 
 ---
 
+
+
+## Related
+
+[[phase-13-overview]]
 ## 📋 Deferred Decisions
 
 These decisions were postponed when we chose Obsidian-first approach:

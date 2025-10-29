@@ -2,37 +2,28 @@
 type: technical-primitive
 category: tool
 status: archived
-first_used_phase: "PHASE-6"
+first_used_phase: PHASE-6
 mvp_required: false
 future_only: true
 maturity: mature
-
-# Archive Information
 archive_status: archived
-archived_date: "2025-10-23"
-archive_reason: "Replaced by Weaver (workflow.dev) unified workflow proxy"
-replacement: "[[../../docs/weaver-workflow-proxy]]"
-original_path: "features/n8n-workflow-automation.md and technical/n8n-workflow-automation.md"
-
-# Integration tracking
+archived_date: '2025-10-23'
+archive_reason: Replaced by Weaver (workflow.dev) unified workflow proxy
+replacement: '[[../../docs/weaver-workflow-proxy]]'
+original_path: features/n8n-workflow-automation.md and technical/n8n-workflow-automation.md
 used_in_services:
   - workflow-engine
   - event-consumer
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "[[apache-airflow]]"
-  - "[[temporal-io]]"
-  - "[[zapier]]"
-  - "[[custom-workflow-engine]]"
+  - '[[apache-airflow]]'
+  - '[[temporal-io]]'
+  - '[[zapier]]'
+  - '[[custom-workflow-engine]]'
 replaces: null
-replaced_by: "weaver-workflow-proxy"
-
-# Documentation
-decision: "[[../decisions/technical/workflow-automation-platform]]"
-architecture: "[[../architecture/workflow-automation-system]]"
-
+replaced_by: weaver-workflow-proxy
+decision: '[[../decisions/technical/workflow-automation-platform]]'
+architecture: '[[../architecture/workflow-automation-system]]'
 tags:
   - technical
   - tool
@@ -436,6 +427,36 @@ http://localhost:5678/workflows
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[PLANNING-REVIEW-2025-10-22-3b-workflow-automation]]
+## Related
+
+[[gitpython]]
+## Related
+
+[[docker-compose]]
+## Related
+
+[[obsidian-tasks-plugin]]
+## Related
+
+[[obsidian-local-rest-api-plugin]]
+## Related
+
+[[uvicorn]]
 ## Related Nodes
 
 **Architecture**:

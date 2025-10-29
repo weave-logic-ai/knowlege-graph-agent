@@ -1,20 +1,17 @@
 ---
-feature_id: "F-033"
-feature_name: "Obsidian Tasks Plugin Integration"
+feature_id: F-033
+feature_name: Obsidian Tasks Plugin Integration
 type: feature
 status: planned
 priority: critical
 category: task-management
-release: "mvp"
-
-effort_estimate: "2-3 days"
+release: mvp
+effort_estimate: 2-3 days
 dependencies:
-  - "F-005" # Basic AI integration (MCP)
-
+  - F-005
 related_decisions:
-  - "FP-1"
-  - "IR-1"
-
+  - FP-1
+  - IR-1
 tags:
   - feature
   - mvp
@@ -22,8 +19,7 @@ tags:
   - obsidian
   - plugin
   - critical
-
-icon: "check-square"
+icon: check-square
 cssclasses:
   - feature
   - mvp
@@ -520,6 +516,16 @@ sort by due
 
 ---
 
+
+
+
+
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[knowledge-graph-visualization]] • [[markdown-editor-component]] • [[user-permissions]] • [[workspace-management]]
 ## Related
 
 ### Features

@@ -16,7 +16,7 @@ links:
   constitution: '[[constitution.md]]'
 type: planning
 visual:
-  icon: "\U0001F4CB"
+  icon: 📋
   color: '#3B82F6'
   cssclasses:
     - type-planning
@@ -25,6 +25,7 @@ visual:
     - phase-7
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📋
 ---
 
 # Agent Rules & Memory Sync - Specification
@@ -50,6 +51,21 @@ Phase 7 implements an **AI-powered agent rules engine** that automatically proce
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[specification]]
+## Related
+
+[[constitution]]
+## Related
+
+[[phase-7-agent-tasks]]
 ## Requirements
 
 ### Functional Requirements

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 5: MCP Integration - Task Breakdown
 
 **Phase ID**: PHASE-5

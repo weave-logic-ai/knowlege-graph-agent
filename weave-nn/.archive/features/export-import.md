@@ -1,19 +1,18 @@
 ---
-feature_id: "F-109"
-feature_name: "Export/Import (Obsidian, Notion)"
-category: "data"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "moderate"
-
+feature_id: F-109
+feature_name: 'Export/Import (Obsidian, Notion)'
+category: data
+status: planned
+priority: high
+release: v1.1
+complexity: moderate
 dependencies:
-  requires: ["F-009", "F-002"]
+  requires:
+    - F-009
+    - F-002
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/data-portability]]"
-
+  - '[[../decisions/features/data-portability]]'
 tags:
   - feature
   - data
@@ -84,6 +83,31 @@ Technical approach:
 - Bundle as zip with assets
 - Optionally include Git history
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[collaborative-editing]] • [[comments-annotations]] • [[phase-management]] • [[sharing]] • [[temporal-view]]
+## Related
+
+[[semantic-search]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[property-analytics]]
+## Related
+
+[[multi-vault]]
 ## Related
 
 - [[../platforms/obsidian|Obsidian]]

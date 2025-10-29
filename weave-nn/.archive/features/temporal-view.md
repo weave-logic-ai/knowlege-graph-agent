@@ -1,19 +1,18 @@
 ---
-feature_id: "F-102"
-feature_name: "Temporal/Historical View"
-category: "knowledge-graph"
-status: "planned"
-priority: "medium"
-release: "v1.1"
-complexity: "complex"
-
+feature_id: F-102
+feature_name: Temporal/Historical View
+category: knowledge-graph
+status: planned
+priority: medium
+release: v1.1
+complexity: complex
 dependencies:
-  requires: ["F-001", "F-010"]
+  requires:
+    - F-001
+    - F-010
   blocks: []
-
 related_decisions:
-  - "[[../decisions/technical/version-control]]"
-
+  - '[[../decisions/technical/version-control]]'
 tags:
   - feature
   - knowledge-graph
@@ -63,6 +62,36 @@ Technical approach:
 - Use graph diffing algorithms for change visualization
 - Consider pre-computing common historical views
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[export-import]]
+## Related
+
+[[collaborative-editing]] • [[comments-annotations]] • [[collaborative-editing]] • [[comments-annotations]]
+## Related
+
+[[sharing]]
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[tag-based-filtering]]
+## Related
+
+[[node-search]]
 ## Related
 
 - [[../concepts/temporal-queries|Temporal Queries]]

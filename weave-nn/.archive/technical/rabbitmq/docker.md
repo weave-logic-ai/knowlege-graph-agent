@@ -2,7 +2,7 @@
 type: technical-primitive
 category: platform
 status: in-use
-first_used_phase: "PHASE-0"
+first_used_phase: PHASE-0
 mvp_required: true
 future_only: false
 tags:
@@ -12,11 +12,11 @@ tags:
   - deployment
   - scope/mvp
 related_architecture:
-  - "[[mvp-local-first-architecture]]"
-  - "[[deployment-architecture]]"
+  - '[[mvp-local-first-architecture]]'
+  - '[[deployment-architecture]]'
 related_features:
-  - "[[rabbitmq]]"
-  - "[[mcp-server]]"
+  - '[[rabbitmq]]'
+  - '[[mcp-server]]'
 dependencies: []
 ---
 
@@ -26,6 +26,26 @@ dependencies: []
 
 Containerization platform for packaging and deploying applications with dependencies. Used for RabbitMQ deployment and optional MCP server containerization in Weave-NN MVP.
 
+
+
+
+
+
+
+
+
+## Related
+
+[[weaver]] • [[phase-10-mvp-readiness-launch]]
+## Related
+
+[[python-3-11]]
+## Related
+
+[[pika-rabbitmq-client]]
+## Related
+
+[[fastapi]]
 ## Category
 
 **Platform / Containerization**

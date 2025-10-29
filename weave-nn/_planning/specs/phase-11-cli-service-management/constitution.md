@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 11 Constitution
 
 **Purpose**: Define the guiding principles, constraints, and quality standards for Phase 11 implementation.

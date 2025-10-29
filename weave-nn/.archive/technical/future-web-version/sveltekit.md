@@ -36,6 +36,11 @@ The React ecosystem's size advantage is substantial. [[technical/shadcn-ui|shadc
 
 [[technical/nextjs|Next.js]] offers more battle-tested scaling patterns, extensive middleware ecosystem, and Vercel's first-class optimization. However, SvelteKit's simplicity can actually accelerate development for teams that don't need the React ecosystem's breadth.
 
+
+
+## Related
+
+[[nextjs]]
 ## Related Decisions
 
 - **[Decision: Frontend Framework]** - SvelteKit vs Next.js comparison for Weave-NN

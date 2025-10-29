@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Phase 15: Workflow Observability & Workflow.dev Integration
 
 **Status**: 🔵 PLANNING

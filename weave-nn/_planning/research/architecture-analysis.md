@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Architecture Analysis: Day 2, Day 4, and Day 11 Tasks
 
 **Analyst**: Hive Mind Analyst Agent
