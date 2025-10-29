@@ -1,1 +1,22 @@
-{}
+{
+  "accentColor": "#3B82F6",
+  "theme": "obsidian",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "color-coding",
+    "icons",
+    "callouts",
+    "typography"
+  ],
+  "cssTheme": "Blue Topaz",
+  "translucency": false,
+  "nativeMenus": false,
+  "showViewHeader": true,
+  "showLineNumber": true,
+  "readableLineLength": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showFrontmatter": true,
+  "textFontFamily": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+  "monospaceFontFamily": "JetBrains Mono, Fira Code, Monaco, Courier New, monospace"
+}
