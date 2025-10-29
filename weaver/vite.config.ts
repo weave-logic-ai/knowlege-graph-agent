@@ -3,7 +3,7 @@ import { workflowRollupPlugin } from 'workflow/rollup-plugin';
 import dts from 'vite-plugin-dts';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { resolve } from 'path';
-import { copyFileSync, mkdirSync } from 'fs';
+import { copyFileSync, mkdirSync, chmodSync, existsSync } from 'fs';
 
 /**
  * Vite Configuration for Weaver
@@ -36,6 +36,28 @@ export default defineConfig({
         } catch (err) {
           console.error('Failed to copy SQL files:', err);
         }
+      }
+    },
+    
+    // Set executable permissions on CLI binaries
+    {
+      name: 'set-executable-permissions',
+      closeBundle() {
+        const binaries = [
+          'dist/cli/bin.js',
+          'dist/mcp-server/cli.js',
+        ];
+        
+        binaries.forEach(file => {
+          try {
+            if (existsSync(file)) {
+              chmodSync(file, 0o755);
+              console.log(`✓ Set executable: ${file}`);
+            }
+          } catch (err) {
+            console.error(`Failed to chmod ${file}:`, err.message);
+          }
+        });
       }
     }
   ],

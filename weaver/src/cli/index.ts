@@ -20,6 +20,7 @@ async function loadCommands(): Promise<any> {
 
   const [
     { createInitVaultCommand },
+    { createInitPrimitivesCommand },
     serviceCommands,
     { createSopCommand },
     { createLearnCommand },
@@ -33,6 +34,7 @@ async function loadCommands(): Promise<any> {
     opsCommands,
   ] = await Promise.all([
     import('./commands/init-vault.js'),
+    import('./commands/init-primitives.js'),
     import('./commands/service/index.js'),
     import('./commands/sop/index.js'),
     import('./commands/learn.js'),
@@ -48,6 +50,7 @@ async function loadCommands(): Promise<any> {
 
   cachedCommands = {
     createInitVaultCommand,
+    createInitPrimitivesCommand,
     ...serviceCommands,
     createSopCommand,
     createLearnCommand,
@@ -111,6 +114,9 @@ async function loadAndRegisterCommands(program: Command): Promise<void> {
 
   // Add init-vault command
   program.addCommand(commands.createInitVaultCommand());
+  
+  // Add init-primitives command
+  program.addCommand(commands.createInitPrimitivesCommand());
 
   // Add AI-powered commit command
   program.addCommand(commands.createCommitCommand());

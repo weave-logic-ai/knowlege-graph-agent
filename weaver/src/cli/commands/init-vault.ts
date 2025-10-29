@@ -22,12 +22,14 @@ import {
   formatSuccess,
   formatInfo,
   formatWarning,
+  formatError,
   formatHeader,
   formatSummary
 } from '../utils/formatting.js';
 import { handleError } from '../utils/error-handler.js';
 import { createShadowCache } from '../../shadow-cache/index.js';
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 
 export interface InitVaultOptions {
   output?: string;
@@ -38,7 +40,7 @@ export interface InitVaultOptions {
 }
 
 export function createInitVaultCommand(): Command {
-  return new Command('init-vault')
+  const initCommand = new Command('init-vault')
     .description('Initialize a new Weave-NN vault from an existing project')
     .argument('<project-path>', 'Path to the project to scan')
     .option('-o, --output <path>', 'Vault output directory')
@@ -54,6 +56,8 @@ export function createInitVaultCommand(): Command {
         process.exit(1);
       }
     });
+  
+  return initCommand;
 }
 
 /**

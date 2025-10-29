@@ -248,6 +248,9 @@ function createClaudeFlowSetupCommand(): Command {
         console.error(formatError('Setup failed:'), error);
         process.exit(1);
       }
+      
+      // Exit cleanly
+      process.exit(0);
     });
 }
 
@@ -287,6 +290,8 @@ function createMcpSetupCommand(): Command {
         console.error(formatError('MCP setup failed:'), error);
         process.exit(1);
       }
+      
+      process.exit(0);
     });
 }
 
@@ -326,6 +331,8 @@ function createEnvSetupCommand(): Command {
         console.error(formatError('Environment setup failed:'), error);
         process.exit(1);
       }
+      
+      process.exit(0);
     });
 }
 
@@ -388,10 +395,9 @@ async function setupClaudeDesktopMcp(weaverRoot: string, vaultPath: string): Pro
  * Helper: Setup .env file
  */
 async function setupEnvFile(weaverRoot: string, vaultPath: string): Promise<void> {
-  const envSpinner = showSpinner('Creating .env file...');
-
   const envPath = join(weaverRoot, '.env');
   
+  // Check if .env exists and prompt BEFORE starting spinner
   if (existsSync(envPath)) {
     const answers = await inquirer.prompt([{
       type: 'confirm',
@@ -401,10 +407,13 @@ async function setupEnvFile(weaverRoot: string, vaultPath: string): Promise<void
     }]);
 
     if (!answers.overwrite) {
-      failSpinner(envSpinner, 'Skipped .env creation');
+      console.log(formatWarning('Skipped .env creation'));
       return;
     }
   }
+
+  // Start spinner AFTER prompts are done
+  const envSpinner = showSpinner('Creating .env file...');
 
   const envContent = `# Vault Configuration
 VAULT_PATH=${vaultPath}
