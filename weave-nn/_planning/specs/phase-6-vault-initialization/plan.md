@@ -1,20 +1,31 @@
 ---
-spec_type: "implementation-plan"
-phase_id: "PHASE-6"
-phase_name: "Vault Initialization System"
-status: "pending"
-priority: "high"
-duration: "15-20 days"
-generated_date: "2025-10-24"
+spec_type: implementation-plan
+phase_id: PHASE-6
+phase_name: Vault Initialization System
+status: pending
+priority: high
+duration: 15-20 days
+generated_date: '2025-10-24'
 tags:
   - spec-kit
   - implementation-plan
   - phase-6
   - vault-initialization
 links:
-  specification: "[[specification.md]]"
-  constitution: "[[constitution.md]]"
-  phase_document: "[[../../phases/phase-6-vault-initialization.md]]"
+  specification: '[[specification.md]]'
+  constitution: '[[constitution.md]]'
+  phase_document: '[[../../phases/phase-6-vault-initialization.md]]'
+type: planning
+visual:
+  icon: "\U0001F4CB"
+  color: '#3B82F6'
+  cssclasses:
+    - type-planning
+    - status-pending
+    - priority-high
+    - phase-6
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Vault Initialization System - Implementation Plan

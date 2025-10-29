@@ -10,8 +10,18 @@ direction: bidirectional
 protocol: In-process (simple-git library)
 authentication: none (local repository)
 status: active
-created: 2025-10-23
-updated: 2025-10-23
+created: {}
+updated: {}
+type: workflow
+domain: weaver
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+    - domain-weaver
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Git ↔ Weaver Workflows Integration

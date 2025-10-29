@@ -1,47 +1,36 @@
 ---
-# Node Metadata
 type: architecture
 status: active
 priority: critical
-created_date: "2025-10-21"
-updated_date: "2025-10-21"
-
-# Architecture-Specific
-architecture_id: "A-005"
-architecture_name: "Obsidian-First Architecture"
+created_date: '2025-10-21'
+updated_date: '2025-10-28'
+architecture_id: A-005
+architecture_name: Obsidian-First Architecture
 category: system-architecture
-decided_date: "2025-10-21"
-
-# Scope
+decided_date: '2025-10-21'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
   deferred: false
-
-# Relationships
 relationships:
   related_decisions:
-    - "ED-1"
-    - "TS-2"
-    - "TS-3"
-    - "TS-4"
-    - "TS-5"
-    - "IR-1"
+    - ED-1
+    - TS-2
+    - TS-3
+    - TS-4
+    - TS-5
+    - IR-1
   related_features:
-    - "knowledge-graph-visualization"
-    - "markdown-editor-component"
-    - "basic-ai-integration-mcp"
-
-# Visual
+    - knowledge-graph-visualization
+    - markdown-editor-component
+    - basic-ai-integration-mcp
 visual:
-  icon: "layout-grid"
+  icon: layout-grid
   cssclasses:
     - type-architecture
     - scope-mvp
     - priority-critical
-
-# Tags
 tags:
   - scope/mvp
   - scope/obsidian-only
@@ -53,6 +42,7 @@ tags:
   - tech/mcp
   - tech/claude-flow
   - category/architecture
+version: '3.0'
 ---
 
 # Obsidian-First Architecture

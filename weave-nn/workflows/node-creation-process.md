@@ -1,8 +1,8 @@
 ---
 type: workflow
-workflow_name: "Node Creation Process"
+workflow_name: Node Creation Process
 status: active
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 complexity: moderate
 tags:
   - workflow
@@ -10,10 +10,17 @@ tags:
   - documentation
   - node-creation
 related:
-  - "[[../templates/concept-node-template]]"
-  - "[[../templates/feature-node-template]]"
-  - "[[../templates/decision-node-template]]"
-  - "[[../_planning/phases/phase-2-documentation-capture]]"
+  - '[[../templates/concept-node-template]]'
+  - '[[../templates/feature-node-template]]'
+  - '[[../templates/decision-node-template]]'
+  - '[[../_planning/phases/phase-2-documentation-capture]]'
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Node Creation Process

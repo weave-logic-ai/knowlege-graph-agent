@@ -197,6 +197,7 @@ export class FileWatcher {
     const event: FileEvent = {
       type,
       path,
+      absolutePath: path, // Alias for compatibility
       relativePath,
       stats,
       timestamp: new Date(),

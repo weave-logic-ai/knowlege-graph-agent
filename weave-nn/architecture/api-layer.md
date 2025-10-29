@@ -1,25 +1,32 @@
 ---
-architecture_id: "A-002"
-layer_name: "API & Backend Layer"
-category: "application-services"
-status: "planned"
-created_date: "2025-10-21"
-complexity: "complex"
-
+architecture_id: A-002
+layer_name: API & Backend Layer
+category: application-services
+status: planned
+created_date: '2025-10-21'
+complexity: complex
 related:
-  - "[[../technical/supabase]]"
-  - "[[../mcp/model-context-protocol]]"
-  - "[[../features/user-permissions]]"
-  - "[[frontend-layer]]"
-  - "[[data-knowledge-layer]]"
-  - "[[ai-integration-layer]]"
-
+  - '[[../technical/supabase]]'
+  - '[[../mcp/model-context-protocol]]'
+  - '[[../features/user-permissions]]'
+  - '[[frontend-layer]]'
+  - '[[data-knowledge-layer]]'
+  - '[[ai-integration-layer]]'
 tags:
   - architecture
   - backend
   - api
   - authentication
   - real-time
+type: architecture
+visual:
+  icon: "\U0001F3D7️"
+  color: '#F59E0B'
+  cssclasses:
+    - type-architecture
+    - status-planned
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # API & Backend Layer

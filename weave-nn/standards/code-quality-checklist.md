@@ -2,7 +2,7 @@
 type: standard
 title: Code Quality Checklist
 status: active
-created_date: "2025-10-24"
+created_date: '2025-10-24'
 tags:
   - standards
   - code-quality
@@ -11,6 +11,13 @@ tags:
 cssclasses:
   - standard
   - checklist
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-standard
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Code Quality Checklist

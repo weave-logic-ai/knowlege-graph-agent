@@ -1,45 +1,36 @@
 ---
-# Node Metadata
-feature_id: "F-008"
-feature_name: "Git Version Control Integration"
-category: "integration"
-status: "planned"
-priority: "critical"
-release: "mvp"
-complexity: "moderate"
-created_date: "2025-10-20"
-updated_date: "2025-10-21"
-
-# Scope
+feature_id: F-008
+feature_name: Git Version Control Integration
+category: integration
+status: planned
+priority: critical
+release: mvp
+complexity: moderate
+created_date: '2025-10-20'
+updated_date: '2025-10-28'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
   requires: []
-  enables: ["github-issues-integration"]
-  related_features: ["obsidian-tasks-integration"]
-
-# Relationships
+  enables:
+    - github-issues-integration
+  related_features:
+    - obsidian-tasks-integration
 relationships:
   related_decisions:
-    - "IR-2"
+    - IR-2
   related_features:
-    - "obsidian-tasks-integration"
-    - "github-issues-integration"
-
-# Visual
+    - obsidian-tasks-integration
+    - github-issues-integration
 visual:
-  icon: "git-branch"
+  icon: git-branch
   cssclasses:
     - type-feature
     - scope-mvp
     - priority-critical
     - tech-git
-
-# Tags
 tags:
   - scope/mvp
   - type/feature
@@ -48,6 +39,8 @@ tags:
   - tech/git
   - tech/python
   - category/integration
+type: documentation
+version: '3.0'
 ---
 
 # Git Version Control Integration (Obsidian-First)

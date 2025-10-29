@@ -1,27 +1,31 @@
 ---
-platform_id: "P-XXX"
-platform_name: "[Platform Name]"
-status: "[evaluated|selected|rejected|alternative]"
-category: "[tool|service|framework|infrastructure]"
-created_date: "YYYY-MM-DD"
-
-architecture: "[local-first|cloud-based|hybrid]"
-knowledge_graph_support: "[native|plugin|api|none]"
-pricing_model: "[free|freemium|paid|enterprise]"
-open_source: "[yes|no|partial]"
-
+platform_id: P-XXX
+platform_name: '[Platform Name]'
+status: '[evaluated|selected|rejected|alternative]'
+category: '[tool|service|framework|infrastructure]'
+created_date: YYYY-MM-DD
+architecture: '[local-first|cloud-based|hybrid]'
+knowledge_graph_support: '[native|plugin|api|none]'
+pricing_model: '[free|freemium|paid|enterprise]'
+open_source: '[yes|no|partial]'
 strengths: []
 weaknesses: []
 use_cases: []
-
 related_decisions:
-  - "[[path/to/decision]]"
-
+  - '[[path/to/decision]]'
 tags:
   - platform
-  - [category]
-  - [primary-tech]
-  - [use-case]
+  - - category
+  - - primary-tech
+  - - use-case
+type: template
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[evaluated|selected|rejected|alternative]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # [Platform Name]

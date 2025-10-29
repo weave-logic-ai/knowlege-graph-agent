@@ -1,40 +1,44 @@
 ---
-technical_id: "T-010"
-technical_name: "Jest Testing Framework"
-category: "framework"
-status: "implemented"
-created_date: "2025-10-22"
-maturity: "mature"
-complexity: "moderate"
-
-language: "JavaScript"
-license: "MIT"
-open_source: "yes"
-
+technical_id: T-010
+technical_name: Jest Testing Framework
+category: framework
+status: implemented
+created_date: '2025-10-22'
+maturity: mature
+complexity: moderate
+language: JavaScript
+license: MIT
+open_source: 'yes'
 pros:
-  - "Zero-config setup with sensible defaults"
-  - "Built-in mocking, spies, and snapshot testing"
-  - "Parallel test execution with worker processes"
+  - Zero-config setup with sensible defaults
+  - 'Built-in mocking, spies, and snapshot testing'
+  - Parallel test execution with worker processes
 cons:
-  - "Slower than Vitest for large test suites"
-  - "Heavy dependencies (~40MB install)"
-  - "Global namespace pollution (describe, it, expect)"
-
+  - Slower than Vitest for large test suites
+  - Heavy dependencies (~40MB install)
+  - 'Global namespace pollution (describe, it, expect)'
 alternatives:
-  - "Vitest (Vite-native, faster)"
-  - "Mocha + Chai (Modular approach)"
-  - "AVA (Parallel by default)"
-
+  - 'Vitest (Vite-native, faster)'
+  - Mocha + Chai (Modular approach)
+  - AVA (Parallel by default)
 related_decisions:
-  - "[[testing-strategy]]"
-  - "[[code-quality-standards]]"
-
+  - '[[testing-strategy]]'
+  - '[[code-quality-standards]]'
 tags:
   - technical
   - framework
   - javascript
   - testing
   - quality-assurance
+type: testing
+visual:
+  icon: ✅
+  color: '#EF4444'
+  cssclasses:
+    - type-testing
+    - status-implemented
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # <span class="lucide-flask-conical"></span> Jest Testing Framework

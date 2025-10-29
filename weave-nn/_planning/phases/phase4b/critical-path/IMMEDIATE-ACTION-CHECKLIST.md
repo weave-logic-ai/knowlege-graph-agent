@@ -2,7 +2,7 @@
 type: checklist
 status: urgent
 priority: critical
-created_date: 2025-10-23
+created_date: {}
 tags:
   - planning
   - checklist
@@ -11,6 +11,14 @@ tags:
 cssclasses:
   - type-checklist
   - priority-critical
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-checklist
+    - status-urgent
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Immediate Action Checklist (Next 4 Hours)

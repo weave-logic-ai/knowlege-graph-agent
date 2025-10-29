@@ -6,13 +6,20 @@ tags:
   - link-prediction
   - innovation
 related:
-  - "[[betweenness-centrality]]"
-  - "[[graph-topology-analysis]]"
-  - "[[ecological-thinking]]"
-  - "[[F-018-semantic-bridge-builder]]"
+  - '[[betweenness-centrality]]'
+  - '[[graph-topology-analysis]]'
+  - '[[ecological-thinking]]'
+  - '[[F-018-semantic-bridge-builder]]'
 status: active
-created: 2025-10-23
+created: {}
 source: InfraNodus and Knowledge Graph Research
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Structural Gap Detection

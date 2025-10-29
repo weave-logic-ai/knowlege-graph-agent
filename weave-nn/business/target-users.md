@@ -1,31 +1,34 @@
 ---
-business_id: "BM-002"
-business_type: "target-users"
-title: "Target Users & Personas"
-status: "active"
-category: "business-model"
-
-created_date: "2025-10-21"
-last_updated: "2025-10-21"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+business_id: BM-002
+business_type: target-users
+title: Target Users & Personas
+status: active
+category: business-model
+created_date: '2025-10-21'
+last_updated: '2025-10-21'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "weave-nn"
-  - "knowledge-graph"
+  - weave-nn
+  - knowledge-graph
 related_decisions:
-  - "ED-1"
+  - ED-1
 related_business:
-  - "value-proposition"
-  - "saas-pricing-model"
-
+  - value-proposition
+  - saas-pricing-model
 tags:
   - business-model
   - target-users
   - personas
   - market-analysis
+type: business
+visual:
+  icon: "\U0001F4BC"
+  cssclasses:
+    - type-business
+    - status-active
+updated_date: '2025-10-28'
 ---
 
 # Target Users & Personas

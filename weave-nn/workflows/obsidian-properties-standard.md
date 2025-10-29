@@ -1,19 +1,25 @@
 ---
 type: workflow
-workflow_name: "Obsidian Properties Standard"
+workflow_name: Obsidian Properties Standard
 status: active
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 icon: settings
 cssclasses:
   - workflow
   - standard
-
 tags:
   - workflow
   - obsidian
   - properties
   - standard
   - formatting
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Properties Standard

@@ -1,33 +1,36 @@
 ---
-concept_id: "C-001"
-concept_type: "project"
-title: "Weave-NN"
-status: "active"
-category: "core-concept"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+concept_id: C-001
+concept_type: project
+title: Weave-NN
+status: active
+category: core-concept
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "knowledge-graph"
-  - "ai-generated-documentation"
-  - "temporal-queries"
-  - "wikilinks"
+  - knowledge-graph
+  - ai-generated-documentation
+  - temporal-queries
+  - wikilinks
 related_decisions:
-  - "ED-1"
-  - "TS-1"
-  - "FP-1"
-
+  - ED-1
+  - TS-1
+  - FP-1
 tags:
   - project-identity
   - saas
   - ai-first
   - knowledge-graph
   - core-concept
+type: concept
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+updated_date: '2025-10-28'
 ---
 
 # Weave-NN

@@ -1,12 +1,12 @@
 ---
-spec_type: "specification"
-phase_id: "PHASE-5"
-phase_name: "MCP Integration & Workflow Enhancement"
-status: "elaborated"
-priority: "critical"
-duration: "3-4 days"
-generated_date: "2025-10-24"
-elaborated_date: "2025-10-24"
+spec_type: specification
+phase_id: PHASE-5
+phase_name: MCP Integration & Workflow Enhancement
+status: elaborated
+priority: critical
+duration: 3-4 days
+generated_date: '2025-10-24'
+elaborated_date: '2025-10-24'
 task_count: 27
 requirement_count: 44
 acceptance_criteria_count: 47
@@ -17,8 +17,19 @@ tags:
   - phase-5
   - elaborated
 links:
-  phase_document: "[[phase-5-mcp-integration|Phase 5 Planning Document]]"
-  constitution: "[[constitution.md]]"
+  phase_document: '[[phase-5-mcp-integration|Phase 5 Planning Document]]'
+  constitution: '[[constitution.md]]'
+type: planning
+visual:
+  icon: "\U0001F4CB"
+  color: '#3B82F6'
+  cssclasses:
+    - type-planning
+    - status-elaborated
+    - priority-critical
+    - phase-5
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # MCP Integration & Workflow Enhancement - Specification

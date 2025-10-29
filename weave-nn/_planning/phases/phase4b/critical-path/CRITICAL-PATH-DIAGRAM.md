@@ -2,7 +2,7 @@
 type: diagram
 status: active
 priority: critical
-created_date: 2025-10-23
+created_date: {}
 tags:
   - planning
   - critical-path
@@ -11,6 +11,14 @@ tags:
 cssclasses:
   - type-diagram
   - priority-critical
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-diagram
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Critical Path Diagram: Phases 0-8

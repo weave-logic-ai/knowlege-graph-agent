@@ -1,40 +1,44 @@
 ---
-technical_id: "T-006"
-technical_name: "REST API Integration Pattern"
-category: "infrastructure"
-status: "implemented"
-created_date: "2025-10-22"
-maturity: "stable"
-complexity: "moderate"
-
-language: "JavaScript"
-license: "MIT"
-open_source: "yes"
-
+technical_id: T-006
+technical_name: REST API Integration Pattern
+category: infrastructure
+status: implemented
+created_date: '2025-10-22'
+maturity: stable
+complexity: moderate
+language: JavaScript
+license: MIT
+open_source: 'yes'
 pros:
-  - "HTTP-based protocol enables language-agnostic integration"
-  - "Stateless architecture simplifies horizontal scaling"
-  - "Standard HTTP methods (GET/POST/PATCH/DELETE) provide clear semantics"
+  - HTTP-based protocol enables language-agnostic integration
+  - Stateless architecture simplifies horizontal scaling
+  - Standard HTTP methods (GET/POST/PATCH/DELETE) provide clear semantics
 cons:
-  - "Network latency overhead compared to local file access"
-  - "Requires API server setup and maintenance"
-  - "Authentication token management adds security complexity"
-
+  - Network latency overhead compared to local file access
+  - Requires API server setup and maintenance
+  - Authentication token management adds security complexity
 alternatives:
-  - "GraphQL API (typed queries, single endpoint)"
-  - "gRPC (binary protocol, faster)"
-  - "WebSocket (bidirectional, real-time)"
-
+  - 'GraphQL API (typed queries, single endpoint)'
+  - 'gRPC (binary protocol, faster)'
+  - 'WebSocket (bidirectional, real-time)'
 related_decisions:
-  - "[[api-architecture]]"
-  - "[[authentication-strategy]]"
-
+  - '[[api-architecture]]'
+  - '[[authentication-strategy]]'
 tags:
   - technical
   - infrastructure
   - api
   - integration
   - http
+type: documentation
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-implemented
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # <span class="lucide-network"></span> REST API Integration Pattern

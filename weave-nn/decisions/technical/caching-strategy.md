@@ -1,38 +1,46 @@
 ---
-decision_id: "TS-010"
-decision_type: "technical"
-title: "Property Visualization Caching Strategy"
-status: "decided"
-priority: "high"
-category: "performance"
-
-created_date: "2025-10-22"
-last_updated: "2025-10-22"
-decided_date: "2025-10-22"
+decision_id: TS-010
+decision_type: technical
+title: Property Visualization Caching Strategy
+status: decided
+priority: high
+category: performance
+created_date: '2025-10-22'
+last_updated: '2025-10-22'
+decided_date: '2025-10-22'
 implemented_date: null
-
-decision_maker: "System Architect"
-stakeholders: ["Performance Team", "Frontend Team", "Backend Team"]
-ai_assisted: "true"
-
+decision_maker: System Architect
+stakeholders:
+  - Performance Team
+  - Frontend Team
+  - Backend Team
+ai_assisted: 'true'
 blocks: []
 impacts:
-  - "property-visualizer"
-  - "property-analytics"
-  - "api-performance"
-  - "user-experience"
+  - property-visualizer
+  - property-analytics
+  - api-performance
+  - user-experience
 requires:
-  - "singleton-pattern-choice"
-
-research_status: "completed"
-selected_option: "C"
-
+  - singleton-pattern-choice
+research_status: completed
+selected_option: C
 tags:
   - decision
   - performance
   - decided
   - caching
   - optimization
+type: decision
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # TS-010: Property Visualization Caching Strategy

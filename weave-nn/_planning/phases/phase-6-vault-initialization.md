@@ -1,15 +1,17 @@
 ---
-phase_id: "PHASE-6"
-phase_name: "Vault Initialization System"
-status: "pending"
-priority: "high"
-created_date: "2025-10-24"
-start_date: "TBD"
-end_date: "TBD"
-duration: "15-20 days"
+phase_id: PHASE-6
+phase_name: Vault Initialization System
+status: pending
+priority: high
+created_date: '2025-10-24'
+start_date: TBD
+end_date: TBD
+duration: 15-20 days
 dependencies:
-  requires: ["PHASE-5"]
-  enables: ["PHASE-7"]
+  requires:
+    - PHASE-5
+  enables:
+    - PHASE-7
 tags:
   - phase
   - vault-initialization
@@ -17,11 +19,14 @@ tags:
   - claude-flow
   - high-priority
 visual:
-  icon: "rocket"
+  icon: rocket
   cssclasses:
     - type-implementation
     - status-pending
     - priority-high
+type: planning
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 6: Vault Initialization System

@@ -1,19 +1,27 @@
 ---
-title: "Guide: How to Track Cognitive Variability"
+title: 'Guide: How to Track Cognitive Variability'
 category: operations
 difficulty: intermediate
-estimated_time: "30 minutes for initial setup, 5 minutes per session"
+estimated_time: '30 minutes for initial setup, 5 minutes per session'
 prerequisites:
   - Obsidian vault with graph view enabled
   - Basic understanding of YAML frontmatter
   - Familiarity with wikilink syntax
   - Optional: Dataview plugin installed
-last_updated: 2025-10-23
+last_updated: {}
 related:
-  - "[[cognitive-variability]]"
-  - "[[ecological-thinking]]"
-  - "[[graph-topology-analysis]]"
-  - "[[F-017-cognitive-variability-tracker]]"
+  - '[[cognitive-variability]]'
+  - '[[ecological-thinking]]'
+  - '[[graph-topology-analysis]]'
+  - '[[F-017-cognitive-variability-tracker]]'
+type: documentation
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # How to Track Cognitive Variability

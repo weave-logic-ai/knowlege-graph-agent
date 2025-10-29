@@ -4,9 +4,9 @@ decision_id: D-007
 decision_type: technical
 title: FastMCP Framework for MCP Server
 status: obsolete
-created_date: 2025-10-21
-decided_date: 2025-10-21
-obsolete_date: 2025-10-23
+created_date: {}
+decided_date: {}
+obsolete_date: {}
 replaced_by: D-021 (JavaScript/TypeScript Stack Pivot)
 tags:
   - mcp
@@ -14,10 +14,10 @@ tags:
   - framework
   - obsolete
 related_concepts:
-  - "[[C-001-weave-nn-core]]"
-  - "[[C-008-agent-coordination]]"
+  - '[[C-001-weave-nn-core]]'
+  - '[[C-008-agent-coordination]]'
 related_features:
-  - "[[F-001-mcp-server]]"
+  - '[[F-001-mcp-server]]'
 phase: phase-0
 priority: high
 impact: high
@@ -25,6 +25,15 @@ cssclasses:
   - decision
   - obsolete
   - technical
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-obsolete
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Decision: FastMCP Framework for MCP Server (OBSOLETE)

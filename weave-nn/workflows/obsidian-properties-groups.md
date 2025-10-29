@@ -1,10 +1,9 @@
 ---
 type: workflow
-workflow_name: "Obsidian Properties & Groups System"
+workflow_name: Obsidian Properties & Groups System
 status: active
-created_date: "2025-10-21"
+created_date: '2025-10-21'
 priority: critical
-
 tags:
   - workflow
   - obsidian
@@ -12,11 +11,18 @@ tags:
   - groups
   - standards
   - mvp
-
-icon: "settings"
+icon: settings
 cssclasses:
   - workflow
   - critical
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Properties & Groups System

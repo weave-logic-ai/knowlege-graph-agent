@@ -1,0 +1,3086 @@
+{
+  "timestamp": "2025-10-28T13:55:48.747Z",
+  "analysis": {
+    "totalFiles": 154,
+    "connectedFiles": 66,
+    "disconnectedFiles": [
+      "weave-nn/docs/weaver-cli-integration-audit.md",
+      "weave-nn/docs/phase-12-workflow-inventory.md",
+      "weave-nn/docs/hive-mind/naming-metadata-audit.md",
+      "weave-nn/docs/hive-mind/validation-checklist.md",
+      "weave-nn/docs/hive-mind/risk-analysis.md",
+      "weave-nn/docs/hive-mind/GRAPH-IMPROVEMENTS-COMPLETE.md",
+      "weave-nn/docs/hive-mind/knowledge-graph-analysis.md",
+      "weave-nn/docs/chunking-strategies-research-2024-2025.md",
+      "weave-nn/docs/chunking-quick-reference.md",
+      "weave-nn/docs/TESTING-GUIDE.md",
+      "weave-nn/docs/CHUNKING-STRATEGY-SYNTHESIS.md",
+      "weave-nn/docs/phase-11-implementation-report.md",
+      "weave-nn/docs/phase-12-pillar-mapping.md",
+      "weave-nn/docs/PHASE-12-EXECUTIVE-SUMMARY.md",
+      "weave-nn/docs/service-readme-template.md",
+      "weave-nn/docs/PHASE-13-COMPLETE-PLAN.md",
+      "weave-nn/docs/PHASE-12-COMPLETE-PLAN.md",
+      "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md",
+      "weave-nn/docs/PHASE-12-ANALYSIS-COMPLETE.md",
+      "weave-nn/docs/phase-12-capability-matrix.md",
+      "weave-nn/docs/research-impact-metrics.md",
+      "weave-nn/docs/MARKDOWN-WORKFLOW-EXAMPLES.md",
+      "weave-nn/docs/phase-12-architect-status.md",
+      "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "weave-nn/docs/PHASE-13-STATUS-REPORT.md",
+      "weave-nn/docs/phase-13-sparc-execution-plan.md",
+      "weave-nn/docs/phase-11-research-findings.md",
+      "weave-nn/docs/phase-12-weaver-inventory.md",
+      "weave-nn/docs/PHASE-12-MCP-QUICK-WINS.md",
+      "weave-nn/docs/phase-11-architecture-design.md",
+      "weave-nn/docs/phase-12-mcp-comparison.md",
+      "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+      "weave-nn/docs/USER-FEEDBACK-REFLECTION-DESIGN.md",
+      "weave-nn/docs/WEAVER-SOPS-FRAMEWORK.md",
+      "weave-nn/docs/chunking-implementation-guide.md",
+      "weave-nn/docs/WORKFLOW-EXTENSION-GUIDE.md",
+      "weave-nn/docs/research/memorographic-embeddings-research.md",
+      "weave-nn/docs/research/arxiv-2510-20809-analysis.md",
+      "weave-nn/docs/phase-12-paper-analysis.md",
+      "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md",
+      "weave-nn/docs/TESTER-AGENT-HANDOFF.md",
+      "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+      "weave-nn/docs/VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md",
+      "weave-nn/docs/PHASE-12-IMPLEMENTATION-ROADMAP.md",
+      "weave-nn/docs/phase-12-mcp-tools-audit.md",
+      "weave-nn/docs/phase-12-mcp-gap-coverage.md",
+      "weave-nn/docs/VERCEL-WORKFLOW-VECTOR-DB-ARCHITECTURE.md",
+      "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md",
+      "weave-nn/docs/TEST-EXECUTION-SUMMARY.md",
+      "weave-nn/docs/phase-11-architecture-analysis.md",
+      "weave-nn/docs/claude-flow-integration-design.md",
+      "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-FEEDBACK-ARCHITECTURE-SUMMARY.md",
+      "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-REPORT.md",
+      "weave-nn/_planning/phases/phase-11-cli-service-management.md",
+      "weave-nn/_planning/phases/phase-10-final-validation.md",
+      "weave-nn/_planning/phases/phase-4b-task-completion-log.md",
+      "weave-nn/_planning/phases/phase-13-master-plan.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/IMMEDIATE-ACTION-CHECKLIST.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-ANALYSIS-PHASES-5-8.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-DIAGRAM.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/EXECUTIVE-SUMMARY-CRITICAL-FINDINGS.md",
+      "weave-nn/_planning/phases/folder-taxonomy-validation.md",
+      "weave-nn/_planning/phases/metadata-cleanup-analysis.md",
+      "weave-nn/_planning/phases/testfile.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/specification.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/constitution.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md",
+      "weave-nn/_planning/specs/phase-13/workflow.md",
+      "weave-nn/_planning/specs/phase-13/architecture-design.md",
+      "weave-nn/_planning/specs/phase-13/dependencies.md",
+      "weave-nn/_planning/specs/phase-13/implementation-roadmap.md",
+      "weave-nn/_planning/specs/phase-13/integration-strategy.md",
+      "weave-nn/_planning/specs/phase-13/success-criteria.md",
+      "weave-nn/_planning/specs/phase-13/task-list.md",
+      "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md",
+      "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md",
+      "weave-nn/_planning/specs/phase-5/phase-5-tasks.md",
+      "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md",
+      "weave-nn/_planning/specs/phase-5/specification.md",
+      "weave-nn/_planning/specs/phase-5/constitution.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/README.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/tasks.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/specification.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md",
+      "weave-nn/_planning/research/architecture-analysis.md",
+      "weave-nn/_planning/research/memory-design.md",
+      "weave-nn/_planning/research/research-analysis-knowledge-graph-mapping.md",
+      "weave-nn/_planning/research/Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md",
+      "weave-nn/_planning/research/Memory Networks and Knowledge Graph Design- A Research Synthesis for LLM-Augmented Systems.md",
+      "weave-nn/_planning/research/fastmcp-research-findings.md",
+      "weave-nn/_planning/research/mcp-sdk-integration-status.md",
+      "weave-nn/_planning/research/Multi-Project AI Development Platform.md",
+      "weave-nn/_planning/research/day-2-4-11-research-findings.md"
+    ],
+    "linkDensity": 1.0844155844155845,
+    "clusters": [
+      {
+        "id": 58,
+        "files": [
+          "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+          "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+          "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+          "weave-nn/_planning/phases/phase-6-vault-initialization.md",
+          "weave-nn/_planning/phases/phase-5-mcp-integration.md",
+          "weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md",
+          "weave-nn/_planning/phases/phase-1-knowledge-graph-transformation.md",
+          "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+          "weave-nn/_planning/phases/phase-3-node-expansion.md",
+          "weave-nn/_planning/phases/PHASE-4B-COMPLETION-REPORT.md",
+          "weave-nn/_planning/specs/phase-5-mcp-integration/specification.md",
+          "weave-nn/_planning/specs/phase-5-mcp-integration/plan.md",
+          "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-tasks.md",
+          "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-tasks.md",
+          "weave-nn/_planning/specs/phase-6-vault-initialization/plan.md",
+          "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+          "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md",
+          "weave-nn/_planning/specs/phase-9-testing-documentation/tasks.md",
+          "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+          "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md",
+          "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/tasks.md"
+        ],
+        "size": 21,
+        "centralFile": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      },
+      {
+        "id": 1,
+        "files": [
+          "weave-nn/docs/README.md",
+          "weave-nn/docs/monorepo-structure.md",
+          "weave-nn/docs/monorepo-structure-mvp.md",
+          "weave-nn/docs/migration-strategy-local-to-microservices.md",
+          "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+          "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+          "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-REORGANIZATION-SUMMARY.md",
+          "weave-nn/_planning/phases/file-naming-standardization.md",
+          "weave-nn/docs/local-first-architecture-overview.md",
+          "weave-nn/docs/weaver-proxy-architecture.md",
+          "weave-nn/docs/weaver-mcp-unification-summary.md",
+          "weave-nn/docs/rabbitmq-deferral-summary.md",
+          "weave-nn/docs/weaver-implementation-summary.md",
+          "weave-nn/docs/javascript-implementation-status.md",
+          "weave-nn/docs/weaver-migration-guide.md",
+          "weave-nn/docs/migration-quick-ref.md",
+          "weave-nn/docs/gitignore-dockerignore-patterns.md",
+          "weave-nn/docs/naming-conventions.md",
+          "weave-nn/docs/architecture-simplification-complete.md",
+          "weave-nn/docs/archival-summary.md"
+        ],
+        "size": 20,
+        "centralFile": "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      },
+      {
+        "id": 88,
+        "files": [
+          "weave-nn/_planning/specs/phase-11-cli-service-management/README.md",
+          "weave-nn/_planning/specs/phase-11-cli-service-management/tasks.md",
+          "weave-nn/_planning/specs/phase-11-cli-service-management/specification.md",
+          "weave-nn/_planning/specs/phase-11-cli-service-management/constitution.md",
+          "weave-nn/_planning/specs/phase-11-cli-service-management/plan.md"
+        ],
+        "size": 5,
+        "centralFile": "weave-nn/_planning/specs/phase-11-cli-service-management/README.md"
+      },
+      {
+        "id": 11,
+        "files": [
+          "weave-nn/docs/CHUNKING-STRATEGY-SYNTHESIS.md",
+          "weave-nn/docs/BACKEND-QUICK-REFERENCE.md",
+          "weave-nn/docs/BACKEND-IMPLEMENTATION-COMPLETE.md",
+          "weave-nn/docs/CHUNKING-IMPLEMENTATION-DESIGN.md"
+        ],
+        "size": 4,
+        "centralFile": "weave-nn/docs/BACKEND-QUICK-REFERENCE.md"
+      },
+      {
+        "id": 53,
+        "files": [
+          "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-QUICK-REF.md",
+          "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+          "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+          "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md"
+        ],
+        "size": 4,
+        "centralFile": "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md"
+      },
+      {
+        "id": 21,
+        "files": [
+          "weave-nn/docs/synthesis/README.md",
+          "weave-nn/docs/synthesis/research-synthesis-executive-summary.md",
+          "weave-nn/docs/synthesis/prioritized-action-items.md"
+        ],
+        "size": 3,
+        "centralFile": "weave-nn/docs/synthesis/README.md"
+      },
+      {
+        "id": 56,
+        "files": [
+          "weave-nn/_planning/phases/phase-11-cli-service-management.md",
+          "weave-nn/_planning/phases/phase-12-four-pillar-autonomous-agents.md",
+          "weave-nn/_planning/phases/phase-13-enhanced-agent-intelligence.md"
+        ],
+        "size": 3,
+        "centralFile": "weave-nn/_planning/phases/phase-12-four-pillar-autonomous-agents.md"
+      },
+      {
+        "id": 0,
+        "files": [
+          "weave-nn/docs/weaver-cli-integration-audit.md",
+          "weave-nn/docs/weaver-cli-audit-summary.md"
+        ],
+        "size": 2,
+        "centralFile": "weave-nn/docs/weaver-cli-audit-summary.md"
+      },
+      {
+        "id": 31,
+        "files": [
+          "weave-nn/docs/phase-11-architecture-design.md",
+          "weave-nn/docs/phase-11-architecture-summary.md"
+        ],
+        "size": 2,
+        "centralFile": "weave-nn/docs/phase-11-architecture-summary.md"
+      },
+      {
+        "id": 55,
+        "files": [
+          "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-REPORT.md",
+          "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-EXECUTIVE-SUMMARY.md"
+        ],
+        "size": 2,
+        "centralFile": "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-EXECUTIVE-SUMMARY.md"
+      },
+      {
+        "id": 2,
+        "files": [
+          "weave-nn/docs/phase-12-workflow-inventory.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-workflow-inventory.md"
+      },
+      {
+        "id": 3,
+        "files": [
+          "weave-nn/docs/hive-mind/naming-metadata-audit.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/hive-mind/naming-metadata-audit.md"
+      },
+      {
+        "id": 4,
+        "files": [
+          "weave-nn/docs/hive-mind/validation-checklist.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/hive-mind/validation-checklist.md"
+      },
+      {
+        "id": 5,
+        "files": [
+          "weave-nn/docs/hive-mind/risk-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/hive-mind/risk-analysis.md"
+      },
+      {
+        "id": 6,
+        "files": [
+          "weave-nn/docs/hive-mind/GRAPH-IMPROVEMENTS-COMPLETE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/hive-mind/GRAPH-IMPROVEMENTS-COMPLETE.md"
+      },
+      {
+        "id": 7,
+        "files": [
+          "weave-nn/docs/hive-mind/knowledge-graph-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/hive-mind/knowledge-graph-analysis.md"
+      },
+      {
+        "id": 8,
+        "files": [
+          "weave-nn/docs/chunking-strategies-research-2024-2025.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/chunking-strategies-research-2024-2025.md"
+      },
+      {
+        "id": 9,
+        "files": [
+          "weave-nn/docs/chunking-quick-reference.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/chunking-quick-reference.md"
+      },
+      {
+        "id": 10,
+        "files": [
+          "weave-nn/docs/TESTING-GUIDE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/TESTING-GUIDE.md"
+      },
+      {
+        "id": 12,
+        "files": [
+          "weave-nn/docs/phase-11-implementation-report.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-11-implementation-report.md"
+      },
+      {
+        "id": 13,
+        "files": [
+          "weave-nn/docs/phase-12-pillar-mapping.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-pillar-mapping.md"
+      },
+      {
+        "id": 14,
+        "files": [
+          "weave-nn/docs/PHASE-12-EXECUTIVE-SUMMARY.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-EXECUTIVE-SUMMARY.md"
+      },
+      {
+        "id": 15,
+        "files": [
+          "weave-nn/docs/service-readme-template.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/service-readme-template.md"
+      },
+      {
+        "id": 16,
+        "files": [
+          "weave-nn/docs/PHASE-13-COMPLETE-PLAN.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-13-COMPLETE-PLAN.md"
+      },
+      {
+        "id": 17,
+        "files": [
+          "weave-nn/docs/PHASE-12-COMPLETE-PLAN.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-COMPLETE-PLAN.md"
+      },
+      {
+        "id": 18,
+        "files": [
+          "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md"
+      },
+      {
+        "id": 19,
+        "files": [
+          "weave-nn/docs/PHASE-12-ANALYSIS-COMPLETE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-ANALYSIS-COMPLETE.md"
+      },
+      {
+        "id": 20,
+        "files": [
+          "weave-nn/docs/phase-12-capability-matrix.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-capability-matrix.md"
+      },
+      {
+        "id": 22,
+        "files": [
+          "weave-nn/docs/research-impact-metrics.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/research-impact-metrics.md"
+      },
+      {
+        "id": 23,
+        "files": [
+          "weave-nn/docs/MARKDOWN-WORKFLOW-EXAMPLES.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/MARKDOWN-WORKFLOW-EXAMPLES.md"
+      },
+      {
+        "id": 24,
+        "files": [
+          "weave-nn/docs/phase-12-architect-status.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-architect-status.md"
+      },
+      {
+        "id": 25,
+        "files": [
+          "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md"
+      },
+      {
+        "id": 26,
+        "files": [
+          "weave-nn/docs/PHASE-13-STATUS-REPORT.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-13-STATUS-REPORT.md"
+      },
+      {
+        "id": 27,
+        "files": [
+          "weave-nn/docs/phase-13-sparc-execution-plan.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-13-sparc-execution-plan.md"
+      },
+      {
+        "id": 28,
+        "files": [
+          "weave-nn/docs/phase-11-research-findings.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-11-research-findings.md"
+      },
+      {
+        "id": 29,
+        "files": [
+          "weave-nn/docs/phase-12-weaver-inventory.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-weaver-inventory.md"
+      },
+      {
+        "id": 30,
+        "files": [
+          "weave-nn/docs/PHASE-12-MCP-QUICK-WINS.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-MCP-QUICK-WINS.md"
+      },
+      {
+        "id": 32,
+        "files": [
+          "weave-nn/docs/phase-12-mcp-comparison.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-mcp-comparison.md"
+      },
+      {
+        "id": 33,
+        "files": [
+          "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md"
+      },
+      {
+        "id": 34,
+        "files": [
+          "weave-nn/docs/USER-FEEDBACK-REFLECTION-DESIGN.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/USER-FEEDBACK-REFLECTION-DESIGN.md"
+      },
+      {
+        "id": 35,
+        "files": [
+          "weave-nn/docs/WEAVER-SOPS-FRAMEWORK.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/WEAVER-SOPS-FRAMEWORK.md"
+      },
+      {
+        "id": 36,
+        "files": [
+          "weave-nn/docs/chunking-implementation-guide.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/chunking-implementation-guide.md"
+      },
+      {
+        "id": 37,
+        "files": [
+          "weave-nn/docs/WORKFLOW-EXTENSION-GUIDE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/WORKFLOW-EXTENSION-GUIDE.md"
+      },
+      {
+        "id": 38,
+        "files": [
+          "weave-nn/docs/research/memorographic-embeddings-research.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/research/memorographic-embeddings-research.md"
+      },
+      {
+        "id": 39,
+        "files": [
+          "weave-nn/docs/research/arxiv-2510-20809-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/research/arxiv-2510-20809-analysis.md"
+      },
+      {
+        "id": 40,
+        "files": [
+          "weave-nn/docs/phase-12-paper-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-paper-analysis.md"
+      },
+      {
+        "id": 41,
+        "files": [
+          "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md"
+      },
+      {
+        "id": 42,
+        "files": [
+          "weave-nn/docs/TESTER-AGENT-HANDOFF.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/TESTER-AGENT-HANDOFF.md"
+      },
+      {
+        "id": 43,
+        "files": [
+          "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md"
+      },
+      {
+        "id": 44,
+        "files": [
+          "weave-nn/docs/VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md"
+      },
+      {
+        "id": 45,
+        "files": [
+          "weave-nn/docs/PHASE-12-IMPLEMENTATION-ROADMAP.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/PHASE-12-IMPLEMENTATION-ROADMAP.md"
+      },
+      {
+        "id": 46,
+        "files": [
+          "weave-nn/docs/phase-12-mcp-tools-audit.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-mcp-tools-audit.md"
+      },
+      {
+        "id": 47,
+        "files": [
+          "weave-nn/docs/phase-12-mcp-gap-coverage.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-12-mcp-gap-coverage.md"
+      },
+      {
+        "id": 48,
+        "files": [
+          "weave-nn/docs/VERCEL-WORKFLOW-VECTOR-DB-ARCHITECTURE.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/VERCEL-WORKFLOW-VECTOR-DB-ARCHITECTURE.md"
+      },
+      {
+        "id": 49,
+        "files": [
+          "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md"
+      },
+      {
+        "id": 50,
+        "files": [
+          "weave-nn/docs/TEST-EXECUTION-SUMMARY.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/TEST-EXECUTION-SUMMARY.md"
+      },
+      {
+        "id": 51,
+        "files": [
+          "weave-nn/docs/phase-11-architecture-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/phase-11-architecture-analysis.md"
+      },
+      {
+        "id": 52,
+        "files": [
+          "weave-nn/docs/claude-flow-integration-design.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/docs/claude-flow-integration-design.md"
+      },
+      {
+        "id": 54,
+        "files": [
+          "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-FEEDBACK-ARCHITECTURE-SUMMARY.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-FEEDBACK-ARCHITECTURE-SUMMARY.md"
+      },
+      {
+        "id": 57,
+        "files": [
+          "weave-nn/_planning/phases/phase-10-final-validation.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase-10-final-validation.md"
+      },
+      {
+        "id": 59,
+        "files": [
+          "weave-nn/_planning/phases/phase-4b-task-completion-log.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase-4b-task-completion-log.md"
+      },
+      {
+        "id": 60,
+        "files": [
+          "weave-nn/_planning/phases/phase-13-master-plan.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase-13-master-plan.md"
+      },
+      {
+        "id": 61,
+        "files": [
+          "weave-nn/_planning/phases/phase4b/critical-path/IMMEDIATE-ACTION-CHECKLIST.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase4b/critical-path/IMMEDIATE-ACTION-CHECKLIST.md"
+      },
+      {
+        "id": 62,
+        "files": [
+          "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-ANALYSIS-PHASES-5-8.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-ANALYSIS-PHASES-5-8.md"
+      },
+      {
+        "id": 63,
+        "files": [
+          "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-DIAGRAM.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-DIAGRAM.md"
+      },
+      {
+        "id": 64,
+        "files": [
+          "weave-nn/_planning/phases/phase4b/critical-path/EXECUTIVE-SUMMARY-CRITICAL-FINDINGS.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/phase4b/critical-path/EXECUTIVE-SUMMARY-CRITICAL-FINDINGS.md"
+      },
+      {
+        "id": 65,
+        "files": [
+          "weave-nn/_planning/phases/folder-taxonomy-validation.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/folder-taxonomy-validation.md"
+      },
+      {
+        "id": 66,
+        "files": [
+          "weave-nn/_planning/phases/metadata-cleanup-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/metadata-cleanup-analysis.md"
+      },
+      {
+        "id": 67,
+        "files": [
+          "weave-nn/_planning/phases/testfile.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/phases/testfile.md"
+      },
+      {
+        "id": 68,
+        "files": [
+          "weave-nn/_planning/specs/phase-6-vault-initialization/specification.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-6-vault-initialization/specification.md"
+      },
+      {
+        "id": 69,
+        "files": [
+          "weave-nn/_planning/specs/phase-6-vault-initialization/constitution.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-6-vault-initialization/constitution.md"
+      },
+      {
+        "id": 70,
+        "files": [
+          "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md"
+      },
+      {
+        "id": 71,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/workflow.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/workflow.md"
+      },
+      {
+        "id": 72,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/architecture-design.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/architecture-design.md"
+      },
+      {
+        "id": 73,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/dependencies.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/dependencies.md"
+      },
+      {
+        "id": 74,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/implementation-roadmap.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/implementation-roadmap.md"
+      },
+      {
+        "id": 75,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/integration-strategy.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/integration-strategy.md"
+      },
+      {
+        "id": 76,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/success-criteria.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/success-criteria.md"
+      },
+      {
+        "id": 77,
+        "files": [
+          "weave-nn/_planning/specs/phase-13/task-list.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-13/task-list.md"
+      },
+      {
+        "id": 78,
+        "files": [
+          "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md"
+      },
+      {
+        "id": 79,
+        "files": [
+          "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md"
+      },
+      {
+        "id": 80,
+        "files": [
+          "weave-nn/_planning/specs/phase-5/phase-5-tasks.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5/phase-5-tasks.md"
+      },
+      {
+        "id": 81,
+        "files": [
+          "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md"
+      },
+      {
+        "id": 82,
+        "files": [
+          "weave-nn/_planning/specs/phase-5/specification.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5/specification.md"
+      },
+      {
+        "id": 83,
+        "files": [
+          "weave-nn/_planning/specs/phase-5/constitution.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-5/constitution.md"
+      },
+      {
+        "id": 84,
+        "files": [
+          "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/README.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/README.md"
+      },
+      {
+        "id": 85,
+        "files": [
+          "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/tasks.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/tasks.md"
+      },
+      {
+        "id": 86,
+        "files": [
+          "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/specification.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/specification.md"
+      },
+      {
+        "id": 87,
+        "files": [
+          "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md"
+      },
+      {
+        "id": 89,
+        "files": [
+          "weave-nn/_planning/research/architecture-analysis.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/architecture-analysis.md"
+      },
+      {
+        "id": 90,
+        "files": [
+          "weave-nn/_planning/research/memory-design.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/memory-design.md"
+      },
+      {
+        "id": 91,
+        "files": [
+          "weave-nn/_planning/research/research-analysis-knowledge-graph-mapping.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/research-analysis-knowledge-graph-mapping.md"
+      },
+      {
+        "id": 92,
+        "files": [
+          "weave-nn/_planning/research/Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md"
+      },
+      {
+        "id": 93,
+        "files": [
+          "weave-nn/_planning/research/Memory Networks and Knowledge Graph Design- A Research Synthesis for LLM-Augmented Systems.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/Memory Networks and Knowledge Graph Design- A Research Synthesis for LLM-Augmented Systems.md"
+      },
+      {
+        "id": 94,
+        "files": [
+          "weave-nn/_planning/research/fastmcp-research-findings.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/fastmcp-research-findings.md"
+      },
+      {
+        "id": 95,
+        "files": [
+          "weave-nn/_planning/research/mcp-sdk-integration-status.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/mcp-sdk-integration-status.md"
+      },
+      {
+        "id": 96,
+        "files": [
+          "weave-nn/_planning/research/Multi-Project AI Development Platform.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/Multi-Project AI Development Platform.md"
+      },
+      {
+        "id": 97,
+        "files": [
+          "weave-nn/_planning/research/day-2-4-11-research-findings.md"
+        ],
+        "size": 1,
+        "centralFile": "weave-nn/_planning/research/day-2-4-11-research-findings.md"
+      }
+    ],
+    "orphans": [
+      "weave-nn/docs/phase-12-workflow-inventory.md",
+      "weave-nn/docs/hive-mind/naming-metadata-audit.md",
+      "weave-nn/docs/hive-mind/validation-checklist.md",
+      "weave-nn/docs/hive-mind/risk-analysis.md",
+      "weave-nn/docs/hive-mind/GRAPH-IMPROVEMENTS-COMPLETE.md",
+      "weave-nn/docs/hive-mind/knowledge-graph-analysis.md",
+      "weave-nn/docs/chunking-strategies-research-2024-2025.md",
+      "weave-nn/docs/chunking-quick-reference.md",
+      "weave-nn/docs/TESTING-GUIDE.md",
+      "weave-nn/docs/phase-11-implementation-report.md",
+      "weave-nn/docs/phase-12-pillar-mapping.md",
+      "weave-nn/docs/PHASE-12-EXECUTIVE-SUMMARY.md",
+      "weave-nn/docs/service-readme-template.md",
+      "weave-nn/docs/PHASE-13-COMPLETE-PLAN.md",
+      "weave-nn/docs/PHASE-12-COMPLETE-PLAN.md",
+      "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md",
+      "weave-nn/docs/PHASE-12-ANALYSIS-COMPLETE.md",
+      "weave-nn/docs/phase-12-capability-matrix.md",
+      "weave-nn/docs/research-impact-metrics.md",
+      "weave-nn/docs/MARKDOWN-WORKFLOW-EXAMPLES.md",
+      "weave-nn/docs/phase-12-architect-status.md",
+      "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "weave-nn/docs/PHASE-13-STATUS-REPORT.md",
+      "weave-nn/docs/phase-13-sparc-execution-plan.md",
+      "weave-nn/docs/phase-11-research-findings.md",
+      "weave-nn/docs/phase-12-weaver-inventory.md",
+      "weave-nn/docs/PHASE-12-MCP-QUICK-WINS.md",
+      "weave-nn/docs/phase-12-mcp-comparison.md",
+      "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+      "weave-nn/docs/USER-FEEDBACK-REFLECTION-DESIGN.md",
+      "weave-nn/docs/WEAVER-SOPS-FRAMEWORK.md",
+      "weave-nn/docs/chunking-implementation-guide.md",
+      "weave-nn/docs/WORKFLOW-EXTENSION-GUIDE.md",
+      "weave-nn/docs/research/memorographic-embeddings-research.md",
+      "weave-nn/docs/research/arxiv-2510-20809-analysis.md",
+      "weave-nn/docs/phase-12-paper-analysis.md",
+      "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md",
+      "weave-nn/docs/TESTER-AGENT-HANDOFF.md",
+      "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+      "weave-nn/docs/VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md",
+      "weave-nn/docs/PHASE-12-IMPLEMENTATION-ROADMAP.md",
+      "weave-nn/docs/phase-12-mcp-tools-audit.md",
+      "weave-nn/docs/phase-12-mcp-gap-coverage.md",
+      "weave-nn/docs/VERCEL-WORKFLOW-VECTOR-DB-ARCHITECTURE.md",
+      "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md",
+      "weave-nn/docs/TEST-EXECUTION-SUMMARY.md",
+      "weave-nn/docs/phase-11-architecture-analysis.md",
+      "weave-nn/docs/claude-flow-integration-design.md",
+      "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-FEEDBACK-ARCHITECTURE-SUMMARY.md",
+      "weave-nn/_planning/phases/phase-10-final-validation.md",
+      "weave-nn/_planning/phases/phase-4b-task-completion-log.md",
+      "weave-nn/_planning/phases/phase-13-master-plan.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/IMMEDIATE-ACTION-CHECKLIST.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-ANALYSIS-PHASES-5-8.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-DIAGRAM.md",
+      "weave-nn/_planning/phases/phase4b/critical-path/EXECUTIVE-SUMMARY-CRITICAL-FINDINGS.md",
+      "weave-nn/_planning/phases/folder-taxonomy-validation.md",
+      "weave-nn/_planning/phases/metadata-cleanup-analysis.md",
+      "weave-nn/_planning/phases/testfile.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/specification.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/constitution.md",
+      "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md",
+      "weave-nn/_planning/specs/phase-13/workflow.md",
+      "weave-nn/_planning/specs/phase-13/architecture-design.md",
+      "weave-nn/_planning/specs/phase-13/dependencies.md",
+      "weave-nn/_planning/specs/phase-13/implementation-roadmap.md",
+      "weave-nn/_planning/specs/phase-13/integration-strategy.md",
+      "weave-nn/_planning/specs/phase-13/success-criteria.md",
+      "weave-nn/_planning/specs/phase-13/task-list.md",
+      "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md",
+      "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md",
+      "weave-nn/_planning/specs/phase-5/phase-5-tasks.md",
+      "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md",
+      "weave-nn/_planning/specs/phase-5/specification.md",
+      "weave-nn/_planning/specs/phase-5/constitution.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/README.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/tasks.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/specification.md",
+      "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md",
+      "weave-nn/_planning/research/architecture-analysis.md",
+      "weave-nn/_planning/research/memory-design.md",
+      "weave-nn/_planning/research/research-analysis-knowledge-graph-mapping.md",
+      "weave-nn/_planning/research/Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md",
+      "weave-nn/_planning/research/Memory Networks and Knowledge Graph Design- A Research Synthesis for LLM-Augmented Systems.md",
+      "weave-nn/_planning/research/fastmcp-research-findings.md",
+      "weave-nn/_planning/research/mcp-sdk-integration-status.md",
+      "weave-nn/_planning/research/Multi-Project AI Development Platform.md",
+      "weave-nn/_planning/research/day-2-4-11-research-findings.md"
+    ],
+    "brokenLinkCount": 433,
+    "metrics": {
+      "averageLinksPerFile": 1.0844155844155845,
+      "maxLinks": 25,
+      "minLinks": 0,
+      "isolatedFiles": 88,
+      "stronglyConnectedFiles": 11
+    }
+  },
+  "reports": [
+    {
+      "file": "weave-nn/docs/weaver-cli-integration-audit.md",
+      "incomingLinks": [
+        "weave-nn/docs/weaver-cli-audit-summary.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/README.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/docs/monorepo-structure.md",
+        "weave-nn/docs/monorepo-structure-mvp.md",
+        "weave-nn/docs/local-first-architecture-overview.md",
+        "weave-nn/docs/weaver-implementation-summary.md",
+        "weave-nn/docs/weaver-proxy-architecture.md",
+        "weave-nn/docs/weaver-mcp-unification-summary.md",
+        "weave-nn/docs/javascript-implementation-status.md",
+        "weave-nn/docs/migration-strategy-local-to-microservices.md",
+        "weave-nn/docs/weaver-migration-guide.md",
+        "weave-nn/docs/migration-quick-ref.md",
+        "weave-nn/docs/gitignore-dockerignore-patterns.md",
+        "weave-nn/docs/naming-conventions.md",
+        "weave-nn/docs/architecture-simplification-complete.md",
+        "weave-nn/docs/rabbitmq-deferral-summary.md",
+        "weave-nn/docs/archival-summary.md"
+      ],
+      "brokenLinks": [
+        "../README",
+        "obsidian-native-integration-analysis",
+        "synthesis/README",
+        "synthesis/research-synthesis-executive-summary",
+        "synthesis/prioritized-action-items",
+        "../_planning/README",
+        "../_planning/phases/phase-4b-pre-development-mvp-planning-sprint",
+        "../technical/README",
+        "../mcp/README",
+        "../integrations/README",
+        "../architecture/README"
+      ],
+      "isOrphaned": false,
+      "linkCount": 15
+    },
+    {
+      "file": "weave-nn/docs/phase-12-workflow-inventory.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/hive-mind/naming-metadata-audit.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "concept-1",
+        "concept-2",
+        "replacement-file",
+        "event-driven-architecture",
+        "service-mesh",
+        "learning-loop",
+        "vector-embeddings",
+        "weaver",
+        "local-first-architecture",
+        "state-management"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/hive-mind/validation-checklist.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "note-name",
+        "related-concept"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/hive-mind/risk-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/hive-mind/GRAPH-IMPROVEMENTS-COMPLETE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/hive-mind/knowledge-graph-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "...",
+        "...",
+        "concepts/weave-nn",
+        "concepts/weave-nn",
+        "decisions/technical/day-2-rest-api-client",
+        "_planning/phases/phase-5-mcp-integration",
+        "research/architecture-analysis",
+        "concepts/knowledge-graph",
+        "concepts/wikilinks",
+        "link1",
+        "link2",
+        "templates/daily-log-template",
+        "workflows/daily-log-automation",
+        "features/daily-log-automation",
+        "concepts/contextual-overlap",
+        "technical/chunking-strategies",
+        "docs/chunking-implementation-guide"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/weaver-migration-guide.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "{ \"node\": \"Create Project Folder\" }",
+        "{ \"node\": \"Create GitHub Repo\" }",
+        "{ \"node\": \"Send Slack Notification\" }"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/chunking-strategies-research-2024-2025.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/monorepo-structure-mvp.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/docs/monorepo-structure.md",
+        "weave-nn/docs/migration-strategy-local-to-microservices.md",
+        "weave-nn/docs/naming-conventions.md"
+      ],
+      "brokenLinks": [
+        "mvp-local-first-architecture",
+        "../mcp/agent-rules-workflows",
+        "../mcp/weaver-mcp-tools",
+        "../weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint",
+        "../weave-nn/_planning/phases/phase-5-claude-flow-integration"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/docs/chunking-quick-reference.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/TESTING-GUIDE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/architecture-simplification-complete.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "docs/rabbitmq-deferral-summary",
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "docs/weaver-mcp-unification-summary",
+        "docs/weaver-mcp-unification-summary",
+        "docs/local-first-architecture-overview",
+        "docs/local-first-architecture-overview",
+        "docs/weaver-proxy-architecture",
+        "docs/weaver-mcp-unification-summary",
+        "docs/rabbitmq-deferral-summary",
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "_planning/phases/phase-0-pre-development-work",
+        "_planning/phases/phase-6-tasks",
+        "concepts/weave-nn",
+        "concepts/neural-network-junction",
+        "docs/rabbitmq-deferral-summary#when-to-add-rabbitmq"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/CHUNKING-STRATEGY-SYNTHESIS.md",
+      "incomingLinks": [
+        "weave-nn/docs/BACKEND-QUICK-REFERENCE.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-11-implementation-report.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-pillar-mapping.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-EXECUTIVE-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/service-readme-template.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/docs/architecture/overview.md",
+        "/docs/architecture/event-driven-design.md",
+        "/docs/api/api-gateway.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-13-COMPLETE-PLAN.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-COMPLETE-PLAN.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-ANALYSIS-COMPLETE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-capability-matrix.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/monorepo-structure.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/monorepo-structure-mvp.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/docs/deployment/kubernetes-deployment.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/synthesis/README.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/docs/synthesis/research-synthesis-executive-summary.md",
+        "weave-nn/docs/synthesis/prioritized-action-items.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/synthesis/prioritized-action-items.md",
+      "incomingLinks": [
+        "weave-nn/docs/synthesis/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/synthesis/research-synthesis-executive-summary.md",
+      "incomingLinks": [
+        "weave-nn/docs/synthesis/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "rest-api-versioning",
+        "jwt-token-management"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/javascript-implementation-status.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "technical/obsidian-api-client",
+        "architecture/components/rule-engine",
+        "architecture/components/property-visualizer",
+        "technical/obsidian-api-client",
+        "architecture/components/rule-engine",
+        "architecture/components/property-visualizer",
+        "_planning/daily-logs/2025-10-22",
+        "_planning/research/architecture-analysis",
+        "_planning/research/day-2-4-11-research-findings",
+        "docs/local-first-architecture-overview",
+        "docs/architecture-simplification-complete"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/migration-quick-ref.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/home/aepod/dev/weave-nn/weave-nn/docs/migration-strategy-local-to-microservices.md",
+        "/home/aepod/dev/weave-nn/weave-nn/architecture/obsidian-first-architecture.md",
+        "/home/aepod/dev/weave-nn/weave-nn/_planning/MASTER-PLAN.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/research-impact-metrics.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/MARKDOWN-WORKFLOW-EXAMPLES.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-architect-status.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-13-STATUS-REPORT.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/local-first-architecture-overview.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/weaver-mcp-unification-summary.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/docs/weaver-proxy-architecture.md",
+        "weave-nn/docs/rabbitmq-deferral-summary.md"
+      ],
+      "brokenLinks": [
+        "research/memory-networks-research",
+        "research/papers/sparse-memory-finetuning-analysis",
+        "research/memory-networks-research",
+        "concept-map",
+        "architecture/api-layer",
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "_planning/phases/phase-0-pre-development-work",
+        "_planning/phases/phase-6-tasks",
+        "_planning/MASTER-PLAN"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/docs/gitignore-dockerignore-patterns.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/naming-conventions.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/monorepo-structure-mvp.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/weaver-proxy-architecture.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/local-first-architecture-overview.md",
+        "weave-nn/docs/weaver-mcp-unification-summary.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "../research/memory-networks-research",
+        "../research/papers/sparse-memory-finetuning-analysis"
+      ],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/phase-13-sparc-execution-plan.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/weaver-cli-audit-summary.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/docs/weaver-cli-integration-audit.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/phase-11-research-findings.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-weaver-inventory.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-MCP-QUICK-WINS.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-11-architecture-design.md",
+      "incomingLinks": [
+        "weave-nn/docs/phase-11-architecture-summary.md",
+        "weave-nn/docs/phase-11-architecture-summary.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-mcp-comparison.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/migration-strategy-local-to-microservices.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/monorepo-structure-mvp.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/BACKEND-QUICK-REFERENCE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/docs/BACKEND-IMPLEMENTATION-COMPLETE.md",
+        "weave-nn/docs/CHUNKING-IMPLEMENTATION-DESIGN.md",
+        "weave-nn/docs/CHUNKING-STRATEGY-SYNTHESIS.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/docs/weaver-mcp-unification-summary.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/docs/local-first-architecture-overview.md",
+        "weave-nn/docs/weaver-proxy-architecture.md"
+      ],
+      "brokenLinks": [
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "_planning/phases/phase-0-pre-development-work",
+        "_planning/phases/phase-6-tasks"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/USER-FEEDBACK-REFLECTION-DESIGN.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-11-architecture-summary.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/docs/phase-11-architecture-design.md",
+        "weave-nn/docs/phase-11-architecture-design.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/weaver-implementation-summary.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "docs/weaver-proxy-architecture",
+        "technical/weaver-proxy",
+        "features/weaver-workflow-automation",
+        "docs/weaver-migration-guide",
+        "architecture/api-layer",
+        "concept-map",
+        "features/rabbitmq-message-queue",
+        "_planning/phases/phase-6-tasks",
+        "_planning/phases/phase-0-pre-development-work",
+        "_planning/MASTER-PLAN",
+        ".archive/README",
+        ".archive/n8n-legacy/n8n-workflow-automation",
+        ".archive/bash-hooks-legacy/HOOKS-README-v1"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/WEAVER-SOPS-FRAMEWORK.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/chunking-implementation-guide.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/archival-summary.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        ".archive/technical/python-stack/README",
+        ".archive/technical/rabbitmq/README",
+        ".archive/technical/future-features/README",
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "docs/architecture-simplification-complete",
+        "docs/local-first-architecture-overview",
+        "docs/weaver-mcp-unification-summary",
+        "concepts/weaver",
+        "concepts/neural-network-junction",
+        "concepts/durable-workflows",
+        "concepts/local-first-architecture",
+        "technical/nodejs",
+        "technical/typescript",
+        "technical/chokidar",
+        "technical/modelcontextprotocol-sdk",
+        "technical/workflow-dev",
+        "technical/hono",
+        "technical/simple-git"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/WORKFLOW-EXTENSION-GUIDE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/research/memorographic-embeddings-research.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/research/arxiv-2510-20809-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-paper-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/rabbitmq-deferral-summary.md",
+      "incomingLinks": [
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/local-first-architecture-overview.md",
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "decisions/technical/adopt-weaver-workflow-proxy",
+        "docs/weaver-proxy-architecture",
+        "concept-map",
+        "_planning/phases/phase-0-pre-development-work",
+        "_planning/phases/phase-6-tasks",
+        "features/rabbitmq-message-queue",
+        "features/weaver-workflow-automation"
+      ],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/docs/BACKEND-IMPLEMENTATION-COMPLETE.md",
+      "incomingLinks": [
+        "weave-nn/docs/BACKEND-QUICK-REFERENCE.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/TESTER-AGENT-HANDOFF.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "./chunking-strategy.md",
+        "../metadata.md",
+        "../chunking-strategy.md",
+        "./chunk-{num-1}.md",
+        "./chunk-{num+1}.md",
+        "../../sources/{doc_id}/metadata.md",
+        "../../sources/{doc_id}/chunks/{chunk_file}.md",
+        "../{id_1}/embedding.md",
+        "../{id_2}/embedding.md",
+        "../{id_3}/embedding.md",
+        "../{id_4}/embedding.md",
+        "../{id_5}/embedding.md",
+        "../../indexes/primary-index.md#{embedding_id}",
+        "../../indexes/semantic-index.md#{embedding_id}",
+        "../../sources/doc-123/metadata.md",
+        "../../sources/doc-123/chunks/chunk-001.md",
+        "../../embeddings/emb-abc/embedding.md",
+        "../../indexes/primary-index.md#emb-abc"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/PHASE-12-IMPLEMENTATION-ROADMAP.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-mcp-tools-audit.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/phase-12-mcp-gap-coverage.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/VERCEL-WORKFLOW-VECTOR-DB-ARCHITECTURE.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/TEST-EXECUTION-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/CHUNKING-IMPLEMENTATION-DESIGN.md",
+      "incomingLinks": [
+        "weave-nn/docs/BACKEND-QUICK-REFERENCE.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/docs/phase-11-architecture-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/docs/claude-flow-integration-design.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-QUICK-REF.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md"
+      ],
+      "brokenLinks": [
+        "../../features/rabbitmq-message-queue",
+        "../../mcp/claude-flow-schema-mapping",
+        "../../mcp/agent-rules",
+        "../../phases/phase-5-mvp-week-1",
+        "../../phases/phase-6-mvp-week-2"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-FEEDBACK-ARCHITECTURE-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "architecture/task-completion-feedback-loop",
+        "architecture/task-completion-code-examples",
+        "architecture/task-completion-integration-guide",
+        "../features/rabbitmq-message-queue",
+        "../mcp/claude-flow-schema-mapping",
+        "../mcp/agent-rules",
+        "../phases/phase-5-mvp-week-1"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-QUICK-REF.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "IR-3",
+        "rabbitmq-message-queue",
+        "n8n-workflow-automation",
+        "phase-5-mvp-week-1",
+        "../features/rabbitmq-message-queue",
+        "../features/n8n-workflow-automation",
+        "../phases/phase-5-mvp-week-1#Day 1",
+        "2025-10-21-1700-T-043-implement-file-watcher",
+        "obsidian-first-architecture",
+        "ai-integration-layer",
+        "api-layer",
+        "../features/rabbitmq-message-queue",
+        "../features/n8n-workflow-automation",
+        "../features/cross-project-knowledge-retention",
+        "../mcp/agent-rules",
+        "../mcp/claude-flow-schema-mapping",
+        "../phases/phase-5-mvp-week-1",
+        "../phases/phase-6-mvp-week-2"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-QUICK-REF.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/architecture/task-completion-integration-guide.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-6/TASK-COMPLETION-QUICK-REF.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-code-examples.md",
+        "weave-nn/_planning/phases/phase-6/architecture/task-completion-feedback-loop.md"
+      ],
+      "brokenLinks": [
+        "../features/rabbitmq-message-queue",
+        "../mcp/claude-flow-schema-mapping",
+        "../.claude/skills/reasoningbank-agentdb/SKILL"
+      ],
+      "isOrphaned": false,
+      "linkCount": 5
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-REPORT.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-EXECUTIVE-SUMMARY.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "concept-a",
+        "concept-b",
+        "another-concept"
+      ],
+      "isOrphaned": false,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-EXECUTIVE-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6/TEST-STRATEGY-REPORT.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-11-cli-service-management.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-12-four-pillar-autonomous-agents.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "phase-10-mvp-validation"
+      ],
+      "isOrphaned": false,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-10-final-validation.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+        "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+        "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/tasks.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-4b-task-completion-log.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-3-node-expansion.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-1-knowledge-graph-transformation.md",
+        "weave-nn/_planning/phases/phase-3-node-expansion.md",
+        "weave-nn/_planning/phases/phase-3-node-expansion.md",
+        "weave-nn/_planning/phases/phase-3-node-expansion.md"
+      ],
+      "brokenLinks": [
+        "../../workflows/obsidian-properties-standard",
+        "../MASTER-PLAN",
+        "../README",
+        "phase-4-claude-flow-integration",
+        "../../canvas/workflow-daily-planning",
+        "../../workflows/version-control-integration",
+        "../../features/README",
+        "../../mcp/model-context-protocol",
+        "../../mcp/ai-agent-integration",
+        "../../mcp/agent-rules"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-3-node-expansion.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+        "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+        "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+        "weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-2-documentation-capture.md"
+      ],
+      "brokenLinks": [
+        "../../architecture/frontend-layer",
+        "../../architecture/api-layer",
+        "../../architecture/data-knowledge-layer",
+        "../../architecture/ai-integration-layer",
+        "../../technical/nextjs",
+        "../../technical/sveltekit",
+        "../../technical/tailwindcss",
+        "../../technical/shadcn-ui",
+        "../../technical/daisyui",
+        "../../technical/vercel",
+        "../../technical/railway",
+        "../../technical/pinecone",
+        "../../technical/websockets",
+        "../../technical/stripe",
+        "../../business/value-proposition",
+        "../../business/target-users",
+        "../../business/saas-pricing-model",
+        "../../business/cost-analysis",
+        "../../implementation/phases/phase-1-core-mvp",
+        "../../implementation/phases/phase-2-ai-integration",
+        "../../implementation/phases/phase-3-advanced-features",
+        "../../implementation/phases/phase-4-saas-features",
+        "../../workflows/node-creation-process",
+        "../../workflows/decision-making-process",
+        "../../workflows/canvas-creation-process",
+        "../../workflows/git-workflow",
+        "../../workflows/phase-management"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-13-master-plan.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md",
+        "weave-nn/_planning/specs/phase-9-testing-documentation/tasks.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md",
+        "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md"
+      ],
+      "brokenLinks": [
+        "note1",
+        "note2",
+        "./CONFIGURATION.md",
+        "./TROUBLESHOOTING.md",
+        "../developer/CONTRIBUTING.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 5
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-12-four-pillar-autonomous-agents.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-13-enhanced-agent-intelligence.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-11-cli-service-management.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-1-knowledge-graph-transformation.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-2-documentation-capture.md",
+        "weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "../../concepts/weave-nn",
+        "../../concepts/knowledge-graph",
+        "../../concepts/wikilinks",
+        "../../concepts/ai-generated-documentation",
+        "../../concepts/temporal-queries",
+        "../../platforms/obsidian",
+        "../../platforms/notion",
+        "../../platforms/custom-solution",
+        "../../technical/react-flow",
+        "../../technical/svelte-flow",
+        "../../technical/graphiti",
+        "../../technical/tiptap-editor",
+        "../../technical/supabase",
+        "../../technical/postgresql",
+        "../../mcp/model-context-protocol",
+        "../../mcp/servers/cyanheads-obsidian-mcp-server",
+        "../../mcp/ai-agent-integration",
+        "../../decisions/executive/project-scope",
+        "../../workflows/version-control-integration",
+        "../../concepts/weave-nn",
+        "../../concepts/knowledge-graph",
+        "../../concepts/wikilinks",
+        "../../concepts/ai-generated-documentation",
+        "../../concepts/temporal-queries",
+        "../../decisions/executive/project-scope",
+        "../../platforms/obsidian",
+        "../../platforms/notion",
+        "../../platforms/custom-solution",
+        "../../technical/react-flow",
+        "../../technical/svelte-flow",
+        "../../technical/graphiti",
+        "../../meta/INDEX",
+        "../../meta/KNOWLEDGE-GRAPH-MAP",
+        "../../meta/TRANSFORMATION-SUMMARY",
+        "../milestones/2025-10-20-knowledge-graph-created",
+        "phase-2-node-expansion",
+        "phase-2-node-expansion"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-6-vault-initialization.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-tasks.md",
+        "weave-nn/_planning/specs/phase-6-vault-initialization/plan.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "brokenLinks": [
+        "../../technical/commander",
+        "../../technical/handlebars",
+        "../../technical/babel-parser",
+        "../../integrations/claude-flow",
+        "phase-7-advanced-features"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/monorepo-structure.md",
+        "weave-nn/docs/monorepo-structure-mvp.md",
+        "weave-nn/docs/local-first-architecture-overview.md",
+        "weave-nn/docs/weaver-implementation-summary.md",
+        "weave-nn/docs/weaver-proxy-architecture.md",
+        "weave-nn/docs/weaver-mcp-unification-summary.md",
+        "weave-nn/docs/javascript-implementation-status.md",
+        "weave-nn/docs/migration-strategy-local-to-microservices.md",
+        "weave-nn/docs/weaver-migration-guide.md",
+        "weave-nn/docs/migration-quick-ref.md",
+        "weave-nn/docs/gitignore-dockerignore-patterns.md",
+        "weave-nn/docs/naming-conventions.md",
+        "weave-nn/docs/architecture-simplification-complete.md",
+        "weave-nn/docs/archival-summary.md",
+        "weave-nn/docs/rabbitmq-deferral-summary.md",
+        "weave-nn/docs/README.md",
+        "weave-nn/docs/README.md"
+      ],
+      "brokenLinks": [
+        "concepts/weave-nn",
+        "../../technical/react-flow",
+        "decisions/executive/project-scope",
+        "concepts/knowledge-graph",
+        "concepts/weave-nn",
+        "concepts/knowledge-graph",
+        "concepts/wikilinks",
+        "data-knowledge-layer",
+        "architecture/components/property-visualizer",
+        "architecture/components/rule-engine",
+        "api-layer",
+        "frontend-layer",
+        "ai-integration-layer",
+        "obsidian-first-architecture",
+        "cross-project-knowledge-retention",
+        "multi-project-ai-platform",
+        "docs/monorepo-structure",
+        "technical/README",
+        "weave-nn",
+        "knowledge-graph",
+        "wikilinks",
+        "ai-generated-documentation",
+        "temporal-queries",
+        "betweenness-centrality",
+        "cognitive-variability",
+        "sparse-memory-finetuning",
+        "structural-gap-detection",
+        "graph-topology-analysis",
+        "ecological-thinking",
+        "technical/README",
+        "target-users",
+        "value-proposition",
+        "saas-pricing-model",
+        "cost-analysis",
+        "decisions/executive/project-scope",
+        "obsidian-properties-standard",
+        "obsidian-properties-groups",
+        "version-control-integration",
+        "heading-style-guide",
+        "node-creation-process",
+        "canvas-creation-process",
+        "suggestion-pattern",
+        "phase-management",
+        "decision-making-process",
+        "templates/README",
+        "standards/README",
+        "obsidian-native-integration-analysis",
+        "synthesis/README",
+        "_planning/README",
+        "concepts/README",
+        "parent-directory/README"
+      ],
+      "isOrphaned": false,
+      "linkCount": 25
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-5-mcp-integration.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-6-vault-initialization.md",
+        "weave-nn/_planning/specs/phase-5-mcp-integration/specification.md",
+        "weave-nn/_planning/specs/phase-5-mcp-integration/plan.md",
+        "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-tasks.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md",
+        "weave-nn/_planning/phases/PHASE-4B-COMPLETION-REPORT.md"
+      ],
+      "brokenLinks": [
+        "../../technical/modelcontextprotocol-sdk",
+        "../../protocols/application/mcp",
+        "../../mcp/weaver-mcp-tools",
+        "../../integrations/claude-desktop",
+        "phase-6-obsidian-integration"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-REORGANIZATION-SUMMARY.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md"
+      ],
+      "brokenLinks": [
+        "property-visualizer",
+        "../architecture/components/property-visualizer",
+        "property-visualizer",
+        "../architecture/components/property-visualizer",
+        "property-visualizer",
+        "../architecture/components/property-visualizer",
+        "../decision-review-2025-10-20",
+        "../phase-4a-decision-closure",
+        "../phase-0-pre-development-work",
+        "../phase-5-claude-flow-integration",
+        "../../architecture/obsidian-first-architecture"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/critical-path/IMMEDIATE-ACTION-CHECKLIST.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-ANALYSIS-PHASES-5-8.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/critical-path/CRITICAL-PATH-DIAGRAM.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/critical-path/EXECUTIVE-SUMMARY-CRITICAL-FINDINGS.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/navigation-optimization-analysis.md",
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-REORGANIZATION-SUMMARY.md",
+        "weave-nn/_planning/phases/file-naming-standardization.md",
+        "weave-nn/_planning/phases/file-naming-standardization.md",
+        "weave-nn/_planning/phases/file-naming-standardization.md",
+        "weave-nn/_planning/phases/file-naming-standardization.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 2
+    },
+    {
+      "file": "weave-nn/_planning/phases/folder-taxonomy-validation.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md"
+      ],
+      "brokenLinks": [
+        "phase-6-file-watcher-weaver-integration",
+        "wikilink",
+        "title",
+        "${target}",
+        "${yesterdayPath.replace('.md', '')}"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-1-knowledge-graph-transformation.md",
+        "weave-nn/_planning/phases/phase-3-node-expansion.md"
+      ],
+      "brokenLinks": [
+        "phase-4a-decision-closure",
+        "phase-5-claude-flow-integration",
+        "phase-6-mvp-week-1",
+        "phase-7-mvp-week-2",
+        "../../architecture/obsidian-native-integration-analysis",
+        "../../architecture/obsidian-first-architecture",
+        "../../mcp/agent-rules-workflows",
+        "../../mcp/weaver-mcp-tools",
+        "../../decisions/executive/project-scope",
+        "phase-5-claude-flow-integration"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/phases/file-naming-standardization.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md",
+        "weave-nn/_planning/phases/phase4b/TECHNICAL-DIRECTORY-ANALYSIS-REPORT.md"
+      ],
+      "brokenLinks": [
+        "technical-directory-analysis-report"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/phases/metadata-cleanup-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/PHASE-4B-COMPLETION-REPORT.md",
+      "incomingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/phases/testfile.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "knowledge-graph"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/phases/phase-13-enhanced-agent-intelligence.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-12-four-pillar-autonomous-agents.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-tasks.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6-vault-initialization.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "specification.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-6-vault-initialization/specification.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "phase planning document",
+        "constitution.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-6-vault-initialization/plan.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6-vault-initialization.md"
+      ],
+      "brokenLinks": [
+        "specification.md",
+        "constitution.md",
+        "concept-map",
+        "architecture/system-overview",
+        "architecture/technical-stack",
+        "concept-map",
+        "architecture/system-overview",
+        "technical/",
+        "features/",
+        "${text}"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-6-vault-initialization/constitution.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/weaver/docs/SPEC-KIT-INTEGRATION.md",
+        "/home/aepod/dev/weave-nn/weave-nn/_planning/phases/phase-6-vault-initialization.md",
+        "/weaver/README.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/workflow.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/architecture-design.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/dependencies.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/implementation-roadmap.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/integration-strategy.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/success-criteria.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-13/task-list.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "note-name",
+        "note#heading",
+        "note"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5-mcp-integration/specification.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "brokenLinks": [
+        "constitution.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5-mcp-integration/plan.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "specification.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-tasks.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-5-mcp-integration.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "specification.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/weaver/docs/SPEC-KIT-INTEGRATION.md",
+        "/home/aepod/dev/weave-nn/weave-nn/_planning/phases/phase-5-mcp-integration.md",
+        "/weaver/README.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5/phase-5-tasks.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/weaver/docs/SPEC-KIT-INTEGRATION.md",
+        "/home/aepod/dev/weave-nn/weave-nn/_planning/phases/phase-5-mcp-integration.md",
+        "/weaver/README.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5/specification.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-5/constitution.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/README.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "/home/aepod/dev/weave-nn/weaver/docs/SPEC-KIT-INTEGRATION.md",
+        "/home/aepod/dev/weave-nn/weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+        "/home/aepod/dev/weave-nn/weaver/README.md"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/tasks.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "wikilink",
+        "title"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/specification.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "phase planning document",
+        "constitution.md",
+        "wikilink"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-9-testing-documentation/tasks.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "specification.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-11-cli-service-management/README.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/specs/phase-11-cli-service-management/tasks.md",
+        "weave-nn/_planning/specs/phase-11-cli-service-management/specification.md",
+        "weave-nn/_planning/specs/phase-11-cli-service-management/constitution.md",
+        "weave-nn/_planning/specs/phase-11-cli-service-management/plan.md"
+      ],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-11-cli-service-management/tasks.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-11-cli-service-management/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-11-cli-service-management/specification.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-11-cli-service-management/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-11-cli-service-management/plan.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-11-cli-service-management/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-11-cli-service-management/constitution.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-11-cli-service-management/README.md"
+      ],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": false,
+      "linkCount": 1
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+      "incomingLinks": [],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-6-vault-initialization.md",
+        "weave-nn/_planning/phases/phase-7-agent-rules-memory-sync.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/tasks.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/tasks.md"
+      ],
+      "brokenLinks": [
+        "../../../weaver/workflows/README.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 10
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/tasks.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "specification.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 3
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "brokenLinks": [
+        "constitution.md",
+        "tasks.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/constitution.md",
+      "incomingLinks": [
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md",
+        "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/README.md"
+      ],
+      "outgoingLinks": [
+        "weave-nn/_planning/phases/phase-8-git-automation-workflow-proxy.md",
+        "weave-nn/_planning/phases/phase-9-testing-documentation.md"
+      ],
+      "brokenLinks": [
+        "specification.md",
+        "tasks.md"
+      ],
+      "isOrphaned": false,
+      "linkCount": 4
+    },
+    {
+      "file": "weave-nn/_planning/research/architecture-analysis.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "{target}",
+        "{node}",
+        "{source}",
+        "{target}",
+        "platforms/obsidian",
+        "platforms/custom-solution",
+        "platforms/obsidian",
+        "architecture/api-layer",
+        "mcp/claude-flow-tight-coupling"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/memory-design.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/research-analysis-knowledge-graph-mapping.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/Multi-Graph Knowledge Systems for Project Learning - 15 Essential Papers.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/Memory Networks and Knowledge Graph Design- A Research Synthesis for LLM-Augmented Systems.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/fastmcp-research-findings.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "../phases/phase-5-mvp-week-1",
+        "../../mcp/servers/cyanheads-obsidian-mcp-server",
+        "phase-5-day-2-3-mcp-tasks"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/mcp-sdk-integration-status.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/Multi-Project AI Development Platform.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "DR-001-framework-choice",
+        "DR-002-payment-gateway",
+        "meta-knowledge/domain/ecommerce/multi-vendor-products",
+        "meta-knowledge/technical/payments/escrow-flow",
+        "lessons/payment-integration-checklist",
+        "meta-knowledge/domain/ecommerce/review-system",
+        "lessons/payment-integration-checklist",
+        "lessons/file-upload-security",
+        "../../architecture/multi-project-ai-platform"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    },
+    {
+      "file": "weave-nn/_planning/research/day-2-4-11-research-findings.md",
+      "incomingLinks": [],
+      "outgoingLinks": [],
+      "brokenLinks": [
+        "new-link",
+        "{target_key}",
+        "wikilinks",
+        "link",
+        "{rel}"
+      ],
+      "isOrphaned": true,
+      "linkCount": 0
+    }
+  ]
+}

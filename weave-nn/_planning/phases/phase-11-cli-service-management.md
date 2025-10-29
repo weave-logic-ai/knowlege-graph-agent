@@ -1,15 +1,17 @@
 ---
-phase_id: "PHASE-11"
-phase_name: "CLI Service Management & AI Feature Creator"
-status: "pending"
-priority: "high"
-created_date: "2025-10-27"
-start_date: "TBD"
-end_date: "TBD"
-duration: "20-25 days"
+phase_id: PHASE-11
+phase_name: CLI Service Management & AI Feature Creator
+status: pending
+priority: high
+created_date: '2025-10-27'
+start_date: TBD
+end_date: TBD
+duration: 20-25 days
 dependencies:
-  requires: ["PHASE-10"]
-  enables: ["PHASE-12"]
+  requires:
+    - PHASE-10
+  enables:
+    - PHASE-12
 tags:
   - phase
   - cli
@@ -18,11 +20,15 @@ tags:
   - automation
   - high-priority
 visual:
-  icon: "rocket"
+  icon: rocket
   cssclasses:
     - type-implementation
     - status-pending
     - priority-high
+type: planning
+scope: component
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 11: CLI Service Management & AI Feature Creator

@@ -1,26 +1,22 @@
 ---
-# Node Metadata
-phase_id: "PHASE-2A"
-phase_name: "Documentation Capture & Process Formalization"
+phase_id: PHASE-2A
+phase_name: Documentation Capture & Process Formalization
 type: planning
-status: "completed"
-priority: "critical"
-created_date: "2025-10-20"
-start_date: "2025-10-20"
-end_date: "2025-10-20"
-duration: "1 day"
-
-# Scope
+status: completed
+priority: critical
+created_date: '2025-10-20'
+start_date: '2025-10-20'
+end_date: '2025-10-20'
+duration: 1 day
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-1"]
-  enables: ["PHASE-3", "PHASE-4"]
-
-# Tags
+  requires:
+    - PHASE-1
+  enables:
+    - PHASE-3
+    - PHASE-4
 tags:
   - scope/mvp
   - type/planning
@@ -28,14 +24,14 @@ tags:
   - priority/critical
   - phase-2a
   - documentation
-
-# Visual
 visual:
-  icon: "file-text"
+  icon: file-text
   cssclasses:
     - type-planning
     - scope-mvp
     - status-completed
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 2A: Documentation Capture & Process Formalization

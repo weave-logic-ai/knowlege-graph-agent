@@ -1,43 +1,32 @@
 ---
-# Node Metadata
 type: architecture-analysis
 status: active
 priority: critical
-created_date: "2025-10-21"
-updated_date: "2025-10-21"
-
-# Architecture-Specific
-architecture_id: "A-006"
-architecture_name: "Obsidian Native Integration Analysis"
+created_date: '2025-10-21'
+updated_date: '2025-10-28'
+architecture_id: A-006
+architecture_name: Obsidian Native Integration Analysis
 category: integration-architecture
-decided_date: "2025-10-21"
-
-# Scope
+decided_date: '2025-10-21'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
   deferred: false
-
-# Relationships
 relationships:
   related_architecture:
-    - "obsidian-first-architecture"
-    - "data-knowledge-layer"
+    - obsidian-first-architecture
+    - data-knowledge-layer
   related_features:
-    - "git-integration"
-    - "obsidian-tasks-integration"
-
-# Visual
+    - git-integration
+    - obsidian-tasks-integration
 visual:
-  icon: "puzzle"
+  icon: puzzle
   cssclasses:
     - type-architecture
     - scope-mvp
     - priority-critical
     - tech-obsidian
-
-# Tags
 tags:
   - scope/mvp
   - type/architecture
@@ -47,6 +36,7 @@ tags:
   - tech/python
   - category/integration
   - analysis
+version: '3.0'
 ---
 
 # Obsidian Native Integration Analysis

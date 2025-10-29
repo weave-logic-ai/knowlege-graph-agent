@@ -1,31 +1,36 @@
 ---
-concept_id: "C-002"
-concept_type: "technical-concept"
-title: "Knowledge Graph"
-status: "active"
-category: "core-concept"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+concept_id: C-002
+concept_type: technical-concept
+title: Knowledge Graph
+status: active
+category: core-concept
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "weave-nn"
-  - "wikilinks"
-  - "temporal-queries"
-  - "ai-generated-documentation"
+  - weave-nn
+  - wikilinks
+  - temporal-queries
+  - ai-generated-documentation
 related_decisions:
-  - "TS-2"
-  - "FP-1"
-
+  - TS-2
+  - FP-1
 tags:
   - graph-visualization
   - data-structure
   - core-concept
   - navigation
+type: concept
+domain: knowledge-graph
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+    - domain-knowledge-graph
+updated_date: '2025-10-28'
 ---
 
 # Knowledge Graph

@@ -1,16 +1,22 @@
 ---
 type: workflow
-workflow_name: "Canvas Creation Process"
+workflow_name: Canvas Creation Process
 status: active
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 complexity: moderate
-estimated_time: "30-60 minutes per canvas"
-
+estimated_time: 30-60 minutes per canvas
 tags:
   - workflow
   - canvas
   - visualization
   - obsidian
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Canvas Creation Process

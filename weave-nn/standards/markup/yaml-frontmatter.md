@@ -2,36 +2,36 @@
 type: technical-primitive
 category: standard
 status: in-use
-first_used_phase: "PHASE-1"
+first_used_phase: PHASE-1
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - file-watcher
   - event-consumer
 deployment: local-dev
-
-# Relationships
 alternatives_considered:
-  - "[[json-metadata]]"
-  - "[[toml-frontmatter]]"
-  - "[[custom-metadata-format]]"
+  - '[[json-metadata]]'
+  - '[[toml-frontmatter]]'
+  - '[[custom-metadata-format]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/metadata-format-selection]]"
-architecture: "[[../architecture/knowledge-graph-schema]]"
-
+decision: '[[../decisions/technical/metadata-format-selection]]'
+architecture: '[[../architecture/knowledge-graph-schema]]'
 tags:
   - technical
   - standard
   - metadata
   - obsidian
   - in-use
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # YAML Frontmatter

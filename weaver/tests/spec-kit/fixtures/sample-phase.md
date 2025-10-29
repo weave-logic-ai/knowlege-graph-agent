@@ -1,10 +1,23 @@
 ---
-phase_id: "TEST-PHASE-1"
-phase_name: "Test Phase for Spec-Kit"
-status: "pending"
-priority: "high"
-duration: "5 days"
-created_date: "2025-10-25"
+phase_id: TEST-PHASE-1
+phase_name: Test Phase for Spec-Kit
+status: pending
+priority: high
+duration: 5 days
+created_date: '2025-10-25'
+type: testing
+domain: weaver
+visual:
+  icon: ✅
+  color: '#EF4444'
+  cssclasses:
+    - type-testing
+    - status-pending
+    - priority-high
+    - test-phase-1
+    - domain-weaver
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Test Phase for Spec-Kit

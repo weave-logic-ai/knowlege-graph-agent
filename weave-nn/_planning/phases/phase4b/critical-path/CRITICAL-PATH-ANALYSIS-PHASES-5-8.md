@@ -2,8 +2,8 @@
 type: analysis
 status: active
 priority: critical
-created_date: 2025-10-23
-updated_date: 2025-10-23
+created_date: {}
+updated_date: '2025-10-28'
 tags:
   - planning
   - critical-path
@@ -14,6 +14,13 @@ tags:
 cssclasses:
   - type-analysis
   - priority-critical
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-analysis
+    - status-active
+    - priority-critical
+version: '3.0'
 ---
 
 # Critical Path Analysis: Phases 5-8 (MVP & Post-MVP)

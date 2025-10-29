@@ -2,7 +2,7 @@
 type: integration-spec
 status: active
 priority: critical
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 tags:
   - claude-flow
   - memory
@@ -11,10 +11,18 @@ tags:
   - mcp
   - integration
 related:
-  - "[[claude-flow-memory-visualization]]"
-  - "[[ai-agent-integration]]"
-  - "[[model-context-protocol]]"
-  - "[[../_planning/phases/phase-4-claude-flow-integration]]"
+  - '[[claude-flow-memory-visualization]]'
+  - '[[ai-agent-integration]]'
+  - '[[model-context-protocol]]'
+  - '[[../_planning/phases/phase-4-claude-flow-integration]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-integration-spec
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Claude-Flow Schema Mapping

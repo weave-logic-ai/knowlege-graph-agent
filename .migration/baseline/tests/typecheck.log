@@ -1,0 +1,12 @@
+
+> @weave-nn/weaver@0.1.0 typecheck
+> tsc --noEmit
+
+src/cli/commands/cultivate.ts(292,9): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/cli/commands/cultivate.ts(343,9): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/cli/commands/cultivate.ts(384,9): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/cli/commands/workflow.ts(137,13): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/cli/commands/workflow.ts(346,7): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/cli/commands/workflow.ts(373,9): error TS2322: Type 'number' is not assignable to type 'Date'.
+src/workflows/kg/document-connection.ts(171,15): error TS2554: Expected 1-2 arguments, but got 3.
+src/workflows/kg/document-connection.ts(353,7): error TS2554: Expected 1-2 arguments, but got 3.

@@ -4,9 +4,9 @@ decision_id: D-021
 decision_type: technical
 title: JavaScript/TypeScript Stack Pivot for MVP
 status: decided
-created_date: 2025-10-23
-updated_date: 2025-10-23
-decided_date: 2025-10-23
+created_date: {}
+updated_date: '2025-10-28'
+decided_date: {}
 tags:
   - architecture
   - stack-selection
@@ -15,15 +15,15 @@ tags:
   - mcp
   - infrastructure
 related_concepts:
-  - "[[C-008-agent-coordination]]"
-  - "[[C-001-weave-nn-core]]"
+  - '[[C-008-agent-coordination]]'
+  - '[[C-001-weave-nn-core]]'
 related_features:
-  - "[[F-001-mcp-server]]"
-  - "[[F-002-file-watcher]]"
-  - "[[F-006-automation]]"
+  - '[[F-001-mcp-server]]'
+  - '[[F-002-file-watcher]]'
+  - '[[F-006-automation]]'
 related_decisions:
-  - "[[adopt-weaver-workflow-proxy]]"
-  - "[[event-driven-architecture]]"
+  - '[[adopt-weaver-workflow-proxy]]'
+  - '[[event-driven-architecture]]'
 obsoletes:
   - D-007 (FastMCP Python Stack)
   - D-014 (N8N Workflow Automation)
@@ -36,6 +36,14 @@ cssclasses:
   - decision
   - decided
   - critical
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-critical
+version: '3.0'
 ---
 
 # Decision: JavaScript/TypeScript Stack Pivot for MVP

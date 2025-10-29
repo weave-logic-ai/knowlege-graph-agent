@@ -1,26 +1,33 @@
 ---
-architecture_id: "A-004"
-layer_name: "AI Integration Layer"
-category: "intelligence"
-status: "planned"
-created_date: "2025-10-21"
-complexity: "complex"
-
+architecture_id: A-004
+layer_name: AI Integration Layer
+category: intelligence
+status: planned
+created_date: '2025-10-21'
+complexity: complex
 related:
-  - "[[../mcp/model-context-protocol]]"
-  - "[[../mcp/claude-flow-tight-coupling]]"
-  - "[[../mcp/agent-rules]]"
-  - "[[../mcp/ai-agent-integration]]"
-  - "[[../concepts/ai-generated-documentation]]"
-  - "[[api-layer]]"
-  - "[[data-knowledge-layer]]"
-
+  - '[[../mcp/model-context-protocol]]'
+  - '[[../mcp/claude-flow-tight-coupling]]'
+  - '[[../mcp/agent-rules]]'
+  - '[[../mcp/ai-agent-integration]]'
+  - '[[../concepts/ai-generated-documentation]]'
+  - '[[api-layer]]'
+  - '[[data-knowledge-layer]]'
 tags:
   - architecture
   - ai-integration
   - mcp
   - agents
   - memory
+type: architecture
+visual:
+  icon: "\U0001F3D7️"
+  color: '#F59E0B'
+  cssclasses:
+    - type-architecture
+    - status-planned
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # AI Integration Layer

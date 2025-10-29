@@ -4,8 +4,8 @@ decision_id: D-018
 decision_type: technical
 title: Agent Rule Engine Architecture
 status: implemented
-created_date: 2025-10-22
-updated_date: 2025-10-22
+created_date: {}
+updated_date: '2025-10-28'
 tags:
   - architecture
   - rules-engine
@@ -14,19 +14,27 @@ tags:
   - mvp
   - automation
 related_concepts:
-  - "[[C-002-obsidian-vault]]"
-  - "[[C-008-agent-coordination]]"
+  - '[[C-002-obsidian-vault]]'
+  - '[[C-008-agent-coordination]]'
 related_features:
-  - "[[F-006-automation]]"
+  - '[[F-006-automation]]'
 related_decisions:
-  - "[[day-2-rest-api-client]]"
-  - "[[day-11-properties-visualization]]"
-  - "[[event-driven-architecture]]"
+  - '[[day-2-rest-api-client]]'
+  - '[[day-11-properties-visualization]]'
+  - '[[event-driven-architecture]]'
 phase: phase-5
 priority: high
 cssclasses:
   - decision
   - implemented
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-implemented
+    - priority-high
+version: '3.0'
 ---
 
 # Day 4: Agent Rule Engine Architecture

@@ -1,32 +1,36 @@
 ---
-decision_id: "[ED|TS|FP|BM|OP]-XXX"
-decision_type: "[executive|technical|feature-prioritization|business|operational]"
-title: "[Decision Title]"
-status: "[open|researching|decided|deferred|revisit]"
-priority: "[critical|high|medium|low]"
-category: "[strategic|architecture|implementation|process|business]"
-
-created_date: "YYYY-MM-DD"
-last_updated: "YYYY-MM-DD"
+decision_id: '[ED|TS|FP|BM|OP]-XXX'
+decision_type: '[executive|technical|feature-prioritization|business|operational]'
+title: '[Decision Title]'
+status: '[open|researching|decided|deferred|revisit]'
+priority: '[critical|high|medium|low]'
+category: '[strategic|architecture|implementation|process|business]'
+created_date: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 decided_date: null
 implemented_date: null
-
-decision_maker: "[Name or Role]"
+decision_maker: '[Name or Role]'
 stakeholders: []
-ai_assisted: "[true|false]"
-
+ai_assisted: '[true|false]'
 blocks: []
 impacts: []
 requires: []
-
-research_status: "[not-started|in-progress|completed]"
+research_status: '[not-started|in-progress|completed]'
 selected_option: null
-
 tags:
   - decision
-  - [category]
-  - [status]
-  - [domain]
+  - - category
+  - - status
+  - - domain
+type: template
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[open|researching|decided|deferred|revisit]'
+    - 'priority-[critical|high|medium|low]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 <!--

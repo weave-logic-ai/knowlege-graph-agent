@@ -2,11 +2,19 @@
 type: documentation
 category: templates
 status: active
-created_date: "2025-10-23"
+created_date: '2025-10-23'
 tags:
   - templates
   - comparison
   - reference
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Vault Template Comparison

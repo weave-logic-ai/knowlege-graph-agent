@@ -1,0 +1,21 @@
+{
+  "name": "@weave-nn/graph-tools",
+  "version": "1.0.0",
+  "description": "Knowledge graph analysis tools for Weave-NN",
+  "type": "module",
+  "scripts": {
+    "analyze": "tsx analyze-graph.ts ../../",
+    "orphans": "tsx find-orphans.ts output/report.json",
+    "suggest": "tsx suggest-connections.ts output/report.json",
+    "viz": "tsx visualize-graph.ts output/report.json ../../docs/GRAPH-VISUALIZATION.md",
+    "all": "bash run-analysis.sh"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

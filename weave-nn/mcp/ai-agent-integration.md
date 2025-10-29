@@ -2,13 +2,24 @@
 title: AI Agent Integration via MCP
 type: concept
 category: architecture
-tags: [ai-agents, mcp, integration, automation, knowledge-graph]
-created: 2025-10-20
+tags:
+  - ai-agents
+  - mcp
+  - integration
+  - automation
+  - knowledge-graph
+created: {}
 related:
-  - "[[model-context-protocol]]"
-  - "[[cyanheads-obsidian-mcp-server]]"
-  - "[[claude-desktop]]"
-  - "[[knowledge-graph-maintenance]]"
+  - '[[model-context-protocol]]'
+  - '[[cyanheads-obsidian-mcp-server]]'
+  - '[[claude-desktop]]'
+  - '[[knowledge-graph-maintenance]]'
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # AI Agent Integration via MCP

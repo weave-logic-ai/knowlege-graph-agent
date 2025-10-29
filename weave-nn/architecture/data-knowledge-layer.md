@@ -1,25 +1,32 @@
 ---
-architecture_id: "A-003"
-layer_name: "Data & Knowledge Graph Layer"
-category: "data-persistence"
-status: "planned"
-created_date: "2025-10-21"
-complexity: "complex"
-
+architecture_id: A-003
+layer_name: Data & Knowledge Graph Layer
+category: data-persistence
+status: planned
+created_date: '2025-10-21'
+complexity: complex
 related:
-  - "[[../technical/graphiti]]"
-  - "[[../technical/postgresql]]"
-  - "[[../technical/supabase]]"
-  - "[[../concepts/knowledge-graph]]"
-  - "[[../concepts/temporal-queries]]"
-  - "[[api-layer]]"
-
+  - '[[../technical/graphiti]]'
+  - '[[../technical/postgresql]]'
+  - '[[../technical/supabase]]'
+  - '[[../concepts/knowledge-graph]]'
+  - '[[../concepts/temporal-queries]]'
+  - '[[api-layer]]'
 tags:
   - architecture
   - data
   - knowledge-graph
   - database
   - temporal
+type: architecture
+visual:
+  icon: "\U0001F3D7️"
+  color: '#F59E0B'
+  cssclasses:
+    - type-architecture
+    - status-planned
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Data & Knowledge Graph Layer

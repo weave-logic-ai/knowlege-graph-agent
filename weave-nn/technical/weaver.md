@@ -2,31 +2,24 @@
 type: technical-primitive
 category: service
 status: planned
-first_used_phase: "PHASE-6"
+first_used_phase: PHASE-6
 mvp_required: false
 future_only: false
 maturity: mature
 complexity: moderate
-
-# Integration tracking
 used_in_services:
   - workflow-engine
   - event-consumer
   - task-automation
 deployment: local-development
-
-# Relationships
 alternatives_considered:
-  - "[[n8n-workflow-automation]]"
-  - "[[temporal-io]]"
-  - "[[apache-airflow]]"
-replaces: "[[n8n-workflow-automation]]"
+  - '[[n8n-workflow-automation]]'
+  - '[[temporal-io]]'
+  - '[[apache-airflow]]'
+replaces: '[[n8n-workflow-automation]]'
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/workflow-automation-platform]]"
-architecture: "[[../architecture/workflow-automation-system]]"
-
+decision: '[[../decisions/technical/workflow-automation-platform]]'
+architecture: '[[../architecture/workflow-automation-system]]'
 tags:
   - technical
   - tool
@@ -35,6 +28,15 @@ tags:
   - automation
   - planned
   - durable-execution
+domain: weaver
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-planned
+    - domain-weaver
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Weaver (workflow.dev) - Durable Workflow Engine

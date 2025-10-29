@@ -423,4 +423,4 @@ test:
 
 - [Docker Documentation](https://docs.docker.com/)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
-- [Weave-NN Architecture](../README.md)
+- [Weave-NN Architecture](../weave-nn-project-hub.md)

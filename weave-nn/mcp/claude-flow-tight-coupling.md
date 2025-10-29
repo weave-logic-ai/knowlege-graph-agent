@@ -2,7 +2,7 @@
 type: integration-spec
 status: active
 priority: critical
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 tags:
   - claude-flow
   - tight-coupling
@@ -10,10 +10,18 @@ tags:
   - hive-mind
   - architecture
 related:
-  - "[[ai-agent-integration]]"
-  - "[[model-context-protocol]]"
-  - "[[agent-rules]]"
-  - "[[../concepts/weave-nn]]"
+  - '[[ai-agent-integration]]'
+  - '[[model-context-protocol]]'
+  - '[[agent-rules]]'
+  - '[[../concepts/weave-nn]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-integration-spec
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Claude-Flow Tight Coupling Architecture

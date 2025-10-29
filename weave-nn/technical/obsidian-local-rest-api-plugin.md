@@ -2,36 +2,36 @@
 type: technical-primitive
 category: tool
 status: in-use
-first_used_phase: "PHASE-0"
+first_used_phase: PHASE-0
 mvp_required: true
 future_only: false
 maturity: stable
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - agent-orchestration
   - file-watcher
 deployment: obsidian-plugin
-
-# Relationships
 alternatives_considered:
-  - "[[obsidian-dataview-api]]"
-  - "[[direct-file-system-access]]"
-  - "[[obsidian-uri-protocol]]"
+  - '[[obsidian-dataview-api]]'
+  - '[[direct-file-system-access]]'
+  - '[[obsidian-uri-protocol]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/obsidian-programmatic-access]]"
-architecture: "[[../architecture/obsidian-integration-layer]]"
-
+decision: '[[../decisions/technical/obsidian-programmatic-access]]'
+architecture: '[[../architecture/obsidian-integration-layer]]'
 tags:
   - technical
   - tool
   - in-use
   - obsidian-plugin
   - rest-api
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Local REST API Plugin

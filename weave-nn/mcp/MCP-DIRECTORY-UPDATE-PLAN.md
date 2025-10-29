@@ -2,8 +2,19 @@
 title: MCP Directory Update Plan
 type: plan
 status: active
-created: 2025-10-23
-tags: [mcp, refactoring, architecture, mvp]
+created: {}
+tags:
+  - mcp
+  - refactoring
+  - architecture
+  - mvp
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-plan
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # MCP Directory Update Plan

@@ -1,32 +1,35 @@
 ---
-concept_id: "C-004"
-concept_type: "use-case"
-title: "AI-Generated Documentation"
-status: "active"
-category: "core-concept"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+concept_id: C-004
+concept_type: use-case
+title: AI-Generated Documentation
+status: active
+category: core-concept
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "weave-nn"
-  - "knowledge-graph"
-  - "wikilinks"
-  - "temporal-queries"
+  - weave-nn
+  - knowledge-graph
+  - wikilinks
+  - temporal-queries
 related_decisions:
-  - "FP-2"
-  - "ED-1"
-
+  - FP-2
+  - ED-1
 tags:
   - ai-workflow
   - documentation
   - automation
   - core-concept
   - use-case
+type: concept
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+updated_date: '2025-10-28'
 ---
 
 # AI-Generated Documentation

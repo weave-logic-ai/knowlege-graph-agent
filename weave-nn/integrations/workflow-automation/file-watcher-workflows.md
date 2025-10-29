@@ -10,8 +10,16 @@ direction: unidirectional
 protocol: In-process (function calls)
 authentication: none (same process)
 status: active
-created: 2025-10-23
-updated: 2025-10-23
+created: {}
+updated: {}
+type: workflow
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # File Watcher → Weaver Workflows Integration

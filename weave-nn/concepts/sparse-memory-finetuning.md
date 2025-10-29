@@ -6,12 +6,19 @@ tags:
   - neural-networks
   - parameter-efficiency
 related:
-  - "[[cognitive-variability]]"
-  - "[[graph-topology-analysis]]"
-  - "[[F-019-pattern-library-plasticity]]"
+  - '[[cognitive-variability]]'
+  - '[[graph-topology-analysis]]'
+  - '[[F-019-pattern-library-plasticity]]'
 status: active
-created: 2025-10-23
+created: {}
 source: Memory Networks and Knowledge Graph Design Research
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Sparse Memory Fine-Tuning

@@ -2,7 +2,7 @@
 type: integration-spec
 status: active
 priority: critical
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 tags:
   - mcp
   - agent-rules
@@ -10,10 +10,18 @@ tags:
   - claude-flow
   - integration
 related:
-  - "[[claude-flow-schema-mapping]]"
-  - "[[claude-flow-memory-visualization]]"
-  - "[[ai-agent-integration]]"
-  - "[[model-context-protocol]]"
+  - '[[claude-flow-schema-mapping]]'
+  - '[[claude-flow-memory-visualization]]'
+  - '[[ai-agent-integration]]'
+  - '[[model-context-protocol]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-integration-spec
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # MCP Agent Rules for Weave-NN

@@ -21,10 +21,16 @@ tags:
   - knowledge-graph
   - mcp
 related:
-  - "[[notion]]"
-  - "[[custom-solution]]"
-  - "[[mcp-integration]]"
-  - "[[knowledge-graph]]"
+  - '[[notion]]'
+  - '[[custom-solution]]'
+  - '[[mcp-integration]]'
+  - '[[knowledge-graph]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-knowledge-management
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Platform Analysis

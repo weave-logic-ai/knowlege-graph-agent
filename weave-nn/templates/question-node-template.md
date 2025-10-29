@@ -1,25 +1,30 @@
 ---
-question_id: "Q-[CATEGORY]-XXX"
+question_id: 'Q-[CATEGORY]-XXX'
 type: question
-question_type: "[technical|process|business|feature|architecture]"
-status: "[open|researching|answered|deferred]"
-priority: "[critical|high|medium|low]"
-confidence: "[high|medium|low]"
-created_date: "YYYY-MM-DD"
+question_type: '[technical|process|business|feature|architecture]'
+status: '[open|researching|answered|deferred]'
+priority: '[critical|high|medium|low]'
+confidence: '[high|medium|low]'
+created_date: YYYY-MM-DD
 answered_date: null
-
 relates_to:
-  - "[[path/to/related-decision]]"
-  - "[[path/to/related-feature]]"
-
+  - '[[path/to/related-decision]]'
+  - '[[path/to/related-feature]]'
 blocks: []
 impacts: []
-
 tags:
   - question
-  - [category]
-  - [domain]
-  - [status]
+  - - category
+  - - domain
+  - - status
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-question
+    - 'status-[open|researching|answered|deferred]'
+    - 'priority-[critical|high|medium|low]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Q-[CATEGORY]-XXX: [Question Title]

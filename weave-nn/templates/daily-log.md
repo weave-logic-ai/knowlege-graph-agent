@@ -1,34 +1,31 @@
 ---
 type: daily_log
-date: "YYYY-MM-DD"
-day_of_week: "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
-
-# Cognitive Variability Tracking
-thinking_pattern: "convergent|divergent|balanced|exploration|consolidation"
-cognitive_phase: "feeding|parking|exploration|assembly"
-
-# Daily metrics
-energy_level: "low|medium|high"
-focus_quality: "poor|fair|good|excellent"
-mood: "stressed|neutral|positive|energized"
-
-# Activity summary
+date: YYYY-MM-DD
+day_of_week: Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday
+thinking_pattern: convergent|divergent|balanced|exploration|consolidation
+cognitive_phase: feeding|parking|exploration|assembly
+energy_level: low|medium|high
+focus_quality: poor|fair|good|excellent
+mood: stressed|neutral|positive|energized
 total_notes_created: 0
 total_notes_modified: 0
 total_wikilinks_added: 0
 total_tags_added: 0
 tasks_completed: 0
 tasks_added: 0
-
-# Work categories
-primary_activity: "research|development|planning|review|writing|learning"
-secondary_activity: ""
-
+primary_activity: research|development|planning|review|writing|learning
+secondary_activity: ''
 tags:
   - daily-log
   - YYYY-MM
 cssclasses:
   - daily-log
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-daily_log
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 <!--

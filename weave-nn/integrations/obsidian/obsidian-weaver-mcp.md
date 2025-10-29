@@ -10,8 +10,19 @@ direction: bidirectional
 protocol: HTTP (Local REST API)
 authentication: api-key
 status: active
-created: 2025-10-23
-updated: 2025-10-23
+created: {}
+updated: {}
+type: documentation
+domain: weaver
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-active
+    - domain-weaver
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian ↔ Weaver MCP Integration

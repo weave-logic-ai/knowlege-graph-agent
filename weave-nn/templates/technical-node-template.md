@@ -1,28 +1,32 @@
 ---
-technical_id: "T-XXX"
-technical_name: "[Technology/Library/Service Name]"
-category: "[library|framework|service|tool|infrastructure]"
-status: "[evaluated|selected|rejected|planned]"
-created_date: "YYYY-MM-DD"
-maturity: "[experimental|beta|stable|mature]"
-complexity: "[simple|moderate|complex]"
-
-language: "[JavaScript|Python|Go|etc.]"
-license: "[MIT|Apache|Proprietary|etc.]"
-open_source: "[yes|no]"
-
+technical_id: T-XXX
+technical_name: '[Technology/Library/Service Name]'
+category: '[library|framework|service|tool|infrastructure]'
+status: '[evaluated|selected|rejected|planned]'
+created_date: YYYY-MM-DD
+maturity: '[experimental|beta|stable|mature]'
+complexity: '[simple|moderate|complex]'
+language: '[JavaScript|Python|Go|etc.]'
+license: '[MIT|Apache|Proprietary|etc.]'
+open_source: '[yes|no]'
 pros: []
 cons: []
 alternatives: []
-
 related_decisions:
-  - "[[path/to/decision]]"
-
+  - '[[path/to/decision]]'
 tags:
   - technical
-  - [category]
-  - [language]
-  - [use-case]
+  - - category
+  - - language
+  - - use-case
+type: template
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[evaluated|selected|rejected|planned]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # [Technology Name]

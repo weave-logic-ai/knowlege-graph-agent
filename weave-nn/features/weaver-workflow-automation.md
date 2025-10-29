@@ -1,49 +1,45 @@
 ---
-# Node Metadata
-feature_id: "F-020"
-feature_name: "Weaver Workflow Automation"
-category: "automation"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "moderate"
-created_date: "2025-10-23"
-updated_date: "2025-10-23"
-
-# Scope
+feature_id: F-020
+feature_name: Weaver Workflow Automation
+category: automation
+status: planned
+priority: high
+release: mvp
+complexity: moderate
+created_date: '2025-10-23'
+updated_date: '2025-10-28'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: false
   web_version_needed: false
   infrastructure: true
-
-# Dependencies
 dependencies:
-  requires: ["rabbitmq-message-queue"]
-  enables: ["cross-project-knowledge-retention", "github-issues-integration"]
-  related_features: ["rabbitmq-message-queue", "git-integration", "obsidian-tasks-integration"]
-  replaces: ["n8n-workflow-automation"]
-
-# Relationships
+  requires:
+    - rabbitmq-message-queue
+  enables:
+    - cross-project-knowledge-retention
+    - github-issues-integration
+  related_features:
+    - rabbitmq-message-queue
+    - git-integration
+    - obsidian-tasks-integration
+  replaces:
+    - n8n-workflow-automation
 relationships:
   related_decisions:
-    - "IR-3"
+    - IR-3
   related_architecture:
-    - "obsidian-first-architecture"
-    - "ai-integration-layer"
+    - obsidian-first-architecture
+    - ai-integration-layer
   replaces:
-    - "n8n-workflow-automation"
-
-# Visual
+    - n8n-workflow-automation
 visual:
-  icon: "workflow"
+  icon: workflow
   cssclasses:
     - type-feature
     - scope-mvp
     - priority-high
     - tech-weaver
-
-# Tags
 tags:
   - scope/mvp
   - type/feature
@@ -56,6 +52,9 @@ tags:
   - category/automation
   - category/infrastructure
   - durable-execution
+type: documentation
+domain: weaver
+version: '3.0'
 ---
 
 # Weaver Workflow Automation (workflow.dev)

@@ -3,14 +3,28 @@ title: Weaver Workflow Automation Rules
 type: architecture
 status: active
 priority: critical
-created: 2025-10-23
-tags: [workflows, automation, knowledge-graph, durable-execution, weaver]
+created: {}
+tags:
+  - workflows
+  - automation
+  - knowledge-graph
+  - durable-execution
+  - weaver
 related:
-  - "[[claude-flow-tight-coupling]]"
-  - "[[claude-flow-schema-mapping]]"
-  - "[[../integrations/workflow-automation/file-watcher-workflows]]"
-  - "[[../integrations/obsidian/obsidian-weaver-mcp]]"
-  - "[[../docs/local-first-architecture-overview]]"
+  - '[[claude-flow-tight-coupling]]'
+  - '[[claude-flow-schema-mapping]]'
+  - '[[../integrations/workflow-automation/file-watcher-workflows]]'
+  - '[[../integrations/obsidian/obsidian-weaver-mcp]]'
+  - '[[../docs/local-first-architecture-overview]]'
+visual:
+  icon: "\U0001F3D7️"
+  color: '#F59E0B'
+  cssclasses:
+    - type-architecture
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Weaver Workflow Automation Rules

@@ -1,19 +1,25 @@
 ---
-# Node Metadata
 type: integration-guide
-status: "active"
-priority: "high"
-category: "implementation"
-created_date: "2025-10-21"
-parent_architecture: "task-completion-feedback-loop"
-
-# Tags
+status: active
+priority: high
+category: implementation
+created_date: '2025-10-21'
+parent_architecture: task-completion-feedback-loop
 tags:
   - architecture
   - integration
   - deployment
   - task-completion
   - feedback-loop
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-integration-guide
+    - status-active
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Task Completion Feedback Loop - Integration Guide

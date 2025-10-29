@@ -6,13 +6,20 @@ tags:
   - topology
   - knowledge-structure
 related:
-  - "[[betweenness-centrality]]"
-  - "[[structural-gap-detection]]"
-  - "[[ecological-thinking]]"
-  - "[[F-016-graph-topology-analyzer]]"
+  - '[[betweenness-centrality]]'
+  - '[[structural-gap-detection]]'
+  - '[[ecological-thinking]]'
+  - '[[F-016-graph-topology-analyzer]]'
 status: active
-created: 2025-10-23
+created: {}
 source: Memory Networks and Multi-Graph Research
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Graph Topology Analysis

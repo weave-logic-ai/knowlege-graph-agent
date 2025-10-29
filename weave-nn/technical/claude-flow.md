@@ -2,37 +2,37 @@
 type: technical-primitive
 category: framework
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: stable
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - agent-orchestration
   - task-automation
   - swarm-coordination
 deployment: npm-package
-
-# Relationships
 alternatives_considered:
-  - "[[langchain]]"
-  - "[[autogen]]"
-  - "[[crewai]]"
+  - '[[langchain]]'
+  - '[[autogen]]'
+  - '[[crewai]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/agent-orchestration-framework]]"
-architecture: "[[../architecture/agent-coordination-layer]]"
-
+decision: '[[../decisions/technical/agent-orchestration-framework]]'
+architecture: '[[../architecture/agent-coordination-layer]]'
 tags:
   - technical
   - framework
   - in-use
   - ai-orchestration
   - swarm-coordination
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Claude Flow

@@ -6,12 +6,19 @@ tags:
   - meta-cognition
   - neural-networks
 related:
-  - "[[sparse-memory-finetuning]]"
-  - "[[ecological-thinking]]"
-  - "[[F-017-cognitive-variability-tracker]]"
+  - '[[sparse-memory-finetuning]]'
+  - '[[ecological-thinking]]'
+  - '[[F-017-cognitive-variability-tracker]]'
 status: active
-created: 2025-10-23
+created: {}
 source: InfraNodus Analysis and Multi-Graph Research
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Cognitive Variability

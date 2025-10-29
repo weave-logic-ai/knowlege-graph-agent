@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-10-27T01:50:00Z",
+  "validator": "tester-agent",
+  "status": "CRITICAL_FAILURE",
+  "build": {
+    "status": "FAILED",
+    "errors": 184,
+    "can_deploy": false
+  },
+  "tests": {
+    "status": "RUNNING",
+    "can_measure_coverage": false,
+    "blocked_by": "build_failure"
+  },
+  "success_criteria": {
+    "passing": 0,
+    "total": 28,
+    "percentage": 0
+  },
+  "blockers": [
+    {
+      "severity": "CRITICAL",
+      "issue": "TypeScript compilation errors",
+      "count": 184,
+      "estimated_fix_hours": "12-17"
+    },
+    {
+      "severity": "HIGH",
+      "issue": "Missing playwright dependency",
+      "count": 1,
+      "estimated_fix_hours": "0.1"
+    }
+  ],
+  "reports": [
+    "/weaver/docs/PHASE-13-VALIDATION-RESULTS.md",
+    "/weaver/docs/BUILD-ERRORS-CATEGORIZED.md",
+    "/weaver/docs/VALIDATION-SUMMARY.md",
+    "/TESTER-TO-CODER-HANDOFF.md"
+  ],
+  "next_steps": [
+    "Coder agent: Fix all TypeScript compilation errors",
+    "Coder agent: Add playwright dependency",
+    "Coder agent: Notify when build passes",
+    "Tester agent: Re-run validation after build passes"
+  ],
+  "deployment_ready": false,
+  "requires_fixes": true
+}

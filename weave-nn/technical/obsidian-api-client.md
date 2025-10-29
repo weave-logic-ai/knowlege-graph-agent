@@ -1,40 +1,44 @@
 ---
-technical_id: "T-007"
-technical_name: "Obsidian REST API Client"
-category: "library"
-status: "implemented"
-created_date: "2025-10-22"
-maturity: "stable"
-complexity: "moderate"
-
-language: "JavaScript"
-license: "MIT"
-open_source: "yes"
-
+technical_id: T-007
+technical_name: Obsidian REST API Client
+category: library
+status: implemented
+created_date: '2025-10-22'
+maturity: stable
+complexity: moderate
+language: JavaScript
+license: MIT
+open_source: 'yes'
 pros:
-  - "Comprehensive CRUD operations for Obsidian vault management"
-  - "Robust error handling with exponential backoff retry logic"
-  - "Flexible request/response interceptor system"
+  - Comprehensive CRUD operations for Obsidian vault management
+  - Robust error handling with exponential backoff retry logic
+  - Flexible request/response interceptor system
 cons:
-  - "Requires Obsidian REST API plugin installation"
-  - "Authentication token management needed"
-  - "No built-in caching mechanism"
-
+  - Requires Obsidian REST API plugin installation
+  - Authentication token management needed
+  - No built-in caching mechanism
 alternatives:
-  - "Direct File System Access"
-  - "Obsidian Local REST API"
-  - "Custom WebSocket Implementation"
-
+  - Direct File System Access
+  - Obsidian Local REST API
+  - Custom WebSocket Implementation
 related_decisions:
-  - "[[rest-api-integration]]"
-  - "[[model-context-protocol]]"
-
+  - '[[rest-api-integration]]'
+  - '[[model-context-protocol]]'
 tags:
   - technical
   - library
   - javascript
   - api-client
   - obsidian
+type: documentation
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-implemented
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # <span class="lucide-plug"></span> Obsidian REST API Client

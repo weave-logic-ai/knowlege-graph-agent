@@ -1,24 +1,31 @@
 ---
-feature_id: "F-XXX"
-feature_name: "[Feature Name]"
-category: "[knowledge-graph|editor|ai|planning|data|collaboration]"
-status: "[planned|in-progress|completed|deferred]"
-priority: "[critical|high|medium|low]"
-release: "[mvp|v1.0|v1.1|v2.0]"
-complexity: "[simple|moderate|complex|very-complex]"
-
+feature_id: F-XXX
+feature_name: '[Feature Name]'
+category: '[knowledge-graph|editor|ai|planning|data|collaboration]'
+status: '[planned|in-progress|completed|deferred]'
+priority: '[critical|high|medium|low]'
+release: '[mvp|v1.0|v1.1|v2.0]'
+complexity: '[simple|moderate|complex|very-complex]'
 dependencies:
   requires: []
   blocks: []
-
 related_decisions:
-  - "[[path/to/decision]]"
-
+  - '[[path/to/decision]]'
 tags:
   - feature
-  - [category]
-  - [release]
-  - [primary-capability]
+  - - category
+  - - release
+  - - primary-capability
+type: template
+scope: feature
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[planned|in-progress|completed|deferred]'
+    - 'priority-[critical|high|medium|low]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # [Feature Name]

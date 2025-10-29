@@ -1,25 +1,35 @@
 ---
-feature_id: "F-105"
-feature_name: "AI-Powered Automatic Link Suggestions"
-category: "ai"
-status: "planned"
-priority: "high"
-release: "v1.1"
-complexity: "complex"
-
+feature_id: F-105
+feature_name: AI-Powered Automatic Link Suggestions
+category: ai
+status: planned
+priority: high
+release: v1.1
+complexity: complex
 dependencies:
-  requires: ["F-004", "F-101"]
+  requires:
+    - F-004
+    - F-101
   blocks: []
-
 related_decisions:
-  - "[[../decisions/features/ai-integration]]"
-
+  - '[[../decisions/features/ai-integration]]'
 tags:
   - feature
   - ai
   - v1.1
   - automation
   - linking
+type: documentation
+scope: feature
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-planned
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # AI-Powered Automatic Link Suggestions

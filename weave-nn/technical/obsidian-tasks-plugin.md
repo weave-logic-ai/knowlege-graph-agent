@@ -2,36 +2,37 @@
 type: technical-primitive
 category: tool
 status: in-use
-first_used_phase: "PHASE-0"
+first_used_phase: PHASE-0
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - agent-orchestration
   - task-automation
 deployment: obsidian-plugin
-
-# Relationships
 alternatives_considered:
-  - "[[obsidian-dataview-tasks]]"
-  - "[[native-markdown-checkboxes]]"
-  - "[[todoist-obsidian-integration]]"
+  - '[[obsidian-dataview-tasks]]'
+  - '[[native-markdown-checkboxes]]'
+  - '[[todoist-obsidian-integration]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/task-management-system]]"
-architecture: "[[../architecture/task-tracking-layer]]"
-
+decision: '[[../decisions/technical/task-management-system]]'
+architecture: '[[../architecture/task-tracking-layer]]'
 tags:
   - technical
   - tool
   - in-use
   - obsidian-plugin
   - task-management
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Tasks Plugin

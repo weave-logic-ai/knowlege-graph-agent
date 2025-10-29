@@ -1,0 +1,1214 @@
+🔗 Generating connection suggestions from: output/report.json
+
+{
+  "timestamp": "2025-10-28T14:45:25.641Z",
+  "totalOrphans": 27,
+  "suggestions": [
+    {
+      "orphanFile": "PHASE-12-DELIVERABLES.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "concept-map.md",
+          "reason": "Same directory; Related directory structure; Content similarity: 10%; Hub document (well-connected)",
+          "score": 41,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "weave-nn-project-hub.md",
+          "reason": "Same directory; Related directory structure; Content similarity: 6%; Hub document (well-connected)",
+          "score": 41,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "docs/PHASE-12-IMPLEMENTATION-COMPLETE.md",
+          "reason": "Shared tags: phase-12, deliverables, autonomous-learning-loop; Content similarity: 27%",
+          "score": 19,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+          "reason": "Shared tags: phase-12; Content similarity: 17%; Hub document (well-connected)",
+          "score": 18,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "docs/PHASE-12-COMPLETE-PLAN.md",
+          "reason": "Shared tags: phase-12; Content similarity: 15%; Hub document (well-connected)",
+          "score": 17,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [],
+      "tags": [
+        "phase-12",
+        "deliverables",
+        "autonomous-learning-loop",
+        "sparc-implementation",
+        "production-code"
+      ]
+    },
+    {
+      "orphanFile": "PHASE-13-TEST-DELIVERABLES.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "concept-map.md",
+          "reason": "Same directory; Related directory structure; Content similarity: 5%; Hub document (well-connected)",
+          "score": 41,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "weave-nn-project-hub.md",
+          "reason": "Same directory; Related directory structure; Content similarity: 6%; Hub document (well-connected)",
+          "score": 41,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-13-master-plan.md",
+          "reason": "Content similarity: 13%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/phase-5-mcp-integration.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "docs/DOCS-DIRECTORY-HUB.md",
+          "reason": "Content similarity: 10%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [],
+      "tags": []
+    },
+    {
+      "orphanFile": "_files/knowledge-graph-integration-architecture.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "architecture/data-knowledge-layer.md",
+          "reason": "Shared tags: architecture, knowledge-graph; Path similarity: 29%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 25,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "mcp/ai-agent-integration.md",
+          "reason": "Shared tags: knowledge-graph, integration; Path similarity: 14%; Hub document (well-connected)",
+          "score": 22,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "architecture/ai-integration-layer.md",
+          "reason": "Shared tags: architecture; Path similarity: 33%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 21,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "concepts/neural-network-junction.md",
+          "reason": "Shared tags: architecture, knowledge-graph; Content similarity: 5%; Hub document (well-connected)",
+          "score": 21,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "concepts/knowledge-graph.md",
+          "reason": "Path similarity: 33%; Hub document (well-connected); Similar file names",
+          "score": 20,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [
+        "files",
+        "knowledge",
+        "graph",
+        "integration",
+        "architecture"
+      ],
+      "tags": [
+        "architecture",
+        "knowledge-graph",
+        "integration",
+        "phase-5",
+        "phase-6"
+      ]
+    },
+    {
+      "orphanFile": "_log/tasks/test_task.implement_proof_workflows.abc123.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_log/tasks/0.1.doc_test.1.5f93f9.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 25%",
+          "score": 34,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_log/tasks/review_2025-10-22.3.23.3b.23.implement_hooks.automation.33eb0d.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 20%",
+          "score": 33,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_log/tasks/review_2025-10-22.3.23.create_decision_nodes.1.a8c4f2.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 18%",
+          "score": 33,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "decisions/technical/test-strategy-summary.md",
+          "reason": "Path similarity: 10%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "features/daily-log-automation.md",
+          "reason": "Path similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "log",
+        "tasks",
+        "test",
+        "task.implement",
+        "proof",
+        "workflows.abc123"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_planning/phases/phase-10-final-validation.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_planning/phases/phase-5-mcp-integration.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 43%; Content similarity: 19%; Hub document (well-connected)",
+          "score": 49,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-1-knowledge-graph-transformation.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 38%; Content similarity: 10%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-13-master-plan.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 43%; Content similarity: 13%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-14-obsidian-integration.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 43%; Content similarity: 9%; Hub document (well-connected)",
+          "score": 47,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-2-documentation-capture.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 43%; Content similarity: 9%; Hub document (well-connected)",
+          "score": 47,
+          "confidence": "high"
+        }
+      ],
+      "keywords": [
+        "planning",
+        "phases",
+        "phase",
+        "final",
+        "validation"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_planning/phases/phase-4b-task-completion-log.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_planning/phases/phase-4b-pre-development-mvp-planning-sprint.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 30%; Content similarity: 29%; Hub document (well-connected)",
+          "score": 49,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-13-master-plan.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 38%; Content similarity: 14%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-14-obsidian-integration.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 38%; Content similarity: 14%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-2-documentation-capture.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 38%; Content similarity: 10%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-5-mcp-integration.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 38%; Content similarity: 11%; Hub document (well-connected)",
+          "score": 48,
+          "confidence": "high"
+        }
+      ],
+      "keywords": [
+        "planning",
+        "phases",
+        "phase",
+        "task",
+        "completion",
+        "log"
+      ],
+      "tags": [
+        "phase-4b",
+        "task-tracking",
+        "progress-analysis"
+      ]
+    },
+    {
+      "orphanFile": "_sops/SOP-004-debugging.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_sops/SOP-001-feature-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 20%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-002-phase-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 22%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-003-release-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 21%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/sops-framework-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 20%; Content similarity: 7%",
+          "score": 34,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+          "reason": "Content similarity: 10%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "sops",
+        "004",
+        "debugging"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_sops/SOP-005-documentation.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_sops/SOP-001-feature-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 28%",
+          "score": 37,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-002-phase-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 27%",
+          "score": 37,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-003-release-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 23%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/sops-framework-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 20%; Content similarity: 13%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "concepts/ai-generated-documentation.md",
+          "reason": "Path similarity: 20%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "sops",
+        "005",
+        "documentation"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_sops/SOP-006-markdown-management.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_sops/SOP-003-release-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 33%; Content similarity: 23%",
+          "score": 38,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-002-phase-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 24%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-001-feature-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 23%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/sops-framework-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 9%",
+          "score": 34,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "workflows/phase-management.md",
+          "reason": "Path similarity: 17%; Content similarity: 7%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "sops",
+        "006",
+        "markdown",
+        "management"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_sops/SOP-007-code-review.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_sops/SOP-003-release-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 25%",
+          "score": 36,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-001-feature-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 19%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-002-phase-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 19%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/sops-framework-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 8%",
+          "score": 34,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_planning/phases/phase-5-mcp-integration.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "sops",
+        "007",
+        "code",
+        "review"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "_sops/SOP-008-performance-analysis.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_sops/SOP-001-feature-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 17%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-002-phase-planning.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 20%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/SOP-003-release-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Content similarity: 19%",
+          "score": 35,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "_sops/sops-framework-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 8%",
+          "score": 34,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "research/architecture-analysis.md",
+          "reason": "Path similarity: 17%; Content similarity: 8%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "sops",
+        "008",
+        "performance",
+        "analysis"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "examples/contextual-overlap-example.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "concepts/cognitive-variability.md",
+          "reason": "Content similarity: 12%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "concepts/concepts-overview-hub.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "concepts/sparse-memory-finetuning.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "docs/weaver-proxy-architecture.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "platforms/obsidian.md",
+          "reason": "Content similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "examples",
+        "contextual",
+        "overlap",
+        "example"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "guides/guides-index-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "guides/cognitive-variability-tracking.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Content similarity: 9%; Hub document (well-connected)",
+          "score": 44,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "architecture/architecture-overview-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "concepts/concepts-overview-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 3%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "docs/documentation-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "weave-nn-project-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [
+        "guides",
+        "index",
+        "hub"
+      ],
+      "tags": [
+        "index",
+        "guides",
+        "navigation",
+        "howto"
+      ]
+    },
+    {
+      "orphanFile": "mcp/mcp-integration-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "mcp/ai-agent-integration.md",
+          "reason": "Same directory; Related directory structure; Shared tags: mcp, integration; Path similarity: 50%; Hub document (well-connected)",
+          "score": 58,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "mcp/agent-rules.md",
+          "reason": "Same directory; Related directory structure; Shared tags: mcp, integration; Path similarity: 20%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 54,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "mcp/weaver-mcp-tools.md",
+          "reason": "Same directory; Related directory structure; Shared tags: mcp, weaver; Path similarity: 20%; Content similarity: 7%; Hub document (well-connected)",
+          "score": 54,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "mcp/claude-flow-memory-visualization.md",
+          "reason": "Same directory; Related directory structure; Shared tags: mcp, integration; Path similarity: 14%; Content similarity: 9%; Hub document (well-connected)",
+          "score": 53,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "mcp/claude-flow-schema-mapping.md",
+          "reason": "Same directory; Related directory structure; Shared tags: mcp, integration; Path similarity: 14%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 53,
+          "confidence": "high"
+        }
+      ],
+      "keywords": [
+        "mcp",
+        "integration",
+        "hub"
+      ],
+      "tags": [
+        "mcp",
+        "weaver",
+        "integration",
+        "architecture"
+      ]
+    },
+    {
+      "orphanFile": "metrics/baseline-2025-10-23.md.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_planning/daily-logs/2025-10-20.md",
+          "reason": "Path similarity: 14%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "docs/chunking-strategies-research-2024-2025.md",
+          "reason": "Path similarity: 11%; Hub document (well-connected)",
+          "score": 12,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/MASTER-PLAN.md",
+          "reason": "Hub document (well-connected)",
+          "score": 10,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/PLANNING-DIRECTORY-HUB.md",
+          "reason": "Hub document (well-connected)",
+          "score": 10,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/VAULT-ARCHITYPE-ANALYSIS.md",
+          "reason": "Hub document (well-connected)",
+          "score": 10,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "metrics",
+        "baseline",
+        "2025",
+        "23.md"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "protocols/protocols-overview-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "protocols/application/mcp.md",
+          "reason": "Related directory structure; Path similarity: 20%; Content similarity: 9%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "technical/technical-overview-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 16%; Hub document (well-connected)",
+          "score": 20,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "_planning/planning-overview-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 3%; Hub document (well-connected)",
+          "score": 19,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "architecture/architecture-overview-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 19,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "canvas/canvas-overview-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 19,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [
+        "protocols",
+        "overview",
+        "hub"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "queries/cognitive-variability-analysis.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "concepts/cognitive-variability.md",
+          "reason": "Path similarity: 40%; Content similarity: 9%; Hub document (well-connected); Similar file names",
+          "score": 22,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "guides/cognitive-variability-tracking.md",
+          "reason": "Path similarity: 33%; Content similarity: 10%; Hub document (well-connected)",
+          "score": 16,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "concepts/temporal-queries.md",
+          "reason": "Path similarity: 17%; Content similarity: 7%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "research/architecture-analysis.md",
+          "reason": "Path similarity: 17%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/navigation-optimization-analysis.md",
+          "reason": "Path similarity: 13%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 13,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "queries",
+        "cognitive",
+        "variability",
+        "analysis"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "research/devops-networking/quick-reference-guide.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "research/architecture-analysis.md",
+          "reason": "Related directory structure; Path similarity: 13%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/multi-project-platform.md",
+          "reason": "Related directory structure; Path similarity: 11%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/research-overview-hub.md",
+          "reason": "Related directory structure; Path similarity: 13%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/infranodus-analysis-comprehensive.md",
+          "reason": "Related directory structure; Path similarity: 11%; Hub document (well-connected)",
+          "score": 22,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "_planning/research/architecture-analysis.md",
+          "reason": "Path similarity: 11%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 13,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "research",
+        "devops",
+        "networking",
+        "quick",
+        "reference",
+        "guide"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "research/devops-networking/service-mesh-networking-recommendations.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "research/architecture-analysis.md",
+          "reason": "Related directory structure; Path similarity: 13%; Content similarity: 8%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/infranodus-analysis-comprehensive.md",
+          "reason": "Related directory structure; Path similarity: 11%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/multi-project-platform.md",
+          "reason": "Related directory structure; Path similarity: 11%; Content similarity: 7%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/research-overview-hub.md",
+          "reason": "Related directory structure; Path similarity: 13%; Hub document (well-connected)",
+          "score": 22,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "research/fastmcp-research-findings.md",
+          "reason": "Related directory structure; Path similarity: 13%; Content similarity: 12%",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "research",
+        "devops",
+        "networking",
+        "service",
+        "mesh",
+        "recommendations"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "schemas/schemas-catalog-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "patterns/patterns-catalog-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 13%; Hub document (well-connected)",
+          "score": 20,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "templates/templates-catalog-hub.md",
+          "reason": "Path similarity: 50%; Content similarity: 7%; Hub document (well-connected)",
+          "score": 19,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "technical/technical-overview-hub.md",
+          "reason": "Path similarity: 20%; Content similarity: 16%; Hub document (well-connected)",
+          "score": 15,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "_planning/planning-overview-hub.md",
+          "reason": "Path similarity: 20%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "architecture/architecture-overview-hub.md",
+          "reason": "Path similarity: 20%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "schemas",
+        "catalog",
+        "hub"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "scripts/perplexity-validator.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "_planning/VAULT-ARCHITYPE-ANALYSIS.md",
+          "reason": "Content similarity: 6%; Hub document (well-connected)",
+          "score": 11,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/navigation-optimization-analysis.md",
+          "reason": "Content similarity: 6%; Hub document (well-connected)",
+          "score": 11,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/phase-14-obsidian-integration.md",
+          "reason": "Content similarity: 4%; Hub document (well-connected)",
+          "score": 11,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/phase-5-mcp-integration.md",
+          "reason": "Content similarity: 4%; Hub document (well-connected)",
+          "score": 11,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "_planning/phases/phase-6/architecture/task-completion-feedback-loop.md",
+          "reason": "Content similarity: 6%; Hub document (well-connected)",
+          "score": 11,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "scripts",
+        "perplexity",
+        "validator"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "services/services-architecture-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "architecture/architecture-overview-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 50%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 29,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "docs/documentation-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 6%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "weave-nn-project-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 5%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "workflows/workflows-overview-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 24,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "business/business-overview-hub.md",
+          "reason": "Shared tags: index, navigation; Path similarity: 20%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [
+        "services",
+        "architecture",
+        "hub"
+      ],
+      "tags": [
+        "index",
+        "services",
+        "navigation",
+        "external-apis"
+      ]
+    },
+    {
+      "orphanFile": "src/learning-loop/learning-loop-implementation-hub.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+          "reason": "Content similarity: 24%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "docs/javascript-implementation-status.md",
+          "reason": "Path similarity: 13%; Content similarity: 14%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "docs/phase-11-implementation-report.md",
+          "reason": "Path similarity: 13%; Content similarity: 14%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "weave-nn-project-hub.md",
+          "reason": "Path similarity: 14%; Content similarity: 12%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "weaver/WEAVER-IMPLEMENTATION-HUB.md",
+          "reason": "Content similarity: 28%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "src",
+        "learning",
+        "loop",
+        "implementation",
+        "hub"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "standards/code-quality-checklist.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "standards/standards-overview-hub.md",
+          "reason": "Same directory; Related directory structure; Shared tags: standards; Path similarity: 17%; Content similarity: 4%",
+          "score": 39,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "standards/markup/wikilinks.md",
+          "reason": "Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "standards/markup/yaml-frontmatter.md",
+          "reason": "Related directory structure; Path similarity: 14%; Hub document (well-connected)",
+          "score": 22,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "technical/jest-testing-framework.md",
+          "reason": "Shared tags: testing; Content similarity: 4%; Hub document (well-connected)",
+          "score": 16,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "decisions/technical/test-strategy-full-report.md",
+          "reason": "Shared tags: testing; Hub document (well-connected)",
+          "score": 15,
+          "confidence": "medium"
+        }
+      ],
+      "keywords": [
+        "standards",
+        "code",
+        "quality",
+        "checklist"
+      ],
+      "tags": [
+        "standards",
+        "code-quality",
+        "development",
+        "testing"
+      ]
+    },
+    {
+      "orphanFile": "weaver/src/templates/vector-db/chunking-strategy.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "weaver/WEAVER-IMPLEMENTATION-HUB.md",
+          "reason": "Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "docs/CHUNKING-IMPLEMENTATION-DESIGN.md",
+          "reason": "Content similarity: 33%; Hub document (well-connected)",
+          "score": 15,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "weaver/.cot-templates-status.md",
+          "reason": "Related directory structure; Path similarity: 25%",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "templates/task-log-template.md",
+          "reason": "Path similarity: 11%; Content similarity: 4%; Hub document (well-connected)",
+          "score": 13,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "weaver/.test-status.md",
+          "reason": "Related directory structure; Path similarity: 13%; Content similarity: 3%",
+          "score": 13,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "weaver",
+        "src",
+        "templates",
+        "vector",
+        "chunking",
+        "strategy"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "weaver/src/templates/vector-db/embedding-workflow.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "weaver/WEAVER-IMPLEMENTATION-HUB.md",
+          "reason": "Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 23,
+          "confidence": "medium"
+        },
+        {
+          "targetFile": "features/weaver-workflow-automation.md",
+          "reason": "Path similarity: 25%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "templates/workflow-node-template.md",
+          "reason": "Path similarity: 25%; Hub document (well-connected)",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "weaver/.cot-templates-status.md",
+          "reason": "Related directory structure; Path similarity: 25%",
+          "score": 14,
+          "confidence": "low"
+        },
+        {
+          "targetFile": "decisions/technical/adopt-weaver-workflow-proxy.md",
+          "reason": "Path similarity: 20%; Hub document (well-connected)",
+          "score": 13,
+          "confidence": "low"
+        }
+      ],
+      "keywords": [
+        "weaver",
+        "src",
+        "templates",
+        "vector",
+        "embedding",
+        "workflow"
+      ],
+      "tags": []
+    },
+    {
+      "orphanFile": "workflows/task-workflow-test.md",
+      "suggestedConnections": [
+        {
+          "targetFile": "workflows/phase-management.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 43,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "workflows/suggestion-pattern.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 43,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "workflows/workflows-overview-hub.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 17%; Hub document (well-connected)",
+          "score": 43,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "workflows/canvas-creation-process.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Hub document (well-connected)",
+          "score": 42,
+          "confidence": "high"
+        },
+        {
+          "targetFile": "workflows/decision-making-process.md",
+          "reason": "Same directory; Related directory structure; Path similarity: 14%; Hub document (well-connected)",
+          "score": 42,
+          "confidence": "high"
+        }
+      ],
+      "keywords": [
+        "workflows",
+        "task",
+        "workflow",
+        "test"
+      ],
+      "tags": []
+    }
+  ]
+}
+
+🔗 CONNECTION SUGGESTIONS SUMMARY
+==================================================
+📊 Total orphans analyzed: 27
+✅ Orphans with suggestions: 27
+❌ Orphans without suggestions: 0
+
+🌟 TOP SUGGESTIONS (High Confidence):
+
+📄 mcp/mcp-integration-hub.md
+   → mcp/ai-agent-integration.md
+   HIGH: Same directory; Related directory structure; Shared tags: mcp, integration; Path similarity: 50%; Hub document (well-connected)
+   Score: 58
+
+📄 _planning/phases/phase-10-final-validation.md
+   → _planning/phases/phase-5-mcp-integration.md
+   HIGH: Same directory; Related directory structure; Path similarity: 43%; Content similarity: 19%; Hub document (well-connected)
+   Score: 49
+
+📄 _planning/phases/phase-4b-task-completion-log.md
+   → _planning/phases/phase-4b-pre-development-mvp-planning-sprint.md
+   HIGH: Same directory; Related directory structure; Path similarity: 30%; Content similarity: 29%; Hub document (well-connected)
+   Score: 49
+
+📄 guides/guides-index-hub.md
+   → guides/cognitive-variability-tracking.md
+   HIGH: Same directory; Related directory structure; Path similarity: 17%; Content similarity: 9%; Hub document (well-connected)
+   Score: 44
+
+📄 workflows/task-workflow-test.md
+   → workflows/phase-management.md
+   HIGH: Same directory; Related directory structure; Path similarity: 17%; Hub document (well-connected)
+   Score: 43
+
+💡 RECOMMENDATIONS:
+  - 14 orphans have high-confidence connections
+  - Review suggestions.json for complete analysis
+  - Start with high-confidence suggestions for quick wins
+==================================================

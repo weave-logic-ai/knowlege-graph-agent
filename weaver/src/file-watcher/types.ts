@@ -17,6 +17,8 @@ export interface FileEvent {
   type: FileEventType;
   /** Absolute path to the file */
   path: string;
+  /** Absolute path to the file (alias for compatibility) */
+  absolutePath: string;
   /** Relative path from vault root */
   relativePath: string;
   /** File stats (if available) */

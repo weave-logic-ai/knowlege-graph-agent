@@ -3,20 +3,27 @@ type: task_list
 status: in_progress
 phase: phase-5
 week: 1
-created_date: 2025-10-22
-updated_date: 2025-10-22
+created_date: {}
+updated_date: '2025-10-28'
 tags:
   - tasks
   - mvp
   - week-1
   - checklist
 related_features:
-  - "[[F-003-obsidian-integration]]"
-  - "[[F-006-automation]]"
-  - "[[F-004-vault-visualization]]"
+  - '[[F-003-obsidian-integration]]'
+  - '[[F-006-automation]]'
+  - '[[F-004-vault-visualization]]'
 cssclasses:
   - task-list
   - in-progress
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-task_list
+    - status-in_progress
+version: '3.0'
 ---
 
 # MVP Week 1 Implementation Checklist

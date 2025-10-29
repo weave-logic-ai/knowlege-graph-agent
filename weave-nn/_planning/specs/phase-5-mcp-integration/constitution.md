@@ -1,15 +1,26 @@
 ---
-spec_type: "constitution"
-phase_id: "PHASE-5"
-phase_name: "MCP Integration & Workflow Enhancement"
-status: "pending"
-priority: "critical"
-duration: "3-4 days"
-generated_date: "2025-10-24"
+spec_type: constitution
+phase_id: PHASE-5
+phase_name: MCP Integration & Workflow Enhancement
+status: pending
+priority: critical
+duration: 3-4 days
+generated_date: '2025-10-24'
 tags:
   - spec-kit
   - constitution
   - phase-5
+type: planning
+visual:
+  icon: "\U0001F4CB"
+  color: '#3B82F6'
+  cssclasses:
+    - type-planning
+    - status-pending
+    - priority-critical
+    - phase-5
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # MCP Integration & Workflow Enhancement - Constitution

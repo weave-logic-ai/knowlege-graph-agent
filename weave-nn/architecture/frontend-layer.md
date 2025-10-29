@@ -1,25 +1,32 @@
 ---
-architecture_id: "A-001"
-layer_name: "Frontend Layer"
-category: "presentation"
-status: "planned"
-created_date: "2025-10-21"
-complexity: "complex"
-
+architecture_id: A-001
+layer_name: Frontend Layer
+category: presentation
+status: planned
+created_date: '2025-10-21'
+complexity: complex
 related:
-  - "[[../technical/react-flow]]"
-  - "[[../technical/svelte-flow]]"
-  - "[[../technical/tiptap-editor]]"
-  - "[[../features/knowledge-graph-visualization]]"
-  - "[[../features/markdown-editor-component]]"
-  - "[[../concepts/knowledge-graph]]"
-  - "[[api-layer]]"
-
+  - '[[../technical/react-flow]]'
+  - '[[../technical/svelte-flow]]'
+  - '[[../technical/tiptap-editor]]'
+  - '[[../features/knowledge-graph-visualization]]'
+  - '[[../features/markdown-editor-component]]'
+  - '[[../concepts/knowledge-graph]]'
+  - '[[api-layer]]'
 tags:
   - architecture
   - frontend
   - ui-components
   - visualization
+type: architecture
+visual:
+  icon: "\U0001F3D7️"
+  color: '#F59E0B'
+  cssclasses:
+    - type-architecture
+    - status-planned
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Frontend Layer

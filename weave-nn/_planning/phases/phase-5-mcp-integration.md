@@ -1,26 +1,31 @@
 ---
-phase_id: "PHASE-5"
-phase_name: "MCP Integration & Workflow Enhancement"
-status: "pending"
-priority: "critical"
-created_date: "2025-10-24"
-start_date: "TBD"
-end_date: "TBD"
-duration: "3-4 days"
+phase_id: PHASE-5
+phase_name: MCP Integration & Workflow Enhancement
+status: pending
+priority: critical
+created_date: '2025-10-24'
+start_date: TBD
+end_date: TBD
+duration: 3-4 days
 dependencies:
-  requires: ["PHASE-4B"]
-  enables: ["PHASE-6"]
+  requires:
+    - PHASE-4B
+  enables:
+    - PHASE-6
 tags:
   - phase
   - mcp
   - integration
   - critical
 visual:
-  icon: "plug"
+  icon: plug
   cssclasses:
     - type-implementation
     - status-pending
     - priority-critical
+type: planning
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 5: MCP Integration & Workflow Enhancement

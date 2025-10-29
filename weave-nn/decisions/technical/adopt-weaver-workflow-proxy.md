@@ -4,9 +4,9 @@ decision_id: D-020
 decision_type: technical
 title: Adopt Weaver Workflow Proxy to Replace Bash Hooks
 status: decided
-created_date: 2025-10-23
-updated_date: 2025-10-23
-decided_date: 2025-10-23
+created_date: {}
+updated_date: '2025-10-28'
+decided_date: {}
 tags:
   - architecture
   - workflow-automation
@@ -15,19 +15,29 @@ tags:
   - weaver
   - nodejs
 related_concepts:
-  - "[[C-008-agent-coordination]]"
-  - "[[technical/n8n-workflow-automation]]"
+  - '[[C-008-agent-coordination]]'
+  - '[[technical/n8n-workflow-automation]]'
 related_features:
-  - "[[F-006-automation]]"
+  - '[[F-006-automation]]'
 related_decisions:
-  - "[[event-driven-architecture]]"
-  - "[[day-4-agent-rules]]"
+  - '[[event-driven-architecture]]'
+  - '[[day-4-agent-rules]]'
 phase: phase-0
 priority: high
 impact: high
 cssclasses:
   - decision
   - decided
+domain: weaver
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-high
+    - domain-weaver
+version: '3.0'
 ---
 
 # Decision: Adopt Weaver Workflow Proxy to Replace Bash Hooks

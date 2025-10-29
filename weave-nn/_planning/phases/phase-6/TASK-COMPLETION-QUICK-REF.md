@@ -1,14 +1,22 @@
 ---
 type: quick-reference
-status: "active"
-priority: "high"
-created_date: "2025-10-21"
-parent_architecture: "task-completion-feedback-loop"
-
+status: active
+priority: high
+created_date: '2025-10-21'
+parent_architecture: task-completion-feedback-loop
 tags:
   - quick-reference
   - cheatsheet
   - task-completion
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-quick-reference
+    - status-active
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Task Completion Feedback Loop - Quick Reference

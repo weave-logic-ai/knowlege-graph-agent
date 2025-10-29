@@ -1,33 +1,42 @@
 ---
-decision_id: "TS-020"
-decision_type: "technical"
-title: "MVP Test Strategy Executive Summary"
-status: "decided"
-priority: "critical"
-category: "implementation"
-
-created_date: "2025-10-21"
-last_updated: "2025-10-23"
-decided_date: "2025-10-21"
+decision_id: TS-020
+decision_type: technical
+title: MVP Test Strategy Executive Summary
+status: decided
+priority: critical
+category: implementation
+created_date: '2025-10-21'
+last_updated: '2025-10-23'
+decided_date: '2025-10-21'
 implemented_date: null
-
-decision_maker: "TESTER Agent (Hive Mind)"
-stakeholders: ["Development Team", "Project Lead"]
+decision_maker: TESTER Agent (Hive Mind)
+stakeholders:
+  - Development Team
+  - Project Lead
 ai_assisted: true
-
 blocks: []
-impacts: ["[[../phases/phase-5-mvp-week-1]]", "[[../phases/phase-6-mvp-week-2]]"]
+impacts:
+  - '[[../phases/phase-5-mvp-week-1]]'
+  - '[[../phases/phase-6-mvp-week-2]]'
 requires: []
-
-research_status: "completed"
-selected_option: "comprehensive-risk-based-testing"
-
+research_status: completed
+selected_option: comprehensive-risk-based-testing
 tags:
   - decision
   - technical
   - testing
   - mvp
   - critical
+type: decision
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # TS-020: MVP Test Strategy Executive Summary

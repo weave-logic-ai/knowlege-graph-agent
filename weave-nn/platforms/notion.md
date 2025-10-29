@@ -21,9 +21,15 @@ tags:
   - collaboration
   - database
 related:
-  - "[[obsidian]]"
-  - "[[custom-solution]]"
-  - "[[collaboration-requirements]]"
+  - '[[obsidian]]'
+  - '[[custom-solution]]'
+  - '[[collaboration-requirements]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-knowledge-management
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Notion Platform Analysis

@@ -1,32 +1,35 @@
 ---
-business_id: "BM-004"
-business_type: "cost-analysis"
-title: "Cost Analysis & Break-Even Model"
-status: "draft"
-category: "business-model"
-
-created_date: "2025-10-21"
-last_updated: "2025-10-21"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+business_id: BM-004
+business_type: cost-analysis
+title: Cost Analysis & Break-Even Model
+status: draft
+category: business-model
+created_date: '2025-10-21'
+last_updated: '2025-10-21'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "weave-nn"
+  - weave-nn
 related_decisions:
-  - "ED-1"
+  - ED-1
 related_business:
-  - "saas-pricing-model"
-  - "target-users"
-  - "value-proposition"
-
+  - saas-pricing-model
+  - target-users
+  - value-proposition
 tags:
   - business-model
   - costs
   - financials
   - break-even
   - infrastructure
+type: business
+visual:
+  icon: "\U0001F4BC"
+  cssclasses:
+    - type-business
+    - status-draft
+updated_date: '2025-10-28'
 ---
 
 # Cost Analysis & Break-Even Model

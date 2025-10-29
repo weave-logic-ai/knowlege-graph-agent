@@ -8,9 +8,16 @@ tags:
   - local-first
   - mvp-scope
 related:
-  - "[[weaver]]"
-  - "[[neural-network-junction]]"
-  - "[[knowledge-graph]]"
+  - '[[weaver]]'
+  - '[[neural-network-junction]]'
+  - '[[knowledge-graph]]'
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Local-First Architecture

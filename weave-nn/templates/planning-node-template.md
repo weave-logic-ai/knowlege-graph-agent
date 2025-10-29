@@ -1,22 +1,30 @@
 ---
-phase_id: "PHASE-X"
-phase_name: "[Phase Name]"
-status: "[planned|in-progress|completed|blocked|deferred]"
-priority: "[critical|high|medium|low]"
+phase_id: PHASE-X
+phase_name: '[Phase Name]'
+status: '[planned|in-progress|completed|blocked|deferred]'
+priority: '[critical|high|medium|low]'
 start_date: null
 end_date: null
-duration: "[X days/weeks estimated]"
-assigned_to: "[Team or Person]"
-
+duration: '[X days/weeks estimated]'
+assigned_to: '[Team or Person]'
 blocks: []
 blocked_by: []
 depends_on: []
-
 tags:
   - phase
   - planning
-  - [category]
-  - [status]
+  - - category
+  - - status
+type: template
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[planned|in-progress|completed|blocked|deferred]'
+    - 'priority-[critical|high|medium|low]'
+    - phase-x
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase [X]: [Phase Name]

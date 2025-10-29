@@ -1,21 +1,26 @@
 ---
 type: workflow
-workflow_name: "Decision Making Process"
+workflow_name: Decision Making Process
 status: active
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 complexity: complex
-estimated_time: "1-7 days per decision (varies by complexity)"
-
+estimated_time: 1-7 days per decision (varies by complexity)
 tags:
   - workflow
   - process
   - decision-making
   - governance
-
 related:
-  - "[[../templates/decision-node-template]]"
-  - "[[../templates/question-node-template]]"
-  - "[[node-creation-process]]"
+  - '[[../templates/decision-node-template]]'
+  - '[[../templates/question-node-template]]'
+  - '[[node-creation-process]]'
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Decision Making Process

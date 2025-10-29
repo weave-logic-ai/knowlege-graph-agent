@@ -7,11 +7,17 @@ tags:
   - protocol
   - ai-integration
   - context-management
-created: 2025-10-20
+created: {}
 related:
-  - "[[ai-agent-integration]]"
-  - "[[cyanheads-obsidian-mcp-server]]"
-  - "[[knowledge-graph]]"
+  - '[[ai-agent-integration]]'
+  - '[[cyanheads-obsidian-mcp-server]]'
+  - '[[knowledge-graph]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-protocol
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Model Context Protocol (MCP)

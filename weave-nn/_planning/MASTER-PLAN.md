@@ -1,30 +1,23 @@
 ---
-# Node Metadata
 type: master-plan
 status: active
 priority: critical
-created_date: "2025-10-21"
-updated_date: "2025-10-21"
-version: "2.0-obsidian-first"
-
-# Scope
+created_date: '2025-10-21'
+updated_date: '2025-10-28'
+version: 2.0-obsidian-first
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
   deferred: false
-
-# Tags
 tags:
   - scope/mvp
   - type/planning
   - status/active
   - priority/critical
   - obsidian-first
-
-# Visual
 visual:
-  icon: "map"
+  icon: map
   cssclasses:
     - type-planning
     - scope-mvp

@@ -6,13 +6,20 @@ tags:
   - network-analysis
   - keystone-concepts
 related:
-  - "[[graph-topology-analysis]]"
-  - "[[structural-gap-detection]]"
-  - "[[ecological-thinking]]"
-  - "[[sparse-memory-finetuning]]"
+  - '[[graph-topology-analysis]]'
+  - '[[structural-gap-detection]]'
+  - '[[ecological-thinking]]'
+  - '[[sparse-memory-finetuning]]'
 status: active
-created: 2025-10-23
+created: {}
 source: Network Science and Knowledge Graph Research
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Betweenness Centrality

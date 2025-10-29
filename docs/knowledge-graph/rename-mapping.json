@@ -1,0 +1,458 @@
+{
+  "analysis_date": "2025-10-28",
+  "analyzer": "Research Agent - Node Naming Specialist",
+  "task_id": "task-1761679543152-vchz9scx0",
+
+  "summary": {
+    "total_generic_files_found": 50,
+    "already_renamed": 43,
+    "deleted_generic_files": 7,
+    "remaining_to_rename": 5,
+    "wikilink_updates_needed": 47
+  },
+
+  "already_renamed": [
+    {
+      "old_path": "infrastructure/README.md",
+      "new_path": "infrastructure/infrastructure-overview-hub.md",
+      "status": "staged",
+      "reason": "Hub document for infrastructure overview"
+    },
+    {
+      "old_path": "infrastructure/kubernetes/README.md",
+      "new_path": "infrastructure/kubernetes/kubernetes-deployment-hub.md",
+      "status": "staged",
+      "reason": "Kubernetes deployment documentation hub"
+    },
+    {
+      "old_path": "packages/README.md",
+      "new_path": "packages/packages-overview-hub.md",
+      "status": "staged",
+      "reason": "Package management overview hub"
+    },
+    {
+      "old_path": "weave-nn/.archive/README.md",
+      "new_path": "weave-nn/.archive/archive-index-hub.md",
+      "status": "staged",
+      "reason": "Archive directory index hub"
+    },
+    {
+      "old_path": "weave-nn/.archive/meta/INDEX.md",
+      "new_path": "weave-nn/.archive/meta/meta-archive-index.md",
+      "status": "staged",
+      "reason": "Meta documents archive index"
+    },
+    {
+      "old_path": "weave-nn/.archive/technical/future-features/README.md",
+      "new_path": "weave-nn/.archive/technical/future-features/future-features-archive-hub.md",
+      "status": "staged",
+      "reason": "Future features archive hub"
+    },
+    {
+      "old_path": "weave-nn/.archive/technical/python-stack/README.md",
+      "new_path": "weave-nn/.archive/technical/python-stack/python-stack-archive-hub.md",
+      "status": "staged",
+      "reason": "Python stack archive documentation"
+    },
+    {
+      "old_path": "weave-nn/.archive/technical/rabbitmq/README.md",
+      "new_path": "weave-nn/.archive/technical/rabbitmq/rabbitmq-archive-hub.md",
+      "status": "staged",
+      "reason": "RabbitMQ archive hub"
+    },
+    {
+      "old_path": "weave-nn/_planning/daily-logs/README.md",
+      "new_path": "weave-nn/_planning/daily-logs/daily-logs-index-hub.md",
+      "status": "staged",
+      "reason": "Daily development logs index"
+    },
+    {
+      "old_path": "weave-nn/_planning/tasks.md",
+      "new_path": "weave-nn/_planning/planning-master-tasks.md",
+      "status": "staged",
+      "reason": "Master task list for planning"
+    },
+    {
+      "old_path": "weave-nn/_planning/README.md",
+      "new_path": "weave-nn/_planning/planning-overview-hub.md",
+      "status": "staged-modified",
+      "reason": "Planning directory overview hub"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-5-mcp-integration/README.md",
+      "new_path": "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-integration-hub.md",
+      "status": "staged-modified",
+      "reason": "Phase 5 MCP integration specification hub"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-5-mcp-integration/tasks.md",
+      "new_path": "weave-nn/_planning/specs/phase-5-mcp-integration/phase-5-mcp-tasks.md",
+      "status": "staged",
+      "reason": "Phase 5 MCP integration task list"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-5/README.md",
+      "new_path": "weave-nn/_planning/specs/phase-5/phase-5-specification-hub.md",
+      "status": "staged-modified",
+      "reason": "Phase 5 specification hub document"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-5/tasks.md",
+      "new_path": "weave-nn/_planning/specs/phase-5/phase-5-tasks.md",
+      "status": "staged",
+      "reason": "Phase 5 task tracking list"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-6-vault-initialization/README.md",
+      "new_path": "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-init-hub.md",
+      "status": "staged-modified",
+      "reason": "Phase 6 vault initialization hub"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-6-vault-initialization/tasks.md",
+      "new_path": "weave-nn/_planning/specs/phase-6-vault-initialization/phase-6-vault-tasks.md",
+      "status": "staged",
+      "reason": "Phase 6 vault initialization tasks"
+    },
+    {
+      "old_path": "weave-nn/architecture/README.md",
+      "new_path": "weave-nn/architecture/architecture-overview-hub.md",
+      "status": "staged",
+      "reason": "System architecture overview hub"
+    },
+    {
+      "old_path": "weave-nn/business/README.md",
+      "new_path": "weave-nn/business/business-overview-hub.md",
+      "status": "staged",
+      "reason": "Business documentation hub"
+    },
+    {
+      "old_path": "weave-nn/canvas/README.md",
+      "new_path": "weave-nn/canvas/canvas-overview-hub.md",
+      "status": "staged",
+      "reason": "Canvas documentation hub"
+    },
+    {
+      "old_path": "weave-nn/concepts/README.md",
+      "new_path": "weave-nn/concepts/concepts-overview-hub.md",
+      "status": "staged",
+      "reason": "Core concepts overview hub"
+    },
+    {
+      "old_path": "weave-nn/config/vault-templates/typescript-node/documents/README.md",
+      "new_path": "weave-nn/config/vault-templates/typescript-node/documents/typescript-node-docs-hub.md",
+      "status": "staged",
+      "reason": "TypeScript Node.js template documentation hub"
+    },
+    {
+      "old_path": "weave-nn/config/vault-templates/README.md",
+      "new_path": "weave-nn/config/vault-templates/vault-templates-hub.md",
+      "status": "staged",
+      "reason": "Vault templates overview hub"
+    },
+    {
+      "old_path": "weave-nn/decisions/INDEX.md",
+      "new_path": "weave-nn/decisions/decision-records-index.md",
+      "status": "staged",
+      "reason": "Decision records master index",
+      "incoming_refs": 10,
+      "needs_wikilink_updates": true
+    },
+    {
+      "old_path": "weave-nn/decisions/obsolete/README.md",
+      "new_path": "weave-nn/decisions/obsolete/obsolete-decisions-index.md",
+      "status": "staged",
+      "reason": "Obsolete decisions index"
+    },
+    {
+      "old_path": "weave-nn/docs/README.md",
+      "new_path": "weave-nn/docs/documentation-hub.md",
+      "status": "staged",
+      "reason": "Main documentation hub"
+    },
+    {
+      "old_path": "weave-nn/docs/synthesis/README.md",
+      "new_path": "weave-nn/docs/synthesis/synthesis-overview-hub.md",
+      "status": "staged",
+      "reason": "Documentation synthesis hub"
+    },
+    {
+      "old_path": "weave-nn/features/README.md",
+      "new_path": "weave-nn/features/features-overview-hub.md",
+      "status": "staged",
+      "reason": "Features overview hub"
+    },
+    {
+      "old_path": "weave-nn/guides/README.md",
+      "new_path": "weave-nn/guides/guides-index-hub.md",
+      "status": "staged",
+      "reason": "User guides index hub"
+    },
+    {
+      "old_path": "weave-nn/infrastructure/local_development_environment/salt/README.md",
+      "new_path": "weave-nn/infrastructure/local_development_environment/salt/salt-configuration-hub.md",
+      "status": "staged",
+      "reason": "Salt configuration hub"
+    },
+    {
+      "old_path": "weave-nn/integrations/README.md",
+      "new_path": "weave-nn/integrations/integrations-overview-hub.md",
+      "status": "staged",
+      "reason": "Integrations overview hub"
+    },
+    {
+      "old_path": "weave-nn/mcp/README.md",
+      "new_path": "weave-nn/mcp/mcp-integration-hub.md",
+      "status": "staged",
+      "reason": "MCP integration hub"
+    },
+    {
+      "old_path": "weave-nn/patterns/README.md",
+      "new_path": "weave-nn/patterns/patterns-catalog-hub.md",
+      "status": "staged",
+      "reason": "Design patterns catalog hub",
+      "incoming_refs": 3,
+      "needs_wikilink_updates": true
+    },
+    {
+      "old_path": "weave-nn/protocols/README.md",
+      "new_path": "weave-nn/protocols/protocols-overview-hub.md",
+      "status": "staged-modified",
+      "reason": "Protocols documentation hub",
+      "incoming_refs": 2,
+      "needs_wikilink_updates": true
+    },
+    {
+      "old_path": "weave-nn/research/README.md",
+      "new_path": "weave-nn/research/research-overview-hub.md",
+      "status": "staged",
+      "reason": "Research documentation hub"
+    },
+    {
+      "old_path": "weave-nn/schemas/README.md",
+      "new_path": "weave-nn/schemas/schemas-catalog-hub.md",
+      "status": "staged",
+      "reason": "Data schemas catalog hub"
+    },
+    {
+      "old_path": "weave-nn/services/README.md",
+      "new_path": "weave-nn/services/services-architecture-hub.md",
+      "status": "staged",
+      "reason": "Services architecture hub"
+    },
+    {
+      "old_path": "weave-nn/standards/README.md",
+      "new_path": "weave-nn/standards/standards-overview-hub.md",
+      "status": "staged",
+      "reason": "Development standards hub"
+    },
+    {
+      "old_path": "weave-nn/technical/README.md",
+      "new_path": "weave-nn/technical/technical-overview-hub.md",
+      "status": "staged",
+      "reason": "Technical documentation hub",
+      "incoming_refs": 2,
+      "needs_wikilink_updates": true
+    },
+    {
+      "old_path": "weave-nn/templates/README.md",
+      "new_path": "weave-nn/templates/templates-catalog-hub.md",
+      "status": "staged",
+      "reason": "Templates catalog hub"
+    },
+    {
+      "old_path": "weave-nn/README.md",
+      "new_path": "weave-nn/weave-nn-project-hub.md",
+      "status": "staged",
+      "reason": "Weave-NN project root hub",
+      "incoming_refs": 32,
+      "needs_wikilink_updates": true
+    },
+    {
+      "old_path": "weave-nn/workflows/README.md",
+      "new_path": "weave-nn/workflows/workflows-overview-hub.md",
+      "status": "staged",
+      "reason": "Workflows documentation hub"
+    },
+    {
+      "old_path": "weaver/README.md",
+      "new_path": "weaver/weaver-implementation-hub.md",
+      "status": "staged-modified",
+      "reason": "Weaver implementation hub",
+      "incoming_refs": 8,
+      "needs_wikilink_updates": true
+    }
+  ],
+
+  "deleted_generic_files": [
+    {
+      "old_path": "services/README.md",
+      "status": "deleted",
+      "reason": "Replaced by services/services-overview-hub.md (untracked)",
+      "action_needed": "verify untracked replacement exists"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-11-cli-service-management/README.md",
+      "status": "deleted",
+      "reason": "Needs topical name",
+      "proposed_new": "weave-nn/_planning/specs/phase-11-cli-service-management/phase-11-cli-service-hub.md",
+      "action_needed": "check if already created as untracked file"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-11-cli-service-management/tasks.md",
+      "status": "deleted",
+      "reason": "Needs topical name",
+      "proposed_new": "weave-nn/_planning/specs/phase-11-cli-service-management/phase-11-cli-tasks.md",
+      "action_needed": "check if already created as untracked file"
+    },
+    {
+      "old_path": "weave-nn/_planning/specs/phase-9-testing-documentation/tasks.md",
+      "status": "deleted",
+      "reason": "Needs topical name",
+      "proposed_new": "weave-nn/_planning/specs/phase-9-testing-documentation/phase-9-testing-tasks.md",
+      "action_needed": "check if already created as untracked file"
+    },
+    {
+      "old_path": "weaver/tests/fixtures/nextjs-app/README.md",
+      "status": "deleted",
+      "reason": "Test fixture documentation",
+      "proposed_new": "weaver/tests/fixtures/nextjs-app/nextjs-test-fixture-hub.md",
+      "action_needed": "check if already created as untracked file"
+    },
+    {
+      "old_path": "weaver/tests/fixtures/react-vite/README.md",
+      "status": "deleted",
+      "reason": "Test fixture documentation",
+      "proposed_new": "weaver/tests/fixtures/react-vite/react-vite-test-fixture-hub.md",
+      "action_needed": "check if already created as untracked file"
+    },
+    {
+      "old_path": "weaver/tests/vault-init/README.md",
+      "status": "deleted",
+      "reason": "Vault initialization tests",
+      "proposed_new": "weaver/tests/vault-init/vault-init-tests-hub.md",
+      "action_needed": "check if already created as untracked file"
+    }
+  ],
+
+  "remaining_to_rename": [
+    {
+      "old_path": "weave-nn/.archive/index.md",
+      "new_path": "weave-nn/.archive/archive-research-index.md",
+      "reason": "Research query index for archive",
+      "content_type": "Research query log index",
+      "incoming_refs": 0,
+      "needs_redirect": false,
+      "priority": "low",
+      "action": "rename"
+    },
+    {
+      "old_path": "weaver/src/workflows/kg/context/README.md",
+      "new_path": "weaver/src/workflows/kg/context/context-analysis-system-hub.md",
+      "reason": "Context Analysis System documentation hub",
+      "content_type": "Technical documentation for context analysis system",
+      "incoming_refs": 0,
+      "needs_redirect": false,
+      "priority": "medium",
+      "action": "rename"
+    },
+    {
+      "old_path": "docs/phase-14/README.md",
+      "new_path": "docs/phase-14/phase-14-obsidian-integration-hub.md",
+      "reason": "Phase 14 Obsidian Integration & Knowledge Graph hub",
+      "content_type": "Phase planning and status tracking",
+      "incoming_refs": 0,
+      "needs_redirect": false,
+      "priority": "high",
+      "action": "rename"
+    },
+    {
+      "old_path": "scripts/test-migration/README.md",
+      "new_path": "scripts/test-migration/migration-test-scripts-hub.md",
+      "reason": "Migration test scripts documentation hub",
+      "content_type": "Testing automation documentation",
+      "incoming_refs": 0,
+      "needs_redirect": false,
+      "priority": "medium",
+      "action": "rename"
+    },
+    {
+      "old_path": ".merge-backup/root-backup/workflows/kg/context/README.md",
+      "new_path": "N/A - merge backup, can be ignored",
+      "reason": "Backup file, not part of active project",
+      "content_type": "Backup copy",
+      "incoming_refs": 0,
+      "needs_redirect": false,
+      "priority": "ignore",
+      "action": "no action - backup file"
+    }
+  ],
+
+  "wikilink_updates": {
+    "total_updates_needed": 47,
+    "by_target": {
+      "README": {
+        "references": 32,
+        "files_to_update": [
+          "weave-nn/decisions/technical/adopt-weaver-workflow-proxy.md",
+          "weave-nn/docs/weaver-implementation-summary.md",
+          "weave-nn/_planning/planning-overview-hub.md",
+          "weave-nn/_planning/reviews/PLANNING-REVIEW-2025-10-22-3b-workflow-automation.md",
+          "weave-nn/patterns/patterns-catalog-hub.md",
+          "docs/knowledge-graph/graph-structure-analysis.md"
+        ],
+        "update_pattern": "[[README]] -> [[{topical-name}]]"
+      },
+      "INDEX": {
+        "references": 10,
+        "files_to_update": [
+          "weave-nn/decisions/technical/test-strategy-full-report.md",
+          "weave-nn/_log/tasks/review_2025-10-22.3.23.create_decision_nodes.1.a8c4f2.md",
+          "weave-nn/features/decision-tracking.md",
+          "weave-nn/.archive/features/decision-tracking.md",
+          "weave-nn/.archive/meta/meta-archive-index.md",
+          "weave-nn/_planning/planning-overview-hub.md",
+          "weave-nn/patterns/patterns-catalog-hub.md",
+          "weave-nn/technical/technical-overview-hub.md"
+        ],
+        "update_pattern": "[[INDEX]] -> [[decision-records-index]]"
+      },
+      "tasks": {
+        "references": 5,
+        "files_to_update": [
+          "weave-nn/docs/weaver-implementation-summary.md",
+          "weave-nn/docs/rabbitmq-deferral-summary.md"
+        ],
+        "update_pattern": "[[tasks]] -> [[phase-{n}-tasks]]"
+      }
+    }
+  },
+
+  "categories": {
+    "planning_hubs": 10,
+    "task_lists": 6,
+    "index_files": 3,
+    "technical_docs": 15,
+    "archive_docs": 8,
+    "test_fixtures": 3,
+    "backup_files": 1
+  },
+
+  "validation": {
+    "total_files_analyzed": 50,
+    "files_successfully_renamed": 43,
+    "files_pending_rename": 4,
+    "files_to_ignore": 1,
+    "wikilink_integrity_check": "required",
+    "broken_links_expected": 0
+  },
+
+  "next_steps": [
+    "Execute remaining 4 renames",
+    "Update 47 wikilink references",
+    "Verify all untracked replacements exist",
+    "Run broken link checker",
+    "Commit all changes together",
+    "Update knowledge graph connections"
+  ]
+}

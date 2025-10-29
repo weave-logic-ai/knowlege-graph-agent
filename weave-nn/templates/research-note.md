@@ -1,27 +1,33 @@
 ---
-research_id: "R-XXX"
-research_title: "[Research Topic Title]"
-research_type: "[technical|competitive|academic|market|architectural]"
-status: "[planning|in-progress|completed|archived]"
-priority: "[critical|high|medium|low]"
-
-created_date: "YYYY-MM-DD"
-last_updated: "YYYY-MM-DD"
+research_id: R-XXX
+research_title: '[Research Topic Title]'
+research_type: '[technical|competitive|academic|market|architectural]'
+status: '[planning|in-progress|completed|archived]'
+priority: '[critical|high|medium|low]'
+created_date: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 completed_date: null
-
-researcher: "[Name or Role]"
+researcher: '[Name or Role]'
 stakeholders: []
-ai_assisted: "[true|false]"
-
+ai_assisted: '[true|false]'
 research_questions: []
 key_findings: []
 related_decisions: []
-
 tags:
   - research
-  - [research_type]
-  - [domain]
-  - [status]
+  - - research_type
+  - - domain
+  - - status
+type: research
+visual:
+  icon: "\U0001F52C"
+  color: '#8B5CF6'
+  cssclasses:
+    - type-research
+    - 'status-[planning|in-progress|completed|archived]'
+    - 'priority-[critical|high|medium|low]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 <!--

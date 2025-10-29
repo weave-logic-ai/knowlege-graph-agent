@@ -21,11 +21,17 @@ tags:
   - saas
   - temporal-knowledge-graph
 related:
-  - "[[obsidian]]"
-  - "[[notion]]"
-  - "[[graphiti]]"
-  - "[[react-flow]]"
-  - "[[svelte-flow]]"
+  - '[[obsidian]]'
+  - '[[notion]]'
+  - '[[graphiti]]'
+  - '[[react-flow]]'
+  - '[[svelte-flow]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-knowledge-management
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Custom-Built Solution Analysis

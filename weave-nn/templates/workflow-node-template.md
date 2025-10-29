@@ -1,20 +1,25 @@
 ---
 type: workflow
-workflow_name: "[Workflow Name]"
-status: "[active|draft|deprecated]"
-created_date: "YYYY-MM-DD"
-complexity: "[simple|moderate|complex]"
-estimated_time: "[Time estimate for completion]"
-
+workflow_name: '[Workflow Name]'
+status: '[active|draft|deprecated]'
+created_date: YYYY-MM-DD
+complexity: '[simple|moderate|complex]'
+estimated_time: '[Time estimate for completion]'
 tags:
   - workflow
   - process
-  - [category]
-  - [domain]
-
+  - - category
+  - - domain
 related:
-  - "[[path/to/related-workflow]]"
-  - "[[path/to/template]]"
+  - '[[path/to/related-workflow]]'
+  - '[[path/to/template]]'
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - 'status-[active|draft|deprecated]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # [Workflow Name]

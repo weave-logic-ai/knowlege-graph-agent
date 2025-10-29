@@ -1,43 +1,43 @@
 ---
 type: task_log
-task_id: "[phase].[day].[task].[subtask].[hash]"
-phase: ""
-day: ""
-task_name: ""
-subtask_name: ""
-agent: ""
-priority: ""
-start_time: ""
-end_time: ""
+task_id: '[phase].[day].[task].[subtask].[hash]'
+phase: ''
+day: ''
+task_name: ''
+subtask_name: ''
+agent: ''
+priority: ''
+start_time: ''
+end_time: ''
 duration_minutes: 0
-status: "completed|partial|blocked|deferred|paused|cancelled"
+status: completed|partial|blocked|deferred|paused|cancelled
 success: false
-quality_score: 0.0
-
-# Memory extraction
+quality_score: 0
 memory_types:
-  - ""
-
-# Agent context
-approach: ""
+  - ''
+approach: ''
 challenges: []
 solutions: []
 lessons_learned: []
-
-# Metrics
 files_modified: 0
 lines_added: 0
 lines_removed: 0
 tests_added: 0
-test_coverage: 0.0
-
-# Cross-references
+test_coverage: 0
 related_concepts: []
 related_features: []
 related_decisions: []
 tags: []
 cssclasses:
   - task-log
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-task_log
+    - status-completed|partial|blocked|deferred|paused|cancelled
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 <!-- RAG OPTIMIZATION NOTES:

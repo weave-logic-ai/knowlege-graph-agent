@@ -2,22 +2,21 @@
 type: guide
 status: active
 priority: critical
-created_date: "2025-10-21"
-
-# Tags
+created_date: '2025-10-21'
 tags:
   - scope/mvp
   - type/guide
   - priority/critical
   - infrastructure
   - onboarding
-
-# Visual
 visual:
-  icon: "rocket"
+  icon: rocket
   cssclasses:
     - type-guide
     - priority-critical
+domain: infrastructure
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Weave-NN Developer Onboarding Guide

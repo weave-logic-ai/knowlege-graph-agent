@@ -1,25 +1,21 @@
 ---
-concept_id: "C-005"
-concept_type: "technical-concept"
-title: "Temporal Queries"
-status: "active"
-category: "core-concept"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+concept_id: C-005
+concept_type: technical-concept
+title: Temporal Queries
+status: active
+category: core-concept
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "knowledge-graph"
-  - "weave-nn"
-  - "ai-generated-documentation"
+  - knowledge-graph
+  - weave-nn
+  - ai-generated-documentation
 related_decisions:
-  - "TS-4"
-  - "FP-2"
-
+  - TS-4
+  - FP-2
 tags:
   - temporal
   - queries
@@ -27,6 +23,13 @@ tags:
   - time-series
   - core-concept
   - advanced-feature
+type: concept
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+updated_date: '2025-10-28'
 ---
 
 # Temporal Queries

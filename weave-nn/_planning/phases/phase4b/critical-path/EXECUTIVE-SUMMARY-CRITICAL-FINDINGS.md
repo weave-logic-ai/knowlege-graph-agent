@@ -2,7 +2,7 @@
 type: executive-summary
 status: urgent
 priority: critical
-created_date: 2025-10-23
+created_date: {}
 tags:
   - planning
   - critical
@@ -11,6 +11,14 @@ tags:
 cssclasses:
   - type-planning
   - priority-critical
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-executive-summary
+    - status-urgent
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Executive Summary: Critical Path Analysis - Immediate Actions Required

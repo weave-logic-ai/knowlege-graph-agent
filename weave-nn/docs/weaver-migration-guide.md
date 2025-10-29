@@ -2,11 +2,10 @@
 type: documentation
 category: migration-guide
 status: draft
-created_date: "2025-10-23"
-updated_date: "2025-10-23"
+created_date: '2025-10-23'
+updated_date: '2025-10-28'
 audience: developers
-estimated_time: "4-8 hours"
-
+estimated_time: 4-8 hours
 tags:
   - migration
   - weaver
@@ -14,6 +13,15 @@ tags:
   - n8n
   - bash-hooks
   - automation
+domain: weaver
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-draft
+    - domain-weaver
+version: '3.0'
 ---
 
 # Weaver Migration Guide

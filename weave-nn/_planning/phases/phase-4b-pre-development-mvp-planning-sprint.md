@@ -1,14 +1,16 @@
 ---
-phase_id: "PHASE-4B"
-phase_name: "Pre-Development MVP Planning Sprint"
-status: "in-progress"
-priority: "critical"
-start_date: "2025-10-23"
-end_date: "TBD"
-duration: "~3-5 days"
+phase_id: PHASE-4B
+phase_name: Pre-Development MVP Planning Sprint
+status: in-progress
+priority: critical
+start_date: '2025-10-23'
+end_date: TBD
+duration: ~3-5 days
 dependencies:
-  requires: ["PHASE-4A"]
-  enables: ["PHASE-5"]
+  requires:
+    - PHASE-4A
+  enables:
+    - PHASE-5
 tags:
   - phase
   - pre-development
@@ -16,11 +18,14 @@ tags:
   - mvp
   - in-progress
 visual:
-  icon: "clipboard-check"
+  icon: clipboard-check
   cssclasses:
     - type-planning
     - status-in-progress
     - priority-critical
+type: planning
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 4B: Pre-Development MVP Planning Sprint

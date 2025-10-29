@@ -1,39 +1,44 @@
 ---
-decision_id: "ED-1"
-decision_type: "executive"
-title: "Project Scope & Purpose"
-status: "decided"
-priority: "critical"
-category: "strategic"
-
-created_date: "2025-10-20"
-last_updated: "2025-10-20"
-decided_date: "2025-10-20"
+decision_id: ED-1
+decision_type: executive
+title: Project Scope & Purpose
+status: decided
+priority: critical
+category: strategic
+created_date: '2025-10-20'
+last_updated: '2025-10-20'
+decided_date: '2025-10-20'
 implemented_date: null
-
-decision_maker: "Mathew"
+decision_maker: Mathew
 stakeholders:
-  - "Development Team"
-  - "Business Team"
+  - Development Team
+  - Business Team
 ai_assisted: true
-
 blocks: []
 impacts:
-  - "TS-1"
-  - "TS-3"
-  - "BM-1"
-  - "architecture"
+  - TS-1
+  - TS-3
+  - BM-1
+  - architecture
 requires: []
-
-research_status: "completed"
-selected_option: "C"
-
+research_status: completed
+selected_option: C
 tags:
   - executive
   - scope
   - saas
   - critical
   - decided
+type: decision
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # ED-1: Project Scope & Purpose

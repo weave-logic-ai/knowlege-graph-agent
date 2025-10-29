@@ -2,29 +2,22 @@
 type: technical-primitive
 category: protocol
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: experimental
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - claude-desktop
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "REST API only"
-  - "GraphQL"
-  - "gRPC"
+  - REST API only
+  - GraphQL
+  - gRPC
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/mcp-integration-strategy]]"
-architecture: "[[../architecture/mcp-server]]"
-
+decision: '[[../decisions/technical/mcp-integration-strategy]]'
+architecture: '[[../architecture/mcp-server]]'
 tags:
   - technical
   - protocol
@@ -32,6 +25,13 @@ tags:
   - mvp
   - anthropic
   - claude
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # MCP Protocol (Model Context Protocol)

@@ -1,0 +1,339 @@
+{
+  "timestamp": "2025-10-28T14:45:19.544Z",
+  "totalOrphans": 27,
+  "orphansByDirectory": [
+    {
+      "directory": "_planning/phases",
+      "files": [
+        "_planning/phases/phase-10-final-validation.md",
+        "_planning/phases/phase-4b-task-completion-log.md"
+      ],
+      "suggestedHubs": [
+        "docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "directory": "weaver/src/templates/vector-db",
+      "files": [
+        "weaver/src/templates/vector-db/chunking-strategy.md",
+        "weaver/src/templates/vector-db/embedding-workflow.md"
+      ],
+      "suggestedHubs": [
+        "docs/CHUNKING-STRATEGY-SYNTHESIS.md",
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md"
+      ],
+      "priority": "medium"
+    },
+    {
+      "directory": "src/learning-loop",
+      "files": [
+        "src/learning-loop/learning-loop-implementation-hub.md"
+      ],
+      "suggestedHubs": [
+        "docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/weave-nn.md"
+      ],
+      "priority": "medium"
+    },
+    {
+      "directory": "_sops",
+      "files": [
+        "_sops/SOP-004-debugging.md",
+        "_sops/SOP-005-documentation.md",
+        "_sops/SOP-006-markdown-management.md",
+        "_sops/SOP-007-code-review.md",
+        "_sops/SOP-008-performance-analysis.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": ".",
+      "files": [
+        "PHASE-12-DELIVERABLES.md",
+        "PHASE-13-TEST-DELIVERABLES.md"
+      ],
+      "suggestedHubs": [
+        "docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/weave-nn.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "research/devops-networking",
+      "files": [
+        "research/devops-networking/quick-reference-guide.md",
+        "research/devops-networking/service-mesh-networking-recommendations.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "_files",
+      "files": [
+        "_files/knowledge-graph-integration-architecture.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "concepts/knowledge-graph.md",
+        "docs/local-first-architecture-overview.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "_log/tasks",
+      "files": [
+        "_log/tasks/test_task.implement_proof_workflows.abc123.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "examples",
+      "files": [
+        "examples/contextual-overlap-example.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "guides",
+      "files": [
+        "guides/guides-index-hub.md"
+      ],
+      "suggestedHubs": [
+        "concepts/knowledge-graph.md",
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "mcp",
+      "files": [
+        "mcp/mcp-integration-hub.md"
+      ],
+      "suggestedHubs": [
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/weave-nn.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "metrics",
+      "files": [
+        "metrics/baseline-2025-10-23.md.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "protocols",
+      "files": [
+        "protocols/protocols-overview-hub.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "queries",
+      "files": [
+        "queries/cognitive-variability-analysis.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "schemas",
+      "files": [
+        "schemas/schemas-catalog-hub.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "scripts",
+      "files": [
+        "scripts/perplexity-validator.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "services",
+      "files": [
+        "services/services-architecture-hub.md"
+      ],
+      "suggestedHubs": [
+        "concepts/knowledge-graph.md",
+        "docs/local-first-architecture-overview.md",
+        "concepts/weave-nn.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "standards",
+      "files": [
+        "standards/code-quality-checklist.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "directory": "workflows",
+      "files": [
+        "workflows/task-workflow-test.md"
+      ],
+      "suggestedHubs": [
+        "concepts/weave-nn.md",
+        "docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+        "concepts/knowledge-graph.md"
+      ],
+      "priority": "low"
+    }
+  ],
+  "quickWins": [
+    "_planning/phases/phase-4b-task-completion-log.md",
+    "guides/guides-index-hub.md",
+    "protocols/protocols-overview-hub.md",
+    "research/devops-networking/quick-reference-guide.md"
+  ]
+}
+
+🔴 ORPHAN ANALYSIS SUMMARY
+==================================================
+📊 Total orphans: 27
+🚀 Quick wins: 4
+📁 Directories affected: 19
+
+📋 ORPHANS BY DIRECTORY (PRIORITIZED):
+
+🔴 _planning/phases (2 files, priority: high)
+   Files: _planning/phases/phase-10-final-validation.md, _planning/phases/phase-4b-task-completion-log.md
+   Suggested hubs: docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md, concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
+
+🟡 weaver/src/templates/vector-db (2 files, priority: medium)
+   Files: weaver/src/templates/vector-db/chunking-strategy.md, weaver/src/templates/vector-db/embedding-workflow.md
+   Suggested hubs: docs/CHUNKING-STRATEGY-SYNTHESIS.md, concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
+
+🟡 src/learning-loop (1 files, priority: medium)
+   Files: src/learning-loop/learning-loop-implementation-hub.md
+   Suggested hubs: docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/weave-nn.md
+
+🟢 _sops (5 files, priority: low)
+   Files: _sops/SOP-004-debugging.md, _sops/SOP-005-documentation.md, _sops/SOP-006-markdown-management.md...
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 . (2 files, priority: low)
+   Files: PHASE-12-DELIVERABLES.md, PHASE-13-TEST-DELIVERABLES.md
+   Suggested hubs: docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/weave-nn.md
+
+🟢 research/devops-networking (2 files, priority: low)
+   Files: research/devops-networking/quick-reference-guide.md, research/devops-networking/service-mesh-networking-recommendations.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 _files (1 files, priority: low)
+   Files: _files/knowledge-graph-integration-architecture.md
+   Suggested hubs: concepts/weave-nn.md, concepts/knowledge-graph.md, docs/local-first-architecture-overview.md
+
+🟢 _log/tasks (1 files, priority: low)
+   Files: _log/tasks/test_task.implement_proof_workflows.abc123.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 examples (1 files, priority: low)
+   Files: examples/contextual-overlap-example.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 guides (1 files, priority: low)
+   Files: guides/guides-index-hub.md
+   Suggested hubs: concepts/knowledge-graph.md, concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
+
+🟢 mcp (1 files, priority: low)
+   Files: mcp/mcp-integration-hub.md
+   Suggested hubs: docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/weave-nn.md, concepts/knowledge-graph.md
+
+🟢 metrics (1 files, priority: low)
+   Files: metrics/baseline-2025-10-23.md.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 protocols (1 files, priority: low)
+   Files: protocols/protocols-overview-hub.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 queries (1 files, priority: low)
+   Files: queries/cognitive-variability-analysis.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 schemas (1 files, priority: low)
+   Files: schemas/schemas-catalog-hub.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 scripts (1 files, priority: low)
+   Files: scripts/perplexity-validator.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 services (1 files, priority: low)
+   Files: services/services-architecture-hub.md
+   Suggested hubs: concepts/knowledge-graph.md, docs/local-first-architecture-overview.md, concepts/weave-nn.md
+
+🟢 standards (1 files, priority: low)
+   Files: standards/code-quality-checklist.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🟢 workflows (1 files, priority: low)
+   Files: workflows/task-workflow-test.md
+   Suggested hubs: concepts/weave-nn.md, docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, concepts/knowledge-graph.md
+
+🚀 QUICK WINS (Easy to connect):
+  - _planning/phases/phase-4b-task-completion-log.md
+  - guides/guides-index-hub.md
+  - protocols/protocols-overview-hub.md
+  - research/devops-networking/quick-reference-guide.md
+==================================================

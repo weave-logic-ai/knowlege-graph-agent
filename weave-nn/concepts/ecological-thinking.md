@@ -6,12 +6,19 @@ tags:
   - network-theory
   - biodiversity
 related:
-  - "[[cognitive-variability]]"
-  - "[[graph-topology-analysis]]"
-  - "[[structural-gap-detection]]"
+  - '[[cognitive-variability]]'
+  - '[[graph-topology-analysis]]'
+  - '[[structural-gap-detection]]'
 status: active
-created: 2025-10-23
+created: {}
 source: InfraNodus Ecological Network Analysis
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Ecological Thinking

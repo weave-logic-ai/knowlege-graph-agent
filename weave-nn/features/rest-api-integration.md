@@ -1,26 +1,37 @@
 ---
-feature_id: "F-031"
-feature_name: "REST API Integration"
-category: "knowledge-graph"
-status: "planned"
-priority: "high"
-release: "mvp"
-complexity: "moderate"
-
+feature_id: F-031
+feature_name: REST API Integration
+category: knowledge-graph
+status: planned
+priority: high
+release: mvp
+complexity: moderate
 dependencies:
-  requires: ["F-008"]
-  blocks: ["F-032", "F-105"]
-
+  requires:
+    - F-008
+  blocks:
+    - F-032
+    - F-105
 related_decisions:
-  - "[[technical/obsidian-api-client]]"
-  - "[[standards/obsidian-properties-standard]]"
-
+  - '[[technical/obsidian-api-client]]'
+  - '[[standards/obsidian-properties-standard]]'
 tags:
   - feature
   - knowledge-graph
   - mvp
   - api-integration
   - automation
+type: documentation
+scope: feature
+visual:
+  icon: "\U0001F4DA"
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-planned
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # REST API Integration

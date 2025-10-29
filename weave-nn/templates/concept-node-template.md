@@ -1,21 +1,27 @@
 ---
-concept_id: "C-XXX"
-concept_name: "[Descriptive Name]"
-concept_type: "[project|system|technology|pattern|practice]"
-status: "[active|planned|deprecated|draft]"
-category: "[core-concept|architecture|methodology|tool]"
-created_date: "YYYY-MM-DD"
-complexity: "[simple|moderate|complex]"
-
+concept_id: C-XXX
+concept_name: '[Descriptive Name]'
+concept_type: '[project|system|technology|pattern|practice]'
+status: '[active|planned|deprecated|draft]'
+category: '[core-concept|architecture|methodology|tool]'
+created_date: YYYY-MM-DD
+complexity: '[simple|moderate|complex]'
 related:
-  - "[[path/to/related-node]]"
-  - "[[path/to/another-node]]"
-
+  - '[[path/to/related-node]]'
+  - '[[path/to/another-node]]'
 tags:
   - concept
-  - [primary-category]
-  - [specific-topic]
-  - [additional-tags]
+  - - primary-category
+  - - specific-topic
+  - - additional-tags
+type: template
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-template
+    - 'status-[active|planned|deprecated|draft]'
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # [Concept Name]

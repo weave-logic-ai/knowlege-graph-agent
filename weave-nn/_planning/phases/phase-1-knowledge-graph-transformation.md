@@ -1,17 +1,30 @@
 ---
-phase_id: "PHASE-1"
-phase_name: "Knowledge Graph Transformation"
-status: "completed"
-priority: "critical"
-start_date: "2025-10-20"
-end_date: "2025-10-20"
-duration: "~6 hours"
-completed_by: "Claude (Hive Mind)"
+phase_id: PHASE-1
+phase_name: Knowledge Graph Transformation
+status: completed
+priority: critical
+start_date: '2025-10-20'
+end_date: '2025-10-20'
+duration: ~6 hours
+completed_by: Claude (Hive Mind)
 tags:
   - phase
   - transformation
   - completed
   - knowledge-graph
+type: planning
+domain: knowledge-graph
+visual:
+  icon: "\U0001F4CB"
+  color: '#3B82F6'
+  cssclasses:
+    - type-planning
+    - status-completed
+    - priority-critical
+    - phase-1
+    - domain-knowledge-graph
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 1: Knowledge Graph Transformation

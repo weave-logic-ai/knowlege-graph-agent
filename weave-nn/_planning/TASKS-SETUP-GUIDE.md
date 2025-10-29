@@ -2,13 +2,21 @@
 type: guide
 status: active
 priority: critical
-created_date: "2025-10-21"
-
+created_date: '2025-10-21'
 tags:
   - scope/mvp
   - type/guide
   - priority/critical
   - setup
+scope: task
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-guide
+    - status-active
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Obsidian Tasks Setup Guide

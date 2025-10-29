@@ -1,27 +1,28 @@
 ---
-decision_id: "TS-021"
-decision_type: "technical"
-title: "MVP Test Strategy - Complete Report"
-status: "decided"
-priority: "critical"
-category: "implementation"
-
-created_date: "2025-10-21"
-last_updated: "2025-10-23"
-decided_date: "2025-10-21"
+decision_id: TS-021
+decision_type: technical
+title: MVP Test Strategy - Complete Report
+status: decided
+priority: critical
+category: implementation
+created_date: '2025-10-21'
+last_updated: '2025-10-23'
+decided_date: '2025-10-21'
 implemented_date: null
-
-decision_maker: "TESTER Agent (Hive Mind)"
-stakeholders: ["Development Team", "Project Lead", "QA Team"]
+decision_maker: TESTER Agent (Hive Mind)
+stakeholders:
+  - Development Team
+  - Project Lead
+  - QA Team
 ai_assisted: true
-
 blocks: []
-impacts: ["[[test-strategy-summary]]", "[[../phases/phase-5-mvp-week-1]]", "[[../phases/phase-6-mvp-week-2]]"]
+impacts:
+  - '[[test-strategy-summary]]'
+  - '[[../phases/phase-5-mvp-week-1]]'
+  - '[[../phases/phase-6-mvp-week-2]]'
 requires: []
-
-research_status: "completed"
-selected_option: "detailed-test-cases-and-scenarios"
-
+research_status: completed
+selected_option: detailed-test-cases-and-scenarios
 tags:
   - decision
   - technical
@@ -29,6 +30,16 @@ tags:
   - test-cases
   - e2e-scenarios
   - critical
+type: decision
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-critical
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # TS-021: MVP Test Strategy - Complete Report

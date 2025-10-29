@@ -8,10 +8,17 @@ tags:
   - knowledge-graph
   - neural-networks
 related:
-  - "[[weaver]]"
-  - "[[knowledge-graph]]"
-  - "[[compound-learning]]"
-  - "[[local-first-architecture]]"
+  - '[[weaver]]'
+  - '[[knowledge-graph]]'
+  - '[[compound-learning]]'
+  - '[[local-first-architecture]]'
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Neural Network Junction

@@ -2,13 +2,23 @@
 title: Cyanheads Obsidian MCP Server
 type: tool
 category: mcp-server
-tags: [mcp, obsidian, vault-management, knowledge-graph-editing]
-created: 2025-10-20
-repository: https://github.com/cyanheads/obsidian-mcp-server
+tags:
+  - mcp
+  - obsidian
+  - vault-management
+  - knowledge-graph-editing
+created: {}
+repository: 'https://github.com/cyanheads/obsidian-mcp-server'
 related:
-  - "[[model-context-protocol]]"
-  - "[[ai-agent-integration]]"
-  - "[[obsidian-vault]]"
+  - '[[model-context-protocol]]'
+  - '[[ai-agent-integration]]'
+  - '[[obsidian-vault]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-tool
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Cyanheads Obsidian MCP Server

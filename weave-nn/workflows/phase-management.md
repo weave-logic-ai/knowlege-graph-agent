@@ -1,16 +1,22 @@
 ---
 type: workflow
-workflow_name: "Phase Management Process"
+workflow_name: Phase Management Process
 status: active
-created_date: "2025-10-20"
+created_date: '2025-10-20'
 complexity: moderate
-estimated_time: "Ongoing throughout project"
-
+estimated_time: Ongoing throughout project
 tags:
   - workflow
   - planning
   - phase-management
   - project-management
+visual:
+  icon: "\U0001F504"
+  cssclasses:
+    - type-workflow
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase Management Process

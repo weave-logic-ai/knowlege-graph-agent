@@ -1,41 +1,30 @@
 ---
-# Node Metadata
 type: architecture
 status: active
 priority: high
-created_date: "2025-10-21"
-updated_date: "2025-10-21"
-
-# Architecture-Specific
-architecture_id: "A-007"
-architecture_name: "Cross-Project Knowledge Retention"
+created_date: '2025-10-21'
+updated_date: '2025-10-28'
+architecture_id: A-007
+architecture_name: Cross-Project Knowledge Retention
 category: knowledge-management
-decided_date: "2025-10-21"
-
-# Scope
+decided_date: '2025-10-21'
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Relationships
 relationships:
   related_features:
-    - "n8n-workflow-automation"
-    - "rabbitmq-message-queue"
-    - "git-integration"
+    - n8n-workflow-automation
+    - rabbitmq-message-queue
+    - git-integration
   related_architecture:
-    - "obsidian-first-architecture"
-
-# Visual
+    - obsidian-first-architecture
 visual:
-  icon: "book-open"
+  icon: book-open
   cssclasses:
     - type-architecture
     - scope-mvp
     - priority-high
-
-# Tags
 tags:
   - scope/mvp
   - type/architecture
@@ -45,6 +34,7 @@ tags:
   - tech/obsidian
   - tech/n8n
   - tech/claude
+version: '3.0'
 ---
 
 # Cross-Project Knowledge Retention Architecture

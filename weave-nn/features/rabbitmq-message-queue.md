@@ -1,48 +1,44 @@
 ---
-# Node Metadata
-feature_id: "F-015"
-feature_name: "RabbitMQ Message Queue"
-category: "infrastructure"
-status: "deferred-to-post-mvp"
-priority: "low"
-release: "post-mvp"
-complexity: "moderate"
-created_date: "2025-10-21"
-updated_date: "2025-10-23"
-deferred_reason: "Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP. RabbitMQ will be added post-MVP when multi-service architecture or high-throughput streaming (>1000 events/sec) is needed."
-decision_reference: "D-013"
-
-# Scope
+feature_id: F-015
+feature_name: RabbitMQ Message Queue
+category: infrastructure
+status: deferred-to-post-mvp
+priority: low
+release: post-mvp
+complexity: moderate
+created_date: '2025-10-21'
+updated_date: '2025-10-28'
+deferred_reason: >-
+  Weaver (workflow.dev) provides event-driven capabilities sufficient for MVP.
+  RabbitMQ will be added post-MVP when multi-service architecture or
+  high-throughput streaming (>1000 events/sec) is needed.
+decision_reference: D-013
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: false
   web_version_needed: false
   infrastructure: true
-
-# Dependencies
 dependencies:
   requires: []
-  enables: ["weaver-workflow-automation", "cross-project-knowledge-retention"]
-  related_features: ["weaver-workflow-automation", "git-integration"]
-
-# Relationships
+  enables:
+    - weaver-workflow-automation
+    - cross-project-knowledge-retention
+  related_features:
+    - weaver-workflow-automation
+    - git-integration
 relationships:
   related_decisions:
-    - "IR-3"
+    - IR-3
   related_architecture:
-    - "obsidian-first-architecture"
-    - "ai-integration-layer"
-
-# Visual
+    - obsidian-first-architecture
+    - ai-integration-layer
 visual:
-  icon: "message-square"
+  icon: message-square
   cssclasses:
     - type-feature
     - scope-mvp
     - priority-critical
     - tech-rabbitmq
-
-# Tags
 tags:
   - scope/mvp
   - type/feature
@@ -52,6 +48,8 @@ tags:
   - tech/python
   - category/infrastructure
   - category/async
+type: documentation
+version: '3.0'
 ---
 
 # RabbitMQ Message Queue

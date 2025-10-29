@@ -2,29 +2,22 @@
 type: technical-primitive
 category: database
 status: in-use
-first_used_phase: "PHASE-5"
+first_used_phase: PHASE-5
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - event-consumer
 deployment: docker-compose
-
-# Relationships
 alternatives_considered:
-  - "PostgreSQL"
-  - "MongoDB"
-  - "In-memory data structures"
+  - PostgreSQL
+  - MongoDB
+  - In-memory data structures
 replaces: null
-replaced_by: "[[postgresql]]"
-
-# Documentation
-decision: "[[../decisions/technical/mvp-database-choice]]"
-architecture: "[[../architecture/shadow-cache]]"
-
+replaced_by: '[[postgresql]]'
+decision: '[[../decisions/technical/mvp-database-choice]]'
+architecture: '[[../architecture/shadow-cache]]'
 tags:
   - technical
   - database
@@ -32,6 +25,13 @@ tags:
   - mvp
   - shadow-cache
   - deprecated-in-v1
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # SQLite

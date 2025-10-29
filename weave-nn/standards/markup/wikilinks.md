@@ -2,36 +2,36 @@
 type: technical-primitive
 category: standard
 status: in-use
-first_used_phase: "PHASE-1"
+first_used_phase: PHASE-1
 mvp_required: true
 future_only: false
 maturity: mature
-
-# Integration tracking
 used_in_services:
   - mcp-server
   - event-consumer
   - file-watcher
 deployment: local-dev
-
-# Relationships
 alternatives_considered:
-  - "[[markdown-links]]"
-  - "[[html-links]]"
-  - "[[custom-link-syntax]]"
+  - '[[markdown-links]]'
+  - '[[html-links]]'
+  - '[[custom-link-syntax]]'
 replaces: null
 replaced_by: null
-
-# Documentation
-decision: "[[../decisions/technical/link-syntax-standard]]"
-architecture: "[[../architecture/knowledge-graph-schema]]"
-
+decision: '[[../decisions/technical/link-syntax-standard]]'
+architecture: '[[../architecture/knowledge-graph-schema]]'
 tags:
   - technical
   - standard
   - linking
   - obsidian
   - in-use
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-primitive
+    - status-in-use
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Wikilinks

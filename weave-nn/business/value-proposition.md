@@ -1,32 +1,35 @@
 ---
-business_id: "BM-001"
-business_type: "value-proposition"
-title: "Weave-NN Value Proposition"
-status: "active"
-category: "business-model"
-
-created_date: "2025-10-21"
-last_updated: "2025-10-21"
-version: "1.0"
-
-author: "Hive Mind (Claude)"
+business_id: BM-001
+business_type: value-proposition
+title: Weave-NN Value Proposition
+status: active
+category: business-model
+created_date: '2025-10-21'
+last_updated: '2025-10-21'
+version: '1.0'
+author: Hive Mind (Claude)
 ai_generated: true
-
 related_concepts:
-  - "weave-nn"
-  - "knowledge-graph"
-  - "ai-generated-documentation"
+  - weave-nn
+  - knowledge-graph
+  - ai-generated-documentation
 related_decisions:
-  - "ED-1"
+  - ED-1
 related_business:
-  - "target-users"
-  - "saas-pricing-model"
-
+  - target-users
+  - saas-pricing-model
 tags:
   - business-model
   - value-proposition
   - saas
   - competitive-advantage
+type: business
+visual:
+  icon: "\U0001F4BC"
+  cssclasses:
+    - type-business
+    - status-active
+updated_date: '2025-10-28'
 ---
 
 # Weave-NN Value Proposition

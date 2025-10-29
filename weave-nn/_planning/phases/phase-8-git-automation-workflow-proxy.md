@@ -1,26 +1,21 @@
 ---
-# Node Metadata
-phase_id: "PHASE-8"
-phase_name: "Git Automation & Workflow Proxy"
+phase_id: PHASE-8
+phase_name: Git Automation & Workflow Proxy
 type: implementation
-status: "pending"
-priority: "medium"
-created_date: "2025-10-23"
-duration: "2 days"
-
-# Scope
+status: pending
+priority: medium
+created_date: '2025-10-23'
+duration: 2 days
 scope:
-  current_phase: "mvp"
+  current_phase: mvp
   obsidian_only: true
   web_version_needed: false
-
-# Dependencies
 dependencies:
-  requires: ["PHASE-7"]
-  enables: ["PHASE-9"]
+  requires:
+    - PHASE-7
+  enables:
+    - PHASE-9
   blocks: []
-
-# Tags
 tags:
   - scope/mvp
   - type/implementation
@@ -30,15 +25,15 @@ tags:
   - git-automation
   - workflow-proxy
   - auto-commit
-
-# Visual
 visual:
-  icon: "git-branch"
+  icon: git-branch
   cssclasses:
     - type-implementation
     - scope-mvp
     - status-pending
     - priority-medium
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Phase 8: Git Automation & Workflow Proxy
@@ -64,57 +59,323 @@ Implement **git automation** using simple-git to auto-commit vault changes, and 
 
 ---
 
-## 📋 Tasks
+## 📋 Implementation Tasks
 
-### Day 1: Git Automation Core (4-6 hours)
+### Git Client Setup
 
-- [ ] **8.1: Set up simple-git**
-  - Install `simple-git`
-  - Create `src/git/git-client.ts`
-  - Initialize git repo if not exists
-  - Configure git user (from .env)
-  - **Success Criteria**: Can execute `git status` programmatically
+- [ ] **1.1 Install simple-git library**
+  **Effort**: 0.5 hours | **Priority**: High | **Dependencies**: None
 
-- [ ] **8.2: Implement auto-commit service**
-  - Create `src/git/auto-commit.ts`
-  - Listen to file watcher events (from Phase 6)
-  - Debounce commits (5-minute window)
-  - Batch related changes into single commit
-  - **Success Criteria**: File saves trigger commits after 5 minutes
+  Install `simple-git` package and add TypeScript type definitions.
 
-- [ ] **8.3: Claude-powered commit messages**
-  - On commit, send changed file paths to Claude
-  - Prompt: "Generate a conventional commit message for these changes"
-  - Format: `type(scope): description` (e.g., `feat(notes): add meeting summary`)
-  - Fallback to generic message if Claude fails
-  - **Success Criteria**: Commits have semantic messages
+  **Acceptance Criteria**:
+  - `simple-git` package installed (v3.24.0+)
+  - TypeScript types included (@types/simple-git if needed)
+  - Package listed in package.json dependencies
+  - Lock file updated (bun.lock)
+  - Can import `simpleGit` in TypeScript
 
-### Day 2: Weaver Workflow Proxy (4-6 hours)
+  **Implementation Notes**:
+  - Use bun for package management
+  - Verify TypeScript types are available
+  - Check compatibility with Node.js 18+
 
-- [ ] **8.4: Create Weaver workflow: git-commit**
-  - Trigger: `event.type === 'git-operation'` && `event.action === 'commit'`
+- [ ] **1.2 Create GitClient wrapper class**
+  **Effort**: 2 hours | **Priority**: High | **Dependencies**: 1.1
+
+  Create `GitClient` class wrapping simple-git for all git operations.
+
+  **Acceptance Criteria**:
+  - `GitClient` class created in `src/git/git-client.ts`
+  - Constructor accepts `repoPath: string`
+  - Methods: `init()`, `status()`, `add()`, `commit()`, `addAndCommit()`, `log()`, `diff()`
+  - Initialize git repo if not exists (`git init`)
+  - Configure git user from .env (GIT_USER_NAME, GIT_USER_EMAIL)
+  - Defaults: `Weave-NN`, `weave-nn@local` if .env not set
+  - All methods return Promises
+  - Error handling for all git operations
+
+  **Implementation Notes**:
+  - Use `simpleGit(repoPath)` for initialization
+  - Check `checkIsRepo()` before operations
+  - Use `addConfig()` for git user setup
+  - Handle errors gracefully (repo doesn't exist, corrupted index)
+
+- [ ] **1.3 Add git configuration to .env**
+  **Effort**: 0.5 hours | **Priority**: Medium | **Dependencies**: 1.2
+
+  Add git-related configuration to .env.example and documentation.
+
+  **Acceptance Criteria**:
+  - `.env.example` includes git configuration section
+  - Variables: GIT_USER_NAME, GIT_USER_EMAIL, GIT_AUTO_COMMIT_ENABLED, GIT_COMMIT_DEBOUNCE_MS
+  - Sensible defaults documented
+  - README.md updated with git configuration section
+  - Configuration validation in config loader
+
+  **Implementation Notes**:
+  - Default debounce: 300000ms (5 minutes)
+  - Default auto-commit: true
+  - Use Zod for config validation
+
+### Auto-Commit Service
+
+- [ ] **2.1 Create AutoCommitService class**
+  **Effort**: 3 hours | **Priority**: High | **Dependencies**: 1.2
+
+  Implement auto-commit service with debouncing and batching.
+
+  **Acceptance Criteria**:
+  - `AutoCommitService` class created in `src/git/auto-commit.ts`
+  - Constructor accepts `GitClient`, `ClaudeClient`, `debounceMs`
+  - Method: `onFileEvent(event: FileEvent): void` - Queue file change
+  - Method: `forceCommit(): Promise<void>` - Bypass debounce
+  - Debounce timer resets on each file event
+  - Pending changes stored in Set<string> (deduplicated)
+  - Execute commit after debounce window expires
+  - Ignore delete events (type === 'unlink')
+
+  **Implementation Notes**:
+  - Use `setTimeout` for debouncing
+  - Store pending changes in `Set<string>` for deduplication
+  - Clear timeout on each new file event
+  - Log all auto-commit operations
+
+- [ ] **2.2 Implement commit message generation**
+  **Effort**: 2 hours | **Priority**: High | **Dependencies**: 2.1
+
+  Generate semantic commit messages using Claude API based on changed files.
+
+  **Acceptance Criteria**:
+  - `generateCommitMessage(files: string[]): Promise<string>` method in AutoCommitService
+  - Send file list to Claude with specialized prompt
+  - Prompt requests conventional commit format: `type(scope): description`
+  - Parse Claude response for commit message
+  - Fallback to generic message if Claude API fails
+  - Timeout: 3 seconds max
+  - Handle edge cases: single file, many files (100+)
+
+  **Implementation Notes**:
+  - Use existing `ClaudeClient` from Phase 7
+  - Prompt template: "Generate a conventional commit message for these vault changes: <file list>"
+  - Fallback messages: `docs: update N files` or `docs: update path/to/file.md`
+  - Handle very long file lists by summarizing directory
+
+- [ ] **2.3 Integrate auto-commit with file watcher**
+  **Effort**: 1.5 hours | **Priority**: High | **Dependencies**: 2.1, 2.2
+
+  Connect auto-commit service to file watcher event stream.
+
+  **Acceptance Criteria**:
+  - Update `EventProcessor` to instantiate `AutoCommitService`
+  - Call `autoCommit.onFileEvent(event)` for every file change
+  - Auto-commit disabled if `GIT_AUTO_COMMIT_ENABLED=false`
+  - No blocking of file watcher event loop
+  - Auto-commit runs after shadow cache update
+  - Log auto-commit initialization
+
+  **Implementation Notes**:
+  - Check config flag before enabling auto-commit
+  - Pass existing ClaudeClient instance to AutoCommitService
+  - Ensure auto-commit is non-blocking (async)
+  - Log when auto-commit is enabled/disabled
+
+### Weaver Workflow Proxy
+
+- [ ] **3.1 Create GitWorkflowProxy class**
+  **Effort**: 2 hours | **Priority**: Medium | **Dependencies**: 1.2
+
+  Implement workflow proxy to trigger git operations via Weaver.
+
+  **Acceptance Criteria**:
+  - `GitWorkflowProxy` class created in `src/git/workflow-proxy.ts`
+  - Constructor accepts `WeaverClient`
+  - Method: `commit(files: string[], message: string): Promise<void>`
+  - Method: `push(remote?: string, branch?: string): Promise<void>` (optional)
+  - Send `WeaverEvent` to Weaver webhook
+  - Event type: `note-updated` with metadata `operation: 'git-commit'`
+  - Return immediately (fire-and-forget)
+
+  **Implementation Notes**:
+  - Reuse existing `WeaverClient` from Phase 6
+  - Use `sendEvent()` method to trigger workflow
+  - Include files and message in event metadata
+  - Handle Weaver unavailability gracefully
+
+- [ ] **3.2 Create Weaver git-commit workflow**
+  **Effort**: 1.5 hours | **Priority**: Medium | **Dependencies**: 3.1
+
+  Define Weaver workflow for executing git commits.
+
+  **Acceptance Criteria**:
+  - Workflow file created in `workflows/git-commit.yaml`
+  - Trigger: `event.type === 'note-updated'` && `event.metadata.operation === 'git-commit'`
   - Input: `{ files: string[], message: string }`
-  - Actions:
-    1. Validate changes (no .env, no .git files)
-    2. Run `git add` for specified files
-    3. Run `git commit -m "message"`
-    4. Log commit SHA
-  - **Success Criteria**: Workflow commits changes successfully
+  - Actions: 1) Validate files (no .env, .git), 2) git add, 3) git commit, 4) log SHA
+  - Workflow is idempotent (safe to retry)
+  - Error handling step (log failure, notify admin)
 
-- [ ] **8.5: Implement workflow proxy endpoint**
-  - Create `src/git/workflow-proxy.ts`
-  - Expose POST `/git/proxy/commit`
-  - Forward to Weaver webhook
-  - Return workflow execution ID
-  - **Success Criteria**: API triggers Weaver workflow
+  **Implementation Notes**:
+  - Use Weaver workflow schema
+  - Include validation step to prevent committing sensitive files
+  - Log commit SHA to workflow execution log
+  - Make workflow resumable on failure
 
-- [ ] **8.6: Add git operation logging**
-  - Create `logs/git-operations.log`
-  - Log: commit SHA, timestamp, files changed, message
-  - Add admin endpoint: `GET /admin/git/logs`
-  - **Success Criteria**: All git operations logged
+- [ ] **3.3 Add git proxy API endpoints**
+  **Effort**: 2 hours | **Priority**: Medium | **Dependencies**: 3.1
 
----
+  Expose HTTP API endpoints for git operations and diagnostics.
+
+  **Acceptance Criteria**:
+  - `POST /git/proxy/commit` - Trigger workflow commit
+  - `GET /admin/git/status` - Get git status (staged, unstaged, untracked)
+  - `GET /admin/git/logs` - Get recent commit log (last 20 commits)
+  - `POST /admin/git/force-commit` - Force immediate commit (bypass debounce)
+  - All endpoints return JSON responses
+  - Input validation with error messages
+  - Error handling (git repo not initialized, invalid input)
+
+  **Implementation Notes**:
+  - Use Hono router for HTTP endpoints
+  - Validate request body with Zod schemas
+  - Return appropriate HTTP status codes (200, 400, 500)
+  - Add admin authentication (future: JWT)
+
+### Logging & Observability
+
+- [ ] **4.1 Implement git operation logging**
+  **Effort**: 1.5 hours | **Priority**: High | **Dependencies**: 2.2
+
+  Log all git operations for audit and debugging.
+
+  **Acceptance Criteria**:
+  - Create `logs/git-operations.log` file
+  - Log format: JSON lines (JSONL)
+  - Fields: timestamp, operation, sha, files, message, duration, status
+  - Log after every commit (success and failure)
+  - Daily rotation, max 7 days retention
+  - Log levels: INFO (success), ERROR (failure), WARN (retry)
+
+  **Implementation Notes**:
+  - Use winston or pino for logging
+  - Log to file and console (development mode)
+  - Include operation duration (performance tracking)
+  - Rotate logs daily to prevent disk fill
+
+- [ ] **4.2 Add git metrics endpoint**
+  **Effort**: 1 hour | **Priority**: Low | **Dependencies**: 4.1
+
+  Expose git metrics for monitoring and debugging.
+
+  **Acceptance Criteria**:
+  - `GET /admin/git/metrics` endpoint
+  - Return JSON with: total commits, commits today, avg message length, failure rate
+  - Calculate metrics from git-operations.log
+  - Cache metrics (update every 5 minutes)
+  - Include in health check endpoint
+
+  **Implementation Notes**:
+  - Parse git-operations.log for metrics
+  - Cache results to avoid re-reading log on every request
+  - Return metrics in Prometheus format (future)
+
+### Testing & Documentation
+
+- [ ] **5.1 Write unit tests for GitClient**
+  **Effort**: 1.5 hours | **Priority**: High | **Dependencies**: 1.2
+
+  Create comprehensive unit tests for GitClient class.
+
+  **Acceptance Criteria**:
+  - Test suite in `tests/git/git-client.test.ts`
+  - Test repo initialization (`init()`)
+  - Test git operations (add, commit, log, diff)
+  - Test error handling (not a repo, corrupted index)
+  - Use temp directories for test isolation
+  - Code coverage 85%+
+  - All tests passing
+
+  **Implementation Notes**:
+  - Use vitest for testing
+  - Create temp directories with `fs.mkdtemp()`
+  - Clean up temp directories after tests
+  - Mock file system operations for edge cases
+
+- [ ] **5.2 Write integration tests for auto-commit**
+  **Effort**: 2 hours | **Priority**: High | **Dependencies**: 2.3
+
+  End-to-end tests for auto-commit workflow.
+
+  **Acceptance Criteria**:
+  - Test suite in `tests/git/auto-commit.test.ts`
+  - Test debounce behavior (rapid changes batched)
+  - Test commit message generation with Claude (mocked)
+  - Test fallback messages when Claude fails
+  - Test force commit (bypass debounce)
+  - Verify git commits created correctly
+  - Code coverage 85%+
+
+  **Implementation Notes**:
+  - Mock ClaudeClient for predictable responses
+  - Use short debounce (1 second) for faster tests
+  - Create real git repo in temp directory
+  - Verify commit SHA and message
+
+- [ ] **5.3 Update documentation**
+  **Effort**: 1 hour | **Priority**: Medium | **Dependencies**: 5.1, 5.2
+
+  Document git automation setup and usage.
+  ## Critical Path
+  ```mermaid
+  graph TD
+  A[1.1 Install simple-git] --> B[1.2 Create GitClient]
+  B --> C[2.1 Create AutoCommitService]
+  C --> D[2.2 Commit message generation]
+  D --> E[2.3 Integrate with file watcher]
+  B --> F[3.1 Create GitWorkflowProxy]
+  F --> G[3.2 Create Weaver workflow]
+  G --> H[3.3 Add API endpoints]
+  E --> I[4.1 Git operation logging]
+  I --> J[5.1 Unit tests]
+  J --> K[5.2 Integration tests]
+  K --> L[5.3 Documentation]
+  ```
+  1. GitClient setup (1.1-1.2) → Foundation for all git operations
+  2. AutoCommitService (2.1-2.2) → Core auto-commit functionality
+  3. File watcher integration (2.3) → Trigger auto-commits
+  4. Testing (5.1-5.2) → Quality validation
+  - Workflow proxy (3.1-3.3) can run parallel to auto-commit integration (2.3)
+  - Logging (4.1-4.2) can run parallel to testing (5.1-5.2)
+  - Documentation (5.3) can start early and continue throughout
+  ## Effort Summary
+  | Task Group | Tasks | Estimated Effort | Priority |
+  |------------|-------|-----------------|----------|
+  | 1. Git Client Setup | 3 | 3 hours | High |
+  | 2. Auto-Commit Service | 3 | 6.5 hours | High |
+  | 3. Workflow Proxy | 3 | 5.5 hours | Medium |
+  | 4. Logging & Observability | 2 | 2.5 hours | High |
+  | 5. Testing & Documentation | 3 | 4.5 hours | High |
+  | **TOTAL** | **12** | **22 hours (2.75 days)** | |
+
+  **Acceptance Criteria**:
+  - Update README.md with git automation section
+  - Document .env configuration options
+  - Document API endpoints (POST /git/proxy/commit, etc.)
+  - Add troubleshooting guide (common errors)
+  - Include examples of auto-commit in action
+  - Document workflow proxy integration
+
+  **Implementation Notes**:
+  - Include code examples and curl commands
+  - Show example commit messages
+  - Document how to disable auto-commit
+  - Link to git workflow definition
+
+### Success Metrics
+
+### Risk Mitigation
+
+### Next Steps
 
 ## 🏗️ Architecture
 

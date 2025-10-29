@@ -509,7 +509,7 @@ test:
 ## Additional Resources
 
 - [Full Docker Workflows](./docker-workflows.md) - Comprehensive guide
-- [Architecture Overview](../README.md) - System design
+- [Architecture Overview](../weave-nn-project-hub.md) - System design
 - [API Documentation](http://localhost:8000/docs) - When services running
 - [RabbitMQ Management](http://localhost:15672) - Queue monitoring
 

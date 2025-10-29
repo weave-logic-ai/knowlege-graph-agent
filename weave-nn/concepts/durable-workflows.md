@@ -8,8 +8,15 @@ tags:
   - weaver
   - resilience
 related:
-  - "[[weaver]]"
-  - "[[local-first-architecture]]"
+  - '[[weaver]]'
+  - '[[local-first-architecture]]'
+visual:
+  icon: "\U0001F4A1"
+  cssclasses:
+    - type-concept
+    - status-active
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # Durable Workflows

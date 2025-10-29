@@ -3,12 +3,25 @@ title: AI Model Configuration for Weaver
 type: technical-reference
 status: active
 priority: high
-created: 2025-10-23
-tags: [ai, configuration, vercel, anthropic, weaver]
+created: {}
+tags:
+  - ai
+  - configuration
+  - vercel
+  - anthropic
+  - weaver
 related:
-  - "[[weaver-mcp-tools]]"
-  - "[[agent-rules-workflows]]"
-  - "[[model-context-protocol]]"
+  - '[[weaver-mcp-tools]]'
+  - '[[agent-rules-workflows]]'
+  - '[[model-context-protocol]]'
+visual:
+  icon: "\U0001F4C4"
+  cssclasses:
+    - type-technical-reference
+    - status-active
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # AI Model Configuration for Weaver

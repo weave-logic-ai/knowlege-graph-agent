@@ -1,31 +1,29 @@
 ---
-decision_id: "TS-008"
-decision_type: "technical"
-title: "API Client Pattern: Singleton vs Factory"
-status: "decided"
-priority: "high"
-category: "architecture"
-
-created_date: "2025-10-22"
-last_updated: "2025-10-22"
-decided_date: "2025-10-22"
-implemented_date: "2025-10-22"
-
-decision_maker: "System Architect"
-stakeholders: ["Backend Team", "Performance Team", "Infrastructure Team"]
-ai_assisted: "true"
-
+decision_id: TS-008
+decision_type: technical
+title: 'API Client Pattern: Singleton vs Factory'
+status: decided
+priority: high
+category: architecture
+created_date: '2025-10-22'
+last_updated: '2025-10-22'
+decided_date: '2025-10-22'
+implemented_date: '2025-10-22'
+decision_maker: System Architect
+stakeholders:
+  - Backend Team
+  - Performance Team
+  - Infrastructure Team
+ai_assisted: 'true'
 blocks: []
 impacts:
-  - "rest-api-integration"
-  - "obsidian-api-client"
-  - "connection-pooling"
-  - "multi-layer-caching"
+  - rest-api-integration
+  - obsidian-api-client
+  - connection-pooling
+  - multi-layer-caching
 requires: []
-
-research_status: "completed"
-selected_option: "A"
-
+research_status: completed
+selected_option: A
 tags:
   - decision
   - architecture
@@ -33,6 +31,16 @@ tags:
   - api-design
   - performance
   - singleton-pattern
+type: decision
+visual:
+  icon: ⚖️
+  color: '#A855F7'
+  cssclasses:
+    - type-decision
+    - status-decided
+    - priority-high
+version: '3.0'
+updated_date: '2025-10-28'
 ---
 
 # TS-008: API Client Pattern: Singleton vs Factory
