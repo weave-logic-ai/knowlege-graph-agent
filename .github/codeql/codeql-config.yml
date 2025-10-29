@@ -1,0 +1,38 @@
+name: "CodeQL Security Configuration"
+
+# Disable default queries to use only security-focused ones
+disable-default-queries: false
+
+queries:
+  - uses: security-and-quality
+  - uses: security-extended
+
+# Paths to ignore
+paths-ignore:
+  - '**/node_modules/**'
+  - '**/dist/**'
+  - '**/build/**'
+  - '**/*.test.ts'
+  - '**/*.spec.ts'
+  - '**/tests/**'
+  - '**/.next/**'
+
+# Paths to analyze
+paths:
+  - 'weaver/src/**'
+
+# Query filters
+query-filters:
+  - include:
+      kind: problem
+      severity: error
+  - include:
+      kind: problem
+      severity: warning
+      tags:
+        - security
+
+# Additional packs
+packs:
+  - codeql/javascript-queries
+  - codeql/javascript-security-and-quality

@@ -1,0 +1,170 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [master, main, develop]
+  pull_request:
+    branches: [master, main, develop]
+  schedule:
+    # Run weekly on Mondays at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  dependency-audit:
+    name: Dependency Vulnerability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: ./weaver
+        run: bun install
+
+      - name: Run npm audit
+        working-directory: ./weaver
+        run: |
+          bun audit --json > audit-report.json || true
+          bun audit
+
+      - name: Check for high/critical vulnerabilities
+        working-directory: ./weaver
+        run: |
+          if [ -f audit-report.json ]; then
+            HIGH=$(jq '.metadata.vulnerabilities.high // 0' audit-report.json)
+            CRITICAL=$(jq '.metadata.vulnerabilities.critical // 0' audit-report.json)
+
+            echo "High vulnerabilities: $HIGH"
+            echo "Critical vulnerabilities: $CRITICAL"
+
+            if [ "$CRITICAL" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
+              echo "❌ Found high or critical vulnerabilities!"
+              exit 1
+            fi
+
+            echo "✅ No high or critical vulnerabilities found"
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: weaver/audit-report.json
+          retention-days: 30
+
+  license-check:
+    name: License Compliance Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: ./weaver
+        run: npm install
+
+      - name: Check licenses
+        working-directory: ./weaver
+        run: |
+          npx license-checker --json > licenses.json
+          echo "✅ License check complete"
+
+      - name: Upload license report
+        uses: actions/upload-artifact@v4
+        with:
+          name: license-report
+          path: weaver/licenses.json
+          retention-days: 30
+
+  secret-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for better scanning
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-scan:
+    name: Docker Image Security Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          if [ -f weaver/Dockerfile ]; then
+            docker build -t weaver:test ./weaver
+          else
+            echo "No Dockerfile found, skipping Docker scan"
+            exit 0
+          fi
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        if: hashFiles('weaver/Dockerfile') != ''
+        with:
+          image-ref: 'weaver:test'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: hashFiles('weaver/Dockerfile') != ''
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  security-summary:
+    name: Security Summary
+    runs-on: ubuntu-latest
+    needs: [dependency-audit, license-check, secret-scan]
+    if: always()
+
+    steps:
+      - name: Generate summary
+        run: |
+          echo "# Security Audit Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependency Audit | ${{ needs.dependency-audit.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| License Check | ${{ needs.license-check.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Secret Scan | ${{ needs.secret-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ needs.dependency-audit.result }}" == "failure" ] || \
+             [ "${{ needs.secret-scan.result }}" == "failure" ]; then
+            echo "⚠️ **Security issues found!** Please review the logs above." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "✅ All security checks passed!" >> $GITHUB_STEP_SUMMARY
+          fi
