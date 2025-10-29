@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { join } from 'path';
-import { stat, readFile, access } from 'fs/promises';
+import { stat, readFile, access, writeFile } from 'fs/promises';
 import { constants } from 'fs';
 import {
   createTempVault,
@@ -12,22 +12,9 @@ import {
   type TestFixture
 } from './test-helpers';
 
-// Import vault initialization functions (adjust path as needed)
-// These would be imported from the actual implementation
-interface VaultInitOptions {
-  projectPath: string;
-  vaultPath: string;
-  dryRun?: boolean;
-  force?: boolean;
-  template?: string;
-}
-
-// Mock implementation for testing (replace with actual imports)
-async function initializeVault(options: VaultInitOptions): Promise<void> {
-  // This would call the actual vault initialization code
-  // For now, we'll assume it exists and is properly implemented
-  throw new Error('Not implemented - replace with actual vault init');
-}
+// Import vault initialization functions from actual implementation
+import { initializeVault } from '../../src/vault-init/core/initialize-vault.js';
+import type { VaultInitOptions } from '../../src/vault-init/core/initialize-vault.js';
 
 describe('E2E: Vault Initialization', () => {
   let projectFixture: TestFixture | null = null;

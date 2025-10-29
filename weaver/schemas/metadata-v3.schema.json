@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Weave-NN Metadata Schema v3.0",
+  "description": "Comprehensive metadata schema for Obsidian integration and knowledge graph enhancement",
+  "type": "object",
+  "required": ["title", "type", "status"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Human-readable title of the document",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "planning",
+        "implementation",
+        "research",
+        "architecture",
+        "sop",
+        "hub",
+        "guide",
+        "specification",
+        "reference",
+        "documentation",
+        "analysis",
+        "decision"
+      ],
+      "description": "Document category"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "in-progress",
+        "review",
+        "complete",
+        "archived",
+        "deprecated"
+      ],
+      "description": "Current status of the document"
+    },
+    "phase_id": {
+      "type": "string",
+      "pattern": "^PHASE-[0-9]+[A-Z]?$",
+      "description": "Associated phase identifier (e.g., PHASE-13, PHASE-14A)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Hierarchical tags using slash notation (e.g., phase/phase-13)",
+      "uniqueItems": true
+    },
+    "domain": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "weaver",
+          "learning-loop",
+          "knowledge-graph",
+          "infrastructure",
+          "perception",
+          "chunking",
+          "embeddings",
+          "vault-init",
+          "workflow-engine",
+          "service-manager",
+          "sops",
+          "cli"
+        ]
+      },
+      "description": "Primary domain(s) the document belongs to"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"],
+      "description": "Document priority level"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Alternative names for the document",
+      "uniqueItems": true
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related document paths or identifiers",
+      "uniqueItems": true
+    },
+    "visual": {
+      "type": "object",
+      "description": "Visual styling for Obsidian",
+      "properties": {
+        "icon": {
+          "type": "string",
+          "description": "Icon emoji or identifier"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Hex color code"
+        },
+        "cssclasses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "CSS classes for styling"
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 last update timestamp"
+    },
+    "author": {
+      "type": "string",
+      "description": "Document author"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version number"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Dependencies on other documents or components"
+    },
+    "implements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Specifications or requirements this implements"
+    },
+    "supersedes": {
+      "type": "string",
+      "description": "Previous document this replaces"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Search keywords for discoverability"
+    }
+  }
+}

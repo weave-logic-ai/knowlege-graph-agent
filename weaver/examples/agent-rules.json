@@ -1,0 +1,223 @@
+{
+  "$schema": "https://weave-nn.dev/schemas/agent-rules-schema.json",
+  "version": "1.0",
+  "description": "Agent orchestration rules for intelligent task routing and management",
+  "rules": [
+    {
+      "id": "ui-frontend-specialist",
+      "name": "Route UI/Frontend Tasks",
+      "description": "Routes tasks involving React/UI files to specialized frontend agent",
+      "condition": "task.files && (task.files.some(f => f.includes('.tsx') || f.includes('.jsx') || f.includes('.css')))",
+      "action": "route_to_agent",
+      "agent": "coder",
+      "priority": 100,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "frontend"
+      }
+    },
+    {
+      "id": "api-backend-specialist",
+      "name": "Route API/Backend Tasks",
+      "description": "Routes API and backend tasks to backend specialist",
+      "condition": "task.description.toLowerCase().includes('api') || task.description.toLowerCase().includes('backend') || task.description.toLowerCase().includes('database')",
+      "action": "route_to_agent",
+      "agent": "coder",
+      "priority": 100,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "backend"
+      }
+    },
+    {
+      "id": "parallel-test-split",
+      "name": "Split Complex Testing Tasks",
+      "description": "Automatically splits testing tasks with high complexity into parallel subtasks for faster execution",
+      "condition": "task.type === 'testing' && task.estimatedComplexity > 5",
+      "action": "split_parallel",
+      "max_subtasks": 4,
+      "priority": 90,
+      "enabled": true,
+      "metadata": {
+        "category": "splitting",
+        "reason": "parallel_execution"
+      }
+    },
+    {
+      "id": "parallel-implementation-split",
+      "name": "Split Large Implementation Tasks",
+      "description": "Splits large implementation tasks that mention multiple features or components",
+      "condition": "task.description.length > 200 && (task.description.includes(',') || task.description.includes(' and '))",
+      "action": "split_parallel",
+      "max_subtasks": 3,
+      "priority": 85,
+      "enabled": true,
+      "metadata": {
+        "category": "splitting",
+        "reason": "task_complexity"
+      }
+    },
+    {
+      "id": "critical-path-priority-boost",
+      "name": "Boost Critical Path Priorities",
+      "description": "Increases priority for tasks with many dependencies (likely on critical path)",
+      "condition": "task.dependencies && task.dependencies.length > 2",
+      "action": "adjust_priority",
+      "priority_adjustment": 25,
+      "priority": 80,
+      "enabled": true,
+      "metadata": {
+        "category": "priority",
+        "reason": "critical_path"
+      }
+    },
+    {
+      "id": "urgent-deadline-boost",
+      "name": "Urgent Deadline Priority",
+      "description": "Boosts priority for tasks with urgent or deadline keywords",
+      "condition": "task.description.toLowerCase().includes('urgent') || task.description.toLowerCase().includes('asap') || task.description.toLowerCase().includes('deadline')",
+      "action": "adjust_priority",
+      "priority_adjustment": 30,
+      "priority": 95,
+      "enabled": true,
+      "metadata": {
+        "category": "priority",
+        "reason": "deadline_urgency"
+      }
+    },
+    {
+      "id": "research-analysis-routing",
+      "name": "Route Research & Analysis Tasks",
+      "description": "Routes research, analysis, and investigation tasks to researcher agent",
+      "condition": "task.description.toLowerCase().includes('research') || task.description.toLowerCase().includes('analyze') || task.description.toLowerCase().includes('investigate')",
+      "action": "route_to_agent",
+      "agent": "researcher",
+      "priority": 95,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "research"
+      }
+    },
+    {
+      "id": "architecture-design-routing",
+      "name": "Route Architecture & Design Tasks",
+      "description": "Routes system design and architecture tasks to architect agent",
+      "condition": "task.description.toLowerCase().includes('design') || task.description.toLowerCase().includes('architecture') || task.description.toLowerCase().includes('structure')",
+      "action": "route_to_agent",
+      "agent": "architect",
+      "priority": 95,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "architecture"
+      }
+    },
+    {
+      "id": "testing-qa-routing",
+      "name": "Route Testing & QA Tasks",
+      "description": "Routes testing and quality assurance tasks to tester agent",
+      "condition": "task.type === 'testing' || task.description.toLowerCase().includes('test') || task.description.toLowerCase().includes('qa')",
+      "action": "route_to_agent",
+      "agent": "tester",
+      "priority": 90,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "testing"
+      }
+    },
+    {
+      "id": "code-review-routing",
+      "name": "Route Code Review Tasks",
+      "description": "Routes code review and quality analysis tasks to analyst agent",
+      "condition": "task.description.toLowerCase().includes('review') || task.description.toLowerCase().includes('audit') || task.description.toLowerCase().includes('quality')",
+      "action": "route_to_agent",
+      "agent": "analyst",
+      "priority": 85,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "analysis"
+      }
+    },
+    {
+      "id": "planning-decomposition-routing",
+      "name": "Route Planning & Decomposition Tasks",
+      "description": "Routes planning and goal decomposition tasks to planner agent",
+      "condition": "task.description.toLowerCase().includes('plan') || task.description.toLowerCase().includes('decompose') || task.description.toLowerCase().includes('estimate')",
+      "action": "route_to_agent",
+      "agent": "planner",
+      "priority": 90,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "planning"
+      }
+    },
+    {
+      "id": "blocking-tasks-priority",
+      "name": "Prioritize Blocking Tasks",
+      "description": "Increases priority for tasks that block many other tasks",
+      "condition": "task.metadata && task.metadata.dependentCount > 3",
+      "action": "adjust_priority",
+      "priority_adjustment": 20,
+      "priority": 75,
+      "enabled": true,
+      "metadata": {
+        "category": "priority",
+        "reason": "blocking_many_tasks"
+      }
+    },
+    {
+      "id": "security-critical-tasks",
+      "name": "Prioritize Security Tasks",
+      "description": "Boosts priority for security-related tasks",
+      "condition": "task.description.toLowerCase().includes('security') || task.description.toLowerCase().includes('vulnerability') || task.description.toLowerCase().includes('auth')",
+      "action": "adjust_priority",
+      "priority_adjustment": 35,
+      "priority": 98,
+      "enabled": true,
+      "metadata": {
+        "category": "priority",
+        "reason": "security_critical"
+      }
+    },
+    {
+      "id": "performance-optimization-routing",
+      "name": "Route Performance Optimization",
+      "description": "Routes performance optimization tasks to specialized optimizer",
+      "condition": "task.description.toLowerCase().includes('optimize') || task.description.toLowerCase().includes('performance') || task.description.toLowerCase().includes('slow')",
+      "action": "route_to_agent",
+      "agent": "coder",
+      "priority": 85,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "optimization"
+      }
+    },
+    {
+      "id": "documentation-tasks",
+      "name": "Handle Documentation Tasks",
+      "description": "Routes documentation tasks appropriately",
+      "condition": "task.description.toLowerCase().includes('document') || task.description.toLowerCase().includes('readme') || task.files && task.files.some(f => f.endsWith('.md'))",
+      "action": "route_to_agent",
+      "agent": "coder",
+      "priority": 70,
+      "enabled": true,
+      "metadata": {
+        "category": "routing",
+        "specialization": "documentation"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2025-01-01",
+    "author": "Weave-NN Team",
+    "version": "1.0.0",
+    "notes": "Example configuration demonstrating all rule types and best practices"
+  }
+}

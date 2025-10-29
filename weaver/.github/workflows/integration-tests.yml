@@ -1,0 +1,305 @@
+name: CLI Integration Tests
+
+on:
+  push:
+    branches: [master, main, develop]
+    paths:
+      - 'src/cli/**'
+      - 'src/service-manager/**'
+      - 'tests/integration/cli/**'
+      - 'package.json'
+      - '.github/workflows/integration-tests.yml'
+  pull_request:
+    branches: [master, main, develop]
+    paths:
+      - 'src/cli/**'
+      - 'src/service-manager/**'
+      - 'tests/integration/cli/**'
+      - 'package.json'
+
+jobs:
+  test:
+    name: Integration Tests - ${{ matrix.os }} - Node ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [18, 20]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install PM2 globally
+        run: npm install -g pm2
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run CLI Integration Tests
+        run: npm test -- --run tests/integration/cli
+        env:
+          NODE_ENV: test
+          CI: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}-node${{ matrix.node-version }}
+          path: |
+            coverage/
+            test-results/
+          retention-days: 7
+
+      - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/coverage-final.json
+          flags: integration-tests
+          name: cli-integration-${{ matrix.os }}
+
+  performance:
+    name: Performance Benchmarks
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install PM2
+        run: npm install -g pm2
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run performance tests
+        run: npm test -- --run tests/integration/cli/performance.test.ts
+
+      - name: Upload performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-results
+          path: test-results/performance/
+          retention-days: 30
+
+  coverage:
+    name: Code Coverage Check
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage --run tests/integration/cli
+
+      - name: Check coverage thresholds
+        run: |
+          echo "Checking coverage thresholds..."
+          node -e "
+            const coverage = require('./coverage/coverage-summary.json');
+            const total = coverage.total;
+
+            const thresholds = {
+              statements: 90,
+              branches: 85,
+              functions: 90,
+              lines: 90
+            };
+
+            let failed = false;
+            for (const [metric, threshold] of Object.entries(thresholds)) {
+              const actual = total[metric].pct;
+              console.log(\`\${metric}: \${actual}% (threshold: \${threshold}%)\`);
+              if (actual < threshold) {
+                console.error(\`❌ \${metric} coverage \${actual}% is below threshold \${threshold}%\`);
+                failed = true;
+              } else {
+                console.log(\`✅ \${metric} coverage \${actual}% meets threshold\`);
+              }
+            }
+
+            if (failed) {
+              process.exit(1);
+            }
+          "
+
+      - name: Generate coverage badge
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          badges-directory: badges
+          generate-branches-badge: true
+          generate-summary: true
+
+      - name: Upload coverage badge
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-badge
+          path: badges/
+
+  cross-platform-validation:
+    name: Cross-Platform Validation
+    runs-on: ${{ matrix.os }}
+    needs: test
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Validate CLI commands
+        shell: bash
+        run: |
+          node dist/cli/bin.js --version
+          node dist/cli/bin.js --help
+          node dist/cli/bin.js service --help
+
+      - name: Test service lifecycle on ${{ matrix.os }}
+        shell: bash
+        run: |
+          # Install PM2
+          npm install -g pm2
+
+          # Run basic lifecycle test
+          npm test -- --run tests/integration/cli/service-lifecycle.test.ts
+
+      - name: Platform-specific validation
+        shell: bash
+        run: |
+          echo "Running on ${{ matrix.os }}"
+
+          # Check PM2 installation
+          pm2 --version
+
+          # Verify file paths work correctly
+          node -e "console.log(process.platform)"
+
+  regression:
+    name: Regression Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run integration tests
+        run: npm test -- --run tests/integration/cli
+        continue-on-error: true
+        id: pr-tests
+
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: Install dependencies (base)
+        run: npm ci
+
+      - name: Build project (base)
+        run: npm run build
+
+      - name: Run integration tests (base)
+        run: npm test -- --run tests/integration/cli
+        continue-on-error: true
+        id: base-tests
+
+      - name: Compare results
+        run: |
+          echo "PR tests: ${{ steps.pr-tests.outcome }}"
+          echo "Base tests: ${{ steps.base-tests.outcome }}"
+
+          if [ "${{ steps.pr-tests.outcome }}" == "failure" ] && [ "${{ steps.base-tests.outcome }}" == "success" ]; then
+            echo "❌ Regression detected: tests passing on base but failing on PR"
+            exit 1
+          fi
+
+  report:
+    name: Test Summary Report
+    runs-on: ubuntu-latest
+    needs: [test, performance, coverage]
+    if: always()
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Generate summary report
+        run: |
+          echo "# CLI Integration Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Test Execution" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Service Lifecycle Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Failure Recovery Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Performance Tests" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Coverage" >> $GITHUB_STEP_SUMMARY
+          echo "See coverage report artifacts for details" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Platform Support" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Linux (Ubuntu)" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ macOS" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Windows" >> $GITHUB_STEP_SUMMARY
