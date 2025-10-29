@@ -224,11 +224,8 @@ export class IconApplicationWorkflow {
 
       // Write back
       if (!this.config.dryRun) {
-        // Stringify with custom options to preserve emoji characters
-        const updatedContent = matter.stringify(markdownContent, frontmatter, {
-          // Ensure emojis aren't escaped to unicode
-          lineWidth: -1,
-        });
+        // Stringify to preserve emoji characters
+        const updatedContent = matter.stringify(markdownContent, frontmatter);
         await writeFile(filePath, updatedContent, 'utf-8');
       }
 

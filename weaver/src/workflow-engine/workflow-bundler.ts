@@ -1,0 +1,312 @@
+/**
+ * Workflow Bundler - Transform compiled workflows into VM-compatible bundles
+ *
+ * This module solves the critical issue of workflow execution in Workflow DevKit:
+ * - Input: Compiled .workflow.js files with ES6 imports
+ * - Output: Self-contained JavaScript strings that can run in VM context
+ * - Functionality: Bundles all dependencies inline using esbuild
+ */
+
+import { build } from 'esbuild';
+import { glob } from 'glob';
+import path from 'path';
+import fs from 'fs/promises';
+import { logger } from '../utils/logger.js';
+
+/**
+ * Workflow bundle metadata
+ */
+export interface WorkflowBundle {
+  /** Workflow ID (derived from file path) */
+  workflowId: string;
+  /** File path to original workflow */
+  filePath: string;
+  /** Bundled JavaScript code (VM-compatible) */
+  bundle: string;
+  /** Workflow function name */
+  functionName: string;
+  /** Bundle size in bytes */
+  size: number;
+}
+
+/**
+ * Bundle a single workflow file into VM-compatible JavaScript
+ *
+ * @param workflowPath - Absolute path to compiled .workflow.js file
+ * @returns Workflow bundle with metadata
+ */
+export async function bundleWorkflow(workflowPath: string): Promise<WorkflowBundle> {
+  try {
+    logger.debug('Bundling workflow', { workflowPath });
+
+    // Extract workflow metadata from file path
+    const metadata = extractWorkflowMetadata(workflowPath);
+
+    // Bundle workflow with esbuild
+    const result = await build({
+      entryPoints: [workflowPath],
+      bundle: true,
+      format: 'iife', // Immediately Invoked Function Expression
+      globalName: '__workflow_bundle__', // Global variable name
+      platform: 'node',
+      write: false,
+      // Externalize Node.js built-ins (they're available in VM context)
+      external: [
+        'fs',
+        'fs/promises',
+        'path',
+        'url',
+        'stream',
+        'events',
+        'util',
+        'os',
+        'crypto',
+        'child_process',
+        'http',
+        'https',
+        'net',
+        'tls',
+        'dns',
+        'zlib',
+        'buffer',
+        'assert',
+        'console',
+        'process',
+        'timers',
+        'querystring',
+        'string_decoder',
+        'punycode',
+      ],
+      minify: false, // Keep readable for debugging
+      sourcemap: false,
+      target: 'node18',
+      logLevel: 'warning',
+    });
+
+    if (result.outputFiles.length === 0) {
+      throw new Error('esbuild produced no output');
+    }
+
+    const bundleCode = result.outputFiles[0].text;
+
+    // Wrap bundle to register in globalThis.__private_workflows
+    const wrappedBundle = createWrappedBundle(bundleCode, metadata);
+
+    const size = Buffer.byteLength(wrappedBundle, 'utf-8');
+
+    logger.debug('Workflow bundled successfully', {
+      workflowId: metadata.workflowId,
+      functionName: metadata.functionName,
+      size,
+    });
+
+    return {
+      workflowId: metadata.workflowId,
+      filePath: workflowPath,
+      bundle: wrappedBundle,
+      functionName: metadata.functionName,
+      size,
+    };
+  } catch (error) {
+    logger.error('Failed to bundle workflow', error instanceof Error ? error : new Error(String(error)), {
+      workflowPath,
+    });
+    throw error;
+  }
+}
+
+/**
+ * Bundle all workflows in dist/workflows/ directory
+ *
+ * @param workflowsDir - Directory containing compiled workflows (default: dist/workflows)
+ * @returns Array of workflow bundles
+ */
+export async function bundleAllWorkflows(
+  workflowsDir: string = 'dist/workflows'
+): Promise<WorkflowBundle[]> {
+  try {
+    logger.info('Bundling all workflows', { workflowsDir });
+
+    // Find all .workflow.js files
+    const pattern = path.join(workflowsDir, '**/*.workflow.js');
+    const workflowFiles = await glob(pattern);
+
+    if (workflowFiles.length === 0) {
+      logger.warn('No workflow files found', { pattern });
+      return [];
+    }
+
+    logger.info('Found workflow files', { count: workflowFiles.length });
+
+    // Bundle all workflows in parallel
+    const bundles = await Promise.all(
+      workflowFiles.map((file) => bundleWorkflow(file))
+    );
+
+    const totalSize = bundles.reduce((sum, b) => sum + b.size, 0);
+
+    logger.info('All workflows bundled successfully', {
+      count: bundles.length,
+      totalSize,
+      workflows: bundles.map((b) => b.workflowId),
+    });
+
+    return bundles;
+  } catch (error) {
+    logger.error('Failed to bundle workflows', error instanceof Error ? error : new Error(String(error)));
+    throw error;
+  }
+}
+
+/**
+ * Combine multiple workflow bundles into a single bundle string
+ *
+ * This creates a single JavaScript string that registers all workflows
+ * in globalThis.__private_workflows Map.
+ *
+ * @param bundles - Array of workflow bundles
+ * @returns Combined bundle string
+ */
+export function combineBundles(bundles: WorkflowBundle[]): string {
+  if (bundles.length === 0) {
+    logger.warn('No bundles to combine');
+    return createEmptyBundle();
+  }
+
+  const combinedBundle = `
+// Workflow Bundle - Auto-generated by workflow-bundler.ts
+// Generated: ${new Date().toISOString()}
+// Workflows: ${bundles.length}
+
+// Initialize workflow registry
+if (!globalThis.__private_workflows) {
+  globalThis.__private_workflows = new Map();
+  console.log('✅ Initialized workflow registry');
+}
+
+${bundles.map((b) => b.bundle).join('\n\n')}
+
+// Log registered workflows
+console.log('✅ Registered workflows:', Array.from(globalThis.__private_workflows.keys()));
+`;
+
+  return combinedBundle;
+}
+
+/**
+ * Extract workflow metadata from file path
+ *
+ * Example:
+ * Input: dist/workflows/kg/document-connection.workflow.js
+ * Output:
+ *   workflowId: workflow//src/workflows/kg/document-connection.workflow.ts//documentConnectionWorkflow
+ *   functionName: documentConnectionWorkflow
+ */
+function extractWorkflowMetadata(filePath: string): {
+  workflowId: string;
+  functionName: string;
+} {
+  // Convert dist path back to src path for workflow ID
+  const srcPath = filePath
+    .replace(/^dist\//, 'src/')
+    .replace(/\.js$/, '.ts');
+
+  // Extract function name from filename
+  // Example: document-connection.workflow.js → documentConnectionWorkflow
+  const filename = path.basename(filePath, '.workflow.js');
+  const functionName = toCamelCase(filename) + 'Workflow';
+
+  // Workflow ID format: workflow//src/path/to/file.ts//functionName
+  const workflowId = `workflow//${srcPath}//${functionName}`;
+
+  return { workflowId, functionName };
+}
+
+/**
+ * Create wrapped bundle that registers workflow in globalThis
+ */
+function createWrappedBundle(
+  bundleCode: string,
+  metadata: { workflowId: string; functionName: string }
+): string {
+  return `
+// Workflow: ${metadata.workflowId}
+(function() {
+  try {
+    ${bundleCode}
+
+    // Extract workflow function from bundle
+    const workflowFunction = __workflow_bundle__.${metadata.functionName};
+
+    if (typeof workflowFunction !== 'function') {
+      throw new Error('Workflow function not found in bundle: ${metadata.functionName}');
+    }
+
+    // Set workflow ID metadata
+    workflowFunction.workflowId = "${metadata.workflowId}";
+
+    // Register workflow
+    globalThis.__private_workflows.set(
+      "${metadata.workflowId}",
+      workflowFunction
+    );
+
+    console.log('✅ Registered workflow: ${metadata.workflowId}');
+  } catch (error) {
+    console.error('❌ Failed to register workflow: ${metadata.workflowId}', error);
+    throw error;
+  }
+})();
+`;
+}
+
+/**
+ * Create empty bundle when no workflows are found
+ */
+function createEmptyBundle(): string {
+  return `
+// Empty workflow bundle - no workflows found
+
+if (!globalThis.__private_workflows) {
+  globalThis.__private_workflows = new Map();
+}
+
+console.log('⚠️  No workflows registered (no workflow files found)');
+`;
+}
+
+/**
+ * Convert kebab-case to camelCase
+ *
+ * Example: document-connection → documentConnection
+ */
+function toCamelCase(str: string): string {
+  return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+}
+
+/**
+ * Check if a workflow bundle is valid
+ *
+ * Validates:
+ * - Bundle is non-empty
+ * - Contains workflow function
+ * - Has workflow ID
+ */
+export function validateBundle(bundle: WorkflowBundle): boolean {
+  if (!bundle.bundle || bundle.bundle.trim().length === 0) {
+    logger.error('Invalid bundle: empty bundle code', undefined, { workflowId: bundle.workflowId });
+    return false;
+  }
+
+  if (!bundle.workflowId || bundle.workflowId.trim().length === 0) {
+    logger.error('Invalid bundle: missing workflow ID');
+    return false;
+  }
+
+  if (!bundle.functionName || bundle.functionName.trim().length === 0) {
+    logger.error('Invalid bundle: missing function name', undefined, { workflowId: bundle.workflowId });
+    return false;
+  }
+
+  return true;
+}
