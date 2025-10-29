@@ -25,11 +25,12 @@ tags:
   - infrastructure
 type: business
 visual:
-  icon: "\U0001F4BC"
+  icon: 💼
   cssclasses:
     - type-business
     - status-draft
 updated_date: '2025-10-28'
+icon: 💼
 ---
 
 # Cost Analysis & Break-Even Model

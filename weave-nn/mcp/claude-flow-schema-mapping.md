@@ -16,13 +16,14 @@ related:
   - '[[model-context-protocol]]'
   - '[[../_planning/phases/phase-4-claude-flow-integration]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Claude-Flow Schema Mapping
@@ -370,6 +371,21 @@ tags:
 
 A knowledge graph is a structured representation of knowledge using nodes and edges...
 
+
+
+
+
+
+
+## Related
+
+[[claude-flow-tight-coupling]]
+## Related
+
+[[phase-5-claude-flow-integration]]
+## Related
+
+[[mcp-integration-hub]]
 ## Related
 - [[wikilinks]]
 - [[weave-nn]]

@@ -20,7 +20,7 @@ tags:
 type: documentation
 scope: component
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -28,6 +28,7 @@ visual:
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # MCP-Based AI Integration
@@ -65,6 +66,36 @@ As a **knowledge worker using AI tools**, I want **AI assistants to interact wit
 
 **Security Considerations**: AI operations must respect workspace permissions, provide clear audit logs, and allow users to review/approve significant changes.
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[data-portability]]
+## Related
+
+[[decision-tracking]] • [[rest-api-integration]]
+## Related
+
+[[obsidian-tasks-integration]]
+## Related
+
+[[knowledge-graph-visualization]]
+## Related
+
+[[markdown-editor-component]]
+## Related
+
+[[agent-automation]]
 ## Related
 
 - [[../concepts/ai-collaboration]]

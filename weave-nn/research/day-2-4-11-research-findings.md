@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # Research Findings: Obsidian REST API, Agent Rules & Visualization
 
 **Research Agent**: Comprehensive Research for Phase 5 MVP Development
@@ -1038,7 +1043,8 @@ def test_memory_sync_node_to_memory(rule_engine):
 ```yaml
 ---
 type: concept              # Node classification
-icon: lightbulb           # Lucide icon name
+icon: 💡
+          # Lucide icon name
 status: active            # Current state
 created_date: "2025-10-22"
 tags:

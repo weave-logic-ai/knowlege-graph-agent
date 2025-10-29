@@ -13,12 +13,13 @@ related:
   - '[[compound-learning]]'
   - '[[local-first-architecture]]'
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Neural Network Junction
@@ -219,6 +220,26 @@ While MVP is local loop only, the junction architecture enables:
 
 But for MVP: **Single user, single vault, single junction** (Weaver).
 
+
+
+
+
+
+
+
+
+## Related
+
+[[event-driven-architecture]] • [[singleton-pattern-choice]] • [[agent-automation]] • [[ai-agent-integration]]
+## Related
+
+[[data-knowledge-layer]]
+## Related
+
+[[knowledge-graph-integration-architecture]]
+## Related
+
+[[local-first-architecture]]
 ## Related Concepts
 
 - [[concepts/weaver|Weaver]]

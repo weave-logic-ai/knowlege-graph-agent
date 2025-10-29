@@ -33,13 +33,14 @@ author: ai-generated
 version: 1.0.0
 priority: medium
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-complete
     - priority-medium
     - domain-weaver
+icon: 🏗️
 ---
 
 # Vector DB Markdown Workflow Architecture
@@ -745,6 +746,21 @@ embeddings: ["emb-abc", "emb-def", ...]
 Every file has markdown links to related files:
 
 ```markdown
+
+
+
+
+
+
+## Related
+
+[[adopt-weaver-workflow-proxy]]
+## Related
+
+[[chunking-implementation-guide]]
+## Related
+
+[[MARKDOWN-WORKFLOW-EXAMPLES]]
 ## Related Files
 - [Document](../../sources/doc-123/metadata.md)
 - [Chunk](../../sources/doc-123/chunks/chunk-001.md)

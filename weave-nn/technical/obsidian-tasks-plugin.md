@@ -27,12 +27,13 @@ tags:
   - task-management
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Obsidian Tasks Plugin
@@ -517,6 +518,41 @@ async def list_pending_tasks(note_path: str, priority: str = None) -> list[dict]
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[yaml-frontmatter]]
+## Related
+
+[[wikilinks]]
+## Related
+
+[[mcp]]
+## Related
+
+[[sqlite]] • [[weaver]]
+## Related
+
+[[docker-compose]]
+## Related
+
+[[n8n-workflow-automation]] • [[property-visualizer]]
+## Related
+
+[[uvicorn]]
 ## Related Nodes
 
 **Architecture**:

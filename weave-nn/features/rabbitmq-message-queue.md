@@ -50,6 +50,7 @@ tags:
   - category/async
 type: documentation
 version: '3.0'
+icon: message-square
 ---
 
 # RabbitMQ Message Queue
@@ -96,6 +97,31 @@ version: '3.0'
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-2-documentation-capture]] • [[developer-onboarding]]
+## Related
+
+[[phase-4a-decision-closure]]
+## Related
+
+[[phase-10-mvp-readiness-launch]]
+## Related
+
+[[obsidian-native-integration-analysis]]
+## Related
+
+[[github-issues-integration]]
 ## Original Documentation (For Reference)
 
 ---

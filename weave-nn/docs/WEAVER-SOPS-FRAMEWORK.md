@@ -31,13 +31,14 @@ author: ai-generated
 version: 1.0.0
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-reference
     - status-complete
     - priority-high
     - domain-weaver
   graph_group: navigation
+icon: 📄
 ---
 
 # Weaver Standard Operating Procedures (SOPs) Framework

@@ -19,13 +19,14 @@ tags:
 type: template
 scope: feature
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-template
     - 'status-[planned|in-progress|completed|deferred]'
     - 'priority-[critical|high|medium|low]'
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # [Feature Name]

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # JavaScript Implementation Status
 
 **Date**: 2025-10-23

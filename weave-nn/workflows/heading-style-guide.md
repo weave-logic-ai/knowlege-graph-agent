@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔄
+icon: 🔄
+---
 # Heading Style Guide for Perplexity-Based Chunking
 
 ## Overview

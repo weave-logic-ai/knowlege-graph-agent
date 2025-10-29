@@ -35,7 +35,7 @@ phase_id: PHASE-12
 framework_source: 'arXiv:2510.09244v1'
 priority: high
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -43,6 +43,7 @@ visual:
     - priority-high
     - phase-12
     - domain-phase-12
+icon: 📚
 ---
 
 # Phase 12: Four-Pillar Autonomous Agent System

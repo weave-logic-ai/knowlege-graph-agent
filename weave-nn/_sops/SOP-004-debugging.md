@@ -12,12 +12,13 @@ estimated_duration: 30-120 minutes
 complexity: medium
 type: sop
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-004: Systematic Debugging Workflow
@@ -610,6 +611,11 @@ mcp__claude-flow__memory_usage({
 })
 ```
 
+
+
+## Related
+
+[[SOP-007-code-review]] • [[SOP-008-performance-analysis]]
 ## Related SOPs
 
 - **SOP-001**: Feature Planning (to prevent bugs through better planning)

@@ -11,12 +11,12 @@ tags:
   - groups
   - standards
   - mvp
-icon: settings
+icon: ⚙️
 cssclasses:
   - workflow
   - critical
 visual:
-  icon: "\U0001F504"
+  icon: 🔄
   cssclasses:
     - type-workflow
     - status-active
@@ -146,6 +146,21 @@ tags:
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[day-2-rest-api-client]]
+## Related
+
+[[day-11-properties-visualization]]
+## Related
+
+[[canvas-creation-process]]
 ## 📊 Property Groups
 
 Obsidian allows grouping properties for better organization:

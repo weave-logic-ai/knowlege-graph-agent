@@ -30,13 +30,14 @@ tags:
   - durable-execution
 domain: weaver
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-planned
     - domain-weaver
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Weaver (workflow.dev) - Durable Workflow Engine
@@ -1371,6 +1372,36 @@ See [[../docs/weaver-migration-guide|Weaver Migration Guide]] for detailed step-
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[docker]]
+## Related
+
+[[PLANNING-REVIEW-2025-10-22-3b-workflow-automation]]
+## Related
+
+[[docker-compose]]
+## Related
+
+[[agent-rules-workflows]]
+## Related
+
+[[obsidian-tasks-plugin]]
+## Related
+
+[[obsidian-local-rest-api-plugin]]
 ## Related Nodes
 
 **Architecture**:

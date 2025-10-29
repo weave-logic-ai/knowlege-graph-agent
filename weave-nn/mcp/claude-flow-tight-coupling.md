@@ -15,13 +15,14 @@ related:
   - '[[agent-rules]]'
   - '[[../concepts/weave-nn]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Claude-Flow Tight Coupling Architecture
@@ -41,6 +42,41 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[task-completion-feedback-loop]]
+## Related
+
+[[javascript-typescript-stack-pivot]]
+## Related
+
+[[agent-rules]]
+## Related
+
+[[claude-flow-schema-mapping]]
+## Related
+
+[[claude-flow-memory-visualization]]
+## Related
+
+[[mcp-integration-hub]]
+## Related
+
+[[MCP-DIRECTORY-UPDATE-PLAN]]
 ## 🏗️ Architecture (MVP with Weaver)
 
 ### Single Source of Truth with Weaver Integration

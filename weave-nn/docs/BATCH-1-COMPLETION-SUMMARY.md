@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Batch 1 Completion Summary - Mass Connection Operation
 
 **Date**: 2025-10-28

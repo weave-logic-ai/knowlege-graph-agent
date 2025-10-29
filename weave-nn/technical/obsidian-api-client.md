@@ -32,13 +32,14 @@ tags:
   - obsidian
 type: documentation
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-implemented
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # <span class="lucide-plug"></span> Obsidian REST API Client
@@ -60,6 +61,26 @@ With 417 lines of well-documented code, the client handles all standard CRUD ope
 - **Maintainer**: Weave-NN Development Team
 - **License**: MIT
 
+
+
+
+
+
+
+
+
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[pika-rabbitmq-client]]
+## Related
+
+[[pyyaml]]
+## Related
+
+[[gitpython]]
 ## Key Features
 
 - **Authentication Management**: Automatic Bearer token injection in all requests with header configuration

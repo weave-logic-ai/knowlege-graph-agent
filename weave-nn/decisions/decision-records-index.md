@@ -16,6 +16,7 @@ visual:
     - scope-mvp
 scope: system
 version: '3.0'
+icon: ✅
 ---
 
 # Weave-NN Decision Index
@@ -40,6 +41,11 @@ version: '3.0'
 
 ---
 
+
+
+## Related
+
+[[phase-4a-decision-closure]]
 ## ✅ Executive Decisions
 
 ### D-001: Project Approach

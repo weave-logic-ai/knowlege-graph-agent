@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Vault Architype Analysis - Missing Primitive Directories
 
 **Date**: 2025-10-23

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 12: MCP Tools Gap Coverage Matrix
 
 **Analysis Date**: 2025-10-27

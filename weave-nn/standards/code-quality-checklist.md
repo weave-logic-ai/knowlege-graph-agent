@@ -12,12 +12,13 @@ cssclasses:
   - standard
   - checklist
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-standard
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Code Quality Checklist
@@ -58,6 +59,11 @@ bun run build
 - [ ] Comments added for complex logic
 - [ ] Functions are focused and single-purpose
 
+
+
+## Related
+
+[[standards-overview-hub]]
 ## Task Completion Flow
 
 ```

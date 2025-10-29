@@ -20,7 +20,7 @@ related_research:
     Analysis]]
 domain: knowledge-graph
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
@@ -29,6 +29,7 @@ visual:
     - domain-knowledge-graph
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # Knowledge Graph Integration Architecture
@@ -54,6 +55,11 @@ This architecture integrates three major research streams into Weave-NN:
 
 ---
 
+
+
+## Related
+
+[[task-completion-integration-guide]] • [[data-knowledge-layer]] • [[neural-network-junction]] • [[mcp-integration-hub]] • [[ai-agent-integration]]
 ## 1. Priority Concepts to Create
 
 ### 1.1 High Priority Concepts (C-016 through C-025)

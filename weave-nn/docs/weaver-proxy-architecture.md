@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weaver: Neural Network Junction & Workflow Proxy for Weave-NN
 
 **Status**: Proposed Architecture

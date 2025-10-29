@@ -10,13 +10,14 @@ cssclasses:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-directory_index
     - priority-high
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Research Directory
@@ -32,6 +33,11 @@ This directory contains research papers, findings, and analysis that inform Weav
 
 ---
 
+
+
+## Related
+
+[[RESEARCH-DIRECTORY-HUB]]
 ## Directory Organization
 
 ### Academic Research

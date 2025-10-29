@@ -26,7 +26,7 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F310"
+  icon: 🌐
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -35,6 +35,7 @@ visual:
     - domain-meta
   graph_group: navigation
 updated_date: '2025-10-28'
+icon: 🌐
 ---
 
 # Documentation Directory Hub

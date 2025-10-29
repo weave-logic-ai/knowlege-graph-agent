@@ -16,12 +16,13 @@ tags:
   - - additional-tags
 type: template
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-template
     - 'status-[active|planned|deprecated|draft]'
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # [Concept Name]

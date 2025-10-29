@@ -12,12 +12,13 @@ estimated_duration: 20-40 minutes
 complexity: low
 type: sop
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-005: Documentation Generation Workflow
@@ -519,6 +520,16 @@ mcp__claude-flow__memory_usage({
 })
 ```
 
+
+
+
+
+## Related
+
+[[ARCHIVE-INDEX]] • [[ARCHIVE-INTEGRATION-COMPLETE]] • [[DIRECTORY-HUB-CREATION-SUMMARY]]
+## Related
+
+[[SOP-006-markdown-management]]
 ## Related SOPs
 
 - **SOP-001**: Feature Planning (plan documentation as part of features)

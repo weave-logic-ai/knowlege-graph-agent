@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weaver: Unified MCP + Workflows + File Watcher
 
 **Date**: 2025-10-23

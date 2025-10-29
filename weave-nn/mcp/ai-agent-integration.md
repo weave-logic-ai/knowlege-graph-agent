@@ -15,11 +15,12 @@ related:
   - '[[claude-desktop]]'
   - '[[knowledge-graph-maintenance]]'
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # AI Agent Integration via MCP
@@ -30,6 +31,31 @@ AI agent integration in Weave-NN follows a clean architectural pattern: AI model
 
 The integration works by configuring AI environments (Claude Desktop, VSCode, custom applications) to load MCP servers that expose knowledge graph operations. When an AI agent needs to modify the graph, it issues MCP tool calls that are executed by the server, which handles all the low-level details of file manipulation, markdown formatting, and metadata management.
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-5-mcp-integration]]
+## Related
+
+[[weaver-mcp-tools]]
+## Related
+
+[[agent-rules-workflows]]
+## Related
+
+[[knowledge-graph-integration-architecture]]
+## Related
+
+[[mcp-integration-hub]]
 ## How AI Agents Edit the Knowledge Graph
 
 When an AI agent interacts with Weave-NN, it follows this workflow:

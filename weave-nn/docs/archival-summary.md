@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Archival Summary: Archetype Directory Reorganization
 
 **Date**: 2025-10-23

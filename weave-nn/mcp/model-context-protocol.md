@@ -13,11 +13,12 @@ related:
   - '[[cyanheads-obsidian-mcp-server]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-protocol
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Model Context Protocol (MCP)

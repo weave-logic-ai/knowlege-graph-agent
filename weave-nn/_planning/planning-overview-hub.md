@@ -9,7 +9,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-planning-hub
     - status-active
@@ -17,6 +17,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Planning & Work Log Hub
@@ -98,6 +99,11 @@ Planning review snapshots and status reports.
 
 ---
 
+
+
+## Related
+
+[[phase-management]]
 ## 🔄 Task Completion Workflow
 
 ### Task Log Flow

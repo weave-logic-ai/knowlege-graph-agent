@@ -25,11 +25,12 @@ tags:
   - use-case
 type: concept
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # AI-Generated Documentation
@@ -217,6 +218,11 @@ This metadata enables:
 
 ---
 
+
+
+## Related
+
+[[0.1.doc_test.1.5f93f9]]
 ## Related Concepts
 
 - [[weave-nn|Weave-NN]] - Platform designed for AI-generated markdown

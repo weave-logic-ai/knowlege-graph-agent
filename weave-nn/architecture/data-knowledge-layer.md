@@ -20,13 +20,14 @@ tags:
   - temporal
 type: architecture
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # Data & Knowledge Graph Layer
@@ -65,6 +66,16 @@ Semantic search combines vector similarity with graph structure, ranking results
 
 The Graphiti integration decision involves trade-offs between maturity and temporal-native design. PostgreSQL with extensions offers battle-tested reliability and operational familiarity. Graphiti provides temporal reasoning as a first-class feature, simplifying time-aware queries but requiring investment in an emerging technology.
 
+
+
+
+
+## Related
+
+[[neural-network-junction]]
+## Related
+
+[[knowledge-graph-integration-architecture]]
 ## Related
 
 ### Architecture

@@ -21,7 +21,7 @@ tags:
 type: documentation
 scope: feature
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -29,6 +29,7 @@ visual:
     - priority-low
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Automated Daily Logs
@@ -62,6 +63,66 @@ Requires comprehensive activity tracking infrastructure across all system compon
 - Background job scheduling for daily generation
 - Estimated effort: 6-8 weeks
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[multi-vault]]
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[team-analytics]]
+## Related
+
+[[PLANNING-DIRECTORY-HUB]] • [[phase-13-overview]]
+## Related
+
+[[agent-automation]]
+## Related
+
+[[rest-api-integration]]
+## Related
+
+[[phase-management]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[auto-tagging]]
+## Related
+
+[[decision-tracking]]
+## Related
+
+[[daily-log-automation]]
 ## Related
 - [[../concepts/temporal-queries|Temporal Queries]]
 - [[todo-management|Todo Management Feature]]

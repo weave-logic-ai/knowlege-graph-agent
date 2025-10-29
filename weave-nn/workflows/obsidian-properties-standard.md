@@ -3,7 +3,7 @@ type: workflow
 workflow_name: Obsidian Properties Standard
 status: active
 created_date: '2025-10-20'
-icon: settings
+icon: ⚙️
 cssclasses:
   - workflow
   - standard
@@ -14,7 +14,7 @@ tags:
   - standard
   - formatting
 visual:
-  icon: "\U0001F504"
+  icon: 🔄
   cssclasses:
     - type-workflow
     - status-active
@@ -41,6 +41,16 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+## Related
+
+[[yaml-frontmatter]]
+## Related
+
+[[wikilinks]]
 ## 📋 Standard Properties by Node Type
 
 ### Concept Nodes
@@ -50,7 +60,8 @@ updated_date: '2025-10-28'
 type: concept
 concept_id: "C-XXX"
 concept_name: "[Name]"
-icon: lightbulb          # 💡 Lucide icon for concepts
+icon: 💡
+         # 💡 Lucide icon for concepts
 status: active
 category: core-concept
 created_date: "YYYY-MM-DD"
@@ -83,7 +94,8 @@ tags:
 type: platform
 platform_id: "P-XXX"
 platform_name: "[Name]"
-icon: box                # 📦 Lucide icon for platforms
+icon: 📦
+               # 📦 Lucide icon for platforms
 status: evaluated
 category: tool
 architecture: local-first
@@ -117,7 +129,8 @@ tags:
 type: technical
 technical_id: "T-XXX"
 technical_name: "[Name]"
-icon: code               # 💻 Lucide icon for technical
+icon: 💻
+              # 💻 Lucide icon for technical
 status: evaluated
 category: library
 language: JavaScript
@@ -152,7 +165,8 @@ tags:
 type: feature
 feature_id: "F-XXX"
 feature_name: "[Name]"
-icon: zap                # ⚡ Lucide icon for features
+icon: ⚡
+               # ⚡ Lucide icon for features
 category: knowledge-graph
 status: planned
 priority: high
@@ -296,7 +310,8 @@ tags:
 type: planning
 phase_id: "PHASE-X"
 phase_name: "[Name]"
-icon: calendar           # 📅 Lucide icon for planning
+icon: 📅
+          # 📅 Lucide icon for planning
 status: in-progress
 priority: critical
 start_date: "YYYY-MM-DD"

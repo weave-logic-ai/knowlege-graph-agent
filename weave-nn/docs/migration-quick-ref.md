@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Migration Quick Reference Guide
 
 **Quick Reference**: Key patterns and commands for migrating from local MVP to microservices

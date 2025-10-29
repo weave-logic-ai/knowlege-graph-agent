@@ -1,19 +1,28 @@
 ---
-title: "Metadata Schema v3.0 - Obsidian Visual Intelligence"
+title: Metadata Schema v3.0 - Obsidian Visual Intelligence
 type: documentation
 status: complete
 phase_id: PHASE-14
-tags: [metadata, schema, frontmatter, obsidian, visual-intelligence]
+tags:
+  - metadata
+  - schema
+  - frontmatter
+  - obsidian
+  - visual-intelligence
 domain: knowledge-graph
 scope: system
 priority: critical
-created_date: 2025-10-28
-updated_date: 2025-10-28
-version: "3.0"
+created_date: 2025-10-28T00:00:00.000Z
+updated_date: 2025-10-28T00:00:00.000Z
+version: '3.0'
 visual:
-  icon: "📊"
-  color: "#EC4899"
-  cssclasses: [type-documentation, status-complete, priority-critical]
+  icon: 📊
+  color: '#EC4899'
+  cssclasses:
+    - type-documentation
+    - status-complete
+    - priority-critical
+icon: 📊
 ---
 
 # Metadata Schema v3.0 - Obsidian Visual Intelligence
@@ -675,6 +684,26 @@ const MetadataSchema = z.object({
 });
 ```
 
+
+
+
+
+
+
+
+
+## Related
+
+[[METADATA-ADDITION-SUMMARY]]
+## Related
+
+[[obsidian-features-research]]
+## Related
+
+[[yaml-frontmatter]]
+## Related
+
+[[PHASE-14-WEEK-1-COMPLETION-SUMMARY]]
 ## Related Documents
 
 - [[obsidian-icon-system]] - Icon mapping reference

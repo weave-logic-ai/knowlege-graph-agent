@@ -16,7 +16,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -24,6 +24,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Architecture Documentation
@@ -94,6 +95,36 @@ Detailed component specifications:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[workflows-overview-hub]]
+## Related
+
+[[business-overview-hub]]
+## Related
+
+[[concepts-overview-hub]]
+## Related
+
+[[services-architecture-hub]]
+## Related
+
+[[guides-index-hub]]
+## Related
+
+[[documentation-hub]]
 ## Related Documentation
 
 ### Implementation Details

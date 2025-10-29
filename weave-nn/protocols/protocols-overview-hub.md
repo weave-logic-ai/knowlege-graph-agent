@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Protocol Documentation
 
 ## What IS a Protocol?

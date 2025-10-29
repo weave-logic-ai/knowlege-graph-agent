@@ -21,13 +21,14 @@ tags:
   - memory
 type: architecture
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # AI Integration Layer
@@ -74,6 +75,21 @@ Auto-summarization generates concise node previews for graph visualization, dist
 
 Collaborative workflows blend human and AI contributions. A user drafts a decision document, and the agent suggests related technical considerations, linking relevant nodes automatically. Users review and approve suggestions, maintaining control while accelerating documentation.
 
+
+
+
+
+
+
+## Related
+
+[[javascript-typescript-stack-pivot]]
+## Related
+
+[[mcp-integration-hub]]
+## Related
+
+[[MCP-DIRECTORY-UPDATE-PLAN]]
 ## Related
 
 ### Architecture

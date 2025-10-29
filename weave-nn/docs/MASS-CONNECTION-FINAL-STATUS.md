@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Mass Connection Operation - Final Status Report
 
 **Date**: 2025-10-28

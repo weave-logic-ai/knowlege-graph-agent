@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Migration Path: Local MVP to Microservices Architecture
 
 **Document Type**: Migration Strategy & Refactoring Guide

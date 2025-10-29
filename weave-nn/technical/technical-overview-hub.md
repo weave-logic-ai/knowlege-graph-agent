@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Technical Primitives Directory
 
 **Purpose**: Catalog of atomic technical building blocks used in Weave-NN architecture.

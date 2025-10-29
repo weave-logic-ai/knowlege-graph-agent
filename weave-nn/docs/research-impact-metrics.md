@@ -32,7 +32,7 @@ author: ai-generated
 version: '1.0'
 priority: medium
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -40,6 +40,7 @@ visual:
     - priority-medium
     - domain-knowledge-graph
   graph_group: navigation
+icon: 📚
 ---
 
 # Research Impact Metrics for Knowledge Graph Evolution
@@ -74,6 +75,11 @@ This document defines **quantitative metrics** for measuring research impact on 
 
 ---
 
+
+
+## Related
+
+[[GRAPH-VALIDATION-REPORT]]
 ## 📈 1. Connection Evolution Metrics
 
 ### 1.1 Connection Strength Metric

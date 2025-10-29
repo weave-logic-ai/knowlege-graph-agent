@@ -18,13 +18,14 @@ tags:
   - - domain
   - - status
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-question
     - 'status-[open|researching|answered|deferred]'
     - 'priority-[critical|high|medium|low]'
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Q-[CATEGORY]-XXX: [Question Title]

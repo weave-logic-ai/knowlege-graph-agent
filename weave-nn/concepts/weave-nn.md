@@ -26,11 +26,12 @@ tags:
   - core-concept
 type: concept
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Weave-NN

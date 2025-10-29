@@ -35,6 +35,7 @@ tags:
   - tech/n8n
   - tech/claude
 version: '3.0'
+icon: 📖
 ---
 
 # Cross-Project Knowledge Retention Architecture
@@ -346,6 +347,36 @@ tags:
 ## Source Project
 [[../../../_archive/client-a-2025-10/README|Client A Project]]
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[MASTER-PLAN]] • [[salt-configuration-hub]]
+## Related
+
+[[phase-7-agent-rules-memory-sync]]
+## Related
+
+[[phase-9-testing-documentation]]
+## Related
+
+[[github-issues-integration]]
+## Related
+
+[[phase-6-file-watcher-weaver-integration]]
+## Related
+
+[[obsidian-native-integration-analysis]]
 ## Related Patterns
 - [[similar-pattern-1]]
 - [[similar-pattern-2]]

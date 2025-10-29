@@ -27,12 +27,13 @@ tags:
   - ai-orchestration
   - swarm-coordination
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Claude Flow
@@ -346,6 +347,26 @@ npx claude-flow@alpha task results --task-id "task-123"
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[wikilinks]]
+## Related
+
+[[sqlite]]
+## Related
+
+[[rule-engine]]
+## Related
+
+[[jest-testing-framework]]
 ## Related Nodes
 
 **Architecture**:

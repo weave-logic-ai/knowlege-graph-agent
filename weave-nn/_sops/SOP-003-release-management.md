@@ -12,12 +12,13 @@ estimated_duration: 45-60 minutes
 complexity: medium
 type: sop
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-003: Release Management Workflow

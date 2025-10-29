@@ -41,6 +41,7 @@ tags:
   - category/integration
 type: documentation
 version: '3.0'
+icon: git-branch
 ---
 
 # Git Version Control Integration (Obsidian-First)
@@ -57,6 +58,16 @@ As a **technical user**, I want to **version control my Obsidian vault with Git*
 
 ---
 
+
+
+
+
+## Related
+
+[[developer-onboarding]]
+## Related
+
+[[TASKS-SETUP-GUIDE]]
 ## 🚀 Key Capabilities
 
 ### Automatic Commits (Optional Setting)

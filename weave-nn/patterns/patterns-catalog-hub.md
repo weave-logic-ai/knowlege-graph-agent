@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Architectural Patterns Directory
 
 **Purpose**: Catalog of reusable design patterns and architectural approaches used in Weave-NN.

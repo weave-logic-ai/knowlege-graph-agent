@@ -1,17 +1,25 @@
 ---
-title: "Phase 14 - Obsidian Visual Intelligence Quick Start"
+title: Phase 14 - Obsidian Visual Intelligence Quick Start
 type: documentation
 status: complete
 phase_id: PHASE-14
-tags: [phase/phase-14, obsidian, quickstart, guide]
+tags:
+  - phase/phase-14
+  - obsidian
+  - quickstart
+  - guide
 domain: knowledge-graph
 scope: system
 priority: high
-created_date: 2025-10-28
+created_date: 2025-10-28T00:00:00.000Z
 visual:
-  icon: "🚀"
-  color: "#10B981"
-  cssclasses: [type-documentation, status-complete, priority-high]
+  icon: 🚀
+  color: '#10B981'
+  cssclasses:
+    - type-documentation
+    - status-complete
+    - priority-high
+icon: 🚀
 ---
 
 # Phase 14 - Obsidian Visual Intelligence Quick Start
@@ -30,6 +38,11 @@ Get visual intelligence running in your Weave-NN knowledge graph in under 5 minu
 
 ✅ You should now see colored borders on planning documents!
 
+
+
+## Related
+
+[[PHASE-14-WEEK-1-COMPLETION-SUMMARY]]
 ## Step 2: Enable Nested Tags (30 seconds)
 
 1. `Settings` → `Appearance`

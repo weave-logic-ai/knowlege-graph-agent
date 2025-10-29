@@ -13,12 +13,13 @@ complexity: medium
 type: sop
 scope: feature
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-001: Feature Planning Workflow

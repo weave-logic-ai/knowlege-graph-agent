@@ -20,13 +20,14 @@ tags:
   - real-time
 type: architecture
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # API & Backend Layer

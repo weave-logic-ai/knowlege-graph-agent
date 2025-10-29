@@ -31,13 +31,14 @@ author: ai-generated
 version: 1.0.0
 priority: high
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-in-progress
     - priority-high
     - domain-weaver
+icon: 🏗️
 ---
 
 # Claude-Flow Integration Architecture Design
@@ -61,6 +62,11 @@ visual:
 
 ---
 
+
+
+## Related
+
+[[PHASE-12-LEARNING-LOOP-BLUEPRINT]]
 ## Executive Summary
 
 This design document outlines the architecture for integrating claude-flow CLI capabilities into Weaver as a first-class orchestration tool. The integration provides type-safe, production-ready wrappers around all claude-flow commands with comprehensive error handling, retry logic, and deep integration with Weaver's learning loop, SOPs, and workflow engine.

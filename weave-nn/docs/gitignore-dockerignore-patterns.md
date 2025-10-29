@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Git and Docker Ignore Patterns for Weave-NN
 
 **Last Updated**: 2025-10-23

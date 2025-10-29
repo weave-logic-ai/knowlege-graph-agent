@@ -16,12 +16,13 @@ related:
   - '[[F-017-cognitive-variability-tracker]]'
 type: documentation
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # How to Track Cognitive Variability

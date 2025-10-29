@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # InfraNodus Whitepapers: Comprehensive Analysis for Weave-NN Implementation
 
 **Research Analysis Date**: 2025-10-23

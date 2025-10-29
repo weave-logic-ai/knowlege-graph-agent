@@ -11,7 +11,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-directory-index
     - status-active
@@ -19,6 +19,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # MCP Directory
@@ -124,6 +125,71 @@ Documentation for the cyanheads MCP server that Weaver uses as a client to inter
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[model-context-protocol]]
+## Related
+
+[[javascript-typescript-stack-pivot]]
+## Related
+
+[[adopt-weaver-workflow-proxy]]
+## Related
+
+[[task-completion-integration-guide]]
+## Related
+
+[[knowledge-graph-integration-architecture]]
+## Related
+
+[[phase-5-mcp-integration]]
+## Related
+
+[[ai-integration-layer]]
+## Related
+
+[[phase-5-claude-flow-integration]]
+## Related
+
+[[agent-rules]] • [[ai-agent-integration]] • [[weaver-mcp-tools]]
+## Related
+
+[[claude-flow-tight-coupling]]
+## Related
+
+[[claude-flow-schema-mapping]]
+## Related
+
+[[claude-flow-memory-visualization]]
+## Related
+
+[[MCP-DIRECTORY-UPDATE-PLAN]]
 ## Related Documentation
 
 ### Integration Docs

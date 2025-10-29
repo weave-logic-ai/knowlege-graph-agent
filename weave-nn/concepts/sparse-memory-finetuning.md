@@ -13,12 +13,13 @@ status: active
 created: {}
 source: Memory Networks and Knowledge Graph Design Research
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Sparse Memory Fine-Tuning

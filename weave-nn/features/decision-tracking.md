@@ -21,7 +21,7 @@ tags:
 type: documentation
 scope: feature
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -29,6 +29,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Decision Tracking System
@@ -66,6 +67,66 @@ As a **team lead**, I want to **document and track important decisions with cont
 
 **Template Structure**: decision_id, decision_name, category, status, decision_date, stakeholders, outcome, superseded_by.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-4b-pre-development-mvp-planning-sprint]]
+## Related
+
+[[workspace-management]]
+## Related
+
+[[agent-automation]]
+## Related
+
+[[data-portability]] • [[rest-api-integration]]
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[syntax-highlighting]]
+## Related
+
+[[phase-management]]
+## Related
+
+[[wikilink-autocomplete]]
+## Related
+
+[[canvas-visualization]]
+## Related
+
+[[tag-based-filtering]]
+## Related
+
+[[daily-log-automation]]
+## Related
+
+[[decision-tracking]]
 ## Related
 
 - [[../meta/DECISIONS-INDEX]]

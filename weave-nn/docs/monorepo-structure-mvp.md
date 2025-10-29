@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weave-NN Monorepo Structure (MVP-Focused)
 
 **Architecture Reference**: Local-First with Growth Path to Microservices

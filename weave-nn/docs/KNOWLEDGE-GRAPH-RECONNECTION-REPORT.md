@@ -1,3 +1,10 @@
+---
+title: KNOWLEDGE-GRAPH-RECONNECTION-REPORT
+created: '2025-10-28'
+visual:
+  icon: 📚
+icon: 📚
+---
 # Knowledge Graph Reconnection Report
 
 **Date**: 2025-10-28
@@ -13,6 +20,11 @@ Successfully added **92 high-confidence cross-references** across the weave-nn d
 
 ---
 
+
+
+## Related
+
+[[AGENT-DIRECTORY-HUB]] • [[CHECKPOINT-TIMELINE-HUB]] • [[INFRASTRUCTURE-HUB]] • [[RESEARCH-PAPERS-HUB]] • [[WEAVER-DOCS-HUB]]
 ## 📊 Metrics
 
 ### Overall Impact

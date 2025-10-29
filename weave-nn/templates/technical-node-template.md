@@ -21,12 +21,13 @@ tags:
   - - use-case
 type: template
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-template
     - 'status-[evaluated|selected|rejected|planned]'
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # [Technology Name]

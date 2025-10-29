@@ -32,13 +32,14 @@ tags:
   - http
 type: documentation
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-implemented
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # <span class="lucide-network"></span> REST API Integration Pattern

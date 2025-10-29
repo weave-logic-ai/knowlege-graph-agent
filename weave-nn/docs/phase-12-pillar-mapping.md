@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 12: Pillar Mapping Analysis
 ## Weaver → Autonomous Agent Framework
 

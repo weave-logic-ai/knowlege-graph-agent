@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Tester Agent → Backend Developer Handoff
 
 **From**: Tester Agent (Quality Assurance Specialist)

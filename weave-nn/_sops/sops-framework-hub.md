@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Standard Operating Procedures (SOPs)
 
 This directory contains production-ready SOPs for common development workflows using Weaver's multi-agent orchestration capabilities.

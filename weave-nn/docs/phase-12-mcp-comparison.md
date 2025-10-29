@@ -35,7 +35,7 @@ priority: high
 effort_savings: 69%
 hours_saved: '276'
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -43,6 +43,7 @@ visual:
     - priority-high
     - phase-12
     - domain-phase-12
+icon: 📚
 ---
 
 # Phase 12: Build vs. MCP Comparison

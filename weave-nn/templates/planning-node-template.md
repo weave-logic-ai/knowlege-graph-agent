@@ -17,7 +17,7 @@ tags:
   - - status
 type: template
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-template
     - 'status-[planned|in-progress|completed|blocked|deferred]'
@@ -25,6 +25,7 @@ visual:
     - phase-x
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Phase [X]: [Phase Name]
@@ -48,6 +49,11 @@ This phase establishes/builds/completes:
 
 ---
 
+
+
+## Related
+
+[[phase-4b-pre-development-mvp-planning-sprint]]
 ## 📋 Primary Deliverables
 
 ### 1. [Deliverable 1] [🔴 Priority if applicable]

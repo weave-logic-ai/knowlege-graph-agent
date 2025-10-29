@@ -15,7 +15,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -23,6 +23,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Guides Directory
@@ -291,6 +292,21 @@ How to confirm the entire task was completed successfully:
 
 ...
 
+
+
+
+
+
+
+## Related
+
+[[business-overview-hub]]
+## Related
+
+[[integrations-overview-hub]] • [[services-architecture-hub]] • [[architecture-overview-hub]] • [[documentation-hub]] • [[standards-overview-hub]]
+## Related
+
+[[concepts-overview-hub]]
 ## Related Guides
 
 - [Related guide 1](../category/guide.md)

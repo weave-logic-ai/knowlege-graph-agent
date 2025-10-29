@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📋
+icon: 📋
+---
 # Decision Review: Post-Phase Reorganization (2025-10-23)
 
 **Date**: 2025-10-23

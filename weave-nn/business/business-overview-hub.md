@@ -16,7 +16,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -24,6 +24,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Business Model & Strategy
@@ -97,6 +98,16 @@ Weave-NN's business model, target market, pricing strategy, and financial analys
 
 ---
 
+
+
+
+
+## Related
+
+[[architecture-overview-hub]] • [[concepts-overview-hub]] • [[workflows-overview-hub]]
+## Related
+
+[[guides-index-hub]] • [[services-architecture-hub]]
 ## Related Documentation
 
 ### Strategic Decisions

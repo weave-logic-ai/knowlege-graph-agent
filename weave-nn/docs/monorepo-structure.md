@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weave-NN Monorepo Folder Structure
 
 **Architecture Reference**: Multi-Project AI Platform with Event-Driven Microservices

@@ -22,7 +22,7 @@ tags:
 type: documentation
 scope: feature
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -30,6 +30,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # AI-Powered Automatic Link Suggestions
@@ -77,6 +78,26 @@ Technical approach:
 - Cache embeddings for existing nodes
 - Allow user configuration of suggestion aggressiveness
 
+
+
+
+
+
+
+
+
+## Related
+
+[[sharing]]
+## Related
+
+[[comments-annotations]]
+## Related
+
+[[version-history]]
+## Related
+
+[[collaborative-editing]]
 ## Related
 
 - [[../mcp/ai-agent-integration|AI Agent Integration]]

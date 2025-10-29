@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Mass Connection Report - Phase 14 Week 1-2
 
 **Date**: 2025-10-28

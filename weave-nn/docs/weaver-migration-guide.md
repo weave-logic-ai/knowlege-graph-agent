@@ -15,13 +15,14 @@ tags:
   - automation
 domain: weaver
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-draft
     - domain-weaver
 version: '3.0'
+icon: 📚
 ---
 
 # Weaver Migration Guide
@@ -48,6 +49,11 @@ version: '3.0'
 
 ---
 
+
+
+## Related
+
+[[agent-rules-workflows]]
 ## Prerequisites
 
 ### Required Tools

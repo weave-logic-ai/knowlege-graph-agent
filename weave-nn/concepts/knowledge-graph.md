@@ -25,12 +25,13 @@ tags:
 type: concept
 domain: knowledge-graph
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
     - domain-knowledge-graph
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Knowledge Graph

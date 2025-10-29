@@ -22,6 +22,7 @@ visual:
     - type-planning
     - scope-mvp
     - priority-critical
+icon: 🗺️
 ---
 
 # Weave-NN Master Plan (Obsidian-First)
@@ -97,6 +98,41 @@ visual:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[cross-project-knowledge-retention]]
+## Related
+
+[[phase-3b-node-expansion-legacy]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
+## Related
+
+[[TASKS-SETUP-GUIDE]]
+## Related
+
+[[phase-7-mvp-week-2]]
+## Related
+
+[[phase-6-mvp-week-1]]
+## Related
+
+[[phase-4a-decision-closure]]
 ## 🔌 Obsidian Integration Strategy
 
 ### Primary Integration Method: REST API

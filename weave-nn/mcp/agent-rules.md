@@ -15,13 +15,14 @@ related:
   - '[[ai-agent-integration]]'
   - '[[model-context-protocol]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-integration-spec
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # MCP Agent Rules for Weave-NN
@@ -46,6 +47,31 @@ These 6 rules enable AI-managed knowledge graph maintenance with full Claude-Flo
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-6-vault-initialization]]
+## Related
+
+[[phase-5-mcp-integration]]
+## Related
+
+[[claude-flow-tight-coupling]]
+## Related
+
+[[phase-5-claude-flow-integration]]
+## Related
+
+[[mcp-integration-hub]]
 ## Implementation Status
 
 **Current State**: ✅ **Framework Complete** - RuleEngine.js fully implemented

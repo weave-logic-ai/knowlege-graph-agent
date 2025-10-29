@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # [Service Name]
 
 **Purpose**: [Brief one-line description of what this service does]

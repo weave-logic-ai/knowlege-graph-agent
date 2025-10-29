@@ -15,7 +15,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -23,6 +23,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Services Directory
@@ -468,6 +469,31 @@ Services we considered or can migrate to:
 - **Compliance**: GDPR, SOC2 requirements
 - **Encryption**: TLS version, data encryption
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[architecture-overview-hub]] • [[documentation-hub]] • [[standards-overview-hub]] • [[weave-nn-project-hub]] • [[workflows-overview-hub]]
+## Related
+
+[[business-overview-hub]]
+## Related
+
+[[integrations-overview-hub]]
+## Related
+
+[[guides-index-hub]]
+## Related
+
+[[concepts-overview-hub]]
 ## Related Documentation
 
 - **Official Docs**: https://docs.service.com

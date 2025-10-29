@@ -10,13 +10,14 @@ tags:
   - setup
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-guide
     - status-active
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Obsidian Tasks Setup Guide
@@ -45,6 +46,36 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-4a-decision-closure]]
+## Related
+
+[[phase-6-day-2-3-mcp-tasks]]
+## Related
+
+[[phase-10-mvp-readiness-launch]] • [[phase-2-documentation-capture]]
+## Related
+
+[[git-integration]]
+## Related
+
+[[MASTER-PLAN]]
+## Related
+
+[[developer-onboarding]]
 ## ⚙️ Step 2: Configure Plugin Settings
 
 ### Recommended Settings:

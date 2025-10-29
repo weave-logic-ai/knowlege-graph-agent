@@ -12,12 +12,13 @@ estimated_duration: 15-30 minutes
 complexity: medium
 type: sop
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-007: Multi-Agent Code Review Workflow
@@ -767,6 +768,11 @@ mcp__claude-flow__memory_usage({
 })
 ```
 
+
+
+## Related
+
+[[SOP-008-performance-analysis]]
 ## Related SOPs
 
 - **SOP-001**: Feature Planning (plan for review requirements)

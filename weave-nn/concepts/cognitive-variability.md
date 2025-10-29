@@ -13,12 +13,13 @@ status: active
 created: {}
 source: InfraNodus Analysis and Multi-Graph Research
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Cognitive Variability

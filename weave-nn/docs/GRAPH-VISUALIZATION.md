@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Knowledge Graph Visualization
 
 Generated: 2025-10-28T14:45:30.213Z

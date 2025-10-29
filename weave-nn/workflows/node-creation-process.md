@@ -15,12 +15,13 @@ related:
   - '[[../templates/decision-node-template]]'
   - '[[../_planning/phases/phase-2-documentation-capture]]'
 visual:
-  icon: "\U0001F504"
+  icon: 🔄
   cssclasses:
     - type-workflow
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🔄
 ---
 
 # Node Creation Process

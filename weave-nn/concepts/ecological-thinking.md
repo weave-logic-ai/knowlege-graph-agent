@@ -13,12 +13,13 @@ status: active
 created: {}
 source: InfraNodus Ecological Network Analysis
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Ecological Thinking

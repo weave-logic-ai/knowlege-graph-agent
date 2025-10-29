@@ -30,12 +30,13 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-guide
     - status-complete
     - priority-high
     - domain-chunking
+icon: 📄
 ---
 
 # Practical Chunking Implementation Guide for Weave-NN
@@ -85,6 +86,16 @@ export const CHUNKING_CONFIG = {
 
 ---
 
+
+
+
+
+## Related
+
+[[VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE]] • [[WEAVER-COMPLETE-IMPLEMENTATION-GUIDE]]
+## Related
+
+[[chunking-quick-reference]]
 ## Implementation Architecture
 
 ```

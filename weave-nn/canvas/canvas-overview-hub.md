@@ -9,7 +9,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-canvas-hub
     - status-active
@@ -17,6 +17,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Canvas Hub
@@ -49,6 +50,11 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+## Related
+
+[[canvas-creation-process]]
 ## 🎨 Canvas Types
 
 ### 1. Decision Trees

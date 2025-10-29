@@ -24,7 +24,7 @@ tags:
 type: documentation
 scope: feature
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -32,6 +32,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Agent Automation
@@ -203,6 +204,46 @@ Users configure agent behavior through settings and observe agent actions in rea
 - Multi-vault coordination for shared knowledge graphs
 - Integration with external AI models beyond Claude
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[neural-network-junction]]
+## Related
+
+[[day-4-agent-rules]]
+## Related
+
+[[knowledge-graph-visualization]] • [[tag-based-filtering]] • [[daily-log-automation]] • [[decision-tracking]]
+## Related
+
+[[semantic-search]]
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[auto-tagging]]
 ## Related
 
 - [[technical/rule-engine]]

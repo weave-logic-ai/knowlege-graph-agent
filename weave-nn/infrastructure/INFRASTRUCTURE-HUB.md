@@ -10,7 +10,7 @@ domain: infrastructure
 scope: system
 priority: high
 visual:
-  icon: "\U0001F310"
+  icon: 🌐
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -20,6 +20,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🌐
 ---
 
 # Infrastructure Hub
@@ -262,6 +263,11 @@ pg_dump weave_nn_prod > backup.sql
 
 ---
 
+
+
+## Related
+
+[[KNOWLEDGE-GRAPH-RECONNECTION-REPORT]]
 ## Related Hubs
 
 - [[CHECKPOINT-TIMELINE-HUB]] - Session checkpoints

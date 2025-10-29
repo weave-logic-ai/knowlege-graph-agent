@@ -11,12 +11,13 @@ related:
   - '[[weaver]]'
   - '[[local-first-architecture]]'
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Durable Workflows
@@ -323,6 +324,11 @@ Use regular async/await for these cases.
 - Anything that might fail and needs retry
 - Anything you want to observe/debug
 
+
+
+## Related
+
+[[agent-rules-workflows]]
 ## Related Concepts
 
 - [[concepts/weaver|Weaver]]

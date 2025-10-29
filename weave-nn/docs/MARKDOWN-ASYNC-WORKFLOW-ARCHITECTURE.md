@@ -31,13 +31,14 @@ author: ai-generated
 version: 1.0.0
 priority: medium
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-complete
     - priority-medium
     - domain-weaver
+icon: 🏗️
 ---
 
 # Markdown-Based Async Feedback & Workflow Architecture
@@ -70,6 +71,16 @@ visual:
 
 ---
 
+
+
+
+
+## Related
+
+[[MARKDOWN-WORKFLOW-EXAMPLES]]
+## Related
+
+[[MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY]]
 ## 🎯 Overview
 
 This architecture replaces synchronous CLI prompts with asynchronous markdown-based workflows for the learning loop feedback system. Each learning stage generates markdown files that users can fill out at their convenience, triggering workflows when complete.

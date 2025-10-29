@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Backend Systems Quick Reference - Phase 13
 
 **Quick access guide for the hybrid chunking and embedding systems.**

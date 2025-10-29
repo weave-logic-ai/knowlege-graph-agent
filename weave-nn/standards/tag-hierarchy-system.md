@@ -1,19 +1,28 @@
 ---
-title: "Tag Hierarchy System"
+title: Tag Hierarchy System
 type: documentation
 status: complete
 phase_id: PHASE-14
-tags: [tags, hierarchy, organization, obsidian, metadata]
+tags:
+  - tags
+  - hierarchy
+  - organization
+  - obsidian
+  - metadata
 domain: knowledge-graph
 scope: system
 priority: high
-created_date: 2025-10-28
-updated_date: 2025-10-28
-version: "1.0"
+created_date: 2025-10-28T00:00:00.000Z
+updated_date: 2025-10-28T00:00:00.000Z
+version: '1.0'
 visual:
-  icon: "🏷️"
-  color: "#06B6D4"
-  cssclasses: [type-documentation, status-complete, priority-high]
+  icon: 🏷️
+  color: '#06B6D4'
+  cssclasses:
+    - type-documentation
+    - status-complete
+    - priority-high
+icon: 🏷️
 ---
 
 # Tag Hierarchy System
@@ -546,6 +555,11 @@ Use most specific tag applicable:
 - ✅ `#status/in-progress/development`
 - ⚠️ `#status` (too vague)
 
+
+
+## Related
+
+[[obsidian-features-research]]
 ## Related Documents
 
 - [[metadata-schema-v3]] - Frontmatter schema

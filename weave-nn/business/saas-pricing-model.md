@@ -25,11 +25,12 @@ tags:
   - revenue
 type: business
 visual:
-  icon: "\U0001F4BC"
+  icon: 💼
   cssclasses:
     - type-business
     - status-draft
 updated_date: '2025-10-28'
+icon: 💼
 ---
 
 # SaaS Pricing Model

@@ -25,11 +25,12 @@ related:
   - '[[custom-solution]]'
   - '[[collaboration-requirements]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-knowledge-management
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Notion Platform Analysis

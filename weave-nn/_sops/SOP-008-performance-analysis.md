@@ -12,12 +12,13 @@ estimated_duration: 30-60 minutes
 complexity: high
 type: sop
 visual:
-  icon: "\U0001F4DD"
+  icon: 📝
   color: '#84CC16'
   cssclasses:
     - type-sop
     - status-active
 updated_date: '2025-10-28'
+icon: 📝
 ---
 
 # SOP-008: Performance Analysis & Optimization Workflow

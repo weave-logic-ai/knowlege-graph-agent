@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weaver Implementation Summary
 
 **Decision ID**: D-020

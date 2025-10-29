@@ -24,7 +24,7 @@ tags:
 type: documentation
 scope: feature
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -32,6 +32,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # REST API Integration
@@ -171,6 +172,66 @@ Developers interact with the API through HTTP requests from scripts, CI/CD pipel
 - GraphQL endpoint for complex queries
 - WebSocket support for real-time updates
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[data-portability]] • [[markdown-editor-component]] • [[todo-management]]
+## Related
+
+[[auto-tagging]]
+## Related
+
+[[ai-summaries]]
+## Related
+
+[[day-4-agent-rules]]
+## Related
+
+[[decision-tracking]]
+## Related
+
+[[ai-integration-component]]
+## Related
+
+[[daily-log-automation]]
+## Related
+
+[[temporal-view]]
+## Related
+
+[[graph-analytics]]
+## Related
+
+[[node-search]]
+## Related
+
+[[knowledge-graph-visualization]]
+## Related
+
+[[tag-based-filtering]]
 ## Related
 
 - [[technical/obsidian-api-client]]

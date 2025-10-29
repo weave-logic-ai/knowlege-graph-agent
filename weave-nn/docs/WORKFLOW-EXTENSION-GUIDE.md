@@ -32,12 +32,13 @@ author: ai-generated
 version: 1.0.0
 priority: medium
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-guide
     - status-complete
     - priority-medium
     - domain-weaver
+icon: 📄
 ---
 
 # Workflow Engine Extension Guide
@@ -74,6 +75,21 @@ visual:
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[learning-loop-api]]
+## Related
+
+[[MARKDOWN-WORKFLOW-EXAMPLES]]
+## Related
+
+[[MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY]]
 ## 🎯 Overview
 
 This guide documents the extension of Weaver's existing workflow engine to support:

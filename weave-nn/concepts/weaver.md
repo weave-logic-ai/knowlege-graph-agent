@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 💡
+icon: 💡
+---
 #---
 type: concept
 category: architecture

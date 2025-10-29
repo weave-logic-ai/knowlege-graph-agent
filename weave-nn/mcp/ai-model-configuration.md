@@ -15,13 +15,14 @@ related:
   - '[[agent-rules-workflows]]'
   - '[[model-context-protocol]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-reference
     - status-active
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # AI Model Configuration for Weaver
@@ -533,6 +534,11 @@ jest.mock('../src/ai-provider', () => ({
 
 ---
 
+
+
+## Related
+
+[[mcp-integration-hub]]
 ## Related Documentation
 
 - [[weaver-mcp-tools|Weaver MCP Tools]] - MCP tools that use AI

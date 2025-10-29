@@ -32,12 +32,13 @@ cssclasses:
   - task-log
 scope: task
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-task_log
     - status-completed|partial|blocked|deferred|paused|cancelled
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 <!-- RAG OPTIMIZATION NOTES:

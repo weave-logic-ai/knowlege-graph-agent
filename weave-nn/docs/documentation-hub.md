@@ -16,7 +16,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -24,6 +24,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Documentation Hub
@@ -171,6 +172,26 @@ Key synthesis documents:
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[task-completion-code-examples]]
+## Related
+
+[[services-architecture-hub]]
+## Related
+
+[[guides-index-hub]]
+## Related
+
+[[architecture-overview-hub]]
 ## Related Documentation
 
 ### Project Planning

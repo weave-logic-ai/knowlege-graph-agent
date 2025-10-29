@@ -34,13 +34,14 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F52C"
+  icon: 🔬
   color: '#8B5CF6'
   cssclasses:
     - type-research
     - status-complete
     - priority-high
     - domain-chunking
+icon: 🔬
 ---
 
 # Text Chunking Strategies for Vector Embeddings: Research Synthesis 2024-2025

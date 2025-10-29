@@ -20,13 +20,14 @@ tags:
   - visualization
 type: architecture
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-planned
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # Frontend Layer
@@ -59,6 +60,11 @@ The frontend communicates with the [[api-layer|API layer]] through REST or Graph
 
 Authentication state flows from the backend, controlling access to features based on user permissions. The frontend respects role-based access controls, hiding or disabling features unavailable to current users.
 
+
+
+## Related
+
+[[day-11-properties-visualization]]
 ## Related
 
 ### Architecture

@@ -30,13 +30,14 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-complete
     - priority-high
     - domain-weaver
+icon: 📚
 ---
 
 # Weaver CLI Integration Audit - Executive Summary
@@ -62,6 +63,11 @@ visual:
 
 ---
 
+
+
+## Related
+
+[[WEAVER-COMPLETE-IMPLEMENTATION-GUIDE]]
 ## Current State Matrix
 
 | Capability | Status | Evidence |

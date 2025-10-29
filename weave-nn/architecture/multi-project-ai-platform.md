@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🏗️
+icon: 🏗️
+---
 # Multi-Project AI Development Platform Architecture
 
 This document outlines the architecture of the multi-project AI development platform, broken down into three key areas: the main architecture, the knowledge extraction workflow, and the project seeding/deployment workflow.

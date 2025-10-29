@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 12: Academic Paper Analysis
 ## "Fundamentals of Building Autonomous LLM Agents"
 

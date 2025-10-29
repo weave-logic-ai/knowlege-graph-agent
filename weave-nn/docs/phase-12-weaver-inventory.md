@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 12: Weaver Implementation Inventory
 
 **Document Version**: 1.0.0

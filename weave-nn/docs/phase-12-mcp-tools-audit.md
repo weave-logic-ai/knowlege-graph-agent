@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 12: MCP Tools Comprehensive Audit
 
 **Date**: 2025-10-27

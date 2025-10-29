@@ -1,22 +1,39 @@
 ---
-title: "Weave-NN Project Timeline - Phase 1 Through 14"
+title: Weave-NN Project Timeline - Phase 1 Through 14
 type: timeline
 status: active
-created_date: 2025-10-28
-updated_date: 2025-10-28
-tags: [timeline, phase-evolution, project-history, hub]
+created_date: 2025-10-28T00:00:00.000Z
+updated_date: 2025-10-28T00:00:00.000Z
+tags:
+  - timeline
+  - phase-evolution
+  - project-history
+  - hub
 category: planning
 domain: project
 scope: project
-audience: [developers, architects, project-managers]
-related_concepts: [phase-evolution, project-milestones, development-timeline]
-related_files: [phase-13-master-plan.md, WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md, CHUNKING-STRATEGY-SYNTHESIS.md]
+audience:
+  - developers
+  - architects
+  - project-managers
+related_concepts:
+  - phase-evolution
+  - project-milestones
+  - development-timeline
+related_files:
+  - phase-13-master-plan.md
+  - WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md
+  - CHUNKING-STRATEGY-SYNTHESIS.md
 author: ai-generated
-version: "1.0"
+version: '1.0'
 visual:
-  icon: "timeline"
-  color: "#8B5CF6"
-  cssclasses: [timeline-document, hub-document, type-planning]
+  icon: timeline
+  color: '#8B5CF6'
+  cssclasses:
+    - timeline-document
+    - hub-document
+    - type-planning
+icon: timeline
 ---
 
 # Weave-NN Project Timeline

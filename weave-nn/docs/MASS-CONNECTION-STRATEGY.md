@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Mass Connection Strategy - Phase 14 Week 1-2
 
 ## Current State Analysis

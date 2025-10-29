@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # RabbitMQ Deferral to Post-MVP - Summary
 
 **Decision Date**: 2025-10-23

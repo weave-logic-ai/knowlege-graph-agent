@@ -15,7 +15,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -23,6 +23,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Integration Documentation
@@ -473,6 +474,16 @@ describe('System A to System B', () => {
 - **Cause**: Expired or invalid credentials
 - **Solution**: Refresh credentials and retry
 
+
+
+
+
+## Related
+
+[[services-architecture-hub]]
+## Related
+
+[[guides-index-hub]]
 ## Related Documentation
 
 - [System A Technical Docs](/technical/services/system-a.md)

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 11 Architecture Design - Executive Summary
 
 **System Architect**: Hive Mind Swarm Agent

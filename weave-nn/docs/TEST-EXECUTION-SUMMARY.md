@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 13 Test Execution Summary
 
 **Tester Agent**: Quality Assurance Specialist

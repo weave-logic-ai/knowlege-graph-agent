@@ -1,22 +1,21 @@
 ---
 type: feature-hub
 status: active
-created_date: "2025-10-20"
-updated_date: "2025-10-21"
-scope: "mvp"
+created_date: '2025-10-20'
+updated_date: '2025-10-21'
+scope: mvp
 obsidian_first: true
-
 tags:
   - features
   - mvp
   - obsidian-first
   - scope/mvp
-
 visual:
-  icon: "zap"
+  icon: zap
   cssclasses:
     - type-features
     - scope-mvp
+icon: ⚡
 ---
 
 # Weave-NN Features (MVP - Obsidian-First)

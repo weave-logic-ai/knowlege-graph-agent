@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Weave-NN Naming Conventions
 
 **Last Updated**: 2025-10-23

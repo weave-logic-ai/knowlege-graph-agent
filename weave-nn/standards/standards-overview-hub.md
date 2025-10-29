@@ -15,7 +15,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-index
     - status-active
@@ -23,6 +23,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Standards Directory
@@ -218,6 +219,26 @@ updated: YYYY-MM-DD
 - **Status**: Active/Deprecated
 - **Latest Version**: X.Y.Z
 
+
+
+
+
+
+
+
+
+## Related
+
+[[weave-nn-project-hub]]
+## Related
+
+[[services-architecture-hub]]
+## Related
+
+[[guides-index-hub]]
+## Related
+
+[[workflows-overview-hub]]
 ## Related Standards
 
 - [[related-standard-1]]

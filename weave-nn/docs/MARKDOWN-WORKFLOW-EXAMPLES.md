@@ -29,12 +29,13 @@ author: ai-generated
 version: 1.0.0
 priority: medium
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-guide
     - status-complete
     - priority-medium
     - domain-weaver
+icon: 📄
 ---
 
 ## # Markdown Workflow System - Examples & Usage Guide
@@ -45,6 +46,16 @@ visual:
 
 ---
 
+
+
+
+
+## Related
+
+[[MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY]] • [[VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE]] • [[WORKFLOW-EXTENSION-GUIDE]] • [[USER-FEEDBACK-REFLECTION-DESIGN]]
+## Related
+
+[[MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE]]
 ## 🎯 Quick Start
 
 ### Starting a Learning Session

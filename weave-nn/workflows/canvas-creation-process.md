@@ -11,12 +11,13 @@ tags:
   - visualization
   - obsidian
 visual:
-  icon: "\U0001F504"
+  icon: 🔄
   cssclasses:
     - type-workflow
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🔄
 ---
 
 # Canvas Creation Process
@@ -39,6 +40,16 @@ Identify Need → Choose Type → Create Structure → Add Nodes → Connect →
 
 ---
 
+
+
+
+
+## Related
+
+[[canvas-overview-hub]]
+## Related
+
+[[obsidian-properties-groups]]
 ## 🔄 Detailed Workflow
 
 ### Step 1: Identify Visualization Need

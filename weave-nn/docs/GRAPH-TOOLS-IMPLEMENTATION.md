@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Graph Analysis Tools Implementation
 
 **Phase 14 Week 1-2 Deliverable**

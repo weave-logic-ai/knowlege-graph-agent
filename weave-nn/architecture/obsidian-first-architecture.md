@@ -43,6 +43,7 @@ tags:
   - tech/claude-flow
   - category/architecture
 version: '3.0'
+icon: 📐
 ---
 
 # Obsidian-First Architecture
@@ -67,6 +68,21 @@ Users work **directly in Obsidian**. Weave-NN provides:
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[developer-onboarding]]
+## Related
+
+[[github-issues-integration]]
+## Related
+
+[[phase-10-mvp-readiness-launch]]
 ## 📐 System Architecture
 
 ```

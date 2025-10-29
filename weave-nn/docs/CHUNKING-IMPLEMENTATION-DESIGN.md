@@ -30,13 +30,14 @@ author: ai-generated
 version: 1.0.0
 priority: high
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-in-progress
     - priority-high
     - domain-chunking
+icon: 🏗️
 ---
 
 # Chunking System Implementation Design

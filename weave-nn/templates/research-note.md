@@ -20,7 +20,7 @@ tags:
   - - status
 type: research
 visual:
-  icon: "\U0001F52C"
+  icon: 🔬
   color: '#8B5CF6'
   cssclasses:
     - type-research
@@ -28,6 +28,7 @@ visual:
     - 'priority-[critical|high|medium|low]'
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🔬
 ---
 
 <!--

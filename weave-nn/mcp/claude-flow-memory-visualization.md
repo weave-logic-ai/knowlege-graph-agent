@@ -14,13 +14,14 @@ related:
   - '[[model-context-protocol]]'
   - '[[../_planning/phases/phase-4-claude-flow-integration]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-integration-spec
     - status-draft
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Claude-Flow Memory Visualization
@@ -42,6 +43,26 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-5-mcp-integration]]
+## Related
+
+[[claude-flow-tight-coupling]]
+## Related
+
+[[mcp-integration-hub]]
+## Related
+
+[[phase-5-claude-flow-integration]]
 ## 🧠 Claude-Flow Memory Structure (To Research)
 
 ### Current Understanding (Hypothetical)

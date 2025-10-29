@@ -25,11 +25,12 @@ tags:
   - competitive-advantage
 type: business
 visual:
-  icon: "\U0001F4BC"
+  icon: 💼
   cssclasses:
     - type-business
     - status-active
 updated_date: '2025-10-28'
+icon: 💼
 ---
 
 # Weave-NN Value Proposition

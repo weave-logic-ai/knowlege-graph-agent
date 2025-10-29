@@ -12,12 +12,13 @@ related:
   - '[[neural-network-junction]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: "\U0001F4A1"
+  icon: 💡
   cssclasses:
     - type-concept
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 💡
 ---
 
 # Local-First Architecture
@@ -272,6 +273,16 @@ But even then, **local-first hybrid**:
 
 **Rationale**: Build the core local loop first. Prove compound learning works. Then (maybe) add cloud features if users demand them.
 
+
+
+
+
+## Related
+
+[[event-driven-architecture]] • [[singleton-pattern-choice]]
+## Related
+
+[[neural-network-junction]]
 ## Related Concepts
 
 - [[concepts/weaver|Weaver (implements local loop)]]

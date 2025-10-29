@@ -17,7 +17,7 @@ related:
   - '[[servers/cyanheads-obsidian-mcp-server]]'
 domain: weaver
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-reference
     - status-active
@@ -25,6 +25,7 @@ visual:
     - domain-weaver
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Weaver MCP Tools
@@ -741,6 +742,21 @@ Common error codes:
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[obsidian]]
+## Related
+
+[[ai-agent-integration]]
+## Related
+
+[[mcp-integration-hub]]
 ## Related Documentation
 
 - [[claude-flow-tight-coupling]] - Architecture overview

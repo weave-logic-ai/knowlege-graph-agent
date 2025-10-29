@@ -17,7 +17,7 @@ related:
   - '[[../integrations/obsidian/obsidian-weaver-mcp]]'
   - '[[../docs/local-first-architecture-overview]]'
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
@@ -25,6 +25,7 @@ visual:
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # Weaver Workflow Automation Rules
@@ -916,6 +917,26 @@ console.log({
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[weaver-migration-guide]]
+## Related
+
+[[durable-workflows]]
+## Related
+
+[[weaver]] • [[mcp-integration-hub]]
+## Related
+
+[[ai-agent-integration]]
 ## Related Documentation
 
 - [[claude-flow-tight-coupling]] - Architecture principle (markdown = memory)

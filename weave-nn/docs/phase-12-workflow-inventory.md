@@ -36,7 +36,7 @@ priority: high
 workflow_count: '6'
 loc: '975'
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -44,6 +44,7 @@ visual:
     - priority-high
     - phase-12
     - domain-phase-12
+icon: 📚
 ---
 
 # Phase 12: Workflow Inventory & Pattern Analysis
@@ -70,6 +71,31 @@ This inventory catalogs all existing Weaver workflows, patterns, and automation 
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[learning-loop-api]]
+## Related
+
+[[phase-12-architecture]]
+## Related
+
+[[PHASE-12-LEARNING-LOOP-BLUEPRINT]] • [[PHASE-12-LEARNING-LOOP-INTEGRATION]] • [[WEAVER-COMPLETE-IMPLEMENTATION-GUIDE]]
+## Related
+
+[[phase-12-capability-matrix]]
+## Related
+
+[[phase-12-architect-status]]
 ## 1. Workflow Engine Architecture
 
 ### 1.1 Core Workflow Engine

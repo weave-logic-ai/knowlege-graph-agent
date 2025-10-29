@@ -55,6 +55,7 @@ tags:
 type: documentation
 domain: weaver
 version: '3.0'
+icon: workflow
 ---
 
 # Weaver Workflow Automation (workflow.dev)
@@ -75,6 +76,31 @@ As a **project manager using Weave-NN**, I want to **automate complex multi-step
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[phase-9-testing-documentation]]
+## Related
+
+[[phase-6-file-watcher-weaver-integration]]
+## Related
+
+[[phase-7-agent-rules-memory-sync]]
+## Related
+
+[[salt-configuration-hub]]
+## Related
+
+[[github-issues-integration]]
 ## 💡 Business Value
 
 ### Problem Solved

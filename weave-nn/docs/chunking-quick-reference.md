@@ -29,12 +29,13 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-reference
     - status-complete
     - priority-high
     - domain-chunking
+icon: 📄
 ---
 
 # Chunking Strategies Quick Reference
@@ -54,6 +55,16 @@ const DEFAULT_CHUNKING = {
 
 ---
 
+
+
+
+
+## Related
+
+[[VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE]]
+## Related
+
+[[chunking-implementation-guide]]
 ## Decision Tree
 
 ```

@@ -26,11 +26,12 @@ related:
   - '[[mcp-integration]]'
   - '[[knowledge-graph]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-knowledge-management
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Obsidian Platform Analysis
@@ -388,6 +389,11 @@ new ObsidianAPIClient({
 
 ---
 
+
+
+## Related
+
+[[weaver-mcp-tools]]
 ## Related Concepts
 
 - [[mcp-integration]] - How Obsidian integrates with Claude via MCP

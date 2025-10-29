@@ -26,12 +26,13 @@ tags:
   - shadow-cache
   - deprecated-in-v1
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # SQLite
@@ -656,6 +657,41 @@ sqlite3 /data/shadow-cache.db "VACUUM;"
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[test-strategy-summary]]
+## Related
+
+[[yaml-frontmatter]]
+## Related
+
+[[obsidian-tasks-plugin]]
+## Related
+
+[[obsidian-local-rest-api-plugin]]
+## Related
+
+[[claude-flow]]
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[gitpython]]
 ## Related Nodes
 
 **Architecture**:

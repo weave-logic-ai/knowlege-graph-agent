@@ -26,12 +26,13 @@ tags:
   - obsidian-plugin
   - rest-api
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Obsidian Local REST API Plugin
@@ -387,6 +388,31 @@ async def search_vault(query: str) -> list[dict]:
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[wikilinks]]
+## Related
+
+[[sqlite]] • [[weaver]]
+## Related
+
+[[docker-compose]]
+## Related
+
+[[n8n-workflow-automation]] • [[property-visualizer]]
+## Related
+
+[[uvicorn]]
 ## Related Nodes
 
 **Architecture**:

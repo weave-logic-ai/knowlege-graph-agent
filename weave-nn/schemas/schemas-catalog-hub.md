@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Schemas Directory
 
 **Purpose**: Document data structure definitions, validation rules, and type contracts used across the Weave-NN project.

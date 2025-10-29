@@ -9,12 +9,13 @@ tags:
   - architecture
   - mvp
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-plan
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # MCP Directory Update Plan
@@ -25,6 +26,41 @@ The `/mcp` directory contains **7 files** that reference the **old 4-service arc
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[agent-rules]] • [[ai-agent-integration]]
+## Related
+
+[[javascript-typescript-stack-pivot]]
+## Related
+
+[[day-2-rest-api-client]]
+## Related
+
+[[day-4-agent-rules]]
+## Related
+
+[[day-11-properties-visualization]]
+## Related
+
+[[ai-integration-layer]]
+## Related
+
+[[mcp-integration-hub]] • [[claude-flow-tight-coupling]]
 ## Files by Status
 
 ### ✅ MVP-Relevant (Update for Weaver)

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Local-First Architecture Overview: The Neural Network Junction
 
 **Date**: 2025-10-23

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Architecture Simplification: Complete Journey (4 → 1 Service)
 
 **Date**: 2025-10-23

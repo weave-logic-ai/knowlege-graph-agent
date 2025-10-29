@@ -21,11 +21,12 @@ tags:
 cssclasses:
   - daily-log
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-daily_log
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Daily Log - 2025-10-23
