@@ -37,6 +37,7 @@ visual:
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚖️
 ---
 
 # TS-020: MVP Test Strategy Executive Summary
@@ -308,6 +309,26 @@ How will we know this decision was correct?
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[mcp]] • [[sqlite]] • [[knowledge-graph-visualization]] • [[markdown-editor-component]]
+## Related
+
+[[jest-testing-framework]]
+## Related
+
+[[Q-TECH-001]]
+## Related
+
+[[watchdog-file-monitoring]]
 ## Related Concepts
 
 - [[test-strategy-full-report]] - Complete 1600-line test strategy report

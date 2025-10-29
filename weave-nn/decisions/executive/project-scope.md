@@ -39,6 +39,7 @@ visual:
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚖️
 ---
 
 # ED-1: Project Scope & Purpose

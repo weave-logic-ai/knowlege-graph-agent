@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # Service Mesh and Networking Architecture Recommendations
 
 **Research Date:** 2025-10-23

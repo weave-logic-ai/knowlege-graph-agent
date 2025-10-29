@@ -9,12 +9,13 @@ tags:
   - metrics
   - summary
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-executive-summary
     - status-completed
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Knowledge Graph Validation - Executive Summary

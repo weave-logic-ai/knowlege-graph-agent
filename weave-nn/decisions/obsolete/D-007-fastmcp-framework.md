@@ -34,6 +34,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚖️
 ---
 
 # Decision: FastMCP Framework for MCP Server (OBSOLETE)

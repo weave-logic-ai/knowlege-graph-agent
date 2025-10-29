@@ -5,7 +5,7 @@
  * Provides analytics and trend analysis capabilities
  */
 
-import { claudeFlowCLI } from '../claude-flow';
+import { claudeFlowCLI } from '../claude-flow/index.js';
 import type {
   UserFeedback,
   FeedbackAnalytics,

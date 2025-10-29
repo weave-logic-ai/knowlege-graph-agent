@@ -28,7 +28,7 @@ author: ai-generated
 version: '1.0'
 priority: high
 visual:
-  icon: "\U0001F310"
+  icon: 🌐
   color: '#EC4899'
   cssclasses:
     - type-hub
@@ -37,6 +37,7 @@ visual:
     - domain-research
   graph_group: navigation
 updated_date: '2025-10-28'
+icon: 🌐
 ---
 
 # Research Directory Hub
@@ -457,6 +458,11 @@ year: 2024
 ## Implementation Recommendations
 [Specific recommendations]
 
+
+
+## Related
+
+[[research-overview-hub]]
 ## Related Work
 - [[related-paper-1]]
 - [[related-paper-2]]

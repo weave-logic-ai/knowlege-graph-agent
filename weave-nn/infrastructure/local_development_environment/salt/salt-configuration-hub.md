@@ -21,6 +21,7 @@ visual:
 domain: infrastructure
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚙️
 ---
 
 # Weave-NN Developer Environment Automation
@@ -67,6 +68,21 @@ updated_date: '2025-10-28'
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[cross-project-knowledge-retention]]
+## Related
+
+[[phase-6-file-watcher-weaver-integration]]
+## Related
+
+[[weaver-workflow-automation]]
 ## 🚀 Quick Start
 
 ### Prerequisites

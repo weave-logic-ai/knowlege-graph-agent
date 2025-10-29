@@ -8,13 +8,14 @@ tags:
   - summary
   - implementation
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Vault Template System - Implementation Summary
@@ -471,6 +472,11 @@ Future project creation wizard
 
 ---
 
+
+
+## Related
+
+[[vault-templates-hub]]
 ## Related Documentation
 
 ### Implementation Files

@@ -34,7 +34,7 @@ tags:
   - scalability
 type: architecture
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
@@ -42,6 +42,7 @@ visual:
     - priority-critical
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # TS-009: Agent Rule Execution: Event-Driven vs Polling
@@ -436,6 +437,21 @@ This architecture provides:
 
 ---
 
+
+
+
+
+
+
+## Related
+
+[[rabbitmq]]
+## Related
+
+[[caching-strategy]]
+## Related
+
+[[singleton-pattern-choice]]
 ## Related Concepts
 
 - [[../../concepts/architecture/event-driven-architecture.md]]

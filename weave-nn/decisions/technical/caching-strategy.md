@@ -41,6 +41,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚖️
 ---
 
 # TS-010: Property Visualization Caching Strategy
@@ -478,6 +479,16 @@ Next query rebuilds from API
 
 ---
 
+
+
+
+
+## Related
+
+[[event-driven-architecture]]
+## Related
+
+[[singleton-pattern-choice]]
 ## Related Concepts
 
 - [[../../concepts/performance/multi-layer-caching.md]]

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: ⚖️
+icon: ⚖️
+---
 # D-024: Testing Framework Selection - Vitest
 
 ## Metadata

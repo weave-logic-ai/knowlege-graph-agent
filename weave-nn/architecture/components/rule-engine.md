@@ -33,13 +33,14 @@ tags:
 type: architecture
 scope: component
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-implemented
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # <span class="lucide-brain"></span> Agent Rule Engine
@@ -61,6 +62,16 @@ The engine maintains comprehensive execution metrics including total evaluations
 - **Maintainer**: Weave-NN Development Team
 - **License**: MIT
 
+
+
+
+
+## Related
+
+[[fastapi]]
+## Related
+
+[[claude-flow]]
 ## Key Features
 
 - **Rule Validation**: Schema validation for rule structure (id, name, condition, action, priority, tags, metadata)

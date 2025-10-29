@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Research Synthesis Documentation
 
 **Created**: 2025-10-23

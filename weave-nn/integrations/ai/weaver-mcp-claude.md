@@ -15,7 +15,7 @@ updated: {}
 type: documentation
 domain: weaver
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -23,6 +23,7 @@ visual:
     - domain-weaver
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Weaver MCP ↔ Claude API Integration

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # Quick Reference Guide: Service Mesh & Networking Architecture
 
 **Research Date:** 2025-10-23 | **Agent:** DevOps Specialist

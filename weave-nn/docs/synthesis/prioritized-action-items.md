@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Prioritized Action Items: Research Synthesis Implementation
 
 **Status**: Ready for Execution

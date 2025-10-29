@@ -23,12 +23,13 @@ tags:
   - topic/continual-learning
   - status/active
 visual:
-  icon: "\U0001F52C"
+  icon: 🔬
   color: '#8B5CF6'
   cssclasses:
     - type-research
     - status-active
 version: '3.0'
+icon: 🔬
 ---
 
 # Sparse Memory Finetuning for Continual Learning: Analysis & Applications to Weave-NN

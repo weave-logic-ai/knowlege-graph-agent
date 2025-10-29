@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Research Synthesis: Executive Summary
 
 **Analyst**: Synthesis Agent (Hive Mind Coordinator)

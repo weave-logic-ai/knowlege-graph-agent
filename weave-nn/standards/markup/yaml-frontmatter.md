@@ -26,12 +26,13 @@ tags:
   - obsidian
   - in-use
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # YAML Frontmatter
@@ -556,6 +557,26 @@ python scripts/analyze_cognitive_balance.py /vault
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[obsidian-features-research]]
+## Related
+
+[[obsidian-tasks-plugin]] • [[sqlite]] • [[obsidian-properties-standard]] • [[metadata-schema-v3]]
+## Related
+
+[[mcp]]
+## Related
+
+[[pyyaml]]
 ## Related Nodes
 
 **Architecture**:

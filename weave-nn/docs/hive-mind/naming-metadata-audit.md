@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Hive Mind Knowledge Graph: Naming & Metadata Audit
 
 **Status**: 🔬 Analysis Complete

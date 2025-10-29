@@ -38,6 +38,7 @@ visual:
     - priority-high
     - domain-weaver
 version: '3.0'
+icon: ⚖️
 ---
 
 # Decision: Adopt Weaver Workflow Proxy to Replace Bash Hooks
@@ -1059,6 +1060,16 @@ export async function handleTaskCompletion(event: TodoCompleteEvent) {
 
 ---
 
+
+
+
+
+## Related
+
+[[VECTOR-DB-MARKDOWN-WORKFLOW-ARCHITECTURE]]
+## Related
+
+[[mcp-integration-hub]]
 ## References
 
 ### Documentation

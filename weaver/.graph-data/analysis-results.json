@@ -1,15 +1,15 @@
 {
-  "timestamp": "2025-10-28T20:53:24.683Z",
+  "timestamp": "2025-10-28T23:10:47.736Z",
   "metrics": {
-    "totalNodes": 1416,
-    "totalEdges": 2860,
-    "connectedNodes": 969,
-    "disconnectedNodes": 447,
-    "orphanedNodes": 447,
-    "averageDegree": 4.03954802259887,
-    "density": 0.0014274021281268092,
-    "clusters": 450,
-    "largestComponentSize": 962
+    "totalNodes": 1447,
+    "totalEdges": 4046,
+    "connectedNodes": 1013,
+    "disconnectedNodes": 434,
+    "orphanedNodes": 434,
+    "averageDegree": 5.592259847961299,
+    "density": 0.0019336998091152486,
+    "clusters": 440,
+    "largestComponentSize": 1002
   },
   "orphanedFiles": [
     ".claude-plugin/claude-plugin-hub.md",
@@ -258,18 +258,28 @@
     ".merge-backup/root-backup/claude-flow/INTEGRATION_GUIDE.md",
     ".merge-backup/root-backup/claude-flow/claude-flow-integration-hub.md",
     ".merge-backup/root-backup/learning-loop/learning-loop-service-hub.md",
+    ".rename-log.md",
     ".task-logs/phase-12-planning.md",
     "CLAUDE.md",
     "CODER_HANDOFF.md",
+    "PHASE-13-COMPLETE-REPORT.md",
+    "PHASE-14-EXECUTIVE-SUMMARY.md",
     "docs/BACKEND-HANDOFF-PHASE-13.md",
     "docs/EMBEDDINGS-TYPE-MERGE-COMPLETE.md",
     "docs/GENERIC-FILE-RENAME-REPORT.md",
+    "docs/GRAPH-ACTIVATION-STEPS.md",
+    "docs/GRAPH-COLOR-FIX.md",
     "docs/GRAPH-TOOL-BUILD-COMPLETE.md",
+    "docs/OBSIDIAN-GRAPH-COMPLETE-STATUS.md",
+    "docs/OBSIDIAN-VISUAL-SETUP-GUIDE.md",
     "docs/PHASE-12-MIGRATION-COMPLETE.md",
     "docs/PHASE-12-TO-13-AUDIT.md",
     "docs/PHASE-13-INTEGRATION-STATUS.md",
+    "docs/PHASE-14-GRAPH-CONNECTIVITY-COMPLETE.md",
+    "docs/PHASE-14-ULTIMATE-SUCCESS.md",
     "docs/PHASE-14-WEEK-1-GIT-INTEGRATION-COMPLETE.md",
     "docs/PHASE-15-SUMMARY.md",
+    "docs/PROJECT-COMPLETION-STATUS.md",
     "docs/RENAME-SUMMARY.md",
     "docs/WEAVER-MIGRATION-PLAN.md",
     "docs/knowledge-graph/CHECKPOINT-HUB-ORGANIZATION-EXPLAINED.md",
@@ -286,8 +296,7 @@
     "docs/migration-analysis/migration-strategy.md",
     "docs/migration-analysis/test-strategy.md",
     "docs/phase-14/ANALYSIS-HANDOFF.md",
-    "docs/phase-14/README.md",
-    "docs/phase-14/orphan-cluster-analysis.md",
+    "docs/phase-14/phase-14-obsidian-integration-hub.md",
     "docs/research/RESEARCH-COMPLETE-REPORT.md",
     "docs/research/WORKFLOW-DEV-RESEARCH-INDEX.md",
     "docs/research/workflow-dev-analysis.md",
@@ -305,56 +314,33 @@
     "weave-nn/.archive/VERIFICATION-REPORT-PHASES-4-8.md",
     "weave-nn/.archive/bash-hooks-legacy/HOOKS-QUICK-REF.md",
     "weave-nn/.archive/bash-hooks-legacy/HOOKS-README-v1.md",
-    "weave-nn/.archive/docs/DOCKER-SETUP.md",
     "weave-nn/.archive/docs/backend-dev-folder-structure-summary.md",
-    "weave-nn/.archive/docs/docker-compose-summary.md",
     "weave-nn/.archive/docs/docker-workflows.md",
     "weave-nn/.archive/features/research/synthesis/01-graph-topology-analyzer.md",
     "weave-nn/.archive/index.md",
-    "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
     "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-tasks.md",
     "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-7-tasks.md",
     "weave-nn/.archive/technical/alternatives/pinecone.md",
     "weave-nn/.archive/technical/future-features/future-features-archive-hub.md",
-    "weave-nn/.archive/technical/future-web-version/daisyui.md",
-    "weave-nn/.archive/technical/future-web-version/nextjs.md",
-    "weave-nn/.archive/technical/future-web-version/railway.md",
-    "weave-nn/.archive/technical/future-web-version/shadcn-ui.md",
     "weave-nn/.archive/technical/future-web-version/supabase.md",
-    "weave-nn/.archive/technical/future-web-version/sveltekit.md",
     "weave-nn/.archive/technical/future-web-version/tailwindcss.md",
-    "weave-nn/.archive/technical/future-web-version/tiptap-editor.md",
-    "weave-nn/.archive/technical/future-web-version/vercel.md",
     "weave-nn/.archive/technical/future-web-version/websockets.md",
     "weave-nn/.archive/technical/out-of-scope/stripe.md",
     "weave-nn/.archive/technical/python-stack/python-stack-archive-hub.md",
     "weave-nn/.archive/technical/rabbitmq/rabbitmq-archive-hub.md",
-    "weave-nn/PHASE-12-DELIVERABLES.md",
     "weave-nn/PHASE-13-TEST-DELIVERABLES.md",
-    "weave-nn/_files/knowledge-graph-integration-architecture.md",
     "weave-nn/_log/daily/2025-10-22.md",
-    "weave-nn/_log/tasks/0.1.doc_test.1.5f93f9.md",
     "weave-nn/_log/tasks/review_2025-10-22.3.23.3b.23.implement_hooks.automation.33eb0d.md",
     "weave-nn/_log/tasks/review_2025-10-22.3.23.create_decision_nodes.1.a8c4f2.md",
     "weave-nn/_log/tasks/test_task.implement_proof_workflows.abc123.md",
-    "weave-nn/_planning/phases/phase-4b-task-completion-log.md",
-    "weave-nn/_sops/SOP-004-debugging.md",
-    "weave-nn/_sops/SOP-005-documentation.md",
-    "weave-nn/_sops/SOP-006-markdown-management.md",
-    "weave-nn/_sops/SOP-007-code-review.md",
-    "weave-nn/_sops/SOP-008-performance-analysis.md",
     "weave-nn/config/vault-templates/typescript-node/documents/typescript-node-docs-hub.md",
-    "weave-nn/config/vault-templates/vault-templates-hub.md",
     "weave-nn/decisions/obsolete/obsolete-decisions-index.md",
     "weave-nn/docs/BATCH-1-COMPLETION-SUMMARY.md",
     "weave-nn/docs/GRAPH-TOOLS-IMPLEMENTATION.md",
     "weave-nn/docs/GRAPH-VISUALIZATION.md",
     "weave-nn/docs/MASS-CONNECTION-FINAL-STATUS.md",
     "weave-nn/examples/contextual-overlap-example.md",
-    "weave-nn/guides/guides-index-hub.md",
     "weave-nn/integrations/version-control/git-weaver-workflows.md",
-    "weave-nn/mcp/MCP-DIRECTORY-UPDATE-PLAN.md",
-    "weave-nn/mcp/mcp-integration-hub.md",
     "weave-nn/metrics/baseline-2025-10-23.md.md",
     "weave-nn/protocols/protocols-overview-hub.md",
     "weave-nn/queries/cognitive-variability-analysis.md",
@@ -365,12 +351,9 @@
     "weave-nn/research/mcp-sdk-integration-status.md",
     "weave-nn/research/multi-graph-knowledge-systems.md",
     "weave-nn/research/multi-project-platform.md",
-    "weave-nn/research/research-overview-hub.md",
     "weave-nn/schemas/schemas-catalog-hub.md",
     "weave-nn/scripts/perplexity-validator.md",
-    "weave-nn/services/services-architecture-hub.md",
     "weave-nn/src/learning-loop/learning-loop-implementation-hub.md",
-    "weave-nn/standards/code-quality-checklist.md",
     "weave-nn/technical/chokidar.md",
     "weave-nn/technical/hono.md",
     "weave-nn/technical/nodejs.md",
@@ -383,10 +366,13 @@
     "weaver/DEVELOPMENT.md",
     "weaver/IMPLEMENTATION_COMPLETE.md",
     "weaver/IMPLEMENTATION_SUMMARY.md",
+    "weaver/PHASE-13-DOCUMENTATION-COMPLETE.md",
     "weaver/QUICKSTART.md",
     "weaver/TOT-ENHANCEMENT-COMPLETE.md",
     "weaver/WORKFLOW-TESTING.md",
     "weaver/WORKFLOW-VERIFICATION.md",
+    "weaver/docs/AGENTS-IMPLEMENTATION-COMPLETE.md",
+    "weaver/docs/EXPERT-AGENTS-STATUS.md",
     "weaver/docs/INSTALLATION.md",
     "weaver/docs/PHASE-10-SPECIFICATIONS.md",
     "weaver/docs/PHASE-13-MASTER-DOCUMENT.md",
@@ -417,6 +403,7 @@
     "weaver/docs/VALIDATION-REPORT.md",
     "weaver/docs/VALIDATION-SUMMARY.md",
     "weaver/docs/VAULT-WRITER-IMPLEMENTATION.md",
+    "weaver/docs/VITEST-LOCKUP-FIX.md",
     "weaver/docs/WEAVER-MCP-VALIDATION-REPORT.md",
     "weaver/docs/WORKFLOW-FIXES-COMPLETE.md",
     "weaver/docs/developer/expert-agents.md",
@@ -451,7 +438,7 @@
     "weaver/src/claude-flow/INTEGRATION_GUIDE.md",
     "weaver/src/claude-flow/claude-flow-integration-hub.md",
     "weaver/src/learning-loop/learning-loop-service-hub.md",
-    "weaver/src/workflows/kg/context/README.md",
+    "weaver/src/workflows/kg/context/context-analysis-system-guide.md",
     "weaver/tests/fixtures/nextjs-app/nextjs-test-fixture-hub.md",
     "weaver/tests/fixtures/react-vite/react-vite-test-fixture-hub.md",
     "weaver/tests/spec-kit/fixtures/sample-phase.md",
@@ -463,23 +450,23 @@
   "hubFiles": [
     {
       "path": "weave-nn/.claude/CHECKPOINT-TIMELINE-HUB.md",
-      "degree": 387
+      "degree": 389
     },
     {
       "path": "weaver/docs/WEAVER-DOCS-HUB.md",
-      "degree": 145
+      "degree": 146
     },
     {
       "path": "weave-nn/_planning/PLANNING-DIRECTORY-HUB.md",
-      "degree": 124
+      "degree": 127
     },
     {
       "path": "weave-nn/.claude/AGENT-DIRECTORY-HUB.md",
-      "degree": 121
+      "degree": 123
     },
     {
       "path": "weave-nn/docs/DOCS-DIRECTORY-HUB.md",
-      "degree": 112
+      "degree": 113
     },
     {
       "path": "weave-nn/_planning/PLANNING-LOGS-HUB.md",
@@ -491,427 +478,169 @@
     },
     {
       "path": "weave-nn/_planning/phases/phase-13-master-plan.md",
-      "degree": 82
+      "degree": 89
     },
     {
       "path": "weave-nn/docs/PROJECT-TIMELINE.md",
-      "degree": 69
+      "degree": 80
+    },
+    {
+      "path": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "degree": 61
     },
     {
       "path": "weave-nn/_planning/phases/navigation-optimization-analysis.md",
       "degree": 60
     },
     {
-      "path": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "path": "weave-nn/concepts/wikilinks.md",
+      "degree": 55
+    },
+    {
+      "path": "weave-nn/technical/obsidian-api-client.md",
+      "degree": 51
+    },
+    {
+      "path": "weave-nn/.archive/features/collaborative-editing.md",
       "degree": 50
     },
     {
-      "path": "weave-nn/concepts/wikilinks.md",
-      "degree": 48
+      "path": "weave-nn/.archive/features/comments-annotations.md",
+      "degree": 46
     },
     {
       "path": "weave-nn/workflows/node-creation-process.md",
       "degree": 45
     },
     {
-      "path": "weave-nn/technical/obsidian-api-client.md",
-      "degree": 43
-    },
-    {
       "path": ".merge-backup/root-backup/workflows/kg/context/README.md",
       "degree": 42
     },
     {
-      "path": "weave-nn/concepts/weave-nn.md",
-      "degree": 40
-    },
-    {
-      "path": "weave-nn/concepts/knowledge-graph.md",
-      "degree": 39
-    },
-    {
-      "path": "weave-nn/docs/CHUNKING-STRATEGY-SYNTHESIS.md",
-      "degree": 39
-    },
-    {
-      "path": "weave-nn/docs/research/RESEARCH-DIRECTORY-HUB.md",
-      "degree": 39
-    },
-    {
       "path": "weave-nn/_planning/phases/phase-1-knowledge-graph-transformation.md",
-      "degree": 38
+      "degree": 42
+    },
+    {
+      "path": "weave-nn/features/git-integration.md",
+      "degree": 42
+    },
+    {
+      "path": "weave-nn/_planning/MASTER-PLAN.md",
+      "degree": 41
     }
   ],
   "topSuggestions": [
     {
-      "sourceFile": "weave-nn/.archive/features/deferred/github-issues-integration.md",
-      "targetFile": "weave-nn/.archive/features/github-issues-integration.md",
-      "score": 24.7,
-      "reason": "Shared tags: scope/mvp, type/feature, status/planned, priority/high, tech/github, tech/python, category/integration. Same category: integration. Related location (60% similar path). Similar content (100% match).",
+      "sourceFile": "docs/KNOWLEDGE-GRAPH-RECONNECTION-REPORT.md",
+      "targetFile": "weaver/docs/WEAVER-DOCS-HUB.md",
+      "score": 45,
+      "reason": "Shared tags: r, e, p, o, t, ,,  , k, n, w, l, d, g, -, a, h, c, i.",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
-          "scope/mvp",
-          "type/feature",
-          "status/planned",
-          "priority/high",
-          "tech/github",
-          "tech/python",
-          "category/integration"
-        ],
-        "sharedCategories": [
-          "integration"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
-      "targetFile": "weave-nn/.archive/features/collaborative-editing.md",
-      "score": 19.7,
-      "reason": "Shared tags: feature, editor, v1.1, collaboration, realtime. Same category: editor. Related location (60% similar path). Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "editor",
-          "v1.1",
-          "collaboration",
-          "realtime"
-        ],
-        "sharedCategories": [
-          "editor"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/_planning/research/fastmcp-research-findings.md",
-      "targetFile": "weave-nn/research/fastmcp-research-findings.md",
-      "score": 18.5,
-      "reason": "Shared tags: fastmcp, mcp, python, research, server-implementation. Same category: mcp-development. Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "fastmcp",
-          "mcp",
-          "python",
-          "research",
-          "server-implementation"
-        ],
-        "sharedCategories": [
-          "mcp-development"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/auto-tagging.md",
-      "targetFile": "weave-nn/.archive/features/deferred/auto-tagging.md",
-      "score": 17.2,
-      "reason": "Shared tags: feature, ai, v2.0, automation. Same category: ai. Related location (60% similar path). Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "v2.0",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/comments-annotations.md",
-      "targetFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
-      "score": 17.2,
-      "reason": "Shared tags: feature, collaboration, v1.1, communication. Same category: collaboration. Related location (60% similar path). Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "collaboration",
-          "v1.1",
-          "communication"
-        ],
-        "sharedCategories": [
-          "collaboration"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/daily-log-automation.md",
-      "targetFile": "weave-nn/features/daily-log-automation.md",
-      "score": 16,
-      "reason": "Shared tags: feature, planning, v2.0, automation. Same category: planning. Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "planning",
-          "v2.0",
-          "automation"
-        ],
-        "sharedCategories": [
-          "planning"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/decision-tracking.md",
-      "targetFile": "weave-nn/features/decision-tracking.md",
-      "score": 16,
-      "reason": "Shared tags: feature, planning, mvp, high-priority. Same category: planning. Similar content (100% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "planning",
-          "mvp",
-          "high-priority"
-        ],
-        "sharedCategories": [
-          "planning"
-        ],
-        "semanticSimilarity": 1
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/ai-summaries.md",
-      "targetFile": "weave-nn/.archive/features/auto-tagging.md",
-      "score": 15,
-      "reason": "Shared tags: feature, ai, v2.0, automation. Same category: ai. Related location (75% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "v2.0",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
+          "r",
+          "e",
+          "p",
+          "o",
+          "t",
+          ",",
+          " ",
+          "k",
+          "n",
+          "w",
+          "l",
+          "d",
+          "g",
+          "-",
+          "a",
+          "h",
+          "c",
+          "i"
         ]
       }
     },
     {
-      "sourceFile": "weave-nn/.archive/features/syntax-highlighting.md",
-      "targetFile": "weave-nn/.archive/features/wikilink-autocomplete.md",
-      "score": 15,
-      "reason": "Shared tags: feature, editor, mvp, high-priority. Same category: editor. Related location (75% similar path).",
+      "sourceFile": "docs/KNOWLEDGE-GRAPH-RECONNECTION-REPORT.md",
+      "targetFile": "weaver/tests/TEST-SUITE-HUB.md",
+      "score": 45,
+      "reason": "Shared tags: r, e, p, o, t, ,,  , k, n, w, l, d, g, -, a, h, i, s.",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
-          "feature",
-          "editor",
-          "mvp",
-          "high-priority"
-        ],
-        "sharedCategories": [
-          "editor"
+          "r",
+          "e",
+          "p",
+          "o",
+          "t",
+          ",",
+          " ",
+          "k",
+          "n",
+          "w",
+          "l",
+          "d",
+          "g",
+          "-",
+          "a",
+          "h",
+          "i",
+          "s"
         ]
       }
     },
     {
-      "sourceFile": "weave-nn/.archive/features/ai-summaries.md",
-      "targetFile": "weave-nn/.archive/features/deferred/auto-tagging.md",
-      "score": 14.7,
-      "reason": "Shared tags: feature, ai, v2.0, automation. Same category: ai. Related location (60% similar path).",
+      "sourceFile": "docs/KNOWLEDGE-GRAPH-RECONNECTION-REPORT.md",
+      "targetFile": "weave-nn/.claude/COMMAND-REGISTRY-HUB.md",
+      "score": 42.5,
+      "reason": "Shared tags: r, e, p, o, ,,  , k, n, w, l, d, g, -, a, h, c, s.",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
-          "feature",
-          "ai",
-          "v2.0",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
+          "r",
+          "e",
+          "p",
+          "o",
+          ",",
+          " ",
+          "k",
+          "n",
+          "w",
+          "l",
+          "d",
+          "g",
+          "-",
+          "a",
+          "h",
+          "c",
+          "s"
         ]
       }
     },
     {
-      "sourceFile": "weave-nn/.archive/technical/future-features/gitpython.md",
-      "targetFile": "weave-nn/.archive/technical/python-stack/watchdog-file-monitoring.md",
-      "score": 14.7,
-      "reason": "Shared tags: technical, library, in-use, mvp. Same category: library. Related location (60% similar path).",
+      "sourceFile": "docs/KNOWLEDGE-GRAPH-RECONNECTION-REPORT.md",
+      "targetFile": "weave-nn/_planning/PLANNING-LOGS-HUB.md",
+      "score": 42.5,
+      "reason": "Shared tags: r, e, p, o, ,,  , k, n, w, l, d, g, -, a, h, i, s.",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
-          "technical",
-          "library",
-          "in-use",
-          "mvp"
-        ],
-        "sharedCategories": [
-          "library"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
-      "targetFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-mvp-week-1.md",
-      "score": 13.1,
-      "reason": "Shared tags: scope/mvp, type/planning, priority/critical, phase-5. Related location (80% similar path). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/planning",
-          "priority/critical",
-          "phase-5"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/technical/python-stack/pyyaml.md",
-      "targetFile": "weave-nn/.archive/technical/python-stack/watchdog-file-monitoring.md",
-      "score": 12.6,
-      "reason": "Shared tags: technical, library, in-use. Same category: library. Related location (80% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "technical",
-          "library",
-          "in-use"
-        ],
-        "sharedCategories": [
-          "library"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/node-search.md",
-      "targetFile": "weave-nn/.archive/features/temporal-view.md",
-      "score": 12.5,
-      "reason": "Shared tags: feature, knowledge-graph, v1.1. Same category: knowledge-graph. Related location (75% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "knowledge-graph",
-          "v1.1"
-        ],
-        "sharedCategories": [
-          "knowledge-graph"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/decisions/technical/event-driven-architecture.md",
-      "targetFile": "weave-nn/decisions/technical/singleton-pattern-choice.md",
-      "score": 12.5,
-      "reason": "Shared tags: decision, architecture, decided. Same category: architecture. Related location (75% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "decision",
-          "architecture",
-          "decided"
-        ],
-        "sharedCategories": [
-          "architecture"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-mvp-week-1.md",
-      "targetFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-7-mvp-week-2.md",
-      "score": 12.1,
-      "reason": "Shared tags: scope/mvp, type/planning, status/pending, priority/critical. Related location (80% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/planning",
-          "status/pending",
-          "priority/critical"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/docs/chunking-implementation-guide.md",
-      "targetFile": "weave-nn/docs/chunking-quick-reference.md",
-      "score": 11.8,
-      "reason": "Shared tags: chunking, configuration, weave-nn. Same category: technical. Related location (67% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "chunking",
-          "configuration",
-          "weave-nn"
-        ],
-        "sharedCategories": [
-          "technical"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/features/agent-automation.md",
-      "targetFile": "weave-nn/features/ai-integration-component.md",
-      "score": 11.8,
-      "reason": "Shared tags: feature, ai, mvp. Same category: ai. Related location (67% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "mvp"
-        ],
-        "sharedCategories": [
-          "ai"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/technical/future-features/gitpython.md",
-      "targetFile": "weave-nn/.archive/technical/python-stack/pyyaml.md",
-      "score": 11.7,
-      "reason": "Shared tags: technical, library, in-use. Same category: library. Related location (60% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "technical",
-          "library",
-          "in-use"
-        ],
-        "sharedCategories": [
-          "library"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/_planning/phases/.archive/phase-6-file-watcher-weaver-integration.md",
-      "targetFile": "weave-nn/_planning/phases/phase-9-testing-documentation.md",
-      "score": 11.7,
-      "reason": "Shared tags: scope/mvp, type/implementation, status/pending, priority/high. Related location (60% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/implementation",
-          "status/pending",
-          "priority/high"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/constitution.md",
-      "targetFile": "weave-nn/_planning/specs/phase-7-agent-rules-memory-sync/phase-7-agent-tasks.md",
-      "score": 11.6,
-      "reason": "Shared tags: spec-kit, phase-7, agent-rules, memory-sync. Related location (80% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "spec-kit",
-          "phase-7",
-          "agent-rules",
-          "memory-sync"
+          "r",
+          "e",
+          "p",
+          "o",
+          ",",
+          " ",
+          "k",
+          "n",
+          "w",
+          "l",
+          "d",
+          "g",
+          "-",
+          "a",
+          "h",
+          "i",
+          "s"
         ]
       }
     },
@@ -928,264 +657,6 @@
           "validation"
         ],
         "semanticSimilarity": 0.3793103448275862
-      }
-    },
-    {
-      "sourceFile": "weave-nn/architecture/cross-project-knowledge-retention.md",
-      "targetFile": "weave-nn/architecture/obsidian-native-integration-analysis.md",
-      "score": 11.3,
-      "reason": "Shared tags: scope/mvp, type/architecture, status/active, tech/obsidian. Related location (67% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/architecture",
-          "status/active",
-          "tech/obsidian"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/docs/PHASE-12-LEARNING-LOOP-BLUEPRINT.md",
-      "targetFile": "weaver/docs/api/learning-loop-api.md",
-      "score": 11.3,
-      "reason": "Shared tags: phase-12, learning-loop, autonomous-agents. Same category: technical. Similar content (33% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "phase-12",
-          "learning-loop",
-          "autonomous-agents"
-        ],
-        "sharedCategories": [
-          "technical"
-        ],
-        "semanticSimilarity": 0.3333333333333333
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/technical/python-stack/uvicorn.md",
-      "targetFile": "weave-nn/technical/obsidian-local-rest-api-plugin.md",
-      "score": 11,
-      "reason": "Shared tags: technical, tool, in-use. Same category: tool.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "technical",
-          "tool",
-          "in-use"
-        ],
-        "sharedCategories": [
-          "tool"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/PHASE-12-DELIVERABLES.md",
-      "targetFile": "weave-nn/docs/PHASE-12-IMPLEMENTATION-COMPLETE.md",
-      "score": 10.8,
-      "reason": "Shared tags: phase-12, deliverables, autonomous-learning-loop. Similar content (54% match). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "phase-12",
-          "deliverables",
-          "autonomous-learning-loop"
-        ],
-        "semanticSimilarity": 0.5384615384615384
-      }
-    },
-    {
-      "sourceFile": "weave-nn/docs/MARKDOWN-ASYNC-WORKFLOW-ARCHITECTURE.md",
-      "targetFile": "weave-nn/docs/MARKDOWN-WORKFLOW-IMPLEMENTATION-SUMMARY.md",
-      "score": 10.8,
-      "reason": "Shared tags: markdown-workflows, user-feedback. Same category: technical. Related location (67% similar path). Similar content (38% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "markdown-workflows",
-          "user-feedback"
-        ],
-        "sharedCategories": [
-          "technical"
-        ],
-        "semanticSimilarity": 0.3793103448275862
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
-      "targetFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-7-mvp-week-2.md",
-      "score": 10.6,
-      "reason": "Shared tags: scope/mvp, type/planning, priority/critical. Related location (80% similar path). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/planning",
-          "priority/critical"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/ai-summaries.md",
-      "targetFile": "weave-nn/features/agent-automation.md",
-      "score": 10.5,
-      "reason": "Shared tags: feature, ai, automation. Same category: ai.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/auto-tagging.md",
-      "targetFile": "weave-nn/features/agent-automation.md",
-      "score": 10.5,
-      "reason": "Shared tags: feature, ai, automation. Same category: ai.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/deferred/auto-tagging.md",
-      "targetFile": "weave-nn/features/agent-automation.md",
-      "score": 10.5,
-      "reason": "Shared tags: feature, ai, automation. Same category: ai.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "ai",
-          "automation"
-        ],
-        "sharedCategories": [
-          "ai"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/deferred/github-issues-integration.md",
-      "targetFile": "weave-nn/features/rabbitmq-message-queue.md",
-      "score": 10.5,
-      "reason": "Shared tags: scope/mvp, type/feature, status/planned, tech/python.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/feature",
-          "status/planned",
-          "tech/python"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/github-issues-integration.md",
-      "targetFile": "weave-nn/features/rabbitmq-message-queue.md",
-      "score": 10.5,
-      "reason": "Shared tags: scope/mvp, type/feature, status/planned, tech/python.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/feature",
-          "status/planned",
-          "tech/python"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/features/tag-based-filtering.md",
-      "targetFile": "weave-nn/features/rest-api-integration.md",
-      "score": 10.5,
-      "reason": "Shared tags: feature, knowledge-graph, mvp. Same category: knowledge-graph.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "knowledge-graph",
-          "mvp"
-        ],
-        "sharedCategories": [
-          "knowledge-graph"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-7-mvp-week-2.md",
-      "targetFile": "weave-nn/_planning/phases/phase-10-mvp-readiness-launch.md",
-      "score": 10.5,
-      "reason": "Shared tags: scope/mvp, status/pending, priority/critical, deployment.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "status/pending",
-          "priority/critical",
-          "deployment"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/phase-4a-decision-closure.md",
-      "targetFile": "weave-nn/_planning/phases/phase-2-documentation-capture.md",
-      "score": 10.5,
-      "reason": "Shared tags: scope/mvp, type/planning, status/completed, priority/critical.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/planning",
-          "status/completed",
-          "priority/critical"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/technical/python-stack/uvicorn.md",
-      "targetFile": "weave-nn/technical/obsidian-tasks-plugin.md",
-      "score": 10.5,
-      "reason": "Shared tags: technical, tool, in-use. Same category: tool.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "technical",
-          "tool",
-          "in-use"
-        ],
-        "sharedCategories": [
-          "tool"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/features/rest-api-integration.md",
-      "targetFile": "weave-nn/.archive/features/knowledge-graph-visualization.md",
-      "score": 10.5,
-      "reason": "Shared tags: feature, knowledge-graph, mvp. Same category: knowledge-graph.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "feature",
-          "knowledge-graph",
-          "mvp"
-        ],
-        "sharedCategories": [
-          "knowledge-graph"
-        ]
       }
     },
     {
@@ -1216,81 +687,6 @@
           "validation"
         ],
         "semanticSimilarity": 0.3333333333333333
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
-      "targetFile": "weave-nn/_planning/research/fastmcp-research-findings.md",
-      "score": 10.3,
-      "reason": "Shared tags: mcp, fastmcp, python. Similar content (54% match). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "mcp",
-          "fastmcp",
-          "python"
-        ],
-        "semanticSimilarity": 0.5384615384615384
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
-      "targetFile": "weave-nn/research/fastmcp-research-findings.md",
-      "score": 10.3,
-      "reason": "Shared tags: mcp, fastmcp, python. Similar content (54% match). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "mcp",
-          "fastmcp",
-          "python"
-        ],
-        "semanticSimilarity": 0.5384615384615384
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-6-day-2-3-mcp-tasks.md",
-      "targetFile": "weave-nn/.archive/legacy-phases/phase-4a-decision-closure.md",
-      "score": 10.2,
-      "reason": "Shared tags: scope/mvp, type/planning, priority/critical. Related location (60% similar path). Reconnects orphaned file.",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "scope/mvp",
-          "type/planning",
-          "priority/critical"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/.archive/technical/python-stack/pika-rabbitmq-client.md",
-      "targetFile": "weave-nn/.archive/technical/python-stack/pyyaml.md",
-      "score": 10.1,
-      "reason": "Shared tags: technical, library. Same category: library. Related location (80% similar path).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "technical",
-          "library"
-        ],
-        "sharedCategories": [
-          "library"
-        ]
-      }
-    },
-    {
-      "sourceFile": "weave-nn/_planning/phases/phase-11-cli-service-management.md",
-      "targetFile": "weave-nn/_planning/phases/phase-6-vault-initialization.md",
-      "score": 10.1,
-      "reason": "Shared tags: phase, automation, high-priority. Related location (75% similar path). Similar content (43% match).",
-      "bidirectional": true,
-      "metadata": {
-        "sharedTags": [
-          "phase",
-          "automation",
-          "high-priority"
-        ],
-        "semanticSimilarity": 0.42857142857142855
       }
     },
     {
@@ -1342,34 +738,562 @@
       }
     },
     {
-      "sourceFile": "weave-nn/.archive/features/backup-sync.md",
-      "targetFile": "weave-nn/.archive/features/data-portability.md",
-      "score": 10,
-      "reason": "Shared tags: feature, data. Same category: data. Related location (75% similar path).",
+      "sourceFile": "docs/migration-analysis/test-strategy.md",
+      "targetFile": "scripts/test-migration/README.md",
+      "score": 9.8,
+      "reason": "Shared tags: testing, migration, validation. Similar content (33% match). Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "testing",
+          "migration",
+          "validation"
+        ],
+        "semanticSimilarity": 0.3333333333333333
+      }
+    },
+    {
+      "sourceFile": "weave-nn/features/decision-tracking.md",
+      "targetFile": "weave-nn/features/daily-log-automation.md",
+      "score": 9.8,
+      "reason": "Shared tags: feature, planning. Same category: planning. Related location (67% similar path).",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
           "feature",
-          "data"
+          "planning"
         ],
         "sharedCategories": [
-          "data"
+          "planning"
         ]
       }
     },
     {
-      "sourceFile": "weave-nn/.archive/features/canvas-visualization.md",
-      "targetFile": "weave-nn/.archive/features/daily-log-automation.md",
-      "score": 10,
-      "reason": "Shared tags: feature, planning. Same category: planning. Related location (75% similar path).",
+      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
+      "targetFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
+      "score": 9.6,
+      "reason": "Shared tags: feature, v1.1, collaboration. Related location (80% similar path).",
       "bidirectional": true,
       "metadata": {
         "sharedTags": [
           "feature",
-          "planning"
+          "v1.1",
+          "collaboration"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/api/learning-loop-api.md",
+      "targetFile": "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+      "score": 9.3,
+      "reason": "Shared tags: phase-12, learning-loop. Same category: technical. Similar content (33% match).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-12",
+          "learning-loop"
         ],
         "sharedCategories": [
-          "planning"
+          "technical"
+        ],
+        "semanticSimilarity": 0.3333333333333333
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/api/learning-loop-api.md",
+      "targetFile": "weaver/docs/developer/phase-12-architecture.md",
+      "score": 9.1,
+      "reason": "Shared tags: phase-12, autonomous-agents. Same category: technical. Similar content (43% match).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-12",
+          "autonomous-agents"
+        ],
+        "sharedCategories": [
+          "technical"
+        ],
+        "semanticSimilarity": 0.42857142857142855
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/api/learning-loop-api.md",
+      "targetFile": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "score": 8.5,
+      "reason": "Shared tags: phase-12, autonomous-agents. Same category: technical.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-12",
+          "autonomous-agents"
+        ],
+        "sharedCategories": [
+          "technical"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/developer/phase-12-architecture.md",
+      "targetFile": "weave-nn/docs/WEAVER-COMPLETE-IMPLEMENTATION-GUIDE.md",
+      "score": 8.5,
+      "reason": "Shared tags: phase-12, autonomous-agents. Same category: technical.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-12",
+          "autonomous-agents"
+        ],
+        "sharedCategories": [
+          "technical"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/spec-kit/SKILL.md",
+      "targetFile": "weave-nn/_planning/specs/phase-8-git-automation-workflow-proxy/specification.md",
+      "score": 8,
+      "reason": "Shared tags: spec-kit, specification, requirements.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "spec-kit",
+          "specification",
+          "requirements"
+        ]
+      }
+    },
+    {
+      "sourceFile": "_planning/phases/phase-14-revised-workflow-automation.md",
+      "targetFile": "weave-nn/mcp/agent-rules-workflows.md",
+      "score": 8,
+      "reason": "Shared tags: workflows, automation, knowledge-graph.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "workflows",
+          "automation",
+          "knowledge-graph"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/deferred/auto-tagging.md",
+      "targetFile": "weave-nn/features/daily-log-automation.md",
+      "score": 8,
+      "reason": "Shared tags: feature, v2.0, automation.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v2.0",
+          "automation"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/_planning/specs/phase-5-mcp-integration/plan.md",
+      "targetFile": "weave-nn/_planning/specs/phase-5-mcp-integration/specification.md",
+      "score": 7.9,
+      "reason": "Shared tags: spec-kit, phase-5. Related location (80% similar path). Similar content (33% match).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "spec-kit",
+          "phase-5"
+        ],
+        "semanticSimilarity": 0.3333333333333333
+      }
+    },
+    {
+      "sourceFile": "docs/knowledge-graph/graph-structure-analysis.md",
+      "targetFile": "docs/knowledge-graph/phase-13-14-analysis.md",
+      "score": 7.8,
+      "reason": "Shared tags: knowledge-graph, analysis. Related location (67% similar path). Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "knowledge-graph",
+          "analysis"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/flow-nexus-swarm/SKILL.md",
+      "targetFile": ".claude/skills/swarm-advanced/SKILL.md",
+      "score": 7.5,
+      "reason": "Shared tags: swarm. Same category: orchestration. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "swarm"
+        ],
+        "sharedCategories": [
+          "orchestration"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/github-code-review/SKILL.md",
+      "targetFile": ".claude/skills/github-project-management/SKILL.md",
+      "score": 7.5,
+      "reason": "Shared tags: github. Same category: github. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "github"
+        ],
+        "sharedCategories": [
+          "github"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/github-code-review/SKILL.md",
+      "targetFile": ".claude/skills/github-workflow-automation/SKILL.md",
+      "score": 7.5,
+      "reason": "Shared tags: github. Same category: github. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "github"
+        ],
+        "sharedCategories": [
+          "github"
+        ]
+      }
+    },
+    {
+      "sourceFile": "_planning/phases/phase-14-revised-workflow-automation.md",
+      "targetFile": "weave-nn/_planning/specs/phase-14/obsidian-features-research.md",
+      "score": 7.5,
+      "reason": "Shared tags: phase-14, knowledge-graph, obsidian.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-14",
+          "knowledge-graph",
+          "obsidian"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/_planning/specs/phase-5-mcp-integration/constitution.md",
+      "targetFile": "weave-nn/_planning/specs/phase-5-mcp-integration/specification.md",
+      "score": 7.5,
+      "reason": "Shared tags: spec-kit, phase-5. Related location (80% similar path). Similar content (38% match).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "spec-kit",
+          "phase-5"
+        ],
+        "semanticSimilarity": 0.3793103448275862
+      }
+    },
+    {
+      "sourceFile": ".claude/agents/optimization/load-balancer.md",
+      "targetFile": ".claude/agents/optimization/resource-allocator.md",
+      "score": 7.3,
+      "reason": "Same category: optimization. Related location (75% similar path). Similar content (33% match). Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedCategories": [
+          "optimization"
+        ],
+        "semanticSimilarity": 0.3333333333333333
+      }
+    },
+    {
+      "sourceFile": ".claude/agents/optimization/performance-monitor.md",
+      "targetFile": ".claude/agents/optimization/resource-allocator.md",
+      "score": 7.3,
+      "reason": "Same category: optimization. Related location (75% similar path). Similar content (33% match). Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedCategories": [
+          "optimization"
+        ],
+        "semanticSimilarity": 0.3333333333333333
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/flow-nexus-platform/SKILL.md",
+      "targetFile": "weave-nn/.archive/technical/rabbitmq/docker.md",
+      "score": 7,
+      "reason": "Shared tags: deployment. Same category: platform. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "deployment"
+        ],
+        "sharedCategories": [
+          "platform"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/flow-nexus-swarm/SKILL.md",
+      "targetFile": "weave-nn/.archive/n8n-legacy/n8n-workflow-automation.md",
+      "score": 7,
+      "reason": "Shared tags: workflow, automation. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "workflow",
+          "automation"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/flow-nexus-swarm/SKILL.md",
+      "targetFile": "weave-nn/_planning/reviews/PLANNING-REVIEW-2025-10-22-3b-workflow-automation.md",
+      "score": 7,
+      "reason": "Shared tags: workflow, automation. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "workflow",
+          "automation"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/github-release-management/SKILL.md",
+      "targetFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-7-mvp-week-2.md",
+      "score": 7,
+      "reason": "Shared tags: deployment, automation. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "deployment",
+          "automation"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/hive-mind-advanced/SKILL.md",
+      "targetFile": "weave-nn/.archive/legacy-phases/mvp-python-stack/phase-8-hive-mind-integration.md",
+      "score": 7,
+      "reason": "Shared tags: hive-mind, collective-intelligence. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "hive-mind",
+          "collective-intelligence"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/hive-mind-advanced/SKILL.md",
+      "targetFile": ".claude/skills/swarm-advanced/SKILL.md",
+      "score": 7,
+      "reason": "Shared tags: swarm, coordination. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "swarm",
+          "coordination"
+        ]
+      }
+    },
+    {
+      "sourceFile": ".claude/skills/sparc-methodology/SKILL.md",
+      "targetFile": ".claude/skills/spec-kit/SKILL.md",
+      "score": 7,
+      "reason": "Shared tags: multi-agent. Same category: development. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "multi-agent"
+        ],
+        "sharedCategories": [
+          "development"
+        ]
+      }
+    },
+    {
+      "sourceFile": "_planning/phases/phase-14-revised-workflow-automation.md",
+      "targetFile": "docs/knowledge-graph/phase-13-14-analysis.md",
+      "score": 7,
+      "reason": "Shared tags: phase-14, knowledge-graph. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-14",
+          "knowledge-graph"
+        ]
+      }
+    },
+    {
+      "sourceFile": "docs/knowledge-graph/phase-13-14-analysis.md",
+      "targetFile": "docs/phase-14/orphan-cluster-analysis.md",
+      "score": 7,
+      "reason": "Shared tags: phase-14, knowledge-graph. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-14",
+          "knowledge-graph"
+        ]
+      }
+    },
+    {
+      "sourceFile": "docs/migration-analysis/TESTER-DELIVERABLES.md",
+      "targetFile": "weave-nn/docs/hive-mind/GRAPH-VALIDATION-REPORT.md",
+      "score": 7,
+      "reason": "Shared tags: validation, hive-mind. Reconnects orphaned file.",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "validation",
+          "hive-mind"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/developer/troubleshooting.md",
+      "targetFile": "weaver/docs/user-guide/autonomous-learning-guide.md",
+      "score": 6.9,
+      "reason": "Shared tags: phase-12. Same category: guide. Similar content (38% match).",
+      "bidirectional": false,
+      "metadata": {
+        "sharedTags": [
+          "phase-12"
+        ],
+        "sharedCategories": [
+          "guide"
+        ],
+        "semanticSimilarity": 0.3793103448275862
+      }
+    },
+    {
+      "sourceFile": "weaver/docs/user-guide/autonomous-learning-guide.md",
+      "targetFile": "weave-nn/docs/PHASE-12-LEARNING-LOOP-INTEGRATION.md",
+      "score": 6.8,
+      "reason": "Shared tags: phase-12, learning-loop. Similar content (54% match).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "phase-12",
+          "learning-loop"
+        ],
+        "semanticSimilarity": 0.5384615384615384
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/deferred/auto-tagging.md",
+      "targetFile": "weave-nn/.archive/features/activity-feed.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v2.0. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v2.0"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
+      "targetFile": "weave-nn/.archive/features/activity-feed.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, collaboration. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "collaboration"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
+      "targetFile": "weave-nn/.archive/features/backup-sync.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
+      "targetFile": "weave-nn/.archive/features/canvas-visualization.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/collaborative-editing.md",
+      "targetFile": "weave-nn/.archive/features/deferred/semantic-search.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
+      "targetFile": "weave-nn/.archive/features/backup-sync.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
+      "targetFile": "weave-nn/.archive/features/canvas-visualization.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
+      "targetFile": "weave-nn/.archive/features/deferred/semantic-search.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
+        ]
+      }
+    },
+    {
+      "sourceFile": "weave-nn/.archive/features/web-ui/comments-annotations.md",
+      "targetFile": "weave-nn/.archive/features/export-import.md",
+      "score": 6.7,
+      "reason": "Shared tags: feature, v1.1. Related location (60% similar path).",
+      "bidirectional": true,
+      "metadata": {
+        "sharedTags": [
+          "feature",
+          "v1.1"
         ]
       }
     }

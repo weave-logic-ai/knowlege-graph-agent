@@ -10,12 +10,13 @@ tags:
   - validation
   - hive-mind
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-validation-report
     - status-completed
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Knowledge Graph Validation Report
@@ -31,6 +32,16 @@ This report validates the knowledge graph improvements implemented as part of th
 
 ---
 
+
+
+
+
+## Related
+
+[[research-impact-metrics]]
+## Related
+
+[[2025-10-20]]
 ## Metrics Comparison
 
 ### Core Metrics

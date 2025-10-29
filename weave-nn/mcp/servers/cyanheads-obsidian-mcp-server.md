@@ -14,11 +14,12 @@ related:
   - '[[ai-agent-integration]]'
   - '[[obsidian-vault]]'
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-tool
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Cyanheads Obsidian MCP Server

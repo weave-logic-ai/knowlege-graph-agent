@@ -41,6 +41,7 @@ visual:
     - priority-high
 version: '3.0'
 updated_date: '2025-10-28'
+icon: ⚖️
 ---
 
 # TS-008: API Client Pattern: Singleton vs Factory
@@ -334,6 +335,16 @@ This architecture simplifies connection management but creates a single point of
 
 ---
 
+
+
+
+
+## Related
+
+[[caching-strategy]]
+## Related
+
+[[event-driven-architecture]]
 ## Related Concepts
 
 - [[../../concepts/design-patterns/singleton-pattern.md]]

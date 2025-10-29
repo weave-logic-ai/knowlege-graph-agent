@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 13 Risk Analysis & Edge Case Identification
 **Tester Agent - Hive Mind Collective Risk Assessment**
 

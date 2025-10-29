@@ -10,7 +10,7 @@ tags:
 scope: system
 priority: high
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
@@ -19,6 +19,7 @@ visual:
   graph_group: navigation
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Vault Template System

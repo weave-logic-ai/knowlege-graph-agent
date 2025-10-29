@@ -1,3 +1,8 @@
+---
+visual:
+  icon: ⚖️
+icon: ⚖️
+---
 # Decision Record: Web Framework for Weaver Webhooks
 
 **Decision ID:** D-025

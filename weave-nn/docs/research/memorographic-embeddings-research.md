@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # Memorographic Embeddings Research Report
 
 **Date:** January 2025

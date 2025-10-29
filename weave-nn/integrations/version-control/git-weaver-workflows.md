@@ -15,13 +15,14 @@ updated: {}
 type: workflow
 domain: weaver
 visual:
-  icon: "\U0001F504"
+  icon: 🔄
   cssclasses:
     - type-workflow
     - status-active
     - domain-weaver
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🔄
 ---
 
 # Git ↔ Weaver Workflows Integration

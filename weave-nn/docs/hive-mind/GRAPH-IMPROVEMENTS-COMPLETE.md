@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Knowledge Graph Improvements - Phase 13 Complete
 
 **Project**: Weaver Knowledge Graph Enhancement

@@ -26,12 +26,13 @@ tags:
   - obsidian
   - in-use
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # Wikilinks
@@ -400,6 +401,26 @@ python scripts/count_bidirectional_links.py /vault
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[claude-flow]] • [[obsidian-local-rest-api-plugin]] • [[obsidian-tasks-plugin]] • [[obsidian-properties-standard]]
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[pyyaml]]
+## Related
+
+[[uvicorn]]
 ## Related Nodes
 
 **Architecture**:

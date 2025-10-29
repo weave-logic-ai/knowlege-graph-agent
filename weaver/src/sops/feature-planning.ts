@@ -12,8 +12,8 @@
  */
 
 import { Command } from 'commander';
-import { ClaudeFlowMemoryClient } from '../../src/memory/claude-flow-client.js';
-import { logger } from '../../src/utils/logger.js';
+import { ClaudeFlowMemoryClient } from '../memory/claude-flow-client.js';
+import { logger } from '../utils/logger.js';
 import chalk from 'chalk';
 import ora from 'ora';
 

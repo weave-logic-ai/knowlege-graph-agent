@@ -5,10 +5,10 @@
  * into SOP execution workflows.
  */
 
-import { reflectionSystem } from './reflection';
-import type { ExecutionResult } from './feedback-types';
-import { FeedbackCollector } from './feedback-collector';
-import { FeedbackStorage } from './feedback-storage';
+import { reflectionSystem } from './reflection.js';
+import type { ExecutionResult } from './feedback-types.js';
+import { FeedbackCollector } from './feedback-collector.js';
+import { FeedbackStorage } from './feedback-storage.js';
 import chalk from 'chalk';
 
 /**

@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Autonomous Learning Loop
 
 > **Production-Ready Implementation** of the 4-Pillar Autonomous Agent Framework

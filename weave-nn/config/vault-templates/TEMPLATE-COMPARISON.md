@@ -8,13 +8,14 @@ tags:
   - comparison
   - reference
 visual:
-  icon: "\U0001F4DA"
+  icon: 📚
   color: '#06B6D4'
   cssclasses:
     - type-documentation
     - status-active
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📚
 ---
 
 # Vault Template Comparison
@@ -446,6 +447,16 @@ New features are added as optional documents.
 
 ---
 
+
+
+
+
+## Related
+
+[[vault-templates-hub]]
+## Related
+
+[[templates-catalog-hub]]
 ## Related Documentation
 
 - [[README|Template System Overview]]

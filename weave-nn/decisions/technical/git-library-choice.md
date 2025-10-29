@@ -1,3 +1,8 @@
+---
+visual:
+  icon: ⚖️
+icon: ⚖️
+---
 # Decision Record: Git Library Choice
 
 **Decision ID:** D-023

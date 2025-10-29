@@ -5,8 +5,8 @@
  * high-confidence learning signals for the adaptation engine.
  */
 
-import { FeedbackCollector } from './feedback-collector';
-import { FeedbackStorage } from './feedback-storage';
+import { FeedbackCollector } from './feedback-collector.js';
+import { FeedbackStorage } from './feedback-storage.js';
 import type {
   UserFeedback,
   EnhancedLessons,

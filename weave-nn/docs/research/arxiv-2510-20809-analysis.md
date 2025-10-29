@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🔬
+icon: 🔬
+---
 # Research Analysis: arXiv 2510.20809 - Real Deep Research
 
 **Document Type**: Research Analysis

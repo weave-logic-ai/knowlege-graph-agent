@@ -33,13 +33,14 @@ tags:
 type: architecture
 scope: component
 visual:
-  icon: "\U0001F3D7️"
+  icon: 🏗️
   color: '#F59E0B'
   cssclasses:
     - type-architecture
     - status-implemented
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🏗️
 ---
 
 # <span class="lucide-chart-bar"></span> Obsidian Property Visualizer
@@ -61,6 +62,26 @@ The visualizer creates interactive dashboards with multiple widget types, applie
 - **Maintainer**: Weave-NN Development Team
 - **License**: MIT
 
+
+
+
+
+
+
+
+
+## Related
+
+[[docker-compose]]
+## Related
+
+[[obsidian-tasks-plugin]]
+## Related
+
+[[obsidian-local-rest-api-plugin]]
+## Related
+
+[[uvicorn]]
 ## Key Features
 
 - **Property Extraction**: Frontmatter parsing, inline property syntax (property:: value), custom parser support, tag extraction

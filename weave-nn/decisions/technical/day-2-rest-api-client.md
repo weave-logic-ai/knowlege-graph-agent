@@ -33,6 +33,7 @@ visual:
     - status-implemented
     - priority-critical
 version: '3.0'
+icon: ⚖️
 ---
 
 # Day 2: Obsidian REST API Client Architecture
@@ -207,6 +208,26 @@ OBSIDIAN_API_URL=http://localhost:27123
 OBSIDIAN_API_KEY=your-api-key-here
 ```
 
+
+
+
+
+
+
+
+
+## Related
+
+[[obsidian-properties-groups]]
+## Related
+
+[[2025-10-21]]
+## Related
+
+[[day-4-agent-rules]] • [[MCP-DIRECTORY-UPDATE-PLAN]]
+## Related
+
+[[day-11-properties-visualization]]
 ## References
 
 - Architecture Analysis: [[architecture-analysis]]

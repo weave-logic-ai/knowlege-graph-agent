@@ -26,12 +26,13 @@ tags:
   - anthropic
   - claude
 visual:
-  icon: "\U0001F4C4"
+  icon: 📄
   cssclasses:
     - type-technical-primitive
     - status-in-use
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 📄
 ---
 
 # MCP Protocol (Model Context Protocol)
@@ -800,6 +801,31 @@ curl -X POST http://localhost:8000/mcp/tools/call \
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[test-strategy-summary]]
+## Related
+
+[[pyyaml]]
+## Related
+
+[[yaml-frontmatter]] • [[obsidian-tasks-plugin]]
+## Related
+
+[[watchdog-file-monitoring]]
+## Related
+
+[[gitpython]]
 ## Related Nodes
 
 **Architecture**:

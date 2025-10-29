@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Phase 13 Integration Validation Checklist
 **Tester Agent - Hive Mind Collective Quality Assurance**
 

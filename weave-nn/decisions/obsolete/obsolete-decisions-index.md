@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 🌐
+icon: 🌐
+---
 # Obsolete Decisions Archive
 
 This directory contains decisions that have been superseded or replaced by more recent decisions.

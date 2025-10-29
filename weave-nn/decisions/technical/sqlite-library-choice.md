@@ -1,3 +1,8 @@
+---
+visual:
+  icon: ⚖️
+icon: ⚖️
+---
 # Decision Record: SQLite Library Selection
 
 **Decision ID**: D-022

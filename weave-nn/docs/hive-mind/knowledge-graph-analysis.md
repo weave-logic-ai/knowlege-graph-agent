@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Knowledge Graph Structure Analysis
 ## Systematic Exploration of Weave-NN Directory Structure
 

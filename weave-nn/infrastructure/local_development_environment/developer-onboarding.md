@@ -17,6 +17,7 @@ visual:
 domain: infrastructure
 version: '3.0'
 updated_date: '2025-10-28'
+icon: 🚀
 ---
 
 # Weave-NN Developer Onboarding Guide
@@ -31,6 +32,31 @@ This guide walks new developers through setting up a complete Weave-NN developme
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+## Related
+
+[[obsidian-native-integration-analysis]]
+## Related
+
+[[obsidian-first-architecture]] • [[git-integration]]
+## Related
+
+[[rabbitmq-message-queue]]
+## Related
+
+[[phase-4a-decision-closure]]
+## Related
+
+[[TASKS-SETUP-GUIDE]]
 ## 📋 Prerequisites
 
 ### Required

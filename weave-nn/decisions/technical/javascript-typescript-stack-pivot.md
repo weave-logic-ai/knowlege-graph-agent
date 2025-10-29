@@ -44,6 +44,7 @@ visual:
     - status-decided
     - priority-critical
 version: '3.0'
+icon: ⚖️
 ---
 
 # Decision: JavaScript/TypeScript Stack Pivot for MVP
@@ -549,6 +550,26 @@ This decision will be reviewed if:
 
 ---
 
+
+
+
+
+
+
+
+
+## Related
+
+[[ai-integration-layer]]
+## Related
+
+[[claude-flow-tight-coupling]]
+## Related
+
+[[MCP-DIRECTORY-UPDATE-PLAN]] • [[mcp-integration-hub]]
+## Related
+
+[[phase-5-mcp-server-implementation]]
 ## References
 
 ### Technical Documentation

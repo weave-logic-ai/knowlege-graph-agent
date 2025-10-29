@@ -1,3 +1,8 @@
+---
+visual:
+  icon: 📚
+icon: 📚
+---
 # Knowledge Graph Baseline Metrics
 **Analysis Date**: 2025-10-28
 **Tool Version**: 1.0.0
