@@ -1,3 +1,29 @@
+---
+title: Cognitive Variability Analysis - Dataview Queries
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.160Z'
+keywords:
+  - overview
+  - prerequisites
+  - 'query 1: pattern frequency distribution'
+  - 'query 2: pattern timeline'
+  - 'query 3: pattern switching detection'
+  - 'query 4: date range filter'
+  - 'query 5: cognitive variability score'
+  - 'query 6: pattern co-occurrence'
+  - 'query 7: weekly pattern trends'
+  - 'query 8: pattern density by folder'
+---
 # Cognitive Variability Analysis - Dataview Queries
 
 ## Overview
@@ -317,3 +343,12 @@ These queries support the cognitive variability tracking system:
 **Last Updated**: 2025-10-23
 **Version**: 1.0.0
 **Status**: Production Ready
+
+## Related Documents
+
+### Related Files
+- [[QUERIES-HUB.md]] - Parent hub
+
+### Similar Content
+- [[baseline-2025-10-23.md.md]] - Semantic similarity: 32.7%
+

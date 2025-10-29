@@ -1,3 +1,29 @@
+---
+title: simple-git - Git Operations
+type: documentation
+status: draft
+tags:
+  - type/documentation
+  - status/draft
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.389Z'
+keywords:
+  - overview
+  - why simple-git
+  - installation
+  - mvp usage
+  - basic git workflow
+  - check status
+  - push to remote
+  - integration with workflows
+  - daily logs auto-commit
+  - common operations
+---
 # simple-git - Git Operations
 
 **Category**: Technical / Git Client

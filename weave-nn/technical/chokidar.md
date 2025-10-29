@@ -1,3 +1,29 @@
+---
+title: Chokidar File Watcher
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.324Z'
+keywords:
+  - overview
+  - why chokidar
+  - installation
+  - mvp usage
+  - basic setup
+  - advanced configuration
+  - events
+  - file events
+  - directory events
+  - meta events
+---
 # Chokidar File Watcher
 
 **Category**: Technical / File Monitoring

@@ -1,3 +1,29 @@
+---
+title: Hono - Lightweight Web Framework
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.342Z'
+keywords:
+  - overview
+  - why hono
+  - installation
+  - mvp usage
+  - basic webhook server
+  - middleware
+  - type-safe routes
+  - integration with weaver
+  - claude code hook configuration
+  - advanced features
+---
 # Hono - Lightweight Web Framework
 
 **Category**: Technical / Web Framework

@@ -1,3 +1,29 @@
+---
+title: Perplexity Validator
+type: implementation
+status: in-progress
+tags:
+  - type/implementation
+  - status/in-progress
+priority: medium
+visual:
+  icon: ⚙️
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:06.260Z'
+keywords:
+  - overview
+  - what is perplexity?
+  - formula
+  - measurement methodology
+  - 1. document tokenization
+  - 2. calculate word-level perplexity
+  - 3. markdown-specific calculations
+  - example calculations
+  - 'example 1: well-structured document (target range)'
+  - subtopic a
+---
 # Perplexity Validator
 
 ## Overview
@@ -494,3 +520,12 @@ Perplexity measurement provides quantitative guidance for markdown document qual
 - Consistent quality across documentation corpus
 
 Regular validation and remediation maintains high-quality knowledge graph inputs.
+
+## Related Documents
+
+### Related Files
+- [[SCRIPTS-HUB.md]] - Parent hub
+
+### Similar Content
+- [[heading-style-guide.md]] - Semantic similarity: 37.3%
+

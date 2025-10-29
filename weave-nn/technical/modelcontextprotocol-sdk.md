@@ -1,3 +1,29 @@
+---
+title: Model Context Protocol SDK
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.348Z'
+keywords:
+  - overview
+  - why @modelcontextprotocol/sdk
+  - installation
+  - mvp usage
+  - server setup
+  - tool registration
+  - transport (stdio)
+  - claude code configuration
+  - mcp tool examples
+  - get_knowledge
+---
 # Model Context Protocol SDK
 
 **Category**: Technical / MCP

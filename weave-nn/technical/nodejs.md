@@ -1,3 +1,29 @@
+---
+title: Node.js Runtime
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.354Z'
+keywords:
+  - overview
+  - why node.js 20+
+  - installation
+  - ubuntu/debian
+  - macos (homebrew)
+  - windows (nvm-windows)
+  - mvp usage
+  - key features used
+  - native apis
+  - package management
+---
 # Node.js Runtime
 
 **Category**: Technical / Runtime

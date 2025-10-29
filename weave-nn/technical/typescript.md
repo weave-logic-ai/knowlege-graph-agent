@@ -1,3 +1,29 @@
+---
+title: TypeScript Language
+type: documentation
+status: in-progress
+tags:
+  - type/documentation
+  - status/in-progress
+priority: medium
+visual:
+  icon: "\U0001F4C4"
+  color: '#8E8E93'
+  cssclasses:
+    - document
+updated: '2025-10-29T04:55:06.394Z'
+keywords:
+  - overview
+  - why typescript
+  - configuration
+  - '`tsconfig.json`'
+  - mvp usage
+  - shared types
+  - type-safe mcp tools
+  - development workflow
+  - benefits
+  - type safety
+---
 # TypeScript Language
 
 **Category**: Technical / Language

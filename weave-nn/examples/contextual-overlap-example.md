@@ -1,3 +1,29 @@
+---
+title: 'Contextual Overlap Example: Graph Topology Analyzer Feature'
+type: implementation
+status: in-progress
+tags:
+  - type/implementation
+  - status/in-progress
+priority: medium
+visual:
+  icon: ⚙️
+  color: '#7ED321'
+  cssclasses:
+    - implementation-document
+updated: '2025-10-29T04:55:05.789Z'
+keywords:
+  - purpose
+  - 'section 1: feature overview'
+  - 'section 2: core metrics & analysis'
+  - node-level metrics
+  - graph-level metrics
+  - 'section 3: implementation architecture'
+  - 'layer 1: data collection'
+  - 'layer 2: metric computation'
+  - 'layer 3: visualization & reporting'
+  - 'section 4: integration points'
+---
 # Contextual Overlap Example: Graph Topology Analyzer Feature
 
 ## Purpose
@@ -298,3 +324,9 @@ Contextual overlaps represent a document design pattern optimized for both human
 - **AI friendliness**: Explicit bridges for vector embeddings
 
 This example document itself demonstrates the technique throughout its structure, with each major section smoothly flowing into the next through carefully selected overlapping sentences.
+
+## Related Documents
+
+### Related Files
+- [[EXAMPLES-HUB.md]] - Parent hub
+
