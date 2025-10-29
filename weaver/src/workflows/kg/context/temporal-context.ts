@@ -6,7 +6,7 @@
  */
 
 import { readFile, stat } from 'fs/promises';
-import { glob } from 'fast-glob';
+import fg from 'fast-glob';
 import matter from 'gray-matter';
 import { logger } from '../../../utils/logger.js';
 
@@ -114,7 +114,7 @@ async function findRecentFiles(
 ): Promise<string[]> {
   try {
     // Find all markdown files
-    const files = await glob('**/*.md', {
+    const files = await fg('**/*.md', {
       cwd: vaultRoot,
       ignore: ['node_modules/**', '.git/**', '.obsidian/**', '**/dist/**'],
       absolute: false,

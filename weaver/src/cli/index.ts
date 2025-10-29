@@ -1,32 +1,68 @@
 /**
  * Weaver CLI - Command-line interface for vault management
+ * Optimized for fast startup and concurrent execution
  */
 
 import { Command } from 'commander';
-import { createInitVaultCommand } from './commands/init-vault.js';
-import {
-  createStartCommand,
-  createStopCommand,
-  createRestartCommand,
-  createStatusCommand,
-  createLogsCommand,
-  createHealthCommand,
-  createMetricsCommand,
-  createStatsCommand,
-  createSyncCommand,
-  createCommitCommand,
-  createMonitorCommand,
-} from './commands/service/index.js';
-import { createSopCommand } from './commands/sop/index.js';
-import { createLearnCommand } from './commands/learn.js';
-import { createPerceiveCommand } from './commands/perceive.js';
-import { createWorkflowCommand } from './commands/workflow.js';
-import { createCultivateCommand } from './commands/cultivate.js';
 import chalk from 'chalk';
 import packageJson from '../../package.json' with { type: 'json' };
 
+// Lazy-loaded command creators (loaded on demand)
+let cachedCommands: any = null;
+
 /**
- * Create and configure the CLI program
+ * Lazy load all command creators
+ */
+async function loadCommands(): Promise<any> {
+  if (cachedCommands) {
+    return cachedCommands;
+  }
+
+  const [
+    { createInitVaultCommand },
+    serviceCommands,
+    { createSopCommand },
+    { createLearnCommand },
+    { createPerceiveCommand },
+    { createWorkflowCommandNew },
+    { createCultivateCommand },
+    { createCommitCommand },
+    { createConfigCommand },
+    { createAgentsCommand },
+    opsCommands,
+  ] = await Promise.all([
+    import('./commands/init-vault.js'),
+    import('./commands/service/index.js'),
+    import('./commands/sop/index.js'),
+    import('./commands/learn.js'),
+    import('./commands/perceive.js'),
+    import('./commands/workflow-new.js'),
+    import('./commands/cultivate.js'),
+    import('./commands/commit.js'),
+    import('./commands/config.js'),
+    import('./commands/agents.js'),
+    import('./commands/ops/index.js'),
+  ]);
+
+  cachedCommands = {
+    createInitVaultCommand,
+    ...serviceCommands,
+    createSopCommand,
+    createLearnCommand,
+    createPerceiveCommand,
+    createWorkflowCommandNew,
+    createCultivateCommand,
+    createCommitCommand,
+    createConfigCommand,
+    createAgentsCommand,
+    ...opsCommands,
+  };
+
+  return cachedCommands;
+}
+
+/**
+ * Create and configure the CLI program with lazy loading
  */
 export function createCLI(): Command {
   const program = new Command();
@@ -35,37 +71,6 @@ export function createCLI(): Command {
     .name('weaver')
     .description('Weave-NN vault management CLI')
     .version(packageJson.version, '-v, --version', 'Display version number');
-
-  // Add init-vault command
-  program.addCommand(createInitVaultCommand());
-
-  // Add learning loop commands
-  program.addCommand(createLearnCommand());
-  program.addCommand(createPerceiveCommand());
-
-  // Add workflow commands
-  program.addCommand(createWorkflowCommand());
-  program.addCommand(createCultivateCommand());
-
-  // Create service management command group
-  const serviceCommand = new Command('service')
-    .description('Service management commands')
-    .addCommand(createStartCommand())
-    .addCommand(createStopCommand())
-    .addCommand(createRestartCommand())
-    .addCommand(createStatusCommand())
-    .addCommand(createLogsCommand())
-    .addCommand(createHealthCommand())
-    .addCommand(createMetricsCommand())
-    .addCommand(createStatsCommand())
-    .addCommand(createSyncCommand())
-    .addCommand(createCommitCommand())
-    .addCommand(createMonitorCommand());
-
-  program.addCommand(serviceCommand);
-
-  // Add SOP command group (Standard Operating Procedures)
-  program.addCommand(createSopCommand());
 
   // Custom help formatting
   program.configureHelp({
@@ -89,7 +94,75 @@ export function createCLI(): Command {
     process.exit(1);
   });
 
+  // Hook to lazy-load commands before parsing
+  const originalParse = program.parseAsync.bind(program);
+  program.parseAsync = async function (argv?: readonly string[], options?: any) {
+    // Only load commands if not just showing help/version
+    const args = argv || process.argv;
+    const isHelp = args.includes('--help') || args.includes('-h');
+    const isVersion = args.includes('--version') || args.includes('-v');
+
+    if (!isHelp && !isVersion) {
+      await loadAndRegisterCommands(program);
+    }
+
+    return originalParse(argv, options);
+  };
+
   return program;
+}
+
+/**
+ * Load and register all commands
+ */
+async function loadAndRegisterCommands(program: Command): Promise<void> {
+  const commands = await loadCommands();
+
+  // Add init-vault command
+  program.addCommand(commands.createInitVaultCommand());
+
+  // Add AI-powered commit command
+  program.addCommand(commands.createCommitCommand());
+
+  // Add learning loop commands
+  program.addCommand(commands.createLearnCommand());
+  program.addCommand(commands.createPerceiveCommand());
+
+  // Add workflow commands (NEW Next.js API-based)
+  program.addCommand(commands.createWorkflowCommandNew());
+  program.addCommand(commands.createCultivateCommand());
+
+  // Create service management command group
+  const serviceCommand = new Command('service')
+    .description('Service management commands')
+    .addCommand(commands.createStartCommand())
+    .addCommand(commands.createStopCommand())
+    .addCommand(commands.createRestartCommand())
+    .addCommand(commands.createStatusCommand())
+    .addCommand(commands.createLogsCommand())
+    .addCommand(commands.createHealthCommand())
+    .addCommand(commands.createMetricsCommand())
+    .addCommand(commands.createStatsCommand())
+    .addCommand(commands.createSyncCommand())
+    .addCommand(commands.createCommitCommand())
+    .addCommand(commands.createMonitorCommand());
+
+  program.addCommand(serviceCommand);
+
+  // Add SOP command group (Standard Operating Procedures)
+  program.addCommand(commands.createSopCommand());
+
+  // Add operations commands
+  program.addCommand(commands.createDatabaseCommand());
+  program.addCommand(commands.createCacheCommand());
+  program.addCommand(commands.createDiagnoseCommand());
+  program.addCommand(commands.createVersionCommand());
+
+  // Add configuration management command (Phase 11)
+  program.addCommand(commands.createConfigCommand());
+
+  // Add agent orchestration commands
+  program.addCommand(commands.createAgentsCommand());
 }
 
 /**
@@ -108,4 +181,12 @@ export async function runCLI(args = process.argv): Promise<void> {
       process.exit(1);
     }
   }
+}
+
+// If this file is run directly (not imported), execute the CLI
+if (import.meta.url === `file://${process.argv[1]}`) {
+  runCLI().catch((error) => {
+    console.error(chalk.red('Fatal error:'), error);
+    process.exit(1);
+  });
 }

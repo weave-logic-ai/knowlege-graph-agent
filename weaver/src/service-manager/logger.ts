@@ -196,6 +196,34 @@ export class ServiceLogger {
   }
 
   /**
+   * Convenience method for debug logging
+   */
+  debug(message: string, metadata?: Record<string, any>): void {
+    console.debug(`[DEBUG] ${message}`, metadata || '');
+  }
+
+  /**
+   * Convenience method for info logging
+   */
+  info(message: string, metadata?: Record<string, any>): void {
+    console.log(`[INFO] ${message}`, metadata || '');
+  }
+
+  /**
+   * Convenience method for warn logging
+   */
+  warn(message: string, metadata?: Record<string, any>): void {
+    console.warn(`[WARN] ${message}`, metadata || '');
+  }
+
+  /**
+   * Convenience method for error logging
+   */
+  error(message: string, error?: any): void {
+    console.error(`[ERROR] ${message}`, error || '');
+  }
+
+  /**
    * Format log entry for writing
    */
   private formatLogEntry(entry: LogEntry): string {

@@ -14,6 +14,9 @@ import type {
   Embedding,
   EmbeddingProvider,
 } from './types.js';
+import { withEmbeddingFallbacks } from '../utils/alternative-approaches.js';
+import { withSmartRetry } from '../utils/error-recovery.js';
+import { errorMonitor } from '../utils/error-monitoring.js';
 
 const logger = createLogger('embeddings:generator');
 
@@ -133,12 +136,26 @@ export class EmbeddingGenerator {
   }
 
   /**
-   * Generate vector based on provider
+   * Generate vector based on provider with fallback chain
    */
   private async generateVector(text: string): Promise<number[]> {
+    // Use fallback chain: OpenAI -> Local Model -> Mock
+    if (this.config.provider === 'openai') {
+      return withEmbeddingFallbacks(
+        text,
+        // Primary: OpenAI API
+        async (t) => this.generateOpenAIVector(t),
+        // Fallback: Local model
+        async (t) => this.generateLocalVector(t),
+        // Graceful degradation: Mock vector (FTS5 only mode)
+        async () => {
+          logger.warn('All embedding providers failed, using mock vector');
+          return this.generateLocalVector(text); // Returns normalized random vector
+        }
+      );
+    }
+
     switch (this.config.provider) {
-      case 'openai':
-        return this.generateOpenAIVector(text);
       case 'local':
         return this.generateLocalVector(text);
       default:
@@ -147,19 +164,19 @@ export class EmbeddingGenerator {
   }
 
   /**
-   * Generate vector using OpenAI API
+   * Generate vector using OpenAI API with retry logic
    */
   private async generateOpenAIVector(text: string): Promise<number[]> {
     if (!this.config.apiKey) {
       throw new EmbeddingGenerationError('OpenAI API key not configured');
     }
 
-    try {
+    return withSmartRetry(async () => {
       const response = await fetch('https://api.openai.com/v1/embeddings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.config.apiKey}`,
+          'Authorization': `Bearer ${this.config.apiKey!}`,
         },
         body: JSON.stringify({
           model: this.config.model,
@@ -168,8 +185,19 @@ export class EmbeddingGenerator {
       });
 
       if (!response.ok) {
-        const error = await response.text();
-        throw new Error(`OpenAI API error: ${response.status} ${error}`);
+        const errorText = await response.text();
+        const error = new Error(`OpenAI API error: ${response.status} ${errorText}`);
+
+        // Record error for monitoring
+        errorMonitor.recordError({
+          category: response.status === 429 ? 'rate_limit' : 'service',
+          message: error.message,
+          context: 'embeddings-openai',
+          recovered: false,
+          retryAttempts: 0,
+        });
+
+        throw error;
       }
 
       const data = await response.json() as {
@@ -181,10 +209,7 @@ export class EmbeddingGenerator {
       }
 
       return data.data[0].embedding;
-    } catch (error) {
-      const err = error instanceof Error ? error : new Error(String(error));
-      throw new EmbeddingGenerationError('OpenAI API call failed', err);
-    }
+    }, 'openai-embeddings');
   }
 
   /**

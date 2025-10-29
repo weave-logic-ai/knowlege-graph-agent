@@ -18,13 +18,13 @@ async function main() {
   try {
     logger.info('🧵 Starting Weaver MCP Server');
     logger.info('Configuration loaded', {
-      dbPath: config.shadowCache.dbPath,
+      dbPath: config.database.path,
       vaultPath: config.vault.path,
       workflowsEnabled: config.workflows.enabled,
     });
 
     // Initialize shadow cache
-    const shadowCache = createShadowCache(config.shadowCache.dbPath, config.vault.path);
+    const shadowCache = createShadowCache(config.database.path, config.vault.path);
     logger.info('Shadow cache initialized');
 
     // Initialize workflow engine if enabled

@@ -118,3 +118,21 @@ export type {
   RuleStatistics,
   RulesEngineConfig,
 } from './rules-engine.js';
+
+/**
+ * Re-export orchestration types
+ */
+export type {
+  OrchestrationRule,
+  RuleEvaluationResult,
+  ComplexityEstimate,
+  RoutingDecision,
+  PriorityAdjustment,
+  WorkloadDistribution,
+  OrchestrationMetrics,
+  RuleEngineConfig,
+  TaskAnalyzerConfig,
+  RouterConfig,
+  PrioritySystemConfig,
+  BalancerConfig,
+} from './orchestration/types.js';

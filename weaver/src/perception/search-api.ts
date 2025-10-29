@@ -12,6 +12,10 @@ import type {
   SearchProvider,
 } from './types.js';
 import { logger } from '../utils/logger.js';
+import { withRetry, withSmartRetry } from '../utils/error-recovery.js';
+import { withAPIFallbacks } from '../utils/alternative-approaches.js';
+import { errorMonitor } from '../utils/error-monitoring.js';
+import { errorPatternDB } from '../utils/error-patterns.js';
 
 export class SearchAPI {
   private providers: Map<string, SearchProvider> = new Map();
@@ -122,35 +126,49 @@ export class SearchAPI {
       throw new Error('Google API key not configured');
     }
 
-    const params = new URLSearchParams({
-      key: provider.apiKey,
-      cx: process.env.GOOGLE_CSE_ID || '',
-      q: request.query,
-      num: String(request.maxResults ?? 10),
-      ...this.buildGoogleFilters(request.filters),
-    });
+    // Use smart retry with automatic error classification
+    return withSmartRetry(async () => {
+      const params = new URLSearchParams({
+        key: provider.apiKey!,
+        cx: process.env.GOOGLE_CSE_ID || '',
+        q: request.query,
+        num: String(request.maxResults ?? 10),
+        ...this.buildGoogleFilters(request.filters),
+      });
 
-    const url = `${provider.endpoint || 'https://www.googleapis.com/customsearch/v1'}?${params}`;
+      const url = `${provider.endpoint || 'https://www.googleapis.com/customsearch/v1'}?${params}`;
 
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Google Search API error: ${response.statusText}`);
-    }
+      const response = await fetch(url);
+      if (!response.ok) {
+        const error = new Error(`Google Search API error: ${response.statusText}`);
 
-    const data = await response.json() as {
-      items?: unknown[];
-      searchInformation?: { totalResults?: string };
-      queries?: { nextPage?: Array<{ startIndex?: number }> };
-    };
+        // Record error for monitoring
+        errorMonitor.recordError({
+          category: response.status === 429 ? 'rate_limit' : 'service',
+          message: error.message,
+          context: 'search-api-google',
+          recovered: false,
+          retryAttempts: 0,
+        });
 
-    return {
-      provider: 'google',
-      query: request.query,
-      results: this.parseGoogleResults(data.items || []),
-      totalResults: parseInt(data.searchInformation?.totalResults || '0'),
-      searchTime: Date.now() - startTime,
-      nextPageToken: data.queries?.nextPage?.[0]?.startIndex?.toString(),
-    };
+        throw error;
+      }
+
+      const data = await response.json() as {
+        items?: unknown[];
+        searchInformation?: { totalResults?: string };
+        queries?: { nextPage?: Array<{ startIndex?: number }> };
+      };
+
+      return {
+        provider: 'google',
+        query: request.query,
+        results: this.parseGoogleResults(data.items || []),
+        totalResults: parseInt(data.searchInformation?.totalResults || '0'),
+        searchTime: Date.now() - startTime,
+        nextPageToken: data.queries?.nextPage?.[0]?.startIndex?.toString(),
+      };
+    }, 'google-search');
   }
 
   /**

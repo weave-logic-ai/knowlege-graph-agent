@@ -225,3 +225,6 @@ export function createWorkflowEngine(): WorkflowEngine {
 
 // Re-export types
 export type { WorkflowDefinition, WorkflowContext, WorkflowTrigger, WorkflowExecution, WorkflowStats } from './types.js';
+
+// Re-export Workflow DevKit EmbeddedWorld functions
+export { workflowWorld, initializeWorkflowWorld, shutdownWorkflowWorld } from './embedded-world.js';

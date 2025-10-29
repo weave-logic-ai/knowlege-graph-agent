@@ -20,10 +20,12 @@ import { ClaudeFlowMemoryClient } from './memory/claude-flow-client.js';
 import { VaultMemorySync } from './memory/vault-sync.js';
 import { RulesEngine } from './agents/rules-engine.js';
 import type { FileEvent } from './file-watcher/types.js';
+import { initializeWorkflowWorld, shutdownWorkflowWorld } from './workflow-engine/embedded-world.js';
 
 // Global service instances for shutdown handling
 let shadowCache: any;
 let workflowEngine: any;
+let workflowWorld: any = null;
 let fileWatcher: FileWatcher | null = null;
 let mcpServer: WeaverMCPServer | null = null;
 let autoCommitService: AutoCommitService | null = null;
@@ -34,7 +36,7 @@ async function main() {
     logger.info('Starting Weaver application', {
       vaultPath: config.vault.path,
       featureAiEnabled: config.features.aiEnabled,
-      featureMcpServer: config.mcp.enabled,
+      featureMcpServer: config.features.mcpEnabled,
       gitAutoCommit: config.git.autoCommit,
     });
 
@@ -47,7 +49,7 @@ async function main() {
       vaultPath: config.vault.path,
       features: {
         ai: config.features.aiEnabled,
-        mcp: config.mcp.enabled,
+        mcp: config.features.mcpEnabled,
         git: config.git.autoCommit,
       },
       timestamp: new Date().toISOString(),
@@ -86,13 +88,29 @@ async function main() {
     // 2. Initialize Workflow Engine
     logger.info('Initializing workflow engine...');
     workflowEngine = createWorkflowEngine();
+
+    // Initialize with vault root and register workflows
+    await workflowEngine.initialize(config.vault.path);
+
     await workflowEngine.start();
     logger.info('✅ Workflow engine started');
 
     await activityLogger.logToolCall(
       'workflowEngine.start',
-      {},
-      { status: 'running' },
+      { vaultRoot: config.vault.path },
+      { status: 'running', workflowsRegistered: workflowEngine.getRegistry().getAllWorkflows().length },
+      0
+    );
+
+    // 2b. Initialize Workflow DevKit EmbeddedWorld
+    logger.info('Initializing Workflow DevKit EmbeddedWorld...');
+    workflowWorld = await initializeWorkflowWorld();
+    logger.info('✅ EmbeddedWorld initialized (HTTP endpoint: http://localhost:3000)');
+
+    await activityLogger.logToolCall(
+      'workflowWorld.init',
+      { dataDir: '.workflow-data', port: 3000 },
+      { status: 'running', endpoint: '/.well-known/workflow/v1/step' },
       0
     );
 
@@ -101,7 +119,7 @@ async function main() {
     fileWatcher = new FileWatcher({
       watchPath: config.vault.path,
       ignored: ['.weaver', '.obsidian', '.git', 'node_modules', '.archive'],
-      debounceDelay: config.fileWatcher.debounce || 1000,
+      debounceDelay: config.vault.fileWatcher.debounce || 1000,
       enabled: true,
     });
 
@@ -137,7 +155,7 @@ async function main() {
     );
 
     // 4. Initialize MCP Server (if enabled)
-    if (config.mcp.enabled) {
+    if (config.features.mcpEnabled) {
       logger.info('Initializing MCP server...');
       mcpServer = new WeaverMCPServer(
         {
@@ -204,7 +222,7 @@ async function main() {
         vaultPath: config.vault.path,
         obsidianApiUrl: config.obsidian.apiUrl,
         obsidianApiKey: config.obsidian.apiKey,
-        conflictLogPath: config.memory.conflictLogPath,
+        conflictLogPath: './data/memory-conflicts.log',
       });
 
       rulesEngine = new RulesEngine({
@@ -240,10 +258,11 @@ async function main() {
       'activity-logger',
       'shadow-cache',
       'workflow-engine',
+      'workflow-devkit',
       'file-watcher',
     ];
 
-    if (config.mcp.enabled) initializedServices.push('mcp-server');
+    if (config.features.mcpEnabled) initializedServices.push('mcp-server');
     if (config.git.autoCommit) initializedServices.push('git-auto-commit');
     if (config.features.aiEnabled) initializedServices.push('agent-rules');
 
@@ -279,6 +298,11 @@ async function main() {
         logger.info('Rules engine stopped');
       }
 
+      if (workflowWorld) {
+        await shutdownWorkflowWorld();
+        logger.info('Workflow World (EmbeddedWorld) stopped');
+      }
+
       if (workflowEngine) {
         await workflowEngine.stop();
         logger.info('Workflow engine stopped');
@@ -299,7 +323,7 @@ async function main() {
     process.on('SIGTERM', () => shutdown('SIGTERM'));
 
     // Keep process running (if MCP server not running on stdio)
-    if (!config.mcp.enabled) {
+    if (!config.features.mcpEnabled) {
       await new Promise(() => {});
     } else {
       // If MCP server is enabled, run it on stdio

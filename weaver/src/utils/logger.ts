@@ -34,7 +34,7 @@ class Logger {
 
   constructor(minLevel: LogLevel = 'info') {
     this.minLevel = LOG_LEVELS[minLevel];
-    this.isProduction = config.service.env === 'production';
+    this.isProduction = config.server.nodeEnv === 'production';
   }
 
   /**
@@ -131,7 +131,7 @@ class Logger {
    * Create a child logger with additional context
    */
   child(defaultContext: Record<string, unknown>): Logger {
-    const childLogger = new Logger(config.service.logLevel);
+    const childLogger = new Logger(config.server.logLevel);
 
     // Override log method to include default context
     const originalLog = childLogger.log.bind(childLogger);
@@ -147,7 +147,7 @@ class Logger {
 /**
  * Global logger instance
  */
-export const logger = new Logger(config.service.logLevel);
+export const logger = new Logger(config.server.logLevel);
 
 /**
  * Create a logger for a specific module
