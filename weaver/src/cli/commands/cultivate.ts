@@ -42,6 +42,13 @@ interface CultivateOptions {
   all?: boolean;
   watch?: boolean;
   mode?: 'incremental' | 'full';
+  // Intelligent cultivation options
+  frontmatter?: boolean;
+  generateMissing?: boolean;
+  parse?: boolean;
+  useContext?: boolean;
+  agentMode?: string;
+  maxAgents?: string;
 }
 
 interface OrphanFile {
@@ -79,6 +86,12 @@ export function createCultivateCommand(): Command {
     .option('--min-connections <number>', 'Minimum connections threshold (default: 2)', '2')
     .option('-v, --verbose', 'Verbose output', false)
     .option('--no-branch', 'Skip Git branch creation')
+    .option('--frontmatter', 'Generate/update intelligent frontmatter', false)
+    .option('--generate-missing', 'Generate missing documentation based on context', false)
+    .option('--parse', 'Parse directory and enhance all documents', false)
+    .option('--use-context', 'Use primitives/features/tech-specs for context', true)
+    .option('--agent-mode <mode>', 'Agent execution mode: sequential, parallel, adaptive', 'adaptive')
+    .option('--max-agents <number>', 'Maximum concurrent agents for generation', '5')
     .action(async (targetPath: string, options: CultivateOptions) => {
       const spinner = ora('Initializing cultivation...').start();
 
@@ -104,13 +117,24 @@ export function createCultivateCommand(): Command {
           cleanup: options.cleanup || options.all,
         };
 
+        // New intelligent cultivation tasks
+        const intelligentTasks = {
+          frontmatter: options.frontmatter || options.parse || options.all,
+          generateMissing: options.generateMissing || options.parse || options.all,
+          buildFooters: options.parse, // buildFooters may already exist
+        };
+
         // If no tasks selected, show help
-        if (!tasks.icons && !tasks.connections && !tasks.metadata && !tasks.cleanup) {
+        if (!tasks.icons && !tasks.connections && !tasks.metadata && !tasks.cleanup &&
+            !intelligentTasks.frontmatter && !intelligentTasks.generateMissing && !options.parse) {
           console.log(chalk.yellow('\n💡 No tasks selected. Use one or more of:'));
           console.log('  --icons       Apply visual icons to files');
           console.log('  --connections Connect orphaned/poorly connected documents');
           console.log('  --metadata    Update metadata and frontmatter');
           console.log('  --cleanup     Clean up and optimize graph');
+          console.log('  --parse           Parse and enhance all documents (frontmatter + generation)');
+          console.log('  --frontmatter     Generate intelligent YAML frontmatter');
+          console.log('  --generate-missing Generate missing docs from primitives/features/tech-specs');
           console.log('  --all         Run all tasks');
           console.log('\nRun "weaver cultivate --help" for more options\n');
           return;
@@ -234,12 +258,98 @@ export function createCultivateCommand(): Command {
           }
         }
 
-        // Task 3: Metadata Update
+        // Task 3: Intelligent Cultivation
+        if (options.parse || intelligentTasks.frontmatter || intelligentTasks.generateMissing) {
+          const { CultivationEngine } = await import('../../cultivation/engine.js');
+
+          const cultivationOptions = {
+            targetDirectory: absolutePath,
+            dryRun: options.dryRun || false,
+            force: options.mode === 'full',
+            skipUnmodified: !options.force,
+            generateMissing: intelligentTasks.generateMissing,
+            buildFooters: intelligentTasks.buildFooters,
+            useAgents: options.useContext !== false,
+            agentMode: options.agentMode || 'adaptive',
+            maxAgents: parseInt(options.maxAgents || '5', 10),
+            verbose: options.verbose || false,
+          };
+
+          spinner.start('Initializing intelligent cultivation...');
+          const engine = new CultivationEngine(cultivationOptions);
+          spinner.succeed('Engine initialized');
+
+          // Discovery phase
+          if (intelligentTasks.frontmatter || intelligentTasks.generateMissing) {
+            spinner.start('Discovering documents...');
+            const discovery = await engine.discover();
+            spinner.succeed(`Found ${discovery.totalFiles} files (${discovery.needsProcessing} need processing)`);
+
+            if (options.verbose) {
+              console.log(chalk.gray(`  With frontmatter: ${discovery.withFrontmatter}`));
+              console.log(chalk.gray(`  Without frontmatter: ${discovery.withoutFrontmatter}`));
+            }
+          }
+
+          // Load context
+          if (options.useContext !== false) {
+            spinner.start('Loading vault context...');
+            const context = await engine.loadContext();
+            const hasContext = [context.primitives, context.features, context.techSpecs].filter(Boolean).length;
+            spinner.succeed(`Loaded context from ${hasContext} reference files`);
+          }
+
+          // Frontmatter generation
+          if (intelligentTasks.frontmatter) {
+            spinner.start('Generating frontmatter...');
+            const frontmatterResult = await engine.generateFrontmatter();
+            spinner.succeed(`Frontmatter: ${frontmatterResult.updated} updated, ${frontmatterResult.skipped} skipped`);
+          }
+
+          // Document generation
+          if (intelligentTasks.generateMissing) {
+            spinner.start('Analyzing gaps and generating documents...');
+            const genResult = await engine.generateDocuments();
+            spinner.succeed(`Generated ${genResult.created} new documents`);
+
+            if (options.verbose && genResult.documents.length > 0) {
+              console.log(chalk.gray('  Generated:'));
+              genResult.documents.slice(0, 5).forEach((doc: any) => {
+                console.log(chalk.gray(`    • ${doc.type}: ${doc.title}`));
+              });
+            }
+          }
+
+          // Footer building
+          if (intelligentTasks.buildFooters) {
+            spinner.start('Building backlink footers...');
+            const footerResult = await engine.buildFooters();
+            spinner.succeed(`Footers: ${footerResult.updated} updated`);
+          }
+
+          // Final report
+          const report = await engine.getReport();
+          console.log(chalk.bold.green('\n✨ Intelligent Cultivation Complete\n'));
+          console.log(chalk.cyan('Summary:'));
+          console.log(`  Files processed: ${report.filesProcessed}`);
+          console.log(`  Frontmatter added: ${report.frontmatterAdded}`);
+          console.log(`  Documents generated: ${report.documentsGenerated}`);
+          console.log(`  Footers updated: ${report.footersUpdated}`);
+
+          if (report.warnings.length > 0) {
+            console.log(chalk.yellow(`\n  Warnings: ${report.warnings.length}`));
+          }
+          if (report.errors.length > 0) {
+            console.log(chalk.red(`  Errors: ${report.errors.length}`));
+          }
+        }
+
+        // Task 4: Metadata Update
         if (tasks.metadata) {
           spinner.info('Metadata cultivation: Not yet implemented');
         }
 
-        // Task 4: Cleanup
+        // Task 5: Cleanup
         if (tasks.cleanup) {
           spinner.info('Graph cleanup: Not yet implemented');
         }
