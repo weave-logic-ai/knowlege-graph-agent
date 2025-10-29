@@ -23,26 +23,59 @@ This guide configures weaver to:
 
 ---
 
-## 📦 Prerequisites
+## 🚀 Quick Setup (Automated)
+
+**One command to set everything up:**
 
 ```bash
-# 1. Install claude-flow (if not already installed)
-npm install -g @ruvnet/claude-flow@alpha
+# Navigate to weaver directory
+cd weaver/
 
-# 2. Verify weaver is built and linked
+# Run automated setup
+weaver setup claude-flow
+
+# Or with vault path specified
+weaver setup claude-flow --vault ~/my-vault
+```
+
+This will:
+- ✅ Initialize claude-flow with `npx claude-flow@alpha init --force`
+- ✅ Add claude-flow MCP server: `claude mcp add claude-flow`
+- ✅ Add ruv-swarm MCP server (optional): `claude mcp add ruv-swarm`
+- ✅ Configure Claude Desktop MCP
+- ✅ Create Claude-Flow weaver.json config
+- ✅ Generate .env file with your vault path
+
+---
+
+## 📦 Manual Setup (If Needed)
+
+If you prefer manual setup or automated setup fails:
+
+```bash
+# 1. Initialize claude-flow
+npx claude-flow@alpha init --force
+
+# 2. Add MCP servers
+claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add ruv-swarm npx ruv-swarm mcp start  # Optional: Enhanced coordination
+
+# 3. Verify weaver is built and linked
 cd weaver/
 npm run build:cli
 chmod +x dist/cli/bin.js
 npm link
 
-# 3. Verify installations
+# 4. Verify installations
 weaver --version
 npx claude-flow --version
 ```
 
 ---
 
-## 🔧 Configuration
+## 🔧 Manual Configuration (Reference)
+
+> **Note**: If you used `weaver setup claude-flow`, these configs are already created!
 
 ### Step 1: Add Weaver MCP Server to Claude Desktop
 

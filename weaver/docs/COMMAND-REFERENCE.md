@@ -41,6 +41,36 @@ weaver config reload                    # Reload configuration
 
 ---
 
+## Setup & Configuration
+
+### Automated Setup
+
+```bash
+# Full Claude-Flow integration setup (recommended)
+weaver setup claude-flow                            # Interactive setup
+weaver setup claude-flow --vault ~/my-vault         # With vault path
+weaver setup claude-flow --skip-mcp                 # Skip Claude Desktop MCP
+weaver setup claude-flow --skip-env                 # Skip .env creation
+
+# Claude Desktop MCP only
+weaver setup mcp                                    # Interactive MCP setup
+weaver setup mcp --vault ~/my-vault                 # With vault path
+
+# Environment file only
+weaver setup env                                    # Interactive .env creation
+weaver setup env --vault ~/my-vault                 # With vault path
+```
+
+**What `weaver setup claude-flow` does:**
+- Initializes claude-flow with `npx claude-flow@alpha init --force`
+- Adds claude-flow MCP server via `claude mcp add`
+- Adds ruv-swarm MCP server (optional)
+- Configures Claude Desktop MCP at `~/.config/claude-desktop/config.json`
+- Creates Claude-Flow config at `~/.config/claude-flow/weaver.json`
+- Generates `.env` file with vault configuration
+
+---
+
 ## Vault Operations
 
 ### Vault Initialization

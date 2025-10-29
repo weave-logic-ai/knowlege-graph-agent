@@ -8,6 +8,7 @@ import { join, dirname } from 'path';
 import { homedir } from 'os';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+import { execSync } from 'child_process';
 import {
   formatSuccess,
   formatInfo,
@@ -104,7 +105,58 @@ function createClaudeFlowSetupCommand(): Command {
           }
         }
 
-        // Step 4: Setup Claude-Flow config
+        // Step 4: Initialize Claude-Flow
+        const initSpinner = showSpinner('Initializing Claude-Flow...');
+        
+        try {
+          // Check if claude-flow is installed
+          try {
+            execSync('npx claude-flow@alpha --version', { stdio: 'pipe' });
+          } catch {
+            updateSpinner(initSpinner, 'Installing claude-flow...');
+            execSync('npm install -g @ruvnet/claude-flow@alpha', { stdio: 'inherit' });
+          }
+          
+          // Initialize claude-flow
+          execSync('npx claude-flow@alpha init --force', { stdio: 'inherit' });
+          succeedSpinner(initSpinner, 'Claude-Flow initialized');
+        } catch (error) {
+          failSpinner(initSpinner, 'Claude-Flow initialization failed');
+          console.log(formatWarning('You may need to run: npx claude-flow@alpha init --force'));
+        }
+
+        // Step 5: Setup Claude-Flow MCP servers
+        const mcpSetupSpinner = showSpinner('Setting up Claude-Flow MCP servers...');
+        
+        try {
+          // Add claude-flow MCP server
+          execSync('claude mcp add claude-flow npx claude-flow@alpha mcp start', { 
+            stdio: 'pipe' 
+          });
+          
+          // Add ruv-swarm MCP server (optional)
+          const answers = await inquirer.prompt([{
+            type: 'confirm',
+            name: 'addRuvSwarm',
+            message: 'Add ruv-swarm MCP server for enhanced coordination?',
+            default: true,
+          }]);
+          
+          if (answers.addRuvSwarm) {
+            execSync('claude mcp add ruv-swarm npx ruv-swarm mcp start', { 
+              stdio: 'pipe' 
+            });
+          }
+          
+          succeedSpinner(mcpSetupSpinner, 'Claude-Flow MCP servers configured');
+        } catch (error) {
+          failSpinner(mcpSetupSpinner, 'MCP server setup failed');
+          console.log(formatWarning('You may need to manually run:'));
+          console.log(formatWarning('  claude mcp add claude-flow npx claude-flow@alpha mcp start'));
+          console.log(formatWarning('  claude mcp add ruv-swarm npx ruv-swarm mcp start'));
+        }
+
+        // Step 6: Setup Claude-Flow config
         const cfSpinner = showSpinner('Setting up Claude-Flow configuration...');
         
         const claudeFlowConfigDir = join(homedir(), '.config/claude-flow');
@@ -149,7 +201,7 @@ function createClaudeFlowSetupCommand(): Command {
 
         succeedSpinner(cfSpinner, 'Claude-Flow configuration created');
 
-        // Step 5: Setup .env file
+        // Step 7: Setup .env file
         if (!options.skipEnv) {
           const answers = await inquirer.prompt([{
             type: 'confirm',
@@ -163,7 +215,7 @@ function createClaudeFlowSetupCommand(): Command {
           }
         }
 
-        // Step 6: Copy agent rules
+        // Step 8: Copy agent rules
         const rulesSpinner = showSpinner('Setting up agent rules...');
         
         const agentRulesSource = join(weaverRoot, 'config/agent-rules.yaml');
@@ -174,19 +226,22 @@ function createClaudeFlowSetupCommand(): Command {
           console.log(formatWarning('Run from project root or rebuild'));
         }
 
-        // Step 7: Display summary
+        // Step 9: Display summary
         console.log();
         console.log(formatHeader('✅ Setup Complete'));
         console.log();
         console.log(formatInfo('Configuration created:'));
+        console.log(formatInfo(`  • Claude-Flow initialized`));
+        console.log(formatInfo(`  • Claude-Flow MCP servers: claude-flow, ruv-swarm (optional)`));
         console.log(formatInfo(`  • Claude Desktop MCP: ~/.config/claude-desktop/config.json`));
         console.log(formatInfo(`  • Claude-Flow config: ~/.config/claude-flow/weaver.json`));
         console.log(formatInfo(`  • Vault path: ${vaultPath}`));
         console.log();
         console.log(formatSuccess('Next steps:'));
-        console.log(formatSuccess('  1. Restart Claude Desktop to load MCP server'));
-        console.log(formatSuccess('  2. Test: claude-flow mcp status weaver'));
-        console.log(formatSuccess('  3. Try in Claude: "Search my vault for notes"'));
+        console.log(formatSuccess('  1. Restart Claude Desktop to load MCP servers'));
+        console.log(formatSuccess('  2. Test: npx claude-flow mcp status'));
+        console.log(formatSuccess('  3. Test weaver: npx claude-flow mcp call weaver weaver_search_vault'));
+        console.log(formatSuccess('  4. Try in Claude: "Search my vault for notes"'));
         console.log();
 
       } catch (error) {
