@@ -687,7 +687,8 @@ function displayResults(results: CultivationResults, branchName?: string): void 
 }
 
 /**
- * Find vault root by looking for .git directory
+ * Find vault root by looking for .obsidian directory (Obsidian vault marker)
+ * If not found, use the specified directory as vault root
  */
 async function findVaultRoot(startPath: string): Promise<string> {
   let currentPath = path.resolve(startPath);
@@ -701,20 +702,28 @@ async function findVaultRoot(startPath: string): Promise<string> {
     // Path doesn't exist, use as-is
   }
 
-  while (currentPath !== '/') {
+  // Look for .obsidian folder (Obsidian vault marker)
+  let searchPath = currentPath;
+  while (searchPath !== '/') {
     try {
-      await fs.access(path.join(currentPath, '.git'));
-      return currentPath;
-    } catch {
-      const parent = path.dirname(currentPath);
-      if (parent === currentPath) {
-        break;
+      const obsidianPath = path.join(searchPath, '.obsidian');
+      const stats = await fs.stat(obsidianPath);
+      if (stats.isDirectory()) {
+        return searchPath;
       }
-      currentPath = parent;
+    } catch {
+      // Not found, continue searching
     }
+
+    const parent = path.dirname(searchPath);
+    if (parent === searchPath) {
+      break;
+    }
+    searchPath = parent;
   }
 
-  return path.resolve(startPath);
+  // No .obsidian found, use specified directory as vault root
+  return currentPath;
 }
 
 /**
