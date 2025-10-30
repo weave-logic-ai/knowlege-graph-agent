@@ -2,7 +2,16 @@
 type: directory-hub
 status: active
 priority: high
-tags: [hub, integrations,external-systems]
+tags:
+  - hub
+  - integrations
+  - external-systems
+visual:
+  icon: "\U0001F50C"
+  cssclasses:
+    - type-directory-hub
+    - status-active
+    - priority-high
 ---
 
 # System Integrations

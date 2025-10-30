@@ -2,8 +2,20 @@
 type: hub
 status: active
 priority: critical
-tags: [hub, primitives, vault-structure, navigation]
-cssclasses: [hub-page]
+tags:
+  - hub
+  - primitives
+  - vault-structure
+  - navigation
+cssclasses:
+  - hub-page
+visual:
+  icon: "\U0001F310"
+  cssclasses:
+    - hub-page
+    - type-hub
+    - status-active
+    - priority-critical
 ---
 
 # Weave-NN Vault Primitives

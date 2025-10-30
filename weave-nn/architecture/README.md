@@ -2,7 +2,16 @@
 type: directory-hub
 status: active
 priority: high
-tags: [hub, architecture, system-design]
+tags:
+  - hub
+  - architecture
+  - system-design
+visual:
+  icon: "\U0001F3D7️"
+  cssclasses:
+    - type-directory-hub
+    - status-active
+    - priority-high
 ---
 
 # System Architecture

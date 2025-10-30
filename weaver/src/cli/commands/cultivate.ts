@@ -49,6 +49,8 @@ interface CultivateOptions {
   useContext?: boolean;
   agentMode?: string;
   maxAgents?: string;
+  seed?: boolean;
+  projectRoot?: string;
 }
 
 interface OrphanFile {
@@ -92,6 +94,8 @@ export function createCultivateCommand(): Command {
     .option('--use-context', 'Use primitives/features/tech-specs for context', true)
     .option('--agent-mode <mode>', 'Agent execution mode: sequential, parallel, adaptive', 'adaptive')
     .option('--max-agents <number>', 'Maximum concurrent agents for generation', '5')
+    .option('--seed', 'Bootstrap vault with primitives from codebase analysis', false)
+    .option('--project-root <path>', 'Project root for seed analysis (defaults to target directory)')
     .action(async (targetPath: string, options: CultivateOptions) => {
       const spinner = ora('Initializing cultivation...').start();
 
@@ -122,11 +126,12 @@ export function createCultivateCommand(): Command {
           frontmatter: options.frontmatter || options.parse || options.all,
           generateMissing: options.generateMissing || options.parse || options.all,
           buildFooters: options.parse, // buildFooters may already exist
+          seed: options.seed || false,
         };
 
         // If no tasks selected, show help
         if (!tasks.icons && !tasks.connections && !tasks.metadata && !tasks.cleanup &&
-            !intelligentTasks.frontmatter && !intelligentTasks.generateMissing && !options.parse) {
+            !intelligentTasks.frontmatter && !intelligentTasks.generateMissing && !intelligentTasks.seed && !options.parse) {
           console.log(chalk.yellow('\n💡 No tasks selected. Use one or more of:'));
           console.log('  --icons       Apply visual icons to files');
           console.log('  --connections Connect orphaned/poorly connected documents');
@@ -259,7 +264,7 @@ export function createCultivateCommand(): Command {
         }
 
         // Task 3: Intelligent Cultivation
-        if (options.parse || intelligentTasks.frontmatter || intelligentTasks.generateMissing) {
+        if (options.parse || intelligentTasks.frontmatter || intelligentTasks.generateMissing || intelligentTasks.seed) {
           const { CultivationEngine } = await import('../../cultivation/engine.js');
 
           const cultivationOptions = {
@@ -273,6 +278,8 @@ export function createCultivateCommand(): Command {
             agentMode: (options.agentMode || 'adaptive') as 'sequential' | 'parallel' | 'adaptive',
             maxAgents: parseInt(options.maxAgents || '5', 10),
             verbose: options.verbose || false,
+            seed: intelligentTasks.seed || false,
+            projectRoot: options.projectRoot,
           };
 
           spinner.start('Initializing intelligent cultivation...');
@@ -292,11 +299,28 @@ export function createCultivateCommand(): Command {
           }
 
           // Load context
-          if (options.useContext !== false) {
+          if (options.useContext !== false || intelligentTasks.seed) {
             spinner.start('Loading vault context...');
             const context = await engine.loadContext();
             const hasContext = [context.primitives, context.features, context.techSpecs].filter(Boolean).length;
             spinner.succeed(`Loaded context from ${hasContext} reference files`);
+          }
+
+          // Seed generation (run first to bootstrap vault)
+          if (intelligentTasks.seed) {
+            spinner.start('Seeding primitives from codebase...');
+            const seedResult = await engine.seedPrimitives();
+            spinner.succeed(`Seeded ${seedResult.created} primitive nodes`);
+
+            if (options.verbose && seedResult.documents.length > 0) {
+              console.log(chalk.gray('  Generated primitives:'));
+              seedResult.documents.slice(0, 10).forEach((doc: any) => {
+                console.log(chalk.gray(`    • ${doc.frontmatter.category || 'primitive'}: ${doc.title}`));
+              });
+              if (seedResult.documents.length > 10) {
+                console.log(chalk.gray(`    • ...and ${seedResult.documents.length - 10} more`));
+              }
+            }
           }
 
           // Frontmatter generation
@@ -331,6 +355,9 @@ export function createCultivateCommand(): Command {
           const report = await engine.getReport();
           console.log(chalk.bold.green('\n✨ Intelligent Cultivation Complete\n'));
           console.log(chalk.cyan('Summary:'));
+          if (report.seed.created > 0) {
+            console.log(`  Primitives seeded: ${report.seed.created}`);
+          }
           console.log(`  Files processed: ${report.frontmatter.processed}`);
           console.log(`  Frontmatter updated: ${report.frontmatter.updated}`);
           console.log(`  Documents generated: ${report.generation.created}`);

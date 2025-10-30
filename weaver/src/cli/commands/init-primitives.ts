@@ -17,6 +17,7 @@ import {
 } from '../utils/progress.js';
 import { detectFramework } from '../../vault-init/scanner/framework-detector.js';
 import Anthropic from '@anthropic-ai/sdk';
+import { config } from 'dotenv';
 
 interface PrimitiveConfig {
   name: string;
@@ -420,6 +421,7 @@ async function enhancePrimitivesWithContext(vaultPath: string): Promise<{
   subdirs?: Record<string, string[]>;
   nodes?: GeneratedNode[];
 }> {
+  // .env is loaded by main CLI, no need to reload here
   const spinner = showSpinner('Analyzing project context...');
   
   try {
@@ -539,7 +541,8 @@ export function createInitPrimitivesCommand(): Command {
     .description('Initialize vault primitives structure (patterns, protocols, standards, etc.)')
     .argument('[vault-path]', 'Path to vault', '.')
     .option('--no-ai', 'Skip AI enhancement', false)
-    .action(async (vaultPath: string, options: { ai?: boolean }) => {
+    .option('--project <path>', 'Project root for analysis (defaults to vault-path or cwd)')
+    .action(async (vaultPath: string, options: { ai?: boolean; project?: string }) => {
       try {
         console.log(formatHeader('🧵 Initializing Vault Primitives'));
         console.log();
@@ -551,8 +554,24 @@ export function createInitPrimitivesCommand(): Command {
           mkdirSync(absolutePath, { recursive: true });
         }
         
+        // Determine project root for analysis
+        const projectRoot = options.project 
+          ? join(process.cwd(), options.project)
+          : existsSync(join(absolutePath, 'package.json'))
+            ? absolutePath
+            : process.cwd();
+        
         // Enhance primitives with project context
-        const context = options.ai !== false ? await enhancePrimitivesWithContext(absolutePath) : {};
+        let context: any = {};
+        if (options.ai !== false) {
+          context = await enhancePrimitivesWithContext(projectRoot);
+          
+          if (context.nodes?.length) {
+            console.log(formatInfo(`🤖 AI generated ${context.nodes.length} nodes for ${context.framework || 'your project'}`));
+          } else if (!process.env.ANTHROPIC_API_KEY) {
+            console.log(formatInfo('💡 Tip: Set ANTHROPIC_API_KEY in .env for AI-generated content'));
+          }
+        }
         
         // Create each primitive directory
         for (const primitive of PRIMITIVES) {

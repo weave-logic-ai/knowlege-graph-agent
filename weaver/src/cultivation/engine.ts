@@ -18,6 +18,7 @@ import { FrontmatterGenerator } from './frontmatter-generator.js';
 import { DocumentGenerator } from './document-generator.js';
 import { AgentOrchestrator } from './agent-orchestrator.js';
 import { FooterBuilder } from './footer-builder.js';
+import { SeedGenerator } from './seed-generator.js';
 import type {
   VaultContext,
   GeneratedDocument
@@ -45,6 +46,10 @@ export interface CultivationOptions {
   agentMode: 'sequential' | 'parallel' | 'adaptive';
   /** Maximum number of concurrent agents */
   maxAgents: number;
+  /** If true, seed vault with primitives from codebase analysis */
+  seed: boolean;
+  /** Project root for seed analysis (defaults to targetDirectory) */
+  projectRoot?: string;
   /** If true, output detailed logging */
   verbose: boolean;
 }
@@ -127,6 +132,8 @@ export interface CultivationReport {
   generation: GenerationResult;
   /** Footer building phase results */
   footers: FooterBuildResult;
+  /** Seed generation phase results */
+  seed: GenerationResult;
   /** Overall success status */
   success: boolean;
   /** All warnings accumulated */
@@ -147,6 +154,7 @@ export class CultivationEngine {
   private documentGenerator?: DocumentGenerator;
   private agentOrchestrator?: AgentOrchestrator;
   private footerBuilder?: FooterBuilder;
+  private seedGenerator?: SeedGenerator;
 
   private startTime: number = 0;
   private warnings: string[] = [];
@@ -158,6 +166,7 @@ export class CultivationEngine {
   private frontmatterResult?: FrontmatterResult;
   private generationResult?: GenerationResult;
   private footerResult?: FooterBuildResult;
+  private seedResult?: GenerationResult;
 
   constructor(options: CultivationOptions) {
     this.options = options;
@@ -182,6 +191,10 @@ export class CultivationEngine {
     }
     if (!this.footerBuilder) {
       this.footerBuilder = new FooterBuilder(context);
+    }
+    if (!this.seedGenerator && this.options.seed) {
+      const projectRoot = this.options.projectRoot || this.options.targetDirectory;
+      this.seedGenerator = new SeedGenerator(context, projectRoot);
     }
   }
 
@@ -440,6 +453,79 @@ export class CultivationEngine {
   }
 
   /**
+   * Seed vault with primitive nodes from codebase analysis
+   */
+  async seedPrimitives(): Promise<GenerationResult> {
+    this.log('🌱 Seeding primitives from codebase...');
+
+    if (!this.options.seed) {
+      this.log('  Skipped (seed=false)');
+      return {
+        created: 0,
+        documents: [],
+        errors: []
+      };
+    }
+
+    if (!this.vaultContext) {
+      throw new Error('Must call loadContext() before seedPrimitives()');
+    }
+
+    if (!this.seedGenerator) {
+      this.initializeModules(this.vaultContext);
+    }
+
+    // Analyze codebase
+    this.log('  Analyzing dependency files...');
+    const analysis = await this.seedGenerator!.analyze();
+
+    this.log(`  Found ${analysis.dependencies.length} dependencies`);
+    this.log(`  Found ${analysis.frameworks.length} frameworks`);
+    this.log(`  Found ${analysis.services.length} services`);
+    this.log(`  Found ${analysis.languages.length} languages`);
+
+    // Generate primitive nodes
+    this.log('  Generating primitive nodes...');
+    const documents = await this.seedGenerator!.generatePrimitives(analysis);
+
+    // Write documents
+    if (!this.options.dryRun) {
+      for (const doc of documents) {
+        try {
+          await fs.mkdir(path.dirname(doc.path), { recursive: true });
+
+          // Filter out undefined values from frontmatter (gray-matter can't serialize undefined)
+          const cleanFrontmatter = Object.fromEntries(
+            Object.entries(doc.frontmatter).filter(([_, v]) => v !== undefined)
+          );
+
+          const fullContent = matter.stringify(doc.content, cleanFrontmatter);
+          await fs.writeFile(doc.path, fullContent, 'utf-8');
+          this.log(`  Created: ${path.relative(this.options.targetDirectory, doc.path)}`);
+        } catch (error) {
+          const msg = `Failed to write ${doc.path}: ${error}`;
+          this.addError(msg);
+        }
+      }
+    }
+
+    const result: GenerationResult = {
+      created: documents.length,
+      documents,
+      errors: []
+    };
+
+    this.seedResult = result;
+
+    this.log(`  Generated ${documents.length} primitive nodes`);
+    if (this.options.dryRun) {
+      this.log('  (dry run - no files written)');
+    }
+
+    return result;
+  }
+
+  /**
    * Get comprehensive cultivation report
    */
   async getReport(): Promise<CultivationReport> {
@@ -473,6 +559,11 @@ export class CultivationEngine {
       footers: this.footerResult || {
         updated: 0,
         skipped: 0,
+        errors: []
+      },
+      seed: this.seedResult || {
+        created: 0,
+        documents: [],
         errors: []
       },
       success: this.errors.length === 0,

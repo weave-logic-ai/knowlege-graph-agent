@@ -6,6 +6,9 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import packageJson from '../../package.json' with { type: 'json' };
+import { config } from 'dotenv';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 // Lazy-loaded command creators (loaded on demand)
 let cachedCommands: any = null;
@@ -166,9 +169,35 @@ async function loadAndRegisterCommands(program: Command): Promise<void> {
 }
 
 /**
+ * Load environment variables from .env files
+ */
+function loadEnvFiles(): void {
+  // Load from weaver root (where CLI is installed)
+  const weaverRoot = join(process.cwd(), '.env');
+  if (existsSync(weaverRoot)) {
+    config({ path: weaverRoot });
+  }
+  
+  // Load from user's home directory
+  const homeEnv = join(process.env.HOME || process.env.USERPROFILE || '', '.weaver.env');
+  if (existsSync(homeEnv)) {
+    config({ path: homeEnv });
+  }
+  
+  // Load from current working directory (highest priority)
+  const cwdEnv = join(process.cwd(), '.env');
+  if (existsSync(cwdEnv) && cwdEnv !== weaverRoot) {
+    config({ path: cwdEnv, override: true });
+  }
+}
+
+/**
  * Run the CLI with provided arguments
  */
 export async function runCLI(args = process.argv): Promise<void> {
+  // Load environment variables first
+  loadEnvFiles();
+  
   const program = createCLI();
   
   // Load and register all commands before parsing
