@@ -2,7 +2,7 @@
 
 **Status:** ✅ Complete and Production Ready
 **Created:** 2025-10-29
-**Last Updated:** 2025-10-29
+**Last Updated:** 2025-10-30
 
 ---
 
@@ -10,19 +10,20 @@
 
 The Intelligent Vault Cultivation System is a comprehensive documentation enhancement framework that:
 
-1. **Analyzes** markdown documents and adds intelligent YAML frontmatter
-2. **Tracks** modification dates to avoid re-processing unchanged files
-3. **Generates** missing documentation (concepts, features, architecture, integrations)
-4. **Uses** claude-flow specialized agents for parallel content generation
-5. **References** top-level context files (primitives.md, features.md, tech-specs.md)
-6. **Builds** footer sections with backlinks
-7. **Identifies** gaps and suggests improvements/replacements
+1. **Seeds** primitive nodes from project dependencies (package.json, requirements.txt, etc.)
+2. **Analyzes** markdown documents and adds intelligent YAML frontmatter
+3. **Tracks** modification dates to avoid re-processing unchanged files
+4. **Generates** missing documentation (concepts, features, architecture, integrations)
+5. **Uses** claude-flow specialized agents for parallel content generation
+6. **References** top-level context files (primitives.md, features.md, tech-specs.md)
+7. **Builds** footer sections with backlinks
+8. **Identifies** gaps and suggests improvements/replacements
 
 ---
 
 ## Architecture
 
-### Core Modules (✅ All Complete - 7/7)
+### Core Modules (✅ All Complete - 8/8)
 
 #### 1. **Type System** (`src/cultivation/types.ts`)
 
@@ -142,11 +143,64 @@ private executeTask(task: AgentTask): Promise<any>
 async generateWithAgent(agent, prompt): Promise<string>
 ```
 
+#### 6. **Seed Generator** (`src/cultivation/seed-generator.ts`)
+
+Bootstraps vault with primitive nodes from project dependencies:
+
+**Features:**
+- Multi-ecosystem dependency analysis (Node.js, Python, PHP, Rust, Go, Java)
+- Service discovery from docker-compose.yml and Kubernetes manifests
+- Intelligent framework vs library classification
+- Rich metadata with documentation links and repository URLs
+- Usage tracking (which features use each dependency)
+- Language and deployment platform detection
+- Automatic category inference (frontend, backend, testing, build-tools, etc.)
+
+**Supported Package Managers:**
+- Node.js: package.json (npm/yarn/pnpm)
+- Python: requirements.txt, pyproject.toml
+- PHP: composer.json
+- Rust: Cargo.toml
+- Go: go.mod
+- Java: pom.xml, build.gradle
+
+**Generated Metadata:**
+```yaml
+---
+title: Express
+type: primitive
+category: backend
+ecosystem: nodejs
+version: ^4.18.0
+status: active
+tags:
+  - framework
+  - nodejs
+  - backend
+documentation:
+  - https://www.npmjs.com/package/express
+used_by: []
+created: '2025-10-30'
+updated: '2025-10-30T00:33:23.972Z'
+---
+```
+
+**Key Methods:**
+```typescript
+async analyze(): Promise<SeedAnalysis>
+async generatePrimitives(analysis: SeedAnalysis): Promise<GeneratedDocument[]>
+private analyzeDependencies(analysis: SeedAnalysis): Promise<void>
+private analyzeServices(analysis: SeedAnalysis): Promise<void>
+private classifyDependencies(analysis: SeedAnalysis): void
+private inferCategory(name: string): string
+private getDocumentationLinks(name: string, ecosystem: string): string[]
+```
+
 ---
 
 ## Complete Implementation (✅ All Modules)
 
-### 6. **Footer Builder** (`src/cultivation/footer-builder.ts` - ✅ Complete)
+### 7. **Footer Builder** (`src/cultivation/footer-builder.ts` - ✅ Complete)
 
 Builds footer sections with backlinks:
 
@@ -167,7 +221,7 @@ private generateFooterSection(filePath: string, backlinks: BacklinkInfo[]): stri
 private insertOrUpdateFooter(filePath: string, footerContent: string): Promise<boolean>
 ```
 
-### 7. **Cultivation Engine** (`src/cultivation/engine.ts` - ✅ Complete)
+### 8. **Cultivation Engine** (`src/cultivation/engine.ts` - ✅ Complete)
 
 Main orchestration engine that coordinates all modules:
 
@@ -191,7 +245,7 @@ async getReport(): Promise<CultivationReport>
 async saveReport(path: string): Promise<void>
 ```
 
-### 8. **CLI Integration** (`src/cli/commands/cultivate.ts` - ✅ Complete)
+### 9. **CLI Integration** (`src/cli/commands/cultivate.ts` - ✅ Complete)
 
 Extended existing cultivate command with new options:
 
@@ -200,6 +254,8 @@ Extended existing cultivate command with new options:
 weaver cultivate <directory> [options]
 
 Options:
+  --seed                 Bootstrap vault with primitives from codebase analysis
+  --project-root <path>  Project root for seed analysis (defaults to target directory)
   --parse                Parse and enhance all documents
   --frontmatter          Generate/update intelligent frontmatter
   --generate-missing     Generate missing documentation
@@ -222,6 +278,39 @@ Options:
 ---
 
 ## Usage Examples
+
+### Seed Primitive Nodes from Codebase
+
+Bootstrap your vault with primitive nodes generated from project dependencies:
+
+```bash
+# Seed primitives from current project
+weaver cultivate ./docs --seed --verbose
+
+# Seed from different project root
+weaver cultivate ./docs --seed --project-root ./backend --verbose
+
+# Preview seed results (dry run)
+weaver cultivate ./docs --seed --dry-run --verbose
+```
+
+**Example Output:**
+```
+🌱 Seeding primitives from codebase...
+  Analyzing dependency files...
+  Found 58 dependencies
+  Found 7 frameworks
+  Found 0 services
+  Found 2 languages
+  Generating primitive nodes...
+  Created: primitives/backend/express.md
+  Created: primitives/frontend/react.md
+  Created: primitives/utility/typescript.md
+  Created: primitives/testing/vitest.md
+  ...
+  Generated 21 primitive nodes
+  Processing time: 0.61s
+```
 
 ### Basic Cultivation
 
