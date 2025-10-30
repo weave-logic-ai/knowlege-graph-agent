@@ -154,7 +154,7 @@ Bootstraps vault with primitive nodes from project dependencies:
 - Rich metadata with documentation links and repository URLs
 - Usage tracking (which features use each dependency)
 - Language and deployment platform detection
-- Automatic category inference (frontend, backend, testing, build-tools, etc.)
+- PRIMITIVES.md taxonomy mapping (components/ui, services/api, integrations/databases, etc.)
 
 **Supported Package Managers:**
 - Node.js: package.json (npm/yarn/pnpm)
@@ -169,7 +169,7 @@ Bootstraps vault with primitive nodes from project dependencies:
 ---
 title: Express
 type: primitive
-category: backend
+category: services/api
 ecosystem: nodejs
 version: ^4.18.0
 status: active
@@ -184,6 +184,17 @@ created: '2025-10-30'
 updated: '2025-10-30T00:33:23.972Z'
 ---
 ```
+
+**PRIMITIVES.md Taxonomy Mapping:**
+- Frontend frameworks (React, Vue) → `components/ui`
+- Backend frameworks (Express, Next.js) → `services/api`
+- Databases/ORMs (Prisma, TypeORM) → `integrations/databases`
+- Auth libraries (Passport, JWT) → `integrations/auth-providers`
+- Testing tools (Jest, Vitest) → `guides/testing`
+- Build tools (Webpack, Vite) → `standards/build-tools`
+- Linters (ESLint, Prettier) → `standards/coding-standards`
+- Type definitions (@types/*) → `components/utilities`
+- Languages → `standards/programming-languages`
 
 **Key Methods:**
 ```typescript
@@ -303,10 +314,11 @@ weaver cultivate ./docs --seed --dry-run --verbose
   Found 0 services
   Found 2 languages
   Generating primitive nodes...
-  Created: primitives/backend/express.md
-  Created: primitives/frontend/react.md
-  Created: primitives/utility/typescript.md
-  Created: primitives/testing/vitest.md
+  Created: services/api/express.md
+  Created: components/ui/react.md
+  Created: components/utilities/typescript.md
+  Created: guides/testing/vitest.md
+  Created: standards/programming-languages/javascript.md
   ...
   Generated 21 primitive nodes
   Processing time: 0.61s

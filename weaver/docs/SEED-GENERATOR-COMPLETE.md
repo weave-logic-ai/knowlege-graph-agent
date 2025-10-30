@@ -25,9 +25,23 @@ Analyzes dependencies from 6+ package managers:
 ### 2. Intelligent Classification
 
 - Framework vs library detection
-- Category inference (frontend, backend, testing, build-tools, database, utility)
+- Category mapping to PRIMITIVES.md taxonomy (components/ui, services/api, integrations/databases, etc.)
 - Language detection
 - Service type identification
+
+**PRIMITIVES.md Taxonomy Mapping:**
+- Frontend frameworks (React, Vue) → `components/ui`
+- Backend frameworks (Express, Next.js) → `services/api`
+- Databases/ORMs (Prisma, TypeORM) → `integrations/databases`
+- Auth libraries (Passport, JWT) → `integrations/auth-providers`
+- Testing tools (Jest, Vitest) → `guides/testing`
+- Build tools (Webpack, Vite) → `standards/build-tools`
+- Linters (ESLint, Prettier) → `standards/coding-standards`
+- Type definitions (@types/*) → `components/utilities`
+- Icons/assets (Lucide, Heroicons) → `components/utilities`
+- Storage (S3, Blob) → `integrations/storage`
+- Monitoring (Sentry, Analytics) → `integrations/monitoring`
+- Languages → `standards/programming-languages`
 
 ### 3. Service Discovery
 
@@ -114,14 +128,12 @@ weaver cultivate /tmp/seed-test --seed --verbose
 - 0 errors
 
 **Generated Files:**
-- primitives/express.md
-- primitives/react.md
-- primitives/backend/express.md
-- primitives/frontend/react.md
-- primitives/utility/typescript.md
-- primitives/testing/vitest.md
-- primitives/languages/javascript.md
-- primitives/languages/typescript.md
+- services/api/express.md
+- components/ui/react.md
+- components/utilities/typescript.md
+- guides/testing/vitest.md
+- standards/programming-languages/javascript.md
+- standards/programming-languages/typescript.md
 
 ### Test 2: Weaver Project (Complex Real-World)
 
@@ -150,7 +162,7 @@ weaver cultivate . --seed --dry-run --verbose
 ---
 title: Express
 type: primitive
-category: backend
+category: services/api
 ecosystem: nodejs
 version: ^4.18.0
 status: active
@@ -172,6 +184,7 @@ backend framework for nodejs.
 
 **Version:** ^4.18.0
 **Type:** framework
+**Category:** services/api
 
 ## Documentation
 
@@ -195,6 +208,13 @@ backend framework for nodejs.
    - Usage examples with real output
    - Updated overview
    - Renumbered modules 6-9
+
+3. **fix(cultivation): Align seed generator with PRIMITIVES.md taxonomy** (abee98b)
+   - Updated category mapping to follow PRIMITIVES.md vault structure
+   - Removed hardcoded 'primitives/' prefix from all paths
+   - Files now created in correct top-level categories
+   - Frontend → components/ui, Backend → services/api, etc.
+   - Fixes user-reported structure alignment issue
 
 ## Production Readiness
 
