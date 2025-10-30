@@ -19,6 +19,7 @@ import { DocumentGenerator } from './document-generator.js';
 import { AgentOrchestrator } from './agent-orchestrator.js';
 import { FooterBuilder } from './footer-builder.js';
 import { SeedGenerator } from './seed-generator.js';
+import { SeedEnhancer } from './seed-enhancer.js';
 import type {
   VaultContext,
   GeneratedDocument
@@ -48,6 +49,8 @@ export interface CultivationOptions {
   maxAgents: number;
   /** If true, seed vault with primitives from codebase analysis */
   seed: boolean;
+  /** If true, use deep codebase analysis with claude-flow agents */
+  deepAnalysis?: boolean;
   /** Project root for seed analysis (defaults to targetDirectory) */
   projectRoot?: string;
   /** If true, output detailed logging */
@@ -155,6 +158,7 @@ export class CultivationEngine {
   private agentOrchestrator?: AgentOrchestrator;
   private footerBuilder?: FooterBuilder;
   private seedGenerator?: SeedGenerator;
+  private seedEnhancer?: SeedEnhancer;
 
   private startTime: number = 0;
   private warnings: string[] = [];
@@ -194,7 +198,18 @@ export class CultivationEngine {
     }
     if (!this.seedGenerator && this.options.seed) {
       const projectRoot = this.options.projectRoot || this.options.targetDirectory;
-      this.seedGenerator = new SeedGenerator(context, projectRoot);
+
+      if (this.options.deepAnalysis) {
+        // Use enhanced seed generator with deep analysis
+        this.seedEnhancer = new SeedEnhancer(context, projectRoot, {
+          deepAnalysis: true,
+          analysisTimeout: 120000,
+          fallbackToShallow: true
+        });
+      } else {
+        // Use basic seed generator
+        this.seedGenerator = new SeedGenerator(context, projectRoot);
+      }
     }
   }
 
@@ -471,22 +486,30 @@ export class CultivationEngine {
       throw new Error('Must call loadContext() before seedPrimitives()');
     }
 
-    if (!this.seedGenerator) {
+    if (!this.seedGenerator && !this.seedEnhancer) {
       this.initializeModules(this.vaultContext);
     }
 
-    // Analyze codebase
-    this.log('  Analyzing dependency files...');
-    const analysis = await this.seedGenerator!.analyze();
+    let documents: GeneratedDocument[];
 
-    this.log(`  Found ${analysis.dependencies.length} dependencies`);
-    this.log(`  Found ${analysis.frameworks.length} frameworks`);
-    this.log(`  Found ${analysis.services.length} services`);
-    this.log(`  Found ${analysis.languages.length} languages`);
+    // Use seed enhancer if deep analysis is enabled
+    if (this.seedEnhancer) {
+      this.log('  Running deep codebase analysis with claude-flow agents...');
+      documents = await this.seedEnhancer.generate();
+    } else {
+      // Fallback to basic seed generator
+      this.log('  Analyzing dependency files...');
+      const analysis = await this.seedGenerator!.analyze();
 
-    // Generate primitive nodes
-    this.log('  Generating primitive nodes...');
-    const documents = await this.seedGenerator!.generatePrimitives(analysis);
+      this.log(`  Found ${analysis.dependencies.length} dependencies`);
+      this.log(`  Found ${analysis.frameworks.length} frameworks`);
+      this.log(`  Found ${analysis.services.length} services`);
+      this.log(`  Found ${analysis.languages.length} languages`);
+
+      // Generate primitive nodes
+      this.log('  Generating primitive nodes...');
+      documents = await this.seedGenerator!.generatePrimitives(analysis);
+    }
 
     // Write documents
     if (!this.options.dryRun) {

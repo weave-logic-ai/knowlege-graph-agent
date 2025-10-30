@@ -51,6 +51,7 @@ interface CultivateOptions {
   maxAgents?: string;
   seed?: boolean;
   projectRoot?: string;
+  deepAnalysis?: boolean;
 }
 
 interface OrphanFile {
@@ -96,6 +97,7 @@ export function createCultivateCommand(): Command {
     .option('--max-agents <number>', 'Maximum concurrent agents for generation', '5')
     .option('--seed', 'Bootstrap vault with primitives from codebase analysis', false)
     .option('--project-root <path>', 'Project root for seed analysis (defaults to target directory)')
+    .option('--deep-analysis', 'Use claude-flow agents for deep codebase analysis (requires --seed)', false)
     .action(async (targetPath: string, options: CultivateOptions) => {
       const spinner = ora('Initializing cultivation...').start();
 
@@ -280,6 +282,7 @@ export function createCultivateCommand(): Command {
             verbose: options.verbose || false,
             seed: intelligentTasks.seed || false,
             projectRoot: options.projectRoot,
+            deepAnalysis: options.deepAnalysis || false,
           };
 
           spinner.start('Initializing intelligent cultivation...');
