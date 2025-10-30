@@ -557,7 +557,7 @@ export class SeedGenerator {
 
     return {
       type: 'primitive',
-      path: join(this.vaultContext.vaultRoot, 'primitives', `${this.slugify(framework.name)}.md`),
+      path: join(this.vaultContext.vaultRoot, framework.category, `${this.slugify(framework.name)}.md`),
       title,
       content,
       frontmatter,
@@ -589,7 +589,7 @@ export class SeedGenerator {
 
     return {
       type: 'primitive',
-      path: join(this.vaultContext.vaultRoot, 'primitives', dep.category, `${this.slugify(dep.name)}.md`),
+      path: join(this.vaultContext.vaultRoot, dep.category, `${this.slugify(dep.name)}.md`),
       title,
       content,
       frontmatter,
@@ -618,7 +618,7 @@ export class SeedGenerator {
 
     return {
       type: 'primitive',
-      path: join(this.vaultContext.vaultRoot, 'primitives', 'services', `${this.slugify(service.name)}.md`),
+      path: join(this.vaultContext.vaultRoot, 'services', service.type, `${this.slugify(service.name)}.md`),
       title,
       content,
       frontmatter,
@@ -645,7 +645,7 @@ export class SeedGenerator {
 
     return {
       type: 'primitive',
-      path: join(this.vaultContext.vaultRoot, 'primitives', 'languages', `${language.toLowerCase()}.md`),
+      path: join(this.vaultContext.vaultRoot, 'standards', 'programming-languages', `${language.toLowerCase()}.md`),
       title,
       content,
       frontmatter,
@@ -843,16 +843,50 @@ export class SeedGenerator {
     return 'library';
   }
 
+  /**
+   * Map dependency to PRIMITIVES.md vault structure
+   * Uses top-level categories from the vault taxonomy
+   */
   private inferCategory(name: string): string {
     const nameLower = name.toLowerCase();
 
-    if (nameLower.includes('react') || nameLower.includes('vue') || nameLower.includes('angular')) return 'frontend';
-    if (nameLower.includes('express') || nameLower.includes('fastapi') || nameLower.includes('django')) return 'backend';
-    if (nameLower.includes('test') || nameLower.includes('jest') || nameLower.includes('mocha')) return 'testing';
-    if (nameLower.includes('webpack') || nameLower.includes('vite') || nameLower.includes('rollup')) return 'build-tools';
-    if (nameLower.includes('prisma') || nameLower.includes('typeorm') || nameLower.includes('sequelize')) return 'database';
+    // Frontend frameworks & UI libraries → components/ui
+    if (nameLower.includes('react') || nameLower.includes('vue') || nameLower.includes('angular') || nameLower.includes('svelte')) return 'components/ui';
+    if (nameLower.includes('radix') || nameLower.includes('shadcn') || nameLower.includes('chakra') || nameLower.includes('mui')) return 'components/ui';
 
-    return 'utility';
+    // Backend frameworks → services/api
+    if (nameLower.includes('express') || nameLower.includes('fastapi') || nameLower.includes('django') || nameLower.includes('flask') || nameLower.includes('next')) return 'services/api';
+
+    // Database/ORM → integrations/databases
+    if (nameLower.includes('prisma') || nameLower.includes('typeorm') || nameLower.includes('sequelize') || nameLower.includes('mongoose')) return 'integrations/databases';
+    if (nameLower.includes('pg') || nameLower.includes('mysql') || nameLower.includes('sqlite')) return 'integrations/databases';
+
+    // Auth libraries → integrations/auth-providers
+    if (nameLower.includes('auth') || nameLower.includes('passport') || nameLower.includes('jwt') || nameLower.includes('oauth')) return 'integrations/auth-providers';
+
+    // Testing → guides/testing
+    if (nameLower.includes('test') || nameLower.includes('jest') || nameLower.includes('mocha') || nameLower.includes('vitest') || nameLower.includes('cypress')) return 'guides/testing';
+
+    // Build tools → standards/build-tools
+    if (nameLower.includes('webpack') || nameLower.includes('vite') || nameLower.includes('rollup') || nameLower.includes('esbuild') || nameLower.includes('turbo')) return 'standards/build-tools';
+
+    // Linters/formatters → standards/coding-standards
+    if (nameLower.includes('eslint') || nameLower.includes('prettier') || nameLower.includes('stylelint')) return 'standards/coding-standards';
+
+    // Type definitions → components/utilities
+    if (nameLower.includes('@types') || nameLower.includes('typescript')) return 'components/utilities';
+
+    // Icons/assets → components/utilities
+    if (nameLower.includes('icon') || nameLower.includes('lucide') || nameLower.includes('heroicons')) return 'components/utilities';
+
+    // Storage/cloud → integrations/storage
+    if (nameLower.includes('s3') || nameLower.includes('storage') || nameLower.includes('blob')) return 'integrations/storage';
+
+    // Monitoring/analytics → integrations/monitoring
+    if (nameLower.includes('sentry') || nameLower.includes('analytics') || nameLower.includes('datadog')) return 'integrations/monitoring';
+
+    // Default to components/utilities
+    return 'components/utilities';
   }
 
   private getDocumentationLinks(name: string, ecosystem: string): string[] {
