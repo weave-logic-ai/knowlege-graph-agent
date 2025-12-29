@@ -1,6 +1,6 @@
 {
   "name": "@weavelogic/knowledge-graph-agent",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Knowledge graph agent for Claude Code - generates knowledge graphs, initializes docs, and integrates with claude-flow",
   "type": "module",
   "main": "dist/index.js",
@@ -96,7 +96,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/weavelogic/knowledge-graph-agent"
+    "url": "https://github.com/weave-logic-ai/knowledge-graph-agent"
   },
   "publishConfig": {
     "access": "public"

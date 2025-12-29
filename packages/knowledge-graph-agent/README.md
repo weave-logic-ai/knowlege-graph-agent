@@ -724,6 +724,11 @@ import {
 
 ## Changelog
 
+### v0.7.2
+
+- Fixed repository URL in package.json to correct GitHub repo
+- Resolved stale Dependabot security alerts (Next.js not a dependency)
+
 ### v0.7.1
 
 - Fixed documentation links to use new organized reference structure
