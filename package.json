@@ -1,0 +1,112 @@
+{
+  "name": "@weavelogic/knowledge-graph-agent",
+  "version": "0.7.0",
+  "description": "Knowledge graph agent for Claude Code - generates knowledge graphs, initializes docs, and integrates with claude-flow",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "kg": "dist/cli/bin.js",
+    "knowledge-graph": "dist/cli/bin.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli/bin.ts",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "build:tsc": "tsc",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build",
+    "graphql:dev": "tsx src/graphql/server.ts",
+    "serve": "tsx src/cli/bin.ts serve",
+    "plugin:list": "tsx src/cli/bin.ts plugin list"
+  },
+  "keywords": [
+    "knowledge-graph",
+    "claude",
+    "claude-flow",
+    "claude-code",
+    "obsidian",
+    "docs",
+    "weave-nn",
+    "mcp",
+    "graphql"
+  ],
+  "author": "Weave-NN",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "@tanstack/react-query": "^5.62.0",
+    "@tanstack/react-table": "^8.20.0",
+    "@typescript-eslint/typescript-estree": "^8.51.0",
+    "@xenova/transformers": "^2.17.2",
+    "better-sqlite3": "^11.7.0",
+    "chalk": "^5.3.0",
+    "clsx": "^2.1.0",
+    "commander": "^14.0.1",
+    "cosmiconfig": "^9.0.0",
+    "cytoscape": "^3.30.0",
+    "cytoscape-dagre": "^2.5.0",
+    "fast-glob": "^3.3.3",
+    "graphql": "^16.8.0",
+    "graphql-ws": "^5.14.0",
+    "graphql-yoga": "^5.1.0",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "ignore": "^7.0.5",
+    "inquirer": "^12.3.0",
+    "js-yaml": "^4.1.0",
+    "lucide-react": "^0.468.0",
+    "ora": "^8.1.1",
+    "react": "^18.3.1",
+    "react-cytoscapejs": "^2.0.0",
+    "react-dom": "^18.3.1",
+    "simple-git": "^3.28.0",
+    "tailwind-merge": "^2.6.0",
+    "uuid": "^9.0.0",
+    "ws": "^8.16.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/cytoscape": "^3.21.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^9.0.0",
+    "@types/ws": "^8.5.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.3.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weavelogic/knowledge-graph-agent"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "agentic-flow": "^1.10.0"
+  },
+  "peerDependenciesMeta": {
+    "agentic-flow": {
+      "optional": true
+    }
+  }
+}

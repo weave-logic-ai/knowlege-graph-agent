@@ -1,0 +1,2222 @@
+# =============================================================================
+# Knowledge Graph Agent - GraphQL Schema
+# =============================================================================
+#
+# Complete GraphQL schema for the knowledge-graph-agent system.
+# Supports nodes, edges, search, workflows, agents, and reasoning chains.
+#
+# @version 1.0.0
+# =============================================================================
+
+# =============================================================================
+# Scalars
+# =============================================================================
+
+"""
+Custom scalar for DateTime values (ISO 8601 format)
+"""
+scalar DateTime
+
+"""
+Custom scalar for arbitrary JSON data
+"""
+scalar JSON
+
+"""
+Custom scalar for file paths
+"""
+scalar FilePath
+
+# =============================================================================
+# Enums
+# =============================================================================
+
+"""
+Node types representing different categories of knowledge
+"""
+enum NodeType {
+  """Abstract concepts and ideas"""
+  CONCEPT
+  """Technical components and implementations"""
+  TECHNICAL
+  """Product features and capabilities"""
+  FEATURE
+  """Base technology primitives (frameworks, libraries)"""
+  PRIMITIVE
+  """Backend services and APIs"""
+  SERVICE
+  """How-to guides and tutorials"""
+  GUIDE
+  """Coding standards and conventions"""
+  STANDARD
+  """External integrations"""
+  INTEGRATION
+}
+
+"""
+Node lifecycle status
+"""
+enum NodeStatus {
+  """Node is in draft state, not yet published"""
+  DRAFT
+  """Node is active and published"""
+  ACTIVE
+  """Node is deprecated but still accessible"""
+  DEPRECATED
+  """Node is archived and hidden from normal queries"""
+  ARCHIVED
+}
+
+"""
+Edge/relationship types between nodes
+"""
+enum EdgeType {
+  """Direct link reference"""
+  LINK
+  """Indirect reference"""
+  REFERENCE
+  """Parent-child relationship"""
+  PARENT
+  """Related content"""
+  RELATED
+}
+
+"""
+Agent specialization types
+"""
+enum AgentType {
+  """Research agent - gathers information and analyzes requirements"""
+  RESEARCHER
+  """Coder agent - implements features and writes code"""
+  CODER
+  """Tester agent - writes and runs tests"""
+  TESTER
+  """Analyst agent - analyzes data and patterns"""
+  ANALYST
+  """Architect agent - designs system architecture"""
+  ARCHITECT
+  """Reviewer agent - reviews code and provides feedback"""
+  REVIEWER
+  """Coordinator agent - orchestrates multi-agent workflows"""
+  COORDINATOR
+  """Optimizer agent - optimizes performance and resources"""
+  OPTIMIZER
+  """Documenter agent - generates documentation"""
+  DOCUMENTER
+  """Custom agent - user-defined specialization"""
+  CUSTOM
+}
+
+"""
+Agent execution status
+"""
+enum AgentStatus {
+  """Agent is idle and ready to accept tasks"""
+  IDLE
+  """Agent is currently executing a task"""
+  RUNNING
+  """Agent has completed its task successfully"""
+  COMPLETED
+  """Agent has failed to complete its task"""
+  FAILED
+  """Agent is paused and can be resumed"""
+  PAUSED
+  """Agent has been terminated"""
+  TERMINATED
+}
+
+"""
+Task priority levels
+"""
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+"""
+Workflow execution status
+"""
+enum WorkflowStatus {
+  """Workflow has not started"""
+  PENDING
+  """Workflow is currently running"""
+  RUNNING
+  """Workflow completed successfully"""
+  COMPLETED
+  """Workflow failed with error"""
+  FAILED
+  """Workflow was cancelled"""
+  CANCELLED
+  """Workflow is paused"""
+  PAUSED
+  """Workflow is waiting for dependencies"""
+  WAITING
+  """Workflow is rolling back due to failure"""
+  ROLLING_BACK
+  """Workflow rollback completed"""
+  ROLLED_BACK
+}
+
+"""
+Decision types for reasoning system
+"""
+enum DecisionType {
+  """System made decision without human input"""
+  AUTOMATIC
+  """System suggests but awaits confirmation"""
+  SUGGESTED
+  """Human-made decision"""
+  MANUAL
+  """Human override of system decision"""
+  OVERRIDE
+}
+
+"""
+Confidence levels for decisions
+"""
+enum ConfidenceLevel {
+  """<50% confidence, should probably get human input"""
+  LOW
+  """50-75% confidence, reasonable to proceed"""
+  MEDIUM
+  """75-95% confidence, strong basis for decision"""
+  HIGH
+  """>95% confidence, essentially deterministic"""
+  CERTAIN
+}
+
+"""
+Reasoning chain status
+"""
+enum ReasoningChainStatus {
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  ABORTED
+}
+
+"""
+Sort direction for queries
+"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""
+Sortable fields for nodes
+"""
+enum NodeSortField {
+  TITLE
+  CREATED
+  UPDATED
+  WORD_COUNT
+  CONNECTION_COUNT
+}
+
+"""
+Search mode for full-text queries
+"""
+enum SearchMode {
+  """Match all search terms"""
+  ALL
+  """Match any search term"""
+  ANY
+  """Fuzzy matching with typo tolerance"""
+  FUZZY
+  """Exact phrase matching"""
+  PHRASE
+}
+
+"""
+Link type in node content
+"""
+enum LinkType {
+  """Wiki-style [[link]]"""
+  WIKILINK
+  """Markdown [text](url)"""
+  MARKDOWN
+  """Incoming backlink reference"""
+  BACKLINK
+}
+
+# =============================================================================
+# Node Types
+# =============================================================================
+
+"""
+A knowledge node representing a document in the graph
+"""
+type KnowledgeNode {
+  """Unique node identifier"""
+  id: ID!
+  """File path relative to docs root"""
+  path: FilePath!
+  """Filename without path"""
+  filename: String!
+  """Node title"""
+  title: String!
+  """Node type classification"""
+  type: NodeType!
+  """Node lifecycle status"""
+  status: NodeStatus!
+  """Full markdown content (may be omitted for performance)"""
+  content: String
+  """Parsed frontmatter metadata"""
+  frontmatter: NodeFrontmatter!
+  """Tags associated with this node"""
+  tags: [String!]!
+  """Links from this node to others"""
+  outgoingLinks: [NodeLink!]!
+  """Links from other nodes to this one"""
+  incomingLinks: [NodeLink!]!
+  """Total outgoing link count"""
+  outgoingLinkCount: Int!
+  """Total incoming link count"""
+  incomingLinkCount: Int!
+  """Word count of content"""
+  wordCount: Int!
+  """Last modification timestamp"""
+  lastModified: DateTime!
+  """Creation timestamp"""
+  createdAt: DateTime
+  """Related nodes by tag similarity"""
+  relatedByTags(limit: Int = 5): [KnowledgeNode!]!
+  """Related nodes by link proximity"""
+  relatedByLinks(limit: Int = 5): [KnowledgeNode!]!
+  """Path to another node (shortest path)"""
+  pathTo(targetId: ID!, maxDepth: Int = 5): [KnowledgeNode!]
+  """Similarity score if from a search result"""
+  score: Float
+}
+
+"""
+Frontmatter metadata parsed from node
+"""
+type NodeFrontmatter {
+  """Document title (may differ from filename)"""
+  title: String
+  """Node type override"""
+  type: NodeType
+  """Node status"""
+  status: NodeStatus
+  """Tags array"""
+  tags: [String!]
+  """Category classification"""
+  category: String
+  """Short description"""
+  description: String
+  """Creation date"""
+  created: DateTime
+  """Last update date"""
+  updated: DateTime
+  """Alternative titles/aliases"""
+  aliases: [String!]
+  """Related node references"""
+  related: [String!]
+  """Additional custom metadata"""
+  custom: JSON
+}
+
+"""
+Link between nodes
+"""
+type NodeLink {
+  """Target node filename or path"""
+  target: String!
+  """Link type"""
+  type: LinkType!
+  """Display text for the link"""
+  text: String
+  """Context in which link appears"""
+  context: String
+  """Resolved target node (if exists)"""
+  targetNode: KnowledgeNode
+}
+
+# =============================================================================
+# Edge/Graph Types
+# =============================================================================
+
+"""
+An edge connecting two nodes in the graph
+"""
+type GraphEdge {
+  """Unique edge identifier"""
+  id: ID!
+  """Source node ID"""
+  source: ID!
+  """Target node ID"""
+  target: ID!
+  """Relationship type"""
+  type: EdgeType!
+  """Relationship strength (0-1)"""
+  weight: Float!
+  """Context describing the relationship"""
+  context: String
+  """Source node"""
+  sourceNode: KnowledgeNode
+  """Target node"""
+  targetNode: KnowledgeNode
+}
+
+"""
+Knowledge graph metadata
+"""
+type GraphMetadata {
+  """Graph name"""
+  name: String!
+  """Schema version"""
+  version: String!
+  """Creation timestamp"""
+  created: DateTime!
+  """Last update timestamp"""
+  updated: DateTime!
+  """Total node count"""
+  nodeCount: Int!
+  """Total edge count"""
+  edgeCount: Int!
+  """Root documentation path"""
+  rootPath: FilePath!
+}
+
+"""
+Comprehensive graph statistics
+"""
+type GraphStats {
+  """Total number of nodes"""
+  totalNodes: Int!
+  """Total number of edges"""
+  totalEdges: Int!
+  """Nodes grouped by type"""
+  nodesByType: [TypeCount!]!
+  """Nodes grouped by status"""
+  nodesByStatus: [StatusCount!]!
+  """Number of orphan nodes (no links)"""
+  orphanNodes: Int!
+  """Average links per node"""
+  avgLinksPerNode: Float!
+  """Most connected nodes"""
+  mostConnected(limit: Int = 10): [NodeConnection!]!
+  """Tag frequency distribution"""
+  tagDistribution(limit: Int = 20): [TagCount!]!
+  """Graph density (edges / possible edges)"""
+  density: Float!
+  """Graph diameter (longest shortest path)"""
+  diameter: Int
+  """Number of connected components"""
+  componentCount: Int!
+  """Last generated timestamp"""
+  lastGenerated: DateTime
+  """Database size in bytes"""
+  databaseSize: Int
+}
+
+"""
+Node count by type"""
+type TypeCount {
+  type: NodeType!
+  count: Int!
+}
+
+"""
+Node count by status
+"""
+type StatusCount {
+  status: NodeStatus!
+  count: Int!
+}
+
+"""
+Tag frequency count
+"""
+type TagCount {
+  tag: String!
+  count: Int!
+}
+
+"""
+Node connection count
+"""
+type NodeConnection {
+  """Node ID"""
+  id: ID!
+  """Node title"""
+  title: String!
+  """Total connections (in + out)"""
+  connections: Int!
+  """Incoming connections"""
+  incomingCount: Int!
+  """Outgoing connections"""
+  outgoingCount: Int!
+}
+
+# =============================================================================
+# Pagination & Connections
+# =============================================================================
+
+"""
+Pagination information
+"""
+type PageInfo {
+  """Cursor to continue forward pagination"""
+  endCursor: String
+  """Whether more results exist forward"""
+  hasNextPage: Boolean!
+  """Cursor to continue backward pagination"""
+  startCursor: String
+  """Whether more results exist backward"""
+  hasPreviousPage: Boolean!
+  """Total count of items"""
+  totalCount: Int!
+}
+
+"""
+Edge in a paginated node connection
+"""
+type NodeEdge {
+  """Cursor for this item"""
+  cursor: String!
+  """The node item"""
+  node: KnowledgeNode!
+}
+
+"""
+Paginated connection of knowledge nodes
+"""
+type NodeConnection {
+  """List of edges"""
+  edges: [NodeEdge!]!
+  """Pagination info"""
+  pageInfo: PageInfo!
+  """Total count matching filter"""
+  totalCount: Int!
+}
+
+"""
+Edge in a paginated graph edge connection
+"""
+type GraphEdgeEdge {
+  cursor: String!
+  edge: GraphEdge!
+}
+
+"""
+Paginated connection of graph edges
+"""
+type GraphEdgeConnection {
+  edges: [GraphEdgeEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# =============================================================================
+# Search Types
+# =============================================================================
+
+"""
+Search result with relevance scoring
+"""
+type SearchResult {
+  """Matching nodes"""
+  nodes: [KnowledgeNode!]!
+  """Total matches found"""
+  totalMatches: Int!
+  """Search query used"""
+  query: String!
+  """Time taken to execute search (ms)"""
+  took: Int!
+  """Whether results were truncated"""
+  truncated: Boolean!
+  """Suggested alternative queries"""
+  suggestions: [String!]
+  """Facets for filtering"""
+  facets: SearchFacets
+}
+
+"""
+Aggregated facets from search results
+"""
+type SearchFacets {
+  """Types found in results"""
+  types: [TypeCount!]!
+  """Statuses found in results"""
+  statuses: [StatusCount!]!
+  """Tags found in results"""
+  tags: [TagCount!]!
+}
+
+"""
+Vector similarity search result
+"""
+type SimilarityResult {
+  """Node ID"""
+  id: ID!
+  """Similarity score (0-1)"""
+  similarity: Float!
+  """The similar node"""
+  node: KnowledgeNode
+  """Embedding metadata"""
+  metadata: JSON
+}
+
+# =============================================================================
+# Agent Types
+# =============================================================================
+
+"""
+An AI agent instance in the system
+"""
+type Agent {
+  """Unique agent identifier"""
+  id: ID!
+  """Agent display name"""
+  name: String!
+  """Agent type/specialization"""
+  type: AgentType!
+  """Agent description"""
+  description: String
+  """Current execution status"""
+  status: AgentStatus!
+  """Agent capabilities"""
+  capabilities: [String!]!
+  """Currently executing task"""
+  currentTask: AgentTask
+  """Queued tasks count"""
+  queuedTaskCount: Int!
+  """Completed task count"""
+  completedTaskCount: Int!
+  """Error count"""
+  errorCount: Int!
+  """Last activity timestamp"""
+  lastActivity: DateTime!
+  """Agent health status"""
+  health: AgentHealth!
+  """Configuration details"""
+  config: AgentConfig!
+  """Execution metrics"""
+  metrics: ExecutionMetrics
+}
+
+"""
+Agent configuration
+"""
+type AgentConfig {
+  """Maximum concurrent tasks"""
+  maxConcurrentTasks: Int!
+  """Task timeout in milliseconds"""
+  taskTimeout: Int!
+  """Retry configuration"""
+  retry: RetryConfig
+  """Claude-flow integration enabled"""
+  claudeFlowEnabled: Boolean!
+  """Custom metadata"""
+  metadata: JSON
+}
+
+"""
+Retry configuration
+"""
+type RetryConfig {
+  maxRetries: Int!
+  backoffMs: Int!
+  backoffMultiplier: Float
+}
+
+"""
+Agent health status
+"""
+type AgentHealth {
+  """Whether agent is healthy"""
+  healthy: Boolean!
+  """Status details"""
+  status: AgentStatus!
+  """Last heartbeat timestamp"""
+  lastHeartbeat: DateTime!
+  """Error message if unhealthy"""
+  error: String
+  """Memory usage in bytes"""
+  memoryUsage: Int
+}
+
+"""
+A task assigned to an agent
+"""
+type AgentTask {
+  """Unique task identifier"""
+  id: ID!
+  """Human-readable task description"""
+  description: String!
+  """Task priority"""
+  priority: TaskPriority!
+  """Input data"""
+  input: JSON
+  """Expected output type"""
+  expectedOutputType: String
+  """Task dependencies"""
+  dependencies: [ID!]
+  """Task timeout in milliseconds"""
+  timeout: Int
+  """Creation timestamp"""
+  createdAt: DateTime!
+  """Deadline timestamp"""
+  deadline: DateTime
+  """Task metadata"""
+  metadata: JSON
+}
+
+"""
+Result from agent task execution
+"""
+type AgentResult {
+  """Whether operation succeeded"""
+  success: Boolean!
+  """Result data"""
+  data: JSON
+  """Error details if failed"""
+  error: AgentError
+  """Execution metrics"""
+  metrics: ExecutionMetrics
+  """Output artifacts"""
+  artifacts: [ResultArtifact!]
+}
+
+"""
+Agent error information
+"""
+type AgentError {
+  """Error code"""
+  code: String!
+  """Human-readable message"""
+  message: String!
+  """Additional details"""
+  details: JSON
+  """Whether error is retryable"""
+  retryable: Boolean!
+}
+
+"""
+Execution metrics
+"""
+type ExecutionMetrics {
+  """Start time"""
+  startTime: DateTime!
+  """End time"""
+  endTime: DateTime
+  """Duration in milliseconds"""
+  durationMs: Int!
+  """Memory usage in bytes"""
+  memoryUsage: Int
+  """Number of retries"""
+  retries: Int
+  """Token usage"""
+  tokenUsage: TokenUsage
+}
+
+"""
+LLM token usage
+"""
+type TokenUsage {
+  input: Int!
+  output: Int!
+  total: Int!
+}
+
+"""
+Result artifact from agent execution
+"""
+type ResultArtifact {
+  """Artifact type"""
+  type: String!
+  """Artifact name"""
+  name: String!
+  """Artifact content or path"""
+  content: String!
+  """MIME type"""
+  mimeType: String
+  """Artifact metadata"""
+  metadata: JSON
+}
+
+# =============================================================================
+# Workflow Types
+# =============================================================================
+
+"""
+A workflow definition
+"""
+type WorkflowDefinition {
+  """Unique workflow identifier"""
+  id: ID!
+  """Workflow name"""
+  name: String!
+  """Workflow description"""
+  description: String
+  """Workflow version"""
+  version: String!
+  """Workflow steps"""
+  steps: [WorkflowStep!]!
+  """Total timeout in milliseconds"""
+  timeout: Int
+  """Whether rollback is enabled"""
+  enableRollback: Boolean!
+  """Workflow tags"""
+  tags: [String!]!
+  """Workflow metadata"""
+  metadata: JSON
+}
+
+"""
+A step in a workflow
+"""
+type WorkflowStep {
+  """Unique step identifier"""
+  id: ID!
+  """Human-readable step name"""
+  name: String!
+  """Step description"""
+  description: String
+  """IDs of steps this depends on"""
+  dependencies: [ID!]
+  """Step timeout in milliseconds"""
+  timeout: Int
+  """Number of retry attempts"""
+  retries: Int
+  """Whether step can run in parallel"""
+  parallel: Boolean!
+  """Whether step is optional"""
+  optional: Boolean!
+  """Step metadata"""
+  metadata: JSON
+}
+
+"""
+A workflow execution instance
+"""
+type WorkflowExecution {
+  """Unique execution ID"""
+  id: ID!
+  """Workflow definition ID"""
+  workflowId: ID!
+  """Workflow definition"""
+  workflow: WorkflowDefinition
+  """Current execution status"""
+  status: WorkflowStatus!
+  """Input provided to workflow"""
+  input: JSON
+  """Final output (if completed)"""
+  output: JSON
+  """Shared workflow state"""
+  state: JSON
+  """Step execution records"""
+  steps: [StepExecution!]!
+  """Overall error (if failed)"""
+  error: String
+  """Error stack trace"""
+  errorStack: String
+  """Created timestamp"""
+  createdAt: DateTime!
+  """Started timestamp"""
+  startedAt: DateTime
+  """Completed timestamp"""
+  completedAt: DateTime
+  """Total duration in milliseconds"""
+  durationMs: Int
+  """Progress percentage (0-100)"""
+  progress: Float!
+  """Current step being executed"""
+  currentStep: String
+  """Whether rollback was performed"""
+  rolledBack: Boolean!
+}
+
+"""
+Step execution record
+"""
+type StepExecution {
+  """Step ID"""
+  stepId: ID!
+  """Step execution status"""
+  status: WorkflowStatus!
+  """Step result"""
+  result: JSON
+  """Error message if failed"""
+  error: String
+  """Start timestamp"""
+  startedAt: DateTime
+  """Completion timestamp"""
+  completedAt: DateTime
+  """Duration in milliseconds"""
+  durationMs: Int
+  """Number of attempts"""
+  attempts: Int!
+  """Whether step was skipped"""
+  skipped: Boolean!
+  """Skip reason"""
+  skipReason: String
+}
+
+"""
+Workflow execution statistics
+"""
+type WorkflowExecutionStats {
+  """Total steps"""
+  totalSteps: Int!
+  """Completed steps"""
+  completedSteps: Int!
+  """Failed steps"""
+  failedSteps: Int!
+  """Skipped steps"""
+  skippedSteps: Int!
+  """Total retry attempts"""
+  totalRetries: Int!
+  """Start time"""
+  startTime: DateTime!
+  """End time"""
+  endTime: DateTime
+  """Total duration in milliseconds"""
+  totalDurationMs: Int!
+  """Average step duration in milliseconds"""
+  avgStepDurationMs: Float!
+}
+
+# =============================================================================
+# Reasoning Types
+# =============================================================================
+
+"""
+A decision made by the reasoning system
+"""
+type Decision {
+  """Unique identifier"""
+  id: ID!
+  """How the decision was made"""
+  type: DecisionType!
+  """The action taken or to be taken"""
+  action: String!
+  """Step-by-step reasoning"""
+  reasoning: [String!]!
+  """Confidence level"""
+  confidence: ConfidenceLevel!
+  """Decision context"""
+  context: DecisionContext!
+  """Outcome after execution"""
+  outcome: DecisionOutcome
+  """When the decision was made"""
+  timestamp: DateTime!
+}
+
+"""
+Context surrounding a decision
+"""
+type DecisionContext {
+  """What triggered the decision"""
+  trigger: String!
+  """Input data used"""
+  inputs: JSON!
+  """Constraints that bounded the decision"""
+  constraints: [String!]!
+  """Alternative options considered"""
+  alternatives: [Alternative!]!
+}
+
+"""
+An alternative option that was considered
+"""
+type Alternative {
+  """The alternative action"""
+  action: String!
+  """Advantages"""
+  pros: [String!]!
+  """Disadvantages"""
+  cons: [String!]!
+  """Confidence if chosen"""
+  confidence: ConfidenceLevel!
+  """Whether rejected"""
+  rejected: Boolean!
+  """Rejection reason"""
+  rejectionReason: String
+}
+
+"""
+Outcome of executing a decision
+"""
+type DecisionOutcome {
+  """Whether the action succeeded"""
+  success: Boolean!
+  """Result data"""
+  result: JSON
+  """Error message if failed"""
+  error: String
+  """Execution duration in ms"""
+  duration: Int!
+  """Unintended effects"""
+  sideEffects: [String!]!
+}
+
+"""
+A chain of related decisions
+"""
+type ReasoningChain {
+  """Unique identifier"""
+  id: ID!
+  """Decisions in the chain"""
+  decisions: [Decision!]!
+  """When the chain started"""
+  startTime: DateTime!
+  """When the chain ended"""
+  endTime: DateTime
+  """Goal being worked toward"""
+  goal: String!
+  """Current status"""
+  status: ReasoningChainStatus!
+}
+
+"""
+Reasoning performance statistics
+"""
+type ReasoningStats {
+  """Total decisions made"""
+  totalDecisions: Int!
+  """Decisions by type"""
+  byType: [DecisionTypeCount!]!
+  """Decisions by confidence"""
+  byConfidence: [ConfidenceCount!]!
+  """Success rate of completed decisions"""
+  successRate: Float!
+  """Average decision duration in ms"""
+  averageDuration: Float!
+  """Total reasoning chains"""
+  totalChains: Int!
+  """Chains by status"""
+  chainsByStatus: [ReasoningChainStatusCount!]!
+}
+
+type DecisionTypeCount {
+  type: DecisionType!
+  count: Int!
+}
+
+type ConfidenceCount {
+  confidence: ConfidenceLevel!
+  count: Int!
+}
+
+type ReasoningChainStatusCount {
+  status: ReasoningChainStatus!
+  count: Int!
+}
+
+# =============================================================================
+# Vector/Embedding Types
+# =============================================================================
+
+"""
+Vector embedding for semantic search
+"""
+type Embedding {
+  """Embedding ID (matches node ID)"""
+  id: ID!
+  """Node type"""
+  nodeType: NodeType!
+  """Embedding dimensions"""
+  dimensions: Int!
+  """Embedding metadata"""
+  metadata: JSON
+  """Created timestamp"""
+  createdAt: DateTime!
+  """Updated timestamp"""
+  updatedAt: DateTime!
+}
+
+"""
+Pattern detected by the learning system
+"""
+type DetectedPattern {
+  """Pattern ID"""
+  id: ID!
+  """Pattern type"""
+  patternType: String!
+  """Actions in the pattern"""
+  actions: [String!]!
+  """Frequency of occurrence"""
+  frequency: Int!
+  """Average duration in ms"""
+  avgDuration: Float!
+  """Success rate (0-1)"""
+  successRate: Float!
+  """Confidence score (0-1)"""
+  confidence: Float!
+  """Pattern metadata"""
+  metadata: JSON
+  """Created timestamp"""
+  createdAt: DateTime!
+}
+
+"""
+Agent trajectory tracking
+"""
+type Trajectory {
+  """Trajectory ID"""
+  id: ID!
+  """Agent ID"""
+  agentId: ID!
+  """Workflow ID if part of workflow"""
+  workflowId: ID
+  """Steps in the trajectory"""
+  steps: JSON!
+  """Start timestamp"""
+  startedAt: DateTime!
+  """Completion timestamp"""
+  completedAt: DateTime
+  """Whether trajectory succeeded"""
+  success: Boolean!
+  """Total duration in ms"""
+  totalDuration: Int!
+  """Trajectory metadata"""
+  metadata: JSON
+}
+
+# =============================================================================
+# Input Types
+# =============================================================================
+
+"""
+Input for creating a new node
+"""
+input CreateNodeInput {
+  """Node title"""
+  title: String!
+  """Node type"""
+  type: NodeType!
+  """Initial status (defaults to DRAFT)"""
+  status: NodeStatus = DRAFT
+  """Markdown content"""
+  content: String
+  """Tags to apply"""
+  tags: [String!]
+  """Category classification"""
+  category: String
+  """Short description"""
+  description: String
+  """Alternative titles"""
+  aliases: [String!]
+  """Related node IDs"""
+  related: [ID!]
+  """Custom metadata"""
+  metadata: JSON
+}
+
+"""
+Input for updating a node
+"""
+input UpdateNodeInput {
+  """Node title"""
+  title: String
+  """Node type"""
+  type: NodeType
+  """Node status"""
+  status: NodeStatus
+  """Markdown content"""
+  content: String
+  """Tags to apply (replaces existing)"""
+  tags: [String!]
+  """Category classification"""
+  category: String
+  """Short description"""
+  description: String
+  """Alternative titles"""
+  aliases: [String!]
+  """Related node IDs"""
+  related: [ID!]
+  """Custom metadata (merged with existing)"""
+  metadata: JSON
+}
+
+"""
+Input for creating an edge between nodes
+"""
+input CreateEdgeInput {
+  """Source node ID"""
+  source: ID!
+  """Target node ID"""
+  target: ID!
+  """Relationship type"""
+  type: EdgeType!
+  """Relationship weight (0-1)"""
+  weight: Float = 0.5
+  """Context describing the relationship"""
+  context: String
+}
+
+"""
+Input for updating an edge
+"""
+input UpdateEdgeInput {
+  """Relationship type"""
+  type: EdgeType
+  """Relationship weight (0-1)"""
+  weight: Float
+  """Context describing the relationship"""
+  context: String
+}
+
+"""
+Filter options for node queries
+"""
+input NodeFilter {
+  """Filter by type"""
+  type: NodeType
+  """Filter by types (OR)"""
+  types: [NodeType!]
+  """Filter by status"""
+  status: NodeStatus
+  """Filter by statuses (OR)"""
+  statuses: [NodeStatus!]
+  """Filter by tag"""
+  tag: String
+  """Filter by tags (AND)"""
+  tags: [String!]
+  """Filter by any of these tags (OR)"""
+  anyTags: [String!]
+  """Filter by category"""
+  category: String
+  """Filter by minimum word count"""
+  minWordCount: Int
+  """Filter by maximum word count"""
+  maxWordCount: Int
+  """Filter by minimum connection count"""
+  minConnections: Int
+  """Filter nodes created after this date"""
+  createdAfter: DateTime
+  """Filter nodes created before this date"""
+  createdBefore: DateTime
+  """Filter nodes updated after this date"""
+  updatedAfter: DateTime
+  """Filter nodes updated before this date"""
+  updatedBefore: DateTime
+  """Include orphan nodes only"""
+  orphansOnly: Boolean
+  """Exclude orphan nodes"""
+  excludeOrphans: Boolean
+  """Full-text search in title"""
+  titleContains: String
+  """Full-text search in content"""
+  contentContains: String
+}
+
+"""
+Pagination input
+"""
+input PaginationInput {
+  """Number of items to return"""
+  first: Int
+  """Cursor to start after"""
+  after: String
+  """Number of items from the end"""
+  last: Int
+  """Cursor to start before"""
+  before: String
+  """Simple offset-based pagination"""
+  offset: Int
+  """Simple limit for offset pagination"""
+  limit: Int
+}
+
+"""
+Sorting input for node queries
+"""
+input NodeSortInput {
+  """Field to sort by"""
+  field: NodeSortField!
+  """Sort direction"""
+  direction: SortDirection!
+}
+
+"""
+Search options for full-text search
+"""
+input SearchOptions {
+  """Search mode"""
+  mode: SearchMode = ANY
+  """Node type filter"""
+  type: NodeType
+  """Node types filter (OR)"""
+  types: [NodeType!]
+  """Status filter"""
+  status: NodeStatus
+  """Tag filter"""
+  tags: [String!]
+  """Maximum results"""
+  limit: Int = 20
+  """Include content snippets"""
+  includeSnippets: Boolean = true
+  """Snippet length in characters"""
+  snippetLength: Int = 200
+  """Highlight matching terms"""
+  highlight: Boolean = false
+  """Calculate facets"""
+  facets: Boolean = false
+  """Minimum relevance score (0-1)"""
+  minScore: Float
+}
+
+"""
+Input for similarity search
+"""
+input SimilaritySearchInput {
+  """Node ID to find similar nodes to"""
+  nodeId: ID
+  """Text to find similar content to"""
+  text: String
+  """Maximum results"""
+  limit: Int = 10
+  """Minimum similarity score (0-1)"""
+  minSimilarity: Float = 0.5
+  """Node type filter"""
+  type: NodeType
+}
+
+"""
+Input for spawning a new agent
+"""
+input SpawnAgentInput {
+  """Agent name"""
+  name: String!
+  """Agent type"""
+  type: AgentType!
+  """Agent description"""
+  description: String
+  """Agent capabilities"""
+  capabilities: [String!]
+  """Maximum concurrent tasks"""
+  maxConcurrentTasks: Int = 1
+  """Task timeout in milliseconds"""
+  taskTimeout: Int = 60000
+  """Retry configuration"""
+  retry: RetryConfigInput
+  """Enable Claude-flow integration"""
+  enableClaudeFlow: Boolean = true
+  """Custom metadata"""
+  metadata: JSON
+}
+
+"""
+Retry configuration input
+"""
+input RetryConfigInput {
+  maxRetries: Int!
+  backoffMs: Int!
+  backoffMultiplier: Float
+}
+
+"""
+Input for creating an agent task
+"""
+input CreateTaskInput {
+  """Task description"""
+  description: String!
+  """Task priority"""
+  priority: TaskPriority = MEDIUM
+  """Task input data"""
+  input: JSON
+  """Expected output type"""
+  expectedOutputType: String
+  """Task dependencies"""
+  dependencies: [ID!]
+  """Task timeout in milliseconds"""
+  timeout: Int
+  """Task deadline"""
+  deadline: DateTime
+  """Task metadata"""
+  metadata: JSON
+}
+
+"""
+Input for executing a workflow
+"""
+input ExecuteWorkflowInput {
+  """Workflow ID"""
+  workflowId: ID!
+  """Workflow input data"""
+  input: JSON
+  """Run in parallel where possible"""
+  parallel: Boolean = true
+  """Continue on step errors"""
+  continueOnError: Boolean = false
+  """Workflow timeout in milliseconds"""
+  timeout: Int
+}
+
+"""
+Filter for workflow executions
+"""
+input WorkflowExecutionFilter {
+  """Filter by workflow ID"""
+  workflowId: ID
+  """Filter by status"""
+  status: WorkflowStatus
+  """Filter by statuses (OR)"""
+  statuses: [WorkflowStatus!]
+  """Started after timestamp"""
+  after: DateTime
+  """Started before timestamp"""
+  before: DateTime
+}
+
+# =============================================================================
+# Query Type
+# =============================================================================
+
+type Query {
+  # ---------------------------------------------------------------------------
+  # Node Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get a single node by ID
+  """
+  node(id: ID!): KnowledgeNode
+
+  """
+  Get a node by its file path
+  """
+  nodeByPath(path: FilePath!): KnowledgeNode
+
+  """
+  Get multiple nodes by IDs
+  """
+  nodes(ids: [ID!]!): [KnowledgeNode]!
+
+  """
+  Query nodes with filtering, pagination, and sorting
+  """
+  queryNodes(
+    filter: NodeFilter
+    pagination: PaginationInput
+    sort: NodeSortInput
+  ): NodeConnection!
+
+  """
+  Full-text search across nodes
+  """
+  search(query: String!, options: SearchOptions): SearchResult!
+
+  """
+  Find similar nodes using vector similarity
+  """
+  similarNodes(input: SimilaritySearchInput!): [SimilarityResult!]!
+
+  """
+  Get all tags with optional filtering
+  """
+  tags(
+    """Filter tags containing this string"""
+    contains: String
+    """Maximum tags to return"""
+    limit: Int = 100
+  ): [TagCount!]!
+
+  """
+  Get nodes with a specific tag
+  """
+  nodesByTag(
+    tag: String!
+    pagination: PaginationInput
+  ): NodeConnection!
+
+  # ---------------------------------------------------------------------------
+  # Graph Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get graph statistics
+  """
+  graphStats: GraphStats!
+
+  """
+  Get graph metadata
+  """
+  graphMetadata: GraphMetadata!
+
+  """
+  Get an edge by ID
+  """
+  edge(id: ID!): GraphEdge
+
+  """
+  Query edges with filtering
+  """
+  edges(
+    """Filter by source node ID"""
+    source: ID
+    """Filter by target node ID"""
+    target: ID
+    """Filter by edge type"""
+    type: EdgeType
+    pagination: PaginationInput
+  ): GraphEdgeConnection!
+
+  """
+  Find shortest path between two nodes
+  """
+  path(
+    """Starting node ID"""
+    from: ID!
+    """Target node ID"""
+    to: ID!
+    """Maximum path depth"""
+    maxDepth: Int = 10
+  ): [KnowledgeNode!]
+
+  """
+  Find all paths between two nodes
+  """
+  allPaths(
+    from: ID!
+    to: ID!
+    maxDepth: Int = 5
+    maxPaths: Int = 10
+  ): [[KnowledgeNode!]!]!
+
+  """
+  Get subgraph centered on a node
+  """
+  subgraph(
+    """Center node ID"""
+    nodeId: ID!
+    """Depth of subgraph"""
+    depth: Int = 2
+    """Include incoming links"""
+    includeIncoming: Boolean = true
+    """Include outgoing links"""
+    includeOutgoing: Boolean = true
+  ): SubgraphResult!
+
+  # ---------------------------------------------------------------------------
+  # Agent Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get an agent by ID
+  """
+  agent(id: ID!): Agent
+
+  """
+  List all agents
+  """
+  agents(
+    """Filter by agent type"""
+    type: AgentType
+    """Filter by status"""
+    status: AgentStatus
+  ): [Agent!]!
+
+  """
+  Get agent task by ID
+  """
+  task(id: ID!): AgentTask
+
+  """
+  List tasks for an agent
+  """
+  agentTasks(
+    agentId: ID!
+    """Include completed tasks"""
+    includeCompleted: Boolean = false
+    limit: Int = 20
+  ): [AgentTask!]!
+
+  # ---------------------------------------------------------------------------
+  # Workflow Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get workflow definition by ID
+  """
+  workflow(id: ID!): WorkflowDefinition
+
+  """
+  List all workflow definitions
+  """
+  workflows(
+    """Filter by tags"""
+    tags: [String!]
+    """Filter by name pattern"""
+    namePattern: String
+    limit: Int = 20
+    offset: Int = 0
+  ): [WorkflowDefinition!]!
+
+  """
+  Get workflow execution by ID
+  """
+  workflowExecution(id: ID!): WorkflowExecution
+
+  """
+  Query workflow executions
+  """
+  workflowExecutions(
+    filter: WorkflowExecutionFilter
+    limit: Int = 20
+    offset: Int = 0
+    """Sort order (newest first by default)"""
+    sortOrder: SortDirection = DESC
+  ): [WorkflowExecution!]!
+
+  # ---------------------------------------------------------------------------
+  # Reasoning Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get a decision by ID
+  """
+  decision(id: ID!): Decision
+
+  """
+  Get a reasoning chain by ID
+  """
+  reasoningChain(id: ID!): ReasoningChain
+
+  """
+  List recent reasoning chains
+  """
+  recentReasoningChains(
+    """Filter by status"""
+    status: ReasoningChainStatus
+    limit: Int = 10
+  ): [ReasoningChain!]!
+
+  """
+  Get reasoning statistics
+  """
+  reasoningStats: ReasoningStats!
+
+  # ---------------------------------------------------------------------------
+  # Vector/Learning Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  Get detected patterns
+  """
+  patterns(
+    """Filter by pattern type"""
+    patternType: String
+    """Minimum confidence threshold"""
+    minConfidence: Float
+    limit: Int = 20
+  ): [DetectedPattern!]!
+
+  """
+  Get agent trajectories
+  """
+  trajectories(
+    """Filter by agent ID"""
+    agentId: ID
+    """Filter by workflow ID"""
+    workflowId: ID
+    """Filter by success status"""
+    success: Boolean
+    limit: Int = 20
+  ): [Trajectory!]!
+
+  # ---------------------------------------------------------------------------
+  # System Queries
+  # ---------------------------------------------------------------------------
+
+  """
+  System health check
+  """
+  health: SystemHealth!
+
+  """
+  Server version information
+  """
+  version: VersionInfo!
+}
+
+"""
+Subgraph query result
+"""
+type SubgraphResult {
+  """Center node"""
+  center: KnowledgeNode!
+  """Nodes in the subgraph"""
+  nodes: [KnowledgeNode!]!
+  """Edges in the subgraph"""
+  edges: [GraphEdge!]!
+  """Depth reached"""
+  depth: Int!
+}
+
+"""
+System health status
+"""
+type SystemHealth {
+  """Overall health status"""
+  status: HealthStatus!
+  """Component health details"""
+  components: ComponentHealth!
+  """Server uptime in milliseconds"""
+  uptime: Int!
+  """Total requests handled"""
+  requestCount: Int!
+  """Number of registered tools"""
+  toolCount: Int!
+}
+
+enum HealthStatus {
+  HEALTHY
+  DEGRADED
+  UNHEALTHY
+}
+
+type ComponentHealth {
+  """Database connection status"""
+  database: Boolean!
+  """Cache status"""
+  cache: Boolean!
+  """Agents availability"""
+  agents: Boolean!
+  """Vector store status"""
+  vectorStore: Boolean!
+}
+
+"""
+Server version information
+"""
+type VersionInfo {
+  """Application version"""
+  version: String!
+  """Build timestamp"""
+  buildTime: DateTime
+  """Git commit hash"""
+  gitCommit: String
+  """Node.js version"""
+  nodeVersion: String!
+  """GraphQL schema version"""
+  schemaVersion: String!
+}
+
+# =============================================================================
+# Mutation Type
+# =============================================================================
+
+type Mutation {
+  # ---------------------------------------------------------------------------
+  # Node Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Create a new knowledge node
+  """
+  createNode(input: CreateNodeInput!): KnowledgeNode!
+
+  """
+  Update an existing node
+  """
+  updateNode(id: ID!, input: UpdateNodeInput!): KnowledgeNode!
+
+  """
+  Delete a node
+  """
+  deleteNode(id: ID!): DeleteResult!
+
+  """
+  Batch delete nodes
+  """
+  deleteNodes(ids: [ID!]!): BatchDeleteResult!
+
+  """
+  Add tags to a node
+  """
+  addTags(nodeId: ID!, tags: [String!]!): KnowledgeNode!
+
+  """
+  Remove tags from a node
+  """
+  removeTags(nodeId: ID!, tags: [String!]!): KnowledgeNode!
+
+  """
+  Change node status
+  """
+  changeNodeStatus(id: ID!, status: NodeStatus!): KnowledgeNode!
+
+  """
+  Merge two nodes into one
+  """
+  mergeNodes(
+    """Source node ID (will be deleted)"""
+    sourceId: ID!
+    """Target node ID (will be kept and updated)"""
+    targetId: ID!
+    """Strategy for content merge"""
+    strategy: MergeStrategy = APPEND
+  ): KnowledgeNode!
+
+  # ---------------------------------------------------------------------------
+  # Edge Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Create a new edge between nodes
+  """
+  createEdge(input: CreateEdgeInput!): GraphEdge!
+
+  """
+  Update an existing edge
+  """
+  updateEdge(id: ID!, input: UpdateEdgeInput!): GraphEdge!
+
+  """
+  Delete an edge
+  """
+  deleteEdge(id: ID!): DeleteResult!
+
+  """
+  Batch create edges
+  """
+  createEdges(inputs: [CreateEdgeInput!]!): [GraphEdge!]!
+
+  # ---------------------------------------------------------------------------
+  # Graph Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Regenerate the entire graph from source files
+  """
+  regenerateGraph: RegenerateResult!
+
+  """
+  Sync graph with file system changes
+  """
+  syncGraph: SyncResult!
+
+  """
+  Rebuild search index
+  """
+  rebuildSearchIndex: IndexResult!
+
+  """
+  Generate embeddings for nodes
+  """
+  generateEmbeddings(
+    """Node IDs to generate embeddings for (all if empty)"""
+    nodeIds: [ID!]
+    """Force regeneration even if exists"""
+    force: Boolean = false
+  ): EmbeddingResult!
+
+  # ---------------------------------------------------------------------------
+  # Agent Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Spawn a new agent
+  """
+  spawnAgent(input: SpawnAgentInput!): Agent!
+
+  """
+  Terminate an agent
+  """
+  terminateAgent(id: ID!): DeleteResult!
+
+  """
+  Pause an agent
+  """
+  pauseAgent(id: ID!): Agent!
+
+  """
+  Resume a paused agent
+  """
+  resumeAgent(id: ID!): Agent!
+
+  """
+  Assign a task to an agent
+  """
+  assignTask(agentId: ID!, task: CreateTaskInput!): AgentTask!
+
+  """
+  Cancel an agent task
+  """
+  cancelTask(taskId: ID!): DeleteResult!
+
+  # ---------------------------------------------------------------------------
+  # Workflow Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Execute a workflow
+  """
+  executeWorkflow(input: ExecuteWorkflowInput!): WorkflowExecution!
+
+  """
+  Cancel a running workflow
+  """
+  cancelWorkflow(executionId: ID!): WorkflowExecution!
+
+  """
+  Pause a running workflow
+  """
+  pauseWorkflow(executionId: ID!): WorkflowExecution!
+
+  """
+  Resume a paused workflow
+  """
+  resumeWorkflow(executionId: ID!): WorkflowExecution!
+
+  """
+  Retry a failed workflow
+  """
+  retryWorkflow(executionId: ID!): WorkflowExecution!
+
+  # ---------------------------------------------------------------------------
+  # Reasoning Mutations
+  # ---------------------------------------------------------------------------
+
+  """
+  Start a new reasoning chain
+  """
+  startReasoningChain(goal: String!): ReasoningChain!
+
+  """
+  Add a decision to a reasoning chain
+  """
+  addDecision(
+    chainId: ID!
+    action: String!
+    reasoning: [String!]!
+    confidence: ConfidenceLevel!
+    context: DecisionContextInput!
+    type: DecisionType = AUTOMATIC
+  ): Decision!
+
+  """
+  Record decision outcome
+  """
+  recordOutcome(
+    decisionId: ID!
+    success: Boolean!
+    result: JSON
+    error: String
+    duration: Int!
+    sideEffects: [String!]
+  ): Decision!
+
+  """
+  Complete a reasoning chain
+  """
+  completeReasoningChain(id: ID!, status: ReasoningChainStatus!): ReasoningChain!
+}
+
+"""
+Decision context input
+"""
+input DecisionContextInput {
+  trigger: String!
+  inputs: JSON!
+  constraints: [String!]!
+  alternatives: [AlternativeInput!]!
+}
+
+"""
+Alternative input
+"""
+input AlternativeInput {
+  action: String!
+  pros: [String!]!
+  cons: [String!]!
+  confidence: ConfidenceLevel!
+  rejected: Boolean!
+  rejectionReason: String
+}
+
+"""
+Merge strategy for combining nodes
+"""
+enum MergeStrategy {
+  """Append source content to target"""
+  APPEND
+  """Prepend source content to target"""
+  PREPEND
+  """Replace target content with source"""
+  REPLACE
+  """Keep target content, only merge metadata"""
+  METADATA_ONLY
+}
+
+"""
+Result of delete operations
+"""
+type DeleteResult {
+  """Whether deletion succeeded"""
+  success: Boolean!
+  """Deleted item ID"""
+  id: ID!
+  """Error message if failed"""
+  error: String
+}
+
+"""
+Result of batch delete operations
+"""
+type BatchDeleteResult {
+  """Number of items deleted"""
+  deleted: Int!
+  """IDs that failed to delete"""
+  failed: [ID!]!
+  """Error messages for failures"""
+  errors: [String!]
+}
+
+"""
+Result of graph regeneration
+"""
+type RegenerateResult {
+  """Whether regeneration succeeded"""
+  success: Boolean!
+  """Number of nodes processed"""
+  nodesProcessed: Int!
+  """Number of edges created"""
+  edgesCreated: Int!
+  """Processing time in milliseconds"""
+  duration: Int!
+  """Errors encountered"""
+  errors: [String!]
+}
+
+"""
+Result of graph sync
+"""
+type SyncResult {
+  """Whether sync succeeded"""
+  success: Boolean!
+  """Number of items synced"""
+  synced: Int!
+  """Number of items that failed"""
+  failed: Int!
+  """Error details"""
+  errors: [SyncError!]
+}
+
+"""
+Sync error detail
+"""
+type SyncError {
+  key: String!
+  error: String!
+}
+
+"""
+Result of index rebuild
+"""
+type IndexResult {
+  """Whether rebuild succeeded"""
+  success: Boolean!
+  """Number of items indexed"""
+  indexed: Int!
+  """Processing time in milliseconds"""
+  duration: Int!
+  """Errors encountered"""
+  errors: [String!]
+}
+
+"""
+Result of embedding generation
+"""
+type EmbeddingResult {
+  """Whether generation succeeded"""
+  success: Boolean!
+  """Number of embeddings generated"""
+  generated: Int!
+  """Number that already existed"""
+  skipped: Int!
+  """Processing time in milliseconds"""
+  duration: Int!
+  """Errors encountered"""
+  errors: [String!]
+}
+
+# =============================================================================
+# Subscription Type
+# =============================================================================
+
+type Subscription {
+  """
+  Subscribe to node creation events
+  """
+  nodeCreated: KnowledgeNode!
+
+  """
+  Subscribe to node update events
+  """
+  nodeUpdated: KnowledgeNode!
+
+  """
+  Subscribe to node deletion events
+  """
+  nodeDeleted: ID!
+
+  """
+  Subscribe to edge creation events
+  """
+  edgeCreated: GraphEdge!
+
+  """
+  Subscribe to edge deletion events
+  """
+  edgeDeleted: ID!
+
+  """
+  Subscribe to workflow status changes
+  """
+  workflowStatus(
+    """Workflow execution ID to monitor"""
+    id: ID!
+  ): WorkflowExecution!
+
+  """
+  Subscribe to all workflow events
+  """
+  workflowEvents(
+    """Filter by workflow ID"""
+    workflowId: ID
+  ): WorkflowEvent!
+
+  """
+  Subscribe to agent status changes
+  """
+  agentStatus(
+    """Agent ID to monitor"""
+    id: ID!
+  ): Agent!
+
+  """
+  Subscribe to agent task completion
+  """
+  taskCompleted(
+    """Agent ID to monitor"""
+    agentId: ID
+  ): AgentResult!
+
+  """
+  Subscribe to reasoning chain updates
+  """
+  reasoningChainUpdated(
+    """Chain ID to monitor"""
+    id: ID!
+  ): ReasoningChain!
+
+  """
+  Subscribe to new decisions
+  """
+  decisionMade: Decision!
+
+  """
+  Subscribe to graph sync events
+  """
+  graphSynced: SyncResult!
+
+  """
+  Subscribe to system health changes
+  """
+  healthChanged: SystemHealth!
+}
+
+"""
+Workflow event for subscriptions
+"""
+type WorkflowEvent {
+  """Event type"""
+  type: WorkflowEventType!
+  """Execution ID"""
+  executionId: ID!
+  """Workflow ID"""
+  workflowId: ID!
+  """Step ID (if step event)"""
+  stepId: ID
+  """Event timestamp"""
+  timestamp: DateTime!
+  """Event data"""
+  data: JSON
+  """Error (if applicable)"""
+  error: String
+}
+
+"""
+Workflow event types
+"""
+enum WorkflowEventType {
+  WORKFLOW_STARTED
+  WORKFLOW_COMPLETED
+  WORKFLOW_FAILED
+  WORKFLOW_CANCELLED
+  WORKFLOW_PAUSED
+  WORKFLOW_RESUMED
+  STEP_STARTED
+  STEP_COMPLETED
+  STEP_FAILED
+  STEP_SKIPPED
+  STEP_RETRYING
+  ROLLBACK_STARTED
+  ROLLBACK_COMPLETED
+  ROLLBACK_FAILED
+}
+
+# =============================================================================
+# Directives
+# =============================================================================
+
+"""
+Marks a field as deprecated with a reason
+"""
+directive @deprecated(
+  reason: String = "No longer supported"
+) on FIELD_DEFINITION | ENUM_VALUE
+
+"""
+Specifies caching behavior for a field
+"""
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+"""
+Requires authentication to access this field
+"""
+directive @auth(
+  requires: [String!]
+) on FIELD_DEFINITION | OBJECT
+
+"""
+Rate limits requests to this field
+"""
+directive @rateLimit(
+  """Maximum requests per window"""
+  limit: Int!
+  """Window duration in seconds"""
+  window: Int!
+) on FIELD_DEFINITION
+
+"""
+Marks a field as computed (not stored)
+"""
+directive @computed on FIELD_DEFINITION
+
+"""
+Specifies the cost of resolving this field for query complexity analysis
+"""
+directive @cost(
+  """Base cost"""
+  value: Int!
+  """Cost multiplier for list fields"""
+  multiplier: Int
+) on FIELD_DEFINITION
