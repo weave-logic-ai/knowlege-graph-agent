@@ -726,6 +726,16 @@ import {
 
 ### v0.7.0
 
+**Core Features:**
+- **Agent Equilibrium Selector** - Intelligent agent selection based on task requirements
+- **Memory & Graph Pruning** - Automatic cleanup and optimization of graph data
+- **Agentic-Flow Integration** - Full AgentDB, ReasoningBank, and Federation Hub support
+- **Trajectory Tracking** - Agent behavior learning and pattern optimization
+- **Agent Booster Integration** - Enhanced agent capabilities with performance boosting
+- **Multi-Model Router** - Dynamic model selection based on task complexity
+- **QUIC Transport** - High-performance, low-latency communication protocol
+
+**Documentation:**
 - **Documentation overhaul** with Diátaxis framework (tutorials, guides, reference, explanation)
 - 5 Architecture Decision Records (ADRs) from SPEC files
 - Comprehensive API/CLI/MCP reference documentation
