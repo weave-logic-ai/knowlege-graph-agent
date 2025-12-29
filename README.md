@@ -724,6 +724,12 @@ import {
 
 ## Changelog
 
+### v0.7.1
+
+- Fixed documentation links to use new organized reference structure
+- Updated Reference section with proper paths to `docs/reference/api/`, `docs/reference/cli/`, `docs/reference/mcp/`
+- Added Architecture section with integration documentation links
+
 ### v0.7.0
 
 **Core Features:**
@@ -826,16 +832,22 @@ Comprehensive documentation is available in the [docs/](./docs/) directory, orga
 
 ### Reference
 
-- [API Reference](./docs/API.md) - Complete API surface
-- [CLI Commands](./docs/CLI-COMMANDS-REFERENCE.md) - All CLI commands
-- [MCP Tools](./docs/MCP-TOOLS-REFERENCE.md) - MCP server tools
-- [Architecture](./docs/ARCHITECTURE.md) - System architecture overview
+- [API Reference](./docs/reference/api/index.md) - Complete API surface
+  - [Core API](./docs/reference/api/core.md) - Database, cache, knowledge graph
+  - [Agents API](./docs/reference/api/agents.md) - Agent system interfaces
+  - [Graph API](./docs/reference/api/graph.md) - Graph operations
+- [CLI Commands](./docs/reference/cli/commands.md) - All CLI commands
+- [MCP Tools](./docs/reference/mcp/tools.md) - MCP server tools
 
-### Architecture Decisions
+### Architecture
 
-Technical decisions documented as ADRs:
-
-- [ADR Index](./docs/architecture/decisions/README.md) - All architecture decisions
+- [Architecture Overview](./docs/ARCHITECTURE.md) - System architecture
+- [Integration Index](./docs/architecture/integrations/INDEX.md) - All integrations
+  - [Claude-Flow](./docs/architecture/integrations/claude-flow.md) - MCP orchestration
+  - [RuVector](./docs/architecture/integrations/ruvector.md) - Vector search
+  - [Exochain](./docs/architecture/integrations/exochain.md) - Audit trail
+  - [Agentic-Flow](./docs/architecture/integrations/agentic-flow.md) - Agent framework
+- [ADR Index](./docs/architecture/decisions/README.md) - Architecture decisions
 - [Dependencies](./docs/DEPENDENCIES.md) - Package dependencies and licenses
 
 ## Contributing
