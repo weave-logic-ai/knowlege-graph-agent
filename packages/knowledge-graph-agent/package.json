@@ -1,6 +1,6 @@
 {
   "name": "@weavelogic/knowledge-graph-agent",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Knowledge graph agent for Claude Code - generates knowledge graphs, initializes docs, and integrates with claude-flow",
   "type": "module",
   "main": "dist/index.js",
