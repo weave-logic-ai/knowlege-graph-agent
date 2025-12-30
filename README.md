@@ -724,6 +724,13 @@ import {
 
 ## Changelog
 
+### v0.7.3
+
+- Added SOP Governance documentation (`docs/guides/sop-governance.md`)
+- Added SOP Reference documentation (`docs/reference/sops.md`)
+- Complete documentation for all 40 AI-SDLC SOPs with requirements and checkpoints
+- Updated docs README and main README with governance documentation links
+
 ### v0.7.2
 
 - Fixed repository URL in package.json to correct GitHub repo
@@ -827,6 +834,7 @@ Comprehensive documentation is available in the [docs/](./docs/) directory, orga
 - [Knowledge Graph Management](./docs/guides/knowledge-graph.md) - Create, query, and traverse graphs
 - [Cultivation System](./docs/guides/cultivation.md) - Analyze codebases and generate primitives
 - [Agent System](./docs/guides/agents.md) - Work with AI agents and rules engine
+- [SOP Governance](./docs/guides/sop-governance.md) - AI-SDLC compliance and governance enforcement
 
 ### Enterprise Features
 
@@ -843,6 +851,7 @@ Comprehensive documentation is available in the [docs/](./docs/) directory, orga
   - [Graph API](./docs/reference/api/graph.md) - Graph operations
 - [CLI Commands](./docs/reference/cli/commands.md) - All CLI commands
 - [MCP Tools](./docs/reference/mcp/tools.md) - MCP server tools
+- [SOP Reference](./docs/reference/sops.md) - AI-SDLC SOPs technical reference
 
 ### Architecture
 

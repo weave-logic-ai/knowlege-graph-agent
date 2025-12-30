@@ -34,6 +34,7 @@ Solve specific problems and accomplish tasks:
 - [Knowledge Graph Management](./guides/knowledge-graph.md) - Create, query, and traverse graphs
 - [Cultivation System](./guides/cultivation.md) - Analyze codebases and generate primitives
 - [Agent System](./guides/agents.md) - Work with AI agents and rules engine
+- [SOP Governance](./guides/sop-governance.md) - AI-SDLC compliance and governance enforcement
 
 ### Enterprise Features
 
@@ -53,6 +54,7 @@ Detailed technical documentation:
 - [API Overview](./API.md) - Complete API surface
 - [CLI Commands Reference](./CLI-COMMANDS-REFERENCE.md) - All CLI commands
 - [MCP Tools Reference](./MCP-TOOLS-REFERENCE.md) - MCP server tools
+- [SOP Reference](./reference/sops.md) - AI-SDLC SOPs technical reference
 
 ### Architecture
 
