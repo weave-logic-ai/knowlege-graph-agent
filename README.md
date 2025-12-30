@@ -724,6 +724,10 @@ import {
 
 ## Changelog
 
+### v0.7.4
+
+- Fixed repository URL in package.json to match actual GitHub repo name
+
 ### v0.7.3
 
 - Added SOP Governance documentation (`docs/guides/sop-governance.md`)
