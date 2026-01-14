@@ -6,7 +6,7 @@
 import type { GeneratorOptions } from '../core/types.js';
 import { KnowledgeGraphManager } from '../core/graph.js';
 /**
- * Generate knowledge graph from docs directory
+ * Generate knowledge graph from docs directory (or multiple directories)
  */
 export declare function generateGraph(options: GeneratorOptions): Promise<{
     graph: KnowledgeGraphManager;
@@ -32,7 +32,7 @@ export declare function generateAndSave(options: GeneratorOptions, dbPath: strin
 /**
  * Generate graph from existing database (incremental update)
  */
-export declare function updateGraph(dbPath: string, docsRoot: string): Promise<{
+export declare function updateGraph(dbPath: string, docsRoot: string, allPaths?: string[]): Promise<{
     added: number;
     updated: number;
     removed: number;

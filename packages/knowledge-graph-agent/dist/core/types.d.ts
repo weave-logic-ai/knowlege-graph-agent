@@ -174,6 +174,8 @@ export interface GeneratorOptions {
     outputPath: string;
     includeExamples?: boolean;
     force?: boolean;
+    additionalPaths?: string[];
+    scanAll?: boolean;
 }
 export interface GeneratedDocument {
     path: string;

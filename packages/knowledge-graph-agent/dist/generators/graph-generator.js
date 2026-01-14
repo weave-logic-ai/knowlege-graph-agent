@@ -7,7 +7,7 @@ import { KnowledgeGraphDatabase } from "../core/database.js";
 const WIKILINK_PATTERN = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
 const MARKDOWN_LINK_PATTERN = /\[([^\]]+)\]\(([^)]+)\)/g;
 async function generateGraph(options) {
-  const { projectRoot, outputPath } = options;
+  const { projectRoot, outputPath, additionalPaths = [], scanAll } = options;
   const stats = {
     filesScanned: 0,
     nodesCreated: 0,
@@ -18,18 +18,30 @@ async function generateGraph(options) {
     basename(projectRoot),
     projectRoot
   );
-  const files = await fg("**/*.md", {
-    cwd: outputPath,
-    ignore: ["node_modules/**", ".git/**", "_templates/**"],
-    absolute: true
-  });
-  stats.filesScanned = files.length;
+  const pathsToScan = scanAll ? [projectRoot] : [outputPath, ...additionalPaths];
+  const allFiles = [];
+  for (const scanPath of pathsToScan) {
+    const files = await fg("**/*.md", {
+      cwd: scanPath,
+      ignore: ["node_modules/**", ".git/**", "_templates/**", "dist/**", "build/**"],
+      absolute: true,
+      dot: true
+      // Include hidden directories like .claude/
+    });
+    for (const filePath of files) {
+      allFiles.push({ filePath, baseDir: scanAll ? projectRoot : scanPath });
+    }
+  }
+  stats.filesScanned = allFiles.length;
   const nodeMap = /* @__PURE__ */ new Map();
-  for (const filePath of files) {
+  for (const { filePath, baseDir } of allFiles) {
     try {
-      const node = await parseMarkdownFile(filePath, outputPath);
-      nodeMap.set(node.id, node);
-      stats.nodesCreated++;
+      const node = await parseMarkdownFile(filePath, baseDir);
+      const uniqueId = scanAll ? node.id : node.id;
+      if (!nodeMap.has(uniqueId)) {
+        nodeMap.set(uniqueId, node);
+        stats.nodesCreated++;
+      }
     } catch (error) {
       stats.errors.push(`Failed to parse ${filePath}: ${error}`);
     }
@@ -211,7 +223,7 @@ function inferNodeType(declaredType, path) {
 function formatTitle(filename) {
   return filename.replace(/-/g, " ").replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
-async function updateGraph(dbPath, docsRoot) {
+async function updateGraph(dbPath, docsRoot, allPaths) {
   const result = {
     added: 0,
     updated: 0,
@@ -222,23 +234,32 @@ async function updateGraph(dbPath, docsRoot) {
   try {
     const existingNodes = db.getAllNodes();
     const existingPaths = new Set(existingNodes.map((n) => n.path));
-    const currentFiles = await fg("**/*.md", {
-      cwd: docsRoot,
-      ignore: ["node_modules/**", ".git/**", "_templates/**"]
-    });
-    const currentPaths = new Set(currentFiles);
+    const pathsToScan = allPaths || [docsRoot];
+    const allCurrentFiles = [];
+    for (const scanPath of pathsToScan) {
+      const files = await fg("**/*.md", {
+        cwd: scanPath,
+        ignore: ["node_modules/**", ".git/**", "_templates/**", "dist/**", "build/**"],
+        dot: true
+        // Include hidden directories like .claude/
+      });
+      for (const file of files) {
+        allCurrentFiles.push({ filePath: file, baseDir: scanPath });
+      }
+    }
+    const currentPaths = new Set(allCurrentFiles.map((f) => f.filePath));
     for (const node of existingNodes) {
       if (!currentPaths.has(node.path)) {
         db.deleteNode(node.id);
         result.removed++;
       }
     }
-    for (const filePath of currentFiles) {
-      const fullPath = join(docsRoot, filePath);
+    for (const { filePath, baseDir } of allCurrentFiles) {
+      const fullPath = join(baseDir, filePath);
       try {
-        const node = await parseMarkdownFile(fullPath, docsRoot);
-        if (existingPaths.has(filePath)) {
-          const existing = existingNodes.find((n) => n.path === filePath);
+        const node = await parseMarkdownFile(fullPath, baseDir);
+        if (existingPaths.has(node.path)) {
+          const existing = existingNodes.find((n) => n.path === node.path);
           if (existing && node.lastModified > existing.lastModified) {
             db.deleteNodeEdges(node.id);
             db.upsertNode(node);

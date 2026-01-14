@@ -22,6 +22,8 @@ export function createGraphCommand(): Command {
     .description('Generate or update knowledge graph from documentation')
     .option('-p, --path <path>', 'Project root path', '.')
     .option('-d, --docs <path>', 'Docs directory path', 'docs')
+    .option('-i, --include <paths>', 'Additional paths to include (comma-separated)')
+    .option('-a, --all', 'Scan entire project for markdown files')
     .option('-u, --update', 'Incremental update instead of full regeneration')
     .option('-v, --verbose', 'Show detailed output')
     .action(async (options) => {
@@ -30,13 +32,41 @@ export function createGraphCommand(): Command {
       try {
         // Validate paths to prevent traversal attacks
         const projectRoot = validateProjectRoot(options.path);
-        const docsPath = validateDocsPath(projectRoot, options.docs);
         const dbPath = join(projectRoot, '.kg', 'knowledge.db');
 
-        // Check if docs exist
-        if (!existsSync(docsPath)) {
-          spinner.fail(`Docs directory not found: ${docsPath}`);
-          console.log(chalk.gray('  Run ') + chalk.cyan('kg docs init') + chalk.gray(' to create it'));
+        // Build list of source paths
+        const sourcePaths: string[] = [];
+
+        if (options.all) {
+          // Scan entire project
+          sourcePaths.push(projectRoot);
+        } else {
+          // Add main docs path
+          const docsPath = validateDocsPath(projectRoot, options.docs);
+          if (existsSync(docsPath)) {
+            sourcePaths.push(docsPath);
+          }
+
+          // Add additional include paths
+          if (options.include) {
+            const additionalPaths = options.include.split(',').map((p: string) => p.trim());
+            for (const relPath of additionalPaths) {
+              const fullPath = join(projectRoot, relPath);
+              if (existsSync(fullPath)) {
+                sourcePaths.push(fullPath);
+              } else if (options.verbose) {
+                console.log(chalk.yellow(`  Skipping non-existent path: ${relPath}`));
+              }
+            }
+          }
+        }
+
+        // Check if any source paths exist
+        if (sourcePaths.length === 0) {
+          spinner.fail('No documentation directories found');
+          console.log(chalk.gray('  Run ') + chalk.cyan('kg docs init') + chalk.gray(' to create docs/'));
+          console.log(chalk.gray('  Or use ') + chalk.cyan('--include <paths>') + chalk.gray(' to specify paths'));
+          console.log(chalk.gray('  Or use ') + chalk.cyan('--all') + chalk.gray(' to scan entire project'));
           process.exit(1);
         }
 
@@ -47,12 +77,16 @@ export function createGraphCommand(): Command {
           process.exit(1);
         }
 
+        if (options.verbose) {
+          console.log(chalk.gray(`  Scanning paths: ${sourcePaths.join(', ')}`));
+        }
+
         let result;
 
         if (options.update && existsSync(dbPath)) {
           // Incremental update
           spinner.text = 'Updating knowledge graph...';
-          result = await updateGraph(dbPath, docsPath);
+          result = await updateGraph(dbPath, sourcePaths[0], sourcePaths);
 
           spinner.succeed('Knowledge graph updated!');
 
@@ -64,12 +98,14 @@ export function createGraphCommand(): Command {
 
         } else {
           // Full generation
-          spinner.text = 'Scanning documentation...';
+          spinner.text = options.all ? 'Scanning entire project...' : 'Scanning documentation...';
 
           result = await generateAndSave(
             {
               projectRoot,
-              outputPath: docsPath,
+              outputPath: sourcePaths[0],
+              additionalPaths: sourcePaths.slice(1),
+              scanAll: options.all,
             },
             dbPath
           );
@@ -82,6 +118,7 @@ export function createGraphCommand(): Command {
 
           console.log();
           console.log(chalk.white('  Statistics:'));
+          console.log(chalk.gray(`    Paths scanned: ${sourcePaths.length}`));
           console.log(chalk.gray(`    Files scanned: ${result.stats.filesScanned}`));
           console.log(chalk.green(`    Nodes created: ${result.stats.nodesCreated}`));
           console.log(chalk.blue(`    Edges created: ${result.stats.edgesCreated}`));
