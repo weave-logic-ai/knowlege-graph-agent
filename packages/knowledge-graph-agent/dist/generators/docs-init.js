@@ -44,9 +44,20 @@ const DEFAULT_STRUCTURE = {
     "_attachments"
   ],
   files: {
+    // Root files
     "README.md": "readme",
     "PRIMITIVES.md": "primitives",
     "MOC.md": "moc",
+    // Directory index files (_MOC.md is the local map of content)
+    "concepts/_MOC.md": "moc-concepts",
+    "components/_MOC.md": "moc-components",
+    "services/_MOC.md": "moc-services",
+    "features/_MOC.md": "moc-features",
+    "integrations/_MOC.md": "moc-integrations",
+    "standards/_MOC.md": "moc-standards",
+    "guides/_MOC.md": "moc-guides",
+    "references/_MOC.md": "moc-references",
+    // Templates
     "_templates/concept.md": "template-concept",
     "_templates/technical.md": "template-technical",
     "_templates/feature.md": "template-feature",
@@ -130,48 +141,231 @@ Primitives are the foundational technologies that power this project. Each primi
 Central navigation hub for {{projectName}} documentation.
 
 ## Core Concepts
-{{#each concepts}}
-- [[concepts/{{this}}]]
-{{/each}}
-{{#unless concepts}}
-- *No concepts documented yet*
-{{/unless}}
+- [[concepts/_MOC|Concepts Index]]
 
 ## Components
-{{#each components}}
-- [[components/{{this}}]]
-{{/each}}
-{{#unless components}}
-- *No components documented yet*
-{{/unless}}
+- [[components/_MOC|Components Index]]
 
 ## Services
-{{#each services}}
-- [[services/{{this}}]]
-{{/each}}
-{{#unless services}}
-- *No services documented yet*
-{{/unless}}
+- [[services/_MOC|Services Index]]
 
 ## Features
-{{#each features}}
-- [[features/{{this}}]]
-{{/each}}
-{{#unless features}}
-- *No features documented yet*
-{{/unless}}
+- [[features/_MOC|Features Index]]
+
+## Integrations
+- [[integrations/_MOC|Integrations Index]]
+
+## Standards
+- [[standards/_MOC|Standards Index]]
 
 ## Guides
-- [[guides/getting-started/index|Getting Started]]
-- [[guides/testing/index|Testing Guide]]
-- [[guides/deployment/index|Deployment Guide]]
+- [[guides/_MOC|Guides Index]]
 
 ## References
-- [[references/api/index|API Reference]]
-- [[references/cli/index|CLI Reference]]
+- [[references/_MOC|References Index]]
 
 ---
 *Last updated: {{date}}*
+`,
+  "moc-concepts": `---
+title: Concepts
+type: concept
+status: active
+tags: [moc, concepts]
+created: {{date}}
+---
+
+# Concepts
+
+Abstract concepts and architectural patterns for {{projectName}}.
+
+## Architecture
+- [[concepts/architecture/index|Architecture Overview]]
+
+## Patterns
+*Add design patterns and abstractions here*
+
+## Mental Models
+*Add key mental models for understanding the system*
+
+---
+> Use template: [[_templates/concept|Concept Template]]
+`,
+  "moc-components": `---
+title: Components
+type: technical
+status: active
+tags: [moc, components]
+created: {{date}}
+---
+
+# Components
+
+Reusable components and utilities for {{projectName}}.
+
+## UI Components
+*Add UI components here*
+
+## Utilities
+*Add utility functions and helpers*
+
+## Shared Libraries
+*Add shared code libraries*
+
+---
+> Use template: [[_templates/technical|Technical Template]]
+`,
+  "moc-services": `---
+title: Services
+type: service
+status: active
+tags: [moc, services]
+created: {{date}}
+---
+
+# Services
+
+Backend services and APIs for {{projectName}}.
+
+## API Services
+*Add API service documentation*
+
+## Background Workers
+*Add worker/job documentation*
+
+## External Services
+*Add third-party service integrations*
+
+---
+> Use template: [[_templates/service|Service Template]]
+`,
+  "moc-features": `---
+title: Features
+type: feature
+status: active
+tags: [moc, features]
+created: {{date}}
+---
+
+# Features
+
+Product features and capabilities for {{projectName}}.
+
+## Core Features
+*Add core feature documentation*
+
+## Advanced Features
+*Add advanced feature documentation*
+
+## Upcoming Features
+*Add planned features*
+
+---
+> Use template: [[_templates/feature|Feature Template]]
+`,
+  "moc-integrations": `---
+title: Integrations
+type: integration
+status: active
+tags: [moc, integrations]
+created: {{date}}
+---
+
+# Integrations
+
+External integrations and third-party services for {{projectName}}.
+
+## Databases
+*Add database integrations*
+
+## Authentication
+*Add auth provider integrations*
+
+## Storage
+*Add storage integrations*
+
+## Monitoring
+*Add monitoring/observability integrations*
+
+---
+> Use template: [[_templates/technical|Technical Template]]
+`,
+  "moc-standards": `---
+title: Standards
+type: standard
+status: active
+tags: [moc, standards]
+created: {{date}}
+---
+
+# Standards
+
+Coding standards and conventions for {{projectName}}.
+
+## Coding Standards
+*Add coding style guides*
+
+## Programming Languages
+{{#each languages}}
+- [[standards/programming-languages/{{this}}|{{this}}]]
+{{/each}}
+
+## Build Tools
+*Add build tool documentation*
+
+---
+> See also: [[PRIMITIVES|Technology Primitives]]
+`,
+  "moc-guides": `---
+title: Guides
+type: guide
+status: active
+tags: [moc, guides]
+created: {{date}}
+---
+
+# Guides
+
+How-to guides and tutorials for {{projectName}}.
+
+## Getting Started
+- [[guides/getting-started/index|Getting Started Guide]]
+
+## Testing
+*Add testing guides*
+
+## Deployment
+*Add deployment guides*
+
+## Troubleshooting
+*Add troubleshooting guides*
+
+---
+> Use template: [[_templates/guide|Guide Template]]
+`,
+  "moc-references": `---
+title: References
+type: technical
+status: active
+tags: [moc, references]
+created: {{date}}
+---
+
+# References
+
+API and CLI references for {{projectName}}.
+
+## API Reference
+*Add API documentation*
+
+## CLI Reference
+*Add CLI documentation*
+
+## Configuration Reference
+*Add configuration options*
+
+---
+> See also: [[PRIMITIVES|Technology Primitives]]
 `,
   "template-concept": `---
 title: {{title}}
