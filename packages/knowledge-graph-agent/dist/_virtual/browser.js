@@ -1,6 +1,5 @@
-import { __require as requireBrowser } from "../node_modules/ws/browser.js";
-var browserExports = requireBrowser();
+var browser = { exports: {} };
 export {
-  browserExports as b
+  browser as __module
 };
 //# sourceMappingURL=browser.js.map

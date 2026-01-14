@@ -2,7 +2,7 @@ import { createServer } from "http";
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 import { useServer } from "../node_modules/graphql-ws/lib/use/ws.js";
-import { b as browserExports } from "../_virtual/browser.js";
+import { WebSocketServer } from "ws";
 import { createLogger } from "../utils/logger.js";
 import { createContextFactory } from "./context.js";
 import { customScalars } from "./scalars.js";
@@ -92,7 +92,7 @@ function createGraphQLServer(config) {
     yoga.handle(req, res);
   });
   if (enableSubscriptions) {
-    wsServer = new browserExports.WebSocketServer({
+    wsServer = new WebSocketServer({
       server: httpServer,
       path: graphqlPath
     });

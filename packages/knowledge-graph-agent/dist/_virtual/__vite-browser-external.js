@@ -1,5 +1,5 @@
-const sharp = {};
+const __viteBrowserExternal = {};
 export {
-  sharp as default
+  __viteBrowserExternal as default
 };
 //# sourceMappingURL=__vite-browser-external.js.map

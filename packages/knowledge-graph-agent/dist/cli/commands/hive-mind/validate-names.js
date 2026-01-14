@@ -2,7 +2,7 @@ import { Command } from "commander";
 import chalk from "chalk";
 import * as path from "path";
 import { writeFile, access, mkdir, rename } from "fs/promises";
-import { glob } from "fast-glob";
+import fg from "fast-glob";
 const SCHEMAS = {
   kebab: {
     name: "kebab-case",
@@ -46,7 +46,7 @@ class NameValidator {
    */
   async validateVault(vaultPath, options = {}) {
     const resolvedPath = path.resolve(vaultPath);
-    const files = await glob("**/*.md", {
+    const files = await fg("**/*.md", {
       cwd: resolvedPath,
       ignore: ["node_modules/**", ".git/**", "dist/**"],
       absolute: false
