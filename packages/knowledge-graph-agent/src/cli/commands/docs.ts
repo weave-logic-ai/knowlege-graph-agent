@@ -8,6 +8,7 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import ora from 'ora';
 import { initDocs, docsExist, getDocsPath } from '../../generators/docs-init.js';
+import { generateDocsWithAgents } from '../../generators/doc-generator-agents.js';
 import { validateProjectRoot, validateDocsPath } from '../../core/security.js';
 
 /**
@@ -29,6 +30,10 @@ export function createDocsCommand(): Command {
     .option('--no-examples', 'Skip example files')
     .option('--no-detect', 'Skip framework detection')
     .option('-f, --force', 'Overwrite existing files')
+    .option('-g, --generate', 'Generate documents using expert agents')
+    .option('--parallel', 'Run agent generation in parallel')
+    .option('--dry-run', 'Show what would be generated without creating files')
+    .option('-v, --verbose', 'Show detailed agent output')
     .action(async (options) => {
       const spinner = ora('Initializing documentation...').start();
 
@@ -94,6 +99,49 @@ export function createDocsCommand(): Command {
     └── references/         # API references
         `));
 
+        // Run agent generation if requested
+        if (options.generate) {
+          console.log();
+          const genSpinner = ora('Analyzing project and generating documents with expert agents...').start();
+
+          try {
+            const genResult = await generateDocsWithAgents(projectRoot, result.docsPath, {
+              parallel: options.parallel,
+              dryRun: options.dryRun,
+              verbose: options.verbose,
+            });
+
+            if (options.dryRun) {
+              genSpinner.info('Dry run complete - no files created');
+            } else if (genResult.success) {
+              genSpinner.succeed(`Generated ${genResult.documentsGenerated.filter(d => d.generated).length} documents using ${genResult.agentsSpawned} agents`);
+            } else {
+              genSpinner.warn(`Generated ${genResult.documentsGenerated.filter(d => d.generated).length} documents with ${genResult.errors.length} errors`);
+            }
+
+            if (genResult.documentsGenerated.length > 0 && !options.dryRun) {
+              console.log();
+              console.log(chalk.white('  Generated Documents:'));
+              for (const doc of genResult.documentsGenerated) {
+                const icon = doc.generated ? chalk.green('✓') : chalk.red('✗');
+                console.log(`    ${icon} ${doc.path}${doc.error ? chalk.gray(` (${doc.error})`) : ''}`);
+              }
+            }
+
+            if (genResult.errors.length > 0 && !options.dryRun) {
+              console.log();
+              console.log(chalk.yellow('  Agent Errors:'));
+              genResult.errors.forEach(err => {
+                console.log(chalk.gray(`    - ${err}`));
+              });
+            }
+          } catch (genError) {
+            genSpinner.fail('Agent generation failed');
+            console.error(chalk.red(String(genError)));
+          }
+        }
+
+        console.log();
         console.log(chalk.cyan('Next: ') + chalk.white('kg graph') + chalk.gray(' to generate knowledge graph'));
         console.log();
 
