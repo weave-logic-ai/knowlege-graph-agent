@@ -38,11 +38,11 @@ export function createDocsCommand(): Command {
         const docsPath = options.docs;
         validateDocsPath(projectRoot, docsPath); // Ensure docs stays within project
 
-        // Check if docs already exist
-        if (docsExist(projectRoot, docsPath) && !options.force) {
-          spinner.warn(`Documentation already exists at ${docsPath}`);
-          console.log(chalk.gray('  Use --force to reinitialize'));
-          return;
+        // Note: initDocs is additive - it only creates missing files/directories
+        // The --force flag is for overwriting existing files if needed in the future
+        const isExisting = docsExist(projectRoot, docsPath);
+        if (isExisting) {
+          spinner.text = 'Adding missing files to existing documentation...';
         }
 
         const result = await initDocs({
@@ -53,7 +53,13 @@ export function createDocsCommand(): Command {
         });
 
         if (result.success) {
-          spinner.succeed('Documentation initialized!');
+          if (isExisting && result.filesCreated.length === 0) {
+            spinner.succeed('Documentation already complete - no new files needed');
+          } else if (isExisting) {
+            spinner.succeed(`Documentation updated - added ${result.filesCreated.length} missing files`);
+          } else {
+            spinner.succeed('Documentation initialized!');
+          }
         } else {
           spinner.warn('Documentation initialized with errors');
         }
