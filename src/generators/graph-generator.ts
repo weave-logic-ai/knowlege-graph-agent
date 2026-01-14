@@ -62,13 +62,21 @@ export async function generateGraph(options: GeneratorOptions): Promise<{
   for (const scanPath of pathsToScan) {
     const files = await fg('**/*.md', {
       cwd: scanPath,
-      ignore: ['node_modules/**', '.git/**', '_templates/**', 'dist/**', 'build/**'],
+      ignore: [
+        'node_modules/**',
+        '.git/**',
+        '**/_templates/**',  // Templates anywhere in tree
+        '**/dist/**',
+        '**/build/**',
+        '**/.hive-mind/**',  // Hive mind internal files
+      ],
       absolute: true,
       dot: true, // Include hidden directories like .claude/
     });
 
     for (const filePath of files) {
-      allFiles.push({ filePath, baseDir: scanAll ? projectRoot : scanPath });
+      // Always use project root as base for consistent IDs
+      allFiles.push({ filePath, baseDir: projectRoot });
     }
   }
 
@@ -148,6 +156,9 @@ export async function generateAndSave(
   const db = new KnowledgeGraphDatabase(dbPath);
 
   try {
+    // Clear existing data before full regeneration to prevent duplicates
+    db.clearAll();
+
     const nodes = graph.getAllNodes();
     const edges = graph.getAllEdges();
 
@@ -414,7 +425,14 @@ export async function updateGraph(
     for (const scanPath of pathsToScan) {
       const files = await fg('**/*.md', {
         cwd: scanPath,
-        ignore: ['node_modules/**', '.git/**', '_templates/**', 'dist/**', 'build/**'],
+        ignore: [
+          'node_modules/**',
+          '.git/**',
+          '**/_templates/**',  // Templates anywhere in tree
+          '**/dist/**',
+          '**/build/**',
+          '**/.hive-mind/**',  // Hive mind internal files
+        ],
         dot: true, // Include hidden directories like .claude/
       });
 

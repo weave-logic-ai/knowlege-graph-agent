@@ -237,6 +237,14 @@ class KnowledgeGraphDatabase {
     const result = stmt.run(id);
     return result.changes > 0;
   }
+  /**
+   * Clear all nodes and edges (for full regeneration)
+   */
+  clearAll() {
+    this.db.exec("DELETE FROM edges");
+    this.db.exec("DELETE FROM node_tags");
+    this.db.exec("DELETE FROM nodes");
+  }
   // ========================================================================
   // Tag Operations
   // ========================================================================

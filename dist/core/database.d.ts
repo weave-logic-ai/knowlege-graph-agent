@@ -55,6 +55,10 @@ export declare class KnowledgeGraphDatabase {
      */
     deleteNode(id: string): boolean;
     /**
+     * Clear all nodes and edges (for full regeneration)
+     */
+    clearAll(): void;
+    /**
      * Update tags for a node
      */
     private updateNodeTags;
