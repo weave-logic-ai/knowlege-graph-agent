@@ -11,7 +11,7 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import * as path from 'path';
 import { readdir, rename, access, mkdir, writeFile } from 'fs/promises';
-import { glob } from 'fast-glob';
+import fg from 'fast-glob';
 
 // ============================================================================
 // Types
@@ -111,7 +111,7 @@ export class NameValidator {
     const resolvedPath = path.resolve(vaultPath);
 
     // Find all markdown files
-    const files = await glob('**/*.md', {
+    const files = await fg('**/*.md', {
       cwd: resolvedPath,
       ignore: ['node_modules/**', '.git/**', 'dist/**'],
       absolute: false,

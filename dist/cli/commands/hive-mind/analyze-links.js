@@ -2,7 +2,7 @@ import { Command } from "commander";
 import chalk from "chalk";
 import * as path from "path";
 import { writeFile, access, readFile } from "fs/promises";
-import { glob } from "fast-glob";
+import fg from "fast-glob";
 import matter from "gray-matter";
 class LinkAnalyzer {
   fileMap = /* @__PURE__ */ new Map();
@@ -17,7 +17,7 @@ class LinkAnalyzer {
     } catch {
       throw new Error(`Vault path does not exist: ${resolvedPath}`);
     }
-    const files = await glob("**/*.md", {
+    const files = await fg("**/*.md", {
       cwd: resolvedPath,
       ignore: ["node_modules/**", ".git/**", "dist/**"],
       absolute: false

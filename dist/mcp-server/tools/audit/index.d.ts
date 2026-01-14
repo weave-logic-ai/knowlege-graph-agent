@@ -40,6 +40,9 @@ export declare const auditToolDefinitions: {
         idempotentHint?: boolean | undefined;
         openWorldHint?: boolean | undefined;
     } | undefined;
+    execution?: {
+        taskSupport?: "required" | "optional" | "forbidden" | undefined;
+    } | undefined;
     _meta?: {
         [x: string]: unknown;
     } | undefined;
@@ -47,6 +50,7 @@ export declare const auditToolDefinitions: {
         src: string;
         mimeType?: string | undefined;
         sizes?: string[] | undefined;
+        theme?: "light" | "dark" | undefined;
     }[] | undefined;
     title?: string | undefined;
 }[];
