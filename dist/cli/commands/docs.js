@@ -12,10 +12,9 @@ function createDocsCommand() {
       const projectRoot = validateProjectRoot(options.path);
       const docsPath = options.docs;
       validateDocsPath(projectRoot, docsPath);
-      if (docsExist(projectRoot, docsPath) && !options.force) {
-        spinner.warn(`Documentation already exists at ${docsPath}`);
-        console.log(chalk.gray("  Use --force to reinitialize"));
-        return;
+      const isExisting = docsExist(projectRoot, docsPath);
+      if (isExisting) {
+        spinner.text = "Adding missing files to existing documentation...";
       }
       const result = await initDocs({
         projectRoot,
@@ -24,7 +23,13 @@ function createDocsCommand() {
         detectFramework: options.detect !== false
       });
       if (result.success) {
-        spinner.succeed("Documentation initialized!");
+        if (isExisting && result.filesCreated.length === 0) {
+          spinner.succeed("Documentation already complete - no new files needed");
+        } else if (isExisting) {
+          spinner.succeed(`Documentation updated - added ${result.filesCreated.length} missing files`);
+        } else {
+          spinner.succeed("Documentation initialized!");
+        }
       } else {
         spinner.warn("Documentation initialized with errors");
       }
