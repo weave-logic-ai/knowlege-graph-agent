@@ -82,13 +82,40 @@ const DEFAULT_STRUCTURE = {
 
     // Directory index files (_MOC.md is the local map of content)
     'concepts/_MOC.md': 'moc-concepts',
+    'concepts/architecture/_MOC.md': 'moc-concepts-architecture',
+    'concepts/patterns/_MOC.md': 'moc-concepts-patterns',
+
     'components/_MOC.md': 'moc-components',
+    'components/ui/_MOC.md': 'moc-components-ui',
+    'components/utilities/_MOC.md': 'moc-components-utilities',
+
     'services/_MOC.md': 'moc-services',
+    'services/api/_MOC.md': 'moc-services-api',
+    'services/workers/_MOC.md': 'moc-services-workers',
+
     'features/_MOC.md': 'moc-features',
+    'features/core/_MOC.md': 'moc-features-core',
+    'features/advanced/_MOC.md': 'moc-features-advanced',
+
     'integrations/_MOC.md': 'moc-integrations',
+    'integrations/databases/_MOC.md': 'moc-integrations-databases',
+    'integrations/auth-providers/_MOC.md': 'moc-integrations-auth',
+    'integrations/storage/_MOC.md': 'moc-integrations-storage',
+    'integrations/monitoring/_MOC.md': 'moc-integrations-monitoring',
+
     'standards/_MOC.md': 'moc-standards',
+    'standards/coding-standards/_MOC.md': 'moc-standards-coding',
+    'standards/programming-languages/_MOC.md': 'moc-standards-languages',
+    'standards/build-tools/_MOC.md': 'moc-standards-build',
+
     'guides/_MOC.md': 'moc-guides',
+    'guides/getting-started/_MOC.md': 'moc-guides-getting-started',
+    'guides/testing/_MOC.md': 'moc-guides-testing',
+    'guides/deployment/_MOC.md': 'moc-guides-deployment',
+
     'references/_MOC.md': 'moc-references',
+    'references/api/_MOC.md': 'moc-references-api',
+    'references/cli/_MOC.md': 'moc-references-cli',
 
     // Templates
     '_templates/concept.md': 'template-concept',
@@ -589,6 +616,516 @@ Common issues and solutions.
 
 - [[next-guide-1]]
 - [[next-guide-2]]
+`,
+
+  // Subdirectory MOC templates
+  'moc-concepts-architecture': `---
+title: Architecture Concepts
+type: concept
+status: active
+tags: [moc, concepts, architecture]
+created: {{date}}
+---
+
+# Architecture Concepts
+
+System architecture and design patterns for {{projectName}}.
+
+## Overview
+*Document high-level system architecture*
+
+## System Design
+*Add system design documents*
+
+## Decision Records
+*Architecture Decision Records (ADRs)*
+
+---
+> Parent: [[concepts/_MOC|Concepts Index]]
+`,
+
+  'moc-concepts-patterns': `---
+title: Design Patterns
+type: concept
+status: active
+tags: [moc, concepts, patterns]
+created: {{date}}
+---
+
+# Design Patterns
+
+Design patterns and abstractions used in {{projectName}}.
+
+## Creational Patterns
+*Factory, Builder, Singleton, etc.*
+
+## Structural Patterns
+*Adapter, Decorator, Facade, etc.*
+
+## Behavioral Patterns
+*Observer, Strategy, Command, etc.*
+
+---
+> Parent: [[concepts/_MOC|Concepts Index]]
+`,
+
+  'moc-components-ui': `---
+title: UI Components
+type: technical
+status: active
+tags: [moc, components, ui]
+created: {{date}}
+---
+
+# UI Components
+
+User interface components for {{projectName}}.
+
+## Layout Components
+*Headers, footers, sidebars, grids*
+
+## Form Components
+*Inputs, buttons, selects, checkboxes*
+
+## Display Components
+*Cards, modals, tooltips, alerts*
+
+## Navigation Components
+*Menus, tabs, breadcrumbs*
+
+---
+> Parent: [[components/_MOC|Components Index]]
+`,
+
+  'moc-components-utilities': `---
+title: Utility Components
+type: technical
+status: active
+tags: [moc, components, utilities]
+created: {{date}}
+---
+
+# Utility Components
+
+Reusable utility functions and helpers for {{projectName}}.
+
+## String Utilities
+*Formatting, validation, transformation*
+
+## Date Utilities
+*Parsing, formatting, calculations*
+
+## Data Utilities
+*Transformation, validation, filtering*
+
+## Hook Utilities
+*Custom React/Vue hooks*
+
+---
+> Parent: [[components/_MOC|Components Index]]
+`,
+
+  'moc-services-api': `---
+title: API Services
+type: service
+status: active
+tags: [moc, services, api]
+created: {{date}}
+---
+
+# API Services
+
+Backend API services for {{projectName}}.
+
+## REST Endpoints
+*Document REST API endpoints*
+
+## GraphQL Schema
+*GraphQL types and resolvers*
+
+## Authentication
+*Auth middleware and flows*
+
+## Rate Limiting
+*Rate limiting and throttling*
+
+---
+> Parent: [[services/_MOC|Services Index]]
+`,
+
+  'moc-services-workers': `---
+title: Worker Services
+type: service
+status: active
+tags: [moc, services, workers]
+created: {{date}}
+---
+
+# Worker Services
+
+Background workers and job processors for {{projectName}}.
+
+## Job Queues
+*Queue processors and handlers*
+
+## Scheduled Tasks
+*Cron jobs and scheduled operations*
+
+## Event Handlers
+*Event-driven workers*
+
+---
+> Parent: [[services/_MOC|Services Index]]
+`,
+
+  'moc-features-core': `---
+title: Core Features
+type: feature
+status: active
+tags: [moc, features, core]
+created: {{date}}
+---
+
+# Core Features
+
+Essential features that define {{projectName}}.
+
+## Primary Features
+*Main user-facing functionality*
+
+## MVP Features
+*Minimum viable product scope*
+
+---
+> Parent: [[features/_MOC|Features Index]]
+`,
+
+  'moc-features-advanced': `---
+title: Advanced Features
+type: feature
+status: active
+tags: [moc, features, advanced]
+created: {{date}}
+---
+
+# Advanced Features
+
+Advanced and power-user features for {{projectName}}.
+
+## Power User Features
+*Features for advanced users*
+
+## Extensibility
+*Plugin and extension capabilities*
+
+## Automation
+*Automated workflows and scripting*
+
+---
+> Parent: [[features/_MOC|Features Index]]
+`,
+
+  'moc-integrations-databases': `---
+title: Database Integrations
+type: integration
+status: active
+tags: [moc, integrations, databases]
+created: {{date}}
+---
+
+# Database Integrations
+
+Database connections and ORMs for {{projectName}}.
+
+## Primary Database
+*Main data store configuration*
+
+## Caching Layer
+*Redis, Memcached, etc.*
+
+## Search Index
+*Elasticsearch, Algolia, etc.*
+
+---
+> Parent: [[integrations/_MOC|Integrations Index]]
+`,
+
+  'moc-integrations-auth': `---
+title: Authentication Providers
+type: integration
+status: active
+tags: [moc, integrations, auth]
+created: {{date}}
+---
+
+# Authentication Providers
+
+Authentication and identity providers for {{projectName}}.
+
+## OAuth Providers
+*Google, GitHub, etc.*
+
+## SSO Integration
+*SAML, OIDC configurations*
+
+## API Keys
+*API key management*
+
+---
+> Parent: [[integrations/_MOC|Integrations Index]]
+`,
+
+  'moc-integrations-storage': `---
+title: Storage Integrations
+type: integration
+status: active
+tags: [moc, integrations, storage]
+created: {{date}}
+---
+
+# Storage Integrations
+
+File and object storage for {{projectName}}.
+
+## Cloud Storage
+*S3, GCS, Azure Blob*
+
+## CDN
+*Content delivery networks*
+
+## Local Storage
+*File system storage*
+
+---
+> Parent: [[integrations/_MOC|Integrations Index]]
+`,
+
+  'moc-integrations-monitoring': `---
+title: Monitoring Integrations
+type: integration
+status: active
+tags: [moc, integrations, monitoring]
+created: {{date}}
+---
+
+# Monitoring Integrations
+
+Observability and monitoring for {{projectName}}.
+
+## Logging
+*Structured logging setup*
+
+## Metrics
+*Application metrics and dashboards*
+
+## Alerting
+*Alert rules and notifications*
+
+## Tracing
+*Distributed tracing*
+
+---
+> Parent: [[integrations/_MOC|Integrations Index]]
+`,
+
+  'moc-standards-coding': `---
+title: Coding Standards
+type: standard
+status: active
+tags: [moc, standards, coding]
+created: {{date}}
+---
+
+# Coding Standards
+
+Code style and conventions for {{projectName}}.
+
+## Style Guide
+*Formatting and naming conventions*
+
+## Linting Rules
+*ESLint, Prettier configuration*
+
+## Code Review Guidelines
+*PR review checklist*
+
+---
+> Parent: [[standards/_MOC|Standards Index]]
+`,
+
+  'moc-standards-languages': `---
+title: Programming Languages
+type: standard
+status: active
+tags: [moc, standards, languages]
+created: {{date}}
+---
+
+# Programming Languages
+
+Language choices and configurations for {{projectName}}.
+
+## TypeScript
+*TypeScript configuration and patterns*
+
+## JavaScript
+*JavaScript standards and ES features*
+
+## Other Languages
+*Additional language documentation*
+
+---
+> Parent: [[standards/_MOC|Standards Index]]
+`,
+
+  'moc-standards-build': `---
+title: Build Tools
+type: standard
+status: active
+tags: [moc, standards, build]
+created: {{date}}
+---
+
+# Build Tools
+
+Build and bundling configuration for {{projectName}}.
+
+## Bundler
+*Vite, Webpack, Rollup configuration*
+
+## Compilation
+*TypeScript, Babel setup*
+
+## Build Scripts
+*npm scripts and build commands*
+
+---
+> Parent: [[standards/_MOC|Standards Index]]
+`,
+
+  'moc-guides-getting-started': `---
+title: Getting Started
+type: guide
+status: active
+tags: [moc, guides, getting-started]
+created: {{date}}
+---
+
+# Getting Started
+
+Quick start guides for {{projectName}}.
+
+## Installation
+*Setup and installation steps*
+
+## Configuration
+*Initial configuration guide*
+
+## First Steps
+*Your first project walkthrough*
+
+---
+> Parent: [[guides/_MOC|Guides Index]]
+`,
+
+  'moc-guides-testing': `---
+title: Testing Guides
+type: guide
+status: active
+tags: [moc, guides, testing]
+created: {{date}}
+---
+
+# Testing Guides
+
+Testing strategies and guides for {{projectName}}.
+
+## Unit Testing
+*Component and function tests*
+
+## Integration Testing
+*API and service tests*
+
+## E2E Testing
+*End-to-end test guides*
+
+---
+> Parent: [[guides/_MOC|Guides Index]]
+`,
+
+  'moc-guides-deployment': `---
+title: Deployment Guides
+type: guide
+status: active
+tags: [moc, guides, deployment]
+created: {{date}}
+---
+
+# Deployment Guides
+
+Deployment and operations guides for {{projectName}}.
+
+## Local Development
+*Local environment setup*
+
+## Staging
+*Staging environment deployment*
+
+## Production
+*Production deployment checklist*
+
+---
+> Parent: [[guides/_MOC|Guides Index]]
+`,
+
+  'moc-references-api': `---
+title: API Reference
+type: reference
+status: active
+tags: [moc, references, api]
+created: {{date}}
+---
+
+# API Reference
+
+API documentation for {{projectName}}.
+
+## REST API
+*Endpoint documentation*
+
+## GraphQL
+*Schema and query reference*
+
+## SDK
+*Client library documentation*
+
+---
+> Parent: [[references/_MOC|References Index]]
+`,
+
+  'moc-references-cli': `---
+title: CLI Reference
+type: reference
+status: active
+tags: [moc, references, cli]
+created: {{date}}
+---
+
+# CLI Reference
+
+Command line interface documentation for {{projectName}}.
+
+## Commands
+*Available CLI commands*
+
+## Options
+*Global and command options*
+
+## Configuration
+*CLI configuration files*
+
+---
+> Parent: [[references/_MOC|References Index]]
 `,
 };
 
