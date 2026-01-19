@@ -11,7 +11,7 @@ import type { NodeType, NodeStatus } from '../core/types.js';
 export interface ConvertOptions {
     /** Source directory with existing docs */
     sourceDir: string;
-    /** Target directory (default: docs-nn) */
+    /** Target directory (default: docs) */
     targetDir?: string;
     /** Project root for path resolution */
     projectRoot: string;

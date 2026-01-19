@@ -841,6 +841,14 @@ import {
 
 ## Changelog
 
+### v0.10.1
+
+**Default Directory Fix:**
+- Changed default target directory from `docs-nn` to `docs`
+- `kg analyze`, `kg convert docs`, and related commands now output to `docs/` by default
+- Use `--target docs-nn` if you specifically need the old behavior
+- Updated help text and documentation to reflect the change
+
 ### v0.10.0
 
 **Claude Code Hooks System:**

@@ -7,7 +7,7 @@ import { analyzeDocs } from "../../generators/docs-analyzer.js";
 import { validateProjectRoot } from "../../core/security.js";
 function createAnalyzeCommand() {
   const command = new Command("analyze");
-  command.description("Analyze and migrate docs to knowledge graph structure").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs-nn").option("--use-claude-flow", "Use claude-flow for deep analysis").option("--no-moc", "Skip MOC (Map of Content) generation").option("--no-link-original", "Do not link back to original docs").option("--max-depth <n>", "Maximum analysis depth", "3").option("--dry-run", "Show what would be done without making changes").option("-v, --verbose", "Verbose output").action(async (options) => {
+  command.description("Analyze and migrate docs to knowledge graph structure").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs").option("--use-claude-flow", "Use claude-flow for deep analysis").option("--no-moc", "Skip MOC (Map of Content) generation").option("--no-link-original", "Do not link back to original docs").option("--max-depth <n>", "Maximum analysis depth", "3").option("--dry-run", "Show what would be done without making changes").option("-v, --verbose", "Verbose output").action(async (options) => {
     const spinner = ora("Analyzing documentation...").start();
     try {
       const projectRoot = validateProjectRoot(options.path);
@@ -119,7 +119,7 @@ function createAnalyzeCommand() {
       process.exit(1);
     }
   });
-  command.command("deep").description("Deep analysis using claude-flow agents for comprehensive knowledge extraction").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs-nn").option("--agents <n>", "Number of parallel agents", "3").action(async (options) => {
+  command.command("deep").description("Deep analysis using claude-flow agents for comprehensive knowledge extraction").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs").option("--agents <n>", "Number of parallel agents", "3").action(async (options) => {
     const spinner = ora("Initializing deep analysis with claude-flow...").start();
     try {
       const projectRoot = validateProjectRoot(options.path);
@@ -184,7 +184,7 @@ function createAnalyzeCommand() {
       }
       const result = await analyzeDocs({
         sourceDir,
-        targetDir: "docs-nn",
+        targetDir: "docs",
         projectRoot,
         useClaudeFlow: false,
         createMOC: false,

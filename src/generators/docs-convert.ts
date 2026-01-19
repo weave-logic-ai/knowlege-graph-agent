@@ -17,7 +17,7 @@ import type { NodeType, NodeStatus, NodeFrontmatter } from '../core/types.js';
 export interface ConvertOptions {
   /** Source directory with existing docs */
   sourceDir: string;
-  /** Target directory (default: docs-nn) */
+  /** Target directory (default: docs) */
   targetDir?: string;
   /** Project root for path resolution */
   projectRoot: string;
@@ -150,7 +150,7 @@ const PATH_PATTERNS: Array<{ pattern: RegExp; type: NodeType }> = [
 export async function convertDocs(options: ConvertOptions): Promise<ConvertResult> {
   const {
     sourceDir,
-    targetDir = 'docs-nn',
+    targetDir = 'docs',
     projectRoot,
     preserveOriginal = true,
     force = false,

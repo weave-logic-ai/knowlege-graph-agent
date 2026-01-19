@@ -69,7 +69,7 @@ function createCLI() {
     console.log(chalk.gray("    $ kg analyze               # Analyze & migrate to knowledge graph"));
     console.log(chalk.gray("    $ kg analyze deep          # Deep analysis with claude-flow"));
     console.log(chalk.gray("    $ kg analyze report        # Generate analysis report"));
-    console.log(chalk.gray("    $ kg convert docs          # Convert docs/ → docs-nn/"));
+    console.log(chalk.gray("    $ kg convert docs          # Convert docs/ with proper structure"));
     console.log(chalk.gray("    $ kg frontmatter add       # Add frontmatter to files"));
     console.log(chalk.gray("    $ kg frontmatter validate  # Validate frontmatter\n"));
     console.log(chalk.white("  AI-SDLC SOP Compliance:"));

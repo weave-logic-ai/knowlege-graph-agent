@@ -19,7 +19,7 @@ import type { NodeType, NodeStatus, NodeFrontmatter } from '../core/types.js';
 export interface AnalyzerOptions {
   /** Source directory with existing docs */
   sourceDir: string;
-  /** Target directory (default: docs-nn) */
+  /** Target directory (default: docs) */
   targetDir?: string;
   /** Project root for path resolution */
   projectRoot: string;
@@ -43,7 +43,7 @@ export interface AnalyzerOptions {
 export interface AnalyzedDoc {
   /** Original file path */
   originalPath: string;
-  /** New file path in docs-nn */
+  /** New file path in target directory */
   newPath: string;
   /** Document title */
   title: string;
@@ -130,7 +130,7 @@ const CATEGORY_STRUCTURE: Record<string, { type: NodeType; description: string; 
 export async function analyzeDocs(options: AnalyzerOptions): Promise<AnalyzerResult> {
   const {
     sourceDir,
-    targetDir = 'docs-nn',
+    targetDir = 'docs',
     projectRoot,
     useClaudeFlow = false,
     createMOC = true,
