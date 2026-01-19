@@ -22,6 +22,7 @@ import { createServeCommand } from "./commands/serve.js";
 import { createDashboardCommand } from "./commands/dashboard.js";
 import { createPluginCommand } from "./commands/plugin.js";
 import { createHiveMindCommand } from "./commands/hive-mind/index.js";
+import { createHooksCommand } from "./commands/hooks.js";
 const VERSION = "0.4.0";
 function createCLI() {
   const program = new Command();
@@ -54,6 +55,7 @@ function createCLI() {
   program.addCommand(createDashboardCommand());
   program.addCommand(createPluginCommand());
   program.addCommand(createHiveMindCommand());
+  program.addCommand(createHooksCommand());
   program.action(() => {
     console.log(chalk.cyan.bold("\n  Knowledge Graph Agent\n"));
     console.log(chalk.gray("  Generate and manage knowledge graphs for Claude Code\n"));
@@ -142,6 +144,12 @@ function createCLI() {
     console.log(chalk.gray("    $ kg hive-mind find-connections <vault>  # Find potential links"));
     console.log(chalk.gray("    $ kg hive-mind validate-names <vault>    # Validate file names"));
     console.log(chalk.gray("    $ kg hive-mind add-frontmatter <vault>   # Add YAML frontmatter\n"));
+    console.log(chalk.white("  Claude Code Hooks:"));
+    console.log(chalk.gray("    $ kg hooks install         # Install hooks to capture interactions"));
+    console.log(chalk.gray("    $ kg hooks uninstall       # Remove hooks"));
+    console.log(chalk.gray("    $ kg hooks status          # Show hooks status"));
+    console.log(chalk.gray("    $ kg hooks sessions        # List captured sessions"));
+    console.log(chalk.gray("    $ kg hooks export          # Export captured sessions\n"));
     console.log(chalk.white("  Commands:"));
     program.commands.forEach((cmd) => {
       console.log(chalk.cyan(`    ${cmd.name().padEnd(20)}`), chalk.gray(cmd.description() || ""));

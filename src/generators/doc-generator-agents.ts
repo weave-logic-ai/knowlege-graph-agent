@@ -5,10 +5,20 @@
  * documentation, then generates appropriate documents for each directory.
  */
 
-import { existsSync, readFileSync, writeFileSync, readdirSync, statSync } from 'fs';
-import { join, basename, extname, relative } from 'path';
+import { existsSync, readFileSync, writeFileSync, readdirSync, statSync, mkdirSync, copyFileSync } from 'fs';
+import { join, basename, extname, relative, dirname } from 'path';
 import fg from 'fast-glob';
 import { spawn } from 'child_process';
+
+/**
+ * Service documentation found in src/{service}/docs directories
+ */
+interface ServiceDoc {
+  serviceName: string;
+  sourcePath: string;
+  fileName: string;
+  relativePath: string;
+}
 
 /**
  * Document generation context
@@ -21,6 +31,7 @@ export interface GenerationContext {
   frameworks: string[];
   existingDocs: string[];
   sourceFiles: string[];
+  serviceDocs: ServiceDoc[];
 }
 
 /**
@@ -65,6 +76,7 @@ export async function generateDocsWithAgents(
     parallel?: boolean;
     dryRun?: boolean;
     verbose?: boolean;
+    force?: boolean;
   } = {}
 ): Promise<AgentGenerationResult> {
   const result: AgentGenerationResult = {
@@ -79,15 +91,25 @@ export async function generateDocsWithAgents(
     const context = await buildGenerationContext(projectRoot, docsPath);
 
     // Determine what documents should be generated
-    const tasks = await planDocumentGeneration(context);
+    const tasks = await planDocumentGeneration(context, options.force);
 
     if (options.dryRun) {
       console.log('\n[Dry Run] Would generate the following documents:');
       for (const task of tasks) {
         console.log(`  - ${task.outputFile} (${task.agentType} agent)`);
       }
+      if (context.serviceDocs.length > 0) {
+        console.log('\n[Dry Run] Would copy service docs:');
+        for (const doc of context.serviceDocs) {
+          const targetPath = `services/${doc.serviceName}/${doc.relativePath}`;
+          console.log(`  - ${doc.sourcePath} → ${targetPath}`);
+        }
+      }
       return result;
     }
+
+    // Copy service docs from src/{service}/docs to main docs directory
+    const copiedDocs = copyServiceDocs(context, options.force);
 
     // Execute tasks (parallel or sequential)
     if (options.parallel) {
@@ -133,6 +155,9 @@ export async function generateDocsWithAgents(
       }
     }
 
+    // Add copied service docs to result
+    result.documentsGenerated.push(...copiedDocs);
+
     result.success = result.errors.length === 0;
   } catch (error) {
     result.success = false;
@@ -140,6 +165,53 @@ export async function generateDocsWithAgents(
   }
 
   return result;
+}
+
+/**
+ * Copy service docs from src/{service}/docs to main docs directory
+ */
+function copyServiceDocs(context: GenerationContext, force?: boolean): GeneratedDoc[] {
+  const { docsPath, serviceDocs } = context;
+  const copied: GeneratedDoc[] = [];
+
+  for (const doc of serviceDocs) {
+    const targetDir = join(docsPath, 'services', doc.serviceName);
+    const targetPath = join(targetDir, doc.relativePath);
+    const relativeTarget = `services/${doc.serviceName}/${doc.relativePath}`;
+
+    // Skip if target exists and not forcing
+    if (!force && existsSync(targetPath)) {
+      continue;
+    }
+
+    try {
+      // Create target directory if needed
+      const targetFileDir = dirname(targetPath);
+      if (!existsSync(targetFileDir)) {
+        mkdirSync(targetFileDir, { recursive: true });
+      }
+
+      // Copy the file
+      copyFileSync(doc.sourcePath, targetPath);
+
+      copied.push({
+        path: relativeTarget,
+        title: doc.fileName.replace('.md', ''),
+        type: 'service',
+        generated: true,
+      });
+    } catch (error) {
+      copied.push({
+        path: relativeTarget,
+        title: doc.fileName.replace('.md', ''),
+        type: 'service',
+        generated: false,
+        error: String(error),
+      });
+    }
+  }
+
+  return copied;
 }
 
 /**
@@ -157,6 +229,7 @@ async function buildGenerationContext(
     frameworks: [],
     existingDocs: [],
     sourceFiles: [],
+    serviceDocs: [],
   };
 
   // Get project name from package.json
@@ -186,8 +259,41 @@ async function buildGenerationContext(
   if (existsSync(join(projectRoot, 'package.json'))) {
     context.languages.push('JavaScript');
   }
-  if (existsSync(join(projectRoot, 'requirements.txt')) || existsSync(join(projectRoot, 'pyproject.toml'))) {
+
+  // Detect Python - check multiple locations for requirements
+  const pythonConfigPaths = [
+    join(projectRoot, 'requirements.txt'),
+    join(projectRoot, 'pyproject.toml'),
+    join(projectRoot, 'src/backend/requirements.txt'),
+    join(projectRoot, 'backend/requirements.txt'),
+    join(projectRoot, 'src/requirements.txt'),
+  ];
+  const foundPythonConfig = pythonConfigPaths.find(p => existsSync(p));
+
+  // Also detect Python if we find .py files later in source scan
+  // For now, check if there's a Python config file
+  if (foundPythonConfig) {
     context.languages.push('Python');
+
+    // Detect Python frameworks from requirements.txt or pyproject.toml
+    try {
+      let reqContent = readFileSync(foundPythonConfig, 'utf-8').toLowerCase();
+      // Also check pyproject.toml if we found requirements.txt
+      if (foundPythonConfig.includes('requirements.txt')) {
+        const pyprojectPath = join(projectRoot, 'pyproject.toml');
+        if (existsSync(pyprojectPath)) {
+          reqContent += readFileSync(pyprojectPath, 'utf-8').toLowerCase();
+        }
+      }
+      if (reqContent.includes('fastapi')) context.frameworks.push('FastAPI');
+      if (reqContent.includes('flask')) context.frameworks.push('Flask');
+      if (reqContent.includes('django')) context.frameworks.push('Django');
+      if (reqContent.includes('sqlalchemy')) context.frameworks.push('SQLAlchemy');
+      if (reqContent.includes('pydantic')) context.frameworks.push('Pydantic');
+      if (reqContent.includes('alembic')) context.frameworks.push('Alembic');
+    } catch {
+      // Ignore read errors
+    }
   }
   if (existsSync(join(projectRoot, 'Cargo.toml'))) {
     context.languages.push('Rust');
@@ -211,18 +317,56 @@ async function buildGenerationContext(
   });
   context.sourceFiles = sourceFiles;
 
+  // Detect Python from .py files if not already detected
+  if (!context.languages.includes('Python') && sourceFiles.some(f => f.endsWith('.py'))) {
+    context.languages.push('Python');
+  }
+
+  // Scan for service docs in src/{service}/docs directories
+  const serviceDocs: ServiceDoc[] = [];
+  const srcDir = join(projectRoot, 'src');
+  if (existsSync(srcDir)) {
+    try {
+      const srcEntries = readdirSync(srcDir, { withFileTypes: true });
+      for (const entry of srcEntries) {
+        if (entry.isDirectory()) {
+          const serviceDocsDir = join(srcDir, entry.name, 'docs');
+          if (existsSync(serviceDocsDir)) {
+            // Find all markdown files in this service's docs directory
+            const docsFiles = await fg('**/*.md', {
+              cwd: serviceDocsDir,
+              ignore: ['node_modules/**', '.git/**'],
+            });
+            for (const docFile of docsFiles) {
+              serviceDocs.push({
+                serviceName: entry.name,
+                sourcePath: join(serviceDocsDir, docFile),
+                fileName: basename(docFile),
+                relativePath: docFile,
+              });
+            }
+          }
+        }
+      }
+    } catch {
+      // Ignore errors reading src directory
+    }
+  }
+  context.serviceDocs = serviceDocs;
+
   return context;
 }
 
 /**
  * Plan what documents should be generated based on context
  */
-async function planDocumentGeneration(context: GenerationContext): Promise<AgentTask[]> {
+async function planDocumentGeneration(context: GenerationContext, force?: boolean): Promise<AgentTask[]> {
   const tasks: AgentTask[] = [];
   const { projectRoot, docsPath, sourceFiles, frameworks } = context;
 
-  // Helper to check if doc already exists
+  // Helper to check if doc already exists (returns false if force is true)
   const docExists = (relativePath: string) => {
+    if (force) return false; // Force regeneration
     return existsSync(join(docsPath, relativePath));
   };
 
@@ -231,23 +375,44 @@ async function planDocumentGeneration(context: GenerationContext): Promise<Agent
   const componentFiles: string[] = [];
   const serviceFiles: string[] = [];
   const utilityFiles: string[] = [];
+  const backendFiles: string[] = [];
+  const modelFiles: string[] = [];
+  const frontendFiles: string[] = [];
 
   for (const file of sourceFiles) {
     const dir = file.split('/')[0];
     srcDirs.add(dir);
+    const fileLower = file.toLowerCase();
 
-    // Categorize files
-    if (file.includes('component') || file.includes('ui/')) {
+    // Categorize files (improved patterns for Python and TypeScript)
+    if (fileLower.includes('component') || fileLower.includes('/ui/') || fileLower.includes('/views/')) {
       componentFiles.push(file);
-    } else if (file.includes('service') || file.includes('api/')) {
+    }
+    if (fileLower.includes('service') || fileLower.includes('/api/') || fileLower.includes('routes') || fileLower.includes('endpoints')) {
       serviceFiles.push(file);
-    } else if (file.includes('util') || file.includes('helper') || file.includes('lib/')) {
+    }
+    if (fileLower.includes('util') || fileLower.includes('helper') || fileLower.includes('/lib/') || fileLower.includes('common')) {
       utilityFiles.push(file);
+    }
+    if (fileLower.includes('backend') || fileLower.includes('server') || fileLower.includes('app/')) {
+      backendFiles.push(file);
+    }
+    if (fileLower.includes('model') || fileLower.includes('schema') || fileLower.includes('entities')) {
+      modelFiles.push(file);
+    }
+    if (fileLower.includes('frontend') || fileLower.includes('client') || fileLower.includes('pages')) {
+      frontendFiles.push(file);
     }
   }
 
-  // Generate architecture overview if source has multiple modules
-  if (srcDirs.size > 2 && !docExists('concepts/architecture/overview.md')) {
+  // If no service files found but backend files exist, use backend files
+  if (serviceFiles.length === 0 && backendFiles.length > 0) {
+    serviceFiles.push(...backendFiles);
+  }
+
+  // Generate architecture overview if source has modules with files
+  // Threshold: at least 1 directory with 3+ source files
+  if (srcDirs.size >= 1 && sourceFiles.length >= 3 && !docExists('concepts/architecture/overview.md')) {
     tasks.push({
       directory: 'concepts/architecture',
       type: 'concept',
@@ -327,6 +492,39 @@ async function planDocumentGeneration(context: GenerationContext): Promise<Agent
       agentType: 'coder',
       prompt: buildPrismaPrompt(context),
       outputFile: 'integrations/databases/prisma.md',
+    });
+  }
+
+  // Generate SQLAlchemy docs for Python projects
+  if (frameworks.includes('SQLAlchemy') && !docExists('integrations/databases/sqlalchemy.md')) {
+    tasks.push({
+      directory: 'integrations/databases',
+      type: 'integration',
+      agentType: 'coder',
+      prompt: buildSQLAlchemyPrompt(context, modelFiles),
+      outputFile: 'integrations/databases/sqlalchemy.md',
+    });
+  }
+
+  // Generate FastAPI docs
+  if (frameworks.includes('FastAPI') && !docExists('services/api/fastapi.md')) {
+    tasks.push({
+      directory: 'services/api',
+      type: 'service',
+      agentType: 'coder',
+      prompt: buildFastAPIPrompt(context, serviceFiles),
+      outputFile: 'services/api/fastapi.md',
+    });
+  }
+
+  // Generate Flask docs
+  if (frameworks.includes('Flask') && !docExists('services/api/flask.md')) {
+    tasks.push({
+      directory: 'services/api',
+      type: 'service',
+      agentType: 'coder',
+      prompt: buildFlaskPrompt(context, serviceFiles),
+      outputFile: 'services/api/flask.md',
     });
   }
 
@@ -660,6 +858,114 @@ npx prisma migrate dev
 ---
 > Auto-generated by kg-agent
 `,
+
+    'integrations/databases/sqlalchemy.md': `---
+title: SQLAlchemy Integration
+type: integration
+status: active
+tags: [sqlalchemy, database, orm, python]
+created: ${date}
+---
+
+# SQLAlchemy Integration
+
+Database ORM configuration for ${projectName}.
+
+## Models
+
+*Document your SQLAlchemy models*
+
+## Database Connection
+
+\`\`\`python
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
+\`\`\`
+
+## Migrations (Alembic)
+
+\`\`\`bash
+alembic upgrade head
+\`\`\`
+
+## Query Examples
+
+*Add common query patterns*
+
+---
+> Auto-generated by kg-agent
+`,
+
+    'services/api/fastapi.md': `---
+title: FastAPI Service
+type: service
+status: active
+tags: [fastapi, api, python]
+created: ${date}
+---
+
+# FastAPI Service
+
+API service documentation for ${projectName}.
+
+## Running the Server
+
+\`\`\`bash
+uvicorn main:app --reload
+\`\`\`
+
+## API Endpoints
+
+*Document your API endpoints*
+
+## Authentication
+
+*Document authentication flow*
+
+## Request/Response Schemas
+
+*Document Pydantic models*
+
+---
+> Auto-generated by kg-agent
+`,
+
+    'services/api/flask.md': `---
+title: Flask Service
+type: service
+status: active
+tags: [flask, api, python]
+created: ${date}
+---
+
+# Flask Service
+
+API service documentation for ${projectName}.
+
+## Running the Server
+
+\`\`\`bash
+flask run
+\`\`\`
+
+## Routes
+
+*Document your Flask routes*
+
+## Blueprints
+
+*Document blueprints structure*
+
+## Error Handling
+
+*Document error handling patterns*
+
+---
+> Auto-generated by kg-agent
+`,
   };
 
   return templates[task.outputFile] || generateGenericTemplate(task, context, date);
@@ -760,4 +1066,22 @@ Generate a Coding Standards guide with style rules and best practices.`;
 function buildPrismaPrompt(context: GenerationContext): string {
   return `Document Prisma database integration for ${context.projectName}.
 Generate integration documentation with schema, models, and usage patterns.`;
+}
+
+function buildSQLAlchemyPrompt(context: GenerationContext, modelFiles: string[]): string {
+  return `Document SQLAlchemy database integration for ${context.projectName}.
+Model files: ${modelFiles.slice(0, 10).join(', ')}.
+Generate integration documentation with models, relationships, and query patterns.`;
+}
+
+function buildFastAPIPrompt(context: GenerationContext, serviceFiles: string[]): string {
+  return `Document FastAPI API service for ${context.projectName}.
+API files: ${serviceFiles.slice(0, 10).join(', ')}.
+Generate API documentation with endpoints, request/response schemas, and authentication.`;
+}
+
+function buildFlaskPrompt(context: GenerationContext, serviceFiles: string[]): string {
+  return `Document Flask API service for ${context.projectName}.
+Route files: ${serviceFiles.slice(0, 10).join(', ')}.
+Generate API documentation with routes, blueprints, and request handling.`;
 }

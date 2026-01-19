@@ -5,6 +5,15 @@
  * documentation, then generates appropriate documents for each directory.
  */
 /**
+ * Service documentation found in src/{service}/docs directories
+ */
+interface ServiceDoc {
+    serviceName: string;
+    sourcePath: string;
+    fileName: string;
+    relativePath: string;
+}
+/**
  * Document generation context
  */
 export interface GenerationContext {
@@ -15,6 +24,7 @@ export interface GenerationContext {
     frameworks: string[];
     existingDocs: string[];
     sourceFiles: string[];
+    serviceDocs: ServiceDoc[];
 }
 /**
  * Generation result for a single document
@@ -42,5 +52,7 @@ export declare function generateDocsWithAgents(projectRoot: string, docsPath: st
     parallel?: boolean;
     dryRun?: boolean;
     verbose?: boolean;
+    force?: boolean;
 }): Promise<AgentGenerationResult>;
+export {};
 //# sourceMappingURL=doc-generator-agents.d.ts.map

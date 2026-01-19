@@ -28,6 +28,7 @@ import { createServeCommand } from './commands/serve.js';
 import { createDashboardCommand } from './commands/dashboard.js';
 import { createPluginCommand } from './commands/plugin.js';
 import { createHiveMindCommand } from './commands/hive-mind/index.js';
+import { createHooksCommand } from './commands/hooks.js';
 
 /**
  * CLI version
@@ -76,6 +77,7 @@ export function createCLI(): Command {
   program.addCommand(createDashboardCommand());
   program.addCommand(createPluginCommand());
   program.addCommand(createHiveMindCommand());
+  program.addCommand(createHooksCommand());
 
   // Default action (show help)
   program.action(() => {
@@ -179,6 +181,13 @@ export function createCLI(): Command {
     console.log(chalk.gray('    $ kg hive-mind find-connections <vault>  # Find potential links'));
     console.log(chalk.gray('    $ kg hive-mind validate-names <vault>    # Validate file names'));
     console.log(chalk.gray('    $ kg hive-mind add-frontmatter <vault>   # Add YAML frontmatter\n'));
+
+    console.log(chalk.white('  Claude Code Hooks:'));
+    console.log(chalk.gray('    $ kg hooks install         # Install hooks to capture interactions'));
+    console.log(chalk.gray('    $ kg hooks uninstall       # Remove hooks'));
+    console.log(chalk.gray('    $ kg hooks status          # Show hooks status'));
+    console.log(chalk.gray('    $ kg hooks sessions        # List captured sessions'));
+    console.log(chalk.gray('    $ kg hooks export          # Export captured sessions\n'));
 
     console.log(chalk.white('  Commands:'));
     program.commands.forEach(cmd => {

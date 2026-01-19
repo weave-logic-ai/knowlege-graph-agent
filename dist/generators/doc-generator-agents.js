@@ -1,5 +1,5 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { basename, join } from "path";
+import { existsSync, readFileSync, readdirSync, mkdirSync, copyFileSync, writeFileSync } from "fs";
+import { basename, join, dirname } from "path";
 import fg from "fast-glob";
 import { spawn } from "child_process";
 async function generateDocsWithAgents(projectRoot, docsPath, options = {}) {
@@ -11,14 +11,22 @@ async function generateDocsWithAgents(projectRoot, docsPath, options = {}) {
   };
   try {
     const context = await buildGenerationContext(projectRoot, docsPath);
-    const tasks = await planDocumentGeneration(context);
+    const tasks = await planDocumentGeneration(context, options.force);
     if (options.dryRun) {
       console.log("\n[Dry Run] Would generate the following documents:");
       for (const task of tasks) {
         console.log(`  - ${task.outputFile} (${task.agentType} agent)`);
       }
+      if (context.serviceDocs.length > 0) {
+        console.log("\n[Dry Run] Would copy service docs:");
+        for (const doc of context.serviceDocs) {
+          const targetPath = `services/${doc.serviceName}/${doc.relativePath}`;
+          console.log(`  - ${doc.sourcePath} → ${targetPath}`);
+        }
+      }
       return result;
     }
+    const copiedDocs = copyServiceDocs(context, options.force);
     if (options.parallel) {
       const results = await Promise.allSettled(
         tasks.map((task) => executeAgentTask(task, context, options.verbose))
@@ -57,12 +65,47 @@ async function generateDocsWithAgents(projectRoot, docsPath, options = {}) {
         }
       }
     }
+    result.documentsGenerated.push(...copiedDocs);
     result.success = result.errors.length === 0;
   } catch (error) {
     result.success = false;
     result.errors.push(`Generation failed: ${error}`);
   }
   return result;
+}
+function copyServiceDocs(context, force) {
+  const { docsPath, serviceDocs } = context;
+  const copied = [];
+  for (const doc of serviceDocs) {
+    const targetDir = join(docsPath, "services", doc.serviceName);
+    const targetPath = join(targetDir, doc.relativePath);
+    const relativeTarget = `services/${doc.serviceName}/${doc.relativePath}`;
+    if (!force && existsSync(targetPath)) {
+      continue;
+    }
+    try {
+      const targetFileDir = dirname(targetPath);
+      if (!existsSync(targetFileDir)) {
+        mkdirSync(targetFileDir, { recursive: true });
+      }
+      copyFileSync(doc.sourcePath, targetPath);
+      copied.push({
+        path: relativeTarget,
+        title: doc.fileName.replace(".md", ""),
+        type: "service",
+        generated: true
+      });
+    } catch (error) {
+      copied.push({
+        path: relativeTarget,
+        title: doc.fileName.replace(".md", ""),
+        type: "service",
+        generated: false,
+        error: String(error)
+      });
+    }
+  }
+  return copied;
 }
 async function buildGenerationContext(projectRoot, docsPath) {
   const context = {
@@ -72,7 +115,8 @@ async function buildGenerationContext(projectRoot, docsPath) {
     languages: [],
     frameworks: [],
     existingDocs: [],
-    sourceFiles: []
+    sourceFiles: [],
+    serviceDocs: []
   };
   const pkgPath = join(projectRoot, "package.json");
   if (existsSync(pkgPath)) {
@@ -95,8 +139,32 @@ async function buildGenerationContext(projectRoot, docsPath) {
   if (existsSync(join(projectRoot, "package.json"))) {
     context.languages.push("JavaScript");
   }
-  if (existsSync(join(projectRoot, "requirements.txt")) || existsSync(join(projectRoot, "pyproject.toml"))) {
+  const pythonConfigPaths = [
+    join(projectRoot, "requirements.txt"),
+    join(projectRoot, "pyproject.toml"),
+    join(projectRoot, "src/backend/requirements.txt"),
+    join(projectRoot, "backend/requirements.txt"),
+    join(projectRoot, "src/requirements.txt")
+  ];
+  const foundPythonConfig = pythonConfigPaths.find((p) => existsSync(p));
+  if (foundPythonConfig) {
     context.languages.push("Python");
+    try {
+      let reqContent = readFileSync(foundPythonConfig, "utf-8").toLowerCase();
+      if (foundPythonConfig.includes("requirements.txt")) {
+        const pyprojectPath = join(projectRoot, "pyproject.toml");
+        if (existsSync(pyprojectPath)) {
+          reqContent += readFileSync(pyprojectPath, "utf-8").toLowerCase();
+        }
+      }
+      if (reqContent.includes("fastapi")) context.frameworks.push("FastAPI");
+      if (reqContent.includes("flask")) context.frameworks.push("Flask");
+      if (reqContent.includes("django")) context.frameworks.push("Django");
+      if (reqContent.includes("sqlalchemy")) context.frameworks.push("SQLAlchemy");
+      if (reqContent.includes("pydantic")) context.frameworks.push("Pydantic");
+      if (reqContent.includes("alembic")) context.frameworks.push("Alembic");
+    } catch {
+    }
   }
   if (existsSync(join(projectRoot, "Cargo.toml"))) {
     context.languages.push("Rust");
@@ -115,30 +183,77 @@ async function buildGenerationContext(projectRoot, docsPath) {
     dot: true
   });
   context.sourceFiles = sourceFiles;
+  if (!context.languages.includes("Python") && sourceFiles.some((f) => f.endsWith(".py"))) {
+    context.languages.push("Python");
+  }
+  const serviceDocs = [];
+  const srcDir = join(projectRoot, "src");
+  if (existsSync(srcDir)) {
+    try {
+      const srcEntries = readdirSync(srcDir, { withFileTypes: true });
+      for (const entry of srcEntries) {
+        if (entry.isDirectory()) {
+          const serviceDocsDir = join(srcDir, entry.name, "docs");
+          if (existsSync(serviceDocsDir)) {
+            const docsFiles = await fg("**/*.md", {
+              cwd: serviceDocsDir,
+              ignore: ["node_modules/**", ".git/**"]
+            });
+            for (const docFile of docsFiles) {
+              serviceDocs.push({
+                serviceName: entry.name,
+                sourcePath: join(serviceDocsDir, docFile),
+                fileName: basename(docFile),
+                relativePath: docFile
+              });
+            }
+          }
+        }
+      }
+    } catch {
+    }
+  }
+  context.serviceDocs = serviceDocs;
   return context;
 }
-async function planDocumentGeneration(context) {
+async function planDocumentGeneration(context, force) {
   const tasks = [];
   const { projectRoot, docsPath, sourceFiles, frameworks } = context;
   const docExists = (relativePath) => {
+    if (force) return false;
     return existsSync(join(docsPath, relativePath));
   };
   const srcDirs = /* @__PURE__ */ new Set();
   const componentFiles = [];
   const serviceFiles = [];
   const utilityFiles = [];
+  const backendFiles = [];
+  const modelFiles = [];
   for (const file of sourceFiles) {
     const dir = file.split("/")[0];
     srcDirs.add(dir);
-    if (file.includes("component") || file.includes("ui/")) {
+    const fileLower = file.toLowerCase();
+    if (fileLower.includes("component") || fileLower.includes("/ui/") || fileLower.includes("/views/")) {
       componentFiles.push(file);
-    } else if (file.includes("service") || file.includes("api/")) {
+    }
+    if (fileLower.includes("service") || fileLower.includes("/api/") || fileLower.includes("routes") || fileLower.includes("endpoints")) {
       serviceFiles.push(file);
-    } else if (file.includes("util") || file.includes("helper") || file.includes("lib/")) {
+    }
+    if (fileLower.includes("util") || fileLower.includes("helper") || fileLower.includes("/lib/") || fileLower.includes("common")) {
       utilityFiles.push(file);
     }
+    if (fileLower.includes("backend") || fileLower.includes("server") || fileLower.includes("app/")) {
+      backendFiles.push(file);
+    }
+    if (fileLower.includes("model") || fileLower.includes("schema") || fileLower.includes("entities")) {
+      modelFiles.push(file);
+    }
+    if (fileLower.includes("frontend") || fileLower.includes("client") || fileLower.includes("pages")) ;
   }
-  if (srcDirs.size > 2 && !docExists("concepts/architecture/overview.md")) {
+  if (serviceFiles.length === 0 && backendFiles.length > 0) {
+    serviceFiles.push(...backendFiles);
+  }
+  if (srcDirs.size >= 1 && sourceFiles.length >= 3 && !docExists("concepts/architecture/overview.md")) {
     tasks.push({
       directory: "concepts/architecture",
       type: "concept",
@@ -203,6 +318,33 @@ async function planDocumentGeneration(context) {
       agentType: "coder",
       prompt: buildPrismaPrompt(context),
       outputFile: "integrations/databases/prisma.md"
+    });
+  }
+  if (frameworks.includes("SQLAlchemy") && !docExists("integrations/databases/sqlalchemy.md")) {
+    tasks.push({
+      directory: "integrations/databases",
+      type: "integration",
+      agentType: "coder",
+      prompt: buildSQLAlchemyPrompt(context, modelFiles),
+      outputFile: "integrations/databases/sqlalchemy.md"
+    });
+  }
+  if (frameworks.includes("FastAPI") && !docExists("services/api/fastapi.md")) {
+    tasks.push({
+      directory: "services/api",
+      type: "service",
+      agentType: "coder",
+      prompt: buildFastAPIPrompt(context, serviceFiles),
+      outputFile: "services/api/fastapi.md"
+    });
+  }
+  if (frameworks.includes("Flask") && !docExists("services/api/flask.md")) {
+    tasks.push({
+      directory: "services/api",
+      type: "service",
+      agentType: "coder",
+      prompt: buildFlaskPrompt(context, serviceFiles),
+      outputFile: "services/api/flask.md"
     });
   }
   return tasks;
@@ -485,6 +627,111 @@ npx prisma migrate dev
 
 ---
 > Auto-generated by kg-agent
+`,
+    "integrations/databases/sqlalchemy.md": `---
+title: SQLAlchemy Integration
+type: integration
+status: active
+tags: [sqlalchemy, database, orm, python]
+created: ${date}
+---
+
+# SQLAlchemy Integration
+
+Database ORM configuration for ${projectName}.
+
+## Models
+
+*Document your SQLAlchemy models*
+
+## Database Connection
+
+\`\`\`python
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+engine = create_engine(DATABASE_URL)
+Session = sessionmaker(bind=engine)
+\`\`\`
+
+## Migrations (Alembic)
+
+\`\`\`bash
+alembic upgrade head
+\`\`\`
+
+## Query Examples
+
+*Add common query patterns*
+
+---
+> Auto-generated by kg-agent
+`,
+    "services/api/fastapi.md": `---
+title: FastAPI Service
+type: service
+status: active
+tags: [fastapi, api, python]
+created: ${date}
+---
+
+# FastAPI Service
+
+API service documentation for ${projectName}.
+
+## Running the Server
+
+\`\`\`bash
+uvicorn main:app --reload
+\`\`\`
+
+## API Endpoints
+
+*Document your API endpoints*
+
+## Authentication
+
+*Document authentication flow*
+
+## Request/Response Schemas
+
+*Document Pydantic models*
+
+---
+> Auto-generated by kg-agent
+`,
+    "services/api/flask.md": `---
+title: Flask Service
+type: service
+status: active
+tags: [flask, api, python]
+created: ${date}
+---
+
+# Flask Service
+
+API service documentation for ${projectName}.
+
+## Running the Server
+
+\`\`\`bash
+flask run
+\`\`\`
+
+## Routes
+
+*Document your Flask routes*
+
+## Blueprints
+
+*Document blueprints structure*
+
+## Error Handling
+
+*Document error handling patterns*
+
+---
+> Auto-generated by kg-agent
 `
   };
   return templates[task.outputFile] || generateGenericTemplate(task, context, date);
@@ -556,6 +803,21 @@ Generate a Coding Standards guide with style rules and best practices.`;
 function buildPrismaPrompt(context) {
   return `Document Prisma database integration for ${context.projectName}.
 Generate integration documentation with schema, models, and usage patterns.`;
+}
+function buildSQLAlchemyPrompt(context, modelFiles) {
+  return `Document SQLAlchemy database integration for ${context.projectName}.
+Model files: ${modelFiles.slice(0, 10).join(", ")}.
+Generate integration documentation with models, relationships, and query patterns.`;
+}
+function buildFastAPIPrompt(context, serviceFiles) {
+  return `Document FastAPI API service for ${context.projectName}.
+API files: ${serviceFiles.slice(0, 10).join(", ")}.
+Generate API documentation with endpoints, request/response schemas, and authentication.`;
+}
+function buildFlaskPrompt(context, serviceFiles) {
+  return `Document Flask API service for ${context.projectName}.
+Route files: ${serviceFiles.slice(0, 10).join(", ")}.
+Generate API documentation with routes, blueprints, and request handling.`;
 }
 export {
   generateDocsWithAgents
