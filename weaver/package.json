@@ -41,7 +41,18 @@
     "graph:orphans": "tsx ../weave-nn/scripts/graph-tools/find-orphans.ts",
     "graph:suggest": "tsx ../weave-nn/scripts/graph-tools/suggest-connections.ts",
     "graph:viz": "tsx ../weave-nn/scripts/graph-tools/visualize-graph.ts",
-    "graph:all": "bash ../weave-nn/scripts/graph-tools/run-analysis.sh"
+    "graph:all": "bash ../weave-nn/scripts/graph-tools/run-analysis.sh",
+    "kg": "kg",
+    "kg:init": "kg init --docs docs",
+    "kg:graph": "kg graph --docs docs",
+    "kg:graph:update": "kg graph --docs docs --update",
+    "kg:search": "kg search",
+    "kg:stats": "kg stats",
+    "kg:sync": "kg sync",
+    "kg:claude": "kg claude update",
+    "kg:claude:preview": "kg claude preview",
+    "kg:docs:init": "kg docs init",
+    "kg:docs:status": "kg docs status"
   },
   "keywords": [
     "weave-nn",
@@ -56,6 +67,7 @@
     "@anthropic-ai/sdk": "^0.32.0",
     "@hono/node-server": "^1.13.7",
     "@modelcontextprotocol/sdk": "^1.20.2",
+    "@weavelogic/knowledge-graph-agent": "file:../packages/knowledge-graph-agent",
     "@xenova/transformers": "^2.17.2",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",

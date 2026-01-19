@@ -1,0 +1,27 @@
+{
+  "projectRoot": ".",
+  "docsRoot": "docs",
+  "graph": {
+    "includePatterns": [
+      "**/*.md"
+    ],
+    "excludePatterns": [
+      "node_modules/**",
+      "dist/**",
+      ".git/**"
+    ],
+    "maxDepth": 10
+  },
+  "database": {
+    "path": ".kg/knowledge.db",
+    "enableWAL": true
+  },
+  "claudeFlow": {
+    "enabled": true,
+    "namespace": "knowledge-graph",
+    "syncOnChange": true
+  },
+  "templates": {
+    "defaultType": "concept"
+  }
+}

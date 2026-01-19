@@ -34,6 +34,7 @@ async function loadCommands(): Promise<any> {
     { createConfigCommand },
     { createAgentsCommand },
     { createSetupCommand },
+    { createAnalyzeStandardsCommand },
     opsCommands,
   ] = await Promise.all([
     import('./commands/init-vault.js'),
@@ -48,6 +49,7 @@ async function loadCommands(): Promise<any> {
     import('./commands/config.js'),
     import('./commands/agents.js'),
     import('./commands/setup.js'),
+    import('./commands/analyze-standards.js'),
     import('./commands/ops/index.js'),
   ]);
 
@@ -64,6 +66,7 @@ async function loadCommands(): Promise<any> {
     createConfigCommand,
     createAgentsCommand,
     createSetupCommand,
+    createAnalyzeStandardsCommand,
     ...opsCommands,
   };
 
@@ -166,6 +169,9 @@ async function loadAndRegisterCommands(program: Command): Promise<void> {
 
   // Add setup commands
   program.addCommand(commands.createSetupCommand());
+
+  // Add analyze-standards command
+  program.addCommand(commands.createAnalyzeStandardsCommand());
 }
 
 /**

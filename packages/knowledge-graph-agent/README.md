@@ -10,8 +10,9 @@ A powerful NPM library for creating and managing knowledge graphs for Claude Cod
 | Category | Features |
 |----------|----------|
 | **Core** | Knowledge graph generation, Obsidian integration, CLAUDE.md management |
-| **Cultivation** | Codebase analysis, seed generation, deep analysis with claude-flow |
+| **Cultivation** | Codebase analysis, seed generation, deep analysis with claude-flow, doc cultivation |
 | **Agents** | Multi-agent system, rules engine, workflows, MCP server with 30+ tools |
+| **Claude Hooks** | Capture all interactions, hierarchical storage, sub-agent tracking, swarm tracking |
 | **Services** | Service management, config migrations, health monitoring |
 | **Enterprise** | Chunking, backup/recovery, advanced caching, diagnostics |
 | **Integrations** | Workflow DevKit, RuVector semantic search, Exochain audit trail |
@@ -431,6 +432,110 @@ npx @weavelogic/knowledge-graph-agent mcp start
 
 ---
 
+## Claude Code Hooks
+
+Capture all Claude Code interactions and store them in a hierarchical knowledge graph structure.
+
+### Installation
+
+```bash
+# Install hooks to capture all interactions
+kg hooks install
+
+# Check hooks status
+kg hooks status
+
+# View captured sessions
+kg hooks sessions
+```
+
+### Features
+
+- **Hierarchical Storage**: Sessions → Conversations → Messages → Tool Calls
+- **Sub-Agent Tracking**: Automatically tracks Task tool spawns
+- **Swarm Tracking**: Captures claude-flow swarm operations
+- **Markdown Generation**: Creates documentation for all interactions
+- **Tool Output Separation**: Stores tool outputs in dedicated files
+
+### Hook Events Captured
+
+| Event | Description |
+|-------|-------------|
+| `UserPromptSubmit` | All user prompts |
+| `PreToolUse` | Tool invocations with inputs |
+| `PostToolUse` | Tool results and outputs |
+| `Stop` | Session completion |
+| `PreCompact` | Before context compaction |
+
+### Storage Structure
+
+```
+.kg/claude/
+├── sessions/           # JSON session data
+├── agents/            # Sub-agent tracking
+├── tool-outputs/      # Separated tool outputs
+├── docs/
+│   ├── sessions/      # Session markdown docs
+│   ├── conversations/ # Conversation logs
+│   └── agents/        # Sub-agent markdown docs
+```
+
+### Programmatic Usage
+
+```typescript
+import { HookCaptureSystem, generateHookConfig } from '@weavelogic/knowledge-graph-agent';
+
+// Create capture system
+const capture = new HookCaptureSystem('/project', {
+  createMarkdown: true,
+  separateToolOutputs: true,
+  captureSubAgents: true,
+  captureSwarms: true,
+});
+
+// Start a session
+const session = capture.startSession('Development Session', 'Feature implementation');
+
+// Handle hook events
+capture.handleHookEvent({
+  event: 'UserPromptSubmit',
+  timestamp: new Date().toISOString(),
+  userPrompt: 'Help me implement...',
+});
+
+// End session
+const completedSession = capture.endSession();
+```
+
+---
+
+## Document Cultivation
+
+Automatically build out comprehensive documentation using claude-flow swarm orchestration.
+
+### Usage
+
+```bash
+# Cultivate documentation with swarm agents
+kg cultivate --path /project
+
+# Include SOP compliance analysis
+kg cultivate --include-sops
+
+# Dry run to preview
+kg cultivate --dry-run
+```
+
+### Features
+
+- **7-Phase Cultivation Process**: Structure analysis through completion
+- **Development Planning**: Generates phased development plans
+- **Infrastructure Planning**: Creates dev/staging/production infrastructure plans
+- **SOP Compliance**: Integrates AI-SDLC SOP analysis
+- **Swarm Orchestration**: Uses claude-flow for parallel documentation generation
+
+---
+
 ## Enterprise Features
 
 ### Chunker for Large Documents
@@ -592,13 +697,25 @@ const execution = await workflow.start('document-analysis', {
 | `kg dashboard serve` | Serve production build |
 | `kg dashboard status` | Check dashboard status |
 
-### Documentation
+### Documentation & Cultivation
 
 | Command | Description |
 |---------|-------------|
 | `kg docs init` | Initialize docs directory |
 | `kg analyze` | Analyze & migrate to knowledge graph |
 | `kg convert docs` | Convert docs/ to docs-nn/ |
+| `kg cultivate` | Cultivate docs using swarm orchestration |
+| `kg cultivate --include-sops` | Include SOP compliance analysis |
+
+### Claude Code Hooks
+
+| Command | Description |
+|---------|-------------|
+| `kg hooks install` | Install hooks to capture interactions |
+| `kg hooks uninstall` | Remove hooks configuration |
+| `kg hooks status` | Show hooks status |
+| `kg hooks sessions` | List captured sessions |
+| `kg hooks export` | Export captured sessions |
 
 ### Configuration
 
@@ -723,6 +840,45 @@ import {
 ---
 
 ## Changelog
+
+### v0.10.0
+
+**Claude Code Hooks System:**
+- **Hook Capture System** - Capture all Claude interactions (prompts, responses, tool calls)
+- **Hierarchical Storage** - Sessions → Conversations → Messages → Tool Calls
+- **Sub-Agent Tracking** - Automatically tracks Task tool spawns with full context
+- **Swarm Tracking** - Captures claude-flow swarm operations
+- **Markdown Generation** - Creates documentation for sessions, conversations, agents
+- **Tool Output Separation** - Stores tool outputs in dedicated JSON files
+- **CLI Commands** - `kg hooks install/uninstall/status/sessions/export`
+- Comprehensive type definitions with Zod validation
+- 22 new tests for hook system
+
+### v0.9.0
+
+**Document Cultivation System:**
+- **Doc Cultivation Command** - `kg cultivate` for automated documentation buildout
+- **7-Phase Cultivation Process** - Structure → Content → Architecture → Development → Infrastructure → Review → Completion
+- **Development Planning** - Generates phased development plans with tasks
+- **Infrastructure Planning** - Creates dev/staging/production infrastructure plans
+- **SOP Compliance Analysis** - Integrates AI-SDLC SOP requirements
+- **Swarm Orchestration** - Uses claude-flow for parallel documentation generation
+- Support for multi-service projects (api, backend, frontend, admin)
+
+### v0.8.8
+
+- Added `src/{service}/docs` directory scanning and copying for doc generation
+- Enhanced service documentation detection
+
+### v0.8.7
+
+- Improved Python project detection for doc generation
+- Better handling of `requirements.txt` and `pyproject.toml`
+
+### v0.8.6
+
+- Fixed vault-sync.test.ts timeout issues
+- Improved test stability
 
 ### v0.7.4
 

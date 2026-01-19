@@ -52,6 +52,8 @@ interface CultivateOptions {
   seed?: boolean;
   projectRoot?: string;
   deepAnalysis?: boolean;
+  validateStandards?: boolean;
+  generateStandards?: boolean;
 }
 
 interface OrphanFile {
@@ -98,6 +100,8 @@ export function createCultivateCommand(): Command {
     .option('--seed', 'Bootstrap vault with primitives from codebase analysis', false)
     .option('--project-root <path>', 'Project root for seed analysis (defaults to target directory)')
     .option('--deep-analysis', 'Use claude-flow agents for deep codebase analysis (requires --seed)', false)
+    .option('--validate-standards', 'Validate deep-analyzer against established standards', false)
+    .option('--generate-standards', 'Generate comprehensive standards using Hive Mind agents', false)
     .action(async (targetPath: string, options: CultivateOptions) => {
       const spinner = ora('Initializing cultivation...').start();
 
@@ -129,20 +133,26 @@ export function createCultivateCommand(): Command {
           generateMissing: options.generateMissing || options.parse || options.all,
           buildFooters: options.parse, // buildFooters may already exist
           seed: options.seed || false,
+          validateStandards: options.validateStandards || false,
+          generateStandards: options.generateStandards || false,
         };
 
         // If no tasks selected, show help
         if (!tasks.icons && !tasks.connections && !tasks.metadata && !tasks.cleanup &&
-            !intelligentTasks.frontmatter && !intelligentTasks.generateMissing && !intelligentTasks.seed && !options.parse) {
+            !intelligentTasks.frontmatter && !intelligentTasks.generateMissing && !intelligentTasks.seed &&
+            !intelligentTasks.validateStandards && !intelligentTasks.generateStandards && !options.parse) {
           console.log(chalk.yellow('\n💡 No tasks selected. Use one or more of:'));
           console.log('  --icons       Apply visual icons to files');
           console.log('  --connections Connect orphaned/poorly connected documents');
           console.log('  --metadata    Update metadata and frontmatter');
           console.log('  --cleanup     Clean up and optimize graph');
-          console.log('  --parse           Parse and enhance all documents (frontmatter + generation)');
-          console.log('  --frontmatter     Generate intelligent YAML frontmatter');
-          console.log('  --generate-missing Generate missing docs from primitives/features/tech-specs');
-          console.log('  --all         Run all tasks');
+          console.log('  --parse                Parse and enhance all documents (frontmatter + generation)');
+          console.log('  --frontmatter          Generate intelligent YAML frontmatter');
+          console.log('  --generate-missing     Generate missing docs from primitives/features/tech-specs');
+          console.log('  --seed                 Bootstrap vault with primitives from codebase analysis');
+          console.log('  --validate-standards   Validate deep-analyzer against established standards');
+          console.log('  --generate-standards   Generate standards docs using Hive Mind agents');
+          console.log('  --all                  Run all tasks');
           console.log('\nRun "weaver cultivate --help" for more options\n');
           return;
         }
@@ -265,7 +275,144 @@ export function createCultivateCommand(): Command {
           }
         }
 
-        // Task 3: Intelligent Cultivation
+        // Task 3: Standards Generation (using Hive Mind agents)
+        if (intelligentTasks.generateStandards) {
+          spinner.start('Initializing Hive Mind standards generation...');
+
+          const { execaCommand } = await import('execa');
+          const projectRoot = options.projectRoot || absolutePath;
+          const outputDir = path.join(vaultRoot, 'docs/standards');
+
+          // Create output directory
+          await fs.mkdir(outputDir, { recursive: true });
+
+          // Check if claude-flow is available
+          let hasClaudeFlow = false;
+          try {
+            await execaCommand('npx claude-flow@alpha --version', { timeout: 5000 });
+            hasClaudeFlow = true;
+            spinner.succeed('claude-flow detected');
+          } catch {
+            spinner.warn('claude-flow not available, creating placeholder files');
+            hasClaudeFlow = false;
+          }
+
+          if (hasClaudeFlow) {
+            console.log(chalk.bold.green('\n🧠 HIVE MIND COLLECTIVE INTELLIGENCE\n'));
+            console.log(chalk.cyan('Deploying 4 specialized agents:\n'));
+            console.log('  1️⃣  Researcher - API styles & coding standards');
+            console.log('  2️⃣  Analyst   - Data formats & documentation');
+            console.log('  3️⃣  Coder     - Implementation patterns & naming');
+            console.log('  4️⃣  Tester    - Testing guidelines & coverage\n');
+
+            spinner.start('Spawning Hive Mind agents in parallel...');
+
+            const agents = [
+              {
+                name: 'Researcher',
+                type: 'researcher',
+                outputFile: 'api-coding-standards.md',
+              },
+              {
+                name: 'Analyst',
+                type: 'analyst',
+                outputFile: 'data-documentation-standards.md',
+              },
+              {
+                name: 'Coder',
+                type: 'coder',
+                outputFile: 'implementation-naming-standards.md',
+              },
+              {
+                name: 'Tester',
+                type: 'tester',
+                outputFile: 'testing-guidelines.md',
+              },
+            ];
+
+            const agentPromises = agents.map(async (agent) => {
+              const prompt = `You are a ${agent.name} agent in a Hive Mind swarm analyzing the project at ${projectRoot}.
+
+**OBJECTIVE**: Analyze the codebase and generate comprehensive ${agent.name.toLowerCase()} standards documentation.
+
+**COORDINATION PROTOCOL**:
+\`\`\`bash
+npx claude-flow@alpha hooks pre-task --description "Generate ${agent.name.toLowerCase()} standards"
+\`\`\`
+
+**YOUR TASKS**:
+1. Analyze the codebase at ${projectRoot}
+2. Identify current patterns and conventions
+3. Research industry best practices for this type of project
+4. Generate comprehensive markdown documentation
+5. Include real code examples from the project
+6. Create actionable recommendations
+
+**OUTPUT**: Write comprehensive markdown to ${path.join(outputDir, agent.outputFile)}
+
+After completing:
+\`\`\`bash
+npx claude-flow@alpha hooks post-task --task-id "${agent.type}-standards"
+\`\`\`
+`;
+
+              try {
+                const result = await execaCommand(
+                  `npx claude-flow@alpha agent execute ${agent.type} "${prompt.replace(/"/g, '\\"')}" --json`,
+                  {
+                    cwd: projectRoot,
+                    timeout: 180000, // 3 minutes per agent
+                    shell: true,
+                  }
+                );
+                return { agent: agent.name, success: true };
+              } catch (error: any) {
+                return { agent: agent.name, success: false, error: error.message };
+              }
+            });
+
+            const results = await Promise.allSettled(agentPromises);
+
+            spinner.succeed('Hive Mind agent execution complete');
+
+            // Report results
+            console.log(chalk.cyan('\n📊 Agent Results:\n'));
+            results.forEach((result, i) => {
+              const agent = agents[i];
+              if (result.status === 'fulfilled' && result.value.success) {
+                console.log(chalk.green(`  ✅ ${agent.name}: Success`));
+              } else {
+                console.log(chalk.yellow(`  ⚠️  ${agent.name}: Failed (check logs)`));
+              }
+            });
+
+            console.log(chalk.bold.green(`\n✨ Standards generated in ${outputDir}\n`));
+          } else {
+            console.log(chalk.yellow('\n⚠️  claude-flow not available'));
+            console.log(chalk.gray('Install with: npm install -g claude-flow@alpha\n'));
+          }
+        }
+
+        // Task 4: Standards Validation
+        if (intelligentTasks.validateStandards) {
+          spinner.start('Validating standards...');
+
+          const { StandardsValidator } = await import('../../cultivation/standards-validator.js');
+          const projectRoot = options.projectRoot || absolutePath;
+          const validator = new StandardsValidator(projectRoot);
+
+          const validationResult = await validator.validateDeepAnalyzer();
+
+          spinner.stop();
+          validator.printReport(validationResult);
+
+          if (!validationResult.passed && !options.dryRun) {
+            console.log(chalk.yellow('\n⚠️  Standards validation failed. Fix errors to continue.\n'));
+            process.exit(1);
+          }
+        }
+
+        // Task 5: Intelligent Cultivation
         if (options.parse || intelligentTasks.frontmatter || intelligentTasks.generateMissing || intelligentTasks.seed) {
           const { CultivationEngine } = await import('../../cultivation/engine.js');
 
@@ -375,12 +522,12 @@ export function createCultivateCommand(): Command {
           }
         }
 
-        // Task 4: Metadata Update
+        // Task 6: Metadata Update
         if (tasks.metadata) {
           spinner.info('Metadata cultivation: Not yet implemented');
         }
 
-        // Task 5: Cleanup
+        // Task 7: Cleanup
         if (tasks.cleanup) {
           spinner.info('Graph cleanup: Not yet implemented');
         }

@@ -57,8 +57,8 @@ export class SeedEnhancer {
 
     console.log(`  ✓ Basic analysis found ${basicDocs.length} primitives`);
 
-    // Optionally run deep analysis
-    if (this.options.deepAnalysis !== false) {
+    // Optionally run deep analysis (ONLY if explicitly enabled)
+    if (this.options.deepAnalysis === true) {
       console.log('  🧠 Running deep codebase analysis...');
 
       try {
@@ -70,14 +70,20 @@ export class SeedEnhancer {
 
           console.log(`  ✓ Deep analysis found ${deepResult.totalCount} additional primitives`);
           this.printAnalysisSummary(deepResult);
+        } else {
+          console.log('  ℹ️  Deep analysis returned no results, using basic analysis only');
         }
       } catch (error) {
         console.error('  ❌ Deep analysis failed:', error);
+        console.log('  ℹ️  Continuing with basic analysis only');
 
-        if (!this.options.fallbackToShallow) {
+        // Always fallback to shallow analysis - don't throw
+        if (!this.options.fallbackToShallow && this.options.fallbackToShallow !== undefined) {
           throw error;
         }
       }
+    } else {
+      console.log('  ℹ️  Deep analysis disabled (use --deep-analysis to enable)');
     }
 
     // Remove duplicates

@@ -95,14 +95,22 @@ export class SeedGenerator {
   async generatePrimitives(analysis: SeedAnalysis): Promise<GeneratedDocument[]> {
     const documents: GeneratedDocument[] = [];
 
+    // Create set of framework names for deduplication
+    const frameworkNames = new Set(analysis.frameworks.map(f => f.name.toLowerCase()));
+
     // Generate nodes for frameworks
     for (const framework of analysis.frameworks) {
       const doc = this.generateFrameworkNode(framework, analysis);
       documents.push(doc);
     }
 
-    // Generate nodes for major dependencies
+    // Generate nodes for major dependencies (skip frameworks to avoid duplicates)
     for (const dep of analysis.dependencies) {
+      // Skip if already generated as a framework
+      if (frameworkNames.has(dep.name.toLowerCase())) {
+        continue;
+      }
+
       if (this.shouldGenerateNode(dep)) {
         const doc = this.generateDependencyNode(dep, analysis);
         documents.push(doc);

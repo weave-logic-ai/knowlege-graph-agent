@@ -1,0 +1,773 @@
+{
+  "project_metadata": {
+    "name": "Legal Docs App v2",
+    "path": "/home/aepod/dev/business-planning-copy/04-case-studies/legal-docs-app/v2",
+    "stack": "Next.js 16, TypeScript, React 19, LowDB, Workflow (Durable Execution)",
+    "analysis_date": "2025-10-29",
+    "total_primitives_discovered": 47
+  },
+
+  "primitives_mapping": {
+    "🔴_CRITICAL": {
+      "patterns": [
+        {
+          "category": "patterns/api-patterns",
+          "name": "RESTful CRUD Pattern",
+          "description": "Consistent REST API pattern across all entities (Users, Companies, Documents, Packages) with GET, POST, PUT/PATCH, DELETE operations",
+          "files": [
+            "/app/api/auth/login/route.ts",
+            "/app/api/auth/signup/route.ts",
+            "/app/api/companies/route.ts",
+            "/app/api/companies/[id]/route.ts",
+            "/app/api/documents/route.ts",
+            "/app/api/documents/[id]/route.ts",
+            "/app/api/packages/route.ts",
+            "/app/api/packages/[id]/route.ts"
+          ],
+          "dependencies": ["next@16.0.1", "@/lib/db", "@/lib/auth"],
+          "usage": "All API routes follow Next.js App Router pattern with route handlers (GET, POST) that return NextResponse.json() with standardized { success, data/error } structure",
+          "implementation_details": {
+            "response_format": "{ success: boolean, data?: T, error?: string }",
+            "authentication": "Cookie-based session with getCurrentUser() middleware",
+            "error_handling": "Try-catch with 401/400/500 status codes"
+          }
+        },
+        {
+          "category": "patterns/api-patterns",
+          "name": "Workflow Orchestration Pattern",
+          "description": "Durable workflow execution pattern using 'workflow' package for long-running document generation processes",
+          "files": [
+            "/workflows/generate-document.ts",
+            "/app/api/documents/route.ts",
+            "/app/.well-known/workflow/v1/step/route.js",
+            "/app/.well-known/workflow/v1/flow/route.js"
+          ],
+          "dependencies": ["workflow@4.0.1-beta.4"],
+          "usage": "Document generation uses durable workflows with 'use workflow' and 'use step' directives for fault-tolerant multi-step processes",
+          "implementation_details": {
+            "workflow_structure": "Main workflow with sub-steps (loadRequiredData, generateContent, updateDocumentContent)",
+            "durability": "Workflow state persisted via .well-known protocol endpoints",
+            "fault_tolerance": "Automatic retries and state recovery on failures"
+          }
+        },
+        {
+          "category": "patterns/data-patterns",
+          "name": "File-Based JSON Database Pattern",
+          "description": "LowDB with JSONFile adapter for persistent local-first data storage",
+          "files": ["/lib/db.ts", "/data/db.json"],
+          "dependencies": ["lowdb@7.0.1"],
+          "usage": "All entities stored in single JSON file with in-memory caching and async read/write operations",
+          "implementation_details": {
+            "schema_structure": "DatabaseSchema with users, companies, documents, packages, templates, settings, sessions",
+            "persistence_strategy": "Lazy initialization with schema validation on first access",
+            "transaction_pattern": "Read entire DB, modify in memory, write back with db.write()"
+          }
+        },
+        {
+          "category": "patterns/ui-patterns",
+          "name": "Multi-Step Survey Pattern with AI Assistance",
+          "description": "Wizard-style form with contextual AI chat assistant for form filling",
+          "files": [
+            "/components/document-survey.tsx",
+            "/components/chat-assistant.tsx",
+            "/lib/survey-config.ts"
+          ],
+          "dependencies": ["react@19.2.0", "@radix-ui/*"],
+          "usage": "5-step survey flow with real-time AI suggestions that populate form fields",
+          "implementation_details": {
+            "steps": ["client-info", "project-details", "sow-details", "commercial-terms", "legal-terms"],
+            "ai_integration": "Chat API provides suggestions that auto-fill survey fields",
+            "state_management": "React useState for survey data accumulation across steps"
+          }
+        },
+        {
+          "category": "patterns/integration-patterns",
+          "name": "Template Variable Substitution Pattern",
+          "description": "Multi-format placeholder replacement system for document generation",
+          "files": ["/lib/template-parser.ts"],
+          "dependencies": ["fs/promises", "path"],
+          "usage": "Supports [Placeholder], {{placeholder}}, [[placeholder]] formats with company data mapping",
+          "implementation_details": {
+            "supported_formats": ["[Placeholder]", "{{placeholder}}", "[[placeholder]]"],
+            "data_sources": ["provider company", "client company", "form data", "auto-generated dates"],
+            "processing": "RegExp-based pattern matching with batch replacement"
+          }
+        },
+        {
+          "category": "patterns/security-patterns",
+          "name": "Cookie-Based Session Authentication",
+          "description": "Bcrypt password hashing with session tokens stored in HTTP-only cookies",
+          "files": ["/lib/auth.ts"],
+          "dependencies": ["bcryptjs@3.0.2", "next/headers"],
+          "usage": "Login creates session, stores in cookie, middleware validates on protected routes",
+          "implementation_details": {
+            "password_hashing": "bcrypt with 10 rounds",
+            "session_storage": "UUID tokens in database with 24-hour expiration",
+            "cookie_config": "httpOnly, secure (production), sameSite: lax"
+          }
+        }
+      ],
+
+      "protocols": [
+        {
+          "category": "protocols/api",
+          "name": "Next.js App Router API Protocol",
+          "description": "Next.js 16 App Router convention for API route handlers",
+          "files": ["All /app/api/**/route.ts files"],
+          "dependencies": ["next@16.0.1"],
+          "usage": "Export async GET/POST/PUT/DELETE functions that receive Request and return Response",
+          "implementation_details": {
+            "route_structure": "/app/api/[resource]/route.ts for collection, /app/api/[resource]/[id]/route.ts for individual",
+            "request_handling": "await request.json() for body parsing",
+            "response_pattern": "NextResponse.json(payload, { status })"
+          }
+        },
+        {
+          "category": "protocols/workflow",
+          "name": "Workflow Durable Execution Protocol",
+          "description": "Standard workflow protocol for durable execution with .well-known endpoints",
+          "files": [
+            "/app/.well-known/workflow/v1/step/route.js",
+            "/app/.well-known/workflow/v1/flow/route.js",
+            "/app/.well-known/workflow/v1/webhook/[token]/route.js"
+          ],
+          "dependencies": ["workflow@4.0.1-beta.4"],
+          "usage": "Workflow runtime communicates with app via standardized .well-known protocol endpoints",
+          "implementation_details": {
+            "endpoints": ["/step - Execute workflow steps", "/flow - Workflow metadata", "/webhook - Async callbacks"],
+            "directives": ["use workflow - Mark workflow function", "use step - Mark resumable step"],
+            "state_management": "Automatic serialization/deserialization of workflow state"
+          }
+        }
+      ],
+
+      "standards": [
+        {
+          "category": "standards/api-styles",
+          "name": "JSON API Response Standard",
+          "description": "Consistent API response envelope across all endpoints",
+          "files": ["/lib/contracts/api-contracts.ts"],
+          "dependencies": [],
+          "usage": "All API responses follow ApiResponse<T> or PaginatedResponse<T> structure",
+          "implementation_details": {
+            "success_response": "{ success: true, data: T, metadata?: { timestamp, requestId } }",
+            "error_response": "{ success: false, error: { code, message, field?, details? } }",
+            "pagination": "{ items: T[], total, page, limit, totalPages }"
+          }
+        },
+        {
+          "category": "standards/naming-conventions",
+          "name": "TypeScript Enum Convention",
+          "description": "PascalCase enums with UPPER_CASE values for type safety",
+          "files": ["/lib/contracts/api-contracts.ts"],
+          "dependencies": [],
+          "usage": "All entity types, statuses, and field types defined as TypeScript enums",
+          "implementation_details": {
+            "pattern": "export enum EntityName { VALUE_ONE = 'value-one' }",
+            "examples": ["DocumentType", "DocumentStatus", "EntityType", "FieldType", "Theme"]
+          }
+        },
+        {
+          "category": "standards/data-formats",
+          "name": "ISO 8601 DateTime Standard",
+          "description": "All timestamps stored as ISO 8601 strings",
+          "files": ["/lib/db.ts"],
+          "dependencies": [],
+          "usage": "createdAt, updatedAt, expiresAt fields use new Date().toISOString()",
+          "implementation_details": {
+            "format": "YYYY-MM-DDTHH:mm:ss.sssZ",
+            "generation": "new Date().toISOString()",
+            "comparison": "new Date(timestamp) for parsing"
+          }
+        },
+        {
+          "category": "standards/coding-standards",
+          "name": "TypeScript Strict Mode",
+          "description": "Full TypeScript type safety with explicit interfaces",
+          "files": ["tsconfig.json", "/lib/contracts/api-contracts.ts", "/lib/db.ts"],
+          "dependencies": ["typescript@5"],
+          "usage": "All data structures have TypeScript interfaces, no implicit any types",
+          "implementation_details": {
+            "interface_pattern": "export interface EntityName { id: string, ... }",
+            "type_exports": "Export all types from contracts for reuse",
+            "discriminated_unions": "type DocumentStatus = 'draft' | 'in-progress' | 'review' | 'completed'"
+          }
+        }
+      ]
+    },
+
+    "🟡_HIGH_PRIORITY": {
+      "integrations": [
+        {
+          "category": "integrations/databases",
+          "name": "LowDB JSON Database Integration",
+          "description": "Local-first JSON file database with async operations",
+          "files": ["/lib/db.ts", "/data/db.json"],
+          "dependencies": ["lowdb@7.0.1", "lowdb/node"],
+          "usage": "Singleton pattern with getDb() function, all CRUD operations async",
+          "implementation_details": {
+            "adapter": "JSONFile<DatabaseSchema>",
+            "initialization": "Lazy load with schema validation",
+            "default_data": "Pre-seeded with 5 document templates",
+            "methods": ["findUserByEmail", "createUser", "getAllCompanies", "createDocument", etc.]
+          }
+        },
+        {
+          "category": "integrations/ai-services",
+          "name": "OpenAI Chat API Integration (Planned)",
+          "description": "AI-powered chat assistant for form filling and document generation",
+          "files": ["/app/api/chat/route.ts", "/components/chat-assistant.tsx"],
+          "dependencies": ["openai@6.7.0", "ai@5.0.81"],
+          "usage": "Currently mock responses, designed for OpenAI integration",
+          "implementation_details": {
+            "current_state": "Keyword-based mock responses",
+            "planned_integration": "OpenAI GPT for intelligent suggestions",
+            "suggestion_mechanism": "AI returns field_id: value pairs for auto-population",
+            "context_passing": "Full survey data sent to AI for contextual responses"
+          }
+        },
+        {
+          "category": "integrations/workflow-engine",
+          "name": "Workflow Durable Execution Integration",
+          "description": "Durable workflow execution for long-running document generation",
+          "files": ["/workflows/generate-document.ts", "/app/api/documents/route.ts"],
+          "dependencies": ["workflow@4.0.1-beta.4"],
+          "usage": "start(workflow, args) initiates durable execution with automatic persistence",
+          "implementation_details": {
+            "workflow_definition": "Async function with 'use workflow' directive",
+            "step_functions": "Separate async functions with 'use step' for resumability",
+            "utilities": "sleep() for delays, automatic retry on failure",
+            "execution_tracking": "workflowRunId stored in document for status queries"
+          }
+        },
+        {
+          "category": "integrations/auth-providers",
+          "name": "Custom Cookie-Based Auth System",
+          "description": "Self-contained authentication without external auth providers",
+          "files": ["/lib/auth.ts", "/app/api/auth/*"],
+          "dependencies": ["bcryptjs@3.0.2", "next/headers"],
+          "usage": "Login/signup creates session, middleware checks getCurrentUser()",
+          "implementation_details": {
+            "session_mechanism": "UUID tokens in database with expiration",
+            "password_policy": "Bcrypt hashing, no length/complexity enforcement",
+            "logout": "Session deletion from database and cookie removal",
+            "middleware": "getCurrentUser() extracts session from cookie"
+          }
+        }
+      ],
+
+      "schemas": [
+        {
+          "category": "schemas/database",
+          "name": "User Schema",
+          "description": "User entity with authentication and profile data",
+          "files": ["/lib/db.ts", "/lib/contracts/api-contracts.ts"],
+          "dependencies": [],
+          "usage": "Stores user credentials and preferences",
+          "structure": {
+            "id": "string (UUID)",
+            "email": "string (unique)",
+            "password": "string (bcrypt hash)",
+            "name": "string (optional)",
+            "role": "Role enum (admin/user)",
+            "createdAt": "string (ISO 8601)",
+            "updatedAt": "string (ISO 8601)",
+            "preferences": "UserPreferences (theme, notifications, etc.)"
+          }
+        },
+        {
+          "category": "schemas/database",
+          "name": "Company Schema",
+          "description": "Company/entity information for both service provider and clients",
+          "files": ["/lib/db.ts"],
+          "dependencies": [],
+          "usage": "Stores legal entity data for document generation",
+          "structure": {
+            "id": "string (UUID)",
+            "isOwner": "boolean (marks service provider company)",
+            "entityType": "'company' | 'individual'",
+            "legalName": "string (official legal name)",
+            "address": "{ street, city, state, zip, country }",
+            "signerName": "string (authorized representative)",
+            "signerTitle": "string (position/title)",
+            "email": "string (optional)",
+            "phone": "string (optional)",
+            "metadata": "{ industry, size, services, yearEstablished, taxId, website, [key: string]: any }",
+            "createdAt": "string (ISO 8601)",
+            "updatedAt": "string (ISO 8601)"
+          }
+        },
+        {
+          "category": "schemas/database",
+          "name": "Document Schema",
+          "description": "Legal document entity with workflow tracking",
+          "files": ["/lib/db.ts"],
+          "dependencies": [],
+          "usage": "Represents generated legal documents with full lifecycle tracking",
+          "structure": {
+            "id": "string (UUID)",
+            "templateId": "string (reference to DocumentTemplate)",
+            "type": "DocumentType enum (nda/msa/sow/discovery/privacy-policy)",
+            "name": "string (document title)",
+            "status": "DocumentStatus enum (draft/in-progress/review/completed)",
+            "providerCompanyId": "string (service provider company)",
+            "clientCompanyId": "string (client company, optional)",
+            "formData": "Record<string, any> (survey/form data)",
+            "content": "string (generated markdown content)",
+            "workflowRunId": "string (workflow execution ID, optional)",
+            "packageId": "string (document package ID, optional)",
+            "createdAt": "string (ISO 8601)",
+            "updatedAt": "string (ISO 8601)",
+            "createdBy": "string (user ID)"
+          }
+        },
+        {
+          "category": "schemas/database",
+          "name": "DocumentPackage Schema",
+          "description": "Grouped documents from survey workflow",
+          "files": ["/lib/db.ts"],
+          "dependencies": [],
+          "usage": "Bundles related documents (NDA + MSA + SOW) created together",
+          "structure": {
+            "id": "string (UUID)",
+            "name": "string (package name)",
+            "description": "string (optional)",
+            "documentIds": "string[] (references to Document.id)",
+            "surveyData": "Record<string, any> (original survey responses)",
+            "status": "'draft' | 'in-progress' | 'completed'",
+            "createdAt": "string (ISO 8601)",
+            "updatedAt": "string (ISO 8601)",
+            "createdBy": "string (user ID)"
+          }
+        },
+        {
+          "category": "schemas/database",
+          "name": "DocumentTemplate Schema",
+          "description": "Template definitions for document types",
+          "files": ["/lib/db.ts"],
+          "dependencies": [],
+          "usage": "Defines available document templates with metadata",
+          "structure": {
+            "id": "string",
+            "type": "DocumentType enum",
+            "name": "string (template name)",
+            "description": "string (template description)",
+            "templatePath": "string (file system path to .md template)",
+            "requiredFields": "string[] (mandatory placeholder fields)"
+          }
+        },
+        {
+          "category": "schemas/api",
+          "name": "API Contracts Schema",
+          "description": "Comprehensive TypeScript contracts for all API operations",
+          "files": ["/lib/contracts/api-contracts.ts"],
+          "dependencies": [],
+          "usage": "Type-safe request/response interfaces for frontend-backend communication",
+          "structure": {
+            "enums": "14 enums (DocumentType, DocumentStatus, EntityType, FieldType, etc.)",
+            "core_entities": "User, Company, Document, DocumentPackage, Template, Session, Settings",
+            "api_responses": "ApiResponse<T>, PaginatedResponse<T>, ApiError, ResponseMetadata",
+            "request_dtos": "CreateDocumentRequest, UpdateDocumentRequest, CreateCompanyRequest, etc.",
+            "ai_contracts": "AIChange, AIProposal, Citation (for future AI integration)"
+          }
+        },
+        {
+          "category": "schemas/configuration",
+          "name": "Survey Configuration Schema",
+          "description": "Multi-step survey field definitions",
+          "files": ["/lib/survey-config.ts"],
+          "dependencies": [],
+          "usage": "Defines 5-step survey flow with field metadata",
+          "structure": {
+            "SurveyStep": "{ id, title, description, chatPrompt, fields[] }",
+            "SurveyField": "{ id, label, type, placeholder, required, options, aiPrompt, helpText }",
+            "field_types": "text, textarea, select, date, number, company-select, ai-assisted",
+            "steps": "client-info, project-details, sow-details, commercial-terms, legal-terms"
+          }
+        }
+      ]
+    },
+
+    "🟢_MEDIUM_PRIORITY": {
+      "services": [
+        {
+          "category": "services/ai",
+          "name": "Chat AI Service (Placeholder)",
+          "description": "AI chat assistant for form filling and content generation",
+          "files": ["/app/api/chat/route.ts"],
+          "dependencies": ["openai@6.7.0", "ai@5.0.81"],
+          "usage": "POST /api/chat with messages array, returns AI suggestions",
+          "current_implementation": "Keyword-based mock responses",
+          "planned_features": ["OpenAI GPT integration", "Context-aware suggestions", "Multi-turn conversations"]
+        },
+        {
+          "category": "services/document-generation",
+          "name": "Template Parser Service",
+          "description": "Document generation from markdown templates",
+          "files": ["/lib/template-parser.ts"],
+          "dependencies": ["fs/promises", "path"],
+          "usage": "TemplateParser.generateDocument(templatePath, provider, client, formData)",
+          "features": [
+            "Multi-format placeholder support",
+            "Company data mapping",
+            "Automatic date insertion",
+            "Custom form data merge"
+          ]
+        }
+      ],
+
+      "guides": [
+        {
+          "category": "guides/setup",
+          "name": "Environment Setup Guide",
+          "description": "Environment variable configuration",
+          "files": ["/.env.example", "/.env"],
+          "dependencies": [],
+          "usage": "Required: ANTHROPIC_API_KEY for future AI features",
+          "configuration": {
+            "ANTHROPIC_API_KEY": "API key for Claude AI integration (currently unused)",
+            "NODE_ENV": "production/development for secure cookie settings"
+          }
+        },
+        {
+          "category": "guides/development",
+          "name": "Next.js Development Workflow",
+          "description": "Standard Next.js 16 development commands",
+          "files": ["/package.json"],
+          "dependencies": [],
+          "usage": "npm run dev, npm run build, npm start, npm run lint",
+          "scripts": {
+            "dev": "next dev (development server)",
+            "build": "next build (production build)",
+            "start": "next start (production server)",
+            "lint": "eslint (code linting)"
+          }
+        }
+      ]
+    },
+
+    "🔵_LOW_PRIORITY": {
+      "components": [
+        {
+          "category": "components/ui",
+          "name": "Radix UI Component Library",
+          "description": "Shadcn/ui-style components built on Radix UI primitives",
+          "files": [
+            "/components/ui/button.tsx",
+            "/components/ui/card.tsx",
+            "/components/ui/input.tsx",
+            "/components/ui/dialog.tsx",
+            "/components/ui/select.tsx",
+            "/components/ui/textarea.tsx",
+            "/components/ui/checkbox.tsx",
+            "/components/ui/switch.tsx",
+            "/components/ui/tabs.tsx",
+            "/components/ui/table.tsx",
+            "/components/ui/badge.tsx",
+            "/components/ui/form.tsx",
+            "/components/ui/label.tsx",
+            "/components/ui/separator.tsx"
+          ],
+          "dependencies": [
+            "@radix-ui/react-dialog",
+            "@radix-ui/react-select",
+            "@radix-ui/react-checkbox",
+            "@radix-ui/react-switch",
+            "@radix-ui/react-tabs",
+            "@radix-ui/react-slot",
+            "@radix-ui/react-label",
+            "@radix-ui/react-separator",
+            "class-variance-authority@0.7.1",
+            "tailwind-merge@3.3.1"
+          ],
+          "usage": "Accessible, composable UI components with Tailwind CSS styling",
+          "patterns": "forwardRef + cn() utility for className merging"
+        },
+        {
+          "category": "components/features",
+          "name": "Document Survey Component",
+          "description": "Multi-step wizard for document package creation",
+          "files": ["/components/document-survey.tsx"],
+          "dependencies": ["react@19.2.0", "next@16.0.1"],
+          "usage": "Renders 5-step survey with AI assistant sidebar",
+          "features": [
+            "Step-by-step navigation",
+            "Form data accumulation",
+            "AI-assisted field filling",
+            "Dynamic field rendering based on type",
+            "Package creation on completion"
+          ]
+        },
+        {
+          "category": "components/features",
+          "name": "Chat Assistant Component",
+          "description": "AI chat interface for survey assistance",
+          "files": ["/components/chat-assistant.tsx"],
+          "dependencies": ["react@19.2.0"],
+          "usage": "Sticky sidebar chat that suggests field values",
+          "features": [
+            "Message history display",
+            "Auto-suggestion application",
+            "Context-aware prompts per step",
+            "Real-time typing support"
+          ]
+        },
+        {
+          "category": "components/features",
+          "name": "Company Dialog Component",
+          "description": "Modal for creating/editing companies",
+          "files": ["/components/company-dialog.tsx"],
+          "dependencies": ["@radix-ui/react-dialog"],
+          "usage": "Form dialog for company CRUD operations",
+          "fields": [
+            "Legal name, address",
+            "Signer information",
+            "Contact details",
+            "Entity type (company/individual)"
+          ]
+        },
+        {
+          "category": "components/utilities",
+          "name": "CN Utility Function",
+          "description": "Tailwind class name merger",
+          "files": ["/lib/utils.ts"],
+          "dependencies": ["clsx@2.1.1", "tailwind-merge@3.3.1"],
+          "usage": "cn('base-classes', conditionalClass && 'class', 'override-class')",
+          "purpose": "Intelligently merge Tailwind classes avoiding conflicts"
+        },
+        {
+          "category": "components/layout",
+          "name": "Navigation Component",
+          "description": "Top navigation bar with auth state",
+          "files": ["/components/navigation.tsx"],
+          "dependencies": ["next/link", "react@19.2.0"],
+          "usage": "Global navigation with user profile and logout",
+          "features": [
+            "Link to Dashboard, Documents, Companies",
+            "User authentication status display",
+            "Logout functionality"
+          ]
+        }
+      ]
+    }
+  },
+
+  "architectural_insights": {
+    "overall_architecture": "Monolithic Next.js application with local-first JSON database and durable workflow execution",
+
+    "key_design_decisions": [
+      {
+        "decision": "LowDB instead of SQL/PostgreSQL",
+        "rationale": "Local-first, zero-config, file-based persistence for MVP/prototype",
+        "tradeoffs": "Limited query capabilities, single-file bottleneck, but simple deployment"
+      },
+      {
+        "decision": "Workflow package for durable execution",
+        "rationale": "Document generation needs fault tolerance and long-running process support",
+        "tradeoffs": "Additional complexity, but enables reliable async workflows"
+      },
+      {
+        "decision": "Next.js App Router with Route Handlers",
+        "rationale": "Modern Next.js pattern, collocated API routes, TypeScript-first",
+        "tradeoffs": "Newer API, less middleware ecosystem than Pages Router"
+      },
+      {
+        "decision": "Cookie-based sessions instead of JWT",
+        "rationale": "Simpler server-side session invalidation, HTTP-only security",
+        "tradeoffs": "Server-side lookup required, but more secure than localStorage JWT"
+      },
+      {
+        "decision": "Markdown templates with placeholder substitution",
+        "rationale": "Human-readable, version-controllable, simple parsing logic",
+        "tradeoffs": "Limited formatting options vs DOCX/PDF, but easy to maintain"
+      }
+    ],
+
+    "scalability_considerations": [
+      {
+        "area": "Database",
+        "current_limitation": "Single JSON file with full read/write on every operation",
+        "migration_path": "Replace LowDB with PostgreSQL/Supabase, keep same interface pattern"
+      },
+      {
+        "area": "Authentication",
+        "current_limitation": "Custom auth system, no OAuth/SSO",
+        "migration_path": "Add NextAuth.js or Clerk for social logins and enterprise SSO"
+      },
+      {
+        "area": "AI Integration",
+        "current_limitation": "Mock responses, no real AI",
+        "migration_path": "Integrate OpenAI API with streaming responses and token management"
+      },
+      {
+        "area": "Document Storage",
+        "current_limitation": "Generated content stored in database as strings",
+        "migration_path": "Move to S3/cloud storage with CDN for large documents"
+      }
+    ],
+
+    "code_quality_metrics": {
+      "typescript_coverage": "100% - All files are .ts/.tsx",
+      "type_safety": "High - Explicit interfaces for all data structures",
+      "error_handling": "Consistent - Try-catch with proper status codes",
+      "code_organization": "Clean - Lib, components, app directories separated",
+      "reusability": "High - Shared contracts, utilities, UI components"
+    },
+
+    "dependency_analysis": {
+      "core_dependencies": [
+        "next@16.0.1 - Framework",
+        "react@19.2.0 - UI library",
+        "typescript@5 - Type safety",
+        "lowdb@7.0.1 - Database",
+        "workflow@4.0.1-beta.4 - Durable execution"
+      ],
+      "ui_dependencies": [
+        "@radix-ui/* - Accessible primitives",
+        "tailwindcss@4 - Styling",
+        "lucide-react@0.548.0 - Icons"
+      ],
+      "planned_dependencies": [
+        "openai@6.7.0 - AI integration (installed but unused)",
+        "ai@5.0.81 - Vercel AI SDK (installed but unused)"
+      ],
+      "security_dependencies": [
+        "bcryptjs@3.0.2 - Password hashing"
+      ],
+      "form_dependencies": [
+        "react-hook-form@7.65.0 - Form management",
+        "@hookform/resolvers@5.2.2 - Validation",
+        "zod@4.1.11 - Schema validation"
+      ],
+      "content_dependencies": [
+        "react-markdown@10.1.0 - Markdown rendering",
+        "remark-gfm@4.0.1 - GitHub Flavored Markdown",
+        "rehype-sanitize@6.0.0 - XSS protection"
+      ]
+    }
+  },
+
+  "recommended_primitive_extractions": {
+    "high_value_primitives": [
+      {
+        "name": "Durable Workflow Document Generation Pattern",
+        "reason": "Reusable pattern for any long-running document/content generation",
+        "extraction_path": "patterns/workflow-patterns/durable-document-generation.md",
+        "components": [
+          "Workflow definition with 'use workflow' directive",
+          "Step-based execution with automatic retry",
+          ".well-known protocol endpoint setup",
+          "Template + data merging in steps"
+        ]
+      },
+      {
+        "name": "Multi-Step Survey with AI Assistance",
+        "reason": "Common pattern for complex data collection with AI help",
+        "extraction_path": "patterns/ui-patterns/ai-assisted-multi-step-form.md",
+        "components": [
+          "Survey configuration schema",
+          "Step navigation logic",
+          "AI chat sidebar integration",
+          "Auto-population from AI suggestions"
+        ]
+      },
+      {
+        "name": "Template Variable Substitution Engine",
+        "reason": "Reusable for any template-based content generation",
+        "extraction_path": "components/utilities/template-parser.md",
+        "components": [
+          "Multi-format placeholder extraction",
+          "Data mapping builder",
+          "Batch replacement logic",
+          "File system template loading"
+        ]
+      },
+      {
+        "name": "LowDB Repository Pattern",
+        "reason": "Clean abstraction for file-based database operations",
+        "extraction_path": "patterns/data-patterns/lowdb-repository-pattern.md",
+        "components": [
+          "Singleton database instance",
+          "Schema validation on init",
+          "CRUD operation methods",
+          "Async read-modify-write pattern"
+        ]
+      },
+      {
+        "name": "Standardized API Response Envelope",
+        "reason": "Consistent error handling and type safety across all APIs",
+        "extraction_path": "standards/api-styles/response-envelope-pattern.md",
+        "components": [
+          "ApiResponse<T> generic interface",
+          "Success/error discrimination",
+          "Metadata inclusion (timestamp, requestId)",
+          "Pagination structure"
+        ]
+      }
+    ],
+
+    "nice_to_have_primitives": [
+      {
+        "name": "Radix UI + Tailwind Component Pattern",
+        "reason": "Reusable accessible component architecture",
+        "extraction_path": "components/ui/radix-tailwind-pattern.md"
+      },
+      {
+        "name": "Cookie-Based Session Auth Pattern",
+        "reason": "Simple, secure auth without external dependencies",
+        "extraction_path": "patterns/security-patterns/cookie-session-auth.md"
+      },
+      {
+        "name": "Survey Field Type System",
+        "reason": "Extensible field type configuration",
+        "extraction_path": "schemas/configuration/dynamic-form-field-schema.md"
+      }
+    ]
+  },
+
+  "integration_opportunities": {
+    "with_mcp": [
+      {
+        "integration": "MCP Document Generation Tool",
+        "description": "Expose document generation workflow as MCP tool",
+        "value": "Claude can directly generate legal documents via MCP"
+      },
+      {
+        "integration": "MCP Company Management Tool",
+        "description": "CRUD operations for companies via MCP",
+        "value": "Claude can create/update client companies during conversation"
+      },
+      {
+        "integration": "MCP Template Catalog Tool",
+        "description": "List and retrieve available templates",
+        "value": "Claude can help users select appropriate document templates"
+      }
+    ],
+
+    "with_workflow": [
+      {
+        "integration": "Multi-Document Package Workflow",
+        "description": "Generate multiple documents in parallel within single workflow",
+        "value": "Faster package generation with fault tolerance"
+      },
+      {
+        "integration": "Document Review Workflow",
+        "description": "Human-in-the-loop approval steps",
+        "value": "Pause workflow for lawyer review before finalization"
+      }
+    ],
+
+    "with_ai": [
+      {
+        "integration": "OpenAI Document Enhancement",
+        "description": "AI improves generated document clarity and completeness",
+        "value": "Higher quality output with legal best practices"
+      },
+      {
+        "integration": "Claude Legal Review",
+        "description": "AI reviews documents for missing clauses or issues",
+        "value": "Automated quality control before human review"
+      }
+    ]
+  }
+}

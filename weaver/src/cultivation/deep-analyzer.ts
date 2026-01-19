@@ -94,18 +94,29 @@ export class DeepAnalyzer {
     // Execute claude-flow agent (researcher type)
     const cmd = `npx claude-flow agent execute researcher "${prompt.replace(/"/g, '\\"')}" --json`;
 
+    // Use AbortController for proper timeout handling
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 120000); // 2 min
+
     try {
       const { stdout } = await execAsync(cmd, {
         cwd: this.projectRoot,
         maxBuffer: 10 * 1024 * 1024, // 10MB
-        timeout: 120000 // 2 min timeout
+        signal: controller.signal as any
       });
+
+      clearTimeout(timeoutId);
 
       // Parse agent response
       const response = JSON.parse(stdout);
       return this.parseAgentResponse(response);
-    } catch (error) {
-      throw new Error(`Agent execution failed: ${error}`);
+    } catch (error: any) {
+      clearTimeout(timeoutId);
+
+      if (error.name === 'AbortError' || error.killed) {
+        throw new Error('Deep analysis timeout - process killed');
+      }
+      throw new Error(`Agent execution failed: ${error.message}`);
     }
   }
 
