@@ -23,7 +23,7 @@ export function createAnalyzeCommand(): Command {
     .description('Analyze and migrate docs to knowledge graph structure')
     .option('-p, --path <path>', 'Project root path', '.')
     .option('-s, --source <dir>', 'Source docs directory', 'docs')
-    .option('-t, --target <dir>', 'Target directory', 'docs-nn')
+    .option('-t, --target <dir>', 'Target directory', 'docs')
     .option('--use-claude-flow', 'Use claude-flow for deep analysis')
     .option('--no-moc', 'Skip MOC (Map of Content) generation')
     .option('--no-link-original', 'Do not link back to original docs')
@@ -173,7 +173,7 @@ export function createAnalyzeCommand(): Command {
     .description('Deep analysis using claude-flow agents for comprehensive knowledge extraction')
     .option('-p, --path <path>', 'Project root path', '.')
     .option('-s, --source <dir>', 'Source docs directory', 'docs')
-    .option('-t, --target <dir>', 'Target directory', 'docs-nn')
+    .option('-t, --target <dir>', 'Target directory', 'docs')
     .option('--agents <n>', 'Number of parallel agents', '3')
     .action(async (options) => {
       const spinner = ora('Initializing deep analysis with claude-flow...').start();
@@ -264,7 +264,7 @@ export function createAnalyzeCommand(): Command {
 
         const result = await analyzeDocs({
           sourceDir,
-          targetDir: 'docs-nn',
+          targetDir: 'docs',
           projectRoot,
           useClaudeFlow: false,
           createMOC: false,

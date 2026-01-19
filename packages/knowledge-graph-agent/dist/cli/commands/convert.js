@@ -8,7 +8,7 @@ import { validateProjectRoot } from "../../core/security.js";
 function createConvertCommand() {
   const command = new Command("convert");
   command.description("Convert existing docs to weave-nn structure");
-  command.command("docs").description("Convert existing documentation to docs-nn/ with proper structure").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs-nn").option("--no-auto-category", "Disable auto-categorization").option("-f, --force", "Overwrite existing files").option("--dry-run", "Show what would be done without making changes").action(async (options) => {
+  command.command("docs").description("Convert existing documentation with proper structure").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("-t, --target <dir>", "Target directory", "docs").option("--no-auto-category", "Disable auto-categorization").option("-f, --force", "Overwrite existing files").option("--dry-run", "Show what would be done without making changes").action(async (options) => {
     const spinner = ora("Converting documentation...").start();
     try {
       const projectRoot = validateProjectRoot(options.path);

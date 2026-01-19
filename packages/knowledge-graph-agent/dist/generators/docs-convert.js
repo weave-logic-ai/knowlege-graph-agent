@@ -119,7 +119,7 @@ const PATH_PATTERNS = [
 async function convertDocs(options) {
   const {
     sourceDir,
-    targetDir = "docs-nn",
+    targetDir = "docs",
     projectRoot,
     preserveOriginal = true,
     force = false,

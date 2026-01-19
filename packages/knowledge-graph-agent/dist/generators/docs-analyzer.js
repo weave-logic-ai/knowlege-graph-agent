@@ -47,7 +47,7 @@ const CATEGORY_STRUCTURE = {
 async function analyzeDocs(options) {
   const {
     sourceDir,
-    targetDir = "docs-nn",
+    targetDir = "docs",
     projectRoot,
     useClaudeFlow = false,
     createMOC = true,

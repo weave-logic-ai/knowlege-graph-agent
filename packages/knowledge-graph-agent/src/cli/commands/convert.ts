@@ -28,10 +28,10 @@ export function createConvertCommand(): Command {
   // Main convert subcommand
   command
     .command('docs')
-    .description('Convert existing documentation to docs-nn/ with proper structure')
+    .description('Convert existing documentation with proper structure')
     .option('-p, --path <path>', 'Project root path', '.')
     .option('-s, --source <dir>', 'Source docs directory', 'docs')
-    .option('-t, --target <dir>', 'Target directory', 'docs-nn')
+    .option('-t, --target <dir>', 'Target directory', 'docs')
     .option('--no-auto-category', 'Disable auto-categorization')
     .option('-f, --force', 'Overwrite existing files')
     .option('--dry-run', 'Show what would be done without making changes')
