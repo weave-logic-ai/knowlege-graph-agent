@@ -757,26 +757,42 @@ function generateHookConfig(projectRoot) {
     hooks: {
       UserPromptSubmit: [
         {
-          type: "command",
-          command: `${kgBinPath} hooks capture --event UserPromptSubmit --path "${projectRoot}"`
+          hooks: [
+            {
+              type: "command",
+              command: `${kgBinPath} hooks capture --event UserPromptSubmit --path "${projectRoot}"`
+            }
+          ]
         }
       ],
       PreToolUse: [
         {
-          type: "command",
-          command: `${kgBinPath} hooks capture --event PreToolUse --path "${projectRoot}"`
+          hooks: [
+            {
+              type: "command",
+              command: `${kgBinPath} hooks capture --event PreToolUse --path "${projectRoot}"`
+            }
+          ]
         }
       ],
       PostToolUse: [
         {
-          type: "command",
-          command: `${kgBinPath} hooks capture --event PostToolUse --path "${projectRoot}"`
+          hooks: [
+            {
+              type: "command",
+              command: `${kgBinPath} hooks capture --event PostToolUse --path "${projectRoot}"`
+            }
+          ]
         }
       ],
       Stop: [
         {
-          type: "command",
-          command: `${kgBinPath} hooks capture --event Stop --path "${projectRoot}"`
+          hooks: [
+            {
+              type: "command",
+              command: `${kgBinPath} hooks capture --event Stop --path "${projectRoot}"`
+            }
+          ]
         }
       ]
     }
