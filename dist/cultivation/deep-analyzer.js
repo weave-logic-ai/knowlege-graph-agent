@@ -2,6 +2,11 @@ import { execFileSync, execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "fs";
 import { resolve, join, extname, relative, basename } from "path";
 import { createLogger } from "../utils/logger.js";
+import { SOPPriority } from "../sops/types.js";
+import "../sops/registry.js";
+import { checkCompliance } from "../sops/compliance-checker.js";
+import { analyzeGaps } from "../sops/gap-analyzer.js";
+import "../sops/overlay-manager.js";
 const logger = createLogger("deep-analyzer");
 class DeepAnalyzer {
   projectRoot;
@@ -359,6 +364,8 @@ class DeepAnalyzer {
       needsWork: dirCoverage.filter((d) => d.needsDocumentation).length,
       iteration
     });
+    const sopCompliance = await this.runSOPComplianceCheck();
+    const sopGaps = sopCompliance ? this.runSOPGapAnalysis(sopCompliance) : void 0;
     const agents = [
       {
         name: "Vision Synthesizer",
@@ -389,9 +396,20 @@ class DeepAnalyzer {
         type: "connections",
         task: "Identify relationships between concepts and suggest knowledge graph connections",
         outputFile: "knowledge-connections.md"
+      },
+      {
+        name: "SOP Compliance Analyst",
+        type: "sop",
+        task: "Analyze AI-SDLC SOP compliance gaps and recommend documentation to address them",
+        outputFile: "sop-compliance-gaps.md"
       }
     ];
-    logger.info("Executing cultivation agents", { agents: agents.length, mode: "sequential", iteration });
+    logger.info("Executing cultivation agents", {
+      agents: agents.length,
+      mode: "sequential",
+      iteration,
+      sopGapsCount: sopGaps?.totalGaps || 0
+    });
     for (const agent of agents) {
       const agentResult = await this.executeAgent(
         agent,
@@ -399,10 +417,13 @@ class DeepAnalyzer {
         documents,
         keyDocs,
         dirCoverage,
-        previousAnalysis
+        previousAnalysis,
+        sopGaps
       );
       result.results.push(agentResult);
     }
+    result.sopCompliance = sopCompliance;
+    result.sopGaps = sopGaps;
     this.saveAnalysisMetadata(result, dirCoverage);
     result.agentsSpawned = result.results.length;
     result.insightsCount = result.results.reduce((sum, r) => sum + r.insights.length, 0);
@@ -425,7 +446,7 @@ class DeepAnalyzer {
   /**
    * Execute a single agent
    */
-  async executeAgent(agent, mode, documents, keyDocs, dirCoverage, previousAnalysis) {
+  async executeAgent(agent, mode, documents, keyDocs, dirCoverage, previousAnalysis, sopGaps) {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
     const result = {
@@ -438,7 +459,7 @@ class DeepAnalyzer {
     };
     try {
       logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
-      const prompt = this.buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis);
+      const prompt = this.buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis, sopGaps);
       let output;
       if (mode === "cli") {
         output = await this.runWithCli(prompt);
@@ -502,7 +523,7 @@ class DeepAnalyzer {
   /**
    * Build context-aware prompt for documentation cultivation
    */
-  buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis) {
+  buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis, sopGaps) {
     const inventory = documents.map((d) => `- ${d.path} (${d.type}): ${d.title}`).join("\n");
     const keyContent = Array.from(keyDocs.entries()).map(([name, content]) => `### ${name}
 
@@ -604,6 +625,9 @@ Suggest knowledge graph nodes and edges in this format:
 
 Also identify concepts that should be linked but aren't currently.`;
         break;
+      case "sop":
+        specificInstructions = this.buildSOPAgentInstructions(sopGaps);
+        break;
     }
     return `You are a documentation analyst helping to cultivate a knowledge graph.
 ${iterationContext}
@@ -633,6 +657,187 @@ Provide your analysis in markdown format with:
 Reference specific documents using [[document-name]] wiki-link format where relevant.
 Be specific and actionable in your analysis.
 ${previousAnalysis ? "\nFocus on NEW items not identified in previous iterations." : ""}`;
+  }
+  /**
+   * Run SOP compliance check against the documentation
+   */
+  async runSOPComplianceCheck() {
+    try {
+      logger.info("Running SOP compliance check", { projectRoot: this.projectRoot });
+      const result = await checkCompliance({
+        projectRoot: this.projectRoot,
+        docsPath: this.docsPath,
+        deepAnalysis: false,
+        assessor: "deep-analyzer"
+      });
+      logger.info("SOP compliance check complete", {
+        score: result.overallScore,
+        compliant: result.assessments.filter((a) => a.score >= 70).length,
+        nonCompliant: result.assessments.filter((a) => a.score < 70).length
+      });
+      return result;
+    } catch (error) {
+      logger.warn("SOP compliance check failed", { error: error instanceof Error ? error.message : String(error) });
+      return void 0;
+    }
+  }
+  /**
+   * Run SOP gap analysis on compliance results
+   */
+  runSOPGapAnalysis(compliance) {
+    try {
+      const result = analyzeGaps(compliance, {
+        complianceThreshold: 70,
+        includePartial: true,
+        generateRemediation: true
+      });
+      logger.info("SOP gap analysis complete", {
+        totalGaps: result.totalGaps,
+        criticalGaps: result.criticalGaps.length,
+        compliancePercentage: result.summary.compliancePercentage
+      });
+      this.writeSOPGapsSummary(result);
+      return result;
+    } catch (error) {
+      logger.warn("SOP gap analysis failed", { error: error instanceof Error ? error.message : String(error) });
+      return void 0;
+    }
+  }
+  /**
+   * Write SOP gaps summary to analysis output
+   */
+  writeSOPGapsSummary(gaps) {
+    const summaryPath = join(this.outputDir, "sop-gaps-summary.json");
+    try {
+      const summary = {
+        timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+        totalGaps: gaps.totalGaps,
+        criticalGaps: gaps.criticalGaps.length,
+        summary: gaps.summary,
+        byPriority: {
+          critical: gaps.byPriority[SOPPriority.CRITICAL].length,
+          high: gaps.byPriority[SOPPriority.HIGH].length,
+          medium: gaps.byPriority[SOPPriority.MEDIUM].length,
+          low: gaps.byPriority[SOPPriority.LOW].length
+        },
+        byCategory: Object.entries(gaps.byCategory).reduce((acc, [key, value]) => {
+          acc[key] = value.length;
+          return acc;
+        }, {}),
+        gaps: gaps.gaps.map((g) => ({
+          id: g.id,
+          sopId: g.sopId,
+          requirementId: g.requirementId,
+          description: g.description,
+          priority: g.priority,
+          effort: g.effort,
+          remediation: g.remediation
+        })),
+        roadmap: gaps.roadmap ? {
+          phases: gaps.roadmap.phases.map((p) => ({
+            phase: p.phase,
+            name: p.name,
+            focus: p.focus,
+            effort: p.effort,
+            gapCount: p.gaps.length
+          })),
+          quickWinsCount: gaps.roadmap.quickWins.length
+        } : void 0
+      };
+      writeFileSync(summaryPath, JSON.stringify(summary, null, 2));
+      logger.debug("Wrote SOP gaps summary", { path: summaryPath });
+    } catch (error) {
+      logger.warn("Failed to write SOP gaps summary", { error: error instanceof Error ? error.message : String(error) });
+    }
+  }
+  /**
+   * Build SOP agent-specific instructions with gap context
+   */
+  buildSOPAgentInstructions(sopGaps) {
+    let instructions = `
+Analyze AI-SDLC SOP (Standard Operating Procedures) compliance gaps and recommend documentation:
+
+1. **Gap Prioritization**: Review the compliance gaps and prioritize by impact
+2. **Documentation Recommendations**: For each gap, suggest what documentation should be created
+3. **Remediation Steps**: Provide actionable steps to address each gap
+4. **Quick Wins**: Identify low-effort, high-impact gaps that can be addressed quickly
+5. **Documentation Templates**: Suggest document templates for common gap types
+
+For each gap, recommend:
+- Document type (guide, standard, process, reference)
+- Suggested file path (using project conventions)
+- Key sections to include
+- Related documents to link to ([[wiki-links]])
+- Priority level (high/medium/low)
+`;
+    if (sopGaps && sopGaps.totalGaps > 0) {
+      instructions += `
+## Current SOP Compliance Gaps
+
+**Summary:**
+- Total Gaps: ${sopGaps.totalGaps}
+- Critical Gaps: ${sopGaps.criticalGaps.length}
+- Compliance Score: ${sopGaps.summary.compliancePercentage}%
+
+### Gaps by Priority:
+- Critical: ${sopGaps.byPriority[SOPPriority.CRITICAL].length}
+- High: ${sopGaps.byPriority[SOPPriority.HIGH].length}
+- Medium: ${sopGaps.byPriority[SOPPriority.MEDIUM].length}
+- Low: ${sopGaps.byPriority[SOPPriority.LOW].length}
+
+### Detailed Gaps:
+`;
+      const priorityGaps = [
+        ...sopGaps.byPriority[SOPPriority.CRITICAL],
+        ...sopGaps.byPriority[SOPPriority.HIGH]
+      ].slice(0, 15);
+      for (const gap of priorityGaps) {
+        instructions += `
+#### ${gap.priority.toUpperCase()}: ${gap.description}
+- SOP: ${gap.sopId}
+- Requirement: ${gap.requirementId}
+- Effort: ${gap.effort}
+- Remediation: ${gap.remediation}
+- Impact: ${gap.impact}
+`;
+      }
+      if (sopGaps.roadmap) {
+        instructions += `
+### Remediation Roadmap:
+`;
+        for (const phase of sopGaps.roadmap.phases) {
+          instructions += `
+**Phase ${phase.phase}: ${phase.name}**
+- Focus: ${phase.focus}
+- Effort: ${phase.effort}
+- Gaps to address: ${phase.gaps.length}
+`;
+        }
+        if (sopGaps.roadmap.quickWins.length > 0) {
+          instructions += `
+### Quick Wins (High Impact, Low Effort):
+`;
+          for (const win of sopGaps.roadmap.quickWins.slice(0, 5)) {
+            instructions += `- ${win.description} (${win.effort} effort)
+`;
+          }
+        }
+      }
+    } else {
+      instructions += `
+## No SOP Gaps Data Available
+
+Perform a general AI-SDLC compliance analysis based on the documentation structure.
+Review for common compliance areas:
+- Requirements documentation
+- Architecture documentation
+- Testing documentation
+- Security documentation
+- Deployment documentation
+- Operational procedures
+`;
+    }
+    return instructions;
   }
   /**
    * Run analysis using Claude CLI
@@ -700,7 +905,7 @@ ${previousAnalysis ? "\nFocus on NEW items not identified in previous iterations
     try {
       const { GoogleGenerativeAI } = await import("../node_modules/@google/generative-ai/dist/index.js");
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
       const result = await model.generateContent(prompt);
       const response = result.response;
       const text = response.text();
