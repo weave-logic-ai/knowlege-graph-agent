@@ -222,7 +222,7 @@ export function createCultivateCommand(): Command {
 
           if (!hasClaudeFlow) {
             console.log(chalk.yellow('  ⚠️  claude-flow not available'));
-            console.log(chalk.gray('  Install with: npm install -g claude-flow@alpha'));
+            console.log(chalk.gray('  Install with: npm install -g claude-flow'));
             result.warnings.push('claude-flow not available for deep analysis');
           } else {
             if (dryRun) {
@@ -364,11 +364,22 @@ function displaySummary(result: CultivationResult, dryRun: boolean): void {
 
 /**
  * Check if claude-flow is available
+ * Checks for direct command first (globally installed), then falls back to npx
  */
 async function checkClaudeFlowAvailable(): Promise<boolean> {
+  const { execSync } = await import('child_process');
+
+  // First try direct command (globally installed claude-flow)
   try {
-    const { execSync } = await import('child_process');
-    execSync('npx claude-flow@alpha --version', { stdio: 'pipe', timeout: 5000 });
+    execSync('claude-flow --version', { stdio: 'pipe', timeout: 5000 });
+    return true;
+  } catch {
+    // Direct command not available, try npx
+  }
+
+  // Fall back to npx
+  try {
+    execSync('npx claude-flow --version', { stdio: 'pipe', timeout: 30000 });
     return true;
   } catch {
     return false;

@@ -20,6 +20,7 @@ class DeepAnalyzer {
   maxAgents;
   agentMode;
   agentTimeout;
+  claudeFlowCommand = null;
   constructor(options) {
     this.projectRoot = resolve(options.projectRoot);
     this.docsPath = options.docsPath || "docs";
@@ -30,18 +31,41 @@ class DeepAnalyzer {
     this.agentTimeout = options.agentTimeout || 6e4;
   }
   /**
-   * Check if claude-flow is available
+   * Check if claude-flow is available and determine the best command to use
+   * Checks for direct command first (globally installed), then falls back to npx
    */
   async isAvailable() {
+    const command = await this.detectClaudeFlowCommand();
+    return command !== null;
+  }
+  /**
+   * Detect which claude-flow command to use
+   * Returns the command configuration or null if not available
+   */
+  async detectClaudeFlowCommand() {
+    if (this.claudeFlowCommand !== null) {
+      return this.claudeFlowCommand;
+    }
     try {
-      execFileSync("npx", ["claude-flow@alpha", "--version"], {
+      execFileSync("claude-flow", ["--version"], {
         stdio: "pipe",
         timeout: 5e3,
         windowsHide: true
       });
-      return true;
+      this.claudeFlowCommand = { cmd: "claude-flow", args: [] };
+      return this.claudeFlowCommand;
     } catch {
-      return false;
+    }
+    try {
+      execFileSync("npx", ["claude-flow", "--version"], {
+        stdio: "pipe",
+        timeout: 3e4,
+        windowsHide: true
+      });
+      this.claudeFlowCommand = { cmd: "npx", args: ["claude-flow"] };
+      return this.claudeFlowCommand;
+    } catch {
+      return null;
     }
   }
   /**
@@ -198,7 +222,7 @@ class DeepAnalyzer {
 
 **COORDINATION PROTOCOL**:
 \`\`\`bash
-npx claude-flow@alpha hooks pre-task --description "${agent.task}"
+claude-flow hooks pre-task --description "${agent.task}"
 \`\`\`
 
 **YOUR TASKS**:
@@ -216,7 +240,7 @@ npx claude-flow@alpha hooks pre-task --description "${agent.task}"
 
 After completing:
 \`\`\`bash
-npx claude-flow@alpha hooks post-task --task-id "${agent.type}-analysis"
+claude-flow hooks post-task --task-id "${agent.type}-analysis"
 \`\`\`
 `;
   }
@@ -228,9 +252,13 @@ npx claude-flow@alpha hooks post-task --task-id "${agent.type}-analysis"
       throw new Error(`Invalid agent type: ${type}. Valid types: ${[...VALID_AGENT_TYPES].join(", ")}`);
     }
     const sanitizedPrompt = prompt.replace(/[`$\\]/g, "");
+    const commandConfig = await this.detectClaudeFlowCommand();
+    if (!commandConfig) {
+      throw new Error("claude-flow is not available");
+    }
     return new Promise((resolve2, reject) => {
-      const args = ["claude-flow@alpha", "agent", "execute", type, sanitizedPrompt, "--json"];
-      const proc = spawn("npx", args, {
+      const args = [...commandConfig.args, "agent", "execute", type, sanitizedPrompt, "--json"];
+      const proc = spawn(commandConfig.cmd, args, {
         cwd: this.projectRoot,
         shell: false,
         // Security: Disable shell to prevent command injection

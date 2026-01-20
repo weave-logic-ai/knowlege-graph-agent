@@ -569,25 +569,30 @@ async function executeAgentTask(
  * Check if claude-flow is available
  */
 async function checkClaudeFlowAvailable(): Promise<boolean> {
-  return new Promise((resolve) => {
-    const proc = spawn('npx', ['claude-flow@alpha', '--version'], {
+  // First try direct command (globally installed claude-flow)
+  const tryDirect = new Promise<boolean>((resolve) => {
+    const proc = spawn('claude-flow', ['--version'], {
       stdio: 'pipe',
-      shell: true,
+      shell: false,
     });
 
-    proc.on('close', (code) => {
-      resolve(code === 0);
+    proc.on('close', (code) => resolve(code === 0));
+    proc.on('error', () => resolve(false));
+    setTimeout(() => { proc.kill(); resolve(false); }, 5000);
+  });
+
+  if (await tryDirect) return true;
+
+  // Fall back to npx
+  return new Promise((resolve) => {
+    const proc = spawn('npx', ['claude-flow', '--version'], {
+      stdio: 'pipe',
+      shell: false,
     });
 
-    proc.on('error', () => {
-      resolve(false);
-    });
-
-    // Timeout after 5 seconds
-    setTimeout(() => {
-      proc.kill();
-      resolve(false);
-    }, 5000);
+    proc.on('close', (code) => resolve(code === 0));
+    proc.on('error', () => resolve(false));
+    setTimeout(() => { proc.kill(); resolve(false); }, 30000);
   });
 }
 
@@ -600,7 +605,7 @@ async function executeWithClaudeFlow(
   verbose?: boolean
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    const agentCmd = `npx claude-flow@alpha sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
+    const agentCmd = `claude-flow sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
 
     if (verbose) {
       console.log(`\n  Spawning ${task.agentType} agent for ${task.outputFile}...`);

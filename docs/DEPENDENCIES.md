@@ -148,7 +148,7 @@ Integration with [claude-flow](https://github.com/ruvnet/claude-flow) MCP server
 
 ```bash
 # Install claude-flow MCP server
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add claude-flow npx claude-flow mcp start
 ```
 
 ### Obsidian

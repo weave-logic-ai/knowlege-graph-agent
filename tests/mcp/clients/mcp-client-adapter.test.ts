@@ -51,7 +51,7 @@ describe('McpClientAdapter', () => {
       expect(config.retryDelayMs).toBe(1000);
       expect(config.timeoutMs).toBe(30000);
       expect(config.fallbackEnabled).toBe(true);
-      expect(config.cliCommand).toBe('npx claude-flow@alpha');
+      expect(config.cliCommand).toBe('claude-flow');
     });
 
     it('should override config values', () => {

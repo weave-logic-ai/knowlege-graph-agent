@@ -113,7 +113,7 @@ This project uses claude-flow for AI coordination:
 ### MCP Configuration
 
 \`\`\`bash
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add claude-flow npx claude-flow mcp start
 \`\`\`
 
 ### Memory Namespace

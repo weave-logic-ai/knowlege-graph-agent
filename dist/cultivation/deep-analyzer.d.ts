@@ -76,11 +76,18 @@ export declare class DeepAnalyzer {
     private maxAgents;
     private agentMode;
     private agentTimeout;
+    private claudeFlowCommand;
     constructor(options: DeepAnalyzerOptions);
     /**
-     * Check if claude-flow is available
+     * Check if claude-flow is available and determine the best command to use
+     * Checks for direct command first (globally installed), then falls back to npx
      */
     isAvailable(): Promise<boolean>;
+    /**
+     * Detect which claude-flow command to use
+     * Returns the command configuration or null if not available
+     */
+    private detectClaudeFlowCommand;
     /**
      * Run deep analysis
      */

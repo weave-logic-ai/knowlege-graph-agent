@@ -747,13 +747,13 @@ export abstract class BaseAgent implements AgentInstance {
 
     switch (hookType) {
       case 'pre-task':
-        return `npx claude-flow@alpha hooks pre-task --description "${task.description}"`;
+        return `claude-flow hooks pre-task --description "${task.description}"`;
 
       case 'post-task':
-        return `npx claude-flow@alpha hooks post-task --task-id "${task.id}"`;
+        return `claude-flow hooks post-task --task-id "${task.id}"`;
 
       case 'post-edit':
-        return `npx claude-flow@alpha hooks post-edit --memory-key "${namespace}/agent/${this.config.id}/task/${task.id}"`;
+        return `claude-flow hooks post-edit --memory-key "${namespace}/agent/${this.config.id}/task/${task.id}"`;
 
       default:
         return '';

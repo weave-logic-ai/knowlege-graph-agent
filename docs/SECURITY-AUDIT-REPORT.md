@@ -50,7 +50,7 @@ The codebase demonstrates security-conscious development with several protective
 The `runClaudeFlowAgent()` method constructs command arguments that include user-controlled input (`type` and `prompt`) without proper sanitization before passing to `spawn()`.
 
 ```typescript
-const args = ['claude-flow@alpha', 'agent', 'execute', type, prompt, '--json'];
+const args = ['claude-flow', 'agent', 'execute', type, prompt, '--json'];
 
 const proc = spawn('npx', args, {
   cwd: this.projectRoot,
@@ -247,7 +247,7 @@ The `isAvailable()` method uses `execSync` which could expose shell command outp
 
 ```typescript
 try {
-  execSync('npx claude-flow@alpha --version', {
+  execSync('npx claude-flow --version', {
     stdio: 'pipe',
     timeout: 5000,
   });
@@ -262,7 +262,7 @@ Low risk since errors are caught, but `shell` option should be explicitly disabl
 
 **Recommended Fix:**
 ```typescript
-execSync('npx claude-flow@alpha --version', {
+execSync('npx claude-flow --version', {
   stdio: 'pipe',
   timeout: 5000,
   shell: false,  // Explicit: don't use shell

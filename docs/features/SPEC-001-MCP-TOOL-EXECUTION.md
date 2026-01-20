@@ -104,7 +104,7 @@ export class McpClient {
   ): Promise<boolean> {
     return this.executeWithRetry(() =>
       this.executeCommand('npx', [
-        'claude-flow@alpha',
+        'claude-flow',
         'memory',
         'store',
         '--key', key,
@@ -118,7 +118,7 @@ export class McpClient {
   async memoryRetrieve(key: string, namespace: string): Promise<string | null> {
     const result = await this.executeWithRetry(() =>
       this.executeCommand('npx', [
-        'claude-flow@alpha',
+        'claude-flow',
         'memory',
         'retrieve',
         '--key', key,
@@ -135,7 +135,7 @@ export class McpClient {
   ): Promise<string[]> {
     const result = await this.executeWithRetry(() =>
       this.executeCommand('npx', [
-        'claude-flow@alpha',
+        'claude-flow',
         'memory',
         'search',
         '--pattern', pattern,

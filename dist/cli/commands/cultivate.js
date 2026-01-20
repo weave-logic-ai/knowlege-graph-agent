@@ -125,7 +125,7 @@ function createCultivateCommand() {
         const hasClaudeFlow = await checkClaudeFlowAvailable();
         if (!hasClaudeFlow) {
           console.log(chalk.yellow("  ⚠️  claude-flow not available"));
-          console.log(chalk.gray("  Install with: npm install -g claude-flow@alpha"));
+          console.log(chalk.gray("  Install with: npm install -g claude-flow"));
           result.warnings.push("claude-flow not available for deep analysis");
         } else {
           if (dryRun) {
@@ -240,9 +240,14 @@ function displaySummary(result, dryRun) {
   }
 }
 async function checkClaudeFlowAvailable() {
+  const { execSync } = await import("child_process");
   try {
-    const { execSync } = await import("child_process");
-    execSync("npx claude-flow@alpha --version", { stdio: "pipe", timeout: 5e3 });
+    execSync("claude-flow --version", { stdio: "pipe", timeout: 5e3 });
+    return true;
+  } catch {
+  }
+  try {
+    execSync("npx claude-flow --version", { stdio: "pipe", timeout: 3e4 });
     return true;
   } catch {
     return false;

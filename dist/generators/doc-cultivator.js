@@ -354,8 +354,7 @@ async function executeCultivationSwarm(tasks, result, options) {
 }
 async function executeSwarmTask(task, options) {
   return new Promise((resolve) => {
-    const agentProcess = spawn("npx", [
-      "claude-flow@alpha",
+    const agentProcess = spawn("claude-flow", [
       "agent",
       "spawn",
       "--type",
@@ -364,7 +363,7 @@ async function executeSwarmTask(task, options) {
       task.prompt.slice(0, 1e3)
       // Truncate for CLI
     ], {
-      shell: true,
+      shell: false,
       timeout: 12e4
     });
     let output = "";

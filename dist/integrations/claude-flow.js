@@ -122,13 +122,13 @@ class ClaudeFlowIntegration {
   generateHookCommands() {
     return [
       `# Pre-task hook to restore graph context`,
-      `npx claude-flow@alpha hooks session-restore --session-id "kg-${this.config.namespace}"`,
+      `claude-flow hooks session-restore --session-id "kg-${this.config.namespace}"`,
       ``,
       `# Post-edit hook to sync changes`,
-      `npx claude-flow@alpha hooks post-edit --file "<file>" --memory-key "kg/${this.config.namespace}/changes"`,
+      `claude-flow hooks post-edit --file "<file>" --memory-key "kg/${this.config.namespace}/changes"`,
       ``,
       `# Session end hook to persist`,
-      `npx claude-flow@alpha hooks session-end --export-metrics true`
+      `claude-flow hooks session-end --export-metrics true`
     ];
   }
   /**
@@ -196,7 +196,7 @@ function generateMcpConfig(namespace) {
 Add this to your Claude Code configuration:
 
 \`\`\`bash
-claude mcp add claude-flow npx claude-flow@alpha mcp start
+claude mcp add claude-flow npx claude-flow mcp start
 \`\`\`
 
 ### Memory Namespace
