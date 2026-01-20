@@ -829,6 +829,78 @@ export type {
 } from './equilibrium/index.js';
 
 // ============================================================================
+// SPARC Planning
+// ============================================================================
+
+export {
+  // Decision Log
+  DecisionLogManager,
+  createDecisionLogManager,
+  // Consensus Builder
+  ConsensusBuilder,
+  createConsensusBuilder,
+  // Review Process
+  ReviewProcessManager,
+  createReviewProcess,
+  // SPARC Planner
+  SPARCPlanner,
+  createSPARCPlanner,
+} from './sparc/index.js';
+
+export type {
+  // Core SPARC types
+  SPARCPhase,
+  ConfidenceLevel as SPARCConfidenceLevel,
+  DecisionStatus,
+  ReviewPassType,
+  FindingSeverity,
+  TaskExecutionMode,
+  // Specification types
+  Requirement,
+  Feature,
+  SpecificationDocument,
+  // Pseudocode types
+  AlgorithmStep,
+  AlgorithmDesign,
+  // Architecture types
+  ArchitectureComponent,
+  ComponentInterface,
+  ArchitectureDecision,
+  ArchitectureDocument,
+  // Task types
+  SPARCTask,
+  TaskOutput,
+  ContextLink,
+  KGReference,
+  // Decision types
+  DecisionEntry,
+  ConsensusInfo,
+  DecisionLog,
+  // Review types
+  ReviewFinding,
+  ReviewPassResult,
+  ReviewResult,
+  // Plan types
+  SPARCPlanStatus,
+  ExistingCodeAnalysis,
+  ResearchFinding,
+  SPARCPlan,
+  // Agent coordination types
+  AgentSpawnRequest,
+  AgentExecutionResult,
+  ConsensusRequest,
+  ConsensusResult,
+  // Options types
+  DecisionLogManagerOptions,
+  AddDecisionOptions,
+  ConsensusBuilderOptions,
+  AgentVote,
+  ConsensusOption,
+  ReviewProcessOptions,
+  SPARCPlannerOptions,
+} from './sparc/index.js';
+
+// ============================================================================
 // Quick Start
 // ============================================================================
 
