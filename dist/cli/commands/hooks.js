@@ -6,6 +6,7 @@ import { join, dirname } from "path";
 import { validateProjectRoot } from "../../core/security.js";
 import "../../claude/types.js";
 import { generateHookConfig, processHookEvent, HookCaptureSystem } from "../../claude/hook-capture.js";
+const KG_HOOK_MARKER = "@weavelogic/knowledge-graph-agent";
 function getClaudeSettingsPath(scope) {
   if (scope === "user") {
     const home = process.env.HOME || process.env.USERPROFILE || "";
@@ -30,25 +31,104 @@ function saveSettings(path, settings) {
   }
   writeFileSync(path, JSON.stringify(settings, null, 2));
 }
+function isKgHook(entry) {
+  if (entry.command?.includes(KG_HOOK_MARKER)) {
+    return true;
+  }
+  if (entry.hooks?.some((h) => h.command?.includes(KG_HOOK_MARKER))) {
+    return true;
+  }
+  return false;
+}
+function removeKgHooksFromArray(entries) {
+  return entries.filter((entry) => !isKgHook(entry));
+}
+function mergeHooksConfig(existingHooks, kgHooks) {
+  const merged = {
+    UserPromptSubmit: [],
+    PreToolUse: [],
+    PostToolUse: [],
+    Stop: [],
+    PreCompact: []
+  };
+  if (existingHooks) {
+    for (const [event, entries] of Object.entries(existingHooks)) {
+      if (Array.isArray(entries)) {
+        merged[event] = removeKgHooksFromArray(entries);
+      }
+    }
+  }
+  for (const [event, entries] of Object.entries(kgHooks)) {
+    if (Array.isArray(entries)) {
+      merged[event] = [
+        ...merged[event],
+        ...entries
+      ];
+    }
+  }
+  for (const event of Object.keys(merged)) {
+    if (merged[event].length === 0) {
+      delete merged[event];
+    }
+  }
+  return merged;
+}
+function removeKgHooksOnly(existingHooks) {
+  if (!existingHooks) return null;
+  const cleaned = {};
+  let hasRemainingHooks = false;
+  for (const [event, entries] of Object.entries(existingHooks)) {
+    if (Array.isArray(entries)) {
+      const remaining = removeKgHooksFromArray(entries);
+      if (remaining.length > 0) {
+        cleaned[event] = remaining;
+        hasRemainingHooks = true;
+      }
+    }
+  }
+  return hasRemainingHooks ? cleaned : null;
+}
+function hasKgHooks(hooks) {
+  if (!hooks) return false;
+  for (const entries of Object.values(hooks)) {
+    if (Array.isArray(entries) && entries.some(isKgHook)) {
+      return true;
+    }
+  }
+  return false;
+}
 function createHooksCommand() {
   const command = new Command("hooks");
   command.description("Claude Code hooks for capturing interactions in the knowledge graph");
-  command.command("install").description("Install Claude Code hooks to capture all interactions").option("-p, --path <path>", "Project root path", ".").option("-s, --scope <scope>", "Installation scope: project or user", "project").option("-f, --force", "Overwrite existing hooks configuration").option("--no-markdown", "Disable markdown document generation").option("--no-tool-outputs", "Disable separate tool output storage").action(async (options) => {
+  command.command("install").description("Install Claude Code hooks to capture all interactions (merges with existing hooks)").option("-p, --path <path>", "Project root path", ".").option("-s, --scope <scope>", "Installation scope: project or user", "project").option("-f, --force", "Reinstall even if KG hooks already present").option("--replace", "Replace all hooks instead of merging (not recommended)").option("--no-markdown", "Disable markdown document generation").option("--no-tool-outputs", "Disable separate tool output storage").action(async (options) => {
     const spinner = ora("Installing Claude Code hooks...").start();
     try {
       const projectRoot = validateProjectRoot(options.path);
       const settingsPath = getClaudeSettingsPath(options.scope);
       const settings = loadSettings(settingsPath);
-      if (settings.hooks && !options.force) {
-        spinner.warn("Hooks already configured. Use --force to overwrite.");
+      const existingHooks = settings.hooks;
+      if (hasKgHooks(existingHooks) && !options.force) {
+        spinner.info("KG capture hooks already installed.");
         console.log();
-        console.log(chalk.gray("  Current settings:"), chalk.white(settingsPath));
+        console.log(chalk.gray("  Use --force to reinstall."));
+        console.log(chalk.gray("  Settings:"), chalk.white(settingsPath));
         return;
       }
-      const hookConfig = generateHookConfig(projectRoot);
+      const kgHookConfig = generateHookConfig(projectRoot);
+      const kgHooks = kgHookConfig.hooks;
+      let mergedHooks;
+      if (options.replace) {
+        mergedHooks = kgHooks;
+        spinner.text = "Replacing all hooks with KG capture hooks...";
+      } else {
+        mergedHooks = mergeHooksConfig(existingHooks, kgHooks);
+        if (existingHooks && Object.keys(existingHooks).length > 0) {
+          spinner.text = "Merging KG capture hooks with existing hooks...";
+        }
+      }
       const newSettings = {
         ...settings,
-        ...hookConfig
+        hooks: mergedHooks
       };
       saveSettings(settingsPath, newSettings);
       const storageDir = join(projectRoot, ".kg", "claude");
@@ -61,7 +141,15 @@ function createHooksCommand() {
       console.log(chalk.gray("  Settings file:"), chalk.white(settingsPath));
       console.log(chalk.gray("  Storage dir:"), chalk.white(storageDir));
       console.log();
-      console.log(chalk.cyan("  Hooks Installed:"));
+      if (!options.replace && existingHooks && Object.keys(existingHooks).length > 0) {
+        const preservedCount = Object.values(existingHooks).flat().filter((e) => !isKgHook(e)).length;
+        if (preservedCount > 0) {
+          console.log(chalk.cyan("  Compatibility:"));
+          console.log(chalk.gray(`  - Preserved ${preservedCount} existing hook(s) (e.g., claude-flow)`));
+          console.log();
+        }
+      }
+      console.log(chalk.cyan("  KG Hooks Added:"));
       console.log(chalk.gray("  - UserPromptSubmit: Captures all user prompts"));
       console.log(chalk.gray("  - PreToolUse: Captures tool invocations"));
       console.log(chalk.gray("  - PostToolUse: Captures tool results"));
@@ -75,18 +163,43 @@ function createHooksCommand() {
       process.exit(1);
     }
   });
-  command.command("uninstall").description("Remove Claude Code hooks").option("-s, --scope <scope>", "Installation scope: project or user", "project").action(async (options) => {
-    const spinner = ora("Removing Claude Code hooks...").start();
+  command.command("uninstall").description("Remove KG capture hooks (preserves other hooks like claude-flow)").option("-s, --scope <scope>", "Installation scope: project or user", "project").option("--all", "Remove ALL hooks, not just KG hooks (use with caution)").action(async (options) => {
+    const spinner = ora("Removing KG capture hooks...").start();
     try {
       const settingsPath = getClaudeSettingsPath(options.scope);
       const settings = loadSettings(settingsPath);
-      if (!settings.hooks) {
+      const existingHooks = settings.hooks;
+      if (!existingHooks) {
         spinner.info("No hooks configured.");
         return;
       }
-      delete settings.hooks;
-      saveSettings(settingsPath, settings);
-      spinner.succeed("Claude Code hooks removed.");
+      if (options.all) {
+        delete settings.hooks;
+        saveSettings(settingsPath, settings);
+        spinner.succeed("All hooks removed.");
+        return;
+      }
+      if (!hasKgHooks(existingHooks)) {
+        spinner.info("No KG capture hooks found.");
+        console.log();
+        console.log(chalk.gray("  Other hooks are still configured."));
+        console.log(chalk.gray("  Use --all to remove all hooks."));
+        return;
+      }
+      const remainingHooks = removeKgHooksOnly(existingHooks);
+      if (remainingHooks) {
+        settings.hooks = remainingHooks;
+        saveSettings(settingsPath, settings);
+        const preservedCount = Object.values(remainingHooks).flat().length;
+        spinner.succeed("KG capture hooks removed.");
+        console.log();
+        console.log(chalk.gray(`  Preserved ${preservedCount} other hook(s) (e.g., claude-flow).`));
+        console.log(chalk.gray("  Use --all to remove all hooks."));
+      } else {
+        delete settings.hooks;
+        saveSettings(settingsPath, settings);
+        spinner.succeed("KG capture hooks removed (no other hooks remaining).");
+      }
     } catch (error) {
       spinner.fail("Failed to remove hooks");
       console.error(chalk.red(String(error)));
@@ -107,19 +220,47 @@ function createHooksCommand() {
       const projectRoot = validateProjectRoot(options.path);
       const settingsPath = getClaudeSettingsPath(options.scope);
       const settings = loadSettings(settingsPath);
+      const existingHooks = settings.hooks;
       console.log();
       console.log(chalk.cyan("  Claude Code Hooks Status"));
       console.log();
-      if (settings.hooks) {
-        console.log(chalk.green("  ✓ Hooks installed"));
+      if (existingHooks) {
+        const kgInstalled = hasKgHooks(existingHooks);
+        const totalHooks = Object.values(existingHooks).flat().length;
+        const kgHookCount = Object.values(existingHooks).flat().filter((e) => isKgHook(e)).length;
+        const otherHookCount = totalHooks - kgHookCount;
+        console.log(chalk.green("  ✓ Hooks configured"));
         console.log(chalk.gray("    Settings:"), chalk.white(settingsPath));
-        const hooks = settings.hooks;
-        console.log(chalk.gray("    Configured hooks:"));
-        for (const [event, handlers] of Object.entries(hooks)) {
-          console.log(chalk.gray(`      - ${event}:`), chalk.white(`${handlers.length} handler(s)`));
+        console.log();
+        if (kgInstalled) {
+          console.log(chalk.green("  ✓ KG capture hooks installed"));
+          console.log(chalk.gray(`    KG hooks: ${kgHookCount} active`));
+        } else {
+          console.log(chalk.yellow("  ✗ KG capture hooks not installed"));
+          console.log(chalk.gray("    Run:"), chalk.white("kg hooks install"));
+        }
+        if (otherHookCount > 0) {
+          console.log(chalk.green(`  ✓ Other hooks present (${otherHookCount})`));
+          console.log(chalk.gray("    (e.g., claude-flow, custom hooks)"));
+        }
+        console.log();
+        console.log(chalk.gray("    All configured events:"));
+        for (const [event, handlers] of Object.entries(existingHooks)) {
+          const arr = handlers;
+          const kgCount = arr.filter(isKgHook).length;
+          const otherCount = arr.length - kgCount;
+          let info = "";
+          if (kgCount > 0 && otherCount > 0) {
+            info = `(${kgCount} KG, ${otherCount} other)`;
+          } else if (kgCount > 0) {
+            info = "(KG)";
+          } else {
+            info = "(other)";
+          }
+          console.log(chalk.gray(`      - ${event}:`), chalk.white(`${arr.length} handler(s) ${info}`));
         }
       } else {
-        console.log(chalk.yellow("  ✗ Hooks not installed"));
+        console.log(chalk.yellow("  ✗ No hooks configured"));
         console.log(chalk.gray("    Run:"), chalk.white("kg hooks install"));
       }
       console.log();
