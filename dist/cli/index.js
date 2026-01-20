@@ -23,7 +23,8 @@ import { createDashboardCommand } from "./commands/dashboard.js";
 import { createPluginCommand } from "./commands/plugin.js";
 import { createHiveMindCommand } from "./commands/hive-mind/index.js";
 import { createHooksCommand } from "./commands/hooks.js";
-const VERSION = "0.4.0";
+import { createSPARCCommand } from "./commands/sparc.js";
+const VERSION = "0.12.0";
 function createCLI() {
   const program = new Command();
   program.name("kg").description("Knowledge Graph Agent - Generate and manage knowledge graphs for Claude Code").version(VERSION, "-v, --version", "Display version number");
@@ -56,6 +57,7 @@ function createCLI() {
   program.addCommand(createPluginCommand());
   program.addCommand(createHiveMindCommand());
   program.addCommand(createHooksCommand());
+  program.addCommand(createSPARCCommand());
   program.action(() => {
     console.log(chalk.cyan.bold("\n  Knowledge Graph Agent\n"));
     console.log(chalk.gray("  Generate and manage knowledge graphs for Claude Code\n"));
@@ -150,6 +152,10 @@ function createCLI() {
     console.log(chalk.gray("    $ kg hooks status          # Show hooks status"));
     console.log(chalk.gray("    $ kg hooks sessions        # List captured sessions"));
     console.log(chalk.gray("    $ kg hooks export          # Export captured sessions\n"));
+    console.log(chalk.white("  SPARC Planning:"));
+    console.log(chalk.gray('    $ kg sparc plan "desc"     # Create comprehensive SPARC plan'));
+    console.log(chalk.gray("    $ kg sparc review          # Review existing SPARC plan"));
+    console.log(chalk.gray("    $ kg sparc status          # Show SPARC plan status\n"));
     console.log(chalk.white("  Commands:"));
     program.commands.forEach((cmd) => {
       console.log(chalk.cyan(`    ${cmd.name().padEnd(20)}`), chalk.gray(cmd.description() || ""));
