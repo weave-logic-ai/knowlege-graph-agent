@@ -1,23 +1,23 @@
 /**
- * DeepAnalyzer - Claude-Flow Integration for Deep Codebase Analysis
+ * DeepAnalyzer - Deep Codebase Analysis
  *
- * Uses claude-flow agents for comprehensive codebase analysis:
- * - Pattern detection and architectural insights
- * - Documentation gap analysis
- * - Standards compliance checking
+ * Provides comprehensive codebase analysis using:
+ * - Claude CLI (`claude -p`) when running outside Claude Code
+ * - Direct Anthropic API when ANTHROPIC_API_KEY is available
+ * - Clear error messaging when neither option is available
  *
  * @module cultivation/deep-analyzer
  */
 
-import { execFileSync, spawn } from 'child_process';
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
-import { join, resolve } from 'path';
+import { execFileSync, execSync } from 'child_process';
+import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync } from 'fs';
+import { join, resolve, relative } from 'path';
 import { createLogger } from '../utils/index.js';
 
 const logger = createLogger('deep-analyzer');
 
 /**
- * Valid agent types for security validation
+ * Valid agent types for analysis
  */
 const VALID_AGENT_TYPES = new Set([
   'researcher',
@@ -47,6 +47,8 @@ export interface DeepAnalyzerOptions {
   agentMode?: 'sequential' | 'parallel' | 'adaptive';
   /** Timeout for each agent (ms) */
   agentTimeout?: number;
+  /** Force use of API key even if CLI is available */
+  forceApiKey?: boolean;
 }
 
 /**
@@ -73,6 +75,7 @@ export interface DeepAnalysisResult {
   results: AgentResult[];
   duration: number;
   errors: string[];
+  mode: 'cli' | 'api' | 'static';
 }
 
 /**
@@ -86,7 +89,15 @@ interface AgentConfig {
 }
 
 /**
- * DeepAnalyzer - Uses claude-flow for deep codebase analysis
+ * Execution mode detection result
+ */
+interface ExecutionMode {
+  mode: 'cli' | 'api' | 'unavailable';
+  reason: string;
+}
+
+/**
+ * DeepAnalyzer - Deep codebase analysis with multiple execution modes
  *
  * @example
  * ```typescript
@@ -107,7 +118,7 @@ export class DeepAnalyzer {
   private maxAgents: number;
   private agentMode: 'sequential' | 'parallel' | 'adaptive';
   private agentTimeout: number;
-  private claudeFlowCommand: { cmd: string; args: string[] } | null = null;
+  private forceApiKey: boolean;
 
   constructor(options: DeepAnalyzerOptions) {
     this.projectRoot = resolve(options.projectRoot);
@@ -116,55 +127,102 @@ export class DeepAnalyzer {
     this.verbose = options.verbose || false;
     this.maxAgents = options.maxAgents || 5;
     this.agentMode = options.agentMode || 'adaptive';
-    // Default timeout of 60 seconds (configurable via agentTimeout option)
-    this.agentTimeout = options.agentTimeout || 60000;
+    // Default timeout of 2 minutes (120 seconds)
+    this.agentTimeout = options.agentTimeout || 120000;
+    this.forceApiKey = options.forceApiKey || false;
   }
 
   /**
-   * Check if claude-flow is available and determine the best command to use
-   * Checks for direct command first (globally installed), then falls back to npx
+   * Check if running inside a Claude Code session
    */
-  async isAvailable(): Promise<boolean> {
-    const command = await this.detectClaudeFlowCommand();
-    return command !== null;
+  private isInsideClaudeCode(): boolean {
+    return process.env.CLAUDECODE === '1' || process.env.CLAUDE_CODE === '1';
   }
 
   /**
-   * Detect which claude-flow command to use
-   * Returns the command configuration or null if not available
+   * Check if Anthropic API key is available
    */
-  private async detectClaudeFlowCommand(): Promise<{ cmd: string; args: string[] } | null> {
-    // Return cached result if available
-    if (this.claudeFlowCommand !== null) {
-      return this.claudeFlowCommand;
-    }
+  private hasApiKey(): boolean {
+    return !!process.env.ANTHROPIC_API_KEY;
+  }
 
-    // First try direct command (globally installed claude-flow)
+  /**
+   * Check if Claude CLI is available
+   */
+  private isCliAvailable(): boolean {
     try {
-      // SECURITY: execFileSync does not spawn a shell by default, preventing shell injection
-      execFileSync('claude-flow', ['--version'], {
+      execFileSync('claude', ['--version'], {
         stdio: 'pipe',
         timeout: 5000,
         windowsHide: true,
       });
-      this.claudeFlowCommand = { cmd: 'claude-flow', args: [] };
-      return this.claudeFlowCommand;
+      return true;
     } catch {
-      // Direct command not available, try npx
+      return false;
+    }
+  }
+
+  /**
+   * Determine the best execution mode
+   */
+  private detectExecutionMode(): ExecutionMode {
+    const insideClaudeCode = this.isInsideClaudeCode();
+    const hasApiKey = this.hasApiKey();
+    const cliAvailable = this.isCliAvailable();
+
+    // If forced to use API key
+    if (this.forceApiKey) {
+      if (hasApiKey) {
+        return { mode: 'api', reason: 'Using API key (forced)' };
+      }
+      return { mode: 'unavailable', reason: 'ANTHROPIC_API_KEY not set (required when forceApiKey=true)' };
     }
 
-    // Fall back to npx
-    try {
-      execFileSync('npx', ['claude-flow', '--version'], {
-        stdio: 'pipe',
-        timeout: 30000,
-        windowsHide: true,
-      });
-      this.claudeFlowCommand = { cmd: 'npx', args: ['claude-flow'] };
-      return this.claudeFlowCommand;
-    } catch {
-      return null;
+    // Inside Claude Code session - CLI doesn't work due to resource contention
+    if (insideClaudeCode) {
+      if (hasApiKey) {
+        return { mode: 'api', reason: 'Using API key (inside Claude Code session)' };
+      }
+      return {
+        mode: 'unavailable',
+        reason: 'Cannot run deep analysis inside Claude Code session without ANTHROPIC_API_KEY. ' +
+                'Either set ANTHROPIC_API_KEY environment variable, or run this command from a regular terminal.',
+      };
     }
+
+    // Outside Claude Code - prefer CLI for OAuth session support
+    if (cliAvailable) {
+      return { mode: 'cli', reason: 'Using Claude CLI' };
+    }
+
+    // CLI not available, try API key
+    if (hasApiKey) {
+      return { mode: 'api', reason: 'Using API key (CLI not available)' };
+    }
+
+    return {
+      mode: 'unavailable',
+      reason: 'Claude CLI not found. Install Claude Code (https://claude.ai/code) or set ANTHROPIC_API_KEY.',
+    };
+  }
+
+  /**
+   * Check if analysis is available
+   */
+  async isAvailable(): Promise<boolean> {
+    const mode = this.detectExecutionMode();
+    return mode.mode !== 'unavailable';
+  }
+
+  /**
+   * Get availability status with reason
+   */
+  async getAvailabilityStatus(): Promise<{ available: boolean; reason: string }> {
+    const mode = this.detectExecutionMode();
+    return {
+      available: mode.mode !== 'unavailable',
+      reason: mode.reason,
+    };
   }
 
   /**
@@ -172,6 +230,7 @@ export class DeepAnalyzer {
    */
   async analyze(): Promise<DeepAnalysisResult> {
     const startTime = Date.now();
+    const executionMode = this.detectExecutionMode();
 
     const result: DeepAnalysisResult = {
       success: false,
@@ -181,14 +240,18 @@ export class DeepAnalyzer {
       results: [],
       duration: 0,
       errors: [],
+      mode: executionMode.mode === 'unavailable' ? 'static' : executionMode.mode,
     };
 
     // Check availability
-    if (!(await this.isAvailable())) {
-      result.errors.push('claude-flow is not available');
+    if (executionMode.mode === 'unavailable') {
+      result.errors.push(executionMode.reason);
       result.duration = Date.now() - startTime;
+      logger.error('Deep analysis unavailable', new Error(executionMode.reason));
       return result;
     }
+
+    logger.info(`Starting deep analysis`, { mode: executionMode.mode, reason: executionMode.reason });
 
     // Ensure output directory exists
     if (!existsSync(this.outputDir)) {
@@ -223,23 +286,19 @@ export class DeepAnalyzer {
       },
     ];
 
-    logger.info('Starting deep analysis', { agents: agents.length, mode: this.agentMode });
+    logger.info('Executing analysis agents', { agents: agents.length, mode: 'sequential' });
 
-    // Execute agents based on mode
-    if (this.agentMode === 'parallel') {
-      result.results = await this.executeParallel(agents);
-    } else if (this.agentMode === 'sequential') {
-      result.results = await this.executeSequential(agents);
-    } else {
-      // Adaptive: start with 2, scale based on success
-      result.results = await this.executeAdaptive(agents);
+    // Execute agents sequentially
+    for (const agent of agents) {
+      const agentResult = await this.executeAgent(agent, executionMode.mode as 'cli' | 'api');
+      result.results.push(agentResult);
     }
 
     // Calculate totals
     result.agentsSpawned = result.results.length;
     result.insightsCount = result.results.reduce((sum, r) => sum + r.insights.length, 0);
     result.documentsCreated = result.results.reduce((sum, r) => sum + r.documents.length, 0);
-    result.success = result.results.every(r => r.success);
+    result.success = result.results.some(r => r.success); // Success if at least one agent succeeded
     result.duration = Date.now() - startTime;
 
     // Collect errors
@@ -260,58 +319,9 @@ export class DeepAnalyzer {
   }
 
   /**
-   * Execute agents in parallel
-   */
-  private async executeParallel(agents: AgentConfig[]): Promise<AgentResult[]> {
-    const promises = agents.map(agent => this.executeAgent(agent));
-    return Promise.all(promises);
-  }
-
-  /**
-   * Execute agents sequentially
-   */
-  private async executeSequential(agents: AgentConfig[]): Promise<AgentResult[]> {
-    const results: AgentResult[] = [];
-    for (const agent of agents) {
-      results.push(await this.executeAgent(agent));
-    }
-    return results;
-  }
-
-  /**
-   * Execute agents adaptively (start with 2, scale based on success)
-   */
-  private async executeAdaptive(agents: AgentConfig[]): Promise<AgentResult[]> {
-    const results: AgentResult[] = [];
-
-    // First batch: 2 agents
-    const firstBatch = agents.slice(0, 2);
-    const firstResults = await Promise.all(firstBatch.map(a => this.executeAgent(a)));
-    results.push(...firstResults);
-
-    // Check success rate
-    const successRate = firstResults.filter(r => r.success).length / firstResults.length;
-
-    if (successRate >= 0.5 && agents.length > 2) {
-      // Continue with remaining agents in parallel
-      const remaining = agents.slice(2);
-      const remainingResults = await Promise.all(remaining.map(a => this.executeAgent(a)));
-      results.push(...remainingResults);
-    } else if (agents.length > 2) {
-      // Fall back to sequential
-      logger.warn('Low success rate, switching to sequential mode');
-      for (const agent of agents.slice(2)) {
-        results.push(await this.executeAgent(agent));
-      }
-    }
-
-    return results;
-  }
-
-  /**
    * Execute a single agent
    */
-  private async executeAgent(agent: AgentConfig): Promise<AgentResult> {
+  private async executeAgent(agent: AgentConfig, mode: 'cli' | 'api'): Promise<AgentResult> {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
 
@@ -325,12 +335,16 @@ export class DeepAnalyzer {
     };
 
     try {
-      logger.info(`Spawning agent: ${agent.name}`, { type: agent.type });
+      logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
 
       const prompt = this.buildPrompt(agent);
+      let output: string;
 
-      // Execute claude-flow agent
-      const output = await this.runClaudeFlowAgent(agent.type, prompt);
+      if (mode === 'cli') {
+        output = await this.runWithCli(prompt);
+      } else {
+        output = await this.runWithApi(prompt);
+      }
 
       // Parse output for insights
       result.insights = this.extractInsights(output);
@@ -354,90 +368,153 @@ export class DeepAnalyzer {
   }
 
   /**
-   * Build prompt for agent
+   * Build context-aware prompt for analysis
    */
   private buildPrompt(agent: AgentConfig): string {
-    return `You are a ${agent.name} analyzing the project at ${this.projectRoot}.
+    // Gather project context
+    const context = this.gatherProjectContext();
 
-**OBJECTIVE**: ${agent.task}
+    return `You are analyzing a codebase. Here is the project context:
 
-**COORDINATION PROTOCOL**:
-\`\`\`bash
-claude-flow hooks pre-task --description "${agent.task}"
-\`\`\`
+${context}
 
-**YOUR TASKS**:
-1. Analyze the codebase at ${this.projectRoot}
-2. Identify key patterns and conventions
-3. Document your findings with specific examples
-4. Provide actionable recommendations
-5. Generate comprehensive markdown documentation
+Task: ${agent.task}
 
-**OUTPUT REQUIREMENTS**:
-- Use clear markdown formatting
-- Include code examples from the project
-- Organize findings by category
-- Prioritize actionable insights
+Provide your findings in markdown format with:
+1. Key observations (prefix with "Observation:")
+2. Specific recommendations (prefix with "Recommendation:")
+3. Any potential issues found (prefix with "Finding:")
 
-After completing:
-\`\`\`bash
-claude-flow hooks post-task --task-id "${agent.type}-analysis"
-\`\`\`
-`;
+Be specific and actionable in your analysis.`;
   }
 
   /**
-   * Run claude-flow agent
+   * Gather project context for analysis
    */
-  private async runClaudeFlowAgent(type: string, prompt: string): Promise<string> {
-    // Security: Validate agent type against allowlist to prevent command injection
-    if (!VALID_AGENT_TYPES.has(type)) {
-      throw new Error(`Invalid agent type: ${type}. Valid types: ${[...VALID_AGENT_TYPES].join(', ')}`);
-    }
+  private gatherProjectContext(): string {
+    const lines: string[] = [];
 
-    // Security: Sanitize prompt to prevent injection via shell metacharacters
-    const sanitizedPrompt = prompt.replace(/[`$\\]/g, '');
+    // Check for package.json
+    const packageJsonPath = join(this.projectRoot, 'package.json');
+    if (existsSync(packageJsonPath)) {
+      try {
+        const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+        lines.push(`Project: ${pkg.name || 'Unknown'} v${pkg.version || '0.0.0'}`);
+        lines.push(`Description: ${pkg.description || 'No description'}`);
 
-    // Get the detected command configuration
-    const commandConfig = await this.detectClaudeFlowCommand();
-    if (!commandConfig) {
-      throw new Error('claude-flow is not available');
-    }
-
-    return new Promise((resolve, reject) => {
-      // Build args based on detected command
-      // claude-flow agent run <type> "<prompt>"
-      const args = [...commandConfig.args, 'agent', 'run', type, sanitizedPrompt];
-
-      const proc = spawn(commandConfig.cmd, args, {
-        cwd: this.projectRoot,
-        shell: false, // Security: Disable shell to prevent command injection
-        timeout: this.agentTimeout,
-      });
-
-      let stdout = '';
-      let stderr = '';
-
-      proc.stdout?.on('data', (data) => {
-        stdout += data.toString();
-      });
-
-      proc.stderr?.on('data', (data) => {
-        stderr += data.toString();
-      });
-
-      proc.on('close', (code) => {
-        if (code === 0) {
-          resolve(stdout);
-        } else {
-          reject(new Error(stderr || `Agent exited with code ${code}`));
+        if (pkg.dependencies) {
+          const deps = Object.keys(pkg.dependencies).slice(0, 10);
+          lines.push(`Key dependencies: ${deps.join(', ')}`);
         }
+      } catch {
+        // Ignore parse errors
+      }
+    }
+
+    // List top-level directories
+    try {
+      const entries = readdirSync(this.projectRoot, { withFileTypes: true });
+      const dirs = entries
+        .filter(e => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
+        .map(e => e.name)
+        .slice(0, 10);
+
+      if (dirs.length > 0) {
+        lines.push(`Project structure: ${dirs.join(', ')}`);
+      }
+    } catch {
+      // Ignore errors
+    }
+
+    // Check for common config files
+    const configFiles = [
+      'tsconfig.json',
+      'vite.config.ts',
+      'vitest.config.ts',
+      '.eslintrc.js',
+      'Dockerfile',
+    ];
+
+    const foundConfigs = configFiles.filter(f => existsSync(join(this.projectRoot, f)));
+    if (foundConfigs.length > 0) {
+      lines.push(`Config files: ${foundConfigs.join(', ')}`);
+    }
+
+    return lines.join('\n');
+  }
+
+  /**
+   * Run analysis using Claude CLI
+   */
+  private async runWithCli(prompt: string): Promise<string> {
+    // Sanitize prompt - escape double quotes and remove dangerous chars
+    const sanitizedPrompt = prompt
+      .replace(/"/g, '\\"')
+      .replace(/[`$]/g, '');
+
+    try {
+      const result = execSync(`claude -p "${sanitizedPrompt}"`, {
+        cwd: this.projectRoot,
+        encoding: 'utf8',
+        timeout: this.agentTimeout,
+        maxBuffer: 10 * 1024 * 1024, // 10MB buffer
+      });
+      return result;
+    } catch (error) {
+      if (error instanceof Error) {
+        const execError = error as { stderr?: string; stdout?: string; killed?: boolean };
+        if (execError.killed) {
+          // Timeout - return partial output if available
+          if (execError.stdout && execError.stdout.length > 100) {
+            return execError.stdout;
+          }
+          throw new Error(`Claude CLI timed out after ${this.agentTimeout / 1000}s`);
+        }
+        throw new Error(execError.stderr || error.message);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Run analysis using Anthropic API directly
+   */
+  private async runWithApi(prompt: string): Promise<string> {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      throw new Error('ANTHROPIC_API_KEY not set');
+    }
+
+    try {
+      // Dynamic import to avoid bundling issues
+      const { default: Anthropic } = await import('@anthropic-ai/sdk');
+
+      const client = new Anthropic({ apiKey });
+
+      const response = await client.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4096,
+        messages: [
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
       });
 
-      proc.on('error', (error) => {
-        reject(error);
-      });
-    });
+      // Extract text from response
+      const textBlock = response.content.find(block => block.type === 'text');
+      if (textBlock && textBlock.type === 'text') {
+        return textBlock.text;
+      }
+
+      throw new Error('No text content in API response');
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`API call failed: ${error.message}`);
+      }
+      throw error;
+    }
   }
 
   /**
@@ -446,9 +523,9 @@ claude-flow hooks post-task --task-id "${agent.type}-analysis"
   private extractInsights(output: string): string[] {
     const insights: string[] = [];
 
-    // Look for patterns like "- Insight:" or "## Finding:"
+    // Look for patterns like "- Insight:", "Observation:", "Finding:", "Recommendation:"
     const patterns = [
-      /[-*]\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
+      /[-*]?\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
       /##\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
       /(?:key\s+)?(?:insight|finding|observation|recommendation):\s*(.+)/gi,
     ];
@@ -482,7 +559,7 @@ created: ${timestamp}
 
 # ${agent.name} Analysis
 
-> Generated by DeepAnalyzer using claude-flow
+> Generated by DeepAnalyzer
 
 ## Overview
 
