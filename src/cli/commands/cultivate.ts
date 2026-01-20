@@ -213,40 +213,58 @@ export function createCultivateCommand(): Command {
           console.log('');
         }
 
-        // Task 2: Deep Analysis with claude-flow
+        // Task 2: Deep Analysis
         if (tasks.deepAnalysis) {
-          console.log(chalk.cyan('🧠 Running deep analysis with claude-flow...\n'));
+          console.log(chalk.cyan('🧠 Running deep analysis...\n'));
 
-          // Check if claude-flow is available
-          const hasClaudeFlow = await checkClaudeFlowAvailable();
+          // Import and check DeepAnalyzer availability
+          const { DeepAnalyzer } = await import('../../cultivation/deep-analyzer.js');
+          const analyzer = new DeepAnalyzer({
+            projectRoot,
+            docsPath,
+            verbose,
+          });
 
-          if (!hasClaudeFlow) {
-            console.log(chalk.yellow('  ⚠️  claude-flow not available'));
-            console.log(chalk.gray('  Install with: npm install -g claude-flow'));
-            result.warnings.push('claude-flow not available for deep analysis');
+          const availability = await analyzer.getAvailabilityStatus();
+
+          if (!availability.available) {
+            console.log(chalk.yellow('  ⚠️  Deep analysis unavailable'));
+            console.log(chalk.gray(`  ${availability.reason}`));
+            console.log('');
+            console.log(chalk.gray('  Options:'));
+            console.log(chalk.gray('  1. Run from a regular terminal (outside Claude Code)'));
+            console.log(chalk.gray('  2. Set ANTHROPIC_API_KEY environment variable'));
+            result.warnings.push(`Deep analysis unavailable: ${availability.reason}`);
           } else {
-            if (dryRun) {
-              console.log(chalk.yellow('  [DRY RUN] Would spawn claude-flow agents:'));
-              console.log('    - Researcher: Analyze codebase patterns');
-              console.log('    - Analyst: Identify architectural decisions');
-              console.log('    - Coder: Detect implementation patterns');
-              console.log('    - Tester: Analyze testing coverage');
-            } else {
-              // Import and run DeepAnalyzer
-              try {
-                const { DeepAnalyzer } = await import('../../cultivation/deep-analyzer.js');
-                const analyzer = new DeepAnalyzer({
-                  projectRoot,
-                  docsPath,
-                  verbose,
-                });
+            console.log(chalk.gray(`  Mode: ${availability.reason}`));
 
+            if (dryRun) {
+              console.log(chalk.yellow('\n  [DRY RUN] Would run analysis agents:'));
+              console.log('    - Pattern Researcher: Analyze codebase architecture');
+              console.log('    - Code Analyst: Identify quality issues');
+              console.log('    - Implementation Reviewer: Review code patterns');
+              console.log('    - Test Analyzer: Analyze test coverage');
+            } else {
+              try {
                 const deepResult = await analyzer.analyze();
 
-                console.log(`  ${chalk.green('✓')} Deep analysis complete`);
-                console.log(`    Agents spawned: ${deepResult.agentsSpawned}`);
-                console.log(`    Insights generated: ${deepResult.insightsCount}`);
-                console.log(`    Documentation created: ${deepResult.documentsCreated}`);
+                if (deepResult.success) {
+                  console.log(`\n  ${chalk.green('✓')} Deep analysis complete`);
+                  console.log(`    Agents spawned: ${deepResult.agentsSpawned}`);
+                  console.log(`    Insights generated: ${deepResult.insightsCount}`);
+                  console.log(`    Documentation created: ${deepResult.documentsCreated}`);
+                  console.log(`    Mode: ${deepResult.mode}`);
+                } else {
+                  console.log(`\n  ${chalk.yellow('⚠')} Deep analysis completed with issues`);
+                  console.log(`    Agents spawned: ${deepResult.agentsSpawned}`);
+                  console.log(`    Insights generated: ${deepResult.insightsCount}`);
+                  if (deepResult.errors.length > 0) {
+                    for (const err of deepResult.errors.slice(0, 3)) {
+                      console.log(chalk.gray(`    - ${err}`));
+                    }
+                  }
+                  result.warnings.push(...deepResult.errors);
+                }
               } catch (error) {
                 result.errors.push(`Deep analysis failed: ${error instanceof Error ? error.message : String(error)}`);
                 console.log(chalk.red(`  ✗ Deep analysis failed: ${error instanceof Error ? error.message : String(error)}`));
@@ -362,26 +380,3 @@ function displaySummary(result: CultivationResult, dryRun: boolean): void {
   }
 }
 
-/**
- * Check if claude-flow is available
- * Checks for direct command first (globally installed), then falls back to npx
- */
-async function checkClaudeFlowAvailable(): Promise<boolean> {
-  const { execSync } = await import('child_process');
-
-  // First try direct command (globally installed claude-flow)
-  try {
-    execSync('claude-flow --version', { stdio: 'pipe', timeout: 5000 });
-    return true;
-  } catch {
-    // Direct command not available, try npx
-  }
-
-  // Fall back to npx
-  try {
-    execSync('npx claude-flow --version', { stdio: 'pipe', timeout: 30000 });
-    return true;
-  } catch {
-    return false;
-  }
-}
