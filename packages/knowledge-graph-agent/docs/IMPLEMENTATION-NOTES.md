@@ -252,9 +252,9 @@ Benefits:
 
 **Hook commands generated:**
 ```bash
-npx claude-flow@alpha hooks pre-task --description "..."
-npx claude-flow@alpha hooks post-edit --memory-key "..."
-npx claude-flow@alpha hooks session-end --export-metrics true
+npx claude-flow hooks pre-task --description "..."
+npx claude-flow hooks post-edit --memory-key "..."
+npx claude-flow hooks session-end --export-metrics true
 ```
 
 ### MCP Server Integration

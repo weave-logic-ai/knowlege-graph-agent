@@ -17,7 +17,7 @@ class McpClientAdapter {
       retryDelayMs: config.retryDelayMs ?? 1e3,
       timeoutMs: config.timeoutMs ?? 3e4,
       fallbackEnabled: config.fallbackEnabled ?? true,
-      cliCommand: config.cliCommand ?? "npx claude-flow@alpha",
+      cliCommand: config.cliCommand ?? "claude-flow",
       useJsonOutput: config.useJsonOutput ?? true
     };
     this.fallbackStore = /* @__PURE__ */ new Map();

@@ -57,7 +57,7 @@ Replace mock MCP tool implementations with actual MCP client calls using the exi
 ### Why subprocess execution over in-process?
 
 1. **Isolation**: MCP server runs in its own process, preventing memory leaks from affecting the main agent
-2. **Existing CLI**: The `claude-flow@alpha` CLI already handles MCP communication
+2. **Existing CLI**: The `claude-flow` CLI already handles MCP communication
 3. **Simplicity**: No need to implement MCP protocol from scratch
 4. **Upgradability**: Can upgrade claude-flow independently
 
@@ -125,7 +125,7 @@ export class McpClient {
   ): Promise<boolean> {
     return this.executeWithRetry(() =>
       this.executeCommand('npx', [
-        'claude-flow@alpha',
+        'claude-flow',
         'memory',
         'store',
         '--key', key,
@@ -139,7 +139,7 @@ export class McpClient {
   async memoryRetrieve(key: string, namespace: string): Promise<string | null> {
     const result = await this.executeWithRetry(() =>
       this.executeCommand('npx', [
-        'claude-flow@alpha',
+        'claude-flow',
         'memory',
         'retrieve',
         '--key', key,

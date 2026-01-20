@@ -309,30 +309,30 @@ class ClaudeFlowIntegration {
 
 ```bash
 # Pre-task: Prepare context and resources
-npx claude-flow@alpha hooks pre-task \
+npx claude-flow hooks pre-task \
   --description "Knowledge graph analysis" \
   --agent-type researcher
 
 # Session restore: Load previous state
-npx claude-flow@alpha hooks session-restore \
+npx claude-flow hooks session-restore \
   --session-id "kg-session-$(date +%s)"
 
 # Post-edit: Sync changes and train patterns
-npx claude-flow@alpha hooks post-edit \
+npx claude-flow hooks post-edit \
   --file "knowledge-graph.db" \
   --memory-key "kg-agent/changes/$(date +%s)"
 
 # Notify: Broadcast operation status
-npx claude-flow@alpha hooks notify \
+npx claude-flow hooks notify \
   --message "Knowledge graph updated: 15 nodes, 23 edges"
 
 # Post-task: Finalize and record trajectory
-npx claude-flow@alpha hooks post-task \
+npx claude-flow hooks post-task \
   --task-id "kg-analyze-001" \
   --success true
 
 # Session end: Export and persist
-npx claude-flow@alpha hooks session-end \
+npx claude-flow hooks session-end \
   --export-metrics true
 ```
 
@@ -343,35 +343,35 @@ npx claude-flow@alpha hooks session-end \
 class HooksIntegration {
   // Called before any KG operation
   async preTask(description: string, agentType: AgentType): Promise<void> {
-    await execAsync(`npx claude-flow@alpha hooks pre-task \
+    await execAsync(`npx claude-flow hooks pre-task \
       --description "${description}" \
       --agent-type ${agentType}`);
   }
 
   // Called after file modifications
   async postEdit(filePath: string, memoryKey: string): Promise<void> {
-    await execAsync(`npx claude-flow@alpha hooks post-edit \
+    await execAsync(`npx claude-flow hooks post-edit \
       --file "${filePath}" \
       --memory-key "${memoryKey}"`);
   }
 
   // Called after task completion
   async postTask(taskId: string, success: boolean): Promise<void> {
-    await execAsync(`npx claude-flow@alpha hooks post-task \
+    await execAsync(`npx claude-flow hooks post-task \
       --task-id "${taskId}" \
       --success ${success}`);
   }
 
   // Restore session state
   async restoreSession(sessionId: string): Promise<SessionState> {
-    const result = await execAsync(`npx claude-flow@alpha hooks session-restore \
+    const result = await execAsync(`npx claude-flow hooks session-restore \
       --session-id "${sessionId}"`);
     return JSON.parse(result);
   }
 
   // End session and persist
   async endSession(exportMetrics: boolean = true): Promise<void> {
-    await execAsync(`npx claude-flow@alpha hooks session-end \
+    await execAsync(`npx claude-flow hooks session-end \
       --export-metrics ${exportMetrics}`);
   }
 }
@@ -486,7 +486,7 @@ async function initializeClaudeFlow() {
   const mcpClient = await MCPClient.connect({
     transport: 'stdio',
     command: 'npx',
-    args: ['claude-flow@alpha', 'mcp', 'start'],
+    args: ['claude-flow', 'mcp', 'start'],
   });
 
   // Create integration wrapper
@@ -674,7 +674,7 @@ class KGSessionManager {
 ### Common Issues
 
 **Claude-Flow MCP not responding**
-- Verify `npx claude-flow@alpha mcp start` runs successfully
+- Verify `npx claude-flow mcp start` runs successfully
 - Check MCP server logs for connection issues
 
 **Memory sync failures**

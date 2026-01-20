@@ -107,6 +107,7 @@ export class DeepAnalyzer {
   private maxAgents: number;
   private agentMode: 'sequential' | 'parallel' | 'adaptive';
   private agentTimeout: number;
+  private claudeFlowCommand: { cmd: string; args: string[] } | null = null;
 
   constructor(options: DeepAnalyzerOptions) {
     this.projectRoot = resolve(options.projectRoot);
@@ -120,20 +121,49 @@ export class DeepAnalyzer {
   }
 
   /**
-   * Check if claude-flow is available
+   * Check if claude-flow is available and determine the best command to use
+   * Checks for direct command first (globally installed), then falls back to npx
    */
   async isAvailable(): Promise<boolean> {
+    const command = await this.detectClaudeFlowCommand();
+    return command !== null;
+  }
+
+  /**
+   * Detect which claude-flow command to use
+   * Returns the command configuration or null if not available
+   */
+  private async detectClaudeFlowCommand(): Promise<{ cmd: string; args: string[] } | null> {
+    // Return cached result if available
+    if (this.claudeFlowCommand !== null) {
+      return this.claudeFlowCommand;
+    }
+
+    // First try direct command (globally installed claude-flow)
     try {
       // SECURITY: execFileSync does not spawn a shell by default, preventing shell injection
-      // Using npx with explicit arguments avoids shell metacharacter interpretation
-      execFileSync('npx', ['claude-flow@alpha', '--version'], {
+      execFileSync('claude-flow', ['--version'], {
         stdio: 'pipe',
         timeout: 5000,
         windowsHide: true,
       });
-      return true;
+      this.claudeFlowCommand = { cmd: 'claude-flow', args: [] };
+      return this.claudeFlowCommand;
     } catch {
-      return false;
+      // Direct command not available, try npx
+    }
+
+    // Fall back to npx
+    try {
+      execFileSync('npx', ['claude-flow', '--version'], {
+        stdio: 'pipe',
+        timeout: 30000,
+        windowsHide: true,
+      });
+      this.claudeFlowCommand = { cmd: 'npx', args: ['claude-flow'] };
+      return this.claudeFlowCommand;
+    } catch {
+      return null;
     }
   }
 
@@ -333,7 +363,7 @@ export class DeepAnalyzer {
 
 **COORDINATION PROTOCOL**:
 \`\`\`bash
-npx claude-flow@alpha hooks pre-task --description "${agent.task}"
+claude-flow hooks pre-task --description "${agent.task}"
 \`\`\`
 
 **YOUR TASKS**:
@@ -351,7 +381,7 @@ npx claude-flow@alpha hooks pre-task --description "${agent.task}"
 
 After completing:
 \`\`\`bash
-npx claude-flow@alpha hooks post-task --task-id "${agent.type}-analysis"
+claude-flow hooks post-task --task-id "${agent.type}-analysis"
 \`\`\`
 `;
   }
@@ -368,10 +398,17 @@ npx claude-flow@alpha hooks post-task --task-id "${agent.type}-analysis"
     // Security: Sanitize prompt to prevent injection via shell metacharacters
     const sanitizedPrompt = prompt.replace(/[`$\\]/g, '');
 
-    return new Promise((resolve, reject) => {
-      const args = ['claude-flow@alpha', 'agent', 'execute', type, sanitizedPrompt, '--json'];
+    // Get the detected command configuration
+    const commandConfig = await this.detectClaudeFlowCommand();
+    if (!commandConfig) {
+      throw new Error('claude-flow is not available');
+    }
 
-      const proc = spawn('npx', args, {
+    return new Promise((resolve, reject) => {
+      // Build args based on detected command
+      const args = [...commandConfig.args, 'agent', 'execute', type, sanitizedPrompt, '--json'];
+
+      const proc = spawn(commandConfig.cmd, args, {
         cwd: this.projectRoot,
         shell: false, // Security: Disable shell to prevent command injection
         timeout: this.agentTimeout,

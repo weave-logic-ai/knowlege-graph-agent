@@ -368,26 +368,35 @@ async function executeAgentTask(task, context, verbose) {
   };
 }
 async function checkClaudeFlowAvailable() {
-  return new Promise((resolve) => {
-    const proc = spawn("npx", ["claude-flow@alpha", "--version"], {
+  const tryDirect = new Promise((resolve) => {
+    const proc = spawn("claude-flow", ["--version"], {
       stdio: "pipe",
-      shell: true
+      shell: false
     });
-    proc.on("close", (code) => {
-      resolve(code === 0);
-    });
-    proc.on("error", () => {
-      resolve(false);
-    });
+    proc.on("close", (code) => resolve(code === 0));
+    proc.on("error", () => resolve(false));
     setTimeout(() => {
       proc.kill();
       resolve(false);
     }, 5e3);
   });
+  if (await tryDirect) return true;
+  return new Promise((resolve) => {
+    const proc = spawn("npx", ["claude-flow", "--version"], {
+      stdio: "pipe",
+      shell: false
+    });
+    proc.on("close", (code) => resolve(code === 0));
+    proc.on("error", () => resolve(false));
+    setTimeout(() => {
+      proc.kill();
+      resolve(false);
+    }, 3e4);
+  });
 }
 async function executeWithClaudeFlow(task, context, verbose) {
   return new Promise((resolve, reject) => {
-    const agentCmd = `npx claude-flow@alpha sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
+    const agentCmd = `claude-flow sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
     if (verbose) {
       console.log(`
   Spawning ${task.agentType} agent for ${task.outputFile}...`);

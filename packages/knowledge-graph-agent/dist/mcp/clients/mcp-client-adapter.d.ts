@@ -18,7 +18,7 @@ export interface McpClientConfig {
     timeoutMs: number;
     /** Whether to fallback to in-memory storage when CLI unavailable (default: true) */
     fallbackEnabled: boolean;
-    /** Claude-flow CLI command (default: 'npx claude-flow@alpha') */
+    /** Claude-flow CLI command (default: 'claude-flow' or 'npx claude-flow') */
     cliCommand: string;
     /** Whether to use JSON output format from CLI when available */
     useJsonOutput: boolean;
