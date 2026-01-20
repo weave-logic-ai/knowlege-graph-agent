@@ -1,10 +1,13 @@
 /**
- * DeepAnalyzer - Claude-Flow Integration for Deep Codebase Analysis
+ * DeepAnalyzer - Documentation Cultivation & Knowledge Graph Enhancement
  *
- * Uses claude-flow agents for comprehensive codebase analysis:
- * - Pattern detection and architectural insights
- * - Documentation gap analysis
- * - Standards compliance checking
+ * Analyzes existing documentation to:
+ * - Understand the vision and requirements described
+ * - Identify documentation gaps and unclear areas
+ * - Guide the documentation process with research questions
+ * - Build knowledge graph connections
+ *
+ * This is NOT for code analysis - use analyze-codebase for that.
  *
  * @module cultivation/deep-analyzer
  */
@@ -20,12 +23,14 @@ export interface DeepAnalyzerOptions {
     outputDir?: string;
     /** Enable verbose logging */
     verbose?: boolean;
-    /** Maximum agents to spawn */
-    maxAgents?: number;
-    /** Agent execution mode */
-    agentMode?: 'sequential' | 'parallel' | 'adaptive';
-    /** Timeout for each agent (ms) */
+    /** Maximum documents to analyze */
+    maxDocuments?: number;
+    /** Timeout for each analysis (ms) */
     agentTimeout?: number;
+    /** Force use of API key even if CLI is available */
+    forceApiKey?: boolean;
+    /** Preferred provider when multiple are available */
+    preferredProvider?: 'anthropic' | 'gemini';
 }
 /**
  * Analysis result from an agent
@@ -53,9 +58,16 @@ export interface DeepAnalysisResult {
     results: AgentResult[];
     duration: number;
     errors: string[];
+    mode: 'cli' | 'anthropic' | 'gemini' | 'static';
 }
 /**
- * DeepAnalyzer - Uses claude-flow for deep codebase analysis
+ * DeepAnalyzer - Documentation cultivation with AI-powered analysis
+ *
+ * Reads existing markdown documentation and provides:
+ * - Vision synthesis from requirements
+ * - Gap analysis identifying missing documentation
+ * - Research questions for unclear areas
+ * - Knowledge graph connection suggestions
  *
  * @example
  * ```typescript
@@ -73,49 +85,78 @@ export declare class DeepAnalyzer {
     private docsPath;
     private outputDir;
     private verbose;
-    private maxAgents;
-    private agentMode;
+    private maxDocuments;
     private agentTimeout;
-    private claudeFlowCommand;
+    private forceApiKey;
+    private preferredProvider;
     constructor(options: DeepAnalyzerOptions);
     /**
-     * Check if claude-flow is available and determine the best command to use
-     * Checks for direct command first (globally installed), then falls back to npx
+     * Check if running inside a Claude Code session
+     */
+    private isInsideClaudeCode;
+    /**
+     * Check if Anthropic API key is available
+     */
+    private hasAnthropicApiKey;
+    /**
+     * Check if Google AI / Gemini API key is available
+     */
+    private hasGeminiApiKey;
+    /**
+     * Get the Gemini API key from available env vars
+     */
+    private getGeminiApiKey;
+    /**
+     * Check if Claude CLI is available
+     */
+    private isCliAvailable;
+    /**
+     * Determine the best execution mode
+     */
+    private detectExecutionMode;
+    /**
+     * Check if analysis is available
      */
     isAvailable(): Promise<boolean>;
     /**
-     * Detect which claude-flow command to use
-     * Returns the command configuration or null if not available
+     * Get availability status with reason
      */
-    private detectClaudeFlowCommand;
+    getAvailabilityStatus(): Promise<{
+        available: boolean;
+        reason: string;
+    }>;
+    /**
+     * Scan documentation directory for markdown files
+     */
+    private scanDocumentation;
+    /**
+     * Read full content of key documents
+     */
+    private readKeyDocuments;
     /**
      * Run deep analysis
      */
     analyze(): Promise<DeepAnalysisResult>;
     /**
-     * Execute agents in parallel
-     */
-    private executeParallel;
-    /**
-     * Execute agents sequentially
-     */
-    private executeSequential;
-    /**
-     * Execute agents adaptively (start with 2, scale based on success)
-     */
-    private executeAdaptive;
-    /**
      * Execute a single agent
      */
     private executeAgent;
     /**
-     * Build prompt for agent
+     * Build context-aware prompt for documentation cultivation
      */
     private buildPrompt;
     /**
-     * Run claude-flow agent
+     * Run analysis using Claude CLI
      */
-    private runClaudeFlowAgent;
+    private runWithCli;
+    /**
+     * Run analysis using Anthropic API directly
+     */
+    private runWithAnthropic;
+    /**
+     * Run analysis using Google Gemini API
+     */
+    private runWithGemini;
     /**
      * Extract insights from agent output
      */

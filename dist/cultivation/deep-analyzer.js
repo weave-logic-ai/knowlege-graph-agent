@@ -1,78 +1,211 @@
-import { execFileSync, spawn } from "child_process";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
-import { resolve, join } from "path";
+import { execFileSync, execSync } from "child_process";
+import { existsSync, readFileSync, mkdirSync, writeFileSync, readdirSync, statSync } from "fs";
+import { resolve, join, extname, relative, basename } from "path";
 import { createLogger } from "../utils/logger.js";
 const logger = createLogger("deep-analyzer");
-const VALID_AGENT_TYPES = /* @__PURE__ */ new Set([
-  "researcher",
-  "architect",
-  "analyst",
-  "coder",
-  "tester",
-  "reviewer",
-  "documenter"
-]);
 class DeepAnalyzer {
   projectRoot;
   docsPath;
   outputDir;
   verbose;
-  maxAgents;
-  agentMode;
+  maxDocuments;
   agentTimeout;
-  claudeFlowCommand = null;
+  forceApiKey;
+  preferredProvider;
   constructor(options) {
     this.projectRoot = resolve(options.projectRoot);
     this.docsPath = options.docsPath || "docs";
     this.outputDir = options.outputDir || join(this.projectRoot, this.docsPath, "analysis");
     this.verbose = options.verbose || false;
-    this.maxAgents = options.maxAgents || 5;
-    this.agentMode = options.agentMode || "adaptive";
-    this.agentTimeout = options.agentTimeout || 6e4;
+    this.maxDocuments = options.maxDocuments || 50;
+    this.agentTimeout = options.agentTimeout || 12e4;
+    this.forceApiKey = options.forceApiKey || false;
+    this.preferredProvider = options.preferredProvider || "anthropic";
   }
   /**
-   * Check if claude-flow is available and determine the best command to use
-   * Checks for direct command first (globally installed), then falls back to npx
+   * Check if running inside a Claude Code session
    */
-  async isAvailable() {
-    const command = await this.detectClaudeFlowCommand();
-    return command !== null;
+  isInsideClaudeCode() {
+    return process.env.CLAUDECODE === "1" || process.env.CLAUDE_CODE === "1";
   }
   /**
-   * Detect which claude-flow command to use
-   * Returns the command configuration or null if not available
+   * Check if Anthropic API key is available
    */
-  async detectClaudeFlowCommand() {
-    if (this.claudeFlowCommand !== null) {
-      return this.claudeFlowCommand;
-    }
+  hasAnthropicApiKey() {
+    return !!process.env.ANTHROPIC_API_KEY;
+  }
+  /**
+   * Check if Google AI / Gemini API key is available
+   */
+  hasGeminiApiKey() {
+    return !!(process.env.GOOGLE_AI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY);
+  }
+  /**
+   * Get the Gemini API key from available env vars
+   */
+  getGeminiApiKey() {
+    return process.env.GOOGLE_AI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+  }
+  /**
+   * Check if Claude CLI is available
+   */
+  isCliAvailable() {
     try {
-      execFileSync("claude-flow", ["--version"], {
+      execFileSync("claude", ["--version"], {
         stdio: "pipe",
         timeout: 5e3,
         windowsHide: true
       });
-      this.claudeFlowCommand = { cmd: "claude-flow", args: [] };
-      return this.claudeFlowCommand;
+      return true;
     } catch {
+      return false;
     }
-    try {
-      execFileSync("npx", ["claude-flow", "--version"], {
-        stdio: "pipe",
-        timeout: 3e4,
-        windowsHide: true
-      });
-      this.claudeFlowCommand = { cmd: "npx", args: ["claude-flow"] };
-      return this.claudeFlowCommand;
-    } catch {
-      return null;
+  }
+  /**
+   * Determine the best execution mode
+   */
+  detectExecutionMode() {
+    const insideClaudeCode = this.isInsideClaudeCode();
+    const hasAnthropicKey = this.hasAnthropicApiKey();
+    const hasGeminiKey = this.hasGeminiApiKey();
+    const cliAvailable = this.isCliAvailable();
+    if (this.forceApiKey) {
+      if (this.preferredProvider === "gemini" && hasGeminiKey) {
+        return { mode: "gemini", reason: "Using Gemini API (forced, preferred)" };
+      }
+      if (hasAnthropicKey) {
+        return { mode: "anthropic", reason: "Using Anthropic API (forced)" };
+      }
+      if (hasGeminiKey) {
+        return { mode: "gemini", reason: "Using Gemini API (forced, fallback)" };
+      }
+      return { mode: "unavailable", reason: "No API key found. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY." };
     }
+    if (this.preferredProvider === "gemini" && hasGeminiKey) {
+      return { mode: "gemini", reason: "Using Gemini API (preferred)" };
+    }
+    if (hasAnthropicKey) {
+      return { mode: "anthropic", reason: "Using Anthropic API" };
+    }
+    if (hasGeminiKey) {
+      return { mode: "gemini", reason: "Using Gemini API" };
+    }
+    if (insideClaudeCode) {
+      return {
+        mode: "unavailable",
+        reason: "Cannot run inside Claude Code without an API key. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY."
+      };
+    }
+    if (cliAvailable) {
+      return { mode: "cli", reason: "Using Claude CLI (no API key found)" };
+    }
+    return {
+      mode: "unavailable",
+      reason: "No execution method available. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY."
+    };
+  }
+  /**
+   * Check if analysis is available
+   */
+  async isAvailable() {
+    const mode = this.detectExecutionMode();
+    return mode.mode !== "unavailable";
+  }
+  /**
+   * Get availability status with reason
+   */
+  async getAvailabilityStatus() {
+    const mode = this.detectExecutionMode();
+    return {
+      available: mode.mode !== "unavailable",
+      reason: mode.reason
+    };
+  }
+  /**
+   * Scan documentation directory for markdown files
+   */
+  scanDocumentation() {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    if (!existsSync(docsDir)) {
+      return [];
+    }
+    const documents = [];
+    const scan = (dir) => {
+      const entries = readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        if (entry.name.startsWith(".") || entry.name === "node_modules" || entry.name === "analysis") {
+          continue;
+        }
+        const fullPath = join(dir, entry.name);
+        if (entry.isDirectory()) {
+          scan(fullPath);
+        } else if (entry.isFile() && extname(entry.name) === ".md") {
+          try {
+            const content = readFileSync(fullPath, "utf-8");
+            const stats = statSync(fullPath);
+            const relPath = relative(docsDir, fullPath);
+            const titleMatch = content.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : basename(entry.name, ".md");
+            let type = "general";
+            if (relPath.includes("concepts/")) type = "concept";
+            else if (relPath.includes("components/")) type = "component";
+            else if (relPath.includes("services/")) type = "service";
+            else if (relPath.includes("features/")) type = "feature";
+            else if (relPath.includes("guides/")) type = "guide";
+            else if (relPath.includes("standards/")) type = "standard";
+            else if (relPath.includes("references/")) type = "reference";
+            else if (relPath.includes("integrations/")) type = "integration";
+            else if (entry.name.includes("requirement")) type = "requirement";
+            else if (entry.name.includes("spec")) type = "specification";
+            const preview = content.slice(0, 2e3).replace(/^#.+\n/, "").trim().slice(0, 500);
+            documents.push({
+              path: relPath,
+              title,
+              type,
+              size: stats.size,
+              preview
+            });
+          } catch {
+          }
+        }
+      }
+    };
+    scan(docsDir);
+    return documents.slice(0, this.maxDocuments);
+  }
+  /**
+   * Read full content of key documents
+   */
+  readKeyDocuments() {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    const keyDocs = /* @__PURE__ */ new Map();
+    const priorityFiles = [
+      "README.md",
+      "MOC.md",
+      "PRIMITIVES.md",
+      "original_specs.md",
+      "business_requirements_document.md",
+      "technical_requirements.md",
+      "test_strategy.md"
+    ];
+    for (const file of priorityFiles) {
+      const filePath = join(docsDir, file);
+      if (existsSync(filePath)) {
+        try {
+          const content = readFileSync(filePath, "utf-8");
+          keyDocs.set(file, content.slice(0, 15e3));
+        } catch {
+        }
+      }
+    }
+    return keyDocs;
   }
   /**
    * Run deep analysis
    */
   async analyze() {
     const startTime = Date.now();
+    const executionMode = this.detectExecutionMode();
     const result = {
       success: false,
       agentsSpawned: 0,
@@ -80,61 +213,74 @@ class DeepAnalyzer {
       documentsCreated: 0,
       results: [],
       duration: 0,
-      errors: []
+      errors: [],
+      mode: executionMode.mode === "unavailable" ? "static" : executionMode.mode
     };
-    if (!await this.isAvailable()) {
-      result.errors.push("claude-flow is not available");
+    if (executionMode.mode === "unavailable") {
+      result.errors.push(executionMode.reason);
       result.duration = Date.now() - startTime;
+      logger.error("Deep analysis unavailable", new Error(executionMode.reason));
       return result;
     }
+    logger.info(`Starting documentation cultivation`, { mode: executionMode.mode, reason: executionMode.reason });
     if (!existsSync(this.outputDir)) {
       mkdirSync(this.outputDir, { recursive: true });
     }
+    const documents = this.scanDocumentation();
+    const keyDocs = this.readKeyDocuments();
+    if (documents.length === 0) {
+      result.errors.push("No markdown documents found in docs directory");
+      result.duration = Date.now() - startTime;
+      return result;
+    }
+    logger.info("Found documentation", { documents: documents.length, keyDocs: keyDocs.size });
     const agents = [
       {
-        name: "Pattern Researcher",
-        type: "researcher",
-        task: "Analyze codebase architecture, patterns, and design decisions",
-        outputFile: "architecture-patterns.md"
+        name: "Vision Synthesizer",
+        type: "vision",
+        task: "Synthesize the project vision, goals, and core value proposition from the documentation",
+        outputFile: "vision-synthesis.md"
       },
       {
-        name: "Code Analyst",
-        type: "analyst",
-        task: "Identify code quality issues, complexity hotspots, and improvement opportunities",
-        outputFile: "code-analysis.md"
+        name: "Gap Analyst",
+        type: "gaps",
+        task: "Identify documentation gaps, missing sections, and areas that need more detail",
+        outputFile: "documentation-gaps.md"
       },
       {
-        name: "Implementation Reviewer",
-        type: "coder",
-        task: "Review implementation patterns, naming conventions, and code style",
-        outputFile: "implementation-review.md"
+        name: "Research Guide",
+        type: "research",
+        task: "Generate research questions and areas that need further investigation or clarification",
+        outputFile: "research-questions.md"
       },
       {
-        name: "Test Analyzer",
-        type: "tester",
-        task: "Analyze test coverage, testing patterns, and testing gaps",
-        outputFile: "testing-analysis.md"
+        name: "Connection Mapper",
+        type: "connections",
+        task: "Identify relationships between concepts and suggest knowledge graph connections",
+        outputFile: "knowledge-connections.md"
       }
     ];
-    logger.info("Starting deep analysis", { agents: agents.length, mode: this.agentMode });
-    if (this.agentMode === "parallel") {
-      result.results = await this.executeParallel(agents);
-    } else if (this.agentMode === "sequential") {
-      result.results = await this.executeSequential(agents);
-    } else {
-      result.results = await this.executeAdaptive(agents);
+    logger.info("Executing cultivation agents", { agents: agents.length, mode: "sequential" });
+    for (const agent of agents) {
+      const agentResult = await this.executeAgent(
+        agent,
+        executionMode.mode,
+        documents,
+        keyDocs
+      );
+      result.results.push(agentResult);
     }
     result.agentsSpawned = result.results.length;
     result.insightsCount = result.results.reduce((sum, r) => sum + r.insights.length, 0);
     result.documentsCreated = result.results.reduce((sum, r) => sum + r.documents.length, 0);
-    result.success = result.results.every((r) => r.success);
+    result.success = result.results.some((r) => r.success);
     result.duration = Date.now() - startTime;
     for (const agentResult of result.results) {
       if (agentResult.error) {
         result.errors.push(`${agentResult.name}: ${agentResult.error}`);
       }
     }
-    logger.info("Deep analysis complete", {
+    logger.info("Documentation cultivation complete", {
       success: result.success,
       insights: result.insightsCount,
       documents: result.documentsCreated,
@@ -143,47 +289,9 @@ class DeepAnalyzer {
     return result;
   }
   /**
-   * Execute agents in parallel
-   */
-  async executeParallel(agents) {
-    const promises = agents.map((agent) => this.executeAgent(agent));
-    return Promise.all(promises);
-  }
-  /**
-   * Execute agents sequentially
-   */
-  async executeSequential(agents) {
-    const results = [];
-    for (const agent of agents) {
-      results.push(await this.executeAgent(agent));
-    }
-    return results;
-  }
-  /**
-   * Execute agents adaptively (start with 2, scale based on success)
-   */
-  async executeAdaptive(agents) {
-    const results = [];
-    const firstBatch = agents.slice(0, 2);
-    const firstResults = await Promise.all(firstBatch.map((a) => this.executeAgent(a)));
-    results.push(...firstResults);
-    const successRate = firstResults.filter((r) => r.success).length / firstResults.length;
-    if (successRate >= 0.5 && agents.length > 2) {
-      const remaining = agents.slice(2);
-      const remainingResults = await Promise.all(remaining.map((a) => this.executeAgent(a)));
-      results.push(...remainingResults);
-    } else if (agents.length > 2) {
-      logger.warn("Low success rate, switching to sequential mode");
-      for (const agent of agents.slice(2)) {
-        results.push(await this.executeAgent(agent));
-      }
-    }
-    return results;
-  }
-  /**
    * Execute a single agent
    */
-  async executeAgent(agent) {
+  async executeAgent(agent, mode, documents, keyDocs) {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
     const result = {
@@ -195,11 +303,18 @@ class DeepAnalyzer {
       duration: 0
     };
     try {
-      logger.info(`Spawning agent: ${agent.name}`, { type: agent.type });
-      const prompt = this.buildPrompt(agent);
-      const output = await this.runClaudeFlowAgent(agent.type, prompt);
+      logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
+      const prompt = this.buildPrompt(agent, documents, keyDocs);
+      let output;
+      if (mode === "cli") {
+        output = await this.runWithCli(prompt);
+      } else if (mode === "anthropic") {
+        output = await this.runWithAnthropic(prompt);
+      } else {
+        output = await this.runWithGemini(prompt);
+      }
       result.insights = this.extractInsights(output);
-      writeFileSync(outputPath, this.formatOutput(agent, output));
+      writeFileSync(outputPath, this.formatOutput(agent, output, mode));
       result.documents.push({ path: outputPath, title: agent.name });
       result.success = true;
       if (this.verbose) {
@@ -213,76 +328,176 @@ class DeepAnalyzer {
     return result;
   }
   /**
-   * Build prompt for agent
+   * Build context-aware prompt for documentation cultivation
    */
-  buildPrompt(agent) {
-    return `You are a ${agent.name} analyzing the project at ${this.projectRoot}.
+  buildPrompt(agent, documents, keyDocs) {
+    const inventory = documents.map((d) => `- ${d.path} (${d.type}): ${d.title}`).join("\n");
+    const keyContent = Array.from(keyDocs.entries()).map(([name, content]) => `### ${name}
 
-**OBJECTIVE**: ${agent.task}
+${content}`).join("\n\n---\n\n");
+    let specificInstructions = "";
+    switch (agent.type) {
+      case "vision":
+        specificInstructions = `
+Focus on:
+1. What is the core purpose/goal of this project?
+2. What problem does it solve?
+3. What is the target audience/user?
+4. What are the key success metrics?
+5. What is the overall architecture vision?
 
-**COORDINATION PROTOCOL**:
-\`\`\`bash
-claude-flow hooks pre-task --description "${agent.task}"
-\`\`\`
+Provide a clear, concise synthesis of the project vision with references to specific documentation.`;
+        break;
+      case "gaps":
+        specificInstructions = `
+Identify:
+1. Missing documentation (what topics are mentioned but not explained?)
+2. Incomplete sections (what areas need more detail?)
+3. Outdated information (anything that seems inconsistent?)
+4. Missing examples or use cases
+5. Unclear terminology or concepts that need definitions
 
-**YOUR TASKS**:
-1. Analyze the codebase at ${this.projectRoot}
-2. Identify key patterns and conventions
-3. Document your findings with specific examples
-4. Provide actionable recommendations
-5. Generate comprehensive markdown documentation
+For each gap, specify:
+- What is missing
+- Where it should be documented
+- Why it's important`;
+        break;
+      case "research":
+        specificInstructions = `
+Generate research questions in these categories:
+1. Technical questions (how should X be implemented?)
+2. Design decisions (why this approach vs alternatives?)
+3. Integration questions (how does X connect to Y?)
+4. Validation questions (how do we verify X works?)
+5. Scalability questions (will this work at scale?)
 
-**OUTPUT REQUIREMENTS**:
-- Use clear markdown formatting
-- Include code examples from the project
-- Organize findings by category
-- Prioritize actionable insights
+For each question:
+- State the question clearly
+- Explain why answering it is important
+- Suggest where to look for answers`;
+        break;
+      case "connections":
+        specificInstructions = `
+Identify relationships between documented concepts:
+1. Dependencies (X requires Y)
+2. Extensions (X extends Y)
+3. Alternatives (X is an alternative to Y)
+4. Compositions (X is made up of Y and Z)
+5. References (X references Y for details)
 
-After completing:
-\`\`\`bash
-claude-flow hooks post-task --task-id "${agent.type}-analysis"
-\`\`\`
-`;
+Suggest knowledge graph nodes and edges in this format:
+- [Node A] --relationship--> [Node B]: description
+
+Also identify concepts that should be linked but aren't currently.`;
+        break;
+    }
+    return `You are a documentation analyst helping to cultivate a knowledge graph.
+
+## Your Task
+${agent.task}
+
+## Documentation Inventory
+The following markdown documents exist in this project:
+${inventory}
+
+## Key Document Contents
+
+${keyContent}
+
+## Instructions
+${specificInstructions}
+
+## Output Format
+Provide your analysis in markdown format with:
+1. Clear section headings
+2. Specific observations (prefix with "Observation:")
+3. Specific recommendations (prefix with "Recommendation:")
+4. Key findings (prefix with "Finding:")
+5. Research questions where applicable (prefix with "Question:")
+
+Reference specific documents using [[document-name]] wiki-link format where relevant.
+Be specific and actionable in your analysis.`;
   }
   /**
-   * Run claude-flow agent
+   * Run analysis using Claude CLI
    */
-  async runClaudeFlowAgent(type, prompt) {
-    if (!VALID_AGENT_TYPES.has(type)) {
-      throw new Error(`Invalid agent type: ${type}. Valid types: ${[...VALID_AGENT_TYPES].join(", ")}`);
-    }
-    const sanitizedPrompt = prompt.replace(/[`$\\]/g, "");
-    const commandConfig = await this.detectClaudeFlowCommand();
-    if (!commandConfig) {
-      throw new Error("claude-flow is not available");
-    }
-    return new Promise((resolve2, reject) => {
-      const args = [...commandConfig.args, "agent", "run", type, sanitizedPrompt];
-      const proc = spawn(commandConfig.cmd, args, {
+  async runWithCli(prompt) {
+    const sanitizedPrompt = prompt.replace(/"/g, '\\"').replace(/[`$]/g, "");
+    try {
+      const result = execSync(`claude -p "${sanitizedPrompt}"`, {
         cwd: this.projectRoot,
-        shell: false,
-        // Security: Disable shell to prevent command injection
-        timeout: this.agentTimeout
+        encoding: "utf8",
+        timeout: this.agentTimeout,
+        maxBuffer: 10 * 1024 * 1024
       });
-      let stdout = "";
-      let stderr = "";
-      proc.stdout?.on("data", (data) => {
-        stdout += data.toString();
-      });
-      proc.stderr?.on("data", (data) => {
-        stderr += data.toString();
-      });
-      proc.on("close", (code) => {
-        if (code === 0) {
-          resolve2(stdout);
-        } else {
-          reject(new Error(stderr || `Agent exited with code ${code}`));
+      return result;
+    } catch (error) {
+      if (error instanceof Error) {
+        const execError = error;
+        if (execError.killed) {
+          if (execError.stdout && execError.stdout.length > 100) {
+            return execError.stdout;
+          }
+          throw new Error(`Claude CLI timed out after ${this.agentTimeout / 1e3}s`);
         }
+        throw new Error(execError.stderr || error.message);
+      }
+      throw error;
+    }
+  }
+  /**
+   * Run analysis using Anthropic API directly
+   */
+  async runWithAnthropic(prompt) {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      throw new Error("ANTHROPIC_API_KEY not set");
+    }
+    try {
+      const { default: Anthropic } = await import("@anthropic-ai/sdk");
+      const client = new Anthropic({ apiKey });
+      const response = await client.messages.create({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 4096,
+        messages: [{ role: "user", content: prompt }]
       });
-      proc.on("error", (error) => {
-        reject(error);
-      });
-    });
+      const textBlock = response.content.find((block) => block.type === "text");
+      if (textBlock && textBlock.type === "text") {
+        return textBlock.text;
+      }
+      throw new Error("No text content in API response");
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`Anthropic API call failed: ${error.message}`);
+      }
+      throw error;
+    }
+  }
+  /**
+   * Run analysis using Google Gemini API
+   */
+  async runWithGemini(prompt) {
+    const apiKey = this.getGeminiApiKey();
+    if (!apiKey) {
+      throw new Error("GOOGLE_AI_API_KEY not set");
+    }
+    try {
+      const { GoogleGenerativeAI } = await import("../node_modules/@google/generative-ai/dist/index.js");
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const text = response.text();
+      if (!text) {
+        throw new Error("No text content in Gemini response");
+      }
+      return text;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`Gemini API call failed: ${error.message}`);
+      }
+      throw error;
+    }
   }
   /**
    * Extract insights from agent output
@@ -290,9 +505,9 @@ claude-flow hooks post-task --task-id "${agent.type}-analysis"
   extractInsights(output) {
     const insights = [];
     const patterns = [
-      /[-*]\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
-      /##\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
-      /(?:key\s+)?(?:insight|finding|observation|recommendation):\s*(.+)/gi
+      /[-*]?\s*(?:insight|finding|observation|recommendation|question):\s*(.+)/gi,
+      /##\s*(?:insight|finding|observation|recommendation|question):\s*(.+)/gi,
+      /(?:key\s+)?(?:insight|finding|observation|recommendation|question):\s*(.+)/gi
     ];
     for (const pattern of patterns) {
       const matches = output.matchAll(pattern);
@@ -307,21 +522,22 @@ claude-flow hooks post-task --task-id "${agent.type}-analysis"
   /**
    * Format output for documentation
    */
-  formatOutput(agent, output) {
+  formatOutput(agent, output, mode) {
     const timestamp = (/* @__PURE__ */ new Date()).toISOString();
     return `---
-title: "${agent.name} Analysis"
-type: analysis
+title: "${agent.name}"
+type: cultivation-analysis
 generator: deep-analyzer
 agent: ${agent.type}
+provider: ${mode}
 created: ${timestamp}
 ---
 
-# ${agent.name} Analysis
+# ${agent.name}
 
-> Generated by DeepAnalyzer using claude-flow
+> Generated by DeepAnalyzer for documentation cultivation
 
-## Overview
+## Purpose
 
 ${agent.task}
 

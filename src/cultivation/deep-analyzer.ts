@@ -1,34 +1,23 @@
 /**
- * DeepAnalyzer - Deep Codebase Analysis
+ * DeepAnalyzer - Documentation Cultivation & Knowledge Graph Enhancement
  *
- * Provides comprehensive codebase analysis using:
- * - Claude CLI (`claude -p`) when running outside Claude Code
- * - Direct Anthropic API when ANTHROPIC_API_KEY is available
- * - Google Gemini API when GOOGLE_AI_API_KEY is available (fallback)
- * - Clear error messaging when no option is available
+ * Analyzes existing documentation to:
+ * - Understand the vision and requirements described
+ * - Identify documentation gaps and unclear areas
+ * - Guide the documentation process with research questions
+ * - Build knowledge graph connections
+ *
+ * This is NOT for code analysis - use analyze-codebase for that.
  *
  * @module cultivation/deep-analyzer
  */
 
 import { execFileSync, execSync } from 'child_process';
-import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync } from 'fs';
-import { join, resolve, relative } from 'path';
+import { existsSync, mkdirSync, writeFileSync, readFileSync, readdirSync, statSync } from 'fs';
+import { join, resolve, relative, basename, extname } from 'path';
 import { createLogger } from '../utils/index.js';
 
 const logger = createLogger('deep-analyzer');
-
-/**
- * Valid agent types for analysis
- */
-const VALID_AGENT_TYPES = new Set([
-  'researcher',
-  'architect',
-  'analyst',
-  'coder',
-  'tester',
-  'reviewer',
-  'documenter',
-]);
 
 /**
  * Deep analyzer options
@@ -42,11 +31,9 @@ export interface DeepAnalyzerOptions {
   outputDir?: string;
   /** Enable verbose logging */
   verbose?: boolean;
-  /** Maximum agents to spawn */
-  maxAgents?: number;
-  /** Agent execution mode */
-  agentMode?: 'sequential' | 'parallel' | 'adaptive';
-  /** Timeout for each agent (ms) */
+  /** Maximum documents to analyze */
+  maxDocuments?: number;
+  /** Timeout for each analysis (ms) */
   agentTimeout?: number;
   /** Force use of API key even if CLI is available */
   forceApiKey?: boolean;
@@ -86,7 +73,7 @@ export interface DeepAnalysisResult {
  */
 interface AgentConfig {
   name: string;
-  type: 'researcher' | 'analyst' | 'coder' | 'tester' | 'reviewer';
+  type: string;
   task: string;
   outputFile: string;
 }
@@ -100,12 +87,24 @@ interface ExecutionMode {
 }
 
 /**
- * DeepAnalyzer - Deep codebase analysis with multiple execution modes
+ * Document metadata for analysis
+ */
+interface DocMetadata {
+  path: string;
+  title: string;
+  type: string;
+  size: number;
+  preview: string;
+}
+
+/**
+ * DeepAnalyzer - Documentation cultivation with AI-powered analysis
  *
- * Supports multiple providers:
- * - Claude CLI (uses OAuth session, no API key needed)
- * - Anthropic API (requires ANTHROPIC_API_KEY)
- * - Google Gemini API (requires GOOGLE_AI_API_KEY or GEMINI_API_KEY)
+ * Reads existing markdown documentation and provides:
+ * - Vision synthesis from requirements
+ * - Gap analysis identifying missing documentation
+ * - Research questions for unclear areas
+ * - Knowledge graph connection suggestions
  *
  * @example
  * ```typescript
@@ -123,8 +122,7 @@ export class DeepAnalyzer {
   private docsPath: string;
   private outputDir: string;
   private verbose: boolean;
-  private maxAgents: number;
-  private agentMode: 'sequential' | 'parallel' | 'adaptive';
+  private maxDocuments: number;
   private agentTimeout: number;
   private forceApiKey: boolean;
   private preferredProvider: 'anthropic' | 'gemini';
@@ -134,8 +132,7 @@ export class DeepAnalyzer {
     this.docsPath = options.docsPath || 'docs';
     this.outputDir = options.outputDir || join(this.projectRoot, this.docsPath, 'analysis');
     this.verbose = options.verbose || false;
-    this.maxAgents = options.maxAgents || 5;
-    this.agentMode = options.agentMode || 'adaptive';
+    this.maxDocuments = options.maxDocuments || 50;
     // Default timeout of 2 minutes (120 seconds)
     this.agentTimeout = options.agentTimeout || 120000;
     this.forceApiKey = options.forceApiKey || false;
@@ -158,7 +155,6 @@ export class DeepAnalyzer {
 
   /**
    * Check if Google AI / Gemini API key is available
-   * Supports: GOOGLE_AI_API_KEY, GOOGLE_GEMINI_API_KEY, GEMINI_API_KEY, GOOGLE_API_KEY
    */
   private hasGeminiApiKey(): boolean {
     return !!(
@@ -199,10 +195,6 @@ export class DeepAnalyzer {
 
   /**
    * Determine the best execution mode
-   *
-   * Priority: API keys > CLI (CLI often hangs in various contexts)
-   * - Prefer API when available for reliability
-   * - Fall back to CLI only when no API key is available
    */
   private detectExecutionMode(): ExecutionMode {
     const insideClaudeCode = this.isInsideClaudeCode();
@@ -212,7 +204,6 @@ export class DeepAnalyzer {
 
     // If forced to use API key
     if (this.forceApiKey) {
-      // Check preferred provider first
       if (this.preferredProvider === 'gemini' && hasGeminiKey) {
         return { mode: 'gemini', reason: 'Using Gemini API (forced, preferred)' };
       }
@@ -222,11 +213,10 @@ export class DeepAnalyzer {
       if (hasGeminiKey) {
         return { mode: 'gemini', reason: 'Using Gemini API (forced, fallback)' };
       }
-      return { mode: 'unavailable', reason: 'No API key found (required when forceApiKey=true). Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.' };
+      return { mode: 'unavailable', reason: 'No API key found. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.' };
     }
 
-    // Prefer API keys for reliability (CLI can hang in various contexts)
-    // Check preferred provider first
+    // Prefer API keys for reliability
     if (this.preferredProvider === 'gemini' && hasGeminiKey) {
       return { mode: 'gemini', reason: 'Using Gemini API (preferred)' };
     }
@@ -237,12 +227,11 @@ export class DeepAnalyzer {
       return { mode: 'gemini', reason: 'Using Gemini API' };
     }
 
-    // No API keys - try CLI as last resort (only works reliably in regular terminal)
+    // No API keys - try CLI as last resort
     if (insideClaudeCode) {
       return {
         mode: 'unavailable',
-        reason: 'Cannot run deep analysis inside Claude Code session without an API key. ' +
-                'Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
+        reason: 'Cannot run inside Claude Code without an API key. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
       };
     }
 
@@ -252,8 +241,7 @@ export class DeepAnalyzer {
 
     return {
       mode: 'unavailable',
-      reason: 'No execution method available. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY, ' +
-              'or install Claude Code (https://claude.ai/code).',
+      reason: 'No execution method available. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
     };
   }
 
@@ -274,6 +262,104 @@ export class DeepAnalyzer {
       available: mode.mode !== 'unavailable',
       reason: mode.reason,
     };
+  }
+
+  /**
+   * Scan documentation directory for markdown files
+   */
+  private scanDocumentation(): DocMetadata[] {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    if (!existsSync(docsDir)) {
+      return [];
+    }
+
+    const documents: DocMetadata[] = [];
+    const scan = (dir: string) => {
+      const entries = readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'analysis') {
+          continue;
+        }
+
+        const fullPath = join(dir, entry.name);
+        if (entry.isDirectory()) {
+          scan(fullPath);
+        } else if (entry.isFile() && extname(entry.name) === '.md') {
+          try {
+            const content = readFileSync(fullPath, 'utf-8');
+            const stats = statSync(fullPath);
+            const relPath = relative(docsDir, fullPath);
+
+            // Extract title from first heading or filename
+            const titleMatch = content.match(/^#\s+(.+)$/m);
+            const title = titleMatch ? titleMatch[1] : basename(entry.name, '.md');
+
+            // Determine document type from path or frontmatter
+            let type = 'general';
+            if (relPath.includes('concepts/')) type = 'concept';
+            else if (relPath.includes('components/')) type = 'component';
+            else if (relPath.includes('services/')) type = 'service';
+            else if (relPath.includes('features/')) type = 'feature';
+            else if (relPath.includes('guides/')) type = 'guide';
+            else if (relPath.includes('standards/')) type = 'standard';
+            else if (relPath.includes('references/')) type = 'reference';
+            else if (relPath.includes('integrations/')) type = 'integration';
+            else if (entry.name.includes('requirement')) type = 'requirement';
+            else if (entry.name.includes('spec')) type = 'specification';
+
+            // Get preview (first 500 chars after title)
+            const preview = content.slice(0, 2000).replace(/^#.+\n/, '').trim().slice(0, 500);
+
+            documents.push({
+              path: relPath,
+              title,
+              type,
+              size: stats.size,
+              preview,
+            });
+          } catch {
+            // Skip files that can't be read
+          }
+        }
+      }
+    };
+
+    scan(docsDir);
+    return documents.slice(0, this.maxDocuments);
+  }
+
+  /**
+   * Read full content of key documents
+   */
+  private readKeyDocuments(): Map<string, string> {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    const keyDocs = new Map<string, string>();
+
+    // Priority documents to read in full
+    const priorityFiles = [
+      'README.md',
+      'MOC.md',
+      'PRIMITIVES.md',
+      'original_specs.md',
+      'business_requirements_document.md',
+      'technical_requirements.md',
+      'test_strategy.md',
+    ];
+
+    for (const file of priorityFiles) {
+      const filePath = join(docsDir, file);
+      if (existsSync(filePath)) {
+        try {
+          const content = readFileSync(filePath, 'utf-8');
+          // Limit to 15KB per document to fit in context
+          keyDocs.set(file, content.slice(0, 15000));
+        } catch {
+          // Skip
+        }
+      }
+    }
+
+    return keyDocs;
   }
 
   /**
@@ -302,46 +388,63 @@ export class DeepAnalyzer {
       return result;
     }
 
-    logger.info(`Starting deep analysis`, { mode: executionMode.mode, reason: executionMode.reason });
+    logger.info(`Starting documentation cultivation`, { mode: executionMode.mode, reason: executionMode.reason });
 
     // Ensure output directory exists
     if (!existsSync(this.outputDir)) {
       mkdirSync(this.outputDir, { recursive: true });
     }
 
-    // Define agents
+    // Scan existing documentation
+    const documents = this.scanDocumentation();
+    const keyDocs = this.readKeyDocuments();
+
+    if (documents.length === 0) {
+      result.errors.push('No markdown documents found in docs directory');
+      result.duration = Date.now() - startTime;
+      return result;
+    }
+
+    logger.info('Found documentation', { documents: documents.length, keyDocs: keyDocs.size });
+
+    // Define documentation cultivation agents
     const agents: AgentConfig[] = [
       {
-        name: 'Pattern Researcher',
-        type: 'researcher',
-        task: 'Analyze codebase architecture, patterns, and design decisions',
-        outputFile: 'architecture-patterns.md',
+        name: 'Vision Synthesizer',
+        type: 'vision',
+        task: 'Synthesize the project vision, goals, and core value proposition from the documentation',
+        outputFile: 'vision-synthesis.md',
       },
       {
-        name: 'Code Analyst',
-        type: 'analyst',
-        task: 'Identify code quality issues, complexity hotspots, and improvement opportunities',
-        outputFile: 'code-analysis.md',
+        name: 'Gap Analyst',
+        type: 'gaps',
+        task: 'Identify documentation gaps, missing sections, and areas that need more detail',
+        outputFile: 'documentation-gaps.md',
       },
       {
-        name: 'Implementation Reviewer',
-        type: 'coder',
-        task: 'Review implementation patterns, naming conventions, and code style',
-        outputFile: 'implementation-review.md',
+        name: 'Research Guide',
+        type: 'research',
+        task: 'Generate research questions and areas that need further investigation or clarification',
+        outputFile: 'research-questions.md',
       },
       {
-        name: 'Test Analyzer',
-        type: 'tester',
-        task: 'Analyze test coverage, testing patterns, and testing gaps',
-        outputFile: 'testing-analysis.md',
+        name: 'Connection Mapper',
+        type: 'connections',
+        task: 'Identify relationships between concepts and suggest knowledge graph connections',
+        outputFile: 'knowledge-connections.md',
       },
     ];
 
-    logger.info('Executing analysis agents', { agents: agents.length, mode: 'sequential' });
+    logger.info('Executing cultivation agents', { agents: agents.length, mode: 'sequential' });
 
     // Execute agents sequentially
     for (const agent of agents) {
-      const agentResult = await this.executeAgent(agent, executionMode.mode as 'cli' | 'anthropic' | 'gemini');
+      const agentResult = await this.executeAgent(
+        agent,
+        executionMode.mode as 'cli' | 'anthropic' | 'gemini',
+        documents,
+        keyDocs
+      );
       result.results.push(agentResult);
     }
 
@@ -349,7 +452,7 @@ export class DeepAnalyzer {
     result.agentsSpawned = result.results.length;
     result.insightsCount = result.results.reduce((sum, r) => sum + r.insights.length, 0);
     result.documentsCreated = result.results.reduce((sum, r) => sum + r.documents.length, 0);
-    result.success = result.results.some(r => r.success); // Success if at least one agent succeeded
+    result.success = result.results.some(r => r.success);
     result.duration = Date.now() - startTime;
 
     // Collect errors
@@ -359,7 +462,7 @@ export class DeepAnalyzer {
       }
     }
 
-    logger.info('Deep analysis complete', {
+    logger.info('Documentation cultivation complete', {
       success: result.success,
       insights: result.insightsCount,
       documents: result.documentsCreated,
@@ -372,7 +475,12 @@ export class DeepAnalyzer {
   /**
    * Execute a single agent
    */
-  private async executeAgent(agent: AgentConfig, mode: 'cli' | 'anthropic' | 'gemini'): Promise<AgentResult> {
+  private async executeAgent(
+    agent: AgentConfig,
+    mode: 'cli' | 'anthropic' | 'gemini',
+    documents: DocMetadata[],
+    keyDocs: Map<string, string>
+  ): Promise<AgentResult> {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
 
@@ -388,7 +496,7 @@ export class DeepAnalyzer {
     try {
       logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
 
-      const prompt = this.buildPrompt(agent);
+      const prompt = this.buildPrompt(agent, documents, keyDocs);
       let output: string;
 
       if (mode === 'cli') {
@@ -421,86 +529,110 @@ export class DeepAnalyzer {
   }
 
   /**
-   * Build context-aware prompt for analysis
+   * Build context-aware prompt for documentation cultivation
    */
-  private buildPrompt(agent: AgentConfig): string {
-    // Gather project context
-    const context = this.gatherProjectContext();
+  private buildPrompt(agent: AgentConfig, documents: DocMetadata[], keyDocs: Map<string, string>): string {
+    // Build document inventory
+    const inventory = documents.map(d => `- ${d.path} (${d.type}): ${d.title}`).join('\n');
 
-    return `You are analyzing a codebase. Here is the project context:
+    // Build key document content
+    const keyContent = Array.from(keyDocs.entries())
+      .map(([name, content]) => `### ${name}\n\n${content}`)
+      .join('\n\n---\n\n');
 
-${context}
+    // Agent-specific instructions
+    let specificInstructions = '';
+    switch (agent.type) {
+      case 'vision':
+        specificInstructions = `
+Focus on:
+1. What is the core purpose/goal of this project?
+2. What problem does it solve?
+3. What is the target audience/user?
+4. What are the key success metrics?
+5. What is the overall architecture vision?
 
-Task: ${agent.task}
+Provide a clear, concise synthesis of the project vision with references to specific documentation.`;
+        break;
 
-Provide your findings in markdown format with:
-1. Key observations (prefix with "Observation:")
-2. Specific recommendations (prefix with "Recommendation:")
-3. Any potential issues found (prefix with "Finding:")
+      case 'gaps':
+        specificInstructions = `
+Identify:
+1. Missing documentation (what topics are mentioned but not explained?)
+2. Incomplete sections (what areas need more detail?)
+3. Outdated information (anything that seems inconsistent?)
+4. Missing examples or use cases
+5. Unclear terminology or concepts that need definitions
 
+For each gap, specify:
+- What is missing
+- Where it should be documented
+- Why it's important`;
+        break;
+
+      case 'research':
+        specificInstructions = `
+Generate research questions in these categories:
+1. Technical questions (how should X be implemented?)
+2. Design decisions (why this approach vs alternatives?)
+3. Integration questions (how does X connect to Y?)
+4. Validation questions (how do we verify X works?)
+5. Scalability questions (will this work at scale?)
+
+For each question:
+- State the question clearly
+- Explain why answering it is important
+- Suggest where to look for answers`;
+        break;
+
+      case 'connections':
+        specificInstructions = `
+Identify relationships between documented concepts:
+1. Dependencies (X requires Y)
+2. Extensions (X extends Y)
+3. Alternatives (X is an alternative to Y)
+4. Compositions (X is made up of Y and Z)
+5. References (X references Y for details)
+
+Suggest knowledge graph nodes and edges in this format:
+- [Node A] --relationship--> [Node B]: description
+
+Also identify concepts that should be linked but aren't currently.`;
+        break;
+    }
+
+    return `You are a documentation analyst helping to cultivate a knowledge graph.
+
+## Your Task
+${agent.task}
+
+## Documentation Inventory
+The following markdown documents exist in this project:
+${inventory}
+
+## Key Document Contents
+
+${keyContent}
+
+## Instructions
+${specificInstructions}
+
+## Output Format
+Provide your analysis in markdown format with:
+1. Clear section headings
+2. Specific observations (prefix with "Observation:")
+3. Specific recommendations (prefix with "Recommendation:")
+4. Key findings (prefix with "Finding:")
+5. Research questions where applicable (prefix with "Question:")
+
+Reference specific documents using [[document-name]] wiki-link format where relevant.
 Be specific and actionable in your analysis.`;
-  }
-
-  /**
-   * Gather project context for analysis
-   */
-  private gatherProjectContext(): string {
-    const lines: string[] = [];
-
-    // Check for package.json
-    const packageJsonPath = join(this.projectRoot, 'package.json');
-    if (existsSync(packageJsonPath)) {
-      try {
-        const pkg = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-        lines.push(`Project: ${pkg.name || 'Unknown'} v${pkg.version || '0.0.0'}`);
-        lines.push(`Description: ${pkg.description || 'No description'}`);
-
-        if (pkg.dependencies) {
-          const deps = Object.keys(pkg.dependencies).slice(0, 10);
-          lines.push(`Key dependencies: ${deps.join(', ')}`);
-        }
-      } catch {
-        // Ignore parse errors
-      }
-    }
-
-    // List top-level directories
-    try {
-      const entries = readdirSync(this.projectRoot, { withFileTypes: true });
-      const dirs = entries
-        .filter(e => e.isDirectory() && !e.name.startsWith('.') && e.name !== 'node_modules')
-        .map(e => e.name)
-        .slice(0, 10);
-
-      if (dirs.length > 0) {
-        lines.push(`Project structure: ${dirs.join(', ')}`);
-      }
-    } catch {
-      // Ignore errors
-    }
-
-    // Check for common config files
-    const configFiles = [
-      'tsconfig.json',
-      'vite.config.ts',
-      'vitest.config.ts',
-      '.eslintrc.js',
-      'Dockerfile',
-    ];
-
-    const foundConfigs = configFiles.filter(f => existsSync(join(this.projectRoot, f)));
-    if (foundConfigs.length > 0) {
-      lines.push(`Config files: ${foundConfigs.join(', ')}`);
-    }
-
-    return lines.join('\n');
   }
 
   /**
    * Run analysis using Claude CLI
    */
   private async runWithCli(prompt: string): Promise<string> {
-    // Sanitize prompt - escape double quotes and remove dangerous chars
     const sanitizedPrompt = prompt
       .replace(/"/g, '\\"')
       .replace(/[`$]/g, '');
@@ -510,14 +642,13 @@ Be specific and actionable in your analysis.`;
         cwd: this.projectRoot,
         encoding: 'utf8',
         timeout: this.agentTimeout,
-        maxBuffer: 10 * 1024 * 1024, // 10MB buffer
+        maxBuffer: 10 * 1024 * 1024,
       });
       return result;
     } catch (error) {
       if (error instanceof Error) {
         const execError = error as { stderr?: string; stdout?: string; killed?: boolean };
         if (execError.killed) {
-          // Timeout - return partial output if available
           if (execError.stdout && execError.stdout.length > 100) {
             return execError.stdout;
           }
@@ -539,23 +670,15 @@ Be specific and actionable in your analysis.`;
     }
 
     try {
-      // Dynamic import to avoid bundling issues
       const { default: Anthropic } = await import('@anthropic-ai/sdk');
-
       const client = new Anthropic({ apiKey });
 
       const response = await client.messages.create({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 4096,
-        messages: [
-          {
-            role: 'user',
-            content: prompt,
-          },
-        ],
+        messages: [{ role: 'user', content: prompt }],
       });
 
-      // Extract text from response
       const textBlock = response.content.find(block => block.type === 'text');
       if (textBlock && textBlock.type === 'text') {
         return textBlock.text;
@@ -576,13 +699,11 @@ Be specific and actionable in your analysis.`;
   private async runWithGemini(prompt: string): Promise<string> {
     const apiKey = this.getGeminiApiKey();
     if (!apiKey) {
-      throw new Error('GOOGLE_AI_API_KEY, GEMINI_API_KEY, or GOOGLE_API_KEY not set');
+      throw new Error('GOOGLE_AI_API_KEY not set');
     }
 
     try {
-      // Dynamic import to avoid bundling issues
       const { GoogleGenerativeAI } = await import('@google/generative-ai');
-
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
@@ -609,11 +730,10 @@ Be specific and actionable in your analysis.`;
   private extractInsights(output: string): string[] {
     const insights: string[] = [];
 
-    // Look for patterns like "- Insight:", "Observation:", "Finding:", "Recommendation:"
     const patterns = [
-      /[-*]?\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
-      /##\s*(?:insight|finding|observation|recommendation):\s*(.+)/gi,
-      /(?:key\s+)?(?:insight|finding|observation|recommendation):\s*(.+)/gi,
+      /[-*]?\s*(?:insight|finding|observation|recommendation|question):\s*(.+)/gi,
+      /##\s*(?:insight|finding|observation|recommendation|question):\s*(.+)/gi,
+      /(?:key\s+)?(?:insight|finding|observation|recommendation|question):\s*(.+)/gi,
     ];
 
     for (const pattern of patterns) {
@@ -625,7 +745,6 @@ Be specific and actionable in your analysis.`;
       }
     }
 
-    // Deduplicate
     return [...new Set(insights)];
   }
 
@@ -636,19 +755,19 @@ Be specific and actionable in your analysis.`;
     const timestamp = new Date().toISOString();
 
     return `---
-title: "${agent.name} Analysis"
-type: analysis
+title: "${agent.name}"
+type: cultivation-analysis
 generator: deep-analyzer
 agent: ${agent.type}
 provider: ${mode}
 created: ${timestamp}
 ---
 
-# ${agent.name} Analysis
+# ${agent.name}
 
-> Generated by DeepAnalyzer using ${mode === 'cli' ? 'Claude CLI' : mode === 'anthropic' ? 'Anthropic API' : 'Gemini API'}
+> Generated by DeepAnalyzer for documentation cultivation
 
-## Overview
+## Purpose
 
 ${agent.task}
 
