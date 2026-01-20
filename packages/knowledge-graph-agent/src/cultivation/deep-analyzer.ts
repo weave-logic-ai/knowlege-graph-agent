@@ -158,16 +158,27 @@ export class DeepAnalyzer {
 
   /**
    * Check if Google AI / Gemini API key is available
+   * Supports: GOOGLE_AI_API_KEY, GOOGLE_GEMINI_API_KEY, GEMINI_API_KEY, GOOGLE_API_KEY
    */
   private hasGeminiApiKey(): boolean {
-    return !!(process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY);
+    return !!(
+      process.env.GOOGLE_AI_API_KEY ||
+      process.env.GOOGLE_GEMINI_API_KEY ||
+      process.env.GEMINI_API_KEY ||
+      process.env.GOOGLE_API_KEY
+    );
   }
 
   /**
    * Get the Gemini API key from available env vars
    */
   private getGeminiApiKey(): string | undefined {
-    return process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    return (
+      process.env.GOOGLE_AI_API_KEY ||
+      process.env.GOOGLE_GEMINI_API_KEY ||
+      process.env.GEMINI_API_KEY ||
+      process.env.GOOGLE_API_KEY
+    );
   }
 
   /**
@@ -188,6 +199,10 @@ export class DeepAnalyzer {
 
   /**
    * Determine the best execution mode
+   *
+   * Priority: API keys > CLI (CLI often hangs in various contexts)
+   * - Prefer API when available for reliability
+   * - Fall back to CLI only when no API key is available
    */
   private detectExecutionMode(): ExecutionMode {
     const insideClaudeCode = this.isInsideClaudeCode();
@@ -210,45 +225,35 @@ export class DeepAnalyzer {
       return { mode: 'unavailable', reason: 'No API key found (required when forceApiKey=true). Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.' };
     }
 
-    // Inside Claude Code session - CLI doesn't work due to resource contention
+    // Prefer API keys for reliability (CLI can hang in various contexts)
+    // Check preferred provider first
+    if (this.preferredProvider === 'gemini' && hasGeminiKey) {
+      return { mode: 'gemini', reason: 'Using Gemini API (preferred)' };
+    }
+    if (hasAnthropicKey) {
+      return { mode: 'anthropic', reason: 'Using Anthropic API' };
+    }
+    if (hasGeminiKey) {
+      return { mode: 'gemini', reason: 'Using Gemini API' };
+    }
+
+    // No API keys - try CLI as last resort (only works reliably in regular terminal)
     if (insideClaudeCode) {
-      // Check preferred provider first
-      if (this.preferredProvider === 'gemini' && hasGeminiKey) {
-        return { mode: 'gemini', reason: 'Using Gemini API (inside Claude Code, preferred)' };
-      }
-      if (hasAnthropicKey) {
-        return { mode: 'anthropic', reason: 'Using Anthropic API (inside Claude Code)' };
-      }
-      if (hasGeminiKey) {
-        return { mode: 'gemini', reason: 'Using Gemini API (inside Claude Code, fallback)' };
-      }
       return {
         mode: 'unavailable',
         reason: 'Cannot run deep analysis inside Claude Code session without an API key. ' +
-                'Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY, or run from a regular terminal.',
+                'Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
       };
     }
 
-    // Outside Claude Code - prefer CLI for OAuth session support
     if (cliAvailable) {
-      return { mode: 'cli', reason: 'Using Claude CLI' };
-    }
-
-    // CLI not available, try API keys
-    if (this.preferredProvider === 'gemini' && hasGeminiKey) {
-      return { mode: 'gemini', reason: 'Using Gemini API (CLI not available, preferred)' };
-    }
-    if (hasAnthropicKey) {
-      return { mode: 'anthropic', reason: 'Using Anthropic API (CLI not available)' };
-    }
-    if (hasGeminiKey) {
-      return { mode: 'gemini', reason: 'Using Gemini API (CLI not available)' };
+      return { mode: 'cli', reason: 'Using Claude CLI (no API key found)' };
     }
 
     return {
       mode: 'unavailable',
-      reason: 'No execution method available. Install Claude Code (https://claude.ai/code), ' +
-              'or set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
+      reason: 'No execution method available. Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY, ' +
+              'or install Claude Code (https://claude.ai/code).',
     };
   }
 
