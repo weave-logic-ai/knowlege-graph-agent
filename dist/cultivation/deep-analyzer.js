@@ -257,7 +257,7 @@ claude-flow hooks post-task --task-id "${agent.type}-analysis"
       throw new Error("claude-flow is not available");
     }
     return new Promise((resolve2, reject) => {
-      const args = [...commandConfig.args, "agent", "execute", type, sanitizedPrompt, "--json"];
+      const args = [...commandConfig.args, "agent", "run", type, sanitizedPrompt];
       const proc = spawn(commandConfig.cmd, args, {
         cwd: this.projectRoot,
         shell: false,

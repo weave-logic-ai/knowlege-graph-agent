@@ -626,12 +626,13 @@ async function executeSwarmTask(
   options: CultivationOptions
 ): Promise<{ success: boolean; output?: string; error?: string }> {
   return new Promise((resolve) => {
-    // Try using claude-flow agent spawn
+    // Use claude-flow agent run to execute the task
+    // Syntax: claude-flow agent run <type> "<prompt>"
     const agentProcess = spawn('claude-flow', [
       'agent',
-      'spawn',
-      '--type', task.agentType,
-      '--task', task.prompt.slice(0, 1000), // Truncate for CLI
+      'run',
+      task.agentType,
+      task.prompt.slice(0, 1000), // Truncate for CLI
     ], {
       shell: false,
       timeout: 120000,
