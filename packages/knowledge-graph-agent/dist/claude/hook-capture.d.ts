@@ -203,6 +203,7 @@ export declare class HookCaptureSystem {
 export declare function processHookEvent(projectRoot: string, eventType: HookEventType, config?: Partial<CaptureConfig>): Promise<void>;
 /**
  * Generate Claude Code hook configuration
+ * Uses the new nested format with hooks array required by Claude Code
  */
 export declare function generateHookConfig(projectRoot: string): Record<string, unknown>;
 export default HookCaptureSystem;
