@@ -29,11 +29,12 @@ import { createDashboardCommand } from './commands/dashboard.js';
 import { createPluginCommand } from './commands/plugin.js';
 import { createHiveMindCommand } from './commands/hive-mind/index.js';
 import { createHooksCommand } from './commands/hooks.js';
+import { createSPARCCommand } from './commands/sparc.js';
 
 /**
  * CLI version
  */
-const VERSION = '0.4.0';
+const VERSION = '0.12.0';
 
 /**
  * Create and configure the CLI program
@@ -78,6 +79,7 @@ export function createCLI(): Command {
   program.addCommand(createPluginCommand());
   program.addCommand(createHiveMindCommand());
   program.addCommand(createHooksCommand());
+  program.addCommand(createSPARCCommand());
 
   // Default action (show help)
   program.action(() => {
@@ -188,6 +190,11 @@ export function createCLI(): Command {
     console.log(chalk.gray('    $ kg hooks status          # Show hooks status'));
     console.log(chalk.gray('    $ kg hooks sessions        # List captured sessions'));
     console.log(chalk.gray('    $ kg hooks export          # Export captured sessions\n'));
+
+    console.log(chalk.white('  SPARC Planning:'));
+    console.log(chalk.gray('    $ kg sparc plan "desc"     # Create comprehensive SPARC plan'));
+    console.log(chalk.gray('    $ kg sparc review          # Review existing SPARC plan'));
+    console.log(chalk.gray('    $ kg sparc status          # Show SPARC plan status\n'));
 
     console.log(chalk.white('  Commands:'));
     program.commands.forEach(cmd => {

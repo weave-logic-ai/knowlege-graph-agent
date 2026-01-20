@@ -399,8 +399,9 @@ describe('generateHookConfig', () => {
 
   it('should include project path in hook commands', () => {
     const config = generateHookConfig('/my/project/path');
-    const hooks = config.hooks as Record<string, { command: string }[]>;
+    const hooks = config.hooks as Record<string, Array<{ hooks: Array<{ type: string; command: string }> }>>;
 
-    expect(hooks.UserPromptSubmit[0].command).toContain('/my/project/path');
+    // Hooks now use nested format: { hooks: [{ type, command }] }
+    expect(hooks.UserPromptSubmit[0].hooks[0].command).toContain('/my/project/path');
   });
 });
