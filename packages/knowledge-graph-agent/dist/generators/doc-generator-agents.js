@@ -396,7 +396,7 @@ async function checkClaudeFlowAvailable() {
 }
 async function executeWithClaudeFlow(task, context, verbose) {
   return new Promise((resolve, reject) => {
-    const agentCmd = `claude-flow sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
+    const agentCmd = `claude-flow sparc ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
     if (verbose) {
       console.log(`
   Spawning ${task.agentType} agent for ${task.outputFile}...`);

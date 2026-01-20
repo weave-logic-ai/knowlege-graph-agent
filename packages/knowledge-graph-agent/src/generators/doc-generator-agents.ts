@@ -605,7 +605,8 @@ async function executeWithClaudeFlow(
   verbose?: boolean
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    const agentCmd = `claude-flow sparc run ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
+    // Syntax: claude-flow sparc <mode> "<task>"
+    const agentCmd = `claude-flow sparc ${task.agentType} "${task.prompt.replace(/"/g, '\\"')}"`;
 
     if (verbose) {
       console.log(`\n  Spawning ${task.agentType} agent for ${task.outputFile}...`);

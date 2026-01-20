@@ -356,10 +356,8 @@ async function executeSwarmTask(task, options) {
   return new Promise((resolve) => {
     const agentProcess = spawn("claude-flow", [
       "agent",
-      "spawn",
-      "--type",
+      "run",
       task.agentType,
-      "--task",
       task.prompt.slice(0, 1e3)
       // Truncate for CLI
     ], {

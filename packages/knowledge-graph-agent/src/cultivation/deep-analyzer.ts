@@ -406,7 +406,8 @@ claude-flow hooks post-task --task-id "${agent.type}-analysis"
 
     return new Promise((resolve, reject) => {
       // Build args based on detected command
-      const args = [...commandConfig.args, 'agent', 'execute', type, sanitizedPrompt, '--json'];
+      // claude-flow agent run <type> "<prompt>"
+      const args = [...commandConfig.args, 'agent', 'run', type, sanitizedPrompt];
 
       const proc = spawn(commandConfig.cmd, args, {
         cwd: this.projectRoot,
