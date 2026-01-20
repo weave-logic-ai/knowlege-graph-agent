@@ -264,7 +264,79 @@ function scanProjectArtifacts(
     }
   }
 
+  // Additionally, scan all markdown files in docs recursively
+  // and categorize them based on path and content
+  const docsDir = join(projectRoot, docsPath);
+  if (existsSync(docsDir)) {
+    const allDocs = scanDocsRecursively(docsDir);
+    categorizeDocsByPath(allDocs, artifacts);
+  }
+
   return artifacts;
+}
+
+/**
+ * Recursively scan all markdown files in a directory
+ */
+function scanDocsRecursively(dir: string): string[] {
+  const results: string[] = [];
+
+  try {
+    const entries = readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'analysis') {
+        continue;
+      }
+
+      const fullPath = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        results.push(...scanDocsRecursively(fullPath));
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        results.push(fullPath);
+      }
+    }
+  } catch {
+    // Ignore errors
+  }
+
+  return results;
+}
+
+/**
+ * Categorize documents by their path structure
+ */
+function categorizeDocsByPath(docs: string[], artifacts: Map<string, string[]>): void {
+  const pathMappings: Record<string, string[]> = {
+    'requirements': ['requirements', 'specs', 'specification', 'features'],
+    'architecture': ['architecture', 'design', 'system', 'components'],
+    'testing': ['testing', 'test', 'tests', 'quality', 'qa'],
+    'security': ['security', 'auth', 'authentication', 'authorization'],
+    'ethics': ['ethics', 'bias', 'fairness', 'responsible'],
+    'monitoring': ['monitoring', 'observability', 'metrics', 'logging'],
+    'api-docs': ['api', 'endpoints', 'services', 'rest', 'graphql'],
+    'privacy': ['privacy', 'data-protection', 'gdpr', 'compliance'],
+    'ci-cd': ['deployment', 'ci-cd', 'pipeline', 'devops'],
+    'documentation': ['guides', 'tutorials', 'docs', 'standards', 'references'],
+    'validation': ['validation', 'schema', 'contracts'],
+    'config-management': ['config', 'settings', 'environment'],
+    'data-management': ['data', 'database', 'storage', 'migrations'],
+  };
+
+  for (const docPath of docs) {
+    const lowerPath = docPath.toLowerCase();
+
+    for (const [category, keywords] of Object.entries(pathMappings)) {
+      if (keywords.some(kw => lowerPath.includes(kw))) {
+        if (!artifacts.has(category)) {
+          artifacts.set(category, []);
+        }
+        const categoryDocs = artifacts.get(category)!;
+        if (!categoryDocs.includes(docPath)) {
+          categoryDocs.push(docPath);
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -428,28 +500,32 @@ function checkDocumentEvidence(
   projectArtifacts: Map<string, string[]>,
   deepAnalysis: boolean
 ): { met: boolean; evidenceFound?: EvidenceItem } {
-  // Look for documentation files
-  const docPatterns = ['readme', 'requirements', 'architecture', 'api-docs'];
+  // Look for documentation files in all relevant categories
+  const docPatterns = [
+    'readme', 'requirements', 'architecture', 'api-docs',
+    'documentation', 'testing', 'security', 'monitoring',
+    'validation', 'config-management', 'data-management',
+    'privacy', 'ci-cd', 'ethics'
+  ];
 
   for (const pattern of docPatterns) {
     const artifacts = projectArtifacts.get(pattern);
     if (artifacts && artifacts.length > 0) {
       for (const artifact of artifacts) {
-        if (deepAnalysis) {
-          const contentMatch = checkContentForRequirement(artifact, requirement);
-          if (contentMatch) {
-            return {
-              met: true,
-              evidenceFound: {
-                requirementId: requirement.id,
-                filePath: artifact,
-                type: 'document',
-                description: `Found documentation evidence in ${basename(artifact)}`,
-                confidence: 0.85,
-                excerpt: contentMatch,
-              },
-            };
-          }
+        // Always check content for matches (not just with deepAnalysis)
+        const contentMatch = checkContentForRequirement(artifact, requirement);
+        if (contentMatch) {
+          return {
+            met: true,
+            evidenceFound: {
+              requirementId: requirement.id,
+              filePath: artifact,
+              type: 'document',
+              description: `Found documentation evidence in ${basename(artifact)}`,
+              confidence: deepAnalysis ? 0.90 : 0.75,
+              excerpt: contentMatch,
+            },
+          };
         }
       }
     }
@@ -531,7 +607,7 @@ function checkContentForRequirement(
     const lowerDesc = requirement.description.toLowerCase();
 
     // Check for keywords from requirement description
-    const keywords = lowerDesc.split(/\s+/).filter(w => w.length > 4);
+    const keywords = lowerDesc.split(/\s+/).filter(w => w.length > 3);
     let matchCount = 0;
     let matchedLine = '';
 
@@ -539,25 +615,96 @@ function checkContentForRequirement(
       if (lowerContent.includes(keyword)) {
         matchCount++;
         // Find the line containing this keyword
-        const lines = content.split('\n');
-        for (const line of lines) {
-          if (line.toLowerCase().includes(keyword) && line.length < 200) {
-            matchedLine = line.trim();
-            break;
+        if (!matchedLine) {
+          const lines = content.split('\n');
+          for (const line of lines) {
+            if (line.toLowerCase().includes(keyword) && line.length < 200 && line.trim().length > 10) {
+              matchedLine = line.trim();
+              break;
+            }
           }
         }
       }
     }
 
-    // If at least 30% of keywords match, consider it evidence
-    if (matchCount >= keywords.length * 0.3 && matchedLine) {
+    // If at least 20% of keywords match, consider it evidence (lowered threshold)
+    if (matchCount >= keywords.length * 0.2 && matchedLine) {
       return matchedLine;
+    }
+
+    // Also check for SOP-related keywords based on the requirement's evidence list
+    const evidenceKeywords = requirement.evidence || [];
+    for (const evidenceKey of evidenceKeywords) {
+      const evidenceLower = evidenceKey.toLowerCase();
+      if (lowerContent.includes(evidenceLower)) {
+        const lines = content.split('\n');
+        for (const line of lines) {
+          if (line.toLowerCase().includes(evidenceLower) && line.length < 200 && line.trim().length > 10) {
+            return line.trim();
+          }
+        }
+      }
+    }
+
+    // Check for compliance-related keywords in general
+    const complianceTerms = getComplianceTermsForRequirement(requirement);
+    for (const term of complianceTerms) {
+      if (lowerContent.includes(term.toLowerCase())) {
+        const lines = content.split('\n');
+        for (const line of lines) {
+          if (line.toLowerCase().includes(term.toLowerCase()) && line.length < 200 && line.trim().length > 10) {
+            return line.trim();
+          }
+        }
+      }
     }
 
     return null;
   } catch {
     return null;
   }
+}
+
+/**
+ * Get compliance-related terms for a requirement based on its ID
+ */
+function getComplianceTermsForRequirement(requirement: SOPRequirement): string[] {
+  const reqId = requirement.id.toLowerCase();
+  const terms: string[] = [];
+
+  // Map requirement IDs to relevant terms
+  if (reqId.includes('req') || reqId.includes('spec')) {
+    terms.push('requirement', 'specification', 'functional', 'non-functional', 'acceptance criteria');
+  }
+  if (reqId.includes('test')) {
+    terms.push('test', 'testing', 'coverage', 'unit test', 'integration', 'validation');
+  }
+  if (reqId.includes('arch') || reqId.includes('design')) {
+    terms.push('architecture', 'design', 'component', 'system', 'integration');
+  }
+  if (reqId.includes('sec')) {
+    terms.push('security', 'authentication', 'authorization', 'encryption', 'vulnerability');
+  }
+  if (reqId.includes('doc')) {
+    terms.push('documentation', 'guide', 'reference', 'manual', 'tutorial');
+  }
+  if (reqId.includes('deploy') || reqId.includes('ci')) {
+    terms.push('deployment', 'pipeline', 'continuous', 'automation', 'release');
+  }
+  if (reqId.includes('monitor') || reqId.includes('observe')) {
+    terms.push('monitoring', 'metrics', 'alerting', 'logging', 'observability');
+  }
+  if (reqId.includes('data') || reqId.includes('privacy')) {
+    terms.push('data', 'privacy', 'protection', 'governance', 'retention');
+  }
+  if (reqId.includes('risk')) {
+    terms.push('risk', 'mitigation', 'assessment', 'impact', 'likelihood');
+  }
+  if (reqId.includes('quality') || reqId.includes('qa')) {
+    terms.push('quality', 'assurance', 'standard', 'review', 'inspection');
+  }
+
+  return terms;
 }
 
 /**
