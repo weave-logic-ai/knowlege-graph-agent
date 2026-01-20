@@ -173,6 +173,108 @@ function createAnalyzeCommand() {
       process.exit(1);
     }
   });
+  command.command("migrate").description("Implement analysis recommendations using AI agents to fill gaps, answer questions, and build connections").argument("[path]", "Project root path", ".").option("-d, --docs <dir>", "Documentation directory", "docs").option("-a, --analysis <dir>", "Analysis directory (relative to docs)", "analysis").option("--max-agents <n>", "Maximum parallel agents", "8").option("--dry-run", "Preview changes without making them").option("--use-vector", "Use vector search for context retrieval").option("-v, --verbose", "Verbose output").action(async (path, options) => {
+    const spinner = ora("Initializing migration orchestration...").start();
+    try {
+      const projectRoot = validateProjectRoot(path);
+      const docsDir = options.docs;
+      const analysisDir = options.analysis;
+      const dryRun = options.dryRun ?? false;
+      const verbose = options.verbose ?? false;
+      const analysisPath = join(projectRoot, docsDir, analysisDir);
+      if (!existsSync(analysisPath)) {
+        spinner.fail(`Analysis directory not found: ${analysisPath}`);
+        console.log(chalk.gray('  Run "kg cultivate --deep-analysis" first to generate analysis'));
+        process.exit(1);
+      }
+      const requiredFiles = ["documentation-gaps.md", "research-questions.md"];
+      const missingFiles = requiredFiles.filter((f) => !existsSync(join(analysisPath, f)));
+      if (missingFiles.length > 0) {
+        spinner.warn(`Missing analysis files: ${missingFiles.join(", ")}`);
+        console.log(chalk.gray('  Run "kg cultivate --deep-analysis" to generate complete analysis'));
+      }
+      const { MigrationOrchestrator } = await import("../../cultivation/migration-orchestrator.js");
+      const orchestrator = new MigrationOrchestrator({
+        projectRoot,
+        docsPath: docsDir,
+        analysisDir,
+        verbose,
+        dryRun,
+        useVectorSearch: options.useVector ?? false,
+        maxAgents: parseInt(options.maxAgents || "8", 10)
+      });
+      const status = await orchestrator.getAvailabilityStatus();
+      if (!status.available) {
+        spinner.fail("Migration unavailable");
+        console.log(chalk.red(`  ${status.reason}`));
+        console.log(chalk.gray("  Set GOOGLE_GEMINI_API_KEY or ANTHROPIC_API_KEY"));
+        process.exit(1);
+      }
+      spinner.text = `Running migration (${status.reason})...`;
+      if (dryRun) {
+        spinner.text = `Running migration dry run (${status.reason})...`;
+      }
+      const result = await orchestrator.migrate();
+      if (result.success) {
+        if (dryRun) {
+          spinner.succeed("Migration dry run complete!");
+        } else {
+          spinner.succeed("Migration complete!");
+        }
+      } else {
+        spinner.warn("Migration completed with errors");
+      }
+      console.log();
+      console.log(chalk.cyan.bold("  Migration Results"));
+      console.log(chalk.gray("  ─────────────────────────────────────"));
+      console.log();
+      if (dryRun) {
+        console.log(chalk.yellow("  [DRY RUN] No changes were made\n"));
+      }
+      console.log(chalk.white("  Summary:"));
+      console.log(chalk.gray(`    Analysis dir:       ${docsDir}/${analysisDir}/`));
+      console.log(chalk.green(`    Agents used:        ${result.agentsUsed}`));
+      console.log(chalk.green(`    Documents created:  ${result.documentsCreated}`));
+      console.log(chalk.blue(`    Documents updated:  ${result.documentsUpdated}`));
+      console.log(chalk.cyan(`    Gaps filled:        ${result.gapsFilled}`));
+      console.log(chalk.cyan(`    Questions answered: ${result.questionsAnswered}`));
+      console.log(chalk.cyan(`    Connections added:  ${result.connectionsAdded}`));
+      console.log(chalk.gray(`    Duration:           ${(result.duration / 1e3).toFixed(1)}s`));
+      if (result.warnings.length > 0) {
+        console.log();
+        console.log(chalk.yellow("  Warnings:"));
+        result.warnings.slice(0, 5).forEach((w) => {
+          console.log(chalk.gray(`    - ${w}`));
+        });
+        if (result.warnings.length > 5) {
+          console.log(chalk.gray(`    ... and ${result.warnings.length - 5} more`));
+        }
+      }
+      if (result.errors.length > 0) {
+        console.log();
+        console.log(chalk.red("  Errors:"));
+        result.errors.slice(0, 5).forEach((e) => {
+          console.log(chalk.gray(`    - ${e}`));
+        });
+        if (result.errors.length > 5) {
+          console.log(chalk.gray(`    ... and ${result.errors.length - 5} more`));
+        }
+      }
+      if (!dryRun && result.documentsCreated > 0) {
+        console.log();
+        console.log(chalk.cyan("  Next steps:"));
+        console.log(chalk.white(`    1. Review generated documents in ${docsDir}/`));
+        console.log(chalk.white(`    2. Check ${docsDir}/${analysisDir}/ for summaries`));
+        console.log(chalk.white(`    3. Run: kg graph --docs ${docsDir}`));
+        console.log(chalk.white(`    4. Run: kg stats --docs ${docsDir}`));
+      }
+      console.log();
+    } catch (error) {
+      spinner.fail("Migration failed");
+      console.error(chalk.red(String(error)));
+      process.exit(1);
+    }
+  });
   command.command("report").description("Generate analysis report without creating files").option("-p, --path <path>", "Project root path", ".").option("-s, --source <dir>", "Source docs directory", "docs").option("--json", "Output as JSON").action(async (options) => {
     const spinner = ora("Generating analysis report...").start();
     try {
