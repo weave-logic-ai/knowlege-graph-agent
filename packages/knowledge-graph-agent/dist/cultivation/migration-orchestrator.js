@@ -126,7 +126,9 @@ class MigrationOrchestrator {
       vision: { purpose: "", goals: [], recommendations: [] },
       gaps: [],
       questions: [],
-      connections: []
+      connections: [],
+      sopGaps: [],
+      sopSummary: void 0
     };
     if (!existsSync(analysisPath)) {
       throw new Error(`Analysis directory not found: ${analysisPath}`);
@@ -146,6 +148,25 @@ class MigrationOrchestrator {
     const connectionsFile = join(analysisPath, "knowledge-connections.md");
     if (existsSync(connectionsFile)) {
       result.connections = this.parseConnectionsFile(readFileSync(connectionsFile, "utf-8"));
+    }
+    const sopGapsFile = join(analysisPath, "sop-gaps-summary.json");
+    if (existsSync(sopGapsFile)) {
+      try {
+        const sopData = JSON.parse(readFileSync(sopGapsFile, "utf-8"));
+        result.sopGaps = sopData.gaps || [];
+        result.sopSummary = {
+          totalGaps: sopData.totalGaps || 0,
+          criticalGaps: sopData.criticalGaps || 0,
+          compliancePercentage: sopData.summary?.compliancePercentage || 0,
+          byPriority: sopData.byPriority || {}
+        };
+        this.log("info", "Loaded SOP gaps from analysis", {
+          totalGaps: result.sopSummary.totalGaps,
+          criticalGaps: result.sopSummary.criticalGaps
+        });
+      } catch (error) {
+        this.log("warn", "Failed to parse SOP gaps summary", { error: String(error) });
+      }
     }
     return result;
   }
@@ -214,6 +235,12 @@ class MigrationOrchestrator {
     return gaps;
   }
   /**
+   * Escape special regex characters in a string
+   */
+  escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+  /**
    * Parse research questions file
    */
   parseQuestionsFile(content) {
@@ -222,11 +249,13 @@ class MigrationOrchestrator {
     for (const match of questionMatches) {
       const questionText = match[1].replace(/^Question:\s*/, "").trim();
       const context = match[2].trim();
-      const importanceMatch = content.match(new RegExp(`${questionText.slice(0, 50)}[\\s\\S]*?\\*\\*Importance:\\*\\*\\s*([^\\n]+)`));
+      const safeQuestionShort = this.escapeRegex(questionText.slice(0, 50));
+      const safeQuestionVeryShort = this.escapeRegex(questionText.slice(0, 30));
+      const importanceMatch = content.match(new RegExp(`${safeQuestionShort}[\\s\\S]*?\\*\\*Importance:\\*\\*\\s*([^\\n]+)`));
       const importance = importanceMatch ? importanceMatch[1].trim() : "";
-      const resourcesMatch = content.match(new RegExp(`${questionText.slice(0, 50)}[\\s\\S]*?\\*\\*Suggested Resources:\\*\\*\\s*([^\\n]+)`));
+      const resourcesMatch = content.match(new RegExp(`${safeQuestionShort}[\\s\\S]*?\\*\\*Suggested Resources:\\*\\*\\s*([^\\n]+)`));
       const resources = resourcesMatch ? resourcesMatch[1].split(",").map((r) => r.trim()) : [];
-      const categoryMatch = content.match(new RegExp(`### \\d+\\. ([^\\n]+)[\\s\\S]*?${questionText.slice(0, 30)}`));
+      const categoryMatch = content.match(new RegExp(`### \\d+\\. ([^\\n]+)[\\s\\S]*?${safeQuestionVeryShort}`));
       const category = categoryMatch ? categoryMatch[1].trim() : "General";
       questions.push({
         question: questionText,
@@ -299,8 +328,8 @@ class MigrationOrchestrator {
       agents.push({
         name: "Gap Filler - High Priority",
         type: "gap-filler",
-        task: "Fill high-priority documentation gaps with comprehensive content",
-        context: this.buildGapFillerContext(highPriorityGaps, docsContext),
+        task: "Fill high-priority documentation gaps with comprehensive, project-specific content",
+        context: this.buildGapFillerContext(highPriorityGaps, docsContext, analysis),
         outputFile: "gap-implementations.md"
       });
     }
@@ -309,8 +338,8 @@ class MigrationOrchestrator {
       agents.push({
         name: "Gap Filler - Medium Priority",
         type: "gap-filler",
-        task: "Fill medium-priority documentation gaps",
-        context: this.buildGapFillerContext(mediumPriorityGaps, docsContext)
+        task: "Fill medium-priority documentation gaps with project-specific content",
+        context: this.buildGapFillerContext(mediumPriorityGaps, docsContext, analysis)
       });
     }
     const questionsByCategory = /* @__PURE__ */ new Map();
@@ -339,8 +368,8 @@ class MigrationOrchestrator {
       agents.push({
         name: "MOC Builder",
         type: "moc-builder",
-        task: "Populate empty MOC (Map of Content) files with proper structure and links",
-        context: this.buildMOCBuilderContext(mocGaps, docsContext)
+        task: "Populate empty MOC (Map of Content) files with project-specific structure and links",
+        context: this.buildMOCBuilderContext(mocGaps, docsContext, analysis)
       });
     }
     if (analysis.connections.length > 0) {
@@ -350,6 +379,40 @@ class MigrationOrchestrator {
         task: "Build knowledge graph connections by adding wiki-links to documents",
         context: this.buildConnectorContext(analysis.connections, docsContext)
       });
+    }
+    const emptyDirs = this.findEmptyDirectories(docsContext);
+    if (emptyDirs.length > 0) {
+      agents.push({
+        name: "Directory Populator",
+        type: "gap-filler",
+        task: "Create documentation files for empty directories based on project context",
+        context: this.buildDirectoryPopulatorContext(emptyDirs, docsContext, analysis)
+      });
+    }
+    if (analysis.sopGaps.length > 0) {
+      const criticalAndHighGaps = analysis.sopGaps.filter(
+        (g) => g.priority === "critical" || g.priority === "high"
+      );
+      const mediumAndLowGaps = analysis.sopGaps.filter(
+        (g) => g.priority === "medium" || g.priority === "low"
+      );
+      if (criticalAndHighGaps.length > 0) {
+        agents.push({
+          name: "SOP Gap Filler - Critical/High",
+          type: "gap-filler",
+          task: "Create documentation to address critical and high-priority SOP compliance gaps",
+          context: this.buildSOPGapFillerContext(criticalAndHighGaps, docsContext, analysis),
+          outputFile: "sop-gap-implementations.md"
+        });
+      }
+      if (mediumAndLowGaps.length > 0) {
+        agents.push({
+          name: "SOP Gap Filler - Medium/Low",
+          type: "gap-filler",
+          task: "Create documentation to address medium and low-priority SOP compliance gaps",
+          context: this.buildSOPGapFillerContext(mediumAndLowGaps, docsContext, analysis)
+        });
+      }
     }
     agents.push({
       name: "Documentation Integrator",
@@ -361,10 +424,130 @@ class MigrationOrchestrator {
     return agents.slice(0, this.maxAgents);
   }
   /**
+   * Find directories with no or minimal documentation
+   */
+  findEmptyDirectories(docsContext) {
+    const directories = /* @__PURE__ */ new Map();
+    const docsDir = join(this.projectRoot, this.docsPath);
+    for (const path of docsContext.keys()) {
+      const dir = dirname(path);
+      if (dir !== ".") {
+        directories.set(dir, (directories.get(dir) || 0) + 1);
+      }
+    }
+    const scanDir = (dir, relativePath = "") => {
+      try {
+        const entries = readdirSync(dir);
+        for (const entry of entries) {
+          const fullPath = join(dir, entry);
+          const relPath = relativePath ? `${relativePath}/${entry}` : entry;
+          if (statSync(fullPath).isDirectory() && !entry.startsWith(".") && entry !== "analysis" && entry !== "_templates" && entry !== "_attachments" && entry !== "_archive") {
+            const mdFiles = readdirSync(fullPath).filter((f) => f.endsWith(".md"));
+            if (!directories.has(relPath)) {
+              directories.set(relPath, mdFiles.length);
+            }
+            scanDir(fullPath, relPath);
+          }
+        }
+      } catch {
+      }
+    };
+    scanDir(docsDir);
+    const emptyDirs = [];
+    for (const [dir, count] of directories) {
+      if (count <= 1 && !dir.includes("analysis") && !dir.includes("_templates") && !dir.includes(".obsidian") && !dir.includes("_attachments") && !dir.includes("_archive")) {
+        emptyDirs.push(dir);
+      }
+    }
+    return emptyDirs;
+  }
+  /**
+   * Build context for directory populator agent
+   */
+  buildDirectoryPopulatorContext(emptyDirs, docsContext, analysis) {
+    let context = "## Project Context\n\n";
+    if (analysis.vision.purpose) {
+      context += `### Project Purpose
+${analysis.vision.purpose}
+
+`;
+    }
+    context += "## Key Technical Documentation\n\n";
+    const keyDocPatterns = ["test_strategy", "technical", "wasm", "rust", "original_spec", "integration"];
+    for (const [docPath, docContent] of docsContext) {
+      const lowerPath = docPath.toLowerCase();
+      if (keyDocPatterns.some((pattern) => lowerPath.includes(pattern))) {
+        context += `### ${docPath}
+`;
+        context += docContent.slice(0, 3e3) + "\n\n";
+      }
+    }
+    context += "## Empty Directories Needing Documentation\n\n";
+    for (const dir of emptyDirs) {
+      context += `- ${dir}/
+`;
+    }
+    context += "\n## Instructions\n";
+    context += "CRITICAL: Create actual document files for these empty directories.\n";
+    context += "Use the project context above to create RELEVANT, PROJECT-SPECIFIC content.\n\n";
+    context += "For EACH empty directory, create at least one document using this EXACT format:\n\n";
+    context += "```document\n";
+    context += "---\n";
+    context += "path: directory-name/filename.md\n";
+    context += "action: create\n";
+    context += "---\n";
+    context += "# Document Title\n\n";
+    context += "Content with [[wiki-links]] to other docs.\n";
+    context += "```\n\n";
+    context += "Guidelines:\n";
+    context += "1. Create documents relevant to the directory purpose (e.g., standards/testing needs testing standards)\n";
+    context += "2. Reference actual project technologies: Rust, WASM, Node.js, TypeScript, Knowledge Graph\n";
+    context += "3. Link to existing documents like [[test_strategy]], [[PRIMITIVES]], [[rust_wasm_knowledge_graph_integration_research]]\n";
+    context += "4. Include project-specific examples and best practices\n";
+    context += "5. Do NOT create generic placeholder content\n";
+    return context;
+  }
+  /**
    * Build context for gap filler agent
    */
-  buildGapFillerContext(gaps, docsContext) {
-    let context = "## Documentation Gaps to Fill\n\n";
+  buildGapFillerContext(gaps, docsContext, analysis) {
+    let context = "## Project Context\n\n";
+    if (analysis.vision.purpose) {
+      context += `### Project Purpose
+${analysis.vision.purpose}
+
+`;
+    }
+    if (analysis.vision.goals.length > 0) {
+      context += `### Key Goals
+`;
+      for (const goal of analysis.vision.goals.slice(0, 5)) {
+        context += `- ${goal}
+`;
+      }
+      context += "\n";
+    }
+    context += "## Key Technical Documentation\n\n";
+    const keyDocPatterns = [
+      "test_strategy",
+      "technical",
+      "architecture",
+      "wasm",
+      "rust",
+      "original_spec",
+      "integration",
+      "primitives",
+      "requirements"
+    ];
+    for (const [docPath, docContent] of docsContext) {
+      const lowerPath = docPath.toLowerCase();
+      if (keyDocPatterns.some((pattern) => lowerPath.includes(pattern))) {
+        context += `### ${docPath}
+`;
+        context += docContent.slice(0, 4e3) + "\n\n";
+      }
+    }
+    context += "## Documentation Gaps to Fill\n\n";
     for (const gap of gaps) {
       context += `### ${gap.section}
 `;
@@ -390,12 +573,24 @@ class MigrationOrchestrator {
       context += "\n---\n\n";
     }
     context += "\n## Instructions\n";
-    context += "For each gap, create comprehensive documentation that:\n";
-    context += "1. Addresses the specific issue identified\n";
-    context += "2. Follows the existing documentation style\n";
-    context += "3. Includes proper wiki-links [[like-this]]\n";
-    context += "4. Has appropriate frontmatter (title, type, tags)\n";
-    context += "5. Integrates with existing documentation structure\n";
+    context += "CRITICAL: Create actual document FILES using the exact format below.\n";
+    context += "Use the project context and technical documentation above.\n";
+    context += "Do NOT generate generic placeholder content. Use ACTUAL project details.\n\n";
+    context += "OUTPUT FORMAT - Use this EXACT format for EACH document you create:\n\n";
+    context += "```document\n";
+    context += "---\n";
+    context += "path: relative/path/to/file.md\n";
+    context += "action: create\n";
+    context += "---\n";
+    context += "# Document Title\n\n";
+    context += "Document content with [[wiki-links]] to other documents.\n";
+    context += "```\n\n";
+    context += "For each gap, create documentation that:\n";
+    context += "1. Addresses the specific issue using REAL project details (Rust, WASM, Knowledge Graph, etc.)\n";
+    context += "2. References specific technologies mentioned in the technical docs\n";
+    context += "3. Links to existing docs: [[test_strategy]], [[PRIMITIVES]], [[rust_wasm_knowledge_graph_integration_research]]\n";
+    context += "4. Contains concrete, project-specific information - NOT generic placeholders\n";
+    context += "5. Uses proper frontmatter with title, type, and tags\n";
     return context;
   }
   /**
@@ -445,8 +640,24 @@ ${q.question}
   /**
    * Build context for MOC builder agent
    */
-  buildMOCBuilderContext(gaps, docsContext) {
-    let context = "## MOC Files to Populate\n\n";
+  buildMOCBuilderContext(gaps, docsContext, analysis) {
+    let context = "## Project Context\n\n";
+    if (analysis.vision.purpose) {
+      context += `### Project Purpose
+${analysis.vision.purpose}
+
+`;
+    }
+    if (analysis.vision.goals.length > 0) {
+      context += `### Key Goals
+`;
+      for (const goal of analysis.vision.goals.slice(0, 5)) {
+        context += `- ${goal}
+`;
+      }
+      context += "\n";
+    }
+    context += "## MOC Files to Populate\n\n";
     const mocFiles = Array.from(docsContext.keys()).filter(
       (k) => k.includes("_MOC.md") || k.includes("MOC.md")
     );
@@ -478,14 +689,32 @@ ${q.question}
       const docsInDir = Array.from(docsContext.keys()).filter((k) => dirname(k) === dir);
       context += `- ${dir}/ (${docsInDir.length} docs)
 `;
+      for (const doc of docsInDir.slice(0, 10)) {
+        context += `  - ${basename(doc)}
+`;
+      }
+    }
+    context += "\n### Key Technical Documentation (for reference)\n";
+    const keyDocs = Array.from(docsContext.entries()).filter(([path]) => {
+      const lower = path.toLowerCase();
+      return lower.includes("test_strategy") || lower.includes("wasm") || lower.includes("architecture") || lower.includes("original_spec");
+    }).slice(0, 3);
+    for (const [path, content] of keyDocs) {
+      context += `
+#### ${path}
+`;
+      context += content.slice(0, 2e3) + "\n";
     }
     context += "\n## Instructions\n";
+    context += "CRITICAL: Create MOCs that reflect the ACTUAL project content, not generic placeholders.\n";
+    context += "Use the project context and technical documentation above.\n\n";
     context += "For each empty/stub MOC file:\n";
-    context += "1. Create a proper introduction for the section\n";
+    context += "1. Create a proper introduction describing what the section covers IN THIS PROJECT\n";
     context += "2. List all documents in that directory with [[wiki-links]]\n";
     context += "3. Organize by subcategory if applicable\n";
-    context += "4. Add brief descriptions for each linked document\n";
+    context += "4. Add brief, PROJECT-SPECIFIC descriptions for each linked document\n";
     context += "5. Include navigation links to parent/sibling MOCs\n";
+    context += "6. Reference actual technologies and concepts from the project (e.g., Rust WASM, knowledge graph)\n";
     return context;
   }
   /**
@@ -549,12 +778,104 @@ ${q.question}
     return context;
   }
   /**
+   * Build context for SOP gap filler agent
+   */
+  buildSOPGapFillerContext(sopGaps, docsContext, analysis) {
+    let context = "## AI-SDLC SOP Compliance Gaps\n\n";
+    if (analysis.sopSummary) {
+      context += "### Compliance Summary\n";
+      context += `- Total Gaps: ${analysis.sopSummary.totalGaps}
+`;
+      context += `- Critical Gaps: ${analysis.sopSummary.criticalGaps}
+`;
+      context += `- Compliance: ${analysis.sopSummary.compliancePercentage}%
+
+`;
+    }
+    if (analysis.vision.purpose) {
+      context += `### Project Purpose
+${analysis.vision.purpose}
+
+`;
+    }
+    context += "## Key Technical Documentation\n\n";
+    const keyDocPatterns = [
+      "test_strategy",
+      "technical",
+      "architecture",
+      "wasm",
+      "rust",
+      "original_spec",
+      "integration",
+      "requirements",
+      "security"
+    ];
+    for (const [docPath, docContent] of docsContext) {
+      const lowerPath = docPath.toLowerCase();
+      if (keyDocPatterns.some((pattern) => lowerPath.includes(pattern))) {
+        context += `### ${docPath}
+`;
+        context += docContent.slice(0, 3e3) + "\n\n";
+      }
+    }
+    context += "## SOP Compliance Gaps to Address\n\n";
+    context += "The following gaps were identified from AI-SDLC SOP compliance analysis.\n";
+    context += "Create documentation to address each gap based on the project context.\n\n";
+    const gapsBySOP = /* @__PURE__ */ new Map();
+    for (const gap of sopGaps) {
+      const sopId = gap.sopId || "general";
+      if (!gapsBySOP.has(sopId)) {
+        gapsBySOP.set(sopId, []);
+      }
+      gapsBySOP.get(sopId).push(gap);
+    }
+    for (const [sopId, gaps] of gapsBySOP) {
+      context += `### SOP: ${sopId}
+
+`;
+      for (const gap of gaps) {
+        context += `#### ${gap.priority.toUpperCase()}: ${gap.description}
+`;
+        context += `- **Requirement:** ${gap.requirementId}
+`;
+        context += `- **Effort:** ${gap.effort}
+`;
+        context += `- **Remediation:** ${gap.remediation}
+
+`;
+      }
+    }
+    context += "\n## Instructions\n";
+    context += "CRITICAL: Create documentation to address the SOP compliance gaps above.\n";
+    context += "Use the project context and technical documentation to ensure relevance.\n\n";
+    context += "OUTPUT FORMAT - Use this EXACT format for EACH document you create:\n\n";
+    context += "```document\n";
+    context += "---\n";
+    context += "path: relative/path/to/file.md\n";
+    context += "action: create\n";
+    context += "---\n";
+    context += "# Document Title\n\n";
+    context += "Document content with [[wiki-links]] to other documents.\n";
+    context += "```\n\n";
+    context += "For each SOP gap:\n";
+    context += "1. Create documentation that directly addresses the compliance requirement\n";
+    context += "2. Place documents in appropriate directories based on type:\n";
+    context += "   - standards/ for coding standards, style guides, policies\n";
+    context += "   - guides/ for tutorials, how-tos, processes\n";
+    context += "   - references/ for API docs, specifications, schemas\n";
+    context += "   - docs/ for general documentation\n";
+    context += "3. Include project-specific content (Rust, WASM, TypeScript, Knowledge Graph)\n";
+    context += "4. Reference existing documentation with [[wiki-links]]\n";
+    context += "5. Follow the remediation guidance provided for each gap\n";
+    return context;
+  }
+  /**
    * Execute a single migration agent
    */
   async executeAgent(agent, analysis, docsContext) {
     this.log("info", `Executing agent: ${agent.name}`, { type: agent.type });
     const prompt = this.buildAgentPrompt(agent);
-    const response = await this.callAI(prompt);
+    const response = await this.callAI(prompt, agent.type);
     if (!response) {
       throw new Error("No response from AI");
     }
@@ -605,16 +926,41 @@ Your researched answer with [[citations]]
 `;
   }
   /**
+   * Select the best model based on task complexity
+   * - Research and gap-filling tasks use the most capable model
+   * - Simpler tasks use faster models
+   */
+  selectGeminiModel(agentType) {
+    const complexTasks = ["gap-filler", "researcher"];
+    if (complexTasks.includes(agentType)) {
+      return "gemini-2.5-pro";
+    }
+    return "gemini-2.5-flash";
+  }
+  /**
    * Call AI (Gemini or fallback)
    */
-  async callAI(prompt) {
+  async callAI(prompt, agentType) {
     if (this.geminiClient) {
+      const modelName = this.selectGeminiModel(agentType);
       try {
-        const model = this.geminiClient.getGenerativeModel({ model: "gemini-2.0-flash" });
+        this.log("info", `Using model: ${modelName}`, { agentType });
+        const model = this.geminiClient.getGenerativeModel({ model: modelName });
         const result = await model.generateContent(prompt);
         return result.response.text();
       } catch (error) {
-        this.log("error", "Gemini API call failed", { error: String(error) });
+        if (modelName !== "gemini-2.5-flash") {
+          this.log("warn", `${modelName} failed, falling back to gemini-2.5-flash`, { error: String(error) });
+          try {
+            const fallbackModel = this.geminiClient.getGenerativeModel({ model: "gemini-2.5-flash" });
+            const result = await fallbackModel.generateContent(prompt);
+            return result.response.text();
+          } catch (fallbackError) {
+            this.log("error", "Gemini fallback also failed", { error: String(fallbackError) });
+          }
+        } else {
+          this.log("error", "Gemini API call failed", { error: String(error) });
+        }
         return null;
       }
     }
@@ -622,8 +968,10 @@ Your researched answer with [[citations]]
       try {
         const { default: Anthropic } = await import("@anthropic-ai/sdk");
         const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+        const complexTasks = ["gap-filler", "researcher"];
+        const model = complexTasks.includes(agentType) ? "claude-sonnet-4-20250514" : "claude-sonnet-4-20250514";
         const message = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model,
           max_tokens: 8e3,
           messages: [{ role: "user", content: prompt }]
         });

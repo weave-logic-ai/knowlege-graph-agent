@@ -10,6 +10,18 @@
  * @module cultivation/migration-orchestrator
  */
 /**
+ * SOP Gap from analysis (simplified version for migration)
+ */
+interface SOPGapSummary {
+    id: string;
+    sopId: string;
+    requirementId: string;
+    description: string;
+    priority: string;
+    effort: string;
+    remediation: string;
+}
+/**
  * Parsed gap from analysis
  */
 interface DocumentationGap {
@@ -50,6 +62,13 @@ interface ParsedAnalysis {
     gaps: DocumentationGap[];
     questions: ResearchQuestion[];
     connections: ConnectionSuggestion[];
+    sopGaps: SOPGapSummary[];
+    sopSummary?: {
+        totalGaps: number;
+        criticalGaps: number;
+        compliancePercentage: number;
+        byPriority: Record<string, number>;
+    };
 }
 /**
  * Migration result
@@ -115,6 +134,10 @@ export declare class MigrationOrchestrator {
      */
     private parseGapsFile;
     /**
+     * Escape special regex characters in a string
+     */
+    private escapeRegex;
+    /**
      * Parse research questions file
      */
     private parseQuestionsFile;
@@ -130,6 +153,14 @@ export declare class MigrationOrchestrator {
      * Create migration agents based on analysis
      */
     private createMigrationAgents;
+    /**
+     * Find directories with no or minimal documentation
+     */
+    private findEmptyDirectories;
+    /**
+     * Build context for directory populator agent
+     */
+    private buildDirectoryPopulatorContext;
     /**
      * Build context for gap filler agent
      */
@@ -151,6 +182,10 @@ export declare class MigrationOrchestrator {
      */
     private buildIntegratorContext;
     /**
+     * Build context for SOP gap filler agent
+     */
+    private buildSOPGapFillerContext;
+    /**
      * Execute a single migration agent
      */
     private executeAgent;
@@ -158,6 +193,12 @@ export declare class MigrationOrchestrator {
      * Build prompt for agent
      */
     private buildAgentPrompt;
+    /**
+     * Select the best model based on task complexity
+     * - Research and gap-filling tasks use the most capable model
+     * - Simpler tasks use faster models
+     */
+    private selectGeminiModel;
     /**
      * Call AI (Gemini or fallback)
      */

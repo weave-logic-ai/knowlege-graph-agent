@@ -11,6 +11,7 @@
  *
  * @module cultivation/deep-analyzer
  */
+import { ComplianceCheckResult, GapAnalysisResult } from '../sops/index.js';
 /**
  * Deep analyzer options
  */
@@ -59,6 +60,10 @@ export interface DeepAnalysisResult {
     duration: number;
     errors: string[];
     mode: 'cli' | 'anthropic' | 'gemini' | 'static';
+    /** SOP compliance check result */
+    sopCompliance?: ComplianceCheckResult;
+    /** SOP gap analysis result */
+    sopGaps?: GapAnalysisResult;
 }
 /**
  * DeepAnalyzer - Documentation cultivation with AI-powered analysis
@@ -161,6 +166,22 @@ export declare class DeepAnalyzer {
      * Build context-aware prompt for documentation cultivation
      */
     private buildPrompt;
+    /**
+     * Run SOP compliance check against the documentation
+     */
+    private runSOPComplianceCheck;
+    /**
+     * Run SOP gap analysis on compliance results
+     */
+    private runSOPGapAnalysis;
+    /**
+     * Write SOP gaps summary to analysis output
+     */
+    private writeSOPGapsSummary;
+    /**
+     * Build SOP agent-specific instructions with gap context
+     */
+    private buildSOPAgentInstructions;
     /**
      * Run analysis using Claude CLI
      */
