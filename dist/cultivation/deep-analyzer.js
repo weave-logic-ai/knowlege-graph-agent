@@ -1,5 +1,5 @@
 import { execFileSync, execSync } from "child_process";
-import { existsSync, readFileSync, mkdirSync, writeFileSync, readdirSync, statSync } from "fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from "fs";
 import { resolve, join, extname, relative, basename } from "path";
 import { createLogger } from "../utils/logger.js";
 const logger = createLogger("deep-analyzer");
@@ -201,6 +201,122 @@ class DeepAnalyzer {
     return keyDocs;
   }
   /**
+   * Scan directory structure for MOC files and coverage
+   */
+  scanDirectoryStructure() {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    if (!existsSync(docsDir)) {
+      return [];
+    }
+    const directories = [];
+    const ignoredDirs = /* @__PURE__ */ new Set([".", "..", "analysis", "node_modules", ".git", ".obsidian"]);
+    const scanDir = (dir, depth = 0) => {
+      if (depth > 5) return;
+      const relPath = relative(docsDir, dir) || ".";
+      const entries = readdirSync(dir, { withFileTypes: true });
+      const subdirs = [];
+      const docs = [];
+      let mocFile = null;
+      let mocContent = "";
+      for (const entry of entries) {
+        if (ignoredDirs.has(entry.name) || entry.name.startsWith(".")) continue;
+        if (entry.isDirectory()) {
+          subdirs.push(entry.name);
+          scanDir(join(dir, entry.name), depth + 1);
+        } else if (entry.isFile() && entry.name.endsWith(".md")) {
+          docs.push(entry.name);
+          if (entry.name === "_MOC.md" || entry.name === "MOC.md" || entry.name === "index.md") {
+            mocFile = entry.name;
+            try {
+              mocContent = readFileSync(join(dir, entry.name), "utf-8");
+            } catch {
+              mocContent = "";
+            }
+          }
+        }
+      }
+      let mocStatus = "missing";
+      if (mocFile) {
+        if (mocContent.length < 100) {
+          mocStatus = "empty";
+        } else if (mocContent.toLowerCase().includes("stub") || mocContent.includes("TODO") || mocContent.includes("TBD") || !mocContent.includes("[[")) {
+          mocStatus = "stub";
+        } else {
+          mocStatus = "complete";
+        }
+      }
+      let needsDocumentation = false;
+      let reason = "";
+      if (subdirs.length > 0 || docs.length > 1) {
+        if (mocStatus === "missing") {
+          needsDocumentation = true;
+          reason = "Directory has content but no MOC file";
+        } else if (mocStatus === "empty" || mocStatus === "stub") {
+          needsDocumentation = true;
+          reason = `MOC file is ${mocStatus} - needs content`;
+        }
+      }
+      if (subdirs.length > 0 || docs.length > 0 || relPath === ".") {
+        directories.push({
+          path: relPath,
+          name: basename(dir),
+          hasMOC: mocFile !== null,
+          mocStatus,
+          documentCount: docs.length,
+          subdirectories: subdirs,
+          documents: docs,
+          needsDocumentation,
+          reason
+        });
+      }
+    };
+    scanDir(docsDir);
+    return directories;
+  }
+  /**
+   * Load previous analysis results for iteration tracking
+   */
+  loadPreviousAnalysis() {
+    const metadataFile = join(this.outputDir, ".analysis-metadata.json");
+    if (!existsSync(metadataFile)) {
+      return null;
+    }
+    try {
+      const content = readFileSync(metadataFile, "utf-8");
+      return JSON.parse(content);
+    } catch {
+      return null;
+    }
+  }
+  /**
+   * Save analysis metadata for iteration tracking
+   */
+  saveAnalysisMetadata(result, dirCoverage) {
+    const metadataFile = join(this.outputDir, ".analysis-metadata.json");
+    const previous = this.loadPreviousAnalysis();
+    const totalDirs = dirCoverage.length;
+    const coveredDirs = dirCoverage.filter((d) => d.mocStatus === "complete").length;
+    const coverageScore = totalDirs > 0 ? coveredDirs / totalDirs * 100 : 0;
+    const gapsResult = result.results.find((r) => r.type === "gaps");
+    const questionsResult = result.results.find((r) => r.type === "research");
+    const coverageResult = result.results.find((r) => r.type === "coverage");
+    const metadata = {
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      iteration: (previous?.iteration || 0) + 1,
+      gapsIdentified: (gapsResult?.insights.length || 0) + (coverageResult?.insights.length || 0),
+      gapsFilled: 0,
+      // Updated by migrate command
+      questionsRaised: questionsResult?.insights.length || 0,
+      questionsAnswered: 0,
+      // Updated by migrate command
+      coverageScore
+    };
+    try {
+      writeFileSync(metadataFile, JSON.stringify(metadata, null, 2));
+    } catch {
+    }
+  }
+  /**
    * Run deep analysis
    */
   async analyze() {
@@ -228,18 +344,33 @@ class DeepAnalyzer {
     }
     const documents = this.scanDocumentation();
     const keyDocs = this.readKeyDocuments();
+    const dirCoverage = this.scanDirectoryStructure();
+    const previousAnalysis = this.loadPreviousAnalysis();
     if (documents.length === 0) {
       result.errors.push("No markdown documents found in docs directory");
       result.duration = Date.now() - startTime;
       return result;
     }
-    logger.info("Found documentation", { documents: documents.length, keyDocs: keyDocs.size });
+    const iteration = (previousAnalysis?.iteration || 0) + 1;
+    logger.info("Found documentation", {
+      documents: documents.length,
+      keyDocs: keyDocs.size,
+      directories: dirCoverage.length,
+      needsWork: dirCoverage.filter((d) => d.needsDocumentation).length,
+      iteration
+    });
     const agents = [
       {
         name: "Vision Synthesizer",
         type: "vision",
         task: "Synthesize the project vision, goals, and core value proposition from the documentation",
         outputFile: "vision-synthesis.md"
+      },
+      {
+        name: "Directory Coverage Analyst",
+        type: "coverage",
+        task: "Analyze directory structure, MOC files, and identify areas needing documentation",
+        outputFile: "directory-coverage.md"
       },
       {
         name: "Gap Analyst",
@@ -260,16 +391,19 @@ class DeepAnalyzer {
         outputFile: "knowledge-connections.md"
       }
     ];
-    logger.info("Executing cultivation agents", { agents: agents.length, mode: "sequential" });
+    logger.info("Executing cultivation agents", { agents: agents.length, mode: "sequential", iteration });
     for (const agent of agents) {
       const agentResult = await this.executeAgent(
         agent,
         executionMode.mode,
         documents,
-        keyDocs
+        keyDocs,
+        dirCoverage,
+        previousAnalysis
       );
       result.results.push(agentResult);
     }
+    this.saveAnalysisMetadata(result, dirCoverage);
     result.agentsSpawned = result.results.length;
     result.insightsCount = result.results.reduce((sum, r) => sum + r.insights.length, 0);
     result.documentsCreated = result.results.reduce((sum, r) => sum + r.documents.length, 0);
@@ -291,7 +425,7 @@ class DeepAnalyzer {
   /**
    * Execute a single agent
    */
-  async executeAgent(agent, mode, documents, keyDocs) {
+  async executeAgent(agent, mode, documents, keyDocs, dirCoverage, previousAnalysis) {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
     const result = {
@@ -304,7 +438,7 @@ class DeepAnalyzer {
     };
     try {
       logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
-      const prompt = this.buildPrompt(agent, documents, keyDocs);
+      const prompt = this.buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis);
       let output;
       if (mode === "cli") {
         output = await this.runWithCli(prompt);
@@ -328,15 +462,90 @@ class DeepAnalyzer {
     return result;
   }
   /**
+   * Build directory coverage summary for prompts
+   */
+  buildCoverageSummary(dirCoverage) {
+    const lines = [];
+    const total = dirCoverage.length;
+    const complete = dirCoverage.filter((d) => d.mocStatus === "complete").length;
+    const stub = dirCoverage.filter((d) => d.mocStatus === "stub").length;
+    const empty = dirCoverage.filter((d) => d.mocStatus === "empty").length;
+    const missing = dirCoverage.filter((d) => d.mocStatus === "missing").length;
+    lines.push(`### Summary`);
+    lines.push(`- Total Directories: ${total}`);
+    lines.push(`- Complete MOCs: ${complete} (${(complete / total * 100).toFixed(1)}%)`);
+    lines.push(`- Stub MOCs: ${stub}`);
+    lines.push(`- Empty MOCs: ${empty}`);
+    lines.push(`- Missing MOCs: ${missing}`);
+    lines.push(`- Coverage Score: ${(complete / total * 100).toFixed(1)}%`);
+    lines.push("");
+    const needsWork = dirCoverage.filter((d) => d.needsDocumentation);
+    if (needsWork.length > 0) {
+      lines.push("### Directories Needing Documentation");
+      for (const dir of needsWork) {
+        lines.push(`- **${dir.path}/** (${dir.mocStatus})`);
+        lines.push(`  - Documents: ${dir.documents.join(", ") || "none"}`);
+        lines.push(`  - Subdirectories: ${dir.subdirectories.join(", ") || "none"}`);
+        lines.push(`  - Reason: ${dir.reason}`);
+      }
+      lines.push("");
+    }
+    const completeDirs = dirCoverage.filter((d) => d.mocStatus === "complete");
+    if (completeDirs.length > 0) {
+      lines.push("### Directories with Complete MOCs");
+      for (const dir of completeDirs) {
+        lines.push(`- ${dir.path}/ (${dir.documentCount} docs)`);
+      }
+    }
+    return lines.join("\n");
+  }
+  /**
    * Build context-aware prompt for documentation cultivation
    */
-  buildPrompt(agent, documents, keyDocs) {
+  buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis) {
     const inventory = documents.map((d) => `- ${d.path} (${d.type}): ${d.title}`).join("\n");
     const keyContent = Array.from(keyDocs.entries()).map(([name, content]) => `### ${name}
 
 ${content}`).join("\n\n---\n\n");
+    const coverageSummary = this.buildCoverageSummary(dirCoverage);
+    const iterationContext = previousAnalysis ? `
+## Previous Analysis (Iteration ${previousAnalysis.iteration})
+- Timestamp: ${previousAnalysis.timestamp}
+- Gaps Identified: ${previousAnalysis.gapsIdentified}
+- Gaps Filled: ${previousAnalysis.gapsFilled}
+- Questions Raised: ${previousAnalysis.questionsRaised}
+- Questions Answered: ${previousAnalysis.questionsAnswered}
+- Coverage Score: ${previousAnalysis.coverageScore.toFixed(1)}%
+
+Focus on NEW gaps and questions not addressed in previous iterations.
+` : "";
     let specificInstructions = "";
     switch (agent.type) {
+      case "coverage":
+        specificInstructions = `
+Focus on directory structure and MOC (Map of Content) files:
+
+1. **Directory Analysis**: Review each directory and its MOC file status
+2. **Empty/Stub MOCs**: Identify MOC files that are empty or just stubs
+3. **Missing MOCs**: Identify directories that need MOC files
+4. **Documentation Needs**: For each directory, determine what documentation is needed
+5. **Not Needed**: If a directory genuinely doesn't need documentation, explain why
+
+For each directory needing work:
+- State the directory path
+- Current MOC status (missing/empty/stub/complete)
+- What documentation should be added
+- Priority (high/medium/low)
+- Suggested content or links to include
+
+The goal is 100% documentation coverage - every directory should either:
+1. Have a complete MOC with links to contents
+2. Have documentation explaining why it doesn't need more docs
+3. Be marked for future documentation
+
+## Directory Coverage Status
+${coverageSummary}`;
+        break;
       case "vision":
         specificInstructions = `
 Focus on:
@@ -356,11 +565,16 @@ Identify:
 3. Outdated information (anything that seems inconsistent?)
 4. Missing examples or use cases
 5. Unclear terminology or concepts that need definitions
+6. Empty or stub MOC files that need content (see Directory Coverage below)
 
 For each gap, specify:
 - What is missing
-- Where it should be documented
-- Why it's important`;
+- Where it should be documented (specific file path)
+- Why it's important
+- Priority (high/medium/low)
+
+## Directory Coverage Status
+${coverageSummary}`;
         break;
       case "research":
         specificInstructions = `
@@ -392,7 +606,7 @@ Also identify concepts that should be linked but aren't currently.`;
         break;
     }
     return `You are a documentation analyst helping to cultivate a knowledge graph.
-
+${iterationContext}
 ## Your Task
 ${agent.task}
 
@@ -414,9 +628,11 @@ Provide your analysis in markdown format with:
 3. Specific recommendations (prefix with "Recommendation:")
 4. Key findings (prefix with "Finding:")
 5. Research questions where applicable (prefix with "Question:")
+6. Priority levels (high/medium/low) for actionable items
 
 Reference specific documents using [[document-name]] wiki-link format where relevant.
-Be specific and actionable in your analysis.`;
+Be specific and actionable in your analysis.
+${previousAnalysis ? "\nFocus on NEW items not identified in previous iterations." : ""}`;
   }
   /**
    * Run analysis using Claude CLI

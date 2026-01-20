@@ -98,6 +98,34 @@ interface DocMetadata {
 }
 
 /**
+ * Directory coverage information
+ */
+interface DirectoryCoverage {
+  path: string;
+  name: string;
+  hasMOC: boolean;
+  mocStatus: 'complete' | 'stub' | 'empty' | 'missing';
+  documentCount: number;
+  subdirectories: string[];
+  documents: string[];
+  needsDocumentation: boolean;
+  reason?: string;
+}
+
+/**
+ * Previous analysis metadata for iteration tracking
+ */
+interface PreviousAnalysis {
+  timestamp: string;
+  iteration: number;
+  gapsIdentified: number;
+  gapsFilled: number;
+  questionsRaised: number;
+  questionsAnswered: number;
+  coverageScore: number;
+}
+
+/**
  * DeepAnalyzer - Documentation cultivation with AI-powered analysis
  *
  * Reads existing markdown documentation and provides:
@@ -363,6 +391,151 @@ export class DeepAnalyzer {
   }
 
   /**
+   * Scan directory structure for MOC files and coverage
+   */
+  private scanDirectoryStructure(): DirectoryCoverage[] {
+    const docsDir = join(this.projectRoot, this.docsPath);
+    if (!existsSync(docsDir)) {
+      return [];
+    }
+
+    const directories: DirectoryCoverage[] = [];
+    const ignoredDirs = new Set(['.', '..', 'analysis', 'node_modules', '.git', '.obsidian']);
+
+    const scanDir = (dir: string, depth: number = 0): void => {
+      if (depth > 5) return; // Max depth to prevent infinite loops
+
+      const relPath = relative(docsDir, dir) || '.';
+      const entries = readdirSync(dir, { withFileTypes: true });
+
+      const subdirs: string[] = [];
+      const docs: string[] = [];
+      let mocFile: string | null = null;
+      let mocContent = '';
+
+      for (const entry of entries) {
+        if (ignoredDirs.has(entry.name) || entry.name.startsWith('.')) continue;
+
+        if (entry.isDirectory()) {
+          subdirs.push(entry.name);
+          scanDir(join(dir, entry.name), depth + 1);
+        } else if (entry.isFile() && entry.name.endsWith('.md')) {
+          docs.push(entry.name);
+          if (entry.name === '_MOC.md' || entry.name === 'MOC.md' || entry.name === 'index.md') {
+            mocFile = entry.name;
+            try {
+              mocContent = readFileSync(join(dir, entry.name), 'utf-8');
+            } catch {
+              mocContent = '';
+            }
+          }
+        }
+      }
+
+      // Determine MOC status
+      let mocStatus: DirectoryCoverage['mocStatus'] = 'missing';
+      if (mocFile) {
+        if (mocContent.length < 100) {
+          mocStatus = 'empty';
+        } else if (
+          mocContent.toLowerCase().includes('stub') ||
+          mocContent.includes('TODO') ||
+          mocContent.includes('TBD') ||
+          !mocContent.includes('[[')
+        ) {
+          mocStatus = 'stub';
+        } else {
+          mocStatus = 'complete';
+        }
+      }
+
+      // Determine if documentation is needed
+      let needsDocumentation = false;
+      let reason = '';
+
+      if (subdirs.length > 0 || docs.length > 1) {
+        if (mocStatus === 'missing') {
+          needsDocumentation = true;
+          reason = 'Directory has content but no MOC file';
+        } else if (mocStatus === 'empty' || mocStatus === 'stub') {
+          needsDocumentation = true;
+          reason = `MOC file is ${mocStatus} - needs content`;
+        }
+      }
+
+      // Only track directories that have content or subdirectories
+      if (subdirs.length > 0 || docs.length > 0 || relPath === '.') {
+        directories.push({
+          path: relPath,
+          name: basename(dir),
+          hasMOC: mocFile !== null,
+          mocStatus,
+          documentCount: docs.length,
+          subdirectories: subdirs,
+          documents: docs,
+          needsDocumentation,
+          reason,
+        });
+      }
+    };
+
+    scanDir(docsDir);
+    return directories;
+  }
+
+  /**
+   * Load previous analysis results for iteration tracking
+   */
+  private loadPreviousAnalysis(): PreviousAnalysis | null {
+    const metadataFile = join(this.outputDir, '.analysis-metadata.json');
+
+    if (!existsSync(metadataFile)) {
+      return null;
+    }
+
+    try {
+      const content = readFileSync(metadataFile, 'utf-8');
+      return JSON.parse(content) as PreviousAnalysis;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Save analysis metadata for iteration tracking
+   */
+  private saveAnalysisMetadata(result: DeepAnalysisResult, dirCoverage: DirectoryCoverage[]): void {
+    const metadataFile = join(this.outputDir, '.analysis-metadata.json');
+    const previous = this.loadPreviousAnalysis();
+
+    // Count coverage metrics
+    const totalDirs = dirCoverage.length;
+    const coveredDirs = dirCoverage.filter(d => d.mocStatus === 'complete').length;
+    const coverageScore = totalDirs > 0 ? (coveredDirs / totalDirs) * 100 : 0;
+
+    // Count gaps and questions from results
+    const gapsResult = result.results.find(r => r.type === 'gaps');
+    const questionsResult = result.results.find(r => r.type === 'research');
+    const coverageResult = result.results.find(r => r.type === 'coverage');
+
+    const metadata: PreviousAnalysis = {
+      timestamp: new Date().toISOString(),
+      iteration: (previous?.iteration || 0) + 1,
+      gapsIdentified: (gapsResult?.insights.length || 0) + (coverageResult?.insights.length || 0),
+      gapsFilled: 0, // Updated by migrate command
+      questionsRaised: questionsResult?.insights.length || 0,
+      questionsAnswered: 0, // Updated by migrate command
+      coverageScore,
+    };
+
+    try {
+      writeFileSync(metadataFile, JSON.stringify(metadata, null, 2));
+    } catch {
+      // Non-critical, continue
+    }
+  }
+
+  /**
    * Run deep analysis
    */
   async analyze(): Promise<DeepAnalysisResult> {
@@ -398,6 +571,8 @@ export class DeepAnalyzer {
     // Scan existing documentation
     const documents = this.scanDocumentation();
     const keyDocs = this.readKeyDocuments();
+    const dirCoverage = this.scanDirectoryStructure();
+    const previousAnalysis = this.loadPreviousAnalysis();
 
     if (documents.length === 0) {
       result.errors.push('No markdown documents found in docs directory');
@@ -405,15 +580,29 @@ export class DeepAnalyzer {
       return result;
     }
 
-    logger.info('Found documentation', { documents: documents.length, keyDocs: keyDocs.size });
+    // Log iteration info
+    const iteration = (previousAnalysis?.iteration || 0) + 1;
+    logger.info('Found documentation', {
+      documents: documents.length,
+      keyDocs: keyDocs.size,
+      directories: dirCoverage.length,
+      needsWork: dirCoverage.filter(d => d.needsDocumentation).length,
+      iteration,
+    });
 
-    // Define documentation cultivation agents
+    // Define documentation cultivation agents - including Directory Coverage
     const agents: AgentConfig[] = [
       {
         name: 'Vision Synthesizer',
         type: 'vision',
         task: 'Synthesize the project vision, goals, and core value proposition from the documentation',
         outputFile: 'vision-synthesis.md',
+      },
+      {
+        name: 'Directory Coverage Analyst',
+        type: 'coverage',
+        task: 'Analyze directory structure, MOC files, and identify areas needing documentation',
+        outputFile: 'directory-coverage.md',
       },
       {
         name: 'Gap Analyst',
@@ -435,7 +624,7 @@ export class DeepAnalyzer {
       },
     ];
 
-    logger.info('Executing cultivation agents', { agents: agents.length, mode: 'sequential' });
+    logger.info('Executing cultivation agents', { agents: agents.length, mode: 'sequential', iteration });
 
     // Execute agents sequentially
     for (const agent of agents) {
@@ -443,10 +632,15 @@ export class DeepAnalyzer {
         agent,
         executionMode.mode as 'cli' | 'anthropic' | 'gemini',
         documents,
-        keyDocs
+        keyDocs,
+        dirCoverage,
+        previousAnalysis
       );
       result.results.push(agentResult);
     }
+
+    // Save metadata for iteration tracking
+    this.saveAnalysisMetadata(result, dirCoverage);
 
     // Calculate totals
     result.agentsSpawned = result.results.length;
@@ -479,7 +673,9 @@ export class DeepAnalyzer {
     agent: AgentConfig,
     mode: 'cli' | 'anthropic' | 'gemini',
     documents: DocMetadata[],
-    keyDocs: Map<string, string>
+    keyDocs: Map<string, string>,
+    dirCoverage: DirectoryCoverage[],
+    previousAnalysis: PreviousAnalysis | null
   ): Promise<AgentResult> {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
@@ -496,7 +692,7 @@ export class DeepAnalyzer {
     try {
       logger.info(`Executing agent: ${agent.name}`, { type: agent.type, mode });
 
-      const prompt = this.buildPrompt(agent, documents, keyDocs);
+      const prompt = this.buildPrompt(agent, documents, keyDocs, dirCoverage, previousAnalysis);
       let output: string;
 
       if (mode === 'cli') {
@@ -529,9 +725,62 @@ export class DeepAnalyzer {
   }
 
   /**
+   * Build directory coverage summary for prompts
+   */
+  private buildCoverageSummary(dirCoverage: DirectoryCoverage[]): string {
+    const lines: string[] = [];
+
+    // Summary stats
+    const total = dirCoverage.length;
+    const complete = dirCoverage.filter(d => d.mocStatus === 'complete').length;
+    const stub = dirCoverage.filter(d => d.mocStatus === 'stub').length;
+    const empty = dirCoverage.filter(d => d.mocStatus === 'empty').length;
+    const missing = dirCoverage.filter(d => d.mocStatus === 'missing').length;
+
+    lines.push(`### Summary`);
+    lines.push(`- Total Directories: ${total}`);
+    lines.push(`- Complete MOCs: ${complete} (${((complete / total) * 100).toFixed(1)}%)`);
+    lines.push(`- Stub MOCs: ${stub}`);
+    lines.push(`- Empty MOCs: ${empty}`);
+    lines.push(`- Missing MOCs: ${missing}`);
+    lines.push(`- Coverage Score: ${((complete / total) * 100).toFixed(1)}%`);
+    lines.push('');
+
+    // Directories needing work
+    const needsWork = dirCoverage.filter(d => d.needsDocumentation);
+    if (needsWork.length > 0) {
+      lines.push('### Directories Needing Documentation');
+      for (const dir of needsWork) {
+        lines.push(`- **${dir.path}/** (${dir.mocStatus})`);
+        lines.push(`  - Documents: ${dir.documents.join(', ') || 'none'}`);
+        lines.push(`  - Subdirectories: ${dir.subdirectories.join(', ') || 'none'}`);
+        lines.push(`  - Reason: ${dir.reason}`);
+      }
+      lines.push('');
+    }
+
+    // Complete directories
+    const completeDirs = dirCoverage.filter(d => d.mocStatus === 'complete');
+    if (completeDirs.length > 0) {
+      lines.push('### Directories with Complete MOCs');
+      for (const dir of completeDirs) {
+        lines.push(`- ${dir.path}/ (${dir.documentCount} docs)`);
+      }
+    }
+
+    return lines.join('\n');
+  }
+
+  /**
    * Build context-aware prompt for documentation cultivation
    */
-  private buildPrompt(agent: AgentConfig, documents: DocMetadata[], keyDocs: Map<string, string>): string {
+  private buildPrompt(
+    agent: AgentConfig,
+    documents: DocMetadata[],
+    keyDocs: Map<string, string>,
+    dirCoverage: DirectoryCoverage[],
+    previousAnalysis: PreviousAnalysis | null
+  ): string {
     // Build document inventory
     const inventory = documents.map(d => `- ${d.path} (${d.type}): ${d.title}`).join('\n');
 
@@ -540,9 +789,52 @@ export class DeepAnalyzer {
       .map(([name, content]) => `### ${name}\n\n${content}`)
       .join('\n\n---\n\n');
 
+    // Build directory coverage summary
+    const coverageSummary = this.buildCoverageSummary(dirCoverage);
+
+    // Build iteration context
+    const iterationContext = previousAnalysis
+      ? `\n## Previous Analysis (Iteration ${previousAnalysis.iteration})
+- Timestamp: ${previousAnalysis.timestamp}
+- Gaps Identified: ${previousAnalysis.gapsIdentified}
+- Gaps Filled: ${previousAnalysis.gapsFilled}
+- Questions Raised: ${previousAnalysis.questionsRaised}
+- Questions Answered: ${previousAnalysis.questionsAnswered}
+- Coverage Score: ${previousAnalysis.coverageScore.toFixed(1)}%
+
+Focus on NEW gaps and questions not addressed in previous iterations.
+`
+      : '';
+
     // Agent-specific instructions
     let specificInstructions = '';
     switch (agent.type) {
+      case 'coverage':
+        specificInstructions = `
+Focus on directory structure and MOC (Map of Content) files:
+
+1. **Directory Analysis**: Review each directory and its MOC file status
+2. **Empty/Stub MOCs**: Identify MOC files that are empty or just stubs
+3. **Missing MOCs**: Identify directories that need MOC files
+4. **Documentation Needs**: For each directory, determine what documentation is needed
+5. **Not Needed**: If a directory genuinely doesn't need documentation, explain why
+
+For each directory needing work:
+- State the directory path
+- Current MOC status (missing/empty/stub/complete)
+- What documentation should be added
+- Priority (high/medium/low)
+- Suggested content or links to include
+
+The goal is 100% documentation coverage - every directory should either:
+1. Have a complete MOC with links to contents
+2. Have documentation explaining why it doesn't need more docs
+3. Be marked for future documentation
+
+## Directory Coverage Status
+${coverageSummary}`;
+        break;
+
       case 'vision':
         specificInstructions = `
 Focus on:
@@ -563,11 +855,16 @@ Identify:
 3. Outdated information (anything that seems inconsistent?)
 4. Missing examples or use cases
 5. Unclear terminology or concepts that need definitions
+6. Empty or stub MOC files that need content (see Directory Coverage below)
 
 For each gap, specify:
 - What is missing
-- Where it should be documented
-- Why it's important`;
+- Where it should be documented (specific file path)
+- Why it's important
+- Priority (high/medium/low)
+
+## Directory Coverage Status
+${coverageSummary}`;
         break;
 
       case 'research':
@@ -602,7 +899,7 @@ Also identify concepts that should be linked but aren't currently.`;
     }
 
     return `You are a documentation analyst helping to cultivate a knowledge graph.
-
+${iterationContext}
 ## Your Task
 ${agent.task}
 
@@ -624,9 +921,11 @@ Provide your analysis in markdown format with:
 3. Specific recommendations (prefix with "Recommendation:")
 4. Key findings (prefix with "Finding:")
 5. Research questions where applicable (prefix with "Question:")
+6. Priority levels (high/medium/low) for actionable items
 
 Reference specific documents using [[document-name]] wiki-link format where relevant.
-Be specific and actionable in your analysis.`;
+Be specific and actionable in your analysis.
+${previousAnalysis ? '\nFocus on NEW items not identified in previous iterations.' : ''}`;
   }
 
   /**

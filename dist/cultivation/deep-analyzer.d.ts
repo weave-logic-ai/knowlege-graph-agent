@@ -134,6 +134,18 @@ export declare class DeepAnalyzer {
      */
     private readKeyDocuments;
     /**
+     * Scan directory structure for MOC files and coverage
+     */
+    private scanDirectoryStructure;
+    /**
+     * Load previous analysis results for iteration tracking
+     */
+    private loadPreviousAnalysis;
+    /**
+     * Save analysis metadata for iteration tracking
+     */
+    private saveAnalysisMetadata;
+    /**
      * Run deep analysis
      */
     analyze(): Promise<DeepAnalysisResult>;
@@ -141,6 +153,10 @@ export declare class DeepAnalyzer {
      * Execute a single agent
      */
     private executeAgent;
+    /**
+     * Build directory coverage summary for prompts
+     */
+    private buildCoverageSummary;
     /**
      * Build context-aware prompt for documentation cultivation
      */
