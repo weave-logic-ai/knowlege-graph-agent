@@ -234,6 +234,7 @@ export function createCultivateCommand(): Command {
             console.log(chalk.gray('  Options:'));
             console.log(chalk.gray('  1. Run from a regular terminal (outside Claude Code)'));
             console.log(chalk.gray('  2. Set ANTHROPIC_API_KEY environment variable'));
+            console.log(chalk.gray('  3. Set GOOGLE_AI_API_KEY for Gemini fallback'));
             result.warnings.push(`Deep analysis unavailable: ${availability.reason}`);
           } else {
             console.log(chalk.gray(`  Mode: ${availability.reason}`));

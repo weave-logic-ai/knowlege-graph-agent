@@ -4,7 +4,8 @@
  * Provides comprehensive codebase analysis using:
  * - Claude CLI (`claude -p`) when running outside Claude Code
  * - Direct Anthropic API when ANTHROPIC_API_KEY is available
- * - Clear error messaging when neither option is available
+ * - Google Gemini API when GOOGLE_AI_API_KEY is available (fallback)
+ * - Clear error messaging when no option is available
  *
  * @module cultivation/deep-analyzer
  */
@@ -49,6 +50,8 @@ export interface DeepAnalyzerOptions {
   agentTimeout?: number;
   /** Force use of API key even if CLI is available */
   forceApiKey?: boolean;
+  /** Preferred provider when multiple are available */
+  preferredProvider?: 'anthropic' | 'gemini';
 }
 
 /**
@@ -75,7 +78,7 @@ export interface DeepAnalysisResult {
   results: AgentResult[];
   duration: number;
   errors: string[];
-  mode: 'cli' | 'api' | 'static';
+  mode: 'cli' | 'anthropic' | 'gemini' | 'static';
 }
 
 /**
@@ -92,12 +95,17 @@ interface AgentConfig {
  * Execution mode detection result
  */
 interface ExecutionMode {
-  mode: 'cli' | 'api' | 'unavailable';
+  mode: 'cli' | 'anthropic' | 'gemini' | 'unavailable';
   reason: string;
 }
 
 /**
  * DeepAnalyzer - Deep codebase analysis with multiple execution modes
+ *
+ * Supports multiple providers:
+ * - Claude CLI (uses OAuth session, no API key needed)
+ * - Anthropic API (requires ANTHROPIC_API_KEY)
+ * - Google Gemini API (requires GOOGLE_AI_API_KEY or GEMINI_API_KEY)
  *
  * @example
  * ```typescript
@@ -119,6 +127,7 @@ export class DeepAnalyzer {
   private agentMode: 'sequential' | 'parallel' | 'adaptive';
   private agentTimeout: number;
   private forceApiKey: boolean;
+  private preferredProvider: 'anthropic' | 'gemini';
 
   constructor(options: DeepAnalyzerOptions) {
     this.projectRoot = resolve(options.projectRoot);
@@ -130,6 +139,7 @@ export class DeepAnalyzer {
     // Default timeout of 2 minutes (120 seconds)
     this.agentTimeout = options.agentTimeout || 120000;
     this.forceApiKey = options.forceApiKey || false;
+    this.preferredProvider = options.preferredProvider || 'anthropic';
   }
 
   /**
@@ -142,8 +152,22 @@ export class DeepAnalyzer {
   /**
    * Check if Anthropic API key is available
    */
-  private hasApiKey(): boolean {
+  private hasAnthropicApiKey(): boolean {
     return !!process.env.ANTHROPIC_API_KEY;
+  }
+
+  /**
+   * Check if Google AI / Gemini API key is available
+   */
+  private hasGeminiApiKey(): boolean {
+    return !!(process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY);
+  }
+
+  /**
+   * Get the Gemini API key from available env vars
+   */
+  private getGeminiApiKey(): string | undefined {
+    return process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   }
 
   /**
@@ -167,26 +191,41 @@ export class DeepAnalyzer {
    */
   private detectExecutionMode(): ExecutionMode {
     const insideClaudeCode = this.isInsideClaudeCode();
-    const hasApiKey = this.hasApiKey();
+    const hasAnthropicKey = this.hasAnthropicApiKey();
+    const hasGeminiKey = this.hasGeminiApiKey();
     const cliAvailable = this.isCliAvailable();
 
     // If forced to use API key
     if (this.forceApiKey) {
-      if (hasApiKey) {
-        return { mode: 'api', reason: 'Using API key (forced)' };
+      // Check preferred provider first
+      if (this.preferredProvider === 'gemini' && hasGeminiKey) {
+        return { mode: 'gemini', reason: 'Using Gemini API (forced, preferred)' };
       }
-      return { mode: 'unavailable', reason: 'ANTHROPIC_API_KEY not set (required when forceApiKey=true)' };
+      if (hasAnthropicKey) {
+        return { mode: 'anthropic', reason: 'Using Anthropic API (forced)' };
+      }
+      if (hasGeminiKey) {
+        return { mode: 'gemini', reason: 'Using Gemini API (forced, fallback)' };
+      }
+      return { mode: 'unavailable', reason: 'No API key found (required when forceApiKey=true). Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.' };
     }
 
     // Inside Claude Code session - CLI doesn't work due to resource contention
     if (insideClaudeCode) {
-      if (hasApiKey) {
-        return { mode: 'api', reason: 'Using API key (inside Claude Code session)' };
+      // Check preferred provider first
+      if (this.preferredProvider === 'gemini' && hasGeminiKey) {
+        return { mode: 'gemini', reason: 'Using Gemini API (inside Claude Code, preferred)' };
+      }
+      if (hasAnthropicKey) {
+        return { mode: 'anthropic', reason: 'Using Anthropic API (inside Claude Code)' };
+      }
+      if (hasGeminiKey) {
+        return { mode: 'gemini', reason: 'Using Gemini API (inside Claude Code, fallback)' };
       }
       return {
         mode: 'unavailable',
-        reason: 'Cannot run deep analysis inside Claude Code session without ANTHROPIC_API_KEY. ' +
-                'Either set ANTHROPIC_API_KEY environment variable, or run this command from a regular terminal.',
+        reason: 'Cannot run deep analysis inside Claude Code session without an API key. ' +
+                'Set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY, or run from a regular terminal.',
       };
     }
 
@@ -195,14 +234,21 @@ export class DeepAnalyzer {
       return { mode: 'cli', reason: 'Using Claude CLI' };
     }
 
-    // CLI not available, try API key
-    if (hasApiKey) {
-      return { mode: 'api', reason: 'Using API key (CLI not available)' };
+    // CLI not available, try API keys
+    if (this.preferredProvider === 'gemini' && hasGeminiKey) {
+      return { mode: 'gemini', reason: 'Using Gemini API (CLI not available, preferred)' };
+    }
+    if (hasAnthropicKey) {
+      return { mode: 'anthropic', reason: 'Using Anthropic API (CLI not available)' };
+    }
+    if (hasGeminiKey) {
+      return { mode: 'gemini', reason: 'Using Gemini API (CLI not available)' };
     }
 
     return {
       mode: 'unavailable',
-      reason: 'Claude CLI not found. Install Claude Code (https://claude.ai/code) or set ANTHROPIC_API_KEY.',
+      reason: 'No execution method available. Install Claude Code (https://claude.ai/code), ' +
+              'or set ANTHROPIC_API_KEY or GOOGLE_AI_API_KEY.',
     };
   }
 
@@ -290,7 +336,7 @@ export class DeepAnalyzer {
 
     // Execute agents sequentially
     for (const agent of agents) {
-      const agentResult = await this.executeAgent(agent, executionMode.mode as 'cli' | 'api');
+      const agentResult = await this.executeAgent(agent, executionMode.mode as 'cli' | 'anthropic' | 'gemini');
       result.results.push(agentResult);
     }
 
@@ -321,7 +367,7 @@ export class DeepAnalyzer {
   /**
    * Execute a single agent
    */
-  private async executeAgent(agent: AgentConfig, mode: 'cli' | 'api'): Promise<AgentResult> {
+  private async executeAgent(agent: AgentConfig, mode: 'cli' | 'anthropic' | 'gemini'): Promise<AgentResult> {
     const startTime = Date.now();
     const outputPath = join(this.outputDir, agent.outputFile);
 
@@ -342,15 +388,17 @@ export class DeepAnalyzer {
 
       if (mode === 'cli') {
         output = await this.runWithCli(prompt);
+      } else if (mode === 'anthropic') {
+        output = await this.runWithAnthropic(prompt);
       } else {
-        output = await this.runWithApi(prompt);
+        output = await this.runWithGemini(prompt);
       }
 
       // Parse output for insights
       result.insights = this.extractInsights(output);
 
       // Write output to file
-      writeFileSync(outputPath, this.formatOutput(agent, output));
+      writeFileSync(outputPath, this.formatOutput(agent, output, mode));
       result.documents.push({ path: outputPath, title: agent.name });
 
       result.success = true;
@@ -479,7 +527,7 @@ Be specific and actionable in your analysis.`;
   /**
    * Run analysis using Anthropic API directly
    */
-  private async runWithApi(prompt: string): Promise<string> {
+  private async runWithAnthropic(prompt: string): Promise<string> {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
       throw new Error('ANTHROPIC_API_KEY not set');
@@ -511,7 +559,40 @@ Be specific and actionable in your analysis.`;
       throw new Error('No text content in API response');
     } catch (error) {
       if (error instanceof Error) {
-        throw new Error(`API call failed: ${error.message}`);
+        throw new Error(`Anthropic API call failed: ${error.message}`);
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Run analysis using Google Gemini API
+   */
+  private async runWithGemini(prompt: string): Promise<string> {
+    const apiKey = this.getGeminiApiKey();
+    if (!apiKey) {
+      throw new Error('GOOGLE_AI_API_KEY, GEMINI_API_KEY, or GOOGLE_API_KEY not set');
+    }
+
+    try {
+      // Dynamic import to avoid bundling issues
+      const { GoogleGenerativeAI } = await import('@google/generative-ai');
+
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const text = response.text();
+
+      if (!text) {
+        throw new Error('No text content in Gemini response');
+      }
+
+      return text;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(`Gemini API call failed: ${error.message}`);
       }
       throw error;
     }
@@ -546,7 +627,7 @@ Be specific and actionable in your analysis.`;
   /**
    * Format output for documentation
    */
-  private formatOutput(agent: AgentConfig, output: string): string {
+  private formatOutput(agent: AgentConfig, output: string, mode: string): string {
     const timestamp = new Date().toISOString();
 
     return `---
@@ -554,12 +635,13 @@ title: "${agent.name} Analysis"
 type: analysis
 generator: deep-analyzer
 agent: ${agent.type}
+provider: ${mode}
 created: ${timestamp}
 ---
 
 # ${agent.name} Analysis
 
-> Generated by DeepAnalyzer
+> Generated by DeepAnalyzer using ${mode === 'cli' ? 'Claude CLI' : mode === 'anthropic' ? 'Anthropic API' : 'Gemini API'}
 
 ## Overview
 
