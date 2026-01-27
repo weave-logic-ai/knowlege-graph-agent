@@ -11,12 +11,15 @@
 
 ### Git Commands in This Package
 
-```bash
-# Push changes
-git push kg-agent master
+**CRITICAL**: Use `git subtree` to push this package to `kg-agent`. Do NOT use regular `git push kg-agent master`.
 
-# Push with tags
-git push kg-agent master --tags
+```bash
+# Push changes to kg-agent (ALWAYS use subtree)
+cd /home/aepod/dev/weave-nn
+git subtree push --prefix=packages/knowledge-graph-agent kg-agent master
+
+# Force push if needed (when histories diverge)
+git push kg-agent $(git subtree split --prefix=packages/knowledge-graph-agent):master --force
 
 # Fetch updates
 git fetch kg-agent
@@ -24,6 +27,12 @@ git fetch kg-agent
 # Check remote status
 git log kg-agent/master --oneline -5
 ```
+
+### Workflow
+
+1. Make changes in `packages/knowledge-graph-agent/`
+2. Commit to monorepo: `git commit` and `git push origin master`
+3. Sync to standalone: `git subtree push --prefix=packages/knowledge-graph-agent kg-agent master`
 
 ### Why Two Remotes?
 
