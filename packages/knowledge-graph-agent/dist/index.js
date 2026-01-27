@@ -65,6 +65,10 @@ import { AdvancedPluginRegistry, createAdvancedPluginRegistry } from "./plugins/
 import { AdvancedPluginLoader, createAdvancedPluginLoader } from "./plugins/loader.js";
 import { DependencyHealthAnalyzerPlugin, DependencyHealthPlugin, analyzeDependencyHealth, createDependencyHealthAnalyzerPlugin, createDependencyHealthPlugin, enhanceDependenciesWithHealth } from "./plugins/analyzers/dependency-health/index.js";
 import { CodeComplexityPlugin, analyzeComplexity, pluginMetadata, createComplexityPlugin, registerWithSeedGenerator } from "./plugins/analyzers/code-complexity/index.js";
+import { DecisionLogManager, createDecisionLogManager } from "./sparc/decision-log.js";
+import { ConsensusBuilder, createConsensusBuilder } from "./sparc/consensus.js";
+import { ReviewProcessManager, createReviewProcess } from "./sparc/review-process.js";
+import { SPARCPlanner, createSPARCPlanner } from "./sparc/sparc-planner.js";
 import { DependencyHealthAnalyzer, createDependencyHealthAnalyzer } from "./plugins/analyzers/dependency-health/analyzer.js";
 import { DependencyGraphGenerator, createDependencyGraphGenerator } from "./plugins/analyzers/dependency-health/graph-generator.js";
 import { NpmClient, createNpmClient } from "./plugins/analyzers/dependency-health/npm-client.js";
@@ -163,11 +167,13 @@ export {
   ComplexityGraphGenerator,
   ComplianceStatus,
   ConfigManager,
+  ConsensusBuilder,
   DEFAULT_DASHBOARD_PORT,
   DEFAULT_DATABASE_PATH,
   DEFAULT_GRAPHQL_PORT,
   DEFAULT_THRESHOLDS,
   DateTimeScalar,
+  DecisionLogManager,
   DecisionTracker,
   DeepAnalyzer,
   DependencyGraphGenerator,
@@ -198,10 +204,12 @@ export {
   PluginRegistryImpl,
   ResearcherAgent,
   RetriesExhaustedError,
+  ReviewProcessManager,
   RulesEngine,
   SHUTDOWN_TIMEOUT,
   SOPCategory,
   SOPPriority,
+  SPARCPlanner,
   SeedGenerator,
   ServerManager,
   ServiceContainer,
@@ -258,9 +266,11 @@ export {
   createConditionalRule,
   createConfigManager,
   createConfigurationError,
+  createConsensusBuilder,
   createContextFactory,
   createDatabase,
   createDatabaseCheck,
+  createDecisionLogManager,
   createDecisionTracker,
   createDeepAnalyzer,
   createDefaultConfig,
@@ -295,9 +305,11 @@ export {
   createProgressLogger,
   createRegistry,
   createResourceError,
+  createReviewProcess,
   createRule,
   createRulesEngine,
   createSOPFocusedSubgraph,
+  createSPARCPlanner,
   createServerManager,
   createServiceContainer,
   createServiceManager,

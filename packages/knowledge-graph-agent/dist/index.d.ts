@@ -56,6 +56,8 @@ export type { WorkflowConfig as WorkflowDevKitConfig, PostgresPoolConfig, Postgr
 export * from './plugins/index.js';
 export { AgentEquilibriumSelector, createAgentEquilibriumSelector, createEquilibriumTask, } from './equilibrium/index.js';
 export type { AgentParticipation, EquilibriumConfig, EquilibriumResult, Task as EquilibriumTask, } from './equilibrium/index.js';
+export { DecisionLogManager, createDecisionLogManager, ConsensusBuilder, createConsensusBuilder, ReviewProcessManager, createReviewProcess, SPARCPlanner, createSPARCPlanner, } from './sparc/index.js';
+export type { SPARCPhase, ConfidenceLevel as SPARCConfidenceLevel, DecisionStatus, ReviewPassType, FindingSeverity, TaskExecutionMode, Requirement, Feature, SpecificationDocument, AlgorithmStep, AlgorithmDesign, ArchitectureComponent, ComponentInterface, ArchitectureDecision, ArchitectureDocument, SPARCTask, TaskOutput, ContextLink, KGReference, DecisionEntry, ConsensusInfo, DecisionLog, ReviewFinding, ReviewPassResult, ReviewResult, SPARCPlanStatus, ExistingCodeAnalysis, ResearchFinding, SPARCPlan, AgentSpawnRequest, AgentExecutionResult, ConsensusRequest, ConsensusResult, DecisionLogManagerOptions, AddDecisionOptions, ConsensusBuilderOptions, AgentVote, ConsensusOption, ReviewProcessOptions, SPARCPlannerOptions, } from './sparc/index.js';
 /**
  * Quick start function for programmatic usage
  *
